@@ -1,0 +1,181 @@
+.pack-opening {
+  --zoom: 0.62;
+
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: calc(10px + var(--safe-top)) 12px calc(10px + var(--safe-bottom));
+  background:
+    radial-gradient(circle at 50% 40%, rgba(138, 92, 255, 0.55), transparent 65%),
+    rgba(27, 20, 64, 0.88);
+  backdrop-filter: blur(4px);
+  color: white;
+
+  // Phones in landscape: the 8 cards in one row, as big as the width allows.
+  @media (max-height: 560px) {
+    --zoom: 0.46;
+  }
+
+  @media (max-height: 560px) and (max-width: 999px) {
+    --zoom: 0.4;
+    --gap: 6px;
+  }
+
+  @media (max-height: 560px) and (max-width: 819px) {
+    --zoom: 0.34;
+  }
+
+  h2 {
+    margin: 0;
+    font-family: var(--font-title);
+    font-weight: 400;
+    text-shadow: 0 3px 0 var(--color-outline);
+  }
+
+  &__guaranteed {
+    margin: 0;
+    padding: 4px 14px;
+    border: 2px solid var(--color-outline);
+    border-radius: 999px;
+    background: var(--rarity-legendary);
+    color: var(--color-outline);
+    font-family: var(--font-display);
+  }
+
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(8, auto);
+    gap: var(--gap, 10px);
+
+    @media (max-width: 1180px) and (min-height: 561px) {
+      grid-template-columns: repeat(4, auto);
+    }
+  }
+
+  &__card {
+    width: calc(220px * var(--zoom));
+    aspect-ratio: 5 / 7;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    perspective: 900px;
+    animation: pack-card-deal 0.45s ease-out backwards;
+  }
+
+  &__inner {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.55s cubic-bezier(0.3, 1.4, 0.5, 1);
+    transform-style: preserve-3d;
+  }
+
+  &__card.flipped &__inner {
+    transform: rotateY(180deg);
+  }
+
+  &__face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+
+    &.back {
+      display: grid;
+      place-items: center;
+      border: 3px solid var(--color-outline);
+      border-radius: 14px;
+      background:
+        repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.08) 0 8px, transparent 8px 16px),
+        linear-gradient(160deg, var(--color-violet), #2b2350);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+      font-size: calc(3rem * var(--zoom) / 0.62);
+    }
+
+    &.front {
+      transform: rotateY(180deg);
+    }
+  }
+
+  &__card:not(.flipped):hover &__face.back {
+    box-shadow:
+      0 0 0 3px var(--color-gold),
+      0 6px 16px rgba(0, 0, 0, 0.4);
+  }
+
+  &__zoom {
+    display: block;
+    zoom: var(--zoom);
+  }
+
+  &__card.shine.flipped &__face.front {
+    border-radius: 18px;
+    animation: pack-card-shine 1.6s ease-out 0.3s;
+    box-shadow: 0 0 26px 6px var(--rarity);
+  }
+
+  @each $rarity in common, uncommon, rare, epic, legendary, exotic, mythic {
+    &__card.rarity-#{$rarity} {
+      --rarity: var(--rarity-#{$rarity});
+    }
+  }
+
+  &__new {
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    padding: 0 8px;
+    border: 2px solid var(--color-outline);
+    border-radius: 999px;
+    background: var(--color-lime);
+    color: var(--color-outline);
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    transform: translateX(-50%);
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  &__hint {
+    font-weight: 700;
+    opacity: 0.85;
+  }
+}
+
+@keyframes pack-card-deal {
+  from {
+    opacity: 0;
+    transform: translateY(-60px) scale(0.5) rotate(-8deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pack-card-shine {
+  0% {
+    box-shadow: 0 0 0 0 var(--rarity);
+  }
+
+  40% {
+    box-shadow: 0 0 50px 18px var(--rarity);
+  }
+
+  100% {
+    box-shadow: 0 0 26px 6px var(--rarity);
+  }
+}

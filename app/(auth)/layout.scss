@@ -1,0 +1,71 @@
+// Floating cards behind and, in the middle, the logo over a small panel.
+.auth-layout {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  min-height: 100dvh;
+
+  .column {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: min(100%, 440px);
+    min-height: 100dvh;
+    padding: calc(24px + var(--safe-top)) calc(16px + var(--safe-right)) calc(24px + var(--safe-bottom))
+      calc(16px + var(--safe-left));
+  }
+
+  .brand {
+    animation: auth-float 4s ease-in-out infinite;
+
+    .logo.size-medium {
+      font-size: 3rem;
+    }
+  }
+
+  .tagline {
+    max-width: 360px;
+    margin: -4px 0 6px;
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 360px;
+    box-shadow: var(--frame-shadow);
+  }
+}
+
+@keyframes auth-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+// Phone in landscape: little height, so a smaller logo and no tagline.
+@media (orientation: landscape) and (max-height: 600px) {
+  .auth-layout .column {
+    gap: 8px;
+    padding-top: calc(12px + var(--safe-top));
+    padding-bottom: calc(12px + var(--safe-bottom));
+
+    .brand .logo.size-medium {
+      font-size: 2.2rem;
+    }
+
+    .tagline {
+      display: none;
+    }
+  }
+}

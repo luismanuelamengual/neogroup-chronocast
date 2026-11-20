@@ -1,0 +1,81 @@
+import { MAX_COPIES, MAX_UNIQUE_COPIES } from '@/app/(protected)/(engine)/data/rules'
+import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition'
+import { RARITIES, Rarity } from '@/app/(protected)/(engine)/models/Rarity'
+import { getCard, hasCard } from '@/app/(protected)/(engine)/utils/registry'
+import { CONFIRM_SELL_FROM, SELL_RATE, UNLOCK_COSTS } from '@/app/(protected)/(shop)/data/prices'
+
+/** Cards the shop sells and buys: everything but heroes, campaign rewards and boss cards. */
+export function isBuyable(card: CardDefinition): boolean {
+  return card.type !== 'hero' && !card.reward && !card.boss && card.price != null
+}
+
+/** Cards a player can sell: everything with a price but heroes. */
+export function isSellable(card: CardDefinition): boolean {
+  return card.type !== 'hero' && !card.boss && card.price != null
+}
+
+/** Gold a copy of a card sells for: 15 % of its price, rounded. */
+export function sellPrice(card: CardDefinition): number {
+  return Math.round((card.price ?? 0) * SELL_RATE)
+}
+
+/** Selling it asks for confirmation: epic or better. */
+export function isValuable(card: CardDefinition): boolean {
+  return RARITIES.indexOf(card.rarity) >= RARITIES.indexOf(CONFIRM_SELL_FROM)
+}
+
+/** The rarities unlocked, in order: common plus the ones bought. */
+export function unlockedRarities(bought: string[]): Rarity[] {
+  const unlocked: Rarity[] = ['common']
+
+  for (const rarity of RARITIES.slice(1)) {
+    if (!bought.includes(rarity)) {
+      break
+    }
+
+    unlocked.push(rarity)
+  }
+
+  return unlocked
+}
+
+/** The next rarity to unlock and its cost (null: all of them are open). */
+export function nextUnlock(unlocked: Rarity[]): { rarity: Rarity; cost: number } | null {
+  const rarity = RARITIES[unlocked.length]
+
+  return rarity ? { rarity, cost: UNLOCK_COSTS[rarity] } : null
+}
+
+/** The most copies of a card a deck can hold (4, or 1 if it is unique). */
+export function copyLimit(card: CardDefinition): number {
+  return card.keywords?.includes('unique') ? MAX_UNIQUE_COPIES : MAX_COPIES
+}
+
+/**
+ * Quick sell (docs/PLAN.md, section 11.3): every copy beyond the deck limit
+ * of each card, but never one a saved deck needs (`deckUsage`: the most copies
+ * of each card any saved deck holds).
+ */
+export function quickSellPlan(
+  collection: Record<string, number>,
+  deckUsage: Record<string, number>
+): { cards: Record<string, number>; gold: number } {
+  const cards: Record<string, number> = {}
+  let gold = 0
+
+  for (const [cardId, owned] of Object.entries(collection)) {
+    if (!hasCard(cardId) || !isSellable(getCard(cardId))) {
+      continue
+    }
+
+    const card = getCard(cardId)
+    const extra = owned - Math.max(copyLimit(card), deckUsage[cardId] ?? 0)
+
+    if (extra > 0) {
+      cards[cardId] = extra
+      gold += extra * sellPrice(card)
+    }
+  }
+
+  return { cards, gold }
+}

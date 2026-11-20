@@ -1,0 +1,136 @@
+.sell-shop {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &__quick {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px 16px;
+    padding: 10px 14px;
+    border: var(--frame-border);
+    border-radius: var(--frame-radius);
+    background: white;
+
+    > div:first-child {
+      display: flex;
+      flex: 1 1 320px;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    h2 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+    }
+
+    p {
+      margin: 0;
+      color: var(--color-text-secondary);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+  }
+
+  &__quick-confirm,
+  &__confirm > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  &__confirm {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 6px 0;
+    padding: 8px 10px;
+    border-radius: 10px;
+    background: var(--color-peach);
+
+    p {
+      color: var(--color-magenta-dark) !important;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 6px 0;
+  }
+
+  &__empty {
+    color: var(--color-text-secondary);
+    font-weight: 700;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+    gap: 14px;
+  }
+
+  &__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+  }
+
+  &__zoom {
+    zoom: 0.6;
+    transition: transform 0.15s;
+  }
+
+  &__card:hover &__zoom {
+    transform: translateY(-6px);
+  }
+
+  &__owned {
+    position: absolute;
+    top: -4px;
+    right: 4px;
+    padding: 0 8px;
+    border: 2px solid var(--color-outline);
+    border-radius: 999px;
+    background: var(--color-gold);
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  &__deck {
+    padding: 1px 6px;
+    border: 2px solid var(--color-outline);
+    border-radius: 999px;
+    background: var(--color-cyan);
+    font-size: 0.7rem;
+    font-weight: 800;
+  }
+
+  &__price {
+    padding: 0 10px;
+    border: 2px solid var(--color-outline);
+    border-radius: 999px;
+    background: var(--color-mint);
+    font-size: 0.95rem;
+  }
+}

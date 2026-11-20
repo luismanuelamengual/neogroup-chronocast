@@ -1,0 +1,125 @@
+.pack-shop {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  h2 {
+    margin: 6px 0 0;
+    font-family: var(--font-title);
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+
+  &__pity,
+  &__note {
+    margin: 0;
+    color: var(--color-text-secondary);
+    font-weight: 700;
+  }
+
+  &__note {
+    font-size: 0.85rem;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 12px;
+  }
+
+  &__pack {
+    --pack: var(--color-violet);
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px;
+    border: 3px solid var(--color-outline);
+    border-radius: 18px;
+    background: white;
+    box-shadow: 0 5px 0 var(--color-outline);
+
+    &.pack-traveler {
+      --pack: var(--rarity-uncommon);
+    }
+
+    &.pack-chronicler {
+      --pack: var(--rarity-rare);
+    }
+
+    &.pack-guardian {
+      --pack: var(--rarity-epic);
+    }
+
+    &.pack-eternal {
+      --pack: var(--rarity-legendary);
+    }
+
+    @each $faction in primal, bronze, arcane, clockwork, neon, void {
+      &.pack-#{$faction} {
+        --pack: var(--faction-#{$faction});
+      }
+    }
+
+    .game-button {
+      margin-top: auto;
+    }
+  }
+
+  &__art {
+    display: grid;
+    place-items: center;
+    height: 74px;
+    border: 2px solid var(--color-outline);
+    border-radius: 12px;
+    background:
+      radial-gradient(circle at 30% 10%, rgba(255, 255, 255, 0.6), transparent 55%),
+      linear-gradient(135deg, var(--pack), color-mix(in srgb, var(--pack) 55%, #1b1440));
+    font-size: 2.4rem;
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.25);
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    h3 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+    }
+
+    p {
+      margin: 0;
+      color: var(--color-text-secondary);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+  }
+
+  &__size {
+    font-weight: 800 !important;
+  }
+
+  &__odds {
+    margin: 4px 0 0;
+    padding: 6px 10px;
+    border-radius: 10px;
+    background: var(--color-lavender);
+    font-size: 0.85rem;
+    list-style: none;
+  }
+
+  &__link {
+    align-self: flex-start;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--color-cyan-dark);
+    cursor: pointer;
+    font: inherit;
+    font-weight: 800;
+    text-decoration: underline;
+  }
+}

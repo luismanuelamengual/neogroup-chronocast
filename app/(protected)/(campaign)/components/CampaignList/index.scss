@@ -1,0 +1,140 @@
+.campaign-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 100dvh;
+  padding: calc(10px + var(--safe-top)) calc(14px + var(--safe-right)) calc(14px + var(--safe-bottom))
+    calc(14px + var(--safe-left));
+  background: linear-gradient(180deg, var(--color-peach), var(--color-cream));
+  color: var(--color-text);
+
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+
+    h1 {
+      margin: 0 auto 0 0;
+      font-family: var(--font-title);
+      font-weight: 400;
+    }
+  }
+
+  &__text {
+    max-width: 760px;
+    margin: 0;
+    color: var(--color-text-secondary);
+    font-weight: 700;
+  }
+
+  > ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 14px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    @media (max-width: 420px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  li {
+    --faction: var(--faction-neutral);
+
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 12px;
+    padding: 12px;
+    border: var(--frame-border);
+    border-top: 8px solid var(--faction);
+    border-radius: var(--frame-radius);
+    background: white;
+    box-shadow: var(--frame-shadow);
+
+    &.locked {
+      filter: grayscale(0.7);
+      opacity: 0.75;
+    }
+
+    &.completed {
+      border-color: var(--color-gold);
+    }
+  }
+
+  .faction-bronze {
+    --faction: var(--faction-bronze);
+  }
+
+  .faction-arcane {
+    --faction: var(--faction-arcane);
+  }
+
+  .faction-primal {
+    --faction: var(--faction-primal);
+  }
+
+  &__hero {
+    zoom: 0.59;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+
+    h2 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+    }
+
+    strong {
+      color: var(--color-text-secondary);
+      font-size: 0.85rem;
+    }
+
+    p {
+      margin: 0;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+  }
+
+  &__progress {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+
+    span {
+      width: 14px;
+      height: 14px;
+      border: 2px solid var(--color-outline);
+      border-radius: 50%;
+      background: var(--color-cream);
+
+      &.won {
+        background: var(--color-gold);
+      }
+    }
+
+    b {
+      margin-left: 6px;
+      font-family: var(--font-display);
+      font-weight: 400;
+    }
+  }
+
+  &__reward {
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+
+  &__locked {
+    font-family: var(--font-display);
+  }
+}

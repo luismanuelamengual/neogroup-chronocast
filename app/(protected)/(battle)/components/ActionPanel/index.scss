@@ -1,0 +1,41 @@
+.action-panel {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 0;
+
+  &__card {
+    zoom: 0.8;
+
+    @media (max-height: 700px) {
+      zoom: 0.62;
+    }
+
+    @media (max-height: 480px) {
+      zoom: 0.5;
+    }
+  }
+
+  &__hint {
+    margin: 0;
+    color: var(--color-text-secondary);
+    font-size: 0.8rem;
+    font-weight: 700;
+    line-height: 1.25;
+    text-align: center;
+
+    @media (max-height: 480px) {
+      font-size: 0.7rem;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+  }
+}

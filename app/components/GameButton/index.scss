@@ -1,0 +1,161 @@
+// Doubled with .MuiButtonBase-root so these rules beat ButtonBase's own reset
+// (transparent background, no padding/border/radius), whatever the CSS order.
+.game-button.MuiButtonBase-root {
+  --btn-light: var(--color-gold-light);
+  --btn-bg: var(--color-gold);
+  --btn-dark: #e08a12;
+  --btn-text: #4a2604;
+  --btn-ring: var(--color-outline);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 11px 24px;
+  border: 2px solid var(--btn-ring);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 48%),
+    linear-gradient(180deg, var(--btn-light) 0%, var(--btn-bg) 45%, var(--btn-dark) 100%);
+  color: var(--btn-text);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.55),
+    inset 0 -4px 0 rgba(0, 0, 0, 0.18),
+    0 4px 0 var(--btn-ring),
+    0 8px 14px rgba(67, 52, 140, 0.18);
+  transform: translateY(0);
+  transition:
+    transform 80ms ease,
+    box-shadow 120ms ease,
+    filter 150ms ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+
+  .label {
+    white-space: nowrap;
+  }
+
+  .icon,
+  svg {
+    font-size: 1.3em;
+  }
+
+  &:hover,
+  &:focus-visible {
+    filter: brightness(1.1);
+    box-shadow:
+      inset 0 2px 0 rgba(255, 255, 255, 0.55),
+      inset 0 -4px 0 rgba(0, 0, 0, 0.18),
+      0 4px 0 var(--btn-ring),
+      0 8px 18px rgba(67, 52, 140, 0.25);
+  }
+
+  &:active {
+    transform: translateY(3px);
+    filter: brightness(0.95);
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  &.Mui-disabled {
+    filter: grayscale(0.9) opacity(0.55);
+    cursor: not-allowed;
+  }
+
+  &.full-width {
+    display: flex;
+    width: 100%;
+
+    // Long labels wrap instead of overflowing.
+    .label {
+      white-space: normal;
+      min-width: 0;
+      text-align: center;
+      overflow-wrap: anywhere;
+      line-height: 1.2;
+    }
+  }
+
+  &.size-small {
+    gap: 6px;
+    padding: 7px 14px;
+    font-size: 0.78rem;
+  }
+
+  &.size-large {
+    padding: 15px 34px;
+    font-size: 1.25rem;
+  }
+
+  &.color-cyan {
+    --btn-light: #b8e8ff;
+    --btn-bg: #4fc3ff;
+    --btn-dark: #1a6fc4;
+    --btn-text: #fff;
+    --btn-ring: var(--color-outline);
+
+    text-shadow: 0 2px 0 rgba(43, 35, 80, 0.45);
+  }
+
+  &.color-magenta {
+    --btn-light: #ffb3cb;
+    --btn-bg: #ff5a8a;
+    --btn-dark: #c41f5a;
+    --btn-text: #fff;
+    --btn-ring: var(--color-outline);
+
+    text-shadow: 0 2px 0 rgba(43, 35, 80, 0.45);
+  }
+
+  &.color-lime {
+    --btn-light: #c8f5a8;
+    --btn-bg: #7ee05a;
+    --btn-dark: #3a9a2a;
+    --btn-text: #fff;
+    --btn-ring: var(--color-outline);
+
+    text-shadow: 0 2px 0 rgba(43, 35, 80, 0.45);
+  }
+
+  &.color-violet {
+    --btn-light: #c8b4ff;
+    --btn-bg: #8a5cff;
+    --btn-dark: #5a34d6;
+    --btn-text: #fff;
+    --btn-ring: var(--color-outline);
+
+    text-shadow: 0 2px 0 rgba(43, 35, 80, 0.45);
+  }
+
+  &.color-ghost {
+    --btn-light: #ffffff;
+    --btn-bg: #ffffff;
+    --btn-dark: #ede7ff;
+    --btn-text: var(--color-text);
+    --btn-ring: var(--color-outline);
+
+    text-shadow: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .game-button.MuiButtonBase-root {
+    padding: 10px 18px;
+
+    &.size-large {
+      padding: 13px 24px;
+      font-size: 1.1rem;
+    }
+
+    &.size-small {
+      padding: 7px 12px;
+    }
+  }
+}

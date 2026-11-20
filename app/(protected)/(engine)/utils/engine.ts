@@ -1,0 +1,578 @@
+import { ALLY_SLOTS, FATIGUE_START, FATIGUE_STEP, MAX_HAND } from '@/app/(protected)/(engine)/data/rules'
+import { CardDefinition, TrapEvent, TrapTrigger } from '@/app/(protected)/(engine)/models/CardDefinition'
+import { EffectContext } from '@/app/(protected)/(engine)/models/EffectContext'
+import { Keyword } from '@/app/(protected)/(engine)/models/Keyword'
+import { MatchEvent } from '@/app/(protected)/(engine)/models/MatchEvent'
+import { CardInstance, MatchState, PlayerState, Unit } from '@/app/(protected)/(engine)/models/MatchState'
+import { opponentOf, PLAYER_IDS, PlayerId } from '@/app/(protected)/(engine)/models/PlayerId'
+import { SlotRef } from '@/app/(protected)/(engine)/models/SlotRef'
+import { nextRandom } from '@/app/(protected)/(engine)/utils/random'
+import { getCard } from '@/app/(protected)/(engine)/utils/registry'
+
+/** Where a damage comes from: its side, and the attacker's special rules. */
+export interface DamageSource {
+  player: PlayerId
+  poison?: boolean
+  lifesteal?: boolean
+}
+
+type PendingDamage =
+  | { kind: 'unit'; uid: number; amount: number; source?: DamageSource }
+  | { kind: 'hero'; player: PlayerId; amount: number; source?: DamageSource }
+
+/** Hooks that run on every card in play of a side (the hero, its attachments, its location and its allies). */
+type SharedHook = 'onPhaseStart' | 'onPhaseEnd'
+
+/** The most rounds of "damage → deaths → more damage" in a row (a safety net against endless loops). */
+const MAX_FLUSH_ROUNDS = 50
+
+/**
+ * The mutable engine of one resolution: it works on a state it owns (a copy
+ * made by resolvePhase / createMatch), records the events and keeps the damage
+ * of the current speed bracket pending, so the actions of the same speed are
+ * simultaneous. Card logic reaches it through the helpers of (engine)/effects.
+ */
+export class MatchEngine {
+  readonly events: MatchEvent[] = []
+  private pending: PendingDamage[] = []
+  /** The uid in each ally slot when the current speed bracket started (null outside a bracket). */
+  private snapshot: Record<PlayerId, (number | null)[]> | null = null
+
+  constructor(readonly state: MatchState) {}
+
+  // ─── Basics ────────────────────────────────────────────────────────────────
+
+  random(): number {
+    const { value, state } = nextRandom(this.state.rng)
+
+    this.state.rng = state
+
+    return value
+  }
+
+  player(id: PlayerId): PlayerState {
+    return this.state.players[id]
+  }
+
+  emit(event: MatchEvent): void {
+    this.events.push(event)
+  }
+
+  newUid(): number {
+    return this.state.nextUid++
+  }
+
+  newCard(cardId: string): CardInstance {
+    return { uid: this.newUid(), cardId }
+  }
+
+  shuffle<T>(items: T[]): void {
+    for (let i = items.length - 1; i > 0; i--) {
+      const j = Math.floor(this.random() * (i + 1))
+
+      ;[items[i], items[j]] = [items[j], items[i]]
+    }
+  }
+
+  // ─── Units ─────────────────────────────────────────────────────────────────
+
+  unitAt(player: PlayerId, slot: number): Unit | null {
+    return this.player(player).allies[slot] ?? null
+  }
+
+  allies(player: PlayerId): Unit[] {
+    return this.player(player).allies.filter((unit): unit is Unit => !!unit)
+  }
+
+  findUnit(uid: number): { player: PlayerId; slot: number; unit: Unit } | null {
+    for (const player of PLAYER_IDS) {
+      const slot = this.player(player).allies.findIndex((unit) => unit?.uid === uid)
+
+      if (slot >= 0) {
+        return { player, slot, unit: this.player(player).allies[slot]! }
+      }
+    }
+
+    return null
+  }
+
+  freeSlots(player: PlayerId): number[] {
+    return this.player(player)
+      .allies.map((unit, slot) => (unit ? -1 : slot))
+      .filter((slot) => slot >= 0)
+  }
+
+  hasKeyword(unit: Unit, keyword: Keyword): boolean {
+    return unit.keywords.includes(keyword)
+  }
+
+  attackOf(unit: Unit): number {
+    return Math.max(0, unit.attack + unit.tempAttack)
+  }
+
+  isStunned(unit: Unit): boolean {
+    return unit.stunnedUntilPhase >= this.state.phase
+  }
+
+  /** Freezes who is in each slot: within a speed bracket, attacks and effects aim at the board as it was when it started. */
+  takeSnapshot(): void {
+    this.snapshot = {
+      a: this.player('a').allies.map((unit) => unit?.uid ?? null),
+      b: this.player('b').allies.map((unit) => unit?.uid ?? null)
+    }
+  }
+
+  clearSnapshot(): void {
+    this.snapshot = null
+  }
+
+  /** The ally a slot points to: the one there when the bracket started (if it is still alive), or the current one. */
+  targetUnit(ref: SlotRef): Unit | null {
+    if (ref.slot === 'hero' || ref.slot < 0 || ref.slot >= ALLY_SLOTS) {
+      return null
+    }
+
+    if (this.snapshot) {
+      const uid = this.snapshot[ref.player][ref.slot]
+
+      return uid == null ? null : (this.findUnit(uid)?.unit ?? null)
+    }
+
+    return this.unitAt(ref.player, ref.slot)
+  }
+
+  /** The guardian that takes the attacks aimed at the hero of `player` (the one in the lowest slot). */
+  guardianOf(player: PlayerId): number | null {
+    for (let slot = 0; slot < ALLY_SLOTS; slot++) {
+      const unit = this.targetUnit({ player, slot })
+
+      if (unit && this.hasKeyword(unit, 'guardian') && !this.hasKeyword(unit, 'stealth')) {
+        return slot
+      }
+    }
+
+    return null
+  }
+
+  // ─── Damage, healing and deaths ────────────────────────────────────────────
+
+  /** Deals damage to a slot (an empty one does nothing). It lands when the speed bracket ends. */
+  damage(target: SlotRef, amount: number, source?: DamageSource): boolean {
+    if (amount <= 0) {
+      return false
+    }
+
+    if (target.slot === 'hero') {
+      this.pending.push({ kind: 'hero', player: target.player, amount, source })
+
+      return true
+    }
+
+    const unit = this.targetUnit(target)
+
+    if (!unit) {
+      return false
+    }
+
+    this.pending.push({ kind: 'unit', uid: unit.uid, amount, source })
+
+    return true
+  }
+
+  damageUnit(uid: number, amount: number, source?: DamageSource): void {
+    if (amount > 0) {
+      this.pending.push({ kind: 'unit', uid, amount, source })
+    }
+  }
+
+  damageHero(player: PlayerId, amount: number, source?: DamageSource): void {
+    if (amount > 0) {
+      this.pending.push({ kind: 'hero', player, amount, source })
+    }
+  }
+
+  /** Applies the pending damage, runs the "when damaged" logic and removes the dead, until nothing is left. */
+  flush(): void {
+    for (let round = 0; round < MAX_FLUSH_ROUNDS && this.pending.length > 0; round++) {
+      const batch = this.pending
+
+      this.pending = []
+
+      const damaged: { uid: number; amount: number }[] = []
+
+      for (const hit of batch) {
+        if (hit.kind === 'hero') {
+          const dealt = this.applyHeroDamage(hit.player, hit.amount)
+
+          this.applyLifesteal(hit.source, dealt)
+        } else {
+          const found = this.findUnit(hit.uid)
+
+          if (!found || found.unit.health <= 0) {
+            continue
+          }
+
+          const { unit, player, slot } = found
+          const ref = { player, slot }
+
+          if (unit.shield) {
+            unit.shield = false
+            this.emit({ type: 'shieldBlock', target: ref })
+            continue
+          }
+
+          const amount = hit.source?.poison ? Math.max(hit.amount, unit.health) : hit.amount
+
+          unit.health -= amount
+          this.emit({ type: 'damage', target: ref, amount, absorbed: 0 })
+          this.applyLifesteal(hit.source, hit.amount)
+          damaged.push({ uid: unit.uid, amount })
+        }
+      }
+
+      for (const { uid, amount } of damaged) {
+        const found = this.findUnit(uid)
+
+        if (found) {
+          getCard(found.unit.cardId).onDamaged?.(this.context(found.player, found.unit), amount)
+        }
+      }
+
+      this.processDeaths()
+    }
+  }
+
+  private applyHeroDamage(player: PlayerId, amount: number): number {
+    const hero = this.player(player).hero
+    const absorbed = Math.min(hero.armor, amount)
+    const rest = amount - absorbed
+
+    hero.armor -= absorbed
+    hero.health -= rest
+    this.emit({ type: 'damage', target: { player, slot: 'hero' }, amount: rest, absorbed })
+
+    if (hero.armor <= 0 && hero.armorCard) {
+      this.player(player).discard.push(hero.armorCard)
+      hero.armorCard = null
+    }
+
+    if (hero.health <= 0 && !hero.fallen) {
+      hero.fallen = true
+      this.emit({ type: 'heroFell', player })
+    }
+
+    return amount
+  }
+
+  private applyLifesteal(source: DamageSource | undefined, amount: number): void {
+    if (source?.lifesteal && amount > 0) {
+      this.heal({ player: source.player, slot: 'hero' }, amount)
+    }
+  }
+
+  private processDeaths(): void {
+    for (const player of PLAYER_IDS) {
+      const state = this.player(player)
+
+      for (let slot = 0; slot < ALLY_SLOTS; slot++) {
+        const unit = state.allies[slot]
+
+        if (!unit || unit.health > 0) {
+          continue
+        }
+
+        state.allies[slot] = null
+        this.emit({ type: 'death', player, cardId: unit.cardId, slot })
+        getCard(unit.cardId).onDeath?.(this.context(player, unit))
+
+        if (this.hasKeyword(unit, 'echo') && !unit.echoUsed) {
+          this.addToHand(player, { uid: this.newUid(), cardId: unit.cardId, echoUsed: true })
+          this.emit({ type: 'returnToHand', player, cardId: unit.cardId })
+        } else {
+          state.discard.push({ uid: unit.uid, cardId: unit.cardId })
+        }
+      }
+    }
+  }
+
+  heal(target: SlotRef, amount: number): number {
+    if (amount <= 0) {
+      return 0
+    }
+
+    if (target.slot === 'hero') {
+      const hero = this.player(target.player).hero
+      const healed = Math.min(amount, hero.maxHealth - hero.health)
+
+      if (healed > 0 && !hero.fallen) {
+        hero.health += healed
+        this.emit({ type: 'heal', target, amount: healed })
+      }
+
+      return healed
+    }
+
+    const unit = this.targetUnit(target)
+
+    if (!unit) {
+      return 0
+    }
+
+    const healed = Math.min(amount, unit.maxHealth - unit.health)
+
+    if (healed > 0) {
+      unit.health += healed
+      this.emit({ type: 'heal', target, amount: healed })
+    }
+
+    return healed
+  }
+
+  // ─── Other effects ─────────────────────────────────────────────────────────
+
+  buff(uid: number, attack: number, health: number): void {
+    const found = this.findUnit(uid)
+
+    if (!found) {
+      return
+    }
+
+    found.unit.attack += attack
+    found.unit.health += health
+    found.unit.maxHealth += health
+    this.emit({ type: 'buff', target: { player: found.player, slot: found.slot }, attack, health })
+  }
+
+  /** Extra attack until the end of the phase. */
+  tempBuff(uid: number, attack: number): void {
+    const found = this.findUnit(uid)
+
+    if (found) {
+      found.unit.tempAttack += attack
+      this.emit({ type: 'buff', target: { player: found.player, slot: found.slot }, attack, health: 0 })
+    }
+  }
+
+  /** The ally can't act for the rest of this phase (and `extraPhases` more). */
+  stun(uid: number, extraPhases = 0): void {
+    const found = this.findUnit(uid)
+
+    if (found) {
+      found.unit.stunnedUntilPhase = Math.max(found.unit.stunnedUntilPhase, this.state.phase + extraPhases)
+      this.emit({ type: 'stun', target: { player: found.player, slot: found.slot } })
+    }
+  }
+
+  destroy(uid: number): void {
+    const found = this.findUnit(uid)
+
+    if (found) {
+      this.damageUnit(uid, found.unit.health + found.unit.maxHealth, { player: opponentOf(found.player), poison: true })
+    }
+  }
+
+  gainChronos(player: PlayerId, amount: number): void {
+    this.player(player).chronos += amount
+    this.emit({ type: 'chronos', player, amount })
+  }
+
+  addToHand(player: PlayerId, card: CardInstance): void {
+    const state = this.player(player)
+
+    if (state.hand.length >= MAX_HAND) {
+      state.discard.push(card)
+      this.emit({ type: 'burn', player, cardId: card.cardId })
+    } else {
+      state.hand.push(card)
+    }
+  }
+
+  /** Draws cards: from an empty deck each draw costs fatigue damage instead. */
+  draw(player: PlayerId, count: number): void {
+    const state = this.player(player)
+
+    for (let i = 0; i < count; i++) {
+      const card = state.deck.pop()
+
+      if (!card) {
+        const damage = FATIGUE_START + FATIGUE_STEP * state.fatigue
+
+        state.fatigue++
+        this.emit({ type: 'fatigue', player, damage })
+        this.damageHero(player, damage)
+        continue
+      }
+
+      if (state.hand.length >= MAX_HAND) {
+        state.discard.push(card)
+        this.emit({ type: 'burn', player, cardId: card.cardId })
+      } else {
+        state.hand.push(card)
+        this.emit({ type: 'draw', player, cardUid: card.uid })
+      }
+    }
+  }
+
+  /** Puts an ally on the board, in `slot` or the nearest free one. Returns it (null when the 5 slots are taken). */
+  summon(player: PlayerId, card: CardInstance, slot?: number): Unit | null {
+    const free = this.freeSlots(player)
+
+    if (free.length === 0) {
+      this.player(player).discard.push(card)
+
+      return null
+    }
+
+    const wanted = slot ?? free[0]
+    const chosen = free.reduce((best, candidate) =>
+      Math.abs(candidate - wanted) < Math.abs(best - wanted) ? candidate : best
+    )
+    const definition = getCard(card.cardId)
+    const unit: Unit = {
+      uid: card.uid,
+      cardId: card.cardId,
+      attack: definition.attack ?? 0,
+      health: definition.health ?? 1,
+      maxHealth: definition.health ?? 1,
+      keywords: [...(definition.keywords ?? [])],
+      thorns: definition.thorns ?? 0,
+      shield: definition.keywords?.includes('shield') ?? false,
+      enteredPhase: this.state.phase,
+      enteredStep: this.state.step,
+      attacksThisPhase: 0,
+      tempAttack: 0,
+      stunnedUntilPhase: 0,
+      echoUsed: card.echoUsed ?? false
+    }
+
+    this.player(player).allies[chosen] = unit
+    this.emit({ type: 'summon', player, cardId: card.cardId, uid: unit.uid, slot: chosen })
+    definition.onEnter?.(this.context(player, unit))
+
+    for (const other of this.inPlay(player)) {
+      if (other.uid !== unit.uid) {
+        getCard(other.cardId).onAllyEnter?.(this.context(player, other), unit)
+      }
+    }
+
+    this.triggerTrap(opponentOf(player), 'enemySummon', { player, slot: chosen })
+
+    return unit
+  }
+
+  /** Moves an ally to an empty slot, or swaps it with the ally there (a neighbor, or any one with `agile`). */
+  moveAlly(uid: number, toSlot: number): boolean {
+    const found = this.findUnit(uid)
+
+    if (!found || toSlot < 0 || toSlot >= ALLY_SLOTS || toSlot === found.slot) {
+      return false
+    }
+
+    const allies = this.player(found.player).allies
+    const other = allies[toSlot]
+
+    if (other && Math.abs(toSlot - found.slot) > 1 && !this.hasKeyword(found.unit, 'agile')) {
+      return false
+    }
+
+    allies[toSlot] = found.unit
+    allies[found.slot] = other
+
+    this.emit({ type: 'move', player: found.player, uid, from: found.slot, to: toSlot })
+
+    if (other) {
+      this.emit({ type: 'move', player: found.player, uid: other.uid, from: toSlot, to: found.slot })
+    }
+
+    return true
+  }
+
+  // ─── Traps ─────────────────────────────────────────────────────────────────
+
+  /** Sets off the first trap of `owner` that answers `trigger`. Returns whether it cancelled what the enemy was doing. */
+  triggerTrap(owner: PlayerId, trigger: TrapTrigger, unit?: SlotRef): boolean {
+    const state = this.player(owner)
+    const index = state.traps.findIndex((trap) => getCard(trap.cardId).trigger === trigger)
+
+    if (index < 0) {
+      return false
+    }
+
+    const [trap] = state.traps.splice(index, 1)
+    let cancelled = false
+    const event: TrapEvent = { trigger, unit, cancel: () => (cancelled = true) }
+
+    this.emit({ type: 'trapTriggered', player: owner, cardId: trap.cardId })
+    getCard(trap.cardId).onTrigger?.(this.context(owner, trap, unit ? [unit] : []), event)
+    state.discard.push(trap)
+
+    return cancelled
+  }
+
+  // ─── Card logic ────────────────────────────────────────────────────────────
+
+  context(owner: PlayerId, self: { uid: number; cardId: string }, targets: SlotRef[] = []): EffectContext {
+    return {
+      engine: this,
+      owner,
+      opponent: opponentOf(owner),
+      self: { uid: self.uid, cardId: self.cardId },
+      targets,
+      random: () => this.random()
+    }
+  }
+
+  /** Every card of a side that is in play: the hero, its weapon and armor, its location and its allies. */
+  inPlay(player: PlayerId): { uid: number; cardId: string }[] {
+    const state = this.player(player)
+    const cards: { uid: number; cardId: string }[] = [state.hero]
+
+    if (state.hero.weapon) {
+      cards.push(state.hero.weapon.card)
+    }
+
+    if (state.hero.armorCard) {
+      cards.push(state.hero.armorCard)
+    }
+
+    if (state.location) {
+      cards.push(state.location)
+    }
+
+    return [...cards, ...this.allies(player)]
+  }
+
+  dispatch(player: PlayerId, hook: SharedHook): void {
+    for (const card of this.inPlay(player)) {
+      const definition: CardDefinition = getCard(card.cardId)
+
+      definition[hook]?.(this.context(player, card))
+    }
+  }
+
+  // ─── End of the match ──────────────────────────────────────────────────────
+
+  /** Ends the match when a hero fell (a draw when both did). Returns whether it ended. */
+  checkVictory(): boolean {
+    if (this.state.status === 'finished') {
+      return true
+    }
+
+    const fallenA = this.player('a').hero.fallen
+    const fallenB = this.player('b').hero.fallen
+
+    if (!fallenA && !fallenB) {
+      return false
+    }
+
+    this.finish(fallenA && fallenB ? null : fallenA ? 'b' : 'a', 'hero')
+
+    return true
+  }
+
+  finish(winner: PlayerId | null, reason: 'hero' | 'phaseLimit' | 'surrender' | 'abandon'): void {
+    this.state.status = 'finished'
+    this.state.result = { winner, reason }
+    this.emit({ type: 'end', winner, reason })
+  }
+}

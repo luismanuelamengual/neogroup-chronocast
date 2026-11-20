@@ -1,0 +1,195 @@
+/*
+ * Global styles & design tokens.
+ *
+ * ChronoCast look: light pastel backgrounds and white panels, so the very vivid,
+ * high-contrast cards stand out. Colors mirror GAME_COLORS
+ * (app/components/ThemeRegistry/theme.ts) so SASS and MUI stay in sync.
+ * Breakpoints used across every .scss file of the app:
+ *   - phone:   max-width 600px
+ *   - tablet:  601px – 900px
+ *   - desktop: min-width 901px
+ */
+:root {
+  --font-display: 'Lilita One', 'Nunito', 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-title: 'Lilita One', 'Nunito', 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-body: 'Nunito', 'Segoe UI', Roboto, Arial, sans-serif;
+
+  // Pastel backgrounds.
+  --color-cream: #fff8ee;
+  --color-lavender: #ede7ff;
+  --color-mint: #e3f7ef;
+  --color-sky: #e4f1ff;
+  --color-peach: #ffe9dc;
+
+  // Ink: text and the dark outline of buttons, cards and frames.
+  --color-outline: #2b2350;
+  --color-text: #2b2350;
+  --color-text-secondary: #6b6590;
+
+  // Accents (buttons, highlights). Vivid, to pop over the pastel backgrounds.
+  --color-gold: #ffc93c;
+  --color-gold-light: #ffe89a;
+  --color-gold-dark: #c4791a;
+  --color-cyan: #4fc3ff;
+  --color-cyan-dark: #1a6fc4;
+  --color-magenta: #ff5a8a;
+  --color-magenta-dark: #c41f5a;
+  --color-lime: #7ee05a;
+  --color-lime-dark: #3a9a2a;
+  --color-ember: #ff9a2a;
+  --color-violet: #8a5cff;
+
+  // Panels: white with a soft lavender border and a soft shadow.
+  --color-panel: #ffffff;
+  --color-panel-border: #d9d0ff;
+  --frame-radius: 20px;
+  --frame-border: 2px solid var(--color-panel-border);
+  --frame-background: #ffffff;
+  --frame-shadow: 0 10px 30px rgba(67, 52, 140, 0.12), 0 2px 0 rgba(67, 52, 140, 0.06);
+  --frame-glow: 0 0 0 3px var(--color-violet), 0 10px 30px rgba(138, 92, 255, 0.3);
+
+  // Factions (vivid: cards, badges).
+  --faction-primal: #5fd13a;
+  --faction-bronze: #e8452c;
+  --faction-arcane: #4b5bff;
+  --faction-clockwork: #f0a020;
+  --faction-neon: #12d6e8;
+  --faction-void: #9b2cff;
+  --faction-neutral: #2ec4a6;
+
+  // Rarities (card frames and gems).
+  --rarity-common: #a7b0c0;
+  --rarity-uncommon: #2fc86b;
+  --rarity-rare: #2f8cff;
+  --rarity-epic: #a24bff;
+  --rarity-legendary: #ff9a1f;
+  --rarity-exotic: #19d3c5;
+  --rarity-mythic: #ff2e55;
+
+  // Game values.
+  --color-health: #ff4d6d;
+  --color-chronos: #8a5cff;
+  --color-armor: #7a8aa8;
+  --color-attack: #ff8a1f;
+
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+}
+
+// Fonts are self-hosted in public/fonts (SIL Open Font License) so they also
+// work offline inside the installed PWA.
+@font-face {
+  font-family: 'Lilita One';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/lilita-one.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 200 1000;
+  font-display: swap;
+  src: url('/fonts/nunito.woff2') format('woff2');
+}
+
+* {
+  box-sizing: border-box;
+}
+
+// The game is played as an app (TWA on Android): no text selection, no long
+// press callout and no tap flash anywhere. Only the fields where the player
+// types keep selection.
+html {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+input,
+textarea,
+[contenteditable='true'] {
+  -webkit-user-select: text;
+  user-select: text;
+  -webkit-touch-callout: default;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100dvh;
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background-color: var(--color-cream);
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
+}
+
+body {
+  background:
+    radial-gradient(900px 600px at 10% 0%, var(--color-lavender) 0%, transparent 60%),
+    radial-gradient(800px 600px at 100% 30%, var(--color-sky) 0%, transparent 60%),
+    radial-gradient(900px 600px at 30% 110%, var(--color-mint) 0%, transparent 60%),
+    radial-gradient(700px 500px at 100% 100%, var(--color-peach) 0%, transparent 60%), var(--color-cream);
+  background-attachment: fixed;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.text-link {
+  color: var(--color-violet);
+  font-weight: 800;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-panel-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+// Kept for components that still use it: no decoration in the pastel look.
+.frame-corners {
+  position: relative;
+}
+
+// Title of a panel: bold ink with a short colorful underline.
+.frame-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  text-align: center;
+
+  &::after {
+    content: '';
+    width: 48px;
+    height: 5px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--color-magenta), var(--color-gold), var(--color-cyan));
+  }
+}

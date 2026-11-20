@@ -1,0 +1,103 @@
+/* Shared by every form of the auth module (login, register, forgot/reset password, messages). */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .title {
+    text-align: center;
+    color: var(--color-violet);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .subtitle {
+    margin-top: -8px;
+    text-align: center;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .game-button.MuiButtonBase-root.google-button {
+    --btn-light: #ffffff;
+    --btn-bg: #ffffff;
+    --btn-dark: #ede7ff;
+    --btn-text: var(--color-text);
+    --btn-ring: #f2b53a;
+
+    text-shadow: none;
+
+    .google-logo {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  // Only Google: a short card, with the button gold like the main action.
+  &.google-only {
+    gap: 14px;
+    padding: 4px 0;
+
+    .game-button.MuiButtonBase-root.google-button {
+      --btn-light: var(--color-gold-light);
+      --btn-bg: var(--color-gold);
+      --btn-dark: #e08a12;
+      --btn-text: #4a2604;
+      --btn-ring: var(--color-outline);
+
+      margin-top: 4px;
+      padding-top: 13px;
+      padding-bottom: 13px;
+      font-size: 1.05rem;
+
+      .google-logo {
+        padding: 3px;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background: #fff;
+      }
+    }
+  }
+
+  .divider {
+    color: var(--color-text-secondary);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+  }
+
+  .forgot-password,
+  .footer {
+    text-align: center;
+  }
+}
+
+// Phone in landscape: little height, so tighter spacing to scroll less.
+@media (orientation: landscape) and (max-height: 600px) {
+  .auth-form {
+    gap: 10px;
+
+    .title {
+      font-size: 1.2rem;
+    }
+
+    .subtitle {
+      margin-top: -6px;
+      font-size: 0.8rem;
+    }
+
+    .form {
+      gap: 12px;
+    }
+
+    .game-button.MuiButtonBase-root {
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+  }
+}

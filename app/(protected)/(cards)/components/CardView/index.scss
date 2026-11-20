@@ -1,0 +1,195 @@
+// A card: vivid and high-contrast, to pop over the pastel screens.
+.card-view {
+  --faction: var(--faction-neutral);
+  --rarity: var(--rarity-common);
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 220px;
+  aspect-ratio: 5 / 7;
+  padding: 10px;
+  border: 4px solid var(--color-outline);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 30% 0%, rgba(255, 255, 255, 0.45), transparent 55%),
+    linear-gradient(160deg, var(--faction), color-mix(in srgb, var(--faction) 60%, #1b1440));
+  box-shadow:
+    0 0 0 3px var(--rarity),
+    0 10px 24px rgba(43, 35, 80, 0.3);
+  color: var(--color-outline);
+  font-family: var(--font-body);
+  overflow: hidden;
+
+  @each $faction in primal, bronze, arcane, clockwork, neon, void, neutral {
+    &.faction-#{$faction} {
+      --faction: var(--faction-#{$faction});
+    }
+  }
+
+  @each $rarity in common, uncommon, rare, epic, legendary, exotic, mythic {
+    &.rarity-#{$rarity} {
+      --rarity: var(--rarity-#{$rarity});
+    }
+  }
+
+  &.type-hero {
+    border-radius: 24px;
+    border-width: 5px;
+  }
+
+  &__art {
+    position: relative;
+    flex: 0 0 42%;
+    border: 3px solid var(--color-outline);
+    border-radius: 12px;
+    background:
+      radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.85), transparent 70%),
+      color-mix(in srgb, var(--faction) 35%, white);
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__placeholder {
+    display: grid;
+    place-items: center;
+    height: 100%;
+    font-size: 3.2rem;
+    filter: drop-shadow(0 3px 0 rgba(43, 35, 80, 0.25));
+  }
+
+  &__cost {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border: 3px solid var(--color-outline);
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #c9b4ff, var(--color-chronos));
+    color: white;
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    text-shadow: 0 2px 0 var(--color-outline);
+  }
+
+  &__gem {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 18px;
+    height: 18px;
+    border: 3px solid var(--color-outline);
+    background: var(--rarity);
+    transform: rotate(45deg);
+  }
+
+  &__speed {
+    position: absolute;
+    top: calc(42% - 6px);
+    right: 14px;
+    padding: 1px 8px;
+    border: 2px solid var(--color-outline);
+    border-radius: 999px;
+    background: var(--color-gold);
+    font-size: 0.7rem;
+    font-weight: 800;
+  }
+
+  &__name {
+    margin: 8px 0 0;
+    padding: 3px 8px;
+    border: 3px solid var(--color-outline);
+    border-radius: 10px;
+    background: white;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 400;
+    line-height: 1.15;
+    text-align: center;
+  }
+
+  &__type {
+    margin: 3px 0 4px;
+    color: white;
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-align: center;
+    text-shadow: 0 1px 0 var(--color-outline);
+  }
+
+  &__text {
+    flex: 1;
+    padding: 6px 8px;
+    border: 2px solid var(--color-outline);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.92);
+    font-size: 0.74rem;
+    line-height: 1.25;
+    overflow: hidden;
+
+    p {
+      margin: 0 0 3px;
+    }
+  }
+
+  &__keywords {
+    font-weight: 800;
+  }
+
+  &__flavor {
+    color: var(--color-text-secondary);
+    font-style: italic;
+  }
+
+  &__stats {
+    display: flex;
+    gap: 4px;
+    margin-top: -14px;
+    padding: 0 2px;
+    pointer-events: none;
+  }
+
+  &__spacer {
+    flex: 1;
+  }
+
+  &__stat {
+    display: grid;
+    place-items: center;
+    min-width: 34px;
+    height: 34px;
+    padding: 0 4px;
+    border: 3px solid var(--color-outline);
+    border-radius: 50%;
+    color: white;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    text-shadow: 0 2px 0 var(--color-outline);
+
+    &--attack {
+      background: var(--color-attack);
+    }
+
+    &--health {
+      background: var(--color-health);
+    }
+
+    &--armor {
+      border-radius: 8px 8px 50% 50%;
+      background: var(--color-armor);
+    }
+
+    &--durability {
+      border-radius: 8px;
+      background: var(--color-text-secondary);
+    }
+  }
+}

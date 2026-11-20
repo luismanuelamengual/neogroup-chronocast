@@ -1,0 +1,103 @@
+.unit-token {
+  --faction: var(--faction-neutral);
+
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 3px solid var(--color-outline);
+  border-radius: 12px;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.55), transparent 60%),
+    linear-gradient(160deg, var(--faction), color-mix(in srgb, var(--faction) 55%, #1b1440));
+  box-shadow: 0 4px 0 rgba(43, 35, 80, 0.25);
+  color: white;
+  overflow: visible;
+
+  @each $faction in primal, bronze, arcane, clockwork, neon, void, neutral {
+    &.faction-#{$faction} {
+      --faction: var(--faction-#{$faction});
+    }
+  }
+
+  &.stunned {
+    filter: saturate(0.4) brightness(0.9);
+  }
+
+  &__face {
+    position: absolute;
+    inset: 12% 0 auto;
+    font-family: var(--font-display);
+    font-size: calc(var(--slot) * 0.36);
+    line-height: 1;
+    text-align: center;
+    text-shadow: 0 3px 0 var(--color-outline);
+  }
+
+  &__name {
+    position: absolute;
+    right: 4px;
+    bottom: 22%;
+    left: 4px;
+    overflow: hidden;
+    font-size: calc(var(--slot) * 0.11);
+    font-weight: 800;
+    line-height: 1.1;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-shadow: 0 1px 0 var(--color-outline);
+  }
+
+  &__keywords {
+    position: absolute;
+    top: -9px;
+    right: -4px;
+    display: flex;
+    gap: 1px;
+    padding: 0 3px;
+    border: 2px solid var(--color-outline);
+    border-radius: 999px;
+    background: white;
+    font-size: calc(var(--slot) * 0.13);
+    line-height: 1.3;
+  }
+
+  &__stat {
+    position: absolute;
+    bottom: -8px;
+    display: grid;
+    place-items: center;
+    min-width: calc(var(--slot) * 0.32);
+    height: calc(var(--slot) * 0.32);
+    border: 2px solid var(--color-outline);
+    border-radius: 50%;
+    font-family: var(--font-display);
+    font-size: calc(var(--slot) * 0.19);
+    text-shadow: 0 2px 0 var(--color-outline);
+
+    &.attack {
+      left: -6px;
+      background: var(--color-attack);
+
+      &.boosted {
+        color: var(--color-gold-light);
+      }
+    }
+
+    &.health {
+      right: -6px;
+      background: var(--color-health);
+
+      &.hurt {
+        color: #ffe0e6;
+      }
+    }
+  }
+
+  &__status {
+    position: absolute;
+    top: -10px;
+    left: -6px;
+    font-size: calc(var(--slot) * 0.2);
+  }
+}

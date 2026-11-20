@@ -1,0 +1,69 @@
+.tutorial-coach {
+  position: absolute;
+  top: 8px;
+  left: 33%;
+  z-index: 25;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: min(420px, 60vw);
+  padding: 12px 14px;
+  border: 3px solid var(--color-outline);
+  border-radius: 18px;
+  background: var(--color-gold-light);
+  box-shadow: 0 10px 30px rgba(43, 35, 80, 0.3);
+  color: var(--color-text);
+  transform: translateX(-50%);
+  animation: tutorial-coach-in 0.3s cubic-bezier(0.3, 1.5, 0.5, 1);
+
+  &.mode-mulligan {
+    top: auto;
+    bottom: 8px;
+    left: 8px;
+    width: min(300px, 36vw);
+    transform: none;
+    animation: none;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.85rem;
+    font-weight: 700;
+    line-height: 1.35;
+
+    @media (max-height: 480px) {
+      font-size: 0.75rem;
+    }
+  }
+
+  &__step {
+    color: var(--color-gold-dark);
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+  }
+
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+
+    button:first-child {
+      border: 0;
+      background: none;
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-decoration: underline;
+    }
+  }
+}
+
+@keyframes tutorial-coach-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -20%) scale(0.9);
+  }
+}

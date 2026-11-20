@@ -1,0 +1,32 @@
+.card-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+
+  input[type='search'],
+  select {
+    height: 30px;
+    padding: 0 10px;
+    border: 2px solid var(--color-panel-border);
+    border-radius: 999px;
+    background: white;
+    color: var(--color-text);
+    font: inherit;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  input[type='search'] {
+    width: 150px;
+  }
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+}

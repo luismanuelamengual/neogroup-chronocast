@@ -1,0 +1,137 @@
+.single-shop {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &__unlocks {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 12px;
+    padding: 10px 12px;
+    border: var(--frame-border);
+    border-radius: var(--frame-radius);
+    background: white;
+
+    h2 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 1rem;
+    }
+
+    ol {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 10px;
+      border: 2px solid var(--rarity);
+      border-radius: 999px;
+      color: var(--color-text-secondary);
+      font-size: 0.85rem;
+      font-weight: 800;
+
+      &.open {
+        background: color-mix(in srgb, var(--rarity) 30%, white);
+        color: var(--color-text);
+      }
+
+      &.next {
+        border-style: dashed;
+        color: var(--color-text);
+      }
+
+      @each $rarity in common, uncommon, rare, epic, legendary, exotic, mythic {
+        &.rarity-#{$rarity} {
+          --rarity: var(--rarity-#{$rarity});
+        }
+      }
+    }
+
+    p {
+      flex-basis: 100%;
+      margin: 0;
+      color: var(--color-text-secondary);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+  }
+
+  &__empty {
+    color: var(--color-text-secondary);
+    font-weight: 700;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+    gap: 14px;
+  }
+
+  &__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+
+    &.locked .single-shop__zoom {
+      filter: grayscale(0.7);
+      opacity: 0.55;
+    }
+  }
+
+  &__zoom {
+    zoom: 0.6;
+    transition: transform 0.15s;
+  }
+
+  &__card:hover &__zoom {
+    transform: translateY(-6px);
+  }
+
+  &__owned {
+    position: absolute;
+    top: -4px;
+    right: 4px;
+    padding: 0 8px;
+    border: 2px solid var(--color-outline);
+    border-radius: 999px;
+    background: white;
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+  }
+
+  &__price {
+    padding: 0 10px;
+    border: 2px solid var(--color-outline);
+    border-radius: 999px;
+    background: var(--color-gold-light);
+    font-size: 0.95rem;
+  }
+
+  &__locked-text {
+    color: var(--color-magenta-dark) !important;
+  }
+
+  &__buy {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 6px 0;
+  }
+}

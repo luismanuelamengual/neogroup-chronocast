@@ -1,0 +1,201 @@
+// Floating cards behind (Backdrop): the first screen shows the logo and the
+// call to play, and the steps scroll in below.
+.landing-page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100dvh;
+
+  > .hero,
+  > .steps,
+  > .footer {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    width: 100%;
+    max-width: 720px;
+    min-height: 100dvh;
+    padding: calc(32px + var(--safe-top)) 16px calc(64px + var(--safe-bottom));
+    text-align: center;
+
+    .logo {
+      animation: landing-bounce 3s ease-in-out infinite;
+    }
+
+    .tagline {
+      max-width: 560px;
+      margin: 0;
+      color: var(--color-text);
+      font-size: clamp(1.05rem, 2.6vw, 1.35rem);
+      font-weight: 700;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 8px;
+
+      .game-button {
+        min-width: 240px;
+        box-shadow:
+          inset 0 2px 0 rgba(255, 255, 255, 0.55),
+          inset 0 -4px 0 rgba(0, 0, 0, 0.18),
+          0 4px 0 var(--color-outline),
+          0 12px 28px rgba(255, 90, 138, 0.35);
+      }
+    }
+
+    // A golden chevron at the bottom: there is more below.
+    .scroll-hint {
+      position: absolute;
+      bottom: calc(22px + var(--safe-bottom));
+      left: 50%;
+      width: 18px;
+      height: 18px;
+      border-right: 3px solid var(--color-violet);
+      border-bottom: 3px solid var(--color-violet);
+      transform: translateX(-50%) rotate(45deg);
+      animation: landing-hint 1.8s ease-in-out infinite;
+    }
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px 24px;
+    width: 100%;
+    padding: 56px max(16px, calc((100% - 1000px) / 2)) 48px;
+  }
+
+  .step {
+    text-align: center;
+
+    .icon {
+      font-size: 2.6rem;
+    }
+
+    p {
+      margin: 8px 0 0;
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+    }
+  }
+
+  .footer {
+    width: 100%;
+    margin-top: auto;
+    padding: 0 16px calc(20px + var(--safe-bottom));
+    color: var(--color-text-secondary);
+    font-size: 0.75rem;
+    text-align: center;
+
+    .privacy-link {
+      text-decoration: underline;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .landing-page {
+    .steps {
+      grid-template-columns: 1fr;
+      padding-right: max(16px, calc((100% - 460px) / 2));
+      padding-left: max(16px, calc((100% - 460px) / 2));
+    }
+
+    .hero .actions {
+      flex-direction: column;
+      width: 100%;
+      max-width: 360px;
+
+      .game-button {
+        width: 100%;
+      }
+    }
+  }
+}
+
+// Phone in landscape: wide but short, so the three steps go in a row and
+// the first screen is tighter.
+@media (orientation: landscape) and (max-height: 600px) {
+  .landing-page {
+    .hero {
+      gap: 10px;
+      padding-top: calc(16px + var(--safe-top));
+      padding-bottom: calc(48px + var(--safe-bottom));
+
+      .logo.size-large {
+        font-size: 3.4rem;
+      }
+
+      .tagline {
+        font-size: 1rem;
+      }
+
+      .actions {
+        flex-direction: row;
+        width: auto;
+      }
+    }
+
+    .steps {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      padding: 40px calc(16px + var(--safe-right)) 32px calc(16px + var(--safe-left));
+    }
+
+    .step {
+      padding: 14px 12px;
+
+      .icon {
+        font-size: 2rem;
+      }
+
+      p {
+        font-size: 0.85rem;
+        line-height: 1.4;
+      }
+    }
+  }
+}
+
+@keyframes landing-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes landing-hint {
+  0%,
+  100% {
+    transform: translate(-50%, 0) rotate(45deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(-50%, 6px) rotate(45deg);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-page .hero {
+    .logo,
+    .scroll-hint {
+      animation: none;
+    }
+  }
+}

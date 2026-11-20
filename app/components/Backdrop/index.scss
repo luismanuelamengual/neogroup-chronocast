@@ -1,0 +1,44 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+
+  .floating-card {
+    position: absolute;
+    width: calc(110px * var(--size));
+    height: calc(150px * var(--size));
+    border: 3px solid var(--color-outline);
+    border-radius: 14px;
+    background:
+      radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.9) 0 14%, transparent 15%),
+      repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.18) 0 8px, transparent 8px 16px), var(--color);
+    box-shadow:
+      inset 0 0 0 5px rgba(255, 255, 255, 0.5),
+      0 6px 0 var(--color-outline),
+      0 16px 30px rgba(67, 52, 140, 0.2);
+    opacity: 0.85;
+    transform: translate(-50%, -50%) rotate(var(--tilt));
+    animation: backdrop-float 7s ease-in-out infinite;
+  }
+}
+
+@keyframes backdrop-float {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotate(var(--tilt));
+  }
+  50% {
+    transform: translate(-50%, calc(-50% - 14px)) rotate(calc(var(--tilt) * -0.5));
+  }
+}
+
+// Phones: smaller cards, so they stay in the margins.
+@media (max-width: 600px), (max-height: 500px) {
+  .backdrop .floating-card {
+    width: calc(70px * var(--size));
+    height: calc(96px * var(--size));
+    opacity: 0.6;
+  }
+}

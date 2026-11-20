@@ -1,0 +1,243 @@
+.deck-editor {
+  display: grid;
+  grid-template-columns: 1fr clamp(240px, 32vw, 380px);
+  gap: 10px;
+  height: 100dvh;
+  padding: calc(8px + var(--safe-top)) calc(10px + var(--safe-right)) calc(8px + var(--safe-bottom))
+    calc(10px + var(--safe-left));
+  background: linear-gradient(180deg, var(--color-mint), var(--color-cream));
+  color: var(--color-text);
+
+  &__pool {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 0;
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      h2 {
+        margin: 0;
+        font-family: var(--font-title);
+        font-size: 1.15rem;
+        font-weight: 400;
+      }
+    }
+  }
+
+  &__grid {
+    display: grid;
+    flex: 1;
+    grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
+    align-content: start;
+    gap: 10px;
+    padding: 4px;
+    overflow-y: auto;
+  }
+
+  &__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    font: inherit;
+
+    &.exhausted .deck-editor__zoom {
+      filter: grayscale(0.8);
+      opacity: 0.4;
+    }
+  }
+
+  &__zoom {
+    zoom: 0.5;
+  }
+
+  &__left {
+    color: var(--color-text-secondary);
+    font-size: 0.72rem;
+    font-weight: 800;
+  }
+
+  &__deck {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-height: 0;
+    padding: 10px;
+    border: var(--frame-border);
+    border-radius: var(--frame-radius);
+    background: white;
+    box-shadow: var(--frame-shadow);
+
+    h3 {
+      margin: 2px 0 0;
+      font-family: var(--font-title);
+      font-size: 0.95rem;
+      font-weight: 400;
+    }
+  }
+
+  &__name {
+    padding: 6px 10px;
+    border: 2px solid var(--color-panel-border);
+    border-radius: 12px;
+    color: var(--color-text);
+    font-family: var(--font-title);
+    font-size: 1.05rem;
+  }
+
+  &__summary {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  &__counter {
+    color: var(--color-ember);
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    line-height: 1;
+
+    &.ok {
+      color: var(--color-lime-dark);
+    }
+  }
+
+  &__max {
+    color: var(--color-text-secondary);
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+
+  &__curve {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    gap: 3px;
+    height: 44px;
+  }
+
+  &__bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    width: 14px;
+
+    span {
+      width: 100%;
+      min-height: 2px;
+      border-radius: 4px 4px 0 0;
+      background: var(--color-chronos);
+    }
+
+    small {
+      color: var(--color-text-secondary);
+      font-size: 0.6rem;
+      font-weight: 800;
+    }
+  }
+
+  &__problems {
+    max-height: 72px;
+    margin: 0;
+    padding: 4px 8px;
+    overflow-y: auto;
+    border-radius: 10px;
+    background: #fff3e0;
+    color: #a2560b;
+    font-size: 0.72rem;
+    font-weight: 700;
+    list-style: none;
+
+    &.ok {
+      background: var(--color-mint);
+      color: var(--color-lime-dark);
+    }
+  }
+
+  &__list {
+    flex: 1;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+    list-style: none;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 4px;
+      border-bottom: 1px solid var(--color-lavender);
+      font-size: 0.8rem;
+      font-weight: 700;
+
+      &.empty {
+        color: var(--color-text-secondary);
+      }
+    }
+
+    .cost {
+      display: grid;
+      place-items: center;
+      width: 22px;
+      height: 22px;
+      border: 2px solid var(--color-outline);
+      border-radius: 50%;
+      background: var(--color-chronos);
+      color: white;
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+    }
+
+    .hero .cost {
+      border: 0;
+      background: none;
+    }
+
+    .name {
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .count {
+      min-width: 16px;
+      text-align: center;
+    }
+
+    button {
+      width: 24px;
+      height: 24px;
+      border: 2px solid var(--color-outline);
+      border-radius: 50%;
+      background: white;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 900;
+      line-height: 1;
+    }
+  }
+
+  &__save {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+
+    span {
+      color: var(--color-ember);
+      font-size: 0.72rem;
+      font-weight: 800;
+    }
+  }
+}
