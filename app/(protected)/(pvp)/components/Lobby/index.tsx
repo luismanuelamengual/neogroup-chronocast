@@ -73,7 +73,7 @@ export default function Lobby({ deck, rooms: initialRooms, activeMatch, rating, 
   return (
     <div className="lobby">
       <header>
-        <GameButton color="ghost" size="small" href="/menu">
+        <GameButton color="ghost" size="small" href="/play">
           ← {t('lobby.back')}
         </GameButton>
         <h1>{t('lobby.title')}</h1>

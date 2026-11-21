@@ -38,10 +38,11 @@ export const es = {
     collection: 'Colección',
     decks: 'Mazos',
     shop: 'Tienda',
-    lobby: 'Jugar',
+    lobby: 'Partida online',
     match: 'Partida',
     ranking: 'Ranking',
-    campaign: 'Campañas'
+    campaign: 'Campañas',
+    play: 'Jugar'
   },
   pwa: {
     description:
@@ -228,12 +229,25 @@ export const es = {
       goToProfile: 'Ir a Mi perfil'
     }
   },
+  play: {
+    title: 'Jugar',
+    back: 'Menú',
+    modes: {
+      campaign: {
+        title: 'Campaña',
+        text: 'Diez combates contra la CPU por héroe, con historia, jefe final y premios.'
+      },
+      online: {
+        title: 'Partida online',
+        text: 'Contra otro jugador: partida rápida, salas públicas o privadas. Suma Prestigio.'
+      },
+      practice: { title: 'Práctica', text: 'Contra la CPU, sin premios: para aprender y probar mazos.' }
+    }
+  },
   home: {
     tagline: 'Programá el futuro. Derrotá al héroe rival.',
     play: 'Jugar',
-    campaign: 'Campaña',
     decks: 'Mazos',
-    collection: 'Colección',
     shop: 'Tienda',
     ranking: 'Ranking',
     comingSoon: 'Próximamente',
@@ -653,8 +667,8 @@ export const es = {
     }
   },
   lobby: {
-    title: 'Jugar',
-    back: 'Menú',
+    title: 'Partida online',
+    back: 'Jugar',
     activeMatch: 'Tenés una partida en curso.',
     resume: 'Volver a la partida',
     yourDeck: 'Tu mazo',
@@ -686,7 +700,7 @@ export const es = {
   },
   campaign: {
     title: 'Campañas',
-    back: 'Menú',
+    back: 'Jugar',
     text: 'Una campaña por héroe: 10 combates contra la CPU, cada uno más difícil, y un jefe al final. Se juega con tu mazo de ese héroe y el primer triunfo de cada combate da premios.',
     progress: '{won}/{total}',
     play: 'Empezar',

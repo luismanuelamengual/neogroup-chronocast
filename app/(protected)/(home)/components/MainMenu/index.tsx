@@ -16,10 +16,8 @@ import { formatBuiltAt, versionLabel } from '@/app/utils/version'
 
 /** The sections of the game: they open as each phase of the roadmap lands (see docs/PLAN.md). */
 const SECTIONS = [
-  { key: 'play', icon: '⚔️', color: 'magenta', href: '/lobby' },
-  { key: 'campaign', icon: '🗺️', color: 'lime', href: '/campaign' },
+  { key: 'play', icon: '⚔️', color: 'magenta', href: '/play' },
   { key: 'decks', icon: '🃏', color: 'violet', href: '/decks' },
-  { key: 'collection', icon: '📚', color: 'cyan', href: '/collection' },
   { key: 'shop', icon: '🛒', color: 'gold', href: '/shop' },
   { key: 'ranking', icon: '🏆', color: 'cyan', href: '/ranking' }
 ] as const

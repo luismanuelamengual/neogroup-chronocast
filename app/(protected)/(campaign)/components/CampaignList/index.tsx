@@ -22,7 +22,7 @@ export default function CampaignList({ campaigns }: { campaigns: CampaignSummary
   return (
     <div className="campaign-list">
       <header>
-        <GameButton color="ghost" size="small" href="/menu">
+        <GameButton color="ghost" size="small" href="/play">
           ← {t('campaign.back')}
         </GameButton>
         <h1>{t('campaign.title')}</h1>

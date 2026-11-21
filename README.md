@@ -70,7 +70,7 @@ app/
   (protected)/            Módulos que requieren sesión
     components/AppShell/  Contenedor de las páginas autenticadas
     stores/users.ts       Store con el usuario logueado
-    (home)/               Menú principal (/menu): oro, Prestigio y las secciones del juego
+    (home)/               Menú principal (/menu: Jugar, Mazos, Tienda y Ranking, con oro y Prestigio) y Jugar (/play: Campaña, Partida online o Práctica)
     (engine)/             Motor de combate puro (sin React ni base): estado, fases, palabras clave, efectos, reglas de mazo, rating, IA
     (onboarding)/         Primera visita (/welcome): elección del héroe inicial y apertura del starter
     (collection)/         Colección (/collection), mazos y editor (/decks): user_cards, decks, deck_cards

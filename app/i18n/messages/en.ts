@@ -35,10 +35,11 @@ export const en: Messages = {
     collection: 'Collection',
     decks: 'Decks',
     shop: 'Shop',
-    lobby: 'Play',
+    lobby: 'Online match',
     match: 'Match',
     ranking: 'Ranking',
-    campaign: 'Campaigns'
+    campaign: 'Campaigns',
+    play: 'Play'
   },
   pwa: {
     description:
@@ -224,12 +225,25 @@ export const en: Messages = {
       goToProfile: 'Go to My profile'
     }
   },
+  play: {
+    title: 'Play',
+    back: 'Menu',
+    modes: {
+      campaign: {
+        title: 'Campaign',
+        text: 'Ten battles against the CPU for each hero, with a story, a final boss and rewards.'
+      },
+      online: {
+        title: 'Online match',
+        text: 'Against another player: quick match, public or private rooms. It counts for Prestige.'
+      },
+      practice: { title: 'Practice', text: 'Against the CPU, no rewards: to learn and try decks out.' }
+    }
+  },
   home: {
     tagline: 'Program the future. Defeat the rival hero.',
     play: 'Play',
-    campaign: 'Campaign',
     decks: 'Decks',
-    collection: 'Collection',
     shop: 'Shop',
     ranking: 'Ranking',
     comingSoon: 'Coming soon',
@@ -648,8 +662,8 @@ export const en: Messages = {
     }
   },
   lobby: {
-    title: 'Play',
-    back: 'Menu',
+    title: 'Online match',
+    back: 'Play',
     activeMatch: 'You have a match in progress.',
     resume: 'Back to the match',
     yourDeck: 'Your deck',
@@ -681,7 +695,7 @@ export const en: Messages = {
   },
   campaign: {
     title: 'Campaigns',
-    back: 'Menu',
+    back: 'Play',
     text: 'One campaign per hero: 10 battles against the CPU, each harder than the last, and a boss at the end. You play it with your deck of that hero, and the first win of each battle pays rewards.',
     progress: '{won}/{total}',
     play: 'Start',
