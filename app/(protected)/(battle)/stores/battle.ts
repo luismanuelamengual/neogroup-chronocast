@@ -89,6 +89,8 @@ interface BattleStore {
   applyView: (view: MatchView) => void
   confirmMulligan: (cardUids: number[]) => void
   select: (selection: Selection | null) => void
+  /** Why an action can't be added at the end of the timeline right now (null: it can), without adding it. */
+  check: (action: PlannedAction) => FailReason | 'timelineFull' | 'notPlanning' | null
   /** Adds an action at the end of the timeline. Returns why it can't be programmed, or null. */
   program: (action: PlannedAction) => FailReason | 'timelineFull' | null
   unprogram: (index: number) => void
@@ -375,6 +377,22 @@ export const useBattleStore = create<BattleStore>()((set, get) => {
     },
 
     select: (selection) => set({ selection }),
+
+    check: (action) => {
+      const { state, timeline, mode, me, submitted } = get()
+
+      if (!state || mode !== 'planning' || submitted) {
+        return 'notPlanning'
+      }
+
+      if (timeline.length >= ACTIONS_PER_PHASE) {
+        return 'timelineFull'
+      }
+
+      const next = [...timeline, action]
+
+      return projectPlan(state, me, next).steps[next.length - 1].failure
+    },
 
     program: (action) => {
       const { state, timeline, mode, me, submitted } = get()

@@ -55,6 +55,39 @@
     line-height: 1;
   }
 
+  &__left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    color: var(--color-chronos);
+    font-size: calc(var(--slot) * 0.11);
+    font-weight: 800;
+    line-height: 1;
+    white-space: nowrap;
+
+    &.none {
+      color: var(--color-lime-dark);
+    }
+  }
+
+  &__pips {
+    display: flex;
+    gap: 2px;
+
+    i {
+      width: calc(var(--slot) * 0.1);
+      height: calc(var(--slot) * 0.1);
+      border: 1.5px solid var(--color-chronos);
+      border-radius: 50%;
+      background: white;
+
+      &.on {
+        background: var(--color-chronos);
+      }
+    }
+  }
+
   &__ready {
     padding: 4px 14px;
     border: 3px solid var(--color-outline);

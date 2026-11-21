@@ -12,7 +12,7 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    max-width: min(92vw, 760px);
+    max-width: 96vw;
     padding: 16px 20px;
     border: var(--frame-border);
     border-radius: var(--frame-radius);
@@ -43,13 +43,38 @@
   }
 
   &__cards {
-    --card-w: clamp(48px, min(10vw, 16vh), 96px);
-
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: center;
-    gap: 12px;
-    padding: 12px 4px 4px;
+    gap: 8px;
+    padding: 8px 4px 4px;
+  }
+
+  &__card {
+    position: relative;
+    padding: 0;
+    border: 0;
+    border-radius: 8px;
+    background: none;
+    cursor: pointer;
+    transition: transform 0.15s;
+
+    &.marked {
+      transform: translateY(6px);
+
+      .mini-card {
+        filter: grayscale(0.8);
+        opacity: 0.55;
+      }
+    }
+  }
+
+  &__swap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 26px;
+    transform: translate(-50%, -50%);
   }
 
   &__waiting {

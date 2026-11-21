@@ -424,7 +424,7 @@ export const es = {
       mulligan:
         'Esta es tu mano inicial. Podés cambiar las cartas que no te gusten, una sola vez. Por ahora quedátelas.',
       phases:
-        'La partida se juega por fases. En cada una programás 5 acciones en tu línea de tiempo (abajo, en el centro) mientras la CPU programa las suyas. Después se resuelven juntas, paso por paso.',
+        'La partida se juega por fases. En cada una programás 5 acciones en tu línea de tiempo (a la derecha) mientras la CPU programa las suyas. Después se resuelven juntas, paso por paso.',
       chronos:
         'Las cartas cuestan Cronos (⌛). Para tener más, tocá una carta y elegí "Generar Cronos": la descartás y ganás +1 de capacidad para siempre. Una vez por fase.',
       summon:
@@ -475,21 +475,30 @@ export const es = {
       change: { one: 'Cambiar {count} carta', other: 'Cambiar {count} cartas' },
       waiting: 'Esperando al rival...'
     },
+    rivalHand: 'Mano del rival',
+    zones: {
+      hero: 'Héroe',
+      allies: 'Aliados',
+      support: 'Soporte',
+      deck: 'Mazo',
+      chronos: 'Cronos',
+      graveyard: 'Cementerio',
+      weapon: 'Arma',
+      armor: 'Armadura',
+      location: 'Ubicación',
+      trap: 'Trampa'
+    },
+    actionsLeft: { one: 'Queda {count} acción', other: 'Quedan {count} acciones' },
     hints: {
-      idle: 'Tocá una carta de tu mano, un aliado o tu héroe para programar una acción.',
-      card: 'Jugala o descartala para ganar +1 de capacidad de Cronos para siempre.',
+      attack: 'Elegí a quién atacar.',
+      move: 'Elegí a dónde moverlo.',
       summon: 'Elegí un slot libre para invocarlo.',
-      target: 'Elegí el objetivo.',
-      ally: 'Tocá un slot rival para atacar, o uno propio para moverte y esquivar.',
-      allyAbility:
-        'Tocá un slot rival para atacar, uno propio para moverte, o usá su habilidad (si la usa, no ataca en esta fase).',
-      hero: 'Tocá un objetivo para atacar con el arma, o usá la habilidad.',
-      heroNoWeapon: 'Sin arma tu héroe no ataca, pero puede usar su habilidad.',
-      full: 'Ya programaste las 5 acciones. Tocá Listo, o tocá una acción para quitarla.',
-      resolving: 'Resolviendo...',
-      inspect: 'Carta del tablero.'
+      target: 'Elegí el objetivo.'
     },
     buttons: {
+      attack: 'Atacar',
+      move: 'Mover',
+      weaponAttack: 'Atacar con el arma',
       play: 'Jugar',
       sacrifice: 'Generar Cronos',
       ability: 'Habilidad ({cost})',
@@ -512,6 +521,8 @@ export const es = {
       slow: 'Lenta'
     },
     fail: {
+      cardUsed: 'Ya la programaste en esta fase',
+      notPlanning: 'Ahora no podés programar',
       noCard: 'La carta ya no está',
       notEnoughChronos: 'No alcanzan los Cronos',
       slotsFull: 'Los 5 slots están ocupados',

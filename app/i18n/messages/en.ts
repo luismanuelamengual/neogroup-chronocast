@@ -419,7 +419,7 @@ export const en: Messages = {
     tips: {
       mulligan: 'This is your opening hand. You can replace the cards you do not like, only once. For now, keep them.',
       phases:
-        'The match is played in phases. In each one you program 5 actions on your timeline (bottom, in the middle) while the CPU programs its own. Then they resolve together, step by step.',
+        'The match is played in phases. In each one you program 5 actions on your timeline (on the right) while the CPU programs its own. Then they resolve together, step by step.',
       chronos:
         'Cards cost Chronos (⌛). To get more, tap a card and choose "Generate Chronos": you discard it and gain +1 capacity for good. Once per phase.',
       summon:
@@ -470,21 +470,30 @@ export const en: Messages = {
       change: { one: 'Replace {count} card', other: 'Replace {count} cards' },
       waiting: 'Waiting for the rival...'
     },
+    rivalHand: 'Rival hand',
+    zones: {
+      hero: 'Hero',
+      allies: 'Allies',
+      support: 'Support',
+      deck: 'Deck',
+      chronos: 'Chronos',
+      graveyard: 'Graveyard',
+      weapon: 'Weapon',
+      armor: 'Armor',
+      location: 'Location',
+      trap: 'Trap'
+    },
+    actionsLeft: { one: '{count} action left', other: '{count} actions left' },
     hints: {
-      idle: 'Tap a card in your hand, an ally or your hero to program an action.',
-      card: 'Play it, or discard it for +1 Chronos capacity for good.',
+      attack: 'Choose who to attack.',
+      move: 'Choose where to move it.',
       summon: 'Choose a free slot to summon it.',
-      target: 'Choose the target.',
-      ally: 'Tap an enemy slot to attack, or one of yours to move and dodge.',
-      allyAbility:
-        'Tap an enemy slot to attack, one of yours to move, or use its ability (then it does not attack this phase).',
-      hero: 'Tap a target to attack with the weapon, or use the ability.',
-      heroNoWeapon: 'Without a weapon your hero cannot attack, but can use the ability.',
-      full: 'You programmed all 5 actions. Tap Ready, or tap an action to remove it.',
-      resolving: 'Resolving...',
-      inspect: 'A card on the board.'
+      target: 'Choose the target.'
     },
     buttons: {
+      attack: 'Attack',
+      move: 'Move',
+      weaponAttack: 'Attack with weapon',
       play: 'Play',
       sacrifice: 'Generate Chronos',
       ability: 'Ability ({cost})',
@@ -507,6 +516,8 @@ export const en: Messages = {
       slow: 'Slow'
     },
     fail: {
+      cardUsed: 'Already programmed this phase',
+      notPlanning: 'You cannot program right now',
       noCard: 'The card is gone',
       notEnoughChronos: 'Not enough Chronos',
       slotsFull: 'The 5 slots are taken',

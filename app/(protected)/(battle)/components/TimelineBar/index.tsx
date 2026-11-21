@@ -161,6 +161,8 @@ interface TimelineBarProps {
   step: number | null
   failures: Record<PlayerId, (FailReason | null)[]>
   deadline: number
+  /** While planning, how many of the 5 actions are still free (null hides the counter). */
+  actionsLeft?: number | null
   onRemove: (index: number) => void
   onReady: () => void
 }
@@ -184,6 +186,7 @@ export default function TimelineBar({
   step,
   failures,
   deadline,
+  actionsLeft = null,
   onRemove,
   onReady
 }: TimelineBarProps) {
@@ -231,6 +234,16 @@ export default function TimelineBar({
         ))}
       </div>
       <div className="timeline-bar__side">
+        {actionsLeft != null && (
+          <span className={classNames('timeline-bar__left', { none: actionsLeft === 0 })}>
+            <span className="timeline-bar__pips" aria-hidden="true">
+              {STEPS.map((index) => (
+                <i key={index} className={classNames({ on: index < ACTIONS_PER_PHASE - actionsLeft })} />
+              ))}
+            </span>
+            {t('battle.actionsLeft', { count: actionsLeft })}
+          </span>
+        )}
         <button
           type="button"
           className={classNames('timeline-bar__ready', { waiting })}

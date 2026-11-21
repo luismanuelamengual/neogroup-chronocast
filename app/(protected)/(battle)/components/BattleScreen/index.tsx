@@ -2,25 +2,24 @@
 
 import './index.scss'
 import classNames from 'classnames'
-import { ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { CSSProperties, ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 import { MusicId } from '@/app/(protected)/(art)/data/audio'
 import { useMusic } from '@/app/(protected)/(art)/hooks/useMusic'
 import { playSfx } from '@/app/(protected)/(art)/utils/sound'
-import ActionPanel, { PanelButton } from '@/app/(protected)/(battle)/components/ActionPanel'
 import AttackArrows from '@/app/(protected)/(battle)/components/AttackArrows'
 import BattleEnd from '@/app/(protected)/(battle)/components/BattleEnd'
 import BattleLog from '@/app/(protected)/(battle)/components/BattleLog'
 import BoardSlot, { SlotHighlight } from '@/app/(protected)/(battle)/components/BoardSlot'
-import HandCard from '@/app/(protected)/(battle)/components/HandCard'
-import HeroZone from '@/app/(protected)/(battle)/components/HeroZone'
+import MiniCard from '@/app/(protected)/(battle)/components/MiniCard'
 import MulliganOverlay from '@/app/(protected)/(battle)/components/MulliganOverlay'
 import TimelineBar from '@/app/(protected)/(battle)/components/TimelineBar'
 import TutorialCoach from '@/app/(protected)/(battle)/components/TutorialCoach'
-import UnitToken from '@/app/(protected)/(battle)/components/UnitToken'
+import { Selection } from '@/app/(protected)/(battle)/models/Selection'
 import { useBattleStore } from '@/app/(protected)/(battle)/stores/battle'
 import { playMoment } from '@/app/(protected)/(battle)/utils/battleSounds'
 import { attackLines, heavyHeroHit, refKey, slotEffects } from '@/app/(protected)/(battle)/utils/effects'
+import { KEYWORD_ICONS } from '@/app/(protected)/(battle)/utils/icons'
 import { projectPlan, usedCards } from '@/app/(protected)/(battle)/utils/projection'
 import {
   allyAbility,
@@ -32,15 +31,21 @@ import {
   sameRef,
   summonRefs
 } from '@/app/(protected)/(battle)/utils/targets'
-import { ALLY_SLOTS } from '@/app/(protected)/(engine)/data/rules'
-import { MatchState } from '@/app/(protected)/(engine)/models/MatchState'
+import CardSpotlight, { SpotlightAction } from '@/app/(protected)/(cards)/components/CardSpotlight'
+import { ACTIONS_PER_PHASE, ALLY_SLOTS, MAX_TRAPS } from '@/app/(protected)/(engine)/data/rules'
+import { CardInstance, MatchState, PlayerState, Unit } from '@/app/(protected)/(engine)/models/MatchState'
 import { PlannedAction } from '@/app/(protected)/(engine)/models/PlannedAction'
 import { PlayerId } from '@/app/(protected)/(engine)/models/PlayerId'
 import { SlotRef } from '@/app/(protected)/(engine)/models/SlotRef'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
 import { useT } from '@/app/i18n/I18nProvider'
+import type { MessageKey } from '@/app/i18n/messages'
 
 const SLOTS = Array.from({ length: ALLY_SLOTS }, (_, slot) => slot)
+/** Share of the board's height of each band, top to bottom (the hand takes the rest). */
+const BANDS = { top: 0.075, support: 0.13, allies: 0.21 }
+/** Width of the column on the right with the timelines (px). */
+const TIMELINE_WIDTH = 236
 
 /** The highlighted slots for the current selection, by kind. */
 interface Highlights {
@@ -52,12 +57,53 @@ interface Highlights {
 
 const NO_HIGHLIGHTS: Highlights = { attack: [], move: [], summon: [], target: [] }
 
+/** The card shown big in the middle, and what it is on the board (its buttons depend on it). */
+type Spot =
+  | { kind: 'hand'; uid: number; cardId: string }
+  | { kind: 'ally'; player: PlayerId; uid: number; cardId: string }
+  | { kind: 'hero'; player: PlayerId; cardId: string }
+  | { kind: 'inspect'; cardId: string; note?: string }
+
+/** The sizes of the cards on this screen (px), from the size of the window. */
+function useMetrics() {
+  const [size, setSize] = useState({ width: 844, height: 390 })
+
+  useEffect(() => {
+    const measure = () => setSize({ width: window.innerWidth, height: window.innerHeight })
+
+    measure()
+    window.addEventListener('resize', measure)
+
+    return () => window.removeEventListener('resize', measure)
+  }, [])
+
+  return useMemo(() => {
+    const height = size.height - 8
+    const width = size.width - TIMELINE_WIDTH - 24
+    const fit = (band: number, room = 6) => Math.max(20, (height * band - room) / 1.4)
+    // On a very wide window the board shouldn't grow past what its width allows.
+    const ally = Math.min(fit(BANDS.allies), width / 9.5)
+    const support = Math.min(fit(BANDS.support, 4), ally * 0.7)
+
+    return {
+      ally,
+      support,
+      hero: Math.min(fit(BANDS.allies + BANDS.support, 8), ally * 1.7),
+      pile: support * 1.05,
+      hand: Math.min((height * 0.33) / 1.4, width / 7),
+      rivalHand: Math.max(14, (height * BANDS.top - 6) / 1.4)
+    }
+  }, [size])
+}
+
 /**
- * The battle screen (docs/PLAN.md, section 14.3): the rival's board above, the
- * player's below, the timelines in the middle, and the hand and the selected
- * card on the side. While programming, the board shows the projection of the
- * plan (what the plan summons or moves looks translucent); while resolving, it
- * shows each moment of the resolution with its animations.
+ * The battle screen (docs/PLAN.md, section 14.3), laid out like a card table:
+ * each side has its hero, a row of 5 allies and a row of 5 supports (weapon,
+ * armor, location and 2 traps), and its deck, Chronos and graveyard; the
+ * rival's hand face down on top, the player's hand below, and the timelines in
+ * the middle with the actions left to program. Every card is drawn whole, and
+ * a tap shows it big with what can be done with it: what can't be done right
+ * now shows disabled with the reason, instead of an error after trying.
  */
 export default function BattleScreen({
   onChangeHeroes,
@@ -77,8 +123,10 @@ export default function BattleScreen({
   const store = useBattleStore()
   const { state, view, timeline, selection, mode, frame, failures, log, fast, deck, rivalHeroId, me, rival } = store
   const online = !!store.online
+  const metrics = useMetrics()
   const [logOpen, setLogOpen] = useState(false)
   const [confirmSurrender, setConfirmSurrender] = useState(false)
+  const [spot, setSpot] = useState<Spot | null>(null)
   const programming = mode === 'planning'
   /** The timeline can be changed (online, not after it was sent). */
   const planning = programming && !store.submitted
@@ -106,13 +154,97 @@ export default function BattleScreen({
       playSfx(winner === me ? 'victory-sting' : 'defeat-sting')
     }
   }, [winner, me])
+
+  // A card shown big while programming makes no sense once the resolution starts.
+  useEffect(() => {
+    if (!planning) {
+      setSpot((current) => (current && current.kind !== 'inspect' ? null : current))
+    }
+  }, [planning])
+
   const board: MatchState | null = view ?? projection?.board ?? state
   const chronosLeft =
     projection && timeline.length > 0 ? projection.steps[timeline.length - 1].chronos : board?.players[me].chronos
+  /**
+   * What tapping `ref` does for the current selection: the action to program,
+   * or the selection with one more target (the action needs more than one).
+   */
+  const nextStep = useCallback(
+    (current: Selection, ref: SlotRef, kind: SlotHighlight): { action?: PlannedAction; next?: Selection } => {
+      if (!board || !state) {
+        return {}
+      }
+
+      switch (current.kind) {
+        case 'card': {
+          const card = state.players[me].hand.find((candidate) => candidate.uid === current.uid)
+
+          if (!card) {
+            return {}
+          }
+
+          if (kind === 'summon') {
+            return { action: { kind: 'play', cardUid: current.uid, slot: ref.slot as number } }
+          }
+
+          const targets = [...current.targets, ref]
+
+          return targets.length >= (getCard(card.cardId).targets?.length ?? 0)
+            ? { action: { kind: 'play', cardUid: current.uid, targets } }
+            : { next: { ...current, targets } }
+        }
+
+        case 'ally': {
+          if (current.ability) {
+            const targets = [...current.ability, ref]
+
+            return targets.length >= (allyAbility(board, me, current.uid)?.targets?.length ?? 0)
+              ? { action: { kind: 'allyAbility', allyUid: current.uid, targets } }
+              : { next: { ...current, ability: targets } }
+          }
+
+          return kind === 'attack'
+            ? { action: { kind: 'allyAttack', allyUid: current.uid, target: ref } }
+            : { action: { kind: 'move', allyUid: current.uid, toSlot: ref.slot as number } }
+        }
+
+        case 'hero': {
+          if (current.ability) {
+            const targets = [...current.ability, ref]
+
+            return targets.length >= (heroCard(board, me).ability?.targets?.length ?? 0)
+              ? { action: { kind: 'heroAbility', targets } }
+              : { next: { kind: 'hero', ability: targets } }
+          }
+
+          return { action: { kind: 'heroAttack', target: ref } }
+        }
+
+        default:
+          return {}
+      }
+    },
+    [board, state, me]
+  )
+  /** Whether tapping `ref` would work: an action that can be programmed, or one more target. */
+  const works = useCallback(
+    (current: Selection, ref: SlotRef, kind: SlotHighlight) => {
+      const step = nextStep(current, ref, kind)
+
+      return !!step.next || (!!step.action && store.check(step.action) == null)
+    },
+    [nextStep, store]
+  )
   const highlights: Highlights = useMemo(() => {
     if (!board || !planning || !selection) {
       return NO_HIGHLIGHTS
     }
+
+    // Only the places where the action would really work light up.
+    const valid = (kind: keyof Highlights, refs: SlotRef[]) => ({
+      ...NO_HIGHLIGHTS,
+      [kind]: refs.filter((ref) => works(selection, ref, kind))
+    })
 
     switch (selection.kind) {
       case 'card': {
@@ -126,13 +258,13 @@ export default function BattleScreen({
         const needs = cardNeeds(definition)
 
         if (needs === 'slot') {
-          return { ...NO_HIGHLIGHTS, summon: summonRefs(board, me) }
+          return valid('summon', summonRefs(board, me))
         }
 
         if (needs === 'targets') {
           const kind = definition.targets![selection.targets.length]
 
-          return { ...NO_HIGHLIGHTS, target: kind ? refsFor(board, me, kind) : [] }
+          return kind ? valid('target', refsFor(board, me, kind)) : NO_HIGHLIGHTS
         }
 
         return NO_HIGHLIGHTS
@@ -142,26 +274,28 @@ export default function BattleScreen({
         if (selection.ability) {
           const kind = allyAbility(board, me, selection.uid)?.targets?.[selection.ability.length]
 
-          return { ...NO_HIGHLIGHTS, target: kind ? refsFor(board, me, kind) : [] }
+          return kind ? valid('target', refsFor(board, me, kind)) : NO_HIGHLIGHTS
         }
 
-        return { ...NO_HIGHLIGHTS, attack: attackRefs(board, me), move: moveRefs(board, me, selection.uid) }
+        return selection.mode === 'move'
+          ? valid('move', moveRefs(board, me, selection.uid))
+          : valid('attack', attackRefs(board, me))
       }
 
       case 'hero': {
         if (selection.ability) {
           const kind = heroCard(board, me).ability?.targets?.[selection.ability.length]
 
-          return { ...NO_HIGHLIGHTS, target: kind ? refsFor(board, me, kind) : [] }
+          return kind ? valid('target', refsFor(board, me, kind)) : NO_HIGHLIGHTS
         }
 
-        return board.players[me].hero.weapon ? { ...NO_HIGHLIGHTS, attack: attackRefs(board, me) } : NO_HIGHLIGHTS
+        return valid('attack', attackRefs(board, me))
       }
 
       default:
         return NO_HIGHLIGHTS
     }
-  }, [board, planning, selection, state, me])
+  }, [board, planning, selection, state, me, works])
 
   const highlightOf = (ref: SlotRef): SlotHighlight => {
     for (const kind of ['target', 'summon', 'attack', 'move'] as const) {
@@ -178,8 +312,9 @@ export default function BattleScreen({
       const failure = store.program(action)
 
       if (failure) {
+        // Should not happen: the screen only offers what works. A real error of the game.
         playSfx('fail')
-        toast.error(t(`battle.fail.${failure}`))
+        toast.error(t(`battle.fail.${failure}` as MessageKey))
       } else {
         playSfx('place')
       }
@@ -194,199 +329,227 @@ export default function BattleScreen({
   const mySide = board.players[me]
   const handSource = programming || mode === 'mulligan' ? state.players[me].hand : mySide.hand
   const used = usedCards(timeline)
-  const selectedCard =
-    selection?.kind === 'card' ? state.players[me].hand.find((card) => card.uid === selection.uid) : undefined
+  const reason = (failure: string | null | undefined) => (failure ? t(`battle.fail.${failure}` as MessageKey) : null)
 
-  const selectOwn = (ref: SlotRef) => {
-    if (ref.slot === 'hero') {
-      store.select({ kind: 'hero', ability: null })
-    } else {
-      const unit = board.players[me].allies[ref.slot]
+  // ─── Tapping the board ────────────────────────────────────────────────────
 
-      store.select(unit ? { kind: 'ally', uid: unit.uid } : null)
+  const unitNote = (unit: Unit) => {
+    const parts = [`⚔️ ${unit.attack + unit.tempAttack} · ❤️ ${unit.health}/${unit.maxHealth}`]
+
+    if (unit.stunnedUntilPhase >= board.phase) {
+      parts.push(t('battle.stunned'))
+    } else if (unit.enteredPhase === board.phase && !unit.keywords.includes('charge')) {
+      parts.push(t('battle.notReady'))
     }
-  }
 
-  const inspect = (ref: SlotRef) => {
-    const side = board.players[ref.player]
-    const cardId = ref.slot === 'hero' ? side.hero.cardId : side.allies[ref.slot]?.cardId
-
-    store.select(cardId ? { kind: 'inspect', cardId } : null)
+    return parts.join('\n')
   }
 
   const onSlotClick = (ref: SlotRef) => {
-    if (!planning) {
-      inspect(ref)
+    const highlight = highlightOf(ref)
+
+    // Aiming: a lit place completes (or continues) the action.
+    if (planning && selection && highlight) {
+      const step = nextStep(selection, ref, highlight)
+
+      if (step.action) {
+        program(step.action)
+      } else if (step.next) {
+        store.select(step.next)
+      }
 
       return
     }
 
-    const highlight = highlightOf(ref)
+    store.select(null)
 
-    if (selection && highlight) {
-      switch (selection.kind) {
-        case 'card': {
-          const definition = getCard(selectedCard!.cardId)
+    const side = board.players[ref.player]
 
-          if (highlight === 'summon') {
-            program({ kind: 'play', cardUid: selection.uid, slot: ref.slot as number })
-          } else {
-            const targets = [...selection.targets, ref]
+    if (ref.slot === 'hero') {
+      setSpot({ kind: 'hero', player: ref.player, cardId: side.hero.cardId })
 
-            if (targets.length >= (definition.targets?.length ?? 0)) {
-              program({ kind: 'play', cardUid: selection.uid, targets })
-            } else {
-              store.select({ ...selection, targets })
-            }
-          }
+      return
+    }
 
-          return
+    const unit = side.allies[ref.slot]
+
+    if (unit) {
+      setSpot({ kind: 'ally', player: ref.player, uid: unit.uid, cardId: unit.cardId })
+    }
+  }
+
+  const inspect = (cardId: string, note?: string) => {
+    store.select(null)
+    setSpot({ kind: 'inspect', cardId, note })
+  }
+
+  /** Starts aiming with `next` (closes the big card), or programs `action` right away. */
+  const choose = (next: Selection | null, action?: PlannedAction) => {
+    setSpot(null)
+
+    if (action) {
+      program(action)
+    } else {
+      store.select(next)
+    }
+  }
+
+  /** The first place where an action works, or why none does. */
+  const firstWorking = (current: Selection, refs: SlotRef[], kind: SlotHighlight, none: string) => {
+    if (refs.some((ref) => works(current, ref, kind))) {
+      return null
+    }
+
+    const step = refs.length > 0 ? nextStep(current, refs[0], kind) : {}
+
+    return (step.action && store.check(step.action)) || none
+  }
+
+  // ─── The card shown big, and its buttons ──────────────────────────────────
+
+  let spotActions: SpotlightAction[] = []
+  let spotNote: string | undefined
+
+  if (spot?.kind === 'hand') {
+    const definition = getCard(spot.cardId)
+    const needs = cardNeeds(definition)
+    const current: Selection = { kind: 'card', uid: spot.uid, targets: [] }
+    const usedNow = used.has(spot.uid)
+
+    if (planning) {
+      let playReason: string | null
+
+      if (usedNow) {
+        playReason = 'cardUsed'
+      } else if (needs === 'nothing') {
+        playReason = store.check({ kind: 'play', cardUid: spot.uid })
+      } else if (needs === 'slot') {
+        playReason = firstWorking(current, summonRefs(board, me), 'summon', 'slotsFull')
+      } else {
+        playReason = firstWorking(current, refsFor(board, me, definition.targets![0]), 'target', 'invalidTarget')
+      }
+
+      spotActions = [
+        {
+          label: t('battle.buttons.play'),
+          color: 'lime',
+          disabledReason: reason(playReason),
+          onClick: () => (needs === 'nothing' ? choose(null, { kind: 'play', cardUid: spot.uid }) : choose(current))
+        },
+        {
+          label: t('battle.buttons.sacrifice'),
+          color: 'violet',
+          disabledReason: reason(usedNow ? 'cardUsed' : store.check({ kind: 'sacrifice', cardUid: spot.uid })),
+          onClick: () => choose(null, { kind: 'sacrifice', cardUid: spot.uid })
         }
+      ]
+    }
+  } else if (spot?.kind === 'ally') {
+    const unit = board.players[spot.player].allies.find((candidate) => candidate?.uid === spot.uid)
 
-        case 'ally': {
-          if (selection.ability) {
-            const targets = [...selection.ability, ref]
+    spotNote = unit ? unitNote(unit) : undefined
 
-            if (targets.length >= (allyAbility(board, me, selection.uid)?.targets?.length ?? 0)) {
-              program({ kind: 'allyAbility', allyUid: selection.uid, targets })
-            } else {
-              store.select({ ...selection, ability: targets })
-            }
-          } else {
-            program(
-              highlight === 'attack'
-                ? { kind: 'allyAttack', allyUid: selection.uid, target: ref }
-                : { kind: 'move', allyUid: selection.uid, toSlot: ref.slot as number }
-            )
-          }
+    if (planning && unit && spot.player === me) {
+      const ability = allyAbility(board, me, unit.uid)
+      const attack: Selection = { kind: 'ally', uid: unit.uid, mode: 'attack' }
+      const move: Selection = { kind: 'ally', uid: unit.uid, mode: 'move' }
 
-          return
+      spotActions = [
+        {
+          label: t('battle.buttons.attack'),
+          color: 'magenta',
+          disabledReason: reason(firstWorking(attack, attackRefs(board, me), 'attack', 'invalidTarget')),
+          onClick: () => choose(attack)
+        },
+        {
+          label: t('battle.buttons.move'),
+          color: 'cyan',
+          disabledReason: reason(firstWorking(move, moveRefs(board, me, unit.uid), 'move', 'invalidTarget')),
+          onClick: () => choose(move)
         }
+      ]
 
-        case 'hero': {
-          if (selection.ability) {
-            const targets = [...selection.ability, ref]
+      if (ability) {
+        const aim: Selection = { kind: 'ally', uid: unit.uid, ability: [] }
+        const direct: PlannedAction = { kind: 'allyAbility', allyUid: unit.uid, targets: [] }
 
-            if (targets.length >= (heroCard(board, me).ability?.targets?.length ?? 0)) {
-              program({ kind: 'heroAbility', targets })
-            } else {
-              store.select({ kind: 'hero', ability: targets })
-            }
-          } else {
-            program({ kind: 'heroAttack', target: ref })
-          }
-
-          return
-        }
-
-        default:
-          break
+        spotActions.push({
+          label: t('battle.buttons.ability', { cost: ability.cost }),
+          color: 'violet',
+          disabledReason: reason(
+            ability.targets?.length
+              ? firstWorking(aim, refsFor(board, me, ability.targets[0]), 'target', 'invalidTarget')
+              : store.check(direct)
+          ),
+          onClick: () => (ability.targets?.length ? choose(aim) : choose(null, direct))
+        })
       }
     }
+  } else if (spot?.kind === 'hero') {
+    const hero = board.players[spot.player].hero
 
-    if (ref.player === me) {
-      selectOwn(ref)
-    } else {
-      inspect(ref)
+    spotNote = `❤️ ${Math.max(0, hero.health)}/${hero.maxHealth}${hero.armor > 0 ? ` · 🛡️ ${hero.armor}` : ''}`
+
+    if (planning && spot.player === me) {
+      const ability = heroCard(board, me).ability
+      const attack: Selection = { kind: 'hero', ability: null }
+
+      spotActions = [
+        {
+          label: t('battle.buttons.weaponAttack'),
+          color: 'magenta',
+          disabledReason: reason(
+            hero.weapon ? firstWorking(attack, attackRefs(board, me), 'attack', 'invalidTarget') : 'noWeapon'
+          ),
+          onClick: () => choose(attack)
+        }
+      ]
+
+      if (ability) {
+        const aim: Selection = { kind: 'hero', ability: [] }
+        const direct: PlannedAction = { kind: 'heroAbility', targets: [] }
+
+        spotActions.push({
+          label: t('battle.buttons.ability', { cost: ability.cost }),
+          color: 'violet',
+          disabledReason: reason(
+            ability.targets?.length
+              ? firstWorking(aim, refsFor(board, me, ability.targets[0]), 'target', 'invalidTarget')
+              : store.check(direct)
+          ),
+          onClick: () => (ability.targets?.length ? choose(aim) : choose(null, direct))
+        })
+      }
+    }
+  } else if (spot?.kind === 'inspect') {
+    spotNote = spot.note
+  }
+
+  // ─── The hint while aiming ────────────────────────────────────────────────
+
+  let aimHint: string | null = null
+
+  if (planning && selection) {
+    if (selection.kind === 'card') {
+      const card = state.players[me].hand.find((candidate) => candidate.uid === selection.uid)
+
+      aimHint = card && cardNeeds(getCard(card.cardId)) === 'slot' ? t('battle.hints.summon') : t('battle.hints.target')
+    } else if (selection.kind === 'ally') {
+      aimHint = selection.ability
+        ? t('battle.hints.target')
+        : selection.mode === 'move'
+          ? t('battle.hints.move')
+          : t('battle.hints.attack')
+    } else if (selection.kind === 'hero') {
+      aimHint = selection.ability ? t('battle.hints.target') : t('battle.hints.attack')
     }
   }
 
-  // ─── The side panel ────────────────────────────────────────────────────────
-
-  let panelCard: string | null = null
-  let hint = t('battle.hints.idle')
-  const buttons: PanelButton[] = []
-  const cancel: PanelButton = { label: t('battle.buttons.cancel'), color: 'ghost', onClick: () => store.select(null) }
-
-  if (mode === 'resolving') {
-    hint = t('battle.hints.resolving')
-  } else if (planning && timeline.length >= 5 && !selection) {
-    hint = t('battle.hints.full')
-  }
-
-  if (selection?.kind === 'card' && selectedCard) {
-    const definition = getCard(selectedCard.cardId)
-    const needs = cardNeeds(definition)
-
-    panelCard = definition.id
-    hint =
-      needs === 'slot'
-        ? t('battle.hints.summon')
-        : needs === 'targets'
-          ? t('battle.hints.target')
-          : t('battle.hints.card')
-
-    if (needs === 'nothing') {
-      buttons.push({
-        label: t('battle.buttons.play'),
-        color: 'lime',
-        onClick: () => program({ kind: 'play', cardUid: selectedCard.uid })
-      })
-    }
-
-    buttons.push(
-      {
-        label: t('battle.buttons.sacrifice'),
-        color: 'violet',
-        onClick: () => program({ kind: 'sacrifice', cardUid: selectedCard.uid })
-      },
-      cancel
-    )
-  } else if (selection?.kind === 'ally') {
-    const ability = allyAbility(board, me, selection.uid)
-
-    panelCard = board.players[me].allies.find((unit) => unit?.uid === selection.uid)?.cardId ?? null
-    hint = selection.ability
-      ? t('battle.hints.target')
-      : ability
-        ? t('battle.hints.allyAbility')
-        : t('battle.hints.ally')
-
-    if (ability && !selection.ability) {
-      buttons.push({
-        label: t('battle.buttons.ability', { cost: ability.cost }),
-        color: 'cyan',
-        onClick: () =>
-          ability.targets?.length
-            ? store.select({ ...selection, ability: [] })
-            : program({ kind: 'allyAbility', allyUid: selection.uid, targets: [] })
-      })
-    }
-
-    buttons.push(cancel)
-  } else if (selection?.kind === 'hero') {
-    const hero = heroCard(board, me)
-    const ability = hero.ability
-
-    panelCard = hero.id
-    hint = selection.ability
-      ? t('battle.hints.target')
-      : mySide.hero.weapon
-        ? t('battle.hints.hero')
-        : t('battle.hints.heroNoWeapon')
-
-    if (ability && !selection.ability) {
-      buttons.push({
-        label: t('battle.buttons.ability', { cost: ability.cost }),
-        color: 'cyan',
-        onClick: () =>
-          ability.targets?.length
-            ? store.select({ kind: 'hero', ability: [] })
-            : program({ kind: 'heroAbility', targets: [] })
-      })
-    }
-
-    buttons.push(cancel)
-  } else if (selection?.kind === 'inspect') {
-    panelCard = selection.cardId
-    hint = t('battle.hints.inspect')
-    buttons.push({ ...cancel, label: t('common.close') })
-  }
-
-  // ─── The board ─────────────────────────────────────────────────────────────
+  // ─── The board ────────────────────────────────────────────────────────────
 
   const allyRow = (player: PlayerId) => (
-    <div className="battle-screen__row">
+    <div className="battle-screen__row allies">
+      <span className="battle-screen__zone">{t('battle.zones.allies')}</span>
       {SLOTS.map((slot) => {
         const ref = { player, slot }
         const unit = board.players[player].allies[slot]
@@ -397,7 +560,8 @@ export default function BattleScreen({
           <BoardSlot
             key={slot}
             side={player === me ? 'bottom' : 'top'}
-            label={t('battle.emptySlot', { slot: slot + 1 })}
+            className="battle-screen__slot"
+            label=""
             highlight={highlightOf(ref)}
             selected={selection?.kind === 'ally' && unit?.uid === selection.uid}
             ghost={ghost}
@@ -406,40 +570,145 @@ export default function BattleScreen({
             slotKey={refKey(ref)}
             onClick={() => onSlotClick(ref)}
           >
-            {unit && (
-              <UnitToken
-                unit={unit}
-                fresh={unit.enteredPhase === board.phase && !unit.keywords.includes('charge')}
-                stunned={unit.stunnedUntilPhase >= board.phase}
-              />
-            )}
+            {unit && <UnitCard unit={unit} width={metrics.ally} phase={board.phase} />}
           </BoardSlot>
         )
       })}
     </div>
   )
 
-  const heroZone = (player: PlayerId) => {
-    const ref = { player, slot: 'hero' } as const
+  const supportRow = (player: PlayerId) => {
+    const side = board.players[player]
+    const hidden = player !== me
+    const weapon = side.hero.weapon
+    const traps = Array.from({ length: MAX_TRAPS }, (_, index) => side.traps[index] ?? null)
+    const cell = (key: string, icon: string, card: CardInstance | null, badge?: ReactNode, faceDown = false) => (
+      <button
+        key={key}
+        type="button"
+        className={classNames('battle-screen__support', { empty: !card })}
+        disabled={!card || faceDown}
+        title={t(`battle.zones.${key.replace(/\d/, '')}` as MessageKey)}
+        onClick={() => card && !faceDown && inspect(card.cardId)}
+      >
+        {card ? (
+          <MiniCard cardId={faceDown ? null : card.cardId} width={metrics.support}>
+            {badge}
+          </MiniCard>
+        ) : (
+          <span className="battle-screen__support-icon">{icon}</span>
+        )}
+      </button>
+    )
 
     return (
-      <HeroZone
-        side={board.players[player]}
-        position={player === me ? 'bottom' : 'top'}
-        chronos={player === me ? (chronosLeft ?? 0) : board.players[player].chronos}
+      <div className="battle-screen__row support">
+        <span className="battle-screen__zone">{t('battle.zones.support')}</span>
+        {cell(
+          'weapon',
+          '🗡️',
+          weapon?.card ?? null,
+          weapon && <span className="battle-screen__badge attack">{`${weapon.attack}·${weapon.durability}`}</span>
+        )}
+        {cell(
+          'armor',
+          '🛡️',
+          side.hero.armorCard,
+          <span className="battle-screen__badge armor">{side.hero.armor}</span>
+        )}
+        {cell('location', '🏛️', side.location)}
+        {traps.map((trap, index) => cell(`trap${index}`, '🪤', trap, undefined, hidden))}
+      </div>
+    )
+  }
+
+  const heroSlot = (player: PlayerId) => {
+    const ref = { player, slot: 'hero' } as const
+    const hero = board.players[player].hero
+
+    return (
+      <BoardSlot
+        side={player === me ? 'bottom' : 'top'}
+        className="battle-screen__hero"
+        slotKey={refKey(ref)}
         highlight={highlightOf(ref)}
         selected={player === me && selection?.kind === 'hero'}
         effects={effects.get(refKey(ref))}
         frameKey={frame.key}
-        slotKey={refKey(ref)}
-        onHeroClick={() => onSlotClick(ref)}
-        onInspect={(cardId) => store.select({ kind: 'inspect', cardId })}
-      />
+        onClick={() => onSlotClick(ref)}
+      >
+        <MiniCard cardId={hero.cardId} width={metrics.hero} className={classNames({ fallen: hero.fallen })}>
+          <span className="battle-screen__badge health big">{Math.max(0, hero.health)}</span>
+          {hero.armor > 0 && <span className="battle-screen__badge armor big">{hero.armor}</span>}
+        </MiniCard>
+        <span className="battle-screen__zone-label">{t('battle.zones.hero')}</span>
+      </BoardSlot>
     )
   }
 
+  const piles = (player: PlayerId) => {
+    const side: PlayerState = board.players[player]
+    const top = side.discard.at(-1)
+    const chronos = player === me ? (chronosLeft ?? 0) : side.chronos
+
+    return (
+      <div className="battle-screen__piles">
+        <div className="battle-screen__pile" title={t('battle.zones.deck')}>
+          <MiniCard cardId={null} width={metrics.pile}>
+            <span className="battle-screen__count">{side.deck.length}</span>
+          </MiniCard>
+          <span className="battle-screen__zone-label">{t('battle.zones.deck')}</span>
+        </div>
+        <div className="battle-screen__pile" title={t('battle.zones.chronos')}>
+          <span className="battle-screen__chronos" style={{ width: metrics.pile, height: metrics.pile * 1.4 }}>
+            <span className="battle-screen__chronos-glass">⌛</span>
+            <strong>
+              {chronos}/{side.chronosCapacity}
+            </strong>
+          </span>
+          <span className="battle-screen__zone-label">{t('battle.zones.chronos')}</span>
+        </div>
+        <button
+          type="button"
+          className={classNames('battle-screen__pile', { empty: !top })}
+          disabled={!top}
+          title={t('battle.zones.graveyard')}
+          onClick={() => top && inspect(top.cardId)}
+        >
+          {top ? (
+            <MiniCard cardId={top.cardId} width={metrics.pile}>
+              <span className="battle-screen__count">{side.discard.length}</span>
+            </MiniCard>
+          ) : (
+            <span className="battle-screen__pile-empty" style={{ width: metrics.pile, height: metrics.pile * 1.4 }} />
+          )}
+          <span className="battle-screen__zone-label">{t('battle.zones.graveyard')}</span>
+        </button>
+      </div>
+    )
+  }
+
+  const side = (player: PlayerId) => (
+    <div className={classNames('battle-screen__side', player === me ? 'mine' : 'theirs')}>
+      {heroSlot(player)}
+      {supportRow(player)}
+      {allyRow(player)}
+      {piles(player)}
+    </div>
+  )
+  const left = ACTIONS_PER_PHASE - timeline.length
+  const vars = {
+    '--ally-w': `${metrics.ally}px`,
+    '--support-w': `${metrics.support}px`,
+    '--hero-w': `${metrics.hero}px`,
+    '--pile-w': `${metrics.pile}px`,
+    '--hand-w': `${metrics.hand}px`,
+    '--slot': `${metrics.ally}px`,
+    '--timeline-w': `${TIMELINE_WIDTH}px`
+  } as CSSProperties
+
   return (
-    <div className="battle-screen" data-silent>
+    <div className="battle-screen" style={vars} data-silent>
       <div
         className={classNames(
           'battle-screen__board',
@@ -454,95 +723,135 @@ export default function BattleScreen({
             {t('battle.phase', { phase: phaseBanner })}
           </span>
         )}
-        {heroZone(rival)}
-        {allyRow(rival)}
-        <TimelineBar
-          state={state}
-          me={me}
-          rival={rival}
-          actions={timeline}
-          projection={projection?.steps ?? []}
-          rivalActions={store.rivalTimeline}
-          rivalReady={store.rivalReady}
-          rivalLabel={online ? store.rivalName : t('battle.cpu')}
-          planning={planning}
-          waiting={programming && store.submitted}
-          step={store.step}
-          failures={failures}
-          deadline={store.deadline}
-          onRemove={(index) => {
-            playSfx('remove')
-            store.unprogram(index)
-          }}
-          onReady={() => {
-            playSfx('ready')
-            store.ready()
-          }}
-        />
-        {allyRow(me)}
-        {heroZone(me)}
-      </div>
 
-      <div className="battle-screen__side">
         <div className="battle-screen__top">
           <span className="battle-screen__phase">{t('battle.phase', { phase: board.phase })}</span>
-          <button type="button" className={fast ? 'active' : ''} onClick={store.toggleFast}>
-            {t('battle.fast')}
-          </button>
-          <button type="button" onClick={() => setLogOpen(true)}>
-            📜 {t('battle.log')}
-          </button>
-          {online ? (
-            <button
-              type="button"
-              className={confirmSurrender ? 'danger' : ''}
-              disabled={mode === 'finished'}
-              onClick={() => {
-                if (confirmSurrender) {
-                  setConfirmSurrender(false)
-                  void store.surrender()
-                } else {
-                  setConfirmSurrender(true)
-                  setTimeout(() => setConfirmSurrender(false), 4000)
-                }
-              }}
-            >
-              🏳️ {confirmSurrender ? t('battle.surrenderConfirm') : t('battle.giveUp')}
+          <div className="battle-screen__rival-hand" aria-label={t('battle.rivalHand')}>
+            {board.players[rival].hand.map((card) => (
+              <MiniCard key={card.uid} cardId={null} width={metrics.rivalHand} />
+            ))}
+            <span className="battle-screen__count">{board.players[rival].hand.length}</span>
+          </div>
+          <div className="battle-screen__menu">
+            <button type="button" className={fast ? 'active' : ''} onClick={store.toggleFast}>
+              {t('battle.fast')}
             </button>
-          ) : (
-            <button
-              type="button"
-              onClick={() => {
-                store.leave()
-                onChangeHeroes()
-              }}
-            >
-              🚪 {t('battle.surrender')}
+            <button type="button" onClick={() => setLogOpen(true)}>
+              📜 {t('battle.log')}
             </button>
+            {online ? (
+              <button
+                type="button"
+                className={confirmSurrender ? 'danger' : ''}
+                disabled={mode === 'finished'}
+                onClick={() => {
+                  if (confirmSurrender) {
+                    setConfirmSurrender(false)
+                    void store.surrender()
+                  } else {
+                    setConfirmSurrender(true)
+                    setTimeout(() => setConfirmSurrender(false), 4000)
+                  }
+                }}
+              >
+                🏳️ {confirmSurrender ? t('battle.surrenderConfirm') : t('battle.giveUp')}
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={() => {
+                  store.leave()
+                  onChangeHeroes()
+                }}
+              >
+                🚪 {t('battle.surrender')}
+              </button>
+            )}
+          </div>
+        </div>
+
+        {side(rival)}
+
+        <div className="battle-screen__middle">
+          <TimelineBar
+            state={state}
+            me={me}
+            rival={rival}
+            actions={timeline}
+            projection={projection?.steps ?? []}
+            rivalActions={store.rivalTimeline}
+            rivalReady={store.rivalReady}
+            rivalLabel={online ? store.rivalName : t('battle.cpu')}
+            planning={planning}
+            waiting={programming && store.submitted}
+            actionsLeft={planning ? left : null}
+            step={store.step}
+            failures={failures}
+            deadline={store.deadline}
+            onRemove={(index) => {
+              playSfx('remove')
+              store.unprogram(index)
+            }}
+            onReady={() => {
+              playSfx('ready')
+              store.select(null)
+              setSpot(null)
+              store.ready()
+            }}
+          />
+          {aimHint && (
+            <div className="battle-screen__aim">
+              <span>{aimHint}</span>
+              <button type="button" onClick={() => store.select(null)}>
+                {t('battle.buttons.cancel')}
+              </button>
+            </div>
           )}
         </div>
-        <ActionPanel cardId={panelCard} hint={hint} buttons={buttons} />
+
+        {side(me)}
+
         <div className="battle-screen__hand">
-          {handSource.map((card) => (
-            <HandCard
-              key={card.uid}
-              cardId={card.cardId}
-              used={planning && used.has(card.uid)}
-              expensive={planning && getCard(card.cardId).cost > (chronosLeft ?? 0)}
-              selected={selection?.kind === 'card' && selection.uid === card.uid}
-              onClick={() =>
-                planning
-                  ? store.select(
-                      selection?.kind === 'card' && selection.uid === card.uid
-                        ? null
-                        : { kind: 'card', uid: card.uid, targets: [] }
-                    )
-                  : store.select({ kind: 'inspect', cardId: card.cardId })
-              }
-            />
-          ))}
+          {handSource.map((card, index) => {
+            const definition = getCard(card.cardId)
+            const usedNow = planning && used.has(card.uid)
+            const expensive = planning && !usedNow && definition.cost > (chronosLeft ?? 0)
+
+            return (
+              <button
+                key={card.uid}
+                type="button"
+                className={classNames('battle-screen__hand-card', {
+                  used: usedNow,
+                  expensive,
+                  aiming: selection?.kind === 'card' && selection.uid === card.uid
+                })}
+                style={{ zIndex: index + 1 }}
+                onClick={() => {
+                  store.select(null)
+                  setSpot(
+                    planning
+                      ? { kind: 'hand', uid: card.uid, cardId: card.cardId }
+                      : { kind: 'inspect', cardId: card.cardId }
+                  )
+                }}
+              >
+                <MiniCard cardId={card.cardId} width={metrics.hand} />
+                {usedNow && <span className="battle-screen__used">✓</span>}
+              </button>
+            )
+          })}
         </div>
       </div>
+
+      {spot && (
+        <CardSpotlight
+          cardId={spot.cardId}
+          onClose={() => setSpot(null)}
+          actions={spotActions}
+          note={spotNote && <span className="battle-screen__note">{spotNote}</span>}
+        />
+      )}
 
       {mode === 'mulligan' && (
         <MulliganOverlay
@@ -570,5 +879,30 @@ export default function BattleScreen({
       {tutorial && <TutorialCoach mode={mode} phase={state.phase} />}
       {logOpen && <BattleLog log={log} state={state} onClose={() => setLogOpen(false)} />}
     </div>
+  )
+}
+
+/** An ally on the board: its whole card, with its live attack and health, keywords and state. */
+function UnitCard({ unit, width, phase }: { unit: Unit; width: number; phase: number }) {
+  const attack = unit.attack + unit.tempAttack
+  const keywords = unit.keywords.filter((keyword) => KEYWORD_ICONS[keyword])
+  const stunned = unit.stunnedUntilPhase >= phase
+  const fresh = unit.enteredPhase === phase && !unit.keywords.includes('charge')
+
+  return (
+    <MiniCard cardId={unit.cardId} width={width} className={classNames('unit-card', { stunned, fresh })}>
+      {keywords.length > 0 && (
+        <span className="battle-screen__keywords">
+          {keywords.map((keyword) => (
+            <span key={keyword}>{KEYWORD_ICONS[keyword]}</span>
+          ))}
+        </span>
+      )}
+      <span className={classNames('battle-screen__badge attack', { boosted: unit.tempAttack > 0 })}>{attack}</span>
+      <span className={classNames('battle-screen__badge health', { hurt: unit.health < unit.maxHealth })}>
+        {unit.health}
+      </span>
+      {(stunned || fresh) && <span className="battle-screen__status">{stunned ? '💫' : '💤'}</span>}
+    </MiniCard>
   )
 }

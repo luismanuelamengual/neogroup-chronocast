@@ -1,72 +1,58 @@
 .battle-screen {
-  --slot: clamp(48px, min(14.5vh, 7.4vw), 112px);
-  --card-w: clamp(46px, min(16vh, 6.3vw), 92px);
-
   position: relative;
-  display: grid;
-  grid-template-columns: 1fr clamp(220px, 34vw, 420px);
-  gap: 8px;
   width: 100%;
   height: 100dvh;
-  padding: calc(6px + var(--safe-top)) calc(8px + var(--safe-right)) calc(6px + var(--safe-bottom))
-    calc(8px + var(--safe-left));
-  overflow: hidden;
-  background:
-    radial-gradient(ellipse at 30% 0%, var(--color-peach), transparent 55%),
-    radial-gradient(ellipse at 30% 100%, var(--color-sky), transparent 55%),
-    linear-gradient(180deg, var(--color-lavender), var(--color-mint));
+  padding: calc(4px + var(--safe-top)) calc(6px + var(--safe-right)) calc(4px + var(--safe-bottom))
+    calc(6px + var(--safe-left));
+  // clip, not hidden: tapping a card half below the edge mustn't scroll the screen.
+  overflow: clip;
+  background: var(--page-background);
+  background-color: var(--color-parchment);
   color: var(--color-text);
   user-select: none;
 
   &__board {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    min-width: 0;
+    display: grid;
+    grid-template-areas:
+      'top top'
+      'theirs middle'
+      'mine middle'
+      'hand middle';
+    grid-template-rows: 7.5% 34% 34% 1fr;
+    grid-template-columns: minmax(0, 1fr) var(--timeline-w);
+    column-gap: 8px;
+    row-gap: 0;
+    height: 100%;
   }
 
-  &__row {
-    display: flex;
-    gap: calc(var(--slot) * 0.16);
-    padding-top: 6px;
-  }
-
-  &__side {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    min-height: 0;
-    padding: 6px;
-    border: var(--frame-border);
-    border-radius: var(--frame-radius);
-    background: rgba(255, 255, 255, 0.7);
-  }
+  // ─── Top bar: phase, the rival's hand face down, menu ───────────────────
 
   &__top {
+    grid-area: top;
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    gap: 4px;
+    gap: 8px;
+    min-width: 0;
 
     button {
       padding: 2px 8px;
       border: 2px solid var(--color-outline);
       border-radius: 999px;
-      background: white;
+      background-color: white;
       color: var(--color-text);
       cursor: pointer;
       font: inherit;
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       font-weight: 800;
+      white-space: nowrap;
 
       &.active {
-        background: var(--color-gold);
+        background-color: var(--color-gold);
       }
 
       &.danger {
-        background: var(--color-magenta);
+        background-color: var(--color-magenta);
         color: white;
       }
 
@@ -78,20 +64,480 @@
   }
 
   &__phase {
-    margin-right: auto;
+    flex: none;
+    padding: 1px 10px;
+    border-radius: 999px;
+    background-color: var(--color-outline);
+    color: white;
     font-family: var(--font-title);
-    font-size: 1rem;
+    font-size: 0.82rem;
   }
 
-  &__hand {
+  &__rival-hand {
+    position: relative;
     display: flex;
-    flex-wrap: nowrap;
+    flex: 1;
+    align-items: center;
     justify-content: center;
-    padding: 10px 6px 2px;
+    min-width: 0;
 
-    .hand-card + .hand-card {
-      margin-left: calc(var(--card-w) * -0.32);
+    .mini-card + .mini-card {
+      margin-left: -4px;
     }
+
+    .battle-screen__count {
+      position: static;
+      margin-left: 6px;
+      transform: none;
+    }
+  }
+
+  &__menu {
+    display: flex;
+    flex: none;
+    gap: 4px;
+  }
+
+  // ─── Each side: hero, support and allies rows, piles ───────────────────
+
+  &__side {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    column-gap: 8px;
+    align-items: center;
+    min-height: 0;
+    padding: 2px 8px;
+    border: 2px solid rgba(43, 35, 80, 0.12);
+    border-radius: 14px;
+    background-color: rgba(255, 255, 255, 0.55);
+
+    &.theirs {
+      grid-area: theirs;
+      grid-template-areas:
+        'hero support piles'
+        'hero allies piles';
+      grid-template-rows: 38% 62%;
+      margin-bottom: 2px;
+      background-color: rgba(255, 236, 240, 0.5);
+    }
+
+    &.mine {
+      grid-area: mine;
+      grid-template-areas:
+        'hero allies piles'
+        'hero support piles';
+      grid-template-rows: 62% 38%;
+      margin-top: 2px;
+      background-color: rgba(232, 244, 255, 0.55);
+    }
+  }
+
+  &__row {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 0;
+
+    &.allies {
+      grid-area: allies;
+      gap: 8px;
+    }
+
+    &.support {
+      grid-area: support;
+      gap: 6px;
+    }
+  }
+
+  &__zone {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    color: rgba(43, 35, 80, 0.4);
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transform: translateY(-50%) rotate(180deg);
+    writing-mode: vertical-rl;
+  }
+
+  &__zone-label {
+    display: block;
+    margin-top: 1px;
+    color: var(--color-text-secondary);
+    font-size: 8px;
+    font-weight: 800;
+    line-height: 1;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  // Cards on the board, sized by the screen (the slots are only frames).
+  .board-slot.battle-screen__slot {
+    width: var(--ally-w);
+    height: calc(var(--ally-w) * 1.4);
+    border-radius: 8px;
+
+    .board-slot__body {
+      border-radius: 8px;
+    }
+
+    .board-slot__label {
+      font-size: 0;
+    }
+  }
+
+  .board-slot.battle-screen__hero {
+    grid-area: hero;
+    width: var(--hero-w);
+    height: calc(var(--hero-w) * 1.4);
+    border-radius: 10px;
+
+    .board-slot__body {
+      border-radius: 10px;
+    }
+
+    .battle-screen__zone-label {
+      display: none;
+    }
+  }
+
+  .mini-card.fallen {
+    filter: grayscale(1);
+    opacity: 0.6;
+  }
+
+  .unit-card.stunned {
+    filter: saturate(0.4);
+  }
+
+  &__support {
+    display: grid;
+    place-items: center;
+    width: var(--support-w);
+    height: calc(var(--support-w) * 1.4);
+    padding: 0;
+    border: 0;
+    border-radius: 8px;
+    background: none;
+    cursor: pointer;
+    font: inherit;
+
+    &.empty {
+      border: 2px dashed rgba(43, 35, 80, 0.18);
+      background-color: rgba(255, 255, 255, 0.4);
+      cursor: default;
+    }
+
+    &:disabled {
+      cursor: default;
+    }
+  }
+
+  &__support-icon {
+    font-size: calc(var(--support-w) * 0.42);
+    opacity: 0.35;
+    filter: grayscale(1);
+  }
+
+  // ─── Badges over the cards ──────────────────────────────────────────────
+
+  &__badge {
+    position: absolute;
+    bottom: -3px;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    min-width: 17px;
+    height: 17px;
+    padding: 0 3px;
+    border: 2px solid var(--color-outline);
+    border-radius: 999px;
+    color: white;
+    font-family: var(--font-display);
+    font-size: 10px;
+    line-height: 1;
+
+    &.attack {
+      left: -3px;
+      background-color: #f0a020;
+    }
+
+    &.health {
+      right: -3px;
+      background-color: #e53950;
+    }
+
+    &.armor {
+      top: -3px;
+      right: -3px;
+      bottom: auto;
+      background-color: #7a8699;
+    }
+
+    &.big {
+      min-width: 24px;
+      height: 24px;
+      font-size: 14px;
+    }
+
+    &.boosted {
+      background-color: var(--color-lime-dark);
+    }
+
+    &.hurt {
+      background-color: #a3122a;
+    }
+  }
+
+  &__keywords {
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    z-index: 2;
+    display: flex;
+    gap: 1px;
+    padding: 0 2px;
+    border-radius: 999px;
+    background-color: rgba(255, 255, 255, 0.9);
+    font-size: 9px;
+    line-height: 14px;
+  }
+
+  &__status {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    z-index: 2;
+    font-size: 16px;
+    transform: translateX(-50%);
+  }
+
+  &__piles {
+    grid-area: piles;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 100%;
+  }
+
+  &__pile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+
+    &:disabled {
+      cursor: default;
+    }
+  }
+
+  &__pile-empty {
+    display: block;
+    border: 2px dashed rgba(43, 35, 80, 0.18);
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.4);
+  }
+
+  &__count {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    min-width: 20px;
+    padding: 1px 5px;
+    border-radius: 999px;
+    background-color: rgba(43, 35, 80, 0.85);
+    color: white;
+    font-family: var(--font-display);
+    font-size: 11px;
+    text-align: center;
+    transform: translate(-50%, -50%);
+  }
+
+  &__chronos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    border: 2px solid var(--color-chronos);
+    border-radius: 8px;
+    background: linear-gradient(180deg, #f3edff, #e2d6ff);
+    color: var(--color-chronos);
+
+    strong {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: normal;
+    }
+  }
+
+  &__chronos-glass {
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  // ─── The timelines, on the right ────────────────────────────────────────
+
+  &__middle {
+    position: relative;
+    grid-area: middle;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    min-height: 0;
+
+    .timeline-bar {
+      --slot: 92px;
+
+      flex-direction: column;
+      gap: 6px;
+      padding: 6px;
+    }
+
+    .timeline-bar__side {
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 6px;
+      width: 100%;
+    }
+
+    .timeline-bar__steps {
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .timeline-bar__step {
+      flex-direction: row;
+      gap: 3px;
+    }
+
+    .timeline-bar__number {
+      width: 12px;
+      text-align: center;
+    }
+
+    .action-box {
+      width: 98px;
+      height: 26px;
+      padding-right: 16px;
+      font-size: 10px;
+    }
+
+    .timeline-bar__ready {
+      font-size: 15px;
+    }
+  }
+
+  &__aim {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 4px 4px 10px;
+    border: 2px solid var(--color-violet);
+    border-radius: 12px;
+    background-color: white;
+    color: var(--color-text);
+    font-size: 11px;
+    font-weight: 800;
+    line-height: 1.15;
+    box-shadow: var(--frame-shadow);
+
+    span {
+      flex: 1;
+    }
+
+    button {
+      flex: none;
+      padding: 3px 10px;
+      border: 2px solid var(--color-outline);
+      border-radius: 999px;
+      background-color: white;
+      color: var(--color-text);
+      cursor: pointer;
+      font: inherit;
+    }
+  }
+
+  // ─── The player's hand: whole cards, overlapping, peeking from below ────
+
+  &__hand {
+    position: relative;
+    grid-area: hand;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    min-height: 0;
+    padding-top: 4px;
+    overflow: clip;
+    overflow-clip-margin: 14px;
+  }
+
+  &__hand-card {
+    position: relative;
+    flex: none;
+    padding: 0;
+    border: 0;
+    border-radius: 8px;
+    background: none;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(43, 35, 80, 0.25);
+    transition: transform 0.15s;
+
+    & + & {
+      margin-left: calc(var(--hand-w) * -0.18);
+    }
+
+    &:hover,
+    &:focus-visible {
+      z-index: 20 !important;
+      transform: translateY(-8px);
+    }
+
+    &.used .mini-card {
+      filter: grayscale(0.85);
+      opacity: 0.6;
+    }
+
+    &.expensive .mini-card {
+      filter: saturate(0.5) brightness(0.92);
+    }
+
+    &.aiming {
+      z-index: 20 !important;
+      box-shadow: 0 0 0 3px white, 0 0 0 6px var(--color-violet);
+      transform: translateY(-10px);
+    }
+  }
+
+  &__used {
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: var(--color-lime-dark);
+    color: white;
+    font-weight: 900;
+    transform: translateX(-50%);
+  }
+
+  &__note {
+    white-space: pre-line;
   }
 }
 

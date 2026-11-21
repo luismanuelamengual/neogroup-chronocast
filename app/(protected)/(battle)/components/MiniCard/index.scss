@@ -1,0 +1,17 @@
+.mini-card {
+  --flip-radius: 8px;
+
+  position: relative;
+  display: block;
+  flex: none;
+  border-radius: 8px;
+
+  &__zoom {
+    display: block;
+    pointer-events: none;
+  }
+
+  .card-back {
+    border-width: 2px;
+  }
+}
