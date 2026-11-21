@@ -126,7 +126,8 @@ Siempre `POST` con body JSON, nombre `verbNoun`, respuesta `{ success, data }` /
 
 - **Store** (`stores/battle.ts`, zustand): mulligan, la línea de tiempo que se está programando, el reloj de 90 s, la CPU (`planTimeline`) y la reproducción de la resolución.
 - **Programar**: se toca una carta de la mano (jugarla en un slot u objetivo, o "Generar Cronos"), un aliado (atacar un slot rival o moverse a uno propio) o el héroe (arma o habilidad). Cada acción se valida con la **proyección** (`utils/projection.ts`): si fallaría aunque el rival no haga nada, no entra. El tablero muestra cómo queda (lo invocado o movido se ve translúcido) y cada casillero los Cronos que quedan. Tocar un casillero lo quita.
-- **Resolver**: `resolvePhase(..., { frames: true })` devuelve una foto del tablero después de cada tramo de velocidad. La pantalla las reproduce una por una con sus animaciones (embestidas, golpes, números flotantes, invocaciones), con botón ×2 y registro escrito (`utils/describeEvent.ts`).
+- **Resolver**: `resolvePhase(..., { frames: true })` devuelve una foto del tablero después de cada tramo de velocidad. La pantalla las reproduce una por una con sus animaciones (`utils/effects.ts`): el plan del rival que se da vuelta casillero por casillero, flechas de cada ataque (`AttackArrows`, punteadas si falla), embestidas, golpes, números flotantes, invocaciones, aliados que se deslizan al moverse, una nube donde muere uno, el tablero que tiembla con un golpe fuerte a un héroe y el cartel "Fase N". Botón ×2 y registro escrito (`utils/describeEvent.ts`).
+- **Sonido**: cada momento de la resolución suena con hasta 4 efectos (`utils/battleSounds.ts`), más los de programar (poner y quitar acciones, Listo, el tic de los últimos 10 s). Música de batalla, de jefe en el combate 10 de cada campaña, y de victoria o derrota.
 - La proyección (y la CPU) no ven las trampas boca abajo del rival.
 
 ## Cartas
@@ -211,6 +212,8 @@ En PostgreSQL los nombres de columna sin comillas quedan en minúscula (`heroId`
 Fondos claros y pastel (crema, lavanda, menta, celeste y durazno) con paneles blancos, para que las cartas, muy coloridas y con borde oscuro, resalten con alto contraste. Títulos y botones en Lilita One, texto en Nunito.
 
 - **Tokens**: fondos, tinta (`--color-outline`), acentos, colores de facción (`--faction-*`), de rareza (`--rarity-*`) y de valores del juego (vida, Cronos, armadura, ataque) en `app/globals.scss`, espejados en `GAME_COLORS` del tema de MUI.
+- **Sonido** (`app/(protected)/(art)/`): un solo contexto Web Audio con volumen de música, de efectos y silencio, guardados en el dispositivo (el parlante del menú principal). Los efectos sin archivo se sintetizan por código (`utils/sfxSynth.ts`), así el juego suena desde el primer día; la música es silencio hasta que haya archivos. Los archivos van en `art/source/music/` y `art/source/sfx/` y `yarn art` los copia a `public/audio/` (ver [art/music.md](art/music.md)). El click de botones es global (`utils/uiSounds.ts`). Para escuchar todo: `/dev/sounds` (solo en desarrollo).
+- **Rendimiento**: las listas largas (colección, editor de mazos, tienda, venta) muestran las cartas de a 40 y cargan más al acercarse al final (`useIncrementalList`). En un celular de gama baja (4 núcleos o menos, o poca memoria: `utils/lowEnd.ts`) se apagan los desenfoques detrás de los diálogos, las cartas flotantes del fondo y las animaciones infinitas; con "reducir movimiento" del sistema, también.
 - **Piezas**: `GameButton` (botón vivo con contorno de tinta: dorado, cian, magenta, lima, violeta o blanco), `GamePanel` (panel blanco con título), `Backdrop` (cartas de colores flotando detrás de los menús) y `Logo`.
 
 ## PWA
@@ -219,14 +222,18 @@ Manifest en `/manifest.webmanifest`, service worker de Serwist en `/serwist/sw.j
 
 ### Google Play (Trusted Web Activity)
 
-La app Android será una TWA generada con Bubblewrap (package propuesto `app.chronocast.twa`). Lo que la publicación necesita del lado web ya está:
+La app Android es una TWA generada con Bubblewrap en el repo aparte **`neogroup-chronocast-android`** (package `app.chronocast.twa`): su README explica la clave de firma, `bubblewrap update && bubblewrap build` y cómo sacar una versión nueva. Del lado web:
 
 - `/privacy` y `/delete-account`: públicas con o sin sesión (`OPEN_PATHS` en `auth.config.ts`). El email de contacto sale de `CONTACT_EMAIL` (por defecto `support@chronocast.app`).
 - Borrado de cuenta desde Mi perfil (`POST /api/deleteAccount`).
 - Orientación horizontal (`orientation: landscape` en el manifiesto y aviso de "Girá el teléfono" en el navegador).
 - `/.well-known/assetlinks.json` con `ANDROID_PACKAGE_NAME` y `ANDROID_SHA256_CERT_FINGERPRINTS`.
+- Íconos (`favicon.ico`, `icon-192.png`, `icon-512.png`, `icon-maskable-512.png`, `apple-touch-icon.png`) y el ícono de la ficha (`art/store/icon-512.png`), dibujados por código con **`yarn icons`** (`scripts/icons/generate.ts`).
+- **[docs/PLAY_STORE.md](docs/PLAY_STORE.md)**: los textos de la ficha en español e inglés, los gráficos, la clasificación de contenido, la seguridad de los datos y la checklist del primer release.
 
-**Pendiente:** los íconos de `public/` (`favicon.ico`, `icon-*.png`, `apple-touch-icon.png`) todavía son los de Crisol.
+## Versiones
+
+La versión sale de `package.json` (hoy **1.0.0**) y se ve abajo del menú principal junto al commit. Para cada release: subir la versión, deploy, tag `vX.Y.Z` y Release de GitHub con `ChronoCast.apk`. La app de Play solo necesita una versión nueva si cambia la TWA (íconos, colores, dominio): el juego se actualiza con cada deploy.
 
 ## Testing
 

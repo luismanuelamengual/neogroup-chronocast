@@ -22,6 +22,7 @@ import { MAX_COPIES, MAX_DECK_SIZE, MAX_UNIQUE_COPIES, MIN_DECK_SIZE } from '@/a
 import { canUseCard } from '@/app/(protected)/(engine)/utils/deckRules'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
 import GameButton from '@/app/components/GameButton'
+import { useIncrementalList } from '@/app/hooks/useIncrementalList'
 import { useCardName } from '@/app/i18n/cards/useCardName'
 import { useT } from '@/app/i18n/I18nProvider'
 import { Translator } from '@/app/i18n/translate'
@@ -106,6 +107,8 @@ export default function DeckEditor({ deck, heroId, collection }: DeckEditorProps
     }
   }
 
+  const { visible: visiblePool, sentinel: sentinelPool } = useIncrementalList(pool)
+
   return (
     <div className="deck-editor">
       <section className="deck-editor__pool">
@@ -117,7 +120,7 @@ export default function DeckEditor({ deck, heroId, collection }: DeckEditorProps
         </header>
         <CardFilters filter={filter} onChange={setFilter} hide={['usableBy', 'ownedOnly']} />
         <div className="deck-editor__grid">
-          {pool.map((card) => {
+          {visiblePool.map((card) => {
             const owned = collection[card.id] ?? 0
             const left = owned - (cards[card.id] ?? 0)
 
@@ -135,6 +138,7 @@ export default function DeckEditor({ deck, heroId, collection }: DeckEditorProps
               </button>
             )
           })}
+          <span ref={sentinelPool} className="incremental-sentinel" aria-hidden="true" />
         </div>
       </section>
 

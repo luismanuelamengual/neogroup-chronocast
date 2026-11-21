@@ -7,6 +7,8 @@
  * It prints each image the moment it is processed, with a progress bar at the
  * bottom, and only processes what changed since the last run.
  *
+ * Then it copies the music and sound effects (see scripts/art/audio.ts).
+ *
  * Usage: yarn art            (every image, then a summary of what is missing by batch)
  *        yarn art --watch    (also stays watching art/source/cards/ and processes each new or changed image)
  *        yarn art --force    (processes everything again)
@@ -14,6 +16,7 @@
 import { createHash } from 'node:crypto'
 import { existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
+import { processAudio } from '@/scripts/art/audio'
 import { ArtRow, artRows } from '@/scripts/art/catalog'
 
 export const SOURCE_DIR = path.join(process.cwd(), 'art', 'source', 'cards')
@@ -227,6 +230,7 @@ if (require.main === module) {
   processAll(args.includes('--force'))
     .then(async (results) => {
       summary(results)
+      processAudio()
 
       if (args.includes('--watch')) {
         await watch()

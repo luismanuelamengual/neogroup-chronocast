@@ -1,9 +1,14 @@
 'use client'
 
 import './index.scss'
-import { ReactNode, useCallback, useMemo, useState } from 'react'
+import classNames from 'classnames'
+import { ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
+import { MusicId } from '@/app/(protected)/(art)/data/audio'
+import { useMusic } from '@/app/(protected)/(art)/hooks/useMusic'
+import { playSfx } from '@/app/(protected)/(art)/utils/sound'
 import ActionPanel, { PanelButton } from '@/app/(protected)/(battle)/components/ActionPanel'
+import AttackArrows from '@/app/(protected)/(battle)/components/AttackArrows'
 import BattleEnd from '@/app/(protected)/(battle)/components/BattleEnd'
 import BattleLog from '@/app/(protected)/(battle)/components/BattleLog'
 import BoardSlot, { SlotHighlight } from '@/app/(protected)/(battle)/components/BoardSlot'
@@ -14,7 +19,8 @@ import TimelineBar from '@/app/(protected)/(battle)/components/TimelineBar'
 import TutorialCoach from '@/app/(protected)/(battle)/components/TutorialCoach'
 import UnitToken from '@/app/(protected)/(battle)/components/UnitToken'
 import { useBattleStore } from '@/app/(protected)/(battle)/stores/battle'
-import { refKey, slotEffects } from '@/app/(protected)/(battle)/utils/effects'
+import { playMoment } from '@/app/(protected)/(battle)/utils/battleSounds'
+import { attackLines, heavyHeroHit, refKey, slotEffects } from '@/app/(protected)/(battle)/utils/effects'
 import { projectPlan, usedCards } from '@/app/(protected)/(battle)/utils/projection'
 import {
   attackRefs,
@@ -55,11 +61,14 @@ const NO_HIGHLIGHTS: Highlights = { attack: [], move: [], summon: [], target: []
 export default function BattleScreen({
   onChangeHeroes,
   tutorial = false,
+  music = 'battle',
   renderEnd
 }: {
   onChangeHeroes: () => void
   /** Show the tips of the guided first match. */
   tutorial?: boolean
+  /** The theme of the battle ('boss' against a campaign's boss). */
+  music?: MusicId
   /** A screen of its own for the end of the match (a campaign battle); `showLog` opens the log. */
   renderEnd?: (state: MatchState, showLog: () => void) => ReactNode
 }) {
@@ -77,6 +86,25 @@ export default function BattleScreen({
     [state, programming, timeline, me]
   )
   const effects = useMemo(() => slotEffects(frame.events, t), [frame, t])
+  const winner = mode === 'finished' ? (state?.result?.winner ?? null) : undefined
+
+  useMusic(winner === undefined ? music : winner === me ? 'victory' : 'defeat')
+
+  const boardRef = useRef<HTMLDivElement>(null)
+  const phaseStart = frame.events.find((event) => event.type === 'phaseStart')
+  const phaseBanner = phaseStart?.type === 'phaseStart' ? phaseStart.phase : null
+
+  useEffect(() => {
+    if (frame.key > 0) {
+      playMoment(frame.events, useBattleStore.getState().fast)
+    }
+  }, [frame])
+
+  useEffect(() => {
+    if (winner !== undefined) {
+      playSfx(winner === me ? 'victory-sting' : 'defeat-sting')
+    }
+  }, [winner, me])
   const board: MatchState | null = view ?? projection?.board ?? state
   const chronosLeft =
     projection && timeline.length > 0 ? projection.steps[timeline.length - 1].chronos : board?.players[me].chronos
@@ -142,7 +170,10 @@ export default function BattleScreen({
       const failure = store.program(action)
 
       if (failure) {
+        playSfx('fail')
         toast.error(t(`battle.fail.${failure}`))
+      } else {
+        playSfx('place')
       }
     },
     [store, t]
@@ -335,6 +366,7 @@ export default function BattleScreen({
             ghost={ghost}
             effects={effects.get(refKey(ref))}
             frameKey={frame.key}
+            slotKey={refKey(ref)}
             onClick={() => onSlotClick(ref)}
           >
             {unit && (
@@ -362,6 +394,7 @@ export default function BattleScreen({
         selected={player === me && selection?.kind === 'hero'}
         effects={effects.get(refKey(ref))}
         frameKey={frame.key}
+        slotKey={refKey(ref)}
         onHeroClick={() => onSlotClick(ref)}
         onInspect={(cardId) => store.select({ kind: 'inspect', cardId })}
       />
@@ -369,8 +402,21 @@ export default function BattleScreen({
   }
 
   return (
-    <div className="battle-screen">
-      <div className="battle-screen__board">
+    <div className="battle-screen" data-silent>
+      <div
+        className={classNames(
+          'battle-screen__board',
+          // Two names, so a heavy blow right after another one shakes again.
+          heavyHeroHit(frame.events) && (frame.key % 2 ? 'shake-odd' : 'shake-even')
+        )}
+        ref={boardRef}
+      >
+        <AttackArrows lines={attackLines(frame.events)} frameKey={frame.key} container={boardRef} />
+        {phaseBanner !== null && (
+          <span key={`banner-${phaseBanner}`} className="battle-screen__banner" aria-hidden="true">
+            {t('battle.phase', { phase: phaseBanner })}
+          </span>
+        )}
         {heroZone(rival)}
         {allyRow(rival)}
         <TimelineBar
@@ -387,8 +433,14 @@ export default function BattleScreen({
           step={store.step}
           failures={failures}
           deadline={store.deadline}
-          onRemove={store.unprogram}
-          onReady={store.ready}
+          onRemove={(index) => {
+            playSfx('remove')
+            store.unprogram(index)
+          }}
+          onReady={() => {
+            playSfx('ready')
+            store.ready()
+          }}
         />
         {allyRow(me)}
         {heroZone(me)}

@@ -1,0 +1,49 @@
+.sounds-preview {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px;
+
+  header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  h2 {
+    margin: 20px 0 8px;
+    font-size: 1.1rem;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 8px;
+  }
+
+  button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 10px 8px;
+    border: 2px solid var(--color-outline);
+    border-radius: 12px;
+    background: #ffffff;
+    color: var(--color-text);
+    font-weight: 700;
+    cursor: pointer;
+
+    small {
+      font-weight: 400;
+      opacity: 0.7;
+    }
+
+    &.active {
+      background: var(--color-mint, #e3f7ef);
+    }
+
+    &.missing {
+      opacity: 0.6;
+    }
+  }
+}

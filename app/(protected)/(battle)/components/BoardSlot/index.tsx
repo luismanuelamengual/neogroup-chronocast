@@ -2,7 +2,7 @@
 
 import './index.scss'
 import classNames from 'classnames'
-import { ReactNode } from 'react'
+import { CSSProperties, ReactNode } from 'react'
 import { SlotEffects } from '@/app/(protected)/(battle)/utils/effects'
 
 export type SlotHighlight = 'attack' | 'move' | 'summon' | 'target' | null
@@ -20,6 +20,8 @@ interface BoardSlotProps {
   frameKey?: number
   /** Which way an attack lunges. */
   side: 'top' | 'bottom'
+  /** Which place of the board it is ("a:2", "b:hero"), for the arrows of the attacks. */
+  slotKey?: string
   className?: string
   onClick?: () => void
 }
@@ -34,6 +36,7 @@ export default function BoardSlot({
   effects,
   frameKey,
   side,
+  slotKey,
   className,
   onClick
 }: BoardSlotProps) {
@@ -45,6 +48,7 @@ export default function BoardSlot({
         ghost,
         empty: !children
       })}
+      data-slot={slotKey}
       onClick={onClick}
     >
       <span
@@ -52,11 +56,14 @@ export default function BoardSlot({
         className={classNames('board-slot__body', {
           attacking: effects?.attacking,
           hit: effects?.hit,
-          summoned: effects?.summoned
+          summoned: effects?.summoned,
+          moved: !!effects?.shift
         })}
+        style={effects?.shift ? ({ '--shift': effects.shift } as CSSProperties) : undefined}
       >
         {children ?? <span className="board-slot__label">{label}</span>}
       </span>
+      {effects?.dying && <span key={`poof-${frameKey}`} className="board-slot__poof" aria-hidden="true" />}
       {effects?.floats.map((float, index) => (
         <span
           key={`${frameKey}-${index}`}

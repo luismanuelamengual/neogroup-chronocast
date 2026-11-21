@@ -6,6 +6,7 @@ import classNames from 'classnames'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
+import { useMusic } from '@/app/(protected)/(art)/hooks/useMusic'
 import { initials } from '@/app/(protected)/(battle)/components/UnitToken'
 import { useCollection } from '@/app/(protected)/(collection)/hooks/useCollection'
 import { DeckSummary } from '@/app/(protected)/(collection)/models/DeckDto'
@@ -16,6 +17,7 @@ import { useT } from '@/app/i18n/I18nProvider'
 
 /** The decks of the player (/decks): play-ready or not, edit, delete, and a new one for any owned hero. */
 export default function DeckList({ decks: initialDecks, heroes }: { decks: DeckSummary[]; heroes: string[] }) {
+  useMusic('menu')
   const t = useT()
   const cardName = useCardName()
   const router = useRouter()

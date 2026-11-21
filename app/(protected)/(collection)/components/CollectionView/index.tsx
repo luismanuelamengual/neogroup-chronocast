@@ -3,6 +3,7 @@
 import './index.scss'
 import classNames from 'classnames'
 import { useMemo, useState } from 'react'
+import { useMusic } from '@/app/(protected)/(art)/hooks/useMusic'
 import CardView from '@/app/(protected)/(cards)/components/CardView'
 import { CARDS, HEROES } from '@/app/(protected)/(cards)/utils/catalog'
 import CardDetail from '@/app/(protected)/(collection)/components/CardDetail'
@@ -10,6 +11,7 @@ import CardFilters from '@/app/(protected)/(collection)/components/CardFilters'
 import { Collection } from '@/app/(protected)/(collection)/models/Collection'
 import { CardFilter, compareCards, EMPTY_FILTER, matchesFilter } from '@/app/(protected)/(collection)/utils/filters'
 import GameButton from '@/app/components/GameButton'
+import { useIncrementalList } from '@/app/hooks/useIncrementalList'
 import { useT } from '@/app/i18n/I18nProvider'
 
 /**
@@ -17,6 +19,7 @@ import { useT } from '@/app/i18n/I18nProvider'
  * (the rest is dimmed), filters, and the detail of each card.
  */
 export default function CollectionView({ collection }: { collection: Collection }) {
+  useMusic('menu')
   const t = useT()
   const [filter, setFilter] = useState<CardFilter>(EMPTY_FILTER)
   const [detail, setDetail] = useState<string | null>(null)
@@ -28,6 +31,7 @@ export default function CollectionView({ collection }: { collection: Collection 
     [filter, collection]
   )
   const ownedDistinct = CARDS.filter((card) => (collection[card.id] ?? 0) > 0).length
+  const { visible: visibleCards, sentinel: sentinelCards } = useIncrementalList(cards)
 
   return (
     <div className="collection-view">
@@ -43,7 +47,7 @@ export default function CollectionView({ collection }: { collection: Collection 
       <CardFilters filter={filter} onChange={setFilter} heroes={HEROES.map((hero) => hero.id)} />
       {cards.length === 0 && <p className="collection-view__empty">{t('collection.empty')}</p>}
       <div className="collection-view__grid">
-        {cards.map((card) => {
+        {visibleCards.map((card) => {
           const owned = collection[card.id] ?? 0
 
           return (
@@ -60,6 +64,7 @@ export default function CollectionView({ collection }: { collection: Collection 
             </button>
           )
         })}
+        <span ref={sentinelCards} className="incremental-sentinel" aria-hidden="true" />
       </div>
       {detail && <CardDetail cardId={detail} owned={collection[detail] ?? 0} onClose={() => setDetail(null)} />}
     </div>

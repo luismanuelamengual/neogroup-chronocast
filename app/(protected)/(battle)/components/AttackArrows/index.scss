@@ -1,0 +1,56 @@
+.attack-arrows {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 6;
+  overflow: visible;
+  pointer-events: none;
+
+  marker path {
+    fill: var(--color-magenta);
+    stroke: var(--color-outline);
+    stroke-width: 1;
+  }
+
+  &__line {
+    fill: none;
+    stroke: var(--color-magenta);
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    stroke-linecap: round;
+    stroke-width: 6;
+    filter: drop-shadow(0 0 1px var(--color-outline)) drop-shadow(0 2px 0 var(--color-outline));
+    animation: attack-arrow-draw 0.85s ease-out forwards;
+
+    &.missed {
+      stroke: rgba(43, 35, 80, 0.45);
+      stroke-width: 4;
+      filter: none;
+    }
+  }
+}
+
+@keyframes attack-arrow-draw {
+  0% {
+    opacity: 1;
+    stroke-dashoffset: 100;
+  }
+
+  40% {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+
+  100% {
+    opacity: 0;
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .attack-arrows__line {
+    animation: none;
+    stroke-dashoffset: 0;
+    opacity: 0.8;
+  }
+}

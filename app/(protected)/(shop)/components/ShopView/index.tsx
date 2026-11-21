@@ -3,7 +3,9 @@
 import './index.scss'
 import '@/app/(protected)/(cards)/utils/catalog'
 import classNames from 'classnames'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { useMusic } from '@/app/(protected)/(art)/hooks/useMusic'
+import { playSfx } from '@/app/(protected)/(art)/utils/sound'
 import GoldAmount from '@/app/(protected)/(shop)/components/GoldAmount'
 import PackOpening, { OpenedPack } from '@/app/(protected)/(shop)/components/PackOpening'
 import PackShop from '@/app/(protected)/(shop)/components/PackShop'
@@ -27,10 +29,20 @@ const TABS: { key: ShopTab; icon: string }[] = [
  * the shop updated.
  */
 export default function ShopView({ initial, tab: initialTab }: { initial: ShopState; tab: ShopTab }) {
+  useMusic('menu')
   const t = useT()
   const [state, setState] = useState(initial)
   const [tab, setTab] = useState<ShopTab>(initialTab)
   const [opened, setOpened] = useState<OpenedPack | null>(null)
+  const lastGold = useRef(initial.gold)
+
+  // The coins of every purchase and sale.
+  useEffect(() => {
+    if (state.gold !== lastGold.current) {
+      lastGold.current = state.gold
+      playSfx('coin')
+    }
+  }, [state.gold])
 
   return (
     <div className="shop-view">

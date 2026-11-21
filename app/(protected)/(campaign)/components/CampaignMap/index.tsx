@@ -5,6 +5,7 @@ import '@/app/(protected)/(cards)/utils/catalog'
 import classNames from 'classnames'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import { useMusic } from '@/app/(protected)/(art)/hooks/useMusic'
 import BattleScreen from '@/app/(protected)/(battle)/components/BattleScreen'
 import { useBattleStore } from '@/app/(protected)/(battle)/stores/battle'
 import CampaignEnd from '@/app/(protected)/(campaign)/components/CampaignEnd'
@@ -51,6 +52,8 @@ export default function CampaignMap({ campaign: initial, decks }: CampaignMapPro
   const mode = useBattleStore((store) => store.mode)
   const startLocal = useBattleStore((store) => store.startLocal)
   const leave = useBattleStore((store) => store.leave)
+
+  useMusic(ticket && mode !== 'idle' ? null : 'campaign')
   const hero = getCard(campaign.heroId)
   const stage = campaign.stages[selected - 1]
   const unlocked = selected <= progress + 1
@@ -91,6 +94,7 @@ export default function CampaignMap({ campaign: initial, decks }: CampaignMapPro
     return (
       <BattleScreen
         onChangeHeroes={backToMap}
+        music={ticket.stage === STAGES_PER_CAMPAIGN ? 'boss' : 'battle'}
         renderEnd={(state, showLog) => (
           <CampaignEnd
             state={state}

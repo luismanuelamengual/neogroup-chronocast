@@ -16,6 +16,7 @@ import { useShop } from '@/app/(protected)/(shop)/hooks/useShop'
 import { ShopState } from '@/app/(protected)/(shop)/models/ShopState'
 import { copyLimit, isBuyable, nextUnlock } from '@/app/(protected)/(shop)/utils/prices'
 import GameButton from '@/app/components/GameButton'
+import { useIncrementalList } from '@/app/hooks/useIncrementalList'
 import { useNotifications } from '@/app/hooks/useNotifications'
 import { useCardName } from '@/app/i18n/cards/useCardName'
 import { useI18n } from '@/app/i18n/I18nProvider'
@@ -121,6 +122,8 @@ export default function SingleShop({ state, onChange }: SingleShopProps) {
     )
   }
 
+  const { visible: visibleCards, sentinel: sentinelCards } = useIncrementalList(cards)
+
   return (
     <div className="single-shop">
       <section className="single-shop__unlocks">
@@ -143,7 +146,7 @@ export default function SingleShop({ state, onChange }: SingleShopProps) {
       <CardFilters filter={filter} onChange={setFilter} heroes={HEROES.map((hero) => hero.id)} hide={['type']} />
       {cards.length === 0 && <p className="single-shop__empty">{t('shop.cards.empty')}</p>}
       <div className="single-shop__grid">
-        {cards.map((card) => {
+        {visibleCards.map((card) => {
           const locked = !state.unlocked.includes(card.rarity)
 
           return (
@@ -164,6 +167,7 @@ export default function SingleShop({ state, onChange }: SingleShopProps) {
             </button>
           )
         })}
+        <span ref={sentinelCards} className="incremental-sentinel" aria-hidden="true" />
       </div>
       {detail && (
         <CardDetail cardId={detail} owned={state.collection[detail] ?? 0} onClose={() => setDetail(null)}>

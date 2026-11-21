@@ -4,6 +4,7 @@ import './index.scss'
 import '@/app/(protected)/(cards)/utils/catalog'
 import classNames from 'classnames'
 import { useState } from 'react'
+import { useMusic } from '@/app/(protected)/(art)/hooks/useMusic'
 import HandCard from '@/app/(protected)/(battle)/components/HandCard'
 import CardView from '@/app/(protected)/(cards)/components/CardView'
 import { STARTER_HERO_IDS } from '@/app/(protected)/(cards)/data/starters'
@@ -23,6 +24,7 @@ const REVEAL_STEP = 70
  * card, and then the tutorial or the menu.
  */
 export default function StarterChoice() {
+  useMusic('menu')
   const t = useT()
   const { chooseStarter } = useCollection()
   const [heroId, setHeroId] = useState(STARTER_HERO_IDS[0])

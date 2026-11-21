@@ -3,6 +3,7 @@
 import './index.scss'
 import classNames from 'classnames'
 import { useEffect, useState } from 'react'
+import { useMusic } from '@/app/(protected)/(art)/hooks/useMusic'
 import BattleScreen from '@/app/(protected)/(battle)/components/BattleScreen'
 import { initials } from '@/app/(protected)/(battle)/components/UnitToken'
 import { useBattleStore } from '@/app/(protected)/(battle)/stores/battle'
@@ -49,6 +50,8 @@ export default function PracticeSetup({ decks, tutorial = false }: PracticeSetup
   )
   const [playing, setPlaying] = useState(false)
   const [guided, setGuided] = useState(tutorial)
+
+  useMusic(playing && mode !== 'idle' ? null : 'menu')
 
   useEffect(() => {
     if (tutorial) {

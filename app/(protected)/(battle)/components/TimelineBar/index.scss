@@ -207,3 +207,26 @@
     font-size: calc(var(--slot) * 0.16);
   }
 }
+
+// The rival's plan, revealed when the resolution starts: each box flips over.
+.timeline-bar__rival-box {
+  display: contents;
+}
+
+.timeline-bar__rival-box.revealed {
+  display: block;
+  animation: timeline-bar-flip 0.45s ease-out backwards;
+}
+
+@keyframes timeline-bar-flip {
+  from {
+    opacity: 0.4;
+    transform: perspective(300px) rotateY(90deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timeline-bar__rival-box.revealed {
+    animation: none;
+  }
+}

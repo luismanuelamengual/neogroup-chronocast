@@ -11,6 +11,7 @@ import { useShop } from '@/app/(protected)/(shop)/hooks/useShop'
 import { Sale, ShopState } from '@/app/(protected)/(shop)/models/ShopState'
 import { copyLimit, isSellable, isValuable, quickSellPlan, sellPrice } from '@/app/(protected)/(shop)/utils/prices'
 import GameButton from '@/app/components/GameButton'
+import { useIncrementalList } from '@/app/hooks/useIncrementalList'
 import { useNotifications } from '@/app/hooks/useNotifications'
 import { useI18n } from '@/app/i18n/I18nProvider'
 
@@ -135,6 +136,8 @@ export default function SellShop({ state, onChange }: SellShopProps) {
     )
   }
 
+  const { visible: visibleCards, sentinel: sentinelCards } = useIncrementalList(cards)
+
   return (
     <div className="sell-shop">
       <section className="sell-shop__quick">
@@ -164,7 +167,7 @@ export default function SellShop({ state, onChange }: SellShopProps) {
       </section>
       {cards.length === 0 && <p className="sell-shop__empty">{t('shop.sell.empty')}</p>}
       <div className="sell-shop__grid">
-        {cards.map((card) => (
+        {visibleCards.map((card) => (
           <button key={card.id} type="button" className="sell-shop__card" onClick={() => setDetail(card.id)}>
             <span className="sell-shop__zoom">
               <CardView card={card} />
@@ -178,6 +181,7 @@ export default function SellShop({ state, onChange }: SellShopProps) {
             </span>
           </button>
         ))}
+        <span ref={sentinelCards} className="incremental-sentinel" aria-hidden="true" />
       </div>
       {detail && (
         <CardDetail

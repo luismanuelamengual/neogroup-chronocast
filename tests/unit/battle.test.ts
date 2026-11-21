@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
+import { momentSounds } from '@/app/(protected)/(battle)/utils/battleSounds'
 import { describeEvent } from '@/app/(protected)/(battle)/utils/describeEvent'
-import { slotEffects } from '@/app/(protected)/(battle)/utils/effects'
+import { attackLines, heavyHeroHit, slotEffects } from '@/app/(protected)/(battle)/utils/effects'
 import { projectPlan, usedCards } from '@/app/(protected)/(battle)/utils/projection'
 import { attackRefs, moveRefs, refsFor, summonRefs } from '@/app/(protected)/(battle)/utils/targets'
 import { emptyTimeline } from '@/app/(protected)/(engine)/models/PlannedAction'
@@ -122,5 +123,52 @@ describe('the battle log and animations', () => {
 
     expect(effects.get('a:0')?.attacking).toBe(true)
     expect(effects.get('b:hero')?.floats.map((float) => float.text)).toEqual(['-4 🛡️', '-6'])
+  })
+
+  it('marks deaths, slides and the arrows of the attacks', () => {
+    const events = [
+      { type: 'attack', attacker: { player: 'a', slot: 0 }, target: { player: 'b', slot: 2 } },
+      { type: 'miss', attacker: { player: 'b', slot: 1 }, target: { player: 'a', slot: 'hero' } },
+      { type: 'death', player: 'b', cardId: 'test-soldier', slot: 2 },
+      { type: 'move', player: 'a', uid: 7, from: 3, to: 1 }
+    ] as const
+    const effects = slotEffects([...events], t)
+
+    expect(effects.get('b:2')?.dying).toBe(true)
+    expect(effects.get('a:1')?.shift).toBe(2)
+    expect(attackLines([...events])).toEqual([
+      { from: { player: 'a', slot: 0 }, to: { player: 'b', slot: 2 }, missed: false },
+      { from: { player: 'b', slot: 1 }, to: { player: 'a', slot: 'hero' }, missed: true }
+    ])
+  })
+
+  it('shakes the board only for a heavy blow on a hero', () => {
+    expect(heavyHeroHit([{ type: 'damage', target: { player: 'a', slot: 'hero' }, amount: 12, absorbed: 0 }])).toBe(
+      true
+    )
+    expect(heavyHeroHit([{ type: 'damage', target: { player: 'a', slot: 'hero' }, amount: 4, absorbed: 0 }])).toBe(
+      false
+    )
+    expect(heavyHeroHit([{ type: 'damage', target: { player: 'a', slot: 0 }, amount: 30, absorbed: 0 }])).toBe(false)
+  })
+})
+
+describe('battle sounds', () => {
+  it('plays each kind of effect once per moment, at most four, without the tick when more happens', () => {
+    expect(
+      momentSounds([
+        { type: 'step', step: 0 },
+        { type: 'attack', attacker: { player: 'a', slot: 0 }, target: { player: 'b', slot: 'hero' } },
+        { type: 'damage', target: { player: 'b', slot: 'hero' }, amount: 6, absorbed: 0 },
+        { type: 'attack', attacker: { player: 'a', slot: 1 }, target: { player: 'b', slot: 0 } },
+        { type: 'damage', target: { player: 'b', slot: 0 }, amount: 3, absorbed: 0 },
+        { type: 'heal', target: { player: 'a', slot: 0 }, amount: 2 },
+        { type: 'stun', target: { player: 'b', slot: 0 } }
+      ])
+    ).toEqual(['attack', 'hero-hit', 'hit', 'heal'])
+    expect(momentSounds([{ type: 'step', step: 1 }])).toEqual(['step'])
+    expect(momentSounds([{ type: 'damage', target: { player: 'a', slot: 0 }, amount: 0, absorbed: 3 }])).toEqual([
+      'armor'
+    ])
   })
 })

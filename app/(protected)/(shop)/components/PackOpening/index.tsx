@@ -3,6 +3,7 @@
 import './index.scss'
 import classNames from 'classnames'
 import { useEffect, useRef, useState } from 'react'
+import { playSfx } from '@/app/(protected)/(art)/utils/sound'
 import CardView from '@/app/(protected)/(cards)/components/CardView'
 import { Collection } from '@/app/(protected)/(collection)/models/Collection'
 import { RARITIES } from '@/app/(protected)/(engine)/models/Rarity'
@@ -83,6 +84,29 @@ export default function PackOpening({ pack, gold, onChange, onOpened, onClose }:
     }
   }, [auto, done, flipped])
 
+  const lastFlipped = useRef<boolean[] | null>(null)
+
+  // The tear of the pack, then a sound for each card that turns (a brighter one for the best).
+  useEffect(() => {
+    const before = lastFlipped.current
+
+    lastFlipped.current = flipped
+
+    if (!before) {
+      playSfx('pack-open')
+
+      return
+    }
+
+    const turned = pack.cards.filter((_, index) => flipped[index] && !before[index])
+
+    if (turned.length > 0) {
+      const shines = turned.some((cardId) => RARITIES.indexOf(getCard(cardId).rarity) >= SHINE_FROM)
+
+      playSfx(shines ? 'rare-reveal' : 'card-flip')
+    }
+  }, [flipped, pack.cards])
+
   const flip = (index: number) => setFlipped((current) => current.map((value, i) => value || i === index))
 
   return (
@@ -103,6 +127,7 @@ export default function PackOpening({ pack, gold, onChange, onOpened, onClose }:
               })}
               style={{ animationDelay: `${index * 90}ms` }}
               onClick={() => flip(index)}
+              data-silent
               aria-label={flipped[index] ? card.name : t('shop.opening.tap')}
             >
               <span className="pack-opening__inner">

@@ -3,6 +3,8 @@
 import './index.scss'
 import { signOut } from 'next-auth/react'
 import { useEffect, useState } from 'react'
+import SoundButton from '@/app/(protected)/(art)/components/SoundButton'
+import { useMusic } from '@/app/(protected)/(art)/hooks/useMusic'
 import { useUserStore } from '@/app/(protected)/stores/users'
 import InstallAppBanner from '@/app/(pwa)/components/InstallAppBanner'
 import { clearCachedPages } from '@/app/(pwa)/utils/offlinePages'
@@ -34,6 +36,8 @@ export default function MainMenu({ gold, rating }: { gold: number; rating: numbe
   // which the server doesn't know.
   const [builtAt, setBuiltAt] = useState('')
 
+  useMusic('menu')
+
   useEffect(() => {
     setBuiltAt(formatBuiltAt(locale))
   }, [locale])
@@ -53,6 +57,7 @@ export default function MainMenu({ gold, rating }: { gold: number; rating: numbe
       <header className="top-bar">
         <Logo size="small" />
         <div className="stats">
+          <SoundButton className="sound" />
           <span className="stat gold" title={t('home.gold')}>
             <span className="icon" aria-hidden="true">
               🪙

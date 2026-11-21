@@ -4,6 +4,7 @@ import './index.scss'
 import '@/app/(protected)/(cards)/utils/catalog'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import { useMusic } from '@/app/(protected)/(art)/hooks/useMusic'
 import { initials } from '@/app/(protected)/(battle)/components/UnitToken'
 import { DeckDto } from '@/app/(protected)/(collection)/models/DeckDto'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
@@ -31,6 +32,7 @@ interface LobbyProps {
  * for a rival (refreshed every few seconds) and the practice against the CPU.
  */
 export default function Lobby({ decks, rooms: initialRooms, activeMatch, rating, code: initialCode }: LobbyProps) {
+  useMusic('menu')
   const { t, locale } = useI18n()
   const cardName = useCardName()
   const router = useRouter()

@@ -19,6 +19,8 @@ interface HeroZoneProps {
   selected?: boolean
   effects?: SlotEffects
   frameKey?: number
+  /** Which place of the board the hero is ("a:hero"), for the arrows of the attacks. */
+  slotKey?: string
   onHeroClick: () => void
   onInspect: (cardId: string) => void
 }
@@ -36,6 +38,7 @@ export default function HeroZone({
   selected,
   effects,
   frameKey,
+  slotKey,
   onHeroClick,
   onInspect
 }: HeroZoneProps) {
@@ -51,6 +54,7 @@ export default function HeroZone({
       <BoardSlot
         side={position}
         className="hero-zone__hero"
+        slotKey={slotKey}
         highlight={highlight}
         selected={selected}
         effects={effects}

@@ -193,3 +193,38 @@ a {
     background: linear-gradient(90deg, var(--color-magenta), var(--color-gold), var(--color-cyan));
   }
 }
+
+// ─── Long lists shown in pages (useIncrementalList) ─────────────────────────
+
+.incremental-sentinel {
+  display: block;
+  grid-column: 1 / -1;
+  height: 1px;
+}
+
+// ─── Low-end phones and reduced motion ──────────────────────────────────────
+
+// A low-end device (app/utils/lowEnd.ts): no blur behind dialogs (a solid veil
+// instead), no floating cards in the background and no endless animations.
+html.low-end {
+  *,
+  *::before,
+  *::after {
+    backdrop-filter: none !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .backdrop {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

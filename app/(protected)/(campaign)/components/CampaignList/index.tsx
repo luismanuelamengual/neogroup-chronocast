@@ -3,6 +3,7 @@
 import './index.scss'
 import '@/app/(protected)/(cards)/utils/catalog'
 import classNames from 'classnames'
+import { useMusic } from '@/app/(protected)/(art)/hooks/useMusic'
 import { STAGES_PER_CAMPAIGN } from '@/app/(protected)/(campaign)/data/difficulty'
 import { CampaignSummary } from '@/app/(protected)/(campaign)/models/CampaignDto'
 import { storyKey } from '@/app/(protected)/(campaign)/utils/storyKey'
@@ -14,6 +15,7 @@ import { useT } from '@/app/i18n/I18nProvider'
 
 /** The campaigns (/campaign): one per hero, with the player's progress and the exclusive card each one gives. */
 export default function CampaignList({ campaigns }: { campaigns: CampaignSummary[] }) {
+  useMusic('campaign')
   const t = useT()
   const cardName = useCardName()
 

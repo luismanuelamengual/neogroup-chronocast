@@ -3,6 +3,7 @@
 import './index.scss'
 import classNames from 'classnames'
 import { useEffect, useState } from 'react'
+import { playSfx } from '@/app/(protected)/(art)/utils/sound'
 import { ACTION_ICONS } from '@/app/(protected)/(battle)/utils/icons'
 import { StepProjection } from '@/app/(protected)/(battle)/utils/projection'
 import { ACTIONS_PER_PHASE, PLANNING_SECONDS } from '@/app/(protected)/(engine)/data/rules'
@@ -116,6 +117,12 @@ function Clock({ deadline, running, onExpire }: { deadline: number; running: boo
     }
   }, [running, left, onExpire])
 
+  useEffect(() => {
+    if (running && left > 0 && left <= 10) {
+      playSfx('tick')
+    }
+  }, [running, left])
+
   const ratio = left / PLANNING_SECONDS
 
   return (
@@ -184,15 +191,22 @@ export default function TimelineBar({
       <div className="timeline-bar__steps">
         {STEPS.map((index) => (
           <div key={index} className={classNames('timeline-bar__step', { active: step === index })}>
-            <ActionBox
-              action={rivalActions?.[index] ?? null}
-              state={state}
-              player={rival}
-              hidden={!rivalActions}
-              failure={failures[rival][index]}
-              active={step === index}
-              done={step != null && index < step}
-            />
+            {/* Remounted when the rival's plan is revealed, so its boxes flip over one by one. */}
+            <span
+              key={rivalActions ? 'revealed' : 'hidden'}
+              className={classNames('timeline-bar__rival-box', { revealed: !!rivalActions })}
+              style={{ animationDelay: `${index * 90}ms` }}
+            >
+              <ActionBox
+                action={rivalActions?.[index] ?? null}
+                state={state}
+                player={rival}
+                hidden={!rivalActions}
+                failure={failures[rival][index]}
+                active={step === index}
+                done={step != null && index < step}
+              />
+            </span>
             <span className="timeline-bar__number">{index + 1}</span>
             <ActionBox
               action={actions[index] ?? null}

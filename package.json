@@ -1,6 +1,6 @@
 {
   "name": "neogroup-chronocast",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "predev": "tsx scripts/cards-index.ts",
@@ -25,7 +25,8 @@
     "campaign": "tsx scripts/campaign.ts",
     "economy": "tsx scripts/economy.ts",
     "art": "tsx scripts/art/process.ts",
-    "art:catalog": "tsx scripts/art/catalog.ts"
+    "art:catalog": "tsx scripts/art/catalog.ts",
+    "icons": "tsx scripts/icons/generate.ts"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",

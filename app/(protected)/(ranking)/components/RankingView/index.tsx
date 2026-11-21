@@ -2,6 +2,7 @@
 
 import './index.scss'
 import classNames from 'classnames'
+import { useMusic } from '@/app/(protected)/(art)/hooks/useMusic'
 import { LEAGUES } from '@/app/(protected)/(pvp)/data/leagues'
 import { Ranking } from '@/app/(protected)/(ranking)/models/RankingEntry'
 import GameButton from '@/app/components/GameButton'
@@ -11,6 +12,7 @@ const MEDALS = ['🥇', '🥈', '🥉']
 
 /** The ranking (/ranking): the top 100 by Prestige with their leagues, and the player's own position. */
 export default function RankingView({ ranking, userId }: { ranking: Ranking; userId: number }) {
+  useMusic('menu')
   const { t, locale } = useI18n()
   const leagues = [...LEAGUES].reverse()
 

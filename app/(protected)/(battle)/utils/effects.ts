@@ -13,6 +13,17 @@ export interface SlotEffects {
   attacking: boolean
   hit: boolean
   summoned: boolean
+  /** An ally died here (its token is gone: the slot shows a puff). */
+  dying: boolean
+  /** The ally slid here from this many slots away (from − to), to animate the move. */
+  shift: number
+}
+
+/** An attack of the moment, to draw its arrow. */
+export interface AttackLine {
+  from: SlotRef
+  to: SlotRef
+  missed: boolean
 }
 
 export function refKey(ref: SlotRef): string {
@@ -27,7 +38,7 @@ export function slotEffects(events: MatchEvent[], t: Translator): Map<string, Sl
     const key = refKey(ref)
 
     if (!effects.has(key)) {
-      effects.set(key, { floats: [], attacking: false, hit: false, summoned: false })
+      effects.set(key, { floats: [], attacking: false, hit: false, summoned: false, dying: false, shift: 0 })
     }
 
     return effects.get(key)!
@@ -72,8 +83,17 @@ export function slotEffects(events: MatchEvent[], t: Translator): Map<string, Sl
       case 'summon':
         of({ player: event.player, slot: event.slot }).summoned = true
         break
-      case 'death':
-        of({ player: event.player, slot: event.slot }).floats.push({ text: '💀', tone: 'info' })
+
+      case 'death': {
+        const slot = of({ player: event.player, slot: event.slot })
+
+        slot.floats.push({ text: '💀', tone: 'info' })
+        slot.dying = true
+        break
+      }
+
+      case 'move':
+        of({ player: event.player, slot: event.to }).shift = event.from - event.to
         break
       default:
         break
@@ -81,4 +101,18 @@ export function slotEffects(events: MatchEvent[], t: Translator): Map<string, Sl
   }
 
   return effects
+}
+
+/** The attacks of one moment of the resolution (hits and misses), to draw their arrows. */
+export function attackLines(events: MatchEvent[]): AttackLine[] {
+  return events.flatMap((event) =>
+    event.type === 'attack' || event.type === 'miss'
+      ? [{ from: event.attacker, to: event.target, missed: event.type === 'miss' }]
+      : []
+  )
+}
+
+/** Whether a hero takes a heavy blow in this moment (the board shakes). */
+export function heavyHeroHit(events: MatchEvent[], threshold = 10): boolean {
+  return events.some((event) => event.type === 'damage' && event.target.slot === 'hero' && event.amount >= threshold)
 }
