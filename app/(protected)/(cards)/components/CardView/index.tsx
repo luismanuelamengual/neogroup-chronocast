@@ -71,6 +71,8 @@ export default function CardView({ card: original, art }: CardViewProps) {
   const keywords = keywordsLine(card, t)
   const speed = card.speed ?? card.ability?.speed
   const image = art ?? ownArt
+  // Abilities, items, locations and traps have no stats: without the row, the text keeps clear of the bottom edge.
+  const hasStats = card.attack != null || card.armor != null || card.durability != null || card.health != null
   // An ally with an ability has more to say: no flavor text, and smaller letters when it is long.
   const allyAbility = !!card.ability && card.type !== 'hero'
   const dense =
@@ -115,15 +117,17 @@ export default function CardView({ card: original, art }: CardViewProps) {
         {card.flavor && !allyAbility && <p className="card-view__flavor">{card.flavor}</p>}
       </div>
 
-      <div className="card-view__stats">
-        {card.attack != null && <span className="card-view__stat card-view__stat--attack">{card.attack}</span>}
-        {card.armor != null && <span className="card-view__stat card-view__stat--armor">{card.armor}</span>}
-        <span className="card-view__spacer" />
-        {card.durability != null && (
-          <span className="card-view__stat card-view__stat--durability">{card.durability}</span>
-        )}
-        {card.health != null && <span className="card-view__stat card-view__stat--health">{card.health}</span>}
-      </div>
+      {hasStats && (
+        <div className="card-view__stats">
+          {card.attack != null && <span className="card-view__stat card-view__stat--attack">{card.attack}</span>}
+          {card.armor != null && <span className="card-view__stat card-view__stat--armor">{card.armor}</span>}
+          <span className="card-view__spacer" />
+          {card.durability != null && (
+            <span className="card-view__stat card-view__stat--durability">{card.durability}</span>
+          )}
+          {card.health != null && <span className="card-view__stat card-view__stat--health">{card.health}</span>}
+        </div>
+      )}
     </article>
   )
 }
