@@ -1,7 +1,7 @@
 /**
  * Whether the device looks like a low-end phone: few cores or little memory
  * (`navigator.deviceMemory`, in GB, only on Chrome). Then `html.low-end` turns
- * off the costliest decoration (blurs behind dialogs, the floating cards of
+ * off the costliest decoration (blurs behind dialogs, the sand motes of
  * the menu, endless pulses), see globals.scss.
  */
 export function isLowEndDevice(): boolean {

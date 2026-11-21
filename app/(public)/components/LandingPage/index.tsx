@@ -13,7 +13,7 @@ const STEPS = [
 ] as const
 
 /**
- * Public landing page (signed-out visitors): floating cards behind, the logo
+ * Public landing page (signed-out visitors): clockwork watermark behind, the logo
  * and the call to play filling the first screen, and the three steps below.
  */
 export default async function LandingPage() {

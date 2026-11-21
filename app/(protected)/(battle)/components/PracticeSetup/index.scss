@@ -5,7 +5,8 @@
   gap: 10px;
   min-height: 100dvh;
   padding: calc(12px + var(--safe-top)) 16px calc(12px + var(--safe-bottom));
-  background: linear-gradient(180deg, var(--color-lavender), var(--color-cream));
+  background: var(--page-background);
+  background-attachment: fixed;
   color: var(--color-text);
   text-align: center;
 

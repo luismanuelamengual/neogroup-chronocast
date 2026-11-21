@@ -13,6 +13,19 @@
   --font-display: 'Lilita One', 'Nunito', 'Segoe UI', Roboto, Arial, sans-serif;
   --font-title: 'Lilita One', 'Nunito', 'Segoe UI', Roboto, Arial, sans-serif;
   --font-body: 'Nunito', 'Segoe UI', Roboto, Arial, sans-serif;
+  // The wordmark: engraved capitals, the old-world side of the theme.
+  --font-logo: 'Cinzel Decorative', Georgia, 'Times New Roman', serif;
+
+  // The page behind every screen: warm parchment with a hint of violet time
+  // magic in the corners and, very faint, an astrolabe clock (public/ui/watermark.svg).
+  --color-parchment: #fbfaf7;
+  --page-watermark: url('/ui/watermark.svg') 50% 50% / min(118vmax, 1500px) no-repeat;
+  --page-tint:
+    radial-gradient(1100px 700px at 0% 0%, rgba(138, 92, 255, 0.09) 0%, transparent 60%),
+    radial-gradient(900px 700px at 100% 100%, rgba(240, 160, 32, 0.05) 0%, transparent 60%),
+    radial-gradient(700px 500px at 100% 0%, rgba(79, 195, 255, 0.08) 0%, transparent 60%),
+    linear-gradient(180deg, #fdfcfa, #f5f3ef);
+  --page-background: var(--page-watermark), var(--page-tint);
 
   // Pastel backgrounds.
   --color-cream: #fff8ee;
@@ -89,6 +102,14 @@
 }
 
 @font-face {
+  font-family: 'Cinzel Decorative';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('/fonts/cinzel-decorative.woff2') format('woff2');
+}
+
+@font-face {
   font-family: 'Nunito';
   font-style: normal;
   font-weight: 200 1000;
@@ -125,17 +146,13 @@ body {
   min-height: 100dvh;
   font-family: var(--font-body);
   color: var(--color-text);
-  background-color: var(--color-cream);
+  background-color: var(--color-parchment);
   -webkit-font-smoothing: antialiased;
   overscroll-behavior-y: none;
 }
 
 body {
-  background:
-    radial-gradient(900px 600px at 10% 0%, var(--color-lavender) 0%, transparent 60%),
-    radial-gradient(800px 600px at 100% 30%, var(--color-sky) 0%, transparent 60%),
-    radial-gradient(900px 600px at 30% 110%, var(--color-mint) 0%, transparent 60%),
-    radial-gradient(700px 500px at 100% 100%, var(--color-peach) 0%, transparent 60%), var(--color-cream);
+  background: var(--page-background);
   background-attachment: fixed;
 }
 
@@ -205,7 +222,7 @@ a {
 // ─── Low-end phones and reduced motion ──────────────────────────────────────
 
 // A low-end device (app/utils/lowEnd.ts): no blur behind dialogs (a solid veil
-// instead), no floating cards in the background and no endless animations.
+// instead), no drifting sand motes in the background and no endless animations.
 html.low-end {
   *,
   *::before,

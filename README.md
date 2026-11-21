@@ -12,7 +12,7 @@ El diseño completo (reglas, cartas, tienda, PvP, campañas, arquitectura y hoja
 - **@neogroup/neorm** para el acceso a datos (PostgreSQL; SQLite en memoria en los tests)
 - **zustand** para los stores del cliente
 - **Serwist** para PWA / offline
-- Tipografías self-hosted en `public/fonts` (Lilita One y Nunito)
+- Tipografías self-hosted en `public/fonts` (Cinzel Decorative para el logo, Lilita One y Nunito)
 - UI en inglés (por defecto) y español
 
 ## Getting started
@@ -70,7 +70,7 @@ app/
   (protected)/            Módulos que requieren sesión
     components/AppShell/  Contenedor de las páginas autenticadas
     stores/users.ts       Store con el usuario logueado
-    (home)/               Menú principal (/menu: Jugar, Mazos, Tienda y Ranking, con oro y Prestigio) y Jugar (/play: Campaña, Partida online o Práctica)
+    (home)/               Menú principal (/menu: Jugar, Mazos, Tienda y Ranking, con oro y Prestigio) y Jugar (/play: Campaña o Partida online, con cartas ilustradas)
     (engine)/             Motor de combate puro (sin React ni base): estado, fases, palabras clave, efectos, reglas de mazo, rating, IA
     (onboarding)/         Primera visita (/welcome): elección del héroe inicial y apertura del starter
     (collection)/         Colección (/collection), mazos y editor (/decks): user_cards, decks, deck_cards
@@ -211,6 +211,8 @@ En PostgreSQL los nombres de columna sin comillas quedan en minúscula (`heroId`
 ## Interfaz
 
 Fondos claros y pastel (crema, lavanda, menta, celeste y durazno) con paneles blancos, para que las cartas, muy coloridas y con borde oscuro, resalten con alto contraste. Títulos y botones en Lilita One, texto en Nunito.
+
+El fondo de las páginas (`--page-background`) es casi blanco, con un toque de pergamino, con una marca de agua de relojería y astrolabio (`public/ui/watermark.svg`), y en los menús un dial que gira lento y motas de arena dorada que suben (`Backdrop`). El logo usa Cinzel Decorative en dorado y violeta con un reloj de arena de bronce. Para probar un fondo ilustrado hay un prompt en `art/backgrounds.md`.
 
 - **Tokens**: fondos, tinta (`--color-outline`), acentos, colores de facción (`--faction-*`), de rareza (`--rarity-*`) y de valores del juego (vida, Cronos, armadura, ataque) en `app/globals.scss`, espejados en `GAME_COLORS` del tema de MUI.
 - **Sonido** (`app/(protected)/(art)/`): un solo contexto Web Audio con volumen de música, de efectos y silencio, guardados en el dispositivo (el parlante del menú principal). Los efectos sin archivo se sintetizan por código (`utils/sfxSynth.ts`), así el juego suena desde el primer día; la música es silencio hasta que haya archivos. Los archivos van en `art/source/music/` y `art/source/sfx/` y `yarn art` los copia a `public/audio/` (ver [art/music.md](art/music.md)). El click de botones es global (`utils/uiSounds.ts`). Para escuchar todo: `/dev/sounds` (solo en desarrollo).

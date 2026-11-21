@@ -236,8 +236,7 @@ export const en: Messages = {
       online: {
         title: 'Online match',
         text: 'Against another player: quick match, public or private rooms. It counts for Prestige.'
-      },
-      practice: { title: 'Practice', text: 'Against the CPU, no rewards: to learn and try decks out.' }
+      }
     }
   },
   home: {

@@ -5,6 +5,7 @@ import { signOut } from 'next-auth/react'
 import { useEffect, useState } from 'react'
 import SoundButton from '@/app/(protected)/(art)/components/SoundButton'
 import { useMusic } from '@/app/(protected)/(art)/hooks/useMusic'
+import MenuSection from '@/app/(protected)/(home)/components/MenuSection'
 import { useUserStore } from '@/app/(protected)/stores/users'
 import InstallAppBanner from '@/app/(pwa)/components/InstallAppBanner'
 import { clearCachedPages } from '@/app/(pwa)/utils/offlinePages'
@@ -15,11 +16,12 @@ import { useI18n } from '@/app/i18n/I18nProvider'
 import { formatBuiltAt, versionLabel } from '@/app/utils/version'
 
 /** The sections of the game: they open as each phase of the roadmap lands (see docs/PLAN.md). */
+/** Each one is illustrated with the art of a card of the game that fits it. */
 const SECTIONS = [
-  { key: 'play', icon: '⚔️', color: 'magenta', href: '/play' },
-  { key: 'decks', icon: '🃏', color: 'violet', href: '/decks' },
-  { key: 'shop', icon: '🛒', color: 'gold', href: '/shop' },
-  { key: 'ranking', icon: '🏆', color: 'cyan', href: '/ranking' }
+  { key: 'play', icon: '⚔️', color: 'magenta', href: '/play', art: 'timeworn-champion' },
+  { key: 'decks', icon: '🃏', color: 'violet', href: '/decks', art: 'archive-guardian' },
+  { key: 'shop', icon: '🛒', color: 'gold', href: '/shop', art: 'drifting-merchant' },
+  { key: 'ranking', icon: '🏆', color: 'cyan', href: '/ranking', art: 'murmillo-champion' }
 ] as const
 
 /**
@@ -77,18 +79,14 @@ export default function MainMenu({ gold, rating }: { gold: number; rating: numbe
         </section>
         <nav className="sections" aria-label={t('metadata.mainMenu')}>
           {SECTIONS.map((section) => (
-            <GameButton
+            <MenuSection
               key={section.key}
-              className="section"
+              href={section.href}
+              label={t(`home.${section.key}`)}
+              art={section.art}
+              icon={section.icon}
               color={section.color}
-              size="large"
-              href={section.href ?? undefined}
-              disabled={!section.href}
-              startIcon={<span aria-hidden="true">{section.icon}</span>}
-            >
-              {t(`home.${section.key}`)}
-              {!section.href && <span className="soon">{t('home.comingSoon')}</span>}
-            </GameButton>
+            />
           ))}
         </nav>
         <div className="secondary">

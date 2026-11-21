@@ -240,8 +240,7 @@ export const es = {
       online: {
         title: 'Partida online',
         text: 'Contra otro jugador: partida rápida, salas públicas o privadas. Suma Prestigio.'
-      },
-      practice: { title: 'Práctica', text: 'Contra la CPU, sin premios: para aprender y probar mazos.' }
+      }
     }
   },
   home: {

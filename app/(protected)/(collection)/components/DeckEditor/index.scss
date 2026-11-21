@@ -5,7 +5,8 @@
   height: 100dvh;
   padding: calc(8px + var(--safe-top)) calc(10px + var(--safe-right)) calc(8px + var(--safe-bottom))
     calc(10px + var(--safe-left));
-  background: linear-gradient(180deg, var(--color-mint), var(--color-cream));
+  background: var(--page-background);
+  background-attachment: fixed;
   color: var(--color-text);
 
   &__pool {

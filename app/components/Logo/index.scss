@@ -1,41 +1,51 @@
 .logo {
   display: inline-flex;
   align-items: center;
-  gap: 0.15em;
-  font-family: var(--font-title);
+  gap: 0.22em;
+  font-family: var(--font-logo);
+  font-weight: 900;
   line-height: 1;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
 
   .word {
     display: inline-flex;
-    filter: drop-shadow(0 0.06em 0 var(--color-outline));
-    -webkit-text-stroke: 0.05em var(--color-outline);
-    paint-order: stroke fill;
+    gap: 0.08em;
+    filter: drop-shadow(0 0.04em 0 #3b2a6e) drop-shadow(0 0.12em 0.18em rgba(59, 42, 110, 0.25));
+  }
+
+  // Gold leaf for "Chrono", arcane violet for "Cast": the two halves of the game.
+  .chrono,
+  .cast {
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-stroke: 0.025em #3b2a6e;
   }
 
   .chrono {
-    color: var(--color-magenta);
+    background-image: linear-gradient(180deg, #fff1b8 0%, #f0b43c 48%, #b3741a 52%, #e8a93a 100%);
   }
 
   .cast {
-    color: var(--color-cyan);
+    background-image: linear-gradient(180deg, #d9c6ff 0%, #8a5cff 48%, #5233b8 52%, #7d55f0 100%);
   }
 
-  .hourglass {
-    width: 0.75em;
-    height: 1em;
-    filter: drop-shadow(0 0.06em 0 var(--color-outline));
+  .emblem {
+    width: 1.15em;
+    height: 1.15em;
+    flex: none;
+    filter: drop-shadow(0 0.05em 0.08em rgba(59, 42, 110, 0.3));
   }
 
   &.size-small {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
 
   &.size-medium {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   &.size-large {
-    font-size: clamp(2.6rem, 11vw, 4.6rem);
+    font-size: clamp(2.2rem, 8vw, 4rem);
   }
 }

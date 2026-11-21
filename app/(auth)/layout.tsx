@@ -7,7 +7,7 @@ import Logo from '@/app/components/Logo'
 import { getT } from '@/app/i18n/server'
 
 /**
- * Shared layout for every non authenticated page: floating cards behind and,
+ * Shared layout for every non authenticated page: clockwork watermark behind and,
  * in the middle, the logo over a small white panel.
  */
 export default async function Layout({ children }: { children: ReactNode }) {
