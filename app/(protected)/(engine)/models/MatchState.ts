@@ -26,6 +26,8 @@ export interface Unit {
   enteredPhase: number
   enteredStep: number
   attacksThisPhase: number
+  /** Used its ability this phase (then it doesn't attack, and the other way around). */
+  abilityUsedThisPhase: boolean
   /** Extra attack until the end of the phase. */
   tempAttack: number
   /** It can't act while the phase is not past this one. */

@@ -5,7 +5,7 @@ export default defineCard({
   id: 'storm-caller',
   type: 'ally',
   name: 'Storm Caller',
-  text: 'On enter: deal 4 damage to every enemy ally.',
+  text: '',
   flavor: 'The clouds answer him before he finishes the word.',
   faction: 'arcane',
   restriction: { kind: 'faction', faction: 'arcane' },
@@ -15,10 +15,15 @@ export default defineCard({
   attack: 14,
   health: 28,
   keywords: ['ranged'],
-  onEnter(ctx) {
-    damageAllAllies(ctx, ctx.opponent, 4)
+  ability: {
+    name: 'Chain Lightning',
+    text: 'Deal 4 damage to every enemy ally.',
+    cost: 3,
+    activate(ctx) {
+      damageAllAllies(ctx, ctx.opponent, 4)
+    }
   },
-  ai: { value: 5, tags: ['removal'] },
+  ai: { value: 5, tags: ['ability'] },
   art: {
     subject: 'a bearded wizard on a cliff raising a staff into a swirling storm, lightning striking around him'
   }

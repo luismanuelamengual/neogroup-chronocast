@@ -1,5 +1,5 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buff } from '@/app/(protected)/(engine)/effects'
+import { buff, summonCard } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'herd-mother',
@@ -12,12 +12,20 @@ export default defineCard({
   rarity: 'uncommon',
   price: 170,
   cost: 3,
-  attack: 7,
-  health: 20,
+  attack: 6,
+  health: 18,
+  ability: {
+    name: 'Call the Herd',
+    text: 'Summon a Dino Hatchling.',
+    cost: 3,
+    activate(ctx) {
+      summonCard(ctx, ctx.owner, 'dino-hatchling')
+    }
+  },
   onAllyEnter(ctx, ally) {
     buff(ctx, ally, 0, 4)
   },
-  ai: { value: 3, tags: ['buff'] },
+  ai: { value: 3, tags: ['ability', 'buff'] },
   art: {
     subject: 'a big gentle triceratops mother protecting a group of small hatchlings under a giant fern'
   }

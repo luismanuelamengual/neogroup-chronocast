@@ -138,6 +138,16 @@
     p {
       margin: 0 0 3px;
     }
+
+    // Keeps the last line clear of the attack and health circles.
+    &.with-ability {
+      padding-bottom: 12px;
+    }
+
+    &.dense {
+      font-size: 0.64rem;
+      line-height: 1.16;
+    }
   }
 
   &__keywords {
@@ -190,6 +200,59 @@
     &--durability {
       border-radius: 8px;
       background: var(--color-text-secondary);
+    }
+  }
+
+  // With its illustration the card is full art: the picture fills the whole
+  // card (it is drawn 4:5, almost the card's shape, so little is lost) and the
+  // name and the text sit over its lower part, on a dark veil.
+  &.full-art {
+    > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    // A thin frame of the faction's color stays around the picture.
+    .card-view__art {
+      position: absolute;
+      inset: 5px;
+      z-index: 0;
+      border: 2px solid var(--color-outline);
+      border-radius: 10px;
+
+      img {
+        // The faces and the action are usually in the upper half.
+        object-position: 50% 30%;
+      }
+
+      &::after {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, transparent 40%, rgba(27, 20, 64, 0.55) 62%, rgba(27, 20, 64, 0.85));
+        content: '';
+      }
+    }
+
+    .card-view__cost,
+    .card-view__gem,
+    .card-view__speed {
+      position: absolute;
+      z-index: 2;
+    }
+
+    .card-view__speed {
+      top: 12px;
+      right: 36px;
+    }
+
+    .card-view__name {
+      margin-top: auto;
+    }
+
+    .card-view__text {
+      flex: 0 0 auto;
+      max-height: 38%;
+      background: rgba(255, 255, 255, 0.9);
     }
   }
 }

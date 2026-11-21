@@ -52,7 +52,8 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'airship-bombardier': {
     name: 'Bombardera del Dirigible',
     text: 'Al entrar: hacé 6 de daño a un aliado enemigo al azar.',
-    flavor: '¡Bombas fuera! Casi todas.'
+    flavor: '¡Bombas fuera! Casi todas.',
+    ability: { name: 'Bombardeo', text: 'Hacé 10 de daño a un aliado enemigo al azar.' }
   },
   'aldric-dawnkeeper': {
     name: 'Aldric Dawnkeeper',
@@ -94,7 +95,8 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'arc-trooper': {
     name: 'Soldado de Arco',
     text: 'Al atacar: hacé 3 de daño a un aliado enemigo al azar.',
-    flavor: 'Cada disparo salta al blanco siguiente.'
+    flavor: 'Cada disparo salta al blanco siguiente.',
+    ability: { name: 'Sobrecarga', text: 'Hacé 12 de daño a un aliado enemigo.' }
   },
   'arcane-backlash': {
     name: 'Contragolpe Arcano',
@@ -152,7 +154,8 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'ballista-crew': {
     name: 'Dotación de Balista',
     text: 'Al entrar: hacé 6 de daño a un aliado enemigo al azar.',
-    flavor: 'Apuntá, tensá y que los dioses decidan.'
+    flavor: 'Apuntá, tensá y que los dioses decidan.',
+    ability: { name: 'Andanada', text: 'Hacé 8 de daño a un aliado enemigo al azar.' }
   },
   'banner-of-the-rift': {
     name: 'Estandarte de la Grieta',
@@ -346,7 +349,8 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'chrome-medic': {
     name: 'Médica Cromada',
     text: 'Al final de cada fase, tus aliados se curan 3.',
-    flavor: 'Entran nanobots, salen heridas.'
+    flavor: 'Entran nanobots, salen heridas.',
+    ability: { name: 'Nanobots', text: 'Un aliado tuyo se cura 8.' }
   },
   'chrono-acrobat': { name: 'Acróbata del Tiempo', flavor: 'Dobla un segundo hasta que se rompe.' },
   'chrono-battery': {
@@ -398,7 +402,8 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'cogsworth-the-assistant': {
     name: 'Cogsworth, el Asistente',
     text: 'Al entrar: ganá 1 de Cronos y robá una carta. Al morir: invocá un Dron de Engranajes.',
-    flavor: 'Asistente de laboratorio, mayordomo y extintor ocasional.'
+    flavor: 'Asistente de laboratorio, mayordomo y extintor ocasional.',
+    ability: { name: 'Arreglo Rápido', text: 'Un aliado tuyo se cura 8.' }
   },
   'cohort-banner': {
     name: 'Estandarte de la Cohorte',
@@ -553,7 +558,8 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'entropy-mage': {
     name: 'Mago de la Entropía',
     text: 'Al entrar: hacé 6 de daño a un aliado enemigo al azar.',
-    flavor: 'Todo se desarma. Él solo ayuda.'
+    flavor: 'Todo se desarma. Él solo ayuda.',
+    ability: { name: 'Decadencia', text: 'Hacé 9 de daño a un aliado enemigo.' }
   },
   'era-hopper': { name: 'Saltaeras', flavor: 'Nunca dos veces en el mismo siglo.' },
   eruption: {
@@ -654,7 +660,8 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'frost-adept': {
     name: 'Adepto de Escarcha',
     text: 'Al entrar: aturdí a un aliado enemigo al azar.',
-    flavor: 'Quedate quieto. Solo va a doler un poco.'
+    flavor: 'Quedate quieto. Solo va a doler un poco.',
+    ability: { name: 'Rayo de Escarcha', text: 'Hacé 6 de daño a un aliado enemigo.' }
   },
   'frost-nova': {
     name: 'Nova de Escarcha',
@@ -735,7 +742,8 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'grand-conjurer': {
     name: 'Gran Conjurador',
     text: 'Al entrar: invocá un Familiar Arcano.',
-    flavor: '¿Para qué pelear solo si podés traer amigos del aire?'
+    flavor: '¿Para qué pelear solo si podés traer amigos del aire?',
+    ability: { name: 'Lanza Arcana', text: 'Hacé 10 de daño a un aliado enemigo.' }
   },
   'grand-triumph': {
     name: 'Gran Triunfo',
@@ -817,7 +825,8 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'herd-mother': {
     name: 'Madre de la Manada',
     text: 'Cuando entra otro aliado tuyo, gana +4 de vida.',
-    flavor: 'Todas las crías del valle le dicen mamá.'
+    flavor: 'Todas las crías del valle le dicen mamá.',
+    ability: { name: 'Llamar a la Manada', text: 'Invocá una Cría de Dinosaurio.' }
   },
   'hold-the-line': {
     name: 'Mantener la Línea',
@@ -903,7 +912,8 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'inventor-of-hours': {
     name: 'Inventor de Horas',
     text: 'Al empezar cada fase, ganá 1 de Cronos.',
-    flavor: 'Inventó la hora veinticinco. Nadie más la encuentra.'
+    flavor: 'Inventó la hora veinticinco. Nadie más la encuentra.',
+    ability: { name: 'Resorte del Tiempo', text: 'Robá 2 cartas.' }
   },
   'iron-gladius': { name: 'Gladius de Hierro', flavor: 'Corto, filoso y muy, muy confiable.' },
   'iron-rations': {
@@ -935,7 +945,8 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'jungle-druid': {
     name: 'Druida de la Jungla',
     text: 'Al empezar cada fase, tus aliados se curan 4 y tus aliados ganan +1 de ataque.',
-    flavor: 'Les habla a los árboles. Ellos contestan creciendo.'
+    flavor: 'Les habla a los árboles. Ellos contestan creciendo.',
+    ability: { name: 'Rejuvenecer', text: 'Un aliado tuyo se cura 10.' }
   },
   'kaze-the-cyber-ronin': {
     name: 'Kaze, el Ronin Cibernético',
@@ -1000,8 +1011,8 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'legion-slinger': { name: 'Hondero de la Legión', flavor: 'Una piedra de lejos igual duele.' },
   'lich-of-the-last-hour': {
     name: 'Liche de la Última Hora',
-    text: 'Al empezar cada fase, si tu descarte tiene 6 cartas o más, un aliado al azar de tu descarte vuelve al juego.',
-    flavor: 'A la última hora, los muertos se levantan por él.'
+    flavor: 'A la última hora, los muertos se levantan por él.',
+    ability: { name: 'Drenar Vida', text: 'Hacé 6 de daño al héroe enemigo y tu héroe se cura 6.' }
   },
   lightbringer: { name: 'Portadora de Luz', flavor: 'Corta la oscuridad misma.' },
   'lightning-bolt': {
@@ -1066,7 +1077,8 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'master-artificer': {
     name: 'Maestro Artífice',
     text: 'Al entrar: invocá un Dron de Engranajes y ganá 1 de Cronos.',
-    flavor: 'Dale un resorte y una moneda y te construye una ciudad.'
+    flavor: 'Dale un resorte y una moneda y te construye una ciudad.',
+    ability: { name: 'Ajuste Fino', text: 'Un aliado tuyo gana +2 de ataque y +4 de vida.' }
   },
   'maw-of-xulthar': { name: "Fauces de Xul'thar", flavor: 'Solo una de sus bocas.' },
   'mech-trooper': { name: 'Soldado Mecha', flavor: 'Equipo estándar. Exceso estándar.' },
@@ -1162,7 +1174,8 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'necro-scholar': {
     name: 'Erudito Nigromante',
     text: 'Al entrar: un aliado al azar de tu descarte vuelve al juego.',
-    flavor: 'La muerte es solo un capítulo. Él se lo saltea.'
+    flavor: 'La muerte es solo un capítulo. Él se lo saltea.',
+    ability: { name: 'Alzar a los Muertos', text: 'Un aliado al azar de tu descarte vuelve al juego.' }
   },
   'neon-blade': { name: 'Hoja de Neón', flavor: 'Cuanto más rápido el corte, más brilla.' },
   'neon-dancer': { name: 'Bailarina de Neón', flavor: 'Esquiva balas al ritmo de la música.' },
@@ -1179,7 +1192,8 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   netrunner: {
     name: 'Netrunner',
     text: 'Al entrar: robá una carta y hacé 3 de daño al héroe enemigo.',
-    flavor: 'Tu firewall es tierno.'
+    flavor: 'Tu firewall es tierno.',
+    ability: { name: 'Hackeo', text: 'Aturdí a un aliado enemigo al azar.' }
   },
   'nightmare-steed': { name: 'Corcel de Pesadilla', flavor: 'Corre a base de gritos.' },
   'nightwire-net': {
@@ -1270,7 +1284,8 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'phalanx-general': {
     name: 'General de la Falange',
     text: 'Cuando entra otro aliado tuyo, gana +6 de vida.',
-    flavor: 'Una lanza es un palo. Mil son una fortaleza.'
+    flavor: 'Una lanza es un palo. Mil son una fortaleza.',
+    ability: { name: 'Muro de Escudos', text: 'Tu héroe gana 8 de armadura.' }
   },
   'phalanx-recruit': {
     name: 'Recluta de la Falange',
@@ -1598,7 +1613,8 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'sister-elowen': {
     name: 'Hermana Elowen',
     text: 'Al final de cada fase, tus aliados se curan 3.',
-    flavor: 'Fue su primera alumna. Ahora le cuida la espalda.'
+    flavor: 'Fue su primera alumna. Ahora le cuida la espalda.',
+    ability: { name: 'Bendición', text: 'Tu héroe se cura 8.' }
   },
   'skeletal-monk': { name: 'Monje Esqueleto', flavor: 'Votos de silencio. Huesos en silencio.' },
   'sky-courier': { name: 'Mensajero del Cielo', flavor: 'Entrega cartas al pasado. Tarde, como siempre.' },
@@ -1743,8 +1759,8 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'stone-thrower': { name: 'Lanzapiedras', flavor: 'Tecnología: una piedra grande. Estrategia: tirarla.' },
   'storm-caller': {
     name: 'Invocador de Tormentas',
-    text: 'Al entrar: hacé 4 de daño a cada aliado enemigo.',
-    flavor: 'Las nubes le contestan antes de que termine la palabra.'
+    flavor: 'Las nubes le contestan antes de que termine la palabra.',
+    ability: { name: 'Cadena de Rayos', text: 'Hacé 4 de daño a cada aliado enemigo.' }
   },
   'storm-plate': {
     name: 'Armadura de Tormenta',
@@ -1816,7 +1832,8 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'temple-oracle': {
     name: 'Oráculo del Templo',
     text: 'Al entrar: robá una carta.',
-    flavor: 'Ve el futuro. Casi todo es humo.'
+    flavor: 'Ve el futuro. Casi todo es humo.',
+    ability: { name: 'Augurio', text: 'Robá una carta.' }
   },
   'temporal-prison': {
     name: 'Prisión Temporal',
@@ -1987,8 +2004,8 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'tribal-warchief': {
     name: 'Jefe de Guerra Tribal',
-    text: 'Al entrar: tus otros aliados ganan +3 de ataque y +3 de vida y tu héroe se cura 6.',
-    flavor: 'Su grito de guerra puede empezar una avalancha.'
+    flavor: 'Su grito de guerra puede empezar una avalancha.',
+    ability: { name: 'Grito de Guerra', text: 'Un aliado tuyo gana +8 de ataque esta fase.' }
   },
   'tribune-of-the-legion': {
     name: 'Tribuno de la Legión',

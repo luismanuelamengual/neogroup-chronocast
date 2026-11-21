@@ -7,7 +7,7 @@ import {
 } from '@/app/(protected)/(engine)/data/rules'
 import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition'
 import { FailReason, MatchEvent } from '@/app/(protected)/(engine)/models/MatchEvent'
-import { CardInstance, MatchState } from '@/app/(protected)/(engine)/models/MatchState'
+import { CardInstance, MatchState, Unit } from '@/app/(protected)/(engine)/models/MatchState'
 import { PlannedAction, Timeline, WAIT } from '@/app/(protected)/(engine)/models/PlannedAction'
 import { opponentOf, PLAYER_IDS, PlayerId } from '@/app/(protected)/(engine)/models/PlayerId'
 import { SlotRef } from '@/app/(protected)/(engine)/models/SlotRef'
@@ -166,6 +166,13 @@ export function actionSpeed(engine: MatchEngine, player: PlayerId, action: Plann
 
     case 'heroAbility':
       return getCard(engine.player(player).hero.cardId).ability?.speed ?? 'normal'
+
+    case 'allyAbility': {
+      const found = engine.findUnit(action.allyUid)
+
+      return (found && getCard(found.unit.cardId).ability?.speed) || 'normal'
+    }
+
     default:
       return 'normal'
   }
@@ -232,6 +239,8 @@ function performAction(engine: MatchEngine, player: PlayerId, action: PlannedAct
       return heroAttack(engine, player, action.target)
     case 'heroAbility':
       return heroAbility(engine, player, action.targets ?? [])
+    case 'allyAbility':
+      return allyAbility(engine, player, action.allyUid, action.targets ?? [])
     case 'move':
       return move(engine, player, action.allyUid, action.toSlot)
   }
@@ -443,6 +452,16 @@ function strike(engine: MatchEngine, striker: Striker, target: SlotRef): void {
   }
 }
 
+/** Whether an ally can act: from the phase after it entered (with `charge`, from the next step). */
+function isReady(engine: MatchEngine, unit: Unit): boolean {
+  const state = engine.state
+
+  return (
+    unit.enteredPhase < state.phase ||
+    (engine.hasKeyword(unit, 'charge') && unit.enteredPhase === state.phase && unit.enteredStep < state.step)
+  )
+}
+
 function allyAttack(engine: MatchEngine, player: PlayerId, uid: number, target: SlotRef): FailReason | null {
   const found = engine.findUnit(uid)
 
@@ -451,17 +470,17 @@ function allyAttack(engine: MatchEngine, player: PlayerId, uid: number, target: 
   }
 
   const { unit, slot } = found
-  const state = engine.state
-  const ready =
-    unit.enteredPhase < state.phase ||
-    (engine.hasKeyword(unit, 'charge') && unit.enteredPhase === state.phase && unit.enteredStep < state.step)
 
   if (engine.isStunned(unit)) {
     return 'stunned'
   }
 
-  if (!ready) {
+  if (!isReady(engine, unit)) {
     return 'notReady'
+  }
+
+  if (unit.abilityUsedThisPhase) {
+    return 'exhausted'
   }
 
   if (unit.attacksThisPhase >= (engine.hasKeyword(unit, 'frenzy') ? 2 : 1)) {
@@ -575,6 +594,57 @@ function heroAbility(engine: MatchEngine, player: PlayerId, targets: SlotRef[]):
   }
 
   ability.activate(engine.context(player, side.hero, targets))
+
+  return null
+}
+
+function allyAbility(engine: MatchEngine, player: PlayerId, uid: number, targets: SlotRef[]): FailReason | null {
+  const found = engine.findUnit(uid)
+
+  if (!found || found.player !== player) {
+    return 'noUnit'
+  }
+
+  const { unit } = found
+  const ability = getCard(unit.cardId).ability
+  const side = engine.player(player)
+
+  if (!ability) {
+    return 'noAbility'
+  }
+
+  if (engine.isStunned(unit)) {
+    return 'stunned'
+  }
+
+  if (!isReady(engine, unit)) {
+    return 'notReady'
+  }
+
+  if (unit.abilityUsedThisPhase) {
+    return 'abilityUsed'
+  }
+
+  if (unit.attacksThisPhase > 0) {
+    return 'exhausted'
+  }
+
+  if (side.chronos < ability.cost) {
+    return 'notEnoughChronos'
+  }
+
+  if (!validTargets(engine, player, ability.targets ?? [], targets)) {
+    return 'invalidTarget'
+  }
+
+  side.chronos -= ability.cost
+  unit.abilityUsedThisPhase = true
+
+  if (engine.triggerTrap(opponentOf(player), 'enemyAbility')) {
+    return 'cancelled'
+  }
+
+  ability.activate(engine.context(player, unit, targets))
 
   return null
 }

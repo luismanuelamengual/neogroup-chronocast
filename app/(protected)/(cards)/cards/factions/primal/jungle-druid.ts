@@ -1,5 +1,5 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffAllies, healAllAllies } from '@/app/(protected)/(engine)/effects'
+import { buffAllies, heal, healAllAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'jungle-druid',
@@ -12,13 +12,22 @@ export default defineCard({
   rarity: 'rare',
   price: 600,
   cost: 4,
-  attack: 10,
-  health: 26,
+  attack: 9,
+  health: 24,
+  ability: {
+    name: 'Rejuvenate',
+    text: 'An ally of yours heals 10.',
+    cost: 1,
+    targets: ['friendlyAlly'],
+    activate(ctx) {
+      heal(ctx, ctx.targets[0], 10)
+    }
+  },
   onPhaseStart(ctx) {
     healAllAllies(ctx, ctx.owner, 4)
     buffAllies(ctx, ctx.owner, 1, 0)
   },
-  ai: { value: 5, tags: ['heal', 'buff'] },
+  ai: { value: 5, tags: ['ability', 'heal', 'buff'] },
   art: {
     subject: 'a druid woman with vines and flowers in her hair channeling green energy into the jungle'
   }

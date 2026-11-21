@@ -28,6 +28,7 @@ export function startPhase(engine: MatchEngine): void {
 
     for (const unit of engine.allies(id)) {
       unit.attacksThisPhase = 0
+      unit.abilityUsedThisPhase = false
       unit.tempAttack = 0
     }
   }

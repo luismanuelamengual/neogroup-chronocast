@@ -12,12 +12,20 @@ export default defineCard({
   rarity: 'uncommon',
   price: 170,
   cost: 3,
-  attack: 8,
-  health: 20,
+  attack: 7,
+  health: 18,
+  ability: {
+    name: 'Augury',
+    text: 'Draw a card.',
+    cost: 2,
+    activate(ctx) {
+      draw(ctx, ctx.owner, 1)
+    }
+  },
   onEnter(ctx) {
     draw(ctx, ctx.owner, 1)
   },
-  ai: { value: 3, tags: ['draw'] },
+  ai: { value: 3, tags: ['ability', 'draw'] },
   art: {
     subject: 'a veiled oracle sitting on a tripod above glowing vapors inside a dark temple'
   }

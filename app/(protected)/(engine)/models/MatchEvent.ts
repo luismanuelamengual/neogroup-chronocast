@@ -14,6 +14,8 @@ export type FailReason =
   | 'noWeapon'
   | 'noAbility'
   | 'abilityUsed'
+  /** The ally already attacked or used its ability this phase. */
+  | 'exhausted'
   | 'sacrificeLimit'
   | 'invalidTarget'
   | 'stunned'

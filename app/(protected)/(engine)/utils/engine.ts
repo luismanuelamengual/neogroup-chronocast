@@ -440,6 +440,7 @@ export class MatchEngine {
       enteredPhase: this.state.phase,
       enteredStep: this.state.step,
       attacksThisPhase: 0,
+      abilityUsedThisPhase: false,
       tempAttack: 0,
       stunnedUntilPhase: 0,
       echoUsed: card.echoUsed ?? false

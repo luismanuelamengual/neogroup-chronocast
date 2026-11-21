@@ -23,6 +23,7 @@ import { playMoment } from '@/app/(protected)/(battle)/utils/battleSounds'
 import { attackLines, heavyHeroHit, refKey, slotEffects } from '@/app/(protected)/(battle)/utils/effects'
 import { projectPlan, usedCards } from '@/app/(protected)/(battle)/utils/projection'
 import {
+  allyAbility,
   attackRefs,
   cardNeeds,
   heroCard,
@@ -137,8 +138,15 @@ export default function BattleScreen({
         return NO_HIGHLIGHTS
       }
 
-      case 'ally':
+      case 'ally': {
+        if (selection.ability) {
+          const kind = allyAbility(board, me, selection.uid)?.targets?.[selection.ability.length]
+
+          return { ...NO_HIGHLIGHTS, target: kind ? refsFor(board, me, kind) : [] }
+        }
+
         return { ...NO_HIGHLIGHTS, attack: attackRefs(board, me), move: moveRefs(board, me, selection.uid) }
+      }
 
       case 'hero': {
         if (selection.ability) {
@@ -235,14 +243,25 @@ export default function BattleScreen({
           return
         }
 
-        case 'ally':
-          program(
-            highlight === 'attack'
-              ? { kind: 'allyAttack', allyUid: selection.uid, target: ref }
-              : { kind: 'move', allyUid: selection.uid, toSlot: ref.slot as number }
-          )
+        case 'ally': {
+          if (selection.ability) {
+            const targets = [...selection.ability, ref]
+
+            if (targets.length >= (allyAbility(board, me, selection.uid)?.targets?.length ?? 0)) {
+              program({ kind: 'allyAbility', allyUid: selection.uid, targets })
+            } else {
+              store.select({ ...selection, ability: targets })
+            }
+          } else {
+            program(
+              highlight === 'attack'
+                ? { kind: 'allyAttack', allyUid: selection.uid, target: ref }
+                : { kind: 'move', allyUid: selection.uid, toSlot: ref.slot as number }
+            )
+          }
 
           return
+        }
 
         case 'hero': {
           if (selection.ability) {
@@ -314,8 +333,26 @@ export default function BattleScreen({
       cancel
     )
   } else if (selection?.kind === 'ally') {
+    const ability = allyAbility(board, me, selection.uid)
+
     panelCard = board.players[me].allies.find((unit) => unit?.uid === selection.uid)?.cardId ?? null
-    hint = t('battle.hints.ally')
+    hint = selection.ability
+      ? t('battle.hints.target')
+      : ability
+        ? t('battle.hints.allyAbility')
+        : t('battle.hints.ally')
+
+    if (ability && !selection.ability) {
+      buttons.push({
+        label: t('battle.buttons.ability', { cost: ability.cost }),
+        color: 'cyan',
+        onClick: () =>
+          ability.targets?.length
+            ? store.select({ ...selection, ability: [] })
+            : program({ kind: 'allyAbility', allyUid: selection.uid, targets: [] })
+      })
+    }
+
     buttons.push(cancel)
   } else if (selection?.kind === 'hero') {
     const hero = heroCard(board, me)

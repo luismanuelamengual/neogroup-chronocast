@@ -1,5 +1,5 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { gainChronos } from '@/app/(protected)/(engine)/effects'
+import { draw, gainChronos } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'inventor-of-hours',
@@ -12,12 +12,20 @@ export default defineCard({
   rarity: 'rare',
   price: 640,
   cost: 5,
-  attack: 14,
-  health: 30,
+  attack: 12,
+  health: 26,
+  ability: {
+    name: 'Time Spring',
+    text: 'Draw 2 cards.',
+    cost: 3,
+    activate(ctx) {
+      draw(ctx, ctx.owner, 2)
+    }
+  },
   onPhaseStart(ctx) {
     gainChronos(ctx, ctx.owner, 1)
   },
-  ai: { value: 6, tags: ['ramp'] },
+  ai: { value: 6, tags: ['ability', 'ramp'] },
   art: {
     subject: 'an eccentric inventor surrounded by floating clock faces, building a machine that bends time'
   }

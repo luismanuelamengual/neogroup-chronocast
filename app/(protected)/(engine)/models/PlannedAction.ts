@@ -10,6 +10,8 @@ export type PlannedAction =
   | { kind: 'allyAttack'; allyUid: number; target: SlotRef }
   | { kind: 'heroAttack'; target: SlotRef }
   | { kind: 'heroAbility'; targets?: SlotRef[] }
+  /** Use the ability of an ally (instead of attacking with it that phase). */
+  | { kind: 'allyAbility'; allyUid: number; targets?: SlotRef[] }
   /** Move an ally to an empty slot, or swap it with the ally there (a neighbor; any with `agile`). */
   | { kind: 'move'; allyUid: number; toSlot: number }
 

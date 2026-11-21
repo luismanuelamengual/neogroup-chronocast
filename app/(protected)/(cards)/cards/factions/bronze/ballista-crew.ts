@@ -12,13 +12,21 @@ export default defineCard({
   rarity: 'uncommon',
   price: 190,
   cost: 5,
-  attack: 16,
-  health: 30,
+  attack: 14,
+  health: 26,
   keywords: ['ranged'],
+  ability: {
+    name: 'Volley',
+    text: 'Deal 8 damage to a random enemy ally.',
+    cost: 2,
+    activate(ctx) {
+      damageRandomAlly(ctx, ctx.opponent, 8)
+    }
+  },
   onEnter(ctx) {
     damageRandomAlly(ctx, ctx.opponent, 6)
   },
-  ai: { value: 5, tags: ['removal'] },
+  ai: { value: 5, tags: ['ability', 'removal'] },
   art: {
     subject: 'two Roman soldiers loading a huge wooden ballista bolt on a fortress wall'
   }

@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffAllies, heal } from '@/app/(protected)/(engine)/effects'
+import { buffThisPhaseAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'tribal-warchief',
   type: 'ally',
   name: 'Tribal Warchief',
-  text: 'On enter: your other allies gain +3 attack and +3 health and your hero heals 6.',
+  text: '',
   flavor: 'His war cry can start an avalanche.',
   faction: 'primal',
   restriction: { kind: 'faction', faction: 'primal' },
@@ -14,11 +14,17 @@ export default defineCard({
   cost: 5,
   attack: 18,
   health: 36,
-  onEnter(ctx) {
-    buffAllies(ctx, ctx.owner, 3, 3, true)
-    heal(ctx, { player: ctx.owner, slot: 'hero' }, 6)
+  ability: {
+    name: 'War Cry',
+    text: 'An ally of yours gains +8 attack this phase.',
+    cost: 2,
+    speed: 'fast',
+    targets: ['friendlyAlly'],
+    activate(ctx) {
+      buffThisPhaseAt(ctx, ctx.targets[0], 8)
+    }
   },
-  ai: { value: 6, tags: ['buff', 'heal'] },
+  ai: { value: 6, tags: ['ability'] },
   art: {
     subject: 'a massive tribal warchief in a mammoth-skull helmet holding a huge stone axe, warriors behind him'
   }

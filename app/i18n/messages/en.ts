@@ -449,6 +449,8 @@ export const en: Messages = {
       summon: 'Choose a free slot to summon it.',
       target: 'Choose the target.',
       ally: 'Tap an enemy slot to attack, or one of yours to move and dodge.',
+      allyAbility:
+        'Tap an enemy slot to attack, one of yours to move, or use its ability (then it does not attack this phase).',
       hero: 'Tap a target to attack with the weapon, or use the ability.',
       heroNoWeapon: 'Without a weapon your hero cannot attack, but can use the ability.',
       full: 'You programmed all 5 actions. Tap Ready, or tap an action to remove it.',
@@ -468,6 +470,7 @@ export const en: Messages = {
       allyAttack: 'Attack',
       heroAttack: 'Weapon',
       heroAbility: 'Ability',
+      allyAbility: 'Ally ability',
       move: 'Move'
     },
     speeds: {
@@ -481,11 +484,12 @@ export const en: Messages = {
       notEnoughChronos: 'Not enough Chronos',
       slotsFull: 'The 5 slots are taken',
       noUnit: 'The ally is gone',
-      notReady: 'That ally cannot attack yet',
+      notReady: 'That ally cannot act yet',
       alreadyAttacked: 'It already attacked this phase',
       noWeapon: 'The hero has no weapon',
-      noAbility: 'The hero has no ability',
+      noAbility: 'It has no ability',
       abilityUsed: 'The ability was already used this phase',
+      exhausted: 'That ally already acted this phase (it attacked or used its ability)',
       sacrificeLimit: 'You can generate Chronos once per phase',
       invalidTarget: 'Invalid target',
       stunned: 'It is stunned',

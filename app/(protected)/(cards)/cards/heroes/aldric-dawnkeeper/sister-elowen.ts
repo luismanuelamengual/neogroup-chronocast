@@ -1,5 +1,5 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healAllAllies } from '@/app/(protected)/(engine)/effects'
+import { heal, healAllAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'sister-elowen',
@@ -12,13 +12,21 @@ export default defineCard({
   rarity: 'rare',
   price: 560,
   cost: 3,
-  attack: 8,
-  health: 24,
+  attack: 7,
+  health: 22,
   keywords: ['guardian'],
+  ability: {
+    name: 'Blessing',
+    text: 'Your hero heals 8.',
+    cost: 1,
+    activate(ctx) {
+      heal(ctx, { player: ctx.owner, slot: 'hero' }, 8)
+    }
+  },
   onPhaseEnd(ctx) {
     healAllAllies(ctx, ctx.owner, 3)
   },
-  ai: { value: 4, tags: ['heal', 'defense'] },
+  ai: { value: 4, tags: ['ability', 'heal', 'defense'] },
   art: {
     subject: 'a young warrior nun with a shield and a glowing white staff standing guard in a cathedral'
   }

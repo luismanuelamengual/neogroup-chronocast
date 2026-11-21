@@ -19,8 +19,13 @@ import { useT } from '@/app/i18n/I18nProvider'
 
 const STEPS = Array.from({ length: ACTIONS_PER_PHASE }, (_, step) => step)
 
-/** The card a "play" or "sacrifice" uses, looked up in the hand or discard pile at the start of the phase. */
+/** The card a "play" or "sacrifice" uses (looked up in the hand or discard pile at the start of the phase), or the ally of an ability. */
 function actionCard(state: MatchState, player: PlayerId, action: PlannedAction): string | null {
+  // An ally's ability is named after the ally.
+  if (action.kind === 'allyAbility') {
+    return state.players[player].allies.find((unit) => unit?.uid === action.allyUid)?.cardId ?? null
+  }
+
   if (action.kind !== 'play' && action.kind !== 'sacrifice') {
     return null
   }
@@ -74,7 +79,11 @@ function ActionBox({ action, state, player, hidden, projection, failure, active,
       ? targetLabel(action.target)
       : action.kind === 'move'
         ? `${action.toSlot + 1}`
-        : targetLabel(action.kind === 'play' || action.kind === 'heroAbility' ? action.targets?.[0] : undefined)
+        : targetLabel(
+            action.kind === 'play' || action.kind === 'heroAbility' || action.kind === 'allyAbility'
+              ? action.targets?.[0]
+              : undefined
+          )
   const label = cardId ? cardName(cardId) : t(`battle.actions.${action.kind}`)
   const warning = failure ?? projection?.failure
 

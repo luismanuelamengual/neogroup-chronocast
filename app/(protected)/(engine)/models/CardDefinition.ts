@@ -10,8 +10,12 @@ import { SlotRef } from '@/app/(protected)/(engine)/models/SlotRef'
 import { Speed } from '@/app/(protected)/(engine)/models/Speed'
 import { TargetKind } from '@/app/(protected)/(engine)/models/TargetKind'
 
-/** The active ability of a hero: once per phase, for its cost in Chronos. */
-export interface HeroAbility {
+/**
+ * An active ability: programmed as an action of the timeline, once per phase,
+ * for its cost in Chronos. Heroes have one; some allies too (an ally that uses
+ * its ability doesn't attack that phase, and the other way around).
+ */
+export interface ActiveAbility {
   name: string
   text: string
   cost: number
@@ -19,6 +23,9 @@ export interface HeroAbility {
   targets?: TargetKind[]
   activate(ctx: EffectContext): void
 }
+
+/** The ability of a hero (the same as an ally's). */
+export type HeroAbility = ActiveAbility
 
 /** What sets a trap off. */
 export type TrapTrigger = 'enemyAttack' | 'enemySummon' | 'enemyAbility'
@@ -70,7 +77,8 @@ export interface CardDefinition {
   armor?: number
   /** Heroes. */
   heroClass?: HeroClass
-  ability?: HeroAbility
+  /** Heroes and some allies. */
+  ability?: ActiveAbility
   /** What the player chooses when programming it (abilities, items). */
   targets?: TargetKind[]
   /** Traps. */

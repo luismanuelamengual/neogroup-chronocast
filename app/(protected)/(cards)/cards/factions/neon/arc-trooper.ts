@@ -1,5 +1,5 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageRandomAlly } from '@/app/(protected)/(engine)/effects'
+import { damage, damageRandomAlly } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'arc-trooper',
@@ -12,13 +12,22 @@ export default defineCard({
   rarity: 'rare',
   price: 640,
   cost: 5,
-  attack: 18,
-  health: 30,
+  attack: 15,
+  health: 26,
   keywords: ['ranged'],
+  ability: {
+    name: 'Overcharge',
+    text: 'Deal 12 damage to an enemy ally.',
+    cost: 2,
+    targets: ['enemyAlly'],
+    activate(ctx) {
+      damage(ctx, ctx.targets[0], 12)
+    }
+  },
   onAttack(ctx) {
     damageRandomAlly(ctx, ctx.opponent, 3)
   },
-  ai: { value: 6, tags: ['removal'] },
+  ai: { value: 6, tags: ['ability', 'removal'] },
   art: {
     subject: 'a soldier firing an arc rifle, lightning bolts chaining between several enemies'
   }

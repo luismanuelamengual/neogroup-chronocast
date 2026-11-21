@@ -212,6 +212,24 @@ describe('every card works in a match', () => {
     })
   }
 
+  for (const card of ALL_CARDS.filter((candidate) => candidate.type === 'ally' && candidate.ability)) {
+    it(`${card.id} (ally ability)`, () => {
+      const state = sandbox(
+        heroes.find((hero) => card.restriction.kind === 'hero' && hero.id === card.restriction.heroId)?.id
+      )
+      const caster = state.players.a.allies[0]!
+
+      // The sandbox ally becomes this card, ready to act.
+      caster.cardId = card.id
+
+      const timeline = emptyTimeline()
+
+      timeline[0] = { kind: 'allyAbility', allyUid: caster.uid, targets: targetsFor(card.ability!.targets) }
+
+      expect(failures(state, timeline)).toEqual([])
+    })
+  }
+
   for (const hero of heroes) {
     it(`${hero.id} (ability)`, () => {
       const state = sandbox(hero.id)

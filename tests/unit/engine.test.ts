@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { MatchEvent } from '@/app/(protected)/(engine)/models/MatchEvent'
 import { MatchState } from '@/app/(protected)/(engine)/models/MatchState'
-import { emptyTimeline, Timeline } from '@/app/(protected)/(engine)/models/PlannedAction'
+import { emptyTimeline, PlannedAction, Timeline } from '@/app/(protected)/(engine)/models/PlannedAction'
 import { createMatch, mulligan } from '@/app/(protected)/(engine)/utils/createMatch'
 import { resolvePhase } from '@/app/(protected)/(engine)/utils/resolvePhase'
 import { give, place, testDeck, testMatch, timeline } from '@/tests/support/testCards'
@@ -529,6 +529,53 @@ describe('keywords', () => {
 
     expect(fails(events)).toEqual([])
     expect(next.players.a.allies[0]?.cardId).toBe('test-ghost')
+  })
+})
+
+describe('ally abilities', () => {
+  const bolt = (allyUid: number): PlannedAction => ({ kind: 'allyAbility', allyUid, targets: [HERO_B] })
+
+  it('an ally uses its ability for its Chronos, once per phase', () => {
+    const state = richMatch()
+    const caster = place(state, 'a', 'test-caster', 0)
+    const { state: next, events } = run(state, timeline(bolt(caster.uid), bolt(caster.uid)))
+
+    expect(fails(events)).toEqual(['a:1:abilityUsed'])
+    expect(next.players.b.hero.health).toBe(93)
+  })
+
+  it('an ally that used its ability does not attack that phase, and the other way around', () => {
+    const state = richMatch()
+    const caster = place(state, 'a', 'test-caster', 0)
+    const attack = { kind: 'allyAttack', allyUid: caster.uid, target: HERO_B } as const
+
+    expect(fails(run(state, timeline(bolt(caster.uid), attack)).events)).toEqual(['a:1:exhausted'])
+    expect(fails(run(state, timeline(attack, bolt(caster.uid))).events)).toEqual(['a:1:exhausted'])
+  })
+
+  it('a new, stunned or poor ally cannot use it, nor one without an ability', () => {
+    const fresh = richMatch()
+    const newcomer = place(fresh, 'a', 'test-caster', 0)
+
+    newcomer.enteredPhase = fresh.phase
+    expect(fails(run(fresh, timeline(bolt(newcomer.uid))).events)).toEqual(['a:0:notReady'])
+
+    const dazed = richMatch()
+    const stunned = place(dazed, 'a', 'test-caster', 0)
+
+    stunned.stunnedUntilPhase = dazed.phase
+    expect(fails(run(dazed, timeline(bolt(stunned.uid))).events)).toEqual(['a:0:stunned'])
+
+    const poor = richMatch()
+    const caster = place(poor, 'a', 'test-caster', 0)
+
+    poor.players.a.chronos = 1
+    expect(fails(run(poor, timeline(bolt(caster.uid))).events)).toEqual(['a:0:notEnoughChronos'])
+
+    const plain = richMatch()
+    const soldier = place(plain, 'a', 'test-soldier', 0)
+
+    expect(fails(run(plain, timeline(bolt(soldier.uid))).events)).toEqual(['a:0:noAbility'])
   })
 })
 

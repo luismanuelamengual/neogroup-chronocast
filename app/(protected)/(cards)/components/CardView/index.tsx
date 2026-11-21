@@ -1,6 +1,7 @@
 'use client'
 
 import './index.scss'
+import classNames from 'classnames'
 import { useCardArt } from '@/app/(protected)/(cards)/stores/cardArt'
 import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition'
 import { translateCard } from '@/app/i18n/cards'
@@ -60,6 +61,9 @@ interface CardViewProps {
  * Its texts in the player's language when the card has a translation
  * (app/i18n/cards), in English otherwise.
  */
+/** Above this many characters of rules (keywords, text and ability of an ally), the text is set smaller. */
+const DENSE_TEXT = 45
+
 export default function CardView({ card: original, art }: CardViewProps) {
   const { t, locale } = useI18n()
   const ownArt = useCardArt(original.id)
@@ -67,9 +71,17 @@ export default function CardView({ card: original, art }: CardViewProps) {
   const keywords = keywordsLine(card, t)
   const speed = card.speed ?? card.ability?.speed
   const image = art ?? ownArt
+  // An ally with an ability has more to say: no flavor text, and smaller letters when it is long.
+  const allyAbility = !!card.ability && card.type !== 'hero'
+  const dense =
+    allyAbility && (keywords?.length ?? 0) + (card.text?.length ?? 0) + card.ability!.text.length > DENSE_TEXT
 
   return (
-    <article className={`card-view faction-${card.faction} rarity-${card.rarity} type-${card.type}`}>
+    <article
+      className={classNames('card-view', `faction-${card.faction}`, `rarity-${card.rarity}`, `type-${card.type}`, {
+        'full-art': !!image
+      })}
+    >
       <div className="card-view__art">
         {image ? (
           // eslint-disable-next-line @next/next/no-img-element
@@ -88,9 +100,10 @@ export default function CardView({ card: original, art }: CardViewProps) {
       <h3 className="card-view__name">{card.name}</h3>
       <p className="card-view__type">{typeLine(card, t)}</p>
 
-      <div className="card-view__text">
+      <div className={classNames('card-view__text', { dense, 'with-ability': allyAbility })}>
         {keywords && <p className="card-view__keywords">{keywords}</p>}
-        {card.text && !card.ability && <p>{card.text}</p>}
+        {/* A hero's text repeats its ability; an ally's text is apart from it. */}
+        {card.text && (!card.ability || card.type !== 'hero') && <p>{card.text}</p>}
         {card.ability && (
           <p className="card-view__ability">
             <strong>
@@ -99,7 +112,7 @@ export default function CardView({ card: original, art }: CardViewProps) {
             {card.ability.text}
           </p>
         )}
-        {card.flavor && <p className="card-view__flavor">{card.flavor}</p>}
+        {card.flavor && !allyAbility && <p className="card-view__flavor">{card.flavor}</p>}
       </div>
 
       <div className="card-view__stats">

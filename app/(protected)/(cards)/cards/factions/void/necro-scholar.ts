@@ -12,12 +12,21 @@ export default defineCard({
   rarity: 'uncommon',
   price: 170,
   cost: 3,
-  attack: 7,
-  health: 18,
+  attack: 6,
+  health: 16,
+  ability: {
+    name: 'Raise the Dead',
+    text: 'A random ally of your discard pile returns to play.',
+    cost: 4,
+    speed: 'slow',
+    activate(ctx) {
+      reviveFromDiscard(ctx, ctx.owner)
+    }
+  },
   onEnter(ctx) {
     reviveFromDiscard(ctx, ctx.owner)
   },
-  ai: { value: 3, tags: ['revive'] },
+  ai: { value: 3, tags: ['ability', 'revive'] },
   art: {
     subject: 'an old necromancer reading a glowing green book as skeletons rise around him'
   }

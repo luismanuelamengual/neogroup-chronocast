@@ -33,7 +33,7 @@ export const GREEDY: PlanStyle = { sacrifice: true, cards: 'value', ability: tru
 /**
  * The computer player, first version (docs/PLAN.md, section 13.3): a greedy
  * planner. It generates Chronos, plays the most valuable cards it can afford,
- * uses its hero ability, and attacks (killing what it can kill without dying,
+ * uses its hero ability (and its allies' when they beat their attack), and attacks (killing what it can kill without dying,
  * the hero otherwise). Each action is checked with the projection, so it never
  * programs something that would fail on its own. Deterministic: the same state
  * always gives the same timeline.
@@ -157,12 +157,37 @@ export function planTimeline(state: MatchState, player: PlayerId, style: PlanSty
     }
   }
 
-  // 4. Attacks: the ready allies and the hero's weapon.
+  // 4. Ally abilities: an ally uses its ability instead of attacking when the ability is worth more than its hit.
   const ready = side.allies.filter((unit): unit is Unit => !!unit && unit.enteredPhase < state.phase)
+  const acted = new Set<number>()
+
+  if (style.ability) {
+    for (const unit of ready) {
+      const ability = getCard(unit.cardId).ability
+
+      if (
+        !ability ||
+        unit.abilityUsedThisPhase ||
+        ability.cost > budget ||
+        unit.attack + unit.tempAttack > abilityWorth(ability.cost)
+      ) {
+        continue
+      }
+
+      const targets = chooseTargets(state, player, ability.targets ?? [])
+
+      if (targets && tryAdd({ kind: 'allyAbility', allyUid: unit.uid, targets })) {
+        budget -= ability.cost
+        acted.add(unit.uid)
+      }
+    }
+  }
+
+  // 5. Attacks: the ready allies (the ones that didn't use their ability) and the hero's weapon.
   const enemyHero: SlotRef = { player: opponentOf(player), slot: 'hero' }
 
   if (style.attack !== 'none') {
-    for (const unit of ready.sort((a, b) => b.attack - a.attack)) {
+    for (const unit of ready.filter((candidate) => !acted.has(candidate.uid)).sort((a, b) => b.attack - a.attack)) {
       const target =
         style.attack === 'face'
           ? enemyHero
@@ -187,6 +212,11 @@ export function planTimeline(state: MatchState, player: PlayerId, style: PlanSty
   }
 
   return timeline
+}
+
+/** Roughly how much damage an ally ability of this cost is worth (to compare it with the ally's attack). */
+function abilityWorth(cost: number): number {
+  return 4 + cost * 4
 }
 
 function value(card: CardDefinition): number {

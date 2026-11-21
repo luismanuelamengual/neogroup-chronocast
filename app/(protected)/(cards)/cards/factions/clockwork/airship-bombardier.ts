@@ -12,13 +12,21 @@ export default defineCard({
   rarity: 'uncommon',
   price: 180,
   cost: 4,
-  attack: 12,
-  health: 20,
+  attack: 10,
+  health: 18,
   keywords: ['flying'],
+  ability: {
+    name: 'Bomb Run',
+    text: 'Deal 10 damage to a random enemy ally.',
+    cost: 2,
+    activate(ctx) {
+      damageRandomAlly(ctx, ctx.opponent, 10)
+    }
+  },
   onEnter(ctx) {
     damageRandomAlly(ctx, ctx.opponent, 6)
   },
-  ai: { value: 4, tags: ['removal'] },
+  ai: { value: 4, tags: ['ability', 'removal'] },
   art: {
     subject: 'a goggled bombardier leaning out of a small airship gondola dropping round black bombs over a city'
   }

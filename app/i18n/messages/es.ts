@@ -454,6 +454,8 @@ export const es = {
       summon: 'Elegí un slot libre para invocarlo.',
       target: 'Elegí el objetivo.',
       ally: 'Tocá un slot rival para atacar, o uno propio para moverte y esquivar.',
+      allyAbility:
+        'Tocá un slot rival para atacar, uno propio para moverte, o usá su habilidad (si la usa, no ataca en esta fase).',
       hero: 'Tocá un objetivo para atacar con el arma, o usá la habilidad.',
       heroNoWeapon: 'Sin arma tu héroe no ataca, pero puede usar su habilidad.',
       full: 'Ya programaste las 5 acciones. Tocá Listo, o tocá una acción para quitarla.',
@@ -473,6 +475,7 @@ export const es = {
       allyAttack: 'Atacar',
       heroAttack: 'Arma',
       heroAbility: 'Habilidad',
+      allyAbility: 'Habilidad de aliado',
       move: 'Mover'
     },
     speeds: {
@@ -486,11 +489,12 @@ export const es = {
       notEnoughChronos: 'No alcanzan los Cronos',
       slotsFull: 'Los 5 slots están ocupados',
       noUnit: 'El aliado ya no está',
-      notReady: 'Ese aliado todavía no puede atacar',
+      notReady: 'Ese aliado todavía no puede actuar',
       alreadyAttacked: 'Ya atacó en esta fase',
       noWeapon: 'El héroe no tiene arma',
-      noAbility: 'El héroe no tiene habilidad',
+      noAbility: 'No tiene habilidad',
       abilityUsed: 'La habilidad ya se usó en esta fase',
+      exhausted: 'Ese aliado ya actuó en esta fase (atacó o usó su habilidad)',
       sacrificeLimit: 'Solo podés generar Cronos una vez por fase',
       invalidTarget: 'Objetivo inválido',
       stunned: 'Está aturdido',

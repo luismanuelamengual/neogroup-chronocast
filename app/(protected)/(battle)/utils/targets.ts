@@ -1,5 +1,5 @@
 import { ALLY_SLOTS } from '@/app/(protected)/(engine)/data/rules'
-import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition'
+import { ActiveAbility, CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition'
 import { MatchState, Unit } from '@/app/(protected)/(engine)/models/MatchState'
 import { opponentOf, PlayerId } from '@/app/(protected)/(engine)/models/PlayerId'
 import { SlotRef } from '@/app/(protected)/(engine)/models/SlotRef'
@@ -78,4 +78,11 @@ export function cardNeeds(card: CardDefinition): 'slot' | 'targets' | 'nothing' 
 /** The definition of the hero of a side. */
 export function heroCard(state: MatchState, player: PlayerId): CardDefinition {
   return getCard(state.players[player].hero.cardId)
+}
+
+/** The ability of one of the player's allies on the board, if it has one. */
+export function allyAbility(state: MatchState, player: PlayerId, uid: number): ActiveAbility | undefined {
+  const unit = state.players[player].allies.find((candidate) => candidate?.uid === uid)
+
+  return unit ? getCard(unit.cardId).ability : undefined
 }

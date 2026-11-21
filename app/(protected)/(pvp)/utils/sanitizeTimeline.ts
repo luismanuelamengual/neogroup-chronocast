@@ -52,6 +52,12 @@ function action(value: unknown): PlannedAction {
       return { kind: 'heroAttack', target: slotRef(raw.target) }
     case 'heroAbility':
       return { kind: 'heroAbility', ...(raw.targets != null ? { targets: slotRefs(raw.targets) } : {}) }
+    case 'allyAbility':
+      return {
+        kind: 'allyAbility',
+        allyUid: int(raw.allyUid),
+        ...(raw.targets != null ? { targets: slotRefs(raw.targets) } : {})
+      }
     case 'move':
       return { kind: 'move', allyUid: int(raw.allyUid), toSlot: int(raw.toSlot, 0, ALLY_SLOTS - 1) }
     default:

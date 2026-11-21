@@ -1,5 +1,5 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buff } from '@/app/(protected)/(engine)/effects'
+import { buff, gainArmor } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'phalanx-general',
@@ -12,13 +12,21 @@ export default defineCard({
   rarity: 'epic',
   price: 1900,
   cost: 5,
-  attack: 16,
-  health: 40,
+  attack: 14,
+  health: 36,
   keywords: ['guardian'],
+  ability: {
+    name: 'Shield Wall',
+    text: 'Your hero gains 8 armor.',
+    cost: 2,
+    activate(ctx) {
+      gainArmor(ctx, ctx.owner, 8)
+    }
+  },
   onAllyEnter(ctx, ally) {
     buff(ctx, ally, 0, 6)
   },
-  ai: { value: 6, tags: ['buff', 'defense'] },
+  ai: { value: 6, tags: ['ability', 'buff', 'defense'] },
   art: {
     subject: 'a Greek general in a crested Corinthian helmet commanding a phalanx bristling with long spears'
   }

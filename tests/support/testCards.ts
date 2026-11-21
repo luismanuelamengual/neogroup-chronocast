@@ -56,6 +56,17 @@ export const TEST_CARDS: CardDefinition[] = [
   ally('test-cleaver', 10, 30, ['cleave']),
   ally('test-ghost', 4, 4, ['resurge']),
   ally('test-agile', 4, 10, ['agile']),
+  ally('test-caster', 3, 20, [], {
+    ability: {
+      name: 'Test Bolt',
+      text: 'Deal 7 damage to an enemy slot.',
+      cost: 2,
+      targets: ['enemySlot'],
+      activate(ctx) {
+        damage(ctx, ctx.targets[0], 7)
+      }
+    }
+  }),
   defineCard({ ...base, id: 'test-sword', type: 'weapon', name: 'Test Sword', cost: 1, attack: 10, durability: 2 }),
   defineCard({ ...base, id: 'test-plate', type: 'armor', name: 'Test Plate', cost: 1, armor: 20 }),
   defineCard({
@@ -109,6 +120,7 @@ export function place(state: MatchState, player: PlayerId, cardId: string, slot:
     enteredPhase: 0,
     enteredStep: -1,
     attacksThisPhase: 0,
+    abilityUsedThisPhase: false,
     tempAttack: 0,
     stunnedUntilPhase: 0,
     echoUsed: false
