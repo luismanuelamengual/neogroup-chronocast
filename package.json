@@ -15,6 +15,7 @@
     "db:reset": "tsx scripts/reset-database.ts",
     "db:seed": "tsx scripts/seed-database.ts",
     "db:gold": "tsx scripts/grant-gold.ts",
+    "db:reset-user": "tsx scripts/reset-user.ts",
     "db:local:up": "docker compose up -d",
     "db:local:down": "docker compose down",
     "pretest": "tsx scripts/cards-index.ts",

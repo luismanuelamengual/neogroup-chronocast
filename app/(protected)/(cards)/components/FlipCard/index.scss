@@ -1,0 +1,195 @@
+.flip-card {
+  --rarity: var(--rarity-common);
+
+  position: relative;
+  aspect-ratio: 1 / var(--flip-ratio, 1.4);
+  perspective: 900px;
+
+  @each $rarity in common, uncommon, rare, epic, legendary, exotic, mythic {
+    &.rarity-#{$rarity} {
+      --rarity: var(--rarity-#{$rarity});
+    }
+  }
+
+  &__inner {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.55s cubic-bezier(0.3, 1.4, 0.5, 1);
+    transform-style: preserve-3d;
+  }
+
+  &.flipped &__inner {
+    transform: rotateY(180deg);
+  }
+
+  &__face {
+    position: absolute;
+    inset: 0;
+    display: block;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-align: inherit;
+    backface-visibility: hidden;
+
+    &.back {
+      border-radius: var(--flip-radius, 14px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+      cursor: pointer;
+      transition:
+        box-shadow 0.15s,
+        transform 0.15s;
+
+      &:hover,
+      &:focus-visible {
+        box-shadow:
+          0 0 0 3px var(--color-gold),
+          0 0 18px 2px rgba(255, 201, 60, 0.6),
+          0 6px 16px rgba(0, 0, 0, 0.4);
+      }
+
+      &:active {
+        transform: scale(0.97);
+      }
+    }
+
+    &.front {
+      transform: rotateY(180deg);
+
+      &:not(:disabled) {
+        cursor: zoom-in;
+      }
+    }
+  }
+
+  &.shine.flipped &__face.front {
+    border-radius: var(--flip-radius, 18px);
+    animation: flip-card-shine 1.6s ease-out 0.3s;
+    box-shadow: 0 0 26px 6px var(--rarity);
+  }
+}
+
+// The back of a card. Sized by its parent; the details scale with --flip-glyph.
+.card-back {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 3px solid var(--color-outline);
+  border-radius: var(--flip-radius, 14px);
+  background:
+    radial-gradient(circle at 50% 50%, rgba(138, 92, 255, 0.55), transparent 62%),
+    repeating-conic-gradient(from 0deg at 50% 50%, rgba(255, 255, 255, 0.05) 0 6deg, transparent 6deg 12deg),
+    linear-gradient(160deg, #5b3fd1, #2b2350 70%, #1b1440);
+
+  // An inner golden frame.
+  &::before {
+    position: absolute;
+    inset: 6%;
+    border: max(1.5px, calc(var(--flip-glyph, 1.9rem) * 0.08)) solid rgba(255, 201, 60, 0.85);
+    border-radius: calc(var(--flip-radius, 14px) * 0.6);
+    box-shadow:
+      inset 0 0 0 max(1px, calc(var(--flip-glyph, 1.9rem) * 0.05)) rgba(43, 35, 80, 0.8),
+      inset 0 0 18px rgba(255, 201, 60, 0.25);
+    content: '';
+  }
+
+  &.illustrated {
+    background: #1b1440;
+
+    &::before {
+      display: none;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__rays {
+    position: absolute;
+    inset: -20%;
+    background: repeating-conic-gradient(from 0deg, rgba(255, 201, 60, 0.12) 0 8deg, transparent 8deg 22deg);
+    mask-image: radial-gradient(circle, black 15%, transparent 55%);
+  }
+
+  &__emblem {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: calc(var(--flip-glyph, 1.9rem) * 1.9);
+    aspect-ratio: 1;
+    border: max(2px, calc(var(--flip-glyph, 1.9rem) * 0.1)) solid var(--color-gold);
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 35%, #8a5cff, #2b2350 75%);
+    box-shadow:
+      0 0 0 max(1.5px, calc(var(--flip-glyph, 1.9rem) * 0.06)) var(--color-outline),
+      0 0 calc(var(--flip-glyph, 1.9rem) * 0.6) rgba(255, 201, 60, 0.55);
+  }
+
+  // The marks of a clock dial around the hourglass.
+  &__dial {
+    position: absolute;
+    inset: 9%;
+    border-radius: 50%;
+    background: repeating-conic-gradient(from -3deg, rgba(255, 201, 60, 0.9) 0 6deg, transparent 6deg 30deg);
+    mask-image: radial-gradient(circle, transparent 62%, black 64%, black 76%, transparent 78%);
+  }
+
+  &__glass {
+    position: relative;
+    font-size: var(--flip-glyph, 1.9rem);
+    line-height: 1;
+    filter: drop-shadow(0 2px 0 var(--color-outline)) drop-shadow(0 0 6px rgba(255, 201, 60, 0.7));
+  }
+
+  &__corner {
+    position: absolute;
+    width: 14%;
+    aspect-ratio: 1;
+    border: max(1.5px, calc(var(--flip-glyph, 1.9rem) * 0.08)) solid var(--color-gold);
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--color-gold) 0 22%, transparent 26%);
+
+    &.tl {
+      top: 3%;
+      left: 3%;
+    }
+
+    &.tr {
+      top: 3%;
+      right: 3%;
+    }
+
+    &.bl {
+      bottom: 3%;
+      left: 3%;
+    }
+
+    &.br {
+      right: 3%;
+      bottom: 3%;
+    }
+  }
+}
+
+@keyframes flip-card-shine {
+  0% {
+    box-shadow: 0 0 0 0 var(--rarity);
+  }
+
+  40% {
+    box-shadow: 0 0 50px 18px var(--rarity);
+  }
+
+  100% {
+    box-shadow: 0 0 26px 6px var(--rarity);
+  }
+}

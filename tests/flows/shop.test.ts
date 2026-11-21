@@ -3,11 +3,11 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import { deleteAccount } from '@/app/(protected)/(account)/services/accounts'
 import { CARDS } from '@/app/(protected)/(cards)/utils/catalog'
 import { addCards, chooseStarter, getCollection } from '@/app/(protected)/(collection)/services/collection'
-import { listDecks } from '@/app/(protected)/(collection)/services/decks'
+import { getDeck, listDecks, saveDeck, setActiveDeck } from '@/app/(protected)/(collection)/services/decks'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
 import { buyPack } from '@/app/(protected)/(shop)/services/packs'
 import { buyCard, getShopState, quickSell, sellCards, unlockRarity } from '@/app/(protected)/(shop)/services/shop'
-import { sellPrice } from '@/app/(protected)/(shop)/utils/prices'
+import { copyLimit, sellPrice } from '@/app/(protected)/(shop)/utils/prices'
 import { createUser, resetDatabase } from '@/tests/setup/database'
 
 const VARRO = 'legate-varro'
@@ -133,6 +133,52 @@ describe('the shop', () => {
     expect((await listDecks(ana))[0].playable).toBe(true)
 
     expect((await quickSell(ana)).cards).toEqual({})
+  })
+
+  it('never sells the copies a saved deck holds', async () => {
+    await chooseStarter(ana, VARRO)
+
+    const used = (await getShopState(ana)).deckUsage
+    const inDeck = Object.keys(used).find((id) => id !== VARRO && used[id] === 3)!
+
+    await expect(sellCards(ana, { [inDeck]: 1 })).rejects.toMatchObject({ messageKey: 'errors.cardInDeck' })
+
+    await addCards(ana, { [inDeck]: 2 })
+    await expect(sellCards(ana, { [inDeck]: 3 })).rejects.toMatchObject({ messageKey: 'errors.cardInDeck' })
+
+    const sale = await sellCards(ana, { [inDeck]: 2 })
+
+    expect(sale.state.collection[inDeck]).toBe(3)
+    expect((await listDecks(ana))[0].playable).toBe(true)
+  })
+
+  it('only protects the active deck: the other decks can be left unfinished', async () => {
+    const { deckId } = await chooseStarter(ana, VARRO)
+    const starter = await getDeck(ana, deckId)
+    const [cardId] = Object.keys(starter.cards)
+    const count = starter.cards[cardId]
+    const other = CARDS.find(
+      (card) =>
+        card.type !== 'hero' && card.restriction.kind === 'any' && copyLimit(card) >= count && !starter.cards[card.id]
+    )!
+
+    // The active deck swaps that card for another one: its copies are free to sell.
+    await addCards(ana, { [other.id]: count })
+
+    const { [cardId]: _, ...rest } = starter.cards
+    const swapped = await saveDeck(ana, { name: 'Swapped', heroId: VARRO, cards: { ...rest, [other.id]: count } })
+
+    await expect(sellCards(ana, { [other.id]: 1 })).resolves.toBeTruthy()
+    await addCards(ana, { [other.id]: 1 })
+    await setActiveDeck(ana, swapped.id)
+    await expect(sellCards(ana, { [other.id]: 1 })).rejects.toMatchObject({ messageKey: 'errors.cardInDeck' })
+
+    const sale = await sellCards(ana, { [cardId]: count })
+    const decks = await listDecks(ana)
+
+    expect(sale.state.deckUsage[cardId]).toBeUndefined()
+    expect(decks.find((deck) => deck.id === swapped.id)).toMatchObject({ active: true, playable: true })
+    expect(decks.find((deck) => deck.id === deckId)?.playable).toBe(false)
   })
 
   it('deleting the account deletes its unlocks', async () => {

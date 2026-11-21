@@ -108,7 +108,16 @@
   }
 
   &__mini {
-    zoom: 0.36;
+    --flip-radius: 8px;
+    --flip-glyph: 1.6rem;
+
+    --mini-zoom: 0.36;
+
+    width: calc(220px * var(--mini-zoom));
+
+    @media (max-height: 500px) {
+      --mini-zoom: 0.28;
+    }
     animation: campaign-end-card 0.5s ease-out both;
 
     @for $i from 1 through 8 {
@@ -116,6 +125,11 @@
         animation-delay: #{$i * 0.12}s;
       }
     }
+  }
+
+  &__zoom {
+    display: block;
+    zoom: var(--mini-zoom);
   }
 
   &__buttons {

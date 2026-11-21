@@ -12,6 +12,7 @@ export function useCollection() {
   )
   const saveDeck = useCallback((input: DeckInput) => executeRequest<DeckDto>('/saveDeck', input), [executeRequest])
   const deleteDeck = useCallback((id: number) => executeRequest<null>('/deleteDeck', { id }), [executeRequest])
+  const setActiveDeck = useCallback((id: number) => executeRequest<null>('/setActiveDeck', { id }), [executeRequest])
 
-  return { chooseStarter, saveDeck, deleteDeck }
+  return { chooseStarter, saveDeck, deleteDeck, setActiveDeck }
 }

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { auth } from '@/app/(auth)/services/auth'
 import PracticeSetup from '@/app/(protected)/(battle)/components/PracticeSetup'
-import { playableDecks } from '@/app/(protected)/(collection)/services/decks'
+import { getActiveDeck } from '@/app/(protected)/(collection)/services/decks'
 import { getT } from '@/app/i18n/server'
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -13,5 +13,5 @@ export default async function PracticePage({ searchParams }: { searchParams: Pro
   const userId = Number((await auth())!.user.id)
   const { tutorial } = await searchParams
 
-  return <PracticeSetup decks={await playableDecks(userId)} tutorial={tutorial === '1'} />
+  return <PracticeSetup deck={await getActiveDeck(userId)} tutorial={tutorial === '1'} />
 }

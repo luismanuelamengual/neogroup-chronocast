@@ -3,7 +3,16 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import { deleteAccount } from '@/app/(protected)/(account)/services/accounts'
 import { starterDeck } from '@/app/(protected)/(cards)/data/starters'
 import { addCards, chooseStarter, getCollection } from '@/app/(protected)/(collection)/services/collection'
-import { deleteDeck, getDeck, listDecks, playableDecks, saveDeck } from '@/app/(protected)/(collection)/services/decks'
+import {
+  deleteDeck,
+  getActiveDeck,
+  getDeck,
+  listDecks,
+  playableActiveDeckId,
+  playableDecks,
+  saveDeck,
+  setActiveDeck
+} from '@/app/(protected)/(collection)/services/decks'
 import { countCards } from '@/app/(protected)/(collection)/utils/deckProblems'
 import { User } from '@/app/models/User'
 import { createUser, resetDatabase } from '@/tests/setup/database'
@@ -63,6 +72,30 @@ describe('decks', () => {
       playable: false
     })
     expect((await playableDecks(ana)).map((playable) => playable.id)).toEqual([starterId])
+  })
+
+  it('the starter deck is the active one, and only a playable deck can take its place', async () => {
+    expect((await getActiveDeck(ana))?.id).toBe(starterId)
+    expect(await playableActiveDeckId(ana)).toBe(starterId)
+
+    const starter = await getDeck(ana, starterId)
+    const copy = await saveDeck(ana, { name: 'Copy', heroId: VARRO, cards: starter.cards })
+    const unfinished = await saveDeck(ana, { name: 'Half', heroId: VARRO, cards: { 'arena-champion': 2 } })
+
+    // Marked, it stays active even if another deck is edited later.
+    expect((await getActiveDeck(ana))?.id).toBe(starterId)
+    await expect(setActiveDeck(ana, unfinished.id)).rejects.toMatchObject({ messageKey: 'errors.deckNotPlayable' })
+    await expect(setActiveDeck(beto, copy.id)).rejects.toMatchObject({ messageKey: 'errors.deckNotFound' })
+
+    await setActiveDeck(ana, copy.id)
+    expect((await listDecks(ana)).filter((summary) => summary.active).map((summary) => summary.id)).toEqual([copy.id])
+
+    // Deleted, the most recently edited playable deck takes its place.
+    await deleteDeck(ana, copy.id)
+    expect((await getActiveDeck(ana))?.id).toBe(starterId)
+
+    expect(await getActiveDeck(beto)).toBeNull()
+    await expect(playableActiveDeckId(beto)).rejects.toMatchObject({ messageKey: 'errors.activeDeckNotPlayable' })
   })
 
   it('updates a deck', async () => {

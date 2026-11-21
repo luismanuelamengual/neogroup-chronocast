@@ -1,6 +1,7 @@
 import '@/app/(protected)/(cards)/utils/catalog'
 import { DB } from '@neogroup/neorm'
-import { DeckDto, DeckInput, DeckSummary } from '@/app/(protected)/(collection)/models/DeckDto'
+import { Collection } from '@/app/(protected)/(collection)/models/Collection'
+import { ActiveDeck, DeckDto, DeckInput, DeckSummary } from '@/app/(protected)/(collection)/models/DeckDto'
 import { getCollection, lastDeckId } from '@/app/(protected)/(collection)/services/collection'
 import { deckProblems, expandCards } from '@/app/(protected)/(collection)/utils/deckProblems'
 import { DeckList } from '@/app/(protected)/(engine)/models/DeckList'
@@ -60,9 +61,27 @@ export function toDeckList(deck: Pick<DeckDto, 'heroId' | 'cards'>): DeckList {
   return { heroId: deck.heroId, cards: expandCards(deck.cards) }
 }
 
-/** The decks of a player, most recently edited first, with whether each one can be played. */
+/**
+ * Which deck is the active one: the one the player marked, or (none marked,
+ * or it was deleted) the most recently edited playable deck, or else the most
+ * recently edited one.
+ */
+async function pickActive(userId: number, decks: DeckDto[], collection: Collection): Promise<DeckDto | null> {
+  const user = await DB.table('users').where('id', userId).first()
+  const marked = user ? Number(column(user, 'activeDeckId') ?? 0) : 0
+
+  return (
+    decks.find((deck) => deck.id === marked) ??
+    decks.find((deck) => deckProblems(toDeckList(deck), collection).length === 0) ??
+    decks[0] ??
+    null
+  )
+}
+
+/** The decks of a player, most recently edited first, with whether each one can be played and which is active. */
 export async function listDecks(userId: number): Promise<DeckSummary[]> {
   const [decks, collection] = await Promise.all([loadDecks(userId), getCollection(userId)])
+  const active = await pickActive(userId, decks, collection)
 
   return decks.map((deck) => {
     const list = toDeckList(deck)
@@ -73,9 +92,43 @@ export async function listDecks(userId: number): Promise<DeckSummary[]> {
       heroId: deck.heroId,
       size: list.cards.length + 1,
       playable: deckProblems(list, collection).length === 0,
+      active: deck.id === active?.id,
       updatedAt: deck.updatedAt
     }
   })
+}
+
+/**
+ * The deck every game mode plays with (docs/PLAN.md, section 6), with whether
+ * it can be played right now. Null: the player has no decks.
+ */
+export async function getActiveDeck(userId: number): Promise<ActiveDeck | null> {
+  const [decks, collection] = await Promise.all([loadDecks(userId), getCollection(userId)])
+  const deck = await pickActive(userId, decks, collection)
+
+  return deck && { ...deck, playable: deckProblems(toDeckList(deck), collection).length === 0 }
+}
+
+/** The id of the active deck, to play with; it fails when there is none or it is not ready. */
+export async function playableActiveDeckId(userId: number): Promise<number> {
+  const deck = await getActiveDeck(userId)
+
+  if (!deck?.playable) {
+    throw new ApiException('errors.activeDeckNotPlayable')
+  }
+
+  return deck.id
+}
+
+/** Marks a deck as the active one. Only a deck ready to play can be. */
+export async function setActiveDeck(userId: number, deckId: number): Promise<void> {
+  const deck = await getDeck(userId, deckId)
+
+  if (deckProblems(toDeckList(deck), await getCollection(userId)).length > 0) {
+    throw new ApiException('errors.deckNotPlayable')
+  }
+
+  await DB.table('users').where('id', userId).update({ activeDeckId: deck.id })
 }
 
 /** The decks a player can play right now, with their cards. */
@@ -169,5 +222,6 @@ export async function deleteDeck(userId: number, deckId: number): Promise<void> 
   await DB.transaction(async () => {
     await DB.table('deck_cards').where('deckId', deckId).delete()
     await DB.table('decks').where('id', deckId).where('userId', userId).delete()
+    await DB.table('users').where('id', userId).where('activeDeckId', deckId).update({ activeDeckId: null })
   })
 }

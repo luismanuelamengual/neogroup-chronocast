@@ -9,7 +9,7 @@ export interface ShopState {
   unlocked: Rarity[]
   /** The guarantee counter: guardian/eternal packs in a row without a legendary. */
   packsWithoutLegendary: number
-  /** The most copies of each card that any saved deck holds (selling those asks first; quick sell keeps them). */
+  /** The copies of each card the active deck holds: they cannot be sold. */
   deckUsage: Record<string, number>
 }
 

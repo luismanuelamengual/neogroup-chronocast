@@ -40,7 +40,7 @@ El diseño completo (reglas, cartas, tienda, PvP, campañas, arquitectura y hoja
    yarn db:seed
    ```
 
-   Los dos usuarios demo arrancan con 20.000 de oro y su starter para probar la tienda; con dos navegadores (o una ventana de incógnito) se puede jugar una partida PvP entre ellos. Para darle oro a otro jugador (por ejemplo tu cuenta de Google): `yarn db:gold <email> [cantidad]` (10.000 por defecto; nunca corre contra producción).
+   Los dos usuarios demo arrancan con 20.000 de oro y su starter para probar la tienda; con dos navegadores (o una ventana de incógnito) se puede jugar una partida PvP entre ellos. Para darle oro a otro jugador (por ejemplo tu cuenta de Google): `yarn db:gold <email> [cantidad]` (10.000 por defecto; nunca corre contra producción). Para volver a empezar de cero con un usuario (sin cartas, mazos, campañas ni partidas, con 0 de oro y 1200 de Prestigio, y la elección del héroe inicial otra vez): `yarn db:reset-user <email>` (la cuenta y la contraseña se mantienen; tampoco corre contra producción).
 
    Para recrear la base local desde cero: `yarn db:reset` y después `yarn db:seed`.
 
@@ -154,21 +154,21 @@ Starters (`(cards)/data/starters.ts`): Legate Varro (Bronze, guerrero), Ilyra St
 
 ### Arte
 
-- **`yarn art:catalog`** escribe `art/catalog.csv` (`batch, file, width, height, prompt`, un lote por grupo) y `art/catalog.md` con el prompt de cada imagen: el estilo base, el toque de la facción (`scripts/art/factions.ts`) y el `art.subject` de la carta. Cartas en 1024 × 1280; los héroes tienen además un retrato de 1024 × 1024 (`<hero-id>-portrait`).
+- **`yarn art:catalog`** escribe `art/catalog.csv` (`batch, file, width, height, prompt`, un lote por grupo) y `art/catalog.md` con el prompt de cada imagen: el estilo base, el toque de la facción (`scripts/art/factions.ts`) y el `art.subject` de la carta. Cartas en 1024 × 1280; los héroes tienen además un retrato de 1024 × 1024 (`<hero-id>-portrait`). La primera fila (lote `ui`) es el **dorso de las cartas** (`card-back.png`): mientras no esté, el dorso se dibuja en CSS (un reloj de arena en un emblema de engranajes con marco dorado).
 - Las imágenes generadas van en `art/source/cards/<archivo>.png` (o jpg/webp; la carpeta no se versiona). **`yarn art`** las recorta y achica a WebP en `public/cards/` y actualiza `public/cards/manifest.json`, mostrando cada imagen en el momento en que la procesa (`ok`, `sin cambios`, `falta`, `error`), una barra de progreso y al final lo que falta por lote. Solo procesa lo que cambió (`--force` para todo). **`yarn art --watch`** se queda mirando la carpeta y procesa cada imagen apenas aparece. Una carta sin imagen se dibuja con su color de facción.
 
 ## Base de datos
 
-| Tabla                       | Contenido                                                                                         |
-| --------------------------- | ------------------------------------------------------------------------------------------------- |
-| `users`                     | Cuenta del jugador, más `rating` (Prestigio, arranca en 1200), `gold`, `pvpMatches` y `lastWinAt` |
-| `email_verification_tokens` | Tokens de verificación de email                                                                   |
-| `password_reset_tokens`     | Tokens de recupero de contraseña                                                                  |
-| `user_cards`                | Copias de cada carta que tiene cada jugador (héroes incluidos)                                    |
-| `decks` / `deck_cards`      | Mazos guardados: héroe, nombre y copias de cada carta                                             |
-| `shop_unlocks`              | Rarezas desbloqueadas para comprar cartas sueltas                                                 |
-| `matches`                   | Partidas PvP: sala, jugadores, mazos, estado del motor, planes, plazos, resultado y premios       |
-| `campaign_progress`         | Combates ganados en la campaña de cada héroe (`stage`, de 0 a 10) y cuándo se completó            |
+| Tabla                       | Contenido                                                                                                         |
+| --------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `users`                     | Cuenta del jugador, más `rating` (Prestigio, arranca en 1200), `gold`, `pvpMatches`, `lastWinAt` y `activeDeckId` |
+| `email_verification_tokens` | Tokens de verificación de email                                                                                   |
+| `password_reset_tokens`     | Tokens de recupero de contraseña                                                                                  |
+| `user_cards`                | Copias de cada carta que tiene cada jugador (héroes incluidos)                                                    |
+| `decks` / `deck_cards`      | Mazos guardados: héroe, nombre y copias de cada carta                                                             |
+| `shop_unlocks`              | Rarezas desbloqueadas para comprar cartas sueltas                                                                 |
+| `matches`                   | Partidas PvP: sala, jugadores, mazos, estado del motor, planes, plazos, resultado y premios                       |
+| `campaign_progress`         | Combates ganados en la campaña de cada héroe (`stage`, de 0 a 10) y cuándo se completó                            |
 
 El catálogo de cartas no se guarda en la base: vive en el código y las tablas lo referencian por id.
 
@@ -180,13 +180,13 @@ En PostgreSQL los nombres de columna sin comillas quedan en minúscula (`heroId`
 - **Colección** (`/collection`): todo el catálogo con lo que tiene el jugador (lo demás atenuado), filtros por tipo, facción, clase, rareza, costo, "usables por" un héroe y "solo las que tengo", y el detalle de cada carta.
 - **Mazos** (`/decks`): lista con "listo para jugar" o "incompleto", nuevo mazo para cualquier héroe que tenga, editar y borrar. El **editor** (`/decks/<id>` o `/decks/new?hero=<id>`) muestra a la izquierda las cartas propias que puede usar ese héroe y a la derecha el mazo: nombre, contador X/40 (hasta 200), curva de costos, reglas rotas en vivo y la lista con +/−.
 - Un mazo se puede guardar incompleto (y entonces no se puede jugar). Nunca se aceptan cartas desconocidas, un héroe que no tiene ni más copias de las que tiene (`POST /api/saveDeck`). Las reglas viven en `(collection)/utils/deckProblems.ts` (las de `validateDeck` más la propiedad de las cartas).
-- La práctica ofrece los mazos listos del jugador (o los iniciales si no tiene ninguno).
+- **Mazo activo**: uno de los mazos está marcado como activo (`users.activeDeckId`, ★ en `/decks`, botón "Activar" con `POST /api/setActiveDeck`; solo un mazo listo para jugar). Todos los modos juegan con él sin elegir nada: la práctica, las campañas (tiene que ser del héroe de la campaña) y el PvP (las APIs de salas y de campaña toman el mazo activo en el servidor, `playableActiveDeckId`). Al elegir el héroe inicial, su mazo queda activo; si no hay ninguno marcado (o se borró), lo es el último mazo listo editado. Cada modo muestra el mazo activo con un botón para cambiarlo (`ActiveDeckChip`).
 
 ## Tienda y economía
 
-- **Sobres** (`(shop)/data/packs.ts`): Viajero (300), Cronista (800), Guardián (2.000), Eterno (5.000) y uno por facción (1.000), de 8 cartas, con las probabilidades de cada carta visibles en la tienda. El sorteo se hace en el servidor (`POST /api/buyPack`, con `utils/drawPack.ts`, determinístico por semilla) y la pantalla anima la apertura: las cartas boca abajo se dan vuelta de la rareza más baja a la más alta, las mejores brillan y las nuevas llevan un cartel. **Garantía**: después de 10 sobres Guardián o Eterno seguidos sin legendaria, el siguiente trae una (`users.packsWithoutLegendary`). Mientras el catálogo no tenga cartas de una rareza, sale la mejor disponible por debajo.
+- **Sobres** (`(shop)/data/packs.ts`): Viajero (300), Cronista (800), Guardián (2.000), Eterno (5.000) y uno por facción (1.000), de 8 cartas, con las probabilidades de cada carta visibles en la tienda. El sorteo se hace en el servidor (`POST /api/buyPack`, con `utils/drawPack.ts`, determinístico por semilla) y la pantalla anima la apertura: las cartas boca abajo se dan vuelta de la rareza más baja a la más alta, las mejores brillan y las nuevas llevan un cartel. Cada carta que se da vuelta a mano (o que se toca ya dada vuelta) se muestra grande en el centro (`CardSpotlight`); lo mismo en el mazo inicial y en el sobre de premio de las campañas. **Garantía**: después de 10 sobres Guardián o Eterno seguidos sin legendaria, el siguiente trae una (`users.packsWithoutLegendary`). Mientras el catálogo no tenga cartas de una rareza, sale la mejor disponible por debajo.
 - **Cartas sueltas**: cada carta a su propio `price`. Las comunes están abiertas; las demás rarezas se desbloquean de a una y en orden (`(shop)/data/prices.ts`: 1.000, 3.000, 8.000, 20.000, 50.000 y 100.000). Ni los héroes ni las cartas premio de campaña (`reward: true`) se venden ni salen en sobres.
-- **Venta**: el 15 % del precio, redondeado. Pide confirmación si la carta es épica o mejor, o si venderla deja incompleto un mazo guardado. La **venta rápida** vende las copias que pasan de 4 (de 1 si es `unique`) sin tocar las que usa algún mazo, y muestra el total antes de confirmar.
+- **Venta**: el 15 % del precio, redondeado. Pide confirmación si la carta es épica o mejor. **No se pueden vender las copias que usa el mazo activo**, solo las de sobra, así el mazo activo siempre sigue jugable (los demás mazos pueden quedar incompletos); el servidor también lo controla (`errors.cardInDeck`). La **venta rápida** vende las copias que pasan de 4 (de 1 si es `unique`) sin tocar las que usa el mazo activo, y muestra el total antes de confirmar.
 - Todo cambio de oro pasa por el servidor dentro de una transacción. Las APIs: `buyPack`, `unlockRarity`, `buyCard`, `sellCards`, `quickSell`.
 - **`yarn economy [partidas por día] [% de victorias] [simulaciones]`**: el oro por día de un jugador típico (con los premios de `(shop)/data/gold.ts`), los días para desbloquear cada rareza y para completar la colección de cada héroe starter comprando sueltas o sobres (con venta rápida de las sobrantes).
 

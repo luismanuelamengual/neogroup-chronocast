@@ -9,7 +9,14 @@ import { getCard, hasCard } from '@/app/(protected)/(engine)/utils/registry'
 import GoldAmount from '@/app/(protected)/(shop)/components/GoldAmount'
 import { useShop } from '@/app/(protected)/(shop)/hooks/useShop'
 import { Sale, ShopState } from '@/app/(protected)/(shop)/models/ShopState'
-import { copyLimit, isSellable, isValuable, quickSellPlan, sellPrice } from '@/app/(protected)/(shop)/utils/prices'
+import {
+  copyLimit,
+  isSellable,
+  isValuable,
+  quickSellPlan,
+  sellableCopies,
+  sellPrice
+} from '@/app/(protected)/(shop)/utils/prices'
 import GameButton from '@/app/components/GameButton'
 import { useIncrementalList } from '@/app/hooks/useIncrementalList'
 import { useNotifications } from '@/app/hooks/useNotifications'
@@ -24,13 +31,12 @@ interface SellShopProps {
 interface PendingSale {
   cardId: string
   count: number
-  reasons: ('valuable' | 'deck')[]
 }
 
 /**
  * The sell tab (docs/PLAN.md, section 11.3): quick sell of the spare copies
  * with its total before confirming, and the sale of single copies, which asks
- * first for an epic or better, or when a saved deck needs the copy.
+ * first for an epic or better. The copies the active deck holds cannot be sold.
  */
 export default function SellShop({ state, onChange }: SellShopProps) {
   const { t, locale } = useI18n()
@@ -74,20 +80,8 @@ export default function SellShop({ state, onChange }: SellShopProps) {
   }
 
   const sell = (cardId: string, count: number) => {
-    const card = getCard(cardId)
-    const reasons: PendingSale['reasons'] = []
-    const left = (state.collection[cardId] ?? 0) - count
-
-    if (isValuable(card)) {
-      reasons.push('valuable')
-    }
-
-    if (left < (state.deckUsage[cardId] ?? 0)) {
-      reasons.push('deck')
-    }
-
-    if (reasons.length > 0) {
-      setPending({ cardId, count, reasons })
+    if (isValuable(getCard(cardId))) {
+      setPending({ cardId, count })
     } else {
       finish(() => sellCards({ [cardId]: count }))
     }
@@ -96,15 +90,14 @@ export default function SellShop({ state, onChange }: SellShopProps) {
   const actions = (cardId: string) => {
     const card = getCard(cardId)
     const owned = state.collection[cardId] ?? 0
-    const spare = owned - Math.max(copyLimit(card), state.deckUsage[cardId] ?? 0)
+    const used = state.deckUsage[cardId] ?? 0
+    const free = sellableCopies(owned, used)
+    const spare = owned - Math.max(copyLimit(card), used)
 
     if (pending?.cardId === cardId) {
       return (
         <div className="sell-shop__confirm">
-          {pending.reasons.includes('valuable') && (
-            <p>{t('shop.sell.confirmValuable', { rarity: t(`game.rarities.${card.rarity}`) })}</p>
-          )}
-          {pending.reasons.includes('deck') && <p>{t('shop.sell.confirmDeck')}</p>}
+          <p>{t('shop.sell.confirmValuable', { rarity: t(`game.rarities.${card.rarity}`) })}</p>
           <div>
             <GameButton
               size="small"
@@ -122,8 +115,13 @@ export default function SellShop({ state, onChange }: SellShopProps) {
       )
     }
 
+    if (free === 0) {
+      return <p className="sell-shop__locked">🔒 {t('shop.sell.lockedInDeck', { count: used })}</p>
+    }
+
     return (
       <div className="sell-shop__actions">
+        {used > 0 && <p className="sell-shop__locked">{t('shop.sell.freeCopies', { count: free })}</p>}
         <GameButton size="small" color="gold" disabled={busy} onClick={() => sell(cardId, 1)}>
           {t('shop.sell.sellOne', { gold: sellPrice(card).toLocaleString(locale) })}
         </GameButton>

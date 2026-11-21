@@ -8,7 +8,8 @@ export const es = {
   common: {
     cancel: 'Cancelar',
     close: 'Cerrar',
-    loading: 'Cargando...'
+    loading: 'Cargando...',
+    tapToClose: 'Tocá para cerrar'
   },
   sound: {
     title: 'Sonido',
@@ -324,6 +325,8 @@ export const es = {
     choose: 'Elegir a {hero}',
     opening: 'Abriendo tu mazo inicial...',
     opened: '¡Tu mazo inicial!',
+    tap: 'Tocá una carta para darla vuelta',
+    revealAll: 'Dar vuelta todas',
     openedText: 'Ya está guardado en Mazos. Te recomendamos jugar el tutorial para aprender lo básico.',
     tutorial: 'Jugar el tutorial',
     menu: 'Ir al menú'
@@ -348,6 +351,14 @@ export const es = {
     empty: 'Ninguna carta coincide con los filtros.',
     back: 'Menú'
   },
+  activeDeck: {
+    title: 'Tu mazo activo',
+    change: 'Cambiar',
+    none: 'No tenés un mazo para jugar.',
+    notPlayable: '"{name}" está incompleto: completalo o activá otro en Mazos.',
+    wrongHero:
+      'Esta campaña se juega con un mazo de {hero} y tu mazo activo es de {other}. Activá un mazo de {hero} en Mazos.'
+  },
   decks: {
     title: 'Mazos',
     new: 'Nuevo mazo',
@@ -359,6 +370,10 @@ export const es = {
     delete: 'Borrar',
     deleteConfirm: '¿Borrar el mazo "{name}"? No se puede deshacer.',
     deleted: 'Mazo borrado',
+    active: 'Activo',
+    setActive: 'Activar',
+    activated: 'Ahora jugás con "{name}"',
+    activeHint: 'El mazo activo es el que usás en todos los modos de juego, y la tienda no deja vender sus cartas.',
     empty: 'Todavía no tenés mazos.',
     back: 'Menú',
     editor: {
@@ -413,8 +428,7 @@ export const es = {
   battle: {
     practice: {
       title: 'Práctica',
-      text: 'Jugá contra la CPU con uno de tus mazos listos (o con un mazo inicial si no tenés ninguno). No da premios: es para aprender y probar.',
-      yourDeck: 'Tu mazo',
+      text: 'Jugá contra la CPU con tu mazo activo. No da premios: es para aprender y probar.',
       rivalHero: 'Héroe de la CPU',
       start: 'Empezar',
       back: 'Volver'
@@ -588,7 +602,7 @@ export const es = {
     opening: {
       title: 'Abriendo el {pack}',
       tap: 'Tocá una carta para darla vuelta',
-      revealAll: 'Mostrar todas',
+      revealAll: 'Dar vuelta todas',
       done: '¡Sobre abierto!',
       isNew: '¡Nueva!',
       guaranteed: '¡Garantía! Este sobre trae una legendaria.',
@@ -611,7 +625,7 @@ export const es = {
     sell: {
       quick: 'Venta rápida',
       quickText:
-        'Vende las copias que pasan de 4 de cada carta (de 1 si es única) y nunca toca las que usan tus mazos guardados.',
+        'Vende las copias que pasan de 4 de cada carta (de 1 si es única) y nunca toca las que usa tu mazo activo.',
       quickPreview: {
         one: 'Vendés {count} carta por {gold} de oro.',
         other: 'Vendés {count} cartas por {gold} de oro.'
@@ -623,10 +637,18 @@ export const es = {
       sellOne: 'Vender 1 por {gold}',
       sellExtra: 'Vender las {count} de sobra por {gold}',
       confirmValuable: 'Es una carta {rarity}. ¿Seguro que la querés vender?',
-      confirmDeck: 'Está en un mazo guardado: si la vendés, ese mazo puede quedar incompleto.',
+      lockedInDeck: {
+        one: 'Tu mazo activo usa esta copia, así que no se puede vender. Sacala del mazo o activá otro para venderla.',
+        other:
+          'Tu mazo activo usa estas {count} copias, así que no se pueden vender. Sacalas del mazo o activá otro para venderlas.'
+      },
+      freeCopies: {
+        one: 'Podés vender {count} copia: las demás están en tu mazo activo.',
+        other: 'Podés vender {count} copias: las demás están en tu mazo activo.'
+      },
       sold: { one: 'Vendiste {count} carta por {gold} de oro', other: 'Vendiste {count} cartas por {gold} de oro' },
       price: 'Se vende a {gold}',
-      inDeck: 'En un mazo',
+      inDeck: 'Mazo activo',
       empty: 'No tenés cartas para vender.'
     }
   },
@@ -636,7 +658,6 @@ export const es = {
     activeMatch: 'Tenés una partida en curso.',
     resume: 'Volver a la partida',
     yourDeck: 'Tu mazo',
-    noDecks: 'No tenés ningún mazo listo para jugar.',
     goToDecks: 'Ir a Mazos',
     quickMatch: 'Partida rápida',
     createPublic: 'Crear pública',
@@ -695,9 +716,6 @@ export const es = {
     pack: '{pack}',
     rewardCard: 'Carta exclusiva: {card}',
     alreadyWon: 'Ya ganaste este combate: jugarlo de nuevo no da premios.',
-    yourDeck: 'Tu mazo',
-    noDecks: 'No tenés ningún mazo listo de {hero}.',
-    goToDecks: 'Ir a Mazos',
     start: '¡Al combate!',
     stageLocked: 'Ganá el combate anterior para desbloquearlo.',
     end: {
@@ -1280,6 +1298,8 @@ export const es = {
     cardNotForSale: 'Esa carta no se vende suelta',
     cardNotSellable: 'Esa carta no se puede vender',
     notEnoughCopies: 'No tenés tantas copias de {card}',
+    cardInDeck: 'Tu mazo activo usa esas copias de {card}: solo se venden las de sobra',
+    activeDeckNotPlayable: 'Tu mazo activo no está listo para jugar',
     invalidHero: 'Ese héroe no existe',
     starterAlreadyChosen: 'Ya elegiste tu héroe inicial',
     deckNotFound: 'El mazo no existe',

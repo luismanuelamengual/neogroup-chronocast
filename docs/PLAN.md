@@ -36,15 +36,15 @@ Este documento es el plan completo. Todavía no hay código: cada sección dice 
 
 El nombre **ChronoCast** sugiere magia del tiempo, y la mecánica central (programar el futuro y verlo desarrollarse) encaja con eso. Propuesta de mundo: la **Grieta del Tiempo** mezcló todas las eras y sus campeones pelean por controlarla. Cada facción es una era:
 
-| Facción (id)  | Nombre en pantalla   | Era               | Color dominante              | Identidad de juego                                                    |
-| ------------- | -------------------- | ----------------- | ---------------------------- | --------------------------------------------------------------------- |
-| `primal`      | Primigenia           | Prehistoria       | Verde lima / naranja         | Bestias grandes, crecer (+ataque/+vida), curación                      |
-| `bronze`      | Imperio de Bronce    | Antigüedad        | Rojo / dorado                | Protectores, formaciones (bonos por aliados vecinos)                   |
-| `arcane`      | Orden Arcana         | Medioevo mágico   | Azul / violeta               | Habilidades, daño directo, control (aturdir, silenciar)                |
-| `clockwork`   | Engranaje            | Era del vapor     | Cobre / amarillo             | Objetos, construcciones, generación extra de Cronos                    |
-| `neon`        | Neón                 | Futuro            | Cian / magenta               | Velocidad (acciones Rápidas e Instantáneas), trampas, robo de cartas    |
-| `void`        | Vacío                | Fin de los tiempos | Violeta oscuro / verde ácido | La pila de descarte: sacrificar y revivir aliados                      |
-| `neutral`     | Errantes             | Viajeros del tiempo | Blanco / turquesa          | Cartas que entran en el mazo de cualquier héroe                        |
+| Facción (id) | Nombre en pantalla | Era                 | Color dominante              | Identidad de juego                                                   |
+| ------------ | ------------------ | ------------------- | ---------------------------- | -------------------------------------------------------------------- |
+| `primal`     | Primigenia         | Prehistoria         | Verde lima / naranja         | Bestias grandes, crecer (+ataque/+vida), curación                    |
+| `bronze`     | Imperio de Bronce  | Antigüedad          | Rojo / dorado                | Protectores, formaciones (bonos por aliados vecinos)                 |
+| `arcane`     | Orden Arcana       | Medioevo mágico     | Azul / violeta               | Habilidades, daño directo, control (aturdir, silenciar)              |
+| `clockwork`  | Engranaje          | Era del vapor       | Cobre / amarillo             | Objetos, construcciones, generación extra de Cronos                  |
+| `neon`       | Neón               | Futuro              | Cian / magenta               | Velocidad (acciones Rápidas e Instantáneas), trampas, robo de cartas |
+| `void`       | Vacío              | Fin de los tiempos  | Violeta oscuro / verde ácido | La pila de descarte: sacrificar y revivir aliados                    |
+| `neutral`    | Errantes           | Viajeros del tiempo | Blanco / turquesa            | Cartas que entran en el mazo de cualquier héroe                      |
 
 **Mover aliados entre slots para esquivar es una mecánica general**, disponible para todas las facciones (sección 2.4). Ninguna facción es "la del movimiento"; algunas cartas de cualquier facción pueden premiarlo o abaratarlo.
 
@@ -99,16 +99,16 @@ Si después del paso 5 los dos héroes siguen en pie, empieza una nueva fase. Ga
 
 Cada una de las 5 acciones de la línea de tiempo es una de estas:
 
-| Acción                     | Qué hace                                                                                                   | Costo                    |
-| -------------------------- | ---------------------------------------------------------------------------------------------------------- | ------------------------ |
-| **Generar Cronos**         | Descarta una carta de la mano a la pila y suma **+1 de capacidad de Cronos para siempre**. Máximo 1 por fase (`MAX_SACRIFICES_PER_PHASE`). | —                        |
-| **Jugar una carta**        | Invoca un aliado en un slot, lanza una habilidad, adjunta un arma o armadura al héroe, usa un objeto, pone una ubicación o una trampa. | Su costo en Cronos       |
-| **Atacar con un aliado**   | El aliado ataca a un slot rival (el del héroe o el de un aliado). Una vez por fase por aliado.               | —                        |
-| **Atacar con el héroe**    | Solo con un arma adjunta. Una vez por fase.                                                                  | 1 de durabilidad del arma |
-| **Habilidad del héroe**    | La activa del héroe. Una vez por fase.                                                                      | Su costo en Cronos       |
-| **Habilidad de un aliado** | Los aliados que tienen una activa.                                                                          | La que diga la carta     |
-| **Mover un aliado**        | **Para todas las facciones.** A un slot vacío, o intercambio con un aliado vecino. Es la forma de esquivar ataques. | —                        |
-| **Esperar**                | Nada. Algunas cartas premian esperar.                                                                       | —                        |
+| Acción                     | Qué hace                                                                                                                                   | Costo                     |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------- |
+| **Generar Cronos**         | Descarta una carta de la mano a la pila y suma **+1 de capacidad de Cronos para siempre**. Máximo 1 por fase (`MAX_SACRIFICES_PER_PHASE`). | —                         |
+| **Jugar una carta**        | Invoca un aliado en un slot, lanza una habilidad, adjunta un arma o armadura al héroe, usa un objeto, pone una ubicación o una trampa.     | Su costo en Cronos        |
+| **Atacar con un aliado**   | El aliado ataca a un slot rival (el del héroe o el de un aliado). Una vez por fase por aliado.                                             | —                         |
+| **Atacar con el héroe**    | Solo con un arma adjunta. Una vez por fase.                                                                                                | 1 de durabilidad del arma |
+| **Habilidad del héroe**    | La activa del héroe. Una vez por fase.                                                                                                     | Su costo en Cronos        |
+| **Habilidad de un aliado** | Los aliados que tienen una activa.                                                                                                         | La que diga la carta      |
+| **Mover un aliado**        | **Para todas las facciones.** A un slot vacío, o intercambio con un aliado vecino. Es la forma de esquivar ataques.                        | —                         |
+| **Esperar**                | Nada. Algunas cartas premian esperar.                                                                                                      | —                         |
 
 Con la capacidad permanente y 1 descarte por fase, en la fase _n_ se tienen hasta _n_ Cronos: la partida tiene curva y las cartas caras llegan más tarde.
 
@@ -124,12 +124,12 @@ Al programar, solo se usan las cartas que están en la mano al empezar la fase. 
 
 Cada acción tiene una **velocidad** (`instant`, `fast`, `normal`, `slow`). Dentro de un mismo paso, las acciones de los dos jugadores se resuelven de la más rápida a la más lenta:
 
-| Velocidad        | Ejemplos                                                               |
-| ---------------- | ---------------------------------------------------------------------- |
-| **Instantánea**  | Moverse, Generar Cronos, escudos, trampas que se activan               |
-| **Rápida**       | Aliados y habilidades con la palabra clave _Rápido_                    |
-| **Normal**       | La mayoría de los ataques, invocaciones y habilidades                  |
-| **Lenta**        | Efectos grandes (daño en área, rituales). A cambio, suelen ser más fuertes |
+| Velocidad       | Ejemplos                                                                   |
+| --------------- | -------------------------------------------------------------------------- |
+| **Instantánea** | Moverse, Generar Cronos, escudos, trampas que se activan                   |
+| **Rápida**      | Aliados y habilidades con la palabra clave _Rápido_                        |
+| **Normal**      | La mayoría de los ataques, invocaciones y habilidades                      |
+| **Lenta**       | Efectos grandes (daño en área, rituales). A cambio, suelen ser más fuertes |
 
 - **Misma velocidad = simultáneas.** Las dos acciones se calculan contra el mismo estado y su daño se aplica a la vez. Así, dos aliados que se atacan entre sí en el mismo paso se golpean los dos.
 - Después de cada velocidad se retiran los aliados que murieron, así que matar a un aliado con una acción más rápida le impide actuar en ese paso.
@@ -159,37 +159,37 @@ Todas las constantes de esta sección viven en `(engine)/data/rules.ts` (`STARTI
 
 ### 3.1 Tipos
 
-| Tipo (id)   | Nombre en pantalla | Descripción                                                                                       |
-| ----------- | ------------------ | ------------------------------------------------------------------------------------------------- |
-| `hero`      | Héroe              | Vida (90–120), facción, clase, pasiva y activa. Define qué cartas puede llevar el mazo (sección 4). |
-| `ally`      | Aliado             | Costo, ataque, vida, velocidad, palabras clave, efectos (al entrar, al atacar, al morir...).        |
-| `ability`   | Habilidad          | Efecto de un solo uso (daño, curación, robo, control).                                              |
-| `weapon`    | Arma               | Se adjunta al héroe: ataque y durabilidad, a veces con efecto (veneno, robo de vida...).            |
-| `armor`     | Armadura           | Se adjunta al héroe: puntos de armadura y a veces un efecto (espinas, resistencia...).              |
-| `item`      | Objeto             | Consumible (poción, bomba) o artefacto permanente con un efecto pasivo o una activa.                |
-| `location`  | Ubicación          | Efecto continuo de campo. Una por jugador.                                                          |
-| `trap`      | Trampa             | Se juega boca abajo y se activa sola cuando se cumple su condición. Encaja con el juego simultáneo. |
+| Tipo (id)  | Nombre en pantalla | Descripción                                                                                         |
+| ---------- | ------------------ | --------------------------------------------------------------------------------------------------- |
+| `hero`     | Héroe              | Vida (90–120), facción, clase, pasiva y activa. Define qué cartas puede llevar el mazo (sección 4). |
+| `ally`     | Aliado             | Costo, ataque, vida, velocidad, palabras clave, efectos (al entrar, al atacar, al morir...).        |
+| `ability`  | Habilidad          | Efecto de un solo uso (daño, curación, robo, control).                                              |
+| `weapon`   | Arma               | Se adjunta al héroe: ataque y durabilidad, a veces con efecto (veneno, robo de vida...).            |
+| `armor`    | Armadura           | Se adjunta al héroe: puntos de armadura y a veces un efecto (espinas, resistencia...).              |
+| `item`     | Objeto             | Consumible (poción, bomba) o artefacto permanente con un efecto pasivo o una activa.                |
+| `location` | Ubicación          | Efecto continuo de campo. Una por jugador.                                                          |
+| `trap`     | Trampa             | Se juega boca abajo y se activa sola cuando se cumple su condición. Encaja con el juego simultáneo. |
 
 ### 3.2 Palabras clave (primera versión)
 
-| Id          | Nombre en pantalla | Efecto                                                                       |
-| ----------- | ------------------ | ---------------------------------------------------------------------------- |
-| `guardian`  | Protector          | Desvía hacia él los ataques al héroe (ver 2.6)                                |
-| `quick`     | Rápido             | Sus ataques tienen velocidad Rápida                                           |
+| Id          | Nombre en pantalla | Efecto                                                                           |
+| ----------- | ------------------ | -------------------------------------------------------------------------------- |
+| `guardian`  | Protector          | Desvía hacia él los ataques al héroe (ver 2.6)                                   |
+| `quick`     | Rápido             | Sus ataques tienen velocidad Rápida                                              |
 | `charge`    | Embestida          | Puede atacar desde el paso siguiente al que entra, sin esperar a la próxima fase |
-| `ranged`    | A distancia        | No recibe contraataque                                                        |
-| `agile`     | Ágil               | Al moverse puede cambiar de lugar con cualquier aliado, no solo con un vecino |
-| `flying`    | Vuelo              | Solo lo pueden atacar aliados con Vuelo o A distancia                         |
-| `stealth`   | Sigilo             | No se lo puede elegir como objetivo hasta que ataque                          |
-| `frenzy`    | Furia              | Puede atacar dos veces por fase                                               |
-| `poison`    | Veneno             | El daño que hace a un aliado lo destruye                                      |
-| `lifesteal` | Robo de vida       | Cura al héroe tanto como el daño que hace                                     |
-| `shield`    | Escudo             | Ignora el primer daño que recibe                                              |
-| `thorns`    | Espinas X          | Quien lo ataca recibe X de daño                                               |
-| `cleave`    | Barrido            | Su ataque también pega en los slots vecinos                                   |
-| `unique`    | Única              | Solo 1 copia por mazo                                                         |
-| `echo`      | Eco                | Al morir vuelve a la mano una vez                                             |
-| `resurge`   | Resurgir           | Se puede jugar desde la pila de descarte                                      |
+| `ranged`    | A distancia        | No recibe contraataque                                                           |
+| `agile`     | Ágil               | Al moverse puede cambiar de lugar con cualquier aliado, no solo con un vecino    |
+| `flying`    | Vuelo              | Solo lo pueden atacar aliados con Vuelo o A distancia                            |
+| `stealth`   | Sigilo             | No se lo puede elegir como objetivo hasta que ataque                             |
+| `frenzy`    | Furia              | Puede atacar dos veces por fase                                                  |
+| `poison`    | Veneno             | El daño que hace a un aliado lo destruye                                         |
+| `lifesteal` | Robo de vida       | Cura al héroe tanto como el daño que hace                                        |
+| `shield`    | Escudo             | Ignora el primer daño que recibe                                                 |
+| `thorns`    | Espinas X          | Quien lo ataca recibe X de daño                                                  |
+| `cleave`    | Barrido            | Su ataque también pega en los slots vecinos                                      |
+| `unique`    | Única              | Solo 1 copia por mazo                                                            |
+| `echo`      | Eco                | Al morir vuelve a la mano una vez                                                |
+| `resurge`   | Resurgir           | Se puede jugar desde la pila de descarte                                         |
 
 Regla de invocación: un aliado que entra en el paso _n_ puede actuar desde la fase siguiente; con `charge`, desde el paso _n + 1_.
 
@@ -205,23 +205,23 @@ Como en Shadow Era, **no todas las cartas se pueden usar con cualquier héroe**.
 
 Cada héroe tiene una **facción** (sección 1) y una **clase**:
 
-| Clase (id) | Nombre en pantalla | Estilo                                                      |
-| ---------- | ------------------ | ----------------------------------------------------------- |
-| `warrior`  | Guerrero           | Armas pesadas y armaduras, golpes directos, aguante          |
-| `mage`     | Mago               | Habilidades de daño y control, armas mágicas livianas        |
-| `hunter`   | Cazador            | Arcos y trampas, ataques a distancia, rematar aliados        |
-| `mystic`   | Místico            | Curación, potenciar aliados, revivir                         |
+| Clase (id) | Nombre en pantalla | Estilo                                                |
+| ---------- | ------------------ | ----------------------------------------------------- |
+| `warrior`  | Guerrero           | Armas pesadas y armaduras, golpes directos, aguante   |
+| `mage`     | Mago               | Habilidades de daño y control, armas mágicas livianas |
+| `hunter`   | Cazador            | Arcos y trampas, ataques a distancia, rematar aliados |
+| `mystic`   | Místico            | Curación, potenciar aliados, revivir                  |
 
 Los 12 héroes: 2 por facción, de clases distintas, y cada clase aparece en 3 facciones:
 
-| Facción     | Héroe 1     | Héroe 2     |
-| ----------- | ----------- | ----------- |
-| `bronze`    | **warrior** (inicial) | hunter |
-| `arcane`    | **mage** (inicial)    | mystic |
-| `primal`    | **hunter** (inicial)  | mystic |
-| `clockwork` | warrior     | mage        |
-| `neon`      | hunter      | warrior     |
-| `void`      | mage        | mystic      |
+| Facción     | Héroe 1               | Héroe 2 |
+| ----------- | --------------------- | ------- |
+| `bronze`    | **warrior** (inicial) | hunter  |
+| `arcane`    | **mage** (inicial)    | mystic  |
+| `primal`    | **hunter** (inicial)  | mystic  |
+| `clockwork` | warrior               | mage    |
+| `neon`      | hunter                | warrior |
+| `void`      | mage                  | mystic  |
 
 Los 3 héroes iniciales son de facciones y clases distintas, así la elección del principio se siente diferente.
 
@@ -229,12 +229,12 @@ Los 3 héroes iniciales son de facciones y clases distintas, así la elección d
 
 Cada carta declara para quién es (`restriction` en su archivo):
 
-| Restricción          | Quién la puede usar                                          | Uso típico                                         |
-| -------------------- | ------------------------------------------------------------ | -------------------------------------------------- |
-| `{ kind: 'any' }`    | Cualquier héroe (cartas `neutral`)                            | Aliados genéricos, objetos, ubicaciones             |
-| `{ kind: 'faction', faction }` | Cualquier héroe de esa facción                      | La mayoría de los aliados y las ubicaciones         |
-| `{ kind: 'class', heroClass }` | Cualquier héroe de esa clase, de cualquier facción  | Habilidades, armas y armaduras                      |
-| `{ kind: 'hero', heroId }`     | Solo ese héroe                                       | Cartas exclusivas (su arma propia, su compañero)    |
+| Restricción                    | Quién la puede usar                                | Uso típico                                       |
+| ------------------------------ | -------------------------------------------------- | ------------------------------------------------ |
+| `{ kind: 'any' }`              | Cualquier héroe (cartas `neutral`)                 | Aliados genéricos, objetos, ubicaciones          |
+| `{ kind: 'faction', faction }` | Cualquier héroe de esa facción                     | La mayoría de los aliados y las ubicaciones      |
+| `{ kind: 'class', heroClass }` | Cualquier héroe de esa clase, de cualquier facción | Habilidades, armas y armaduras                   |
+| `{ kind: 'hero', heroId }`     | Solo ese héroe                                     | Cartas exclusivas (su arma propia, su compañero) |
 
 `canUseCard(hero, card)` en `(engine)/utils/deckRules.ts` es la única función que decide esto, y la usan el editor de mazos, la colección (filtro "usables con este héroe"), el starter, la tienda (marca de "no la puede usar tu héroe") y el servidor antes de una partida.
 
@@ -242,15 +242,15 @@ Cada carta declara para quién es (`restriction` en su archivo):
 
 ## 5. Rarezas
 
-| Rareza (id)  | Nombre en pantalla | Color del marco                       | Cartas en el catálogo |
-| ------------ | ------------------ | ------------------------------------- | --------------------- |
-| `common`     | Común              | Gris plata                            | 170                   |
-| `uncommon`   | Poco común         | Verde esmeralda                       | 120                   |
-| `rare`       | Rara               | Azul eléctrico                        | 90                    |
-| `epic`       | Épica              | Violeta                               | 55                    |
-| `legendary`  | Legendaria         | Dorado anaranjado                     | 35                    |
-| `exotic`     | Exótica            | Turquesa iridiscente                  | 18                    |
-| `mythic`     | Mítica             | Carmesí con brillo holográfico animado | 12                   |
+| Rareza (id) | Nombre en pantalla | Color del marco                        | Cartas en el catálogo |
+| ----------- | ------------------ | -------------------------------------- | --------------------- |
+| `common`    | Común              | Gris plata                             | 170                   |
+| `uncommon`  | Poco común         | Verde esmeralda                        | 120                   |
+| `rare`      | Rara               | Azul eléctrico                         | 90                    |
+| `epic`      | Épica              | Violeta                                | 55                    |
+| `legendary` | Legendaria         | Dorado anaranjado                      | 35                    |
+| `exotic`    | Exótica            | Turquesa iridiscente                   | 18                    |
+| `mythic`    | Mítica             | Carmesí con brillo holográfico animado | 12                    |
 
 Las rarezas altas no son "más fuertes por número": tienen efectos más complejos y más sinergia. Un mazo de comunes bien armado tiene que poder ganarle a uno de míticas mal armado. La validación del catálogo controla que costo y estadísticas estén dentro del rango de su rareza.
 
@@ -264,7 +264,7 @@ Las rarezas altas no son "más fuertes por número": tienen efectos más complej
 - **Héroe**: **exactamente 1** carta de héroe por mazo. Al empezar la partida va directo a su slot.
 - **Restricciones**: todas las demás cartas tienen que poder usarse con ese héroe (`canUseCard`, sección 4.2).
 - **Copias**: no más de 4 de la misma carta (1 si tiene `unique`).
-- Las reglas viven en `(engine)/utils/deckRules.ts` (funciones puras, con tests). Cada jugador puede tener varios mazos guardados y elige uno al entrar a una partida.
+- Las reglas viven en `(engine)/utils/deckRules.ts` (funciones puras, con tests). Cada jugador puede tener varios mazos guardados y marca uno como **activo**: todos los modos de juego (práctica, campañas y PvP) juegan con ese mazo sin elegirlo cada vez, y la tienda no deja vender las copias que usa, para que siga jugable.
 
 ### 6.2 Starter pack
 
@@ -381,14 +381,14 @@ Una carta sin traducción se muestra en inglés, así que **la traducción es op
 
 **12 héroes** y **488 cartas**:
 
-| Grupo                           | Cartas por grupo | Grupos | Total | Composición de cada grupo                                                    |
-| ------------------------------- | ---------------- | ------ | ----- | ---------------------------------------------------------------------------- |
-| `neutral` (cualquier héroe)     | 88               | 1      | 88    | 40 aliados, 6 habilidades, 4 armas, 4 armaduras, 16 objetos, 10 ubicaciones, 8 trampas |
-| Por facción                     | 40               | 6      | 240   | 28 aliados, 4 habilidades, 3 objetos, 2 ubicaciones, 3 trampas                |
-| Por clase                       | 25               | 4      | 100   | 12 habilidades, 6 armas, 5 armaduras, 2 objetos                               |
-| Exclusivas de un héroe          | 5                | 12     | 60    | 2 habilidades, 1 arma, 1 aliado compañero y 1 carta de premio de su campaña   |
-| Héroes                          | —                | —      | 12    |                                                                              |
-| **Total**                       |                  |        | **500** |                                                                            |
+| Grupo                       | Cartas por grupo | Grupos | Total   | Composición de cada grupo                                                              |
+| --------------------------- | ---------------- | ------ | ------- | -------------------------------------------------------------------------------------- |
+| `neutral` (cualquier héroe) | 88               | 1      | 88      | 40 aliados, 6 habilidades, 4 armas, 4 armaduras, 16 objetos, 10 ubicaciones, 8 trampas |
+| Por facción                 | 40               | 6      | 240     | 28 aliados, 4 habilidades, 3 objetos, 2 ubicaciones, 3 trampas                         |
+| Por clase                   | 25               | 4      | 100     | 12 habilidades, 6 armas, 5 armaduras, 2 objetos                                        |
+| Exclusivas de un héroe      | 5                | 12     | 60      | 2 habilidades, 1 arma, 1 aliado compañero y 1 carta de premio de su campaña            |
+| Héroes                      | —                | —      | 12      |                                                                                        |
+| **Total**                   |                  |        | **500** |                                                                                        |
 
 Por tipo da aproximadamente: 220 aliados, 102 habilidades, 40 armas, 24 armaduras, 42 objetos, 22 ubicaciones, 26 trampas, 12 premios de campaña y 12 héroes.
 
@@ -468,13 +468,13 @@ delta    = round(30 × (score − expected))       score: 1 gana, 0.5 empate, 0 
 
 ### 10.3 Oro
 
-| Resultado (PvP pública)  | Oro                                        |
-| ------------------------ | ------------------------------------------ |
+| Resultado (PvP pública)  | Oro                                              |
+| ------------------------ | ------------------------------------------------ |
 | Victoria                 | 40 + hasta 20 extra si el rival tenía más rating |
-| Empate                   | 15                                         |
-| Derrota                  | 5                                          |
-| Abandono                 | 0                                          |
-| Primera victoria del día | +100                                       |
+| Empate                   | 15                                               |
+| Derrota                  | 5                                                |
+| Abandono                 | 0                                                |
+| Primera victoria del día | +100                                             |
 
 - Partidas privadas: la mitad, y como máximo 3 con premio por día contra el mismo rival (evita que dos amigos se regalen oro).
 - Campaña: oro la primera vez que se gana cada combate (de 50 a 300 según la dificultad) y 10 % de eso si se repite.
@@ -488,13 +488,13 @@ Módulo `(shop)`, con tres pestañas: **Sobres**, **Cartas** y **Vender**. Preci
 
 ### 11.1 Sobres (8 cartas)
 
-| Sobre (id)    | Precio | Contenido                                                                                  |
-| ------------- | ------ | ------------------------------------------------------------------------------------------ |
-| `traveler`    | 300    | 6 comunes, 2 poco comunes; 10 % de que una sea rara                                         |
-| `chronicler`  | 800    | 4 comunes, 3 poco comunes, 1 rara o mejor (rara 80 %, épica 16 %, legendaria 4 %)           |
-| `guardian`    | 2.000  | 3 poco comunes, 3 raras, 2 épicas o mejor (épica 80 %, legendaria 17 %, exótica 3 %)        |
-| `eternal`     | 5.000  | 2 raras, 3 épicas, 2 legendarias, 1 exótica o mejor (exótica 85 %, mítica 15 %)              |
-| `faction-*`   | 1.000  | Como `chronicler`, pero solo cartas de una facción y neutrales                              |
+| Sobre (id)   | Precio | Contenido                                                                            |
+| ------------ | ------ | ------------------------------------------------------------------------------------ |
+| `traveler`   | 300    | 6 comunes, 2 poco comunes; 10 % de que una sea rara                                  |
+| `chronicler` | 800    | 4 comunes, 3 poco comunes, 1 rara o mejor (rara 80 %, épica 16 %, legendaria 4 %)    |
+| `guardian`   | 2.000  | 3 poco comunes, 3 raras, 2 épicas o mejor (épica 80 %, legendaria 17 %, exótica 3 %) |
+| `eternal`    | 5.000  | 2 raras, 3 épicas, 2 legendarias, 1 exótica o mejor (exótica 85 %, mítica 15 %)      |
+| `faction-*`  | 1.000  | Como `chronicler`, pero solo cartas de una facción y neutrales                       |
 
 - **Probabilidades visibles** en la tienda (Google Play exige mostrar las probabilidades de los artículos al azar).
 - **Garantía**: cada 10 sobres `guardian` o `eternal` sin legendaria, el siguiente trae una (contador `users.packsWithoutLegendary`).
@@ -505,15 +505,15 @@ Módulo `(shop)`, con tres pestañas: **Sobres**, **Cartas** y **Vender**. Preci
 
 **Cada carta tiene su propio precio** (`price` en su archivo), dentro del rango de su rareza. Por ejemplo, una común muy jugada puede costar 75 y otra de nicho 45. Las rarezas se desbloquean de a una pagando oro:
 
-| Rareza      | Rango de precio por carta | Desbloqueo (una vez)    |
-| ----------- | ------------------------- | ----------------------- |
-| Común       | 40 – 80                   | Abierta desde el inicio |
-| Poco común  | 140 – 220                 | 1.000                   |
-| Rara        | 450 – 750                 | 3.000                   |
-| Épica       | 1.400 – 2.200             | 8.000                   |
-| Legendaria  | 4.000 – 6.000             | 20.000                  |
-| Exótica     | 10.000 – 14.000           | 50.000                  |
-| Mítica      | 25.000 – 35.000           | 100.000                 |
+| Rareza     | Rango de precio por carta | Desbloqueo (una vez)    |
+| ---------- | ------------------------- | ----------------------- |
+| Común      | 40 – 80                   | Abierta desde el inicio |
+| Poco común | 140 – 220                 | 1.000                   |
+| Rara       | 450 – 750                 | 3.000                   |
+| Épica      | 1.400 – 2.200             | 8.000                   |
+| Legendaria | 4.000 – 6.000             | 20.000                  |
+| Exótica    | 10.000 – 14.000           | 50.000                  |
+| Mítica     | 25.000 – 35.000           | 100.000                 |
 
 - El centro de cada rango es el doble de los precios del plan anterior.
 - Para desbloquear una rareza hay que tener la anterior desbloqueada. La pestaña Cartas muestra el catálogo con filtros (facción, clase, tipo, costo, rareza, "usables con mi héroe") y las rarezas bloqueadas con candado y su costo de desbloqueo.
@@ -521,7 +521,7 @@ Módulo `(shop)`, con tres pestañas: **Sobres**, **Cartas** y **Vender**. Preci
 
 ### 11.3 Vender
 
-- **Precio de venta**: el 15 % del precio de esa carta, redondeado (una común de 60 se vende a 9). Pide confirmación si es de épica para arriba o si está en un mazo.
+- **Precio de venta**: el 15 % del precio de esa carta, redondeado (una común de 60 se vende a 9). Pide confirmación si es de épica para arriba. Las copias que usa el mazo activo no se pueden vender: solo las de sobra, para que el mazo activo siga jugable.
 - **Venta rápida**: un botón vende todas las copias que pasan de 4 de cada carta (de 1 si es `unique`), muestra el total antes de confirmar y nunca toca una carta que deje un mazo guardado sin completar.
 
 ---
@@ -536,7 +536,7 @@ Módulo `(pvp)`.
 - **Pública**: aparece en la lista y cualquiera se une. Cuenta para el rating.
 - **Privada**: genera un código de 6 letras (y un link para compartir). Solo entra quien lo tiene.
 - **Partida rápida** (opcional): te une a la pública con rating más cercano o crea una.
-- Al entrar se elige mazo (validado en el servidor). Cuando están los dos, empieza la partida.
+- Se juega con el mazo activo (validado en el servidor). Cuando están los dos, empieza la partida.
 - Una sala sin rival en 10 minutos se cierra sola.
 
 ### 12.2 El servidor manda
@@ -578,14 +578,14 @@ Módulo `(campaign)`.
 
 ### 13.2 Dificultad creciente
 
-| Combate   | Mazo de la CPU                  | Sinergia                     | IA                             | Situación adversa (ejemplos)                                 |
-| --------- | ------------------------------- | ---------------------------- | ------------------------------ | ------------------------------------------------------------ |
-| 1–2       | Comunes                         | Al azar dentro de lo usable  | Codiciosa                      | Ninguna                                                      |
-| 3–4       | Comunes y poco comunes          | Una sinergia simple          | Codiciosa + defensa            | La CPU empieza con 2 de capacidad de Cronos                  |
-| 5–6       | Hasta raras                     | Mazo temático                | Mira 1 fase                    | Empieza con 1 aliado desplegado y +15 de vida                 |
-| 7–8       | Hasta épicas                    | Mazo armado a mano           | Mira 1 fase con más candidatos | Empieza con 2 aliados, 3 Cronos y una ubicación en juego      |
-| 9         | Hasta legendarias               | Mazo armado a mano           | Mira 2 fases                   | Vos empezás con 5 cartas en la mano; ella con 3 aliados y arma |
-| 10 (jefe) | Mazo del jefe con cartas propias | Máxima                      | La mejor                       | Héroe jefe con más vida, poder único y reglas especiales      |
+| Combate   | Mazo de la CPU                   | Sinergia                    | IA                             | Situación adversa (ejemplos)                                   |
+| --------- | -------------------------------- | --------------------------- | ------------------------------ | -------------------------------------------------------------- |
+| 1–2       | Comunes                          | Al azar dentro de lo usable | Codiciosa                      | Ninguna                                                        |
+| 3–4       | Comunes y poco comunes           | Una sinergia simple         | Codiciosa + defensa            | La CPU empieza con 2 de capacidad de Cronos                    |
+| 5–6       | Hasta raras                      | Mazo temático               | Mira 1 fase                    | Empieza con 1 aliado desplegado y +15 de vida                  |
+| 7–8       | Hasta épicas                     | Mazo armado a mano          | Mira 1 fase con más candidatos | Empieza con 2 aliados, 3 Cronos y una ubicación en juego       |
+| 9         | Hasta legendarias                | Mazo armado a mano          | Mira 2 fases                   | Vos empezás con 5 cartas en la mano; ella con 3 aliados y arma |
+| 10 (jefe) | Mazo del jefe con cartas propias | Máxima                      | La mejor                       | Héroe jefe con más vida, poder único y reglas especiales       |
 
 Cada combate se define con datos: `{ cpuDeck, aiLevel, cpuSetup: { allies, chronos, location, weapon, armor, extraHealth, hand }, playerSetup, rules }`. Los mazos de la CPU también respetan las restricciones de su héroe.
 
@@ -715,16 +715,16 @@ Sin React ni base de datos, determinístico, con tests:
 
 ### 15.4 Base de datos
 
-| Tabla               | Contenido                                                                              |
-| ------------------- | -------------------------------------------------------------------------------------- |
-| `users`             | Como Crisol, más `rating`, `gold`, `starterHeroId`, `packsWithoutLegendary`             |
-| (auth)              | `email_verification_tokens`, `password_reset_tokens` (como Crisol)                     |
-| `user_cards`        | `userId`, `cardId`, `quantity`                                                         |
-| `decks`             | `id`, `userId`, `name`, `heroId`, `updatedAt`                                          |
-| `deck_cards`        | `deckId`, `cardId`, `count`                                                            |
-| `shop_unlocks`      | `userId`, `rarity`, `unlockedAt`                                                       |
-| `matches`           | Ver 12.4                                                                               |
-| `campaign_progress` | `userId`, `heroId`, `stage`, `completedAt`                                             |
+| Tabla               | Contenido                                                                   |
+| ------------------- | --------------------------------------------------------------------------- |
+| `users`             | Como Crisol, más `rating`, `gold`, `starterHeroId`, `packsWithoutLegendary` |
+| (auth)              | `email_verification_tokens`, `password_reset_tokens` (como Crisol)          |
+| `user_cards`        | `userId`, `cardId`, `quantity`                                              |
+| `decks`             | `id`, `userId`, `name`, `heroId`, `updatedAt`                               |
+| `deck_cards`        | `deckId`, `cardId`, `count`                                                 |
+| `shop_unlocks`      | `userId`, `rarity`, `unlockedAt`                                            |
+| `matches`           | Ver 12.4                                                                    |
+| `campaign_progress` | `userId`, `heroId`, `stage`, `completedAt`                                  |
 
 Sin historial de rating (solo el actual en `users.rating`), sin registro de aperturas de sobres (la garantía usa el contador `users.packsWithoutLegendary`) y sin libro de movimientos de oro (ver 19).
 
@@ -761,40 +761,40 @@ Igual que Crisol:
 
 Cada fase termina con algo jugable o usable, sus tests y el README actualizado (como Crisol).
 
-| Fase | Entrega                                                                                                                               |
-| ---- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| **0. Base** | Proyecto Next.js con la base de Crisol (auth, i18n, PWA, base de datos, lint, tests), tokens de diseño pastel, landing y menú vacío. Deploy en Vercel. |
-| **1. Motor** | `(engine)` completo con tests, `defineCard`, restricciones, el índice automático, el set de prueba de 30 cartas, `/dev/cards` y `yarn duel` con una IA simple. |
-| **2. Batalla** | La pantalla de batalla jugable contra la CPU (sin premios): programación, proyección, movimientos, reloj de 90 s, resolución animada, fin de partida. |
-| **3. Colección y mazos** | Tablas y servicios, elección del héroe inicial, starters, tutorial, colección y editor de mazos.                    |
-| **4. Economía y tienda** | Oro, sobres con animación, cartas sueltas con precio propio, desbloqueos, venta y venta rápida; `yarn economy`.     |
-| **5. PvP** | Salas públicas y privadas, servidor autoritativo, plazos, polling, abandono, rating, oro por partida, ranking.                |
-| **6. Campañas** | IA por niveles, las 12 campañas (las 3 iniciales primero), verificación del resultado, premios y cartas exclusivas.    |
-| **7. Contenido** | Las 500 cartas por lotes, cada lote con sus prompts en `art/catalog.csv` y su pasada de balance; `yarn art` con progreso en vivo y `--watch`. Puede ir en paralelo desde la fase 2. |
-| **8. Pulido y publicación** | Animaciones finales, sonido, arte real, rendimiento en celulares de gama baja, TWA, ficha de Play Store y primer release. |
+| Fase                        | Entrega                                                                                                                                                                             |
+| --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **0. Base**                 | Proyecto Next.js con la base de Crisol (auth, i18n, PWA, base de datos, lint, tests), tokens de diseño pastel, landing y menú vacío. Deploy en Vercel.                              |
+| **1. Motor**                | `(engine)` completo con tests, `defineCard`, restricciones, el índice automático, el set de prueba de 30 cartas, `/dev/cards` y `yarn duel` con una IA simple.                      |
+| **2. Batalla**              | La pantalla de batalla jugable contra la CPU (sin premios): programación, proyección, movimientos, reloj de 90 s, resolución animada, fin de partida.                               |
+| **3. Colección y mazos**    | Tablas y servicios, elección del héroe inicial, starters, tutorial, colección y editor de mazos.                                                                                    |
+| **4. Economía y tienda**    | Oro, sobres con animación, cartas sueltas con precio propio, desbloqueos, venta y venta rápida; `yarn economy`.                                                                     |
+| **5. PvP**                  | Salas públicas y privadas, servidor autoritativo, plazos, polling, abandono, rating, oro por partida, ranking.                                                                      |
+| **6. Campañas**             | IA por niveles, las 12 campañas (las 3 iniciales primero), verificación del resultado, premios y cartas exclusivas.                                                                 |
+| **7. Contenido**            | Las 500 cartas por lotes, cada lote con sus prompts en `art/catalog.csv` y su pasada de balance; `yarn art` con progreso en vivo y `--watch`. Puede ir en paralelo desde la fase 2. |
+| **8. Pulido y publicación** | Animaciones finales, sonido, arte real, rendimiento en celulares de gama baja, TWA, ficha de Play Store y primer release.                                                           |
 
 ---
 
 ## 19. Decisiones tomadas
 
-| Tema                         | Decisión                                                                                                   |
-| ---------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| Tamaño de mazo               | Mínimo 40, máximo 200, contando el héroe                                                                    |
-| Héroe                        | Exactamente 1 por mazo. El jugador elige su héroe inicial y el starter trae ese héroe + 39 cartas usables por él |
-| Cronos                       | Descartar da +1 de capacidad permanente; se recarga cada fase; 1 descarte por fase                          |
-| Vida de los héroes           | Entre 90 y 120                                                                                              |
-| Equipo del héroe             | Empieza sin arma ni armadura; son cartas que se adjuntan                                                    |
-| Restricciones                | Cada carta es para cualquier héroe, una facción, una clase o un héroe en particular                          |
-| Movimiento entre slots       | Mecánica general de todas las facciones                                                                     |
-| Mano                         | 7 iniciales y máximo 7                                                                                      |
-| Tiempo de programación       | 90 segundos por fase                                                                                        |
-| Ubicación del héroe          | Detrás de sus aliados (o al costado en pantallas anchas), nunca delante                                     |
-| Idioma del código            | Todo en inglés; el español solo como traducción de la interfaz y de las cartas (opcional)                   |
-| Cartas para todas las facciones | `cards/neutral/`                                                                                         |
-| `yarn art`                   | Muestra cada imagen en el momento en que la procesa; `--watch` para procesar al instante                     |
-| Sobres                       | El doble de precio que en el plan anterior                                                                  |
-| Cartas sueltas               | Precio propio por carta, dentro de un rango por rareza, el doble que en el plan anterior                    |
-| Rating                       | Solo el actual (`users.rating`), sin historial                                                              |
-| `gold_ledger`, `pack_openings` | Fuera del plan. La garantía de los sobres usa un contador en `users`. Si más adelante hace falta auditar el oro (por un bug de premios, por ejemplo), se puede sumar el libro de movimientos |
-| Partidas privadas            | No cuentan para el rating y dan la mitad de oro                                                             |
-| Orientación                  | Horizontal, como Crisol                                                                                     |
+| Tema                            | Decisión                                                                                                                                                                                     |
+| ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Tamaño de mazo                  | Mínimo 40, máximo 200, contando el héroe                                                                                                                                                     |
+| Héroe                           | Exactamente 1 por mazo. El jugador elige su héroe inicial y el starter trae ese héroe + 39 cartas usables por él                                                                             |
+| Cronos                          | Descartar da +1 de capacidad permanente; se recarga cada fase; 1 descarte por fase                                                                                                           |
+| Vida de los héroes              | Entre 90 y 120                                                                                                                                                                               |
+| Equipo del héroe                | Empieza sin arma ni armadura; son cartas que se adjuntan                                                                                                                                     |
+| Restricciones                   | Cada carta es para cualquier héroe, una facción, una clase o un héroe en particular                                                                                                          |
+| Movimiento entre slots          | Mecánica general de todas las facciones                                                                                                                                                      |
+| Mano                            | 7 iniciales y máximo 7                                                                                                                                                                       |
+| Tiempo de programación          | 90 segundos por fase                                                                                                                                                                         |
+| Ubicación del héroe             | Detrás de sus aliados (o al costado en pantallas anchas), nunca delante                                                                                                                      |
+| Idioma del código               | Todo en inglés; el español solo como traducción de la interfaz y de las cartas (opcional)                                                                                                    |
+| Cartas para todas las facciones | `cards/neutral/`                                                                                                                                                                             |
+| `yarn art`                      | Muestra cada imagen en el momento en que la procesa; `--watch` para procesar al instante                                                                                                     |
+| Sobres                          | El doble de precio que en el plan anterior                                                                                                                                                   |
+| Cartas sueltas                  | Precio propio por carta, dentro de un rango por rareza, el doble que en el plan anterior                                                                                                     |
+| Rating                          | Solo el actual (`users.rating`), sin historial                                                                                                                                               |
+| `gold_ledger`, `pack_openings`  | Fuera del plan. La garantía de los sobres usa un contador en `users`. Si más adelante hace falta auditar el oro (por un bug de premios, por ejemplo), se puede sumar el libro de movimientos |
+| Partidas privadas               | No cuentan para el rating y dan la mitad de oro                                                                                                                                              |
+| Orientación                     | Horizontal, como Crisol                                                                                                                                                                      |

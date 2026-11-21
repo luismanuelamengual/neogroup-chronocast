@@ -5,7 +5,7 @@ import CampaignMap from '@/app/(protected)/(campaign)/components/CampaignMap'
 import { findCampaign } from '@/app/(protected)/(campaign)/data/campaigns'
 import { getCampaignSummary } from '@/app/(protected)/(campaign)/services/campaigns'
 import { storyKey } from '@/app/(protected)/(campaign)/utils/storyKey'
-import { playableDecks } from '@/app/(protected)/(collection)/services/decks'
+import { getActiveDeck } from '@/app/(protected)/(collection)/services/decks'
 import { getT } from '@/app/i18n/server'
 
 export async function generateMetadata({ params }: { params: Promise<{ heroId: string }> }): Promise<Metadata> {
@@ -30,7 +30,5 @@ export default async function CampaignPage({ params }: { params: Promise<{ heroI
     redirect('/campaign')
   }
 
-  const decks = (await playableDecks(userId)).filter((deck) => deck.heroId === heroId)
-
-  return <CampaignMap campaign={summary} decks={decks} />
+  return <CampaignMap campaign={summary} deck={await getActiveDeck(userId)} />
 }

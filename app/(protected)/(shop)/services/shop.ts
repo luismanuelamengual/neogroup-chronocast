@@ -1,6 +1,7 @@
 import '@/app/(protected)/(cards)/utils/catalog'
 import { DB } from '@neogroup/neorm'
 import { addCards, getCollection } from '@/app/(protected)/(collection)/services/collection'
+import { getActiveDeck } from '@/app/(protected)/(collection)/services/decks'
 import { RARITIES, Rarity } from '@/app/(protected)/(engine)/models/Rarity'
 import { getCard, hasCard } from '@/app/(protected)/(engine)/utils/registry'
 import { MAX_BUY_COUNT } from '@/app/(protected)/(shop)/data/prices'
@@ -10,6 +11,7 @@ import {
   isSellable,
   nextUnlock,
   quickSellPlan,
+  sellableCopies,
   sellPrice,
   unlockedRarities
 } from '@/app/(protected)/(shop)/utils/prices'
@@ -55,35 +57,11 @@ export async function getUnlocked(userId: number): Promise<Rarity[]> {
   return unlockedRarities(rows.map((row) => String(row.rarity)))
 }
 
-/** The most copies of each card (heroes included) that any saved deck of a player holds. */
+/** The copies of each card the active deck holds (hero included): selling never takes those. */
 export async function getDeckUsage(userId: number): Promise<Record<string, number>> {
-  const decks = await DB.table('decks').where('userId', userId).get()
-  const usage: Record<string, number> = {}
+  const deck = await getActiveDeck(userId)
 
-  if (decks.length === 0) {
-    return usage
-  }
-
-  const rows = await DB.table('deck_cards')
-    .whereIn(
-      'deckId',
-      decks.map((deck) => Number(deck.id))
-    )
-    .get()
-
-  for (const row of rows) {
-    const cardId = String(column(row, 'cardId'))
-
-    usage[cardId] = Math.max(usage[cardId] ?? 0, Number(column(row, 'count')))
-  }
-
-  for (const deck of decks) {
-    const heroId = String(column(deck, 'heroId'))
-
-    usage[heroId] = Math.max(usage[heroId] ?? 0, 1)
-  }
-
-  return usage
+  return deck ? { ...deck.cards, [deck.heroId]: 1 } : {}
 }
 
 export async function getShopState(userId: number): Promise<ShopState> {
@@ -164,6 +142,7 @@ export async function buyCard(userId: number, cardId: string, count: number = 1)
 /** Removes copies from a collection and pays 15 % of their price, inside a transaction. */
 async function sell(userId: number, cards: Record<string, number>): Promise<number> {
   const collection = await getCollection(userId)
+  const deckUsage = await getDeckUsage(userId)
   let gold = 0
 
   for (const [cardId, count] of Object.entries(cards)) {
@@ -173,6 +152,10 @@ async function sell(userId: number, cards: Record<string, number>): Promise<numb
 
     if ((collection[cardId] ?? 0) < count) {
       throw new ApiException('errors.notEnoughCopies', 400, { card: getCard(cardId).name })
+    }
+
+    if (count > sellableCopies(collection[cardId], deckUsage[cardId])) {
+      throw new ApiException('errors.cardInDeck', 400, { card: getCard(cardId).name })
     }
 
     gold += sellPrice(getCard(cardId)) * count
@@ -188,8 +171,8 @@ async function sell(userId: number, cards: Record<string, number>): Promise<numb
 }
 
 /**
- * Sells copies of cards. A sale can leave a deck unfinished: the screen asks
- * first (docs/PLAN.md, section 11.3).
+ * Sells copies of cards, never one the active deck holds: only the spare ones,
+ * so that the active deck stays playable (docs/PLAN.md, section 11.3).
  */
 export async function sellCards(userId: number, input: Record<string, number>): Promise<Sale> {
   const cards: Record<string, number> = {}
@@ -211,7 +194,7 @@ export async function sellCards(userId: number, input: Record<string, number>): 
   return { state: await getShopState(userId), cards, gold }
 }
 
-/** Quick sell: every copy beyond 4 (1 if unique) that no saved deck needs. */
+/** Quick sell: every copy beyond 4 (1 if unique) that the active deck does not need. */
 export async function quickSell(userId: number): Promise<Sale> {
   let plan = { cards: {} as Record<string, number>, gold: 0 }
 

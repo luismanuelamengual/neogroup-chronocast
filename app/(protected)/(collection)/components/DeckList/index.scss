@@ -21,9 +21,15 @@
     }
   }
 
-  &__empty {
+  &__empty,
+  &__hint {
+    margin: 0;
     color: var(--color-text-secondary);
     font-weight: 700;
+  }
+
+  &__hint {
+    font-size: 0.82rem;
   }
 
   &__grid {
@@ -46,11 +52,32 @@
     background: white;
     box-shadow: var(--frame-shadow);
 
+    position: relative;
+
     @each $faction in primal, bronze, arcane, clockwork, neon, void, neutral {
       &.faction-#{$faction} {
         --faction: var(--faction-#{$faction});
       }
     }
+
+    &.active {
+      box-shadow:
+        0 0 0 3px var(--color-gold),
+        var(--frame-shadow);
+    }
+  }
+
+  &__active {
+    position: absolute;
+    top: -10px;
+    right: 12px;
+    padding: 1px 10px;
+    border: 2px solid var(--color-outline);
+    border-radius: 999px;
+    background: var(--color-gold);
+    color: var(--color-outline);
+    font-family: var(--font-display);
+    font-size: 0.78rem;
   }
 
   &__hero {
@@ -70,6 +97,8 @@
   &__info {
     display: flex;
     flex: 1;
+    // Narrow cards (phones): the buttons go to their own line instead of squeezing the name.
+    min-width: 170px;
     flex-direction: column;
     gap: 2px;
     font-size: 0.82rem;

@@ -8,8 +8,7 @@ import { useRequests } from '@/app/hooks/useRequests'
 export function useCampaign() {
   const executeRequest = useRequests()
   const startBattle = useCallback(
-    (heroId: string, stage: number, deckId: number) =>
-      executeRequest<BattleTicket>('/startCampaignBattle', { heroId, stage, deckId }),
+    (heroId: string, stage: number) => executeRequest<BattleTicket>('/startCampaignBattle', { heroId, stage }),
     [executeRequest]
   )
   const finishBattle = useCallback(

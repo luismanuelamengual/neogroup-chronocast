@@ -112,12 +112,15 @@
   }
 
   &__card {
-    opacity: 0;
-    animation: starter-card-in 0.35s cubic-bezier(0.3, 1.5, 0.5, 1) forwards;
+    --flip-radius: 10px;
+    --flip-glyph: calc(var(--card-w) * 0.4);
 
-    .hand-card {
-      cursor: default;
-    }
+    width: var(--card-w);
+    animation: starter-card-in 0.35s cubic-bezier(0.3, 1.5, 0.5, 1) backwards;
+  }
+
+  &__zoom {
+    display: block;
   }
 
   &__done {
@@ -138,6 +141,42 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 8px;
+    }
+  }
+}
+
+// Phones in landscape: the 40 cards in 3 rows of 14, as big as the screen
+// allows (StarterChoice computes --card-w), with the hint and the buttons in
+// one line below.
+.starter-choice.opening {
+  @media (max-height: 560px) {
+    gap: 6px;
+    padding-top: calc(6px + var(--safe-top));
+    padding-bottom: calc(6px + var(--safe-bottom));
+
+    h1 {
+      font-size: 1.3rem;
+    }
+
+    .starter-choice__pack {
+      // --card-w comes from the component (sized to fit the screen).
+      --gap: 5px;
+
+      display: grid;
+      grid-template-columns: repeat(14, var(--card-w));
+      gap: var(--gap);
+      padding: 4px;
+    }
+
+    .starter-choice__done {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+
+      p {
+        font-size: 0.8rem;
+      }
     }
   }
 }

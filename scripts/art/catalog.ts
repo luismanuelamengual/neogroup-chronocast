@@ -4,7 +4,8 @@
  * file, width, height, prompt) and art/catalog.md from the cards themselves,
  * so it never needs to be kept by hand. One batch per group of the catalog
  * (neutral, each faction, each class, each hero with its own cards). Heroes
- * get a second, square image: their portrait on the board.
+ * get a second, square image: their portrait on the board. First of all, the
+ * card back (batch `ui`).
  *
  * Usage: yarn art:catalog
  */
@@ -19,6 +20,21 @@ export const BASE_PROMPT =
   'clean thick outlines, dramatic lighting, background with depth, vertical framing, no text, no frame, no watermark'
 
 export const CARD_SIZE = { width: 1024, height: 1280 }
+
+/**
+ * The back of every card (face down in packs, the starter and the rival's
+ * hand): one image, symmetric, without the style of any faction.
+ */
+export const CARD_BACK_PROMPT =
+  'Collectible card game card back design, painted cartoon style, very vivid and saturated colors, high contrast, ' +
+  'clean thick outlines, perfectly symmetric ornamental composition centered on the card, vertical framing. ' +
+  'In the center a glowing golden hourglass with violet sand inside a circular clockwork emblem of interlocking ' +
+  'brass gears and a clock dial with roman numerals, radiant light rays behind it. Deep violet and indigo ' +
+  'background with a subtle starry time vortex and faint swirling arcane patterns. Ornate gold filigree border ' +
+  'with small hourglass and gear motifs in the four corners. No text, no letters, no logo, no watermark'
+
+/** The file of the card back in art/source/cards/ (and its name in public/cards/manifest.json). */
+export const CARD_BACK_FILE = 'card-back.png'
 export const PORTRAIT_SIZE = { width: 1024, height: 1024 }
 
 export interface ArtRow {
@@ -77,10 +93,21 @@ export function artRows(): ArtRow[] {
       : [main]
   })
   const rank = (batch: string) => BATCH_ORDER.indexOf(batch.split('-')[0])
+  const back: ArtRow = {
+    batch: 'ui',
+    file: CARD_BACK_FILE,
+    ...CARD_SIZE,
+    prompt: CARD_BACK_PROMPT,
+    cardId: 'card-back',
+    portrait: false
+  }
 
-  return rows.sort(
-    (a, b) => rank(a.batch) - rank(b.batch) || a.batch.localeCompare(b.batch) || a.file.localeCompare(b.file)
-  )
+  return [
+    back,
+    ...rows.sort(
+      (a, b) => rank(a.batch) - rank(b.batch) || a.batch.localeCompare(b.batch) || a.file.localeCompare(b.file)
+    )
+  ]
 }
 
 function csvCell(value: string | number): string {

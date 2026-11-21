@@ -82,7 +82,7 @@ export async function chooseStarter(userId: number, heroId: string): Promise<{ d
     await DB.table('deck_cards').insert(
       Object.entries(countCards(deck.cards)).map(([cardId, count]) => ({ deckId, cardId, count }))
     )
-    await DB.table('users').where('id', userId).update({ starterHeroId: heroId })
+    await DB.table('users').where('id', userId).update({ starterHeroId: heroId, activeDeckId: deckId })
   })
 
   return { deckId, cards: [heroId, ...deck.cards] }

@@ -5,7 +5,8 @@ export const en: Messages = {
   common: {
     cancel: 'Cancel',
     close: 'Close',
-    loading: 'Loading...'
+    loading: 'Loading...',
+    tapToClose: 'Tap to close'
   },
   sound: {
     title: 'Sound',
@@ -320,6 +321,8 @@ export const en: Messages = {
     choose: 'Choose {hero}',
     opening: 'Opening your starter deck...',
     opened: 'Your starter deck!',
+    tap: 'Tap a card to flip it',
+    revealAll: 'Flip them all',
     openedText: 'It is already saved in Decks. We recommend playing the tutorial to learn the basics.',
     tutorial: 'Play the tutorial',
     menu: 'Go to the menu'
@@ -344,6 +347,14 @@ export const en: Messages = {
     empty: 'No card matches the filters.',
     back: 'Menu'
   },
+  activeDeck: {
+    title: 'Your active deck',
+    change: 'Change',
+    none: 'You have no deck to play with.',
+    notPlayable: '"{name}" is unfinished: complete it or activate another one in Decks.',
+    wrongHero:
+      'This campaign is played with a {hero} deck and your active deck is a {other} one. Activate a {hero} deck in Decks.'
+  },
   decks: {
     title: 'Decks',
     new: 'New deck',
@@ -355,6 +366,10 @@ export const en: Messages = {
     delete: 'Delete',
     deleteConfirm: 'Delete the deck "{name}"? This cannot be undone.',
     deleted: 'Deck deleted',
+    active: 'Active',
+    setActive: 'Activate',
+    activated: 'You now play with "{name}"',
+    activeHint: 'The active deck is the one you use in every game mode, and the shop does not let you sell its cards.',
     empty: 'You have no decks yet.',
     back: 'Menu',
     editor: {
@@ -408,8 +423,7 @@ export const en: Messages = {
   battle: {
     practice: {
       title: 'Practice',
-      text: 'Play against the CPU with one of your ready decks (or a starter deck if you have none). No rewards: it is to learn and try things out.',
-      yourDeck: 'Your deck',
+      text: 'Play against the CPU with your active deck. No rewards: it is to learn and try things out.',
       rivalHero: 'CPU hero',
       start: 'Start',
       back: 'Back'
@@ -583,7 +597,7 @@ export const en: Messages = {
     opening: {
       title: 'Opening the {pack}',
       tap: 'Tap a card to flip it',
-      revealAll: 'Show all',
+      revealAll: 'Flip them all',
       done: 'Pack opened!',
       isNew: 'New!',
       guaranteed: 'Guarantee! This pack brings a legendary.',
@@ -606,7 +620,7 @@ export const en: Messages = {
     sell: {
       quick: 'Quick sell',
       quickText:
-        'Sells the copies beyond 4 of each card (beyond 1 if it is unique) and never touches the ones your saved decks use.',
+        'Sells the copies beyond 4 of each card (beyond 1 if it is unique) and never touches the ones your active deck uses.',
       quickPreview: {
         one: 'You sell {count} card for {gold} gold.',
         other: 'You sell {count} cards for {gold} gold.'
@@ -618,10 +632,18 @@ export const en: Messages = {
       sellOne: 'Sell 1 for {gold}',
       sellExtra: 'Sell the {count} spare for {gold}',
       confirmValuable: 'It is a {rarity} card. Are you sure you want to sell it?',
-      confirmDeck: 'It is in a saved deck: if you sell it, that deck may end up unfinished.',
+      lockedInDeck: {
+        one: 'Your active deck uses this copy, so it cannot be sold. Take it out of the deck or activate another one to sell it.',
+        other:
+          'Your active deck uses these {count} copies, so they cannot be sold. Take them out of the deck or activate another one to sell them.'
+      },
+      freeCopies: {
+        one: 'You can sell {count} copy: the rest are in your active deck.',
+        other: 'You can sell {count} copies: the rest are in your active deck.'
+      },
       sold: { one: 'You sold {count} card for {gold} gold', other: 'You sold {count} cards for {gold} gold' },
       price: 'Sells for {gold}',
-      inDeck: 'In a deck',
+      inDeck: 'Active deck',
       empty: 'You have no cards to sell.'
     }
   },
@@ -631,7 +653,6 @@ export const en: Messages = {
     activeMatch: 'You have a match in progress.',
     resume: 'Back to the match',
     yourDeck: 'Your deck',
-    noDecks: 'You have no deck ready to play.',
     goToDecks: 'Go to Decks',
     quickMatch: 'Quick match',
     createPublic: 'Create public',
@@ -690,9 +711,6 @@ export const en: Messages = {
     pack: '{pack}',
     rewardCard: 'Exclusive card: {card}',
     alreadyWon: 'You already won this battle: playing it again pays nothing.',
-    yourDeck: 'Your deck',
-    noDecks: 'You have no ready deck of {hero}.',
-    goToDecks: 'Go to Decks',
     start: 'To battle!',
     stageLocked: 'Win the previous battle to unlock it.',
     end: {
@@ -1260,6 +1278,8 @@ export const en: Messages = {
     cardNotForSale: 'That card is not sold as a single',
     cardNotSellable: 'That card cannot be sold',
     notEnoughCopies: 'You do not own that many copies of {card}',
+    cardInDeck: 'Your active deck uses those copies of {card}: only the spare ones can be sold',
+    activeDeckNotPlayable: 'Your active deck is not ready to play',
     invalidHero: 'That hero does not exist',
     starterAlreadyChosen: 'You already chose your starter hero',
     deckNotFound: 'The deck does not exist',

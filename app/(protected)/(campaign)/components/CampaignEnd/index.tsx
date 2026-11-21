@@ -8,7 +8,10 @@ import { useCampaign } from '@/app/(protected)/(campaign)/hooks/useCampaign'
 import { BattleReward, BattleTicket } from '@/app/(protected)/(campaign)/models/CampaignDto'
 import { PLAYER } from '@/app/(protected)/(campaign)/utils/playCampaign'
 import { storyKey } from '@/app/(protected)/(campaign)/utils/storyKey'
+import CardSpotlight from '@/app/(protected)/(cards)/components/CardSpotlight'
 import CardView from '@/app/(protected)/(cards)/components/CardView'
+import FlipCard from '@/app/(protected)/(cards)/components/FlipCard'
+import { shines, useFlipReveal } from '@/app/(protected)/(cards)/hooks/useFlipReveal'
 import { MatchState } from '@/app/(protected)/(engine)/models/MatchState'
 import { RARITIES } from '@/app/(protected)/(engine)/models/Rarity'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
@@ -110,18 +113,7 @@ export default function CampaignEnd({
                 </div>
               </div>
             )}
-            {pack && (
-              <div className="campaign-end__pack">
-                <strong>🎴 {t('campaign.end.packCards', { pack: packName(pack, t) })}</strong>
-                <div className="campaign-end__cards">
-                  {packCards.map((cardId, index) => (
-                    <div key={`${cardId}-${index}`} className="campaign-end__mini">
-                      <CardView card={getCard(cardId)} />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
+            {pack && <RewardPack name={packName(pack, t)} cards={packCards} />}
           </div>
         )}
         <div className="campaign-end__buttons">
@@ -145,6 +137,48 @@ export default function CampaignEnd({
           </GameButton>
         </div>
       </div>
+    </div>
+  )
+}
+
+/** Pause between two cards when "Flip them all" turns them (ms). */
+const FLIP_STEP = 280
+
+/** The cards of the pack won, dealt face down to turn one by one (or all at once). */
+function RewardPack({ name, cards }: { name: string; cards: string[] }) {
+  const { t } = useI18n()
+  const { flipped, flip, revealAll, revealing, done, spotlight, open, close } = useFlipReveal(cards, FLIP_STEP)
+
+  return (
+    <div className="campaign-end__pack">
+      <strong>🎴 {t('campaign.end.packCards', { pack: name })}</strong>
+      <div className="campaign-end__cards">
+        {cards.map((cardId, index) => (
+          <FlipCard
+            key={index}
+            className="campaign-end__mini"
+            rarity={getCard(cardId).rarity}
+            shine={shines(cardId)}
+            flipped={flipped[index]}
+            onFlip={() => flip(index)}
+            onOpen={() => open(index)}
+            label={t('shop.opening.tap')}
+            openLabel={getCard(cardId).name}
+          >
+            <span className="campaign-end__zoom">
+              <CardView card={getCard(cardId)} />
+            </span>
+          </FlipCard>
+        ))}
+      </div>
+      {spotlight != null && (
+        <CardSpotlight cardId={cards[spotlight]} shine={shines(cards[spotlight])} onClose={close} />
+      )}
+      {!done && (
+        <GameButton color="cyan" size="small" disabled={revealing} onClick={revealAll}>
+          {t('shop.opening.revealAll')}
+        </GameButton>
+      )}
     </div>
   )
 }

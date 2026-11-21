@@ -6,7 +6,8 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useMusic } from '@/app/(protected)/(art)/hooks/useMusic'
 import { initials } from '@/app/(protected)/(battle)/components/UnitToken'
-import { DeckDto } from '@/app/(protected)/(collection)/models/DeckDto'
+import ActiveDeckChip, { canPlayWith } from '@/app/(protected)/(collection)/components/ActiveDeckChip'
+import { ActiveDeck } from '@/app/(protected)/(collection)/models/DeckDto'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
 import { leagueOf } from '@/app/(protected)/(pvp)/data/leagues'
 import { ROOMS_POLL_MS } from '@/app/(protected)/(pvp)/data/pvp'
@@ -17,7 +18,8 @@ import { useCardName } from '@/app/i18n/cards/useCardName'
 import { useI18n } from '@/app/i18n/I18nProvider'
 
 interface LobbyProps {
-  decks: DeckDto[]
+  /** The deck every mode plays with (null: the player has no decks). */
+  deck: ActiveDeck | null
   rooms: RoomSummary[]
   /** The match the player is already in, to go back to it. */
   activeMatch: number | null
@@ -27,18 +29,17 @@ interface LobbyProps {
 }
 
 /**
- * The lobby (docs/PLAN.md, section 12.1): the deck to play with, quick match,
+ * The lobby (docs/PLAN.md, section 12.1): the active deck it plays with, quick match,
  * create a public or private room, join with a code, the public rooms waiting
  * for a rival (refreshed every few seconds) and the practice against the CPU.
  */
-export default function Lobby({ decks, rooms: initialRooms, activeMatch, rating, code: initialCode }: LobbyProps) {
+export default function Lobby({ deck, rooms: initialRooms, activeMatch, rating, code: initialCode }: LobbyProps) {
   useMusic('menu')
   const { t, locale } = useI18n()
   const cardName = useCardName()
   const router = useRouter()
   const pvp = usePvp()
   const [rooms, setRooms] = useState(initialRooms)
-  const [deckId, setDeckId] = useState<number | null>(decks[0]?.id ?? null)
   const [code, setCode] = useState(initialCode)
   const [busy, setBusy] = useState<string | null>(null)
   const league = leagueOf(rating)
@@ -66,8 +67,8 @@ export default function Lobby({ decks, rooms: initialRooms, activeMatch, rating,
     }
   }
 
-  const create = (visibility: MatchVisibility) => go(visibility, () => pvp.createRoom(visibility, deckId!))
-  const disabled = deckId == null || busy != null || activeMatch != null
+  const create = (visibility: MatchVisibility) => go(visibility, () => pvp.createRoom(visibility))
+  const disabled = !canPlayWith(deck) || busy != null || activeMatch != null
 
   return (
     <div className="lobby">
@@ -93,28 +94,13 @@ export default function Lobby({ decks, rooms: initialRooms, activeMatch, rating,
       <div className="lobby__columns">
         <section className="lobby__panel">
           <h2>{t('lobby.yourDeck')}</h2>
-          {decks.length === 0 ? (
-            <p className="lobby__empty">
-              {t('lobby.noDecks')}{' '}
-              <GameButton size="small" color="violet" href="/decks">
-                {t('lobby.goToDecks')}
-              </GameButton>
-            </p>
-          ) : (
-            <select value={deckId ?? ''} onChange={(event) => setDeckId(Number(event.target.value))}>
-              {decks.map((deck) => (
-                <option key={deck.id} value={deck.id}>
-                  {deck.name} · {getCard(deck.heroId).name}
-                </option>
-              ))}
-            </select>
-          )}
+          <ActiveDeckChip deck={deck} />
           <GameButton
             color="gold"
             size="large"
             disabled={disabled}
             loading={busy === 'quick'}
-            onClick={() => go('quick', () => pvp.quickMatch(deckId!))}
+            onClick={() => go('quick', () => pvp.quickMatch())}
           >
             ⚡ {t('lobby.quickMatch')}
           </GameButton>
@@ -135,7 +121,7 @@ export default function Lobby({ decks, rooms: initialRooms, activeMatch, rating,
             className="lobby__code"
             onSubmit={(event) => {
               event.preventDefault()
-              void go('code', () => pvp.joinRoom({ code }, deckId!))
+              void go('code', () => pvp.joinRoom({ code }))
             }}
           >
             <input
@@ -180,7 +166,7 @@ export default function Lobby({ decks, rooms: initialRooms, activeMatch, rating,
                       color="lime"
                       disabled={disabled}
                       loading={busy === `room-${room.id}`}
-                      onClick={() => go(`room-${room.id}`, () => pvp.joinRoom({ matchId: room.id }, deckId!))}
+                      onClick={() => go(`room-${room.id}`, () => pvp.joinRoom({ matchId: room.id }))}
                     >
                       {t('lobby.join')}
                     </GameButton>

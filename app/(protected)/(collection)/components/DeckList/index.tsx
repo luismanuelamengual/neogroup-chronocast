@@ -15,13 +15,16 @@ import GameButton from '@/app/components/GameButton'
 import { useCardName } from '@/app/i18n/cards/useCardName'
 import { useT } from '@/app/i18n/I18nProvider'
 
-/** The decks of the player (/decks): play-ready or not, edit, delete, and a new one for any owned hero. */
+/**
+ * The decks of the player (/decks): play-ready or not, which one is active (the
+ * one every game mode plays with), edit, delete, and a new one for any owned hero.
+ */
 export default function DeckList({ decks: initialDecks, heroes }: { decks: DeckSummary[]; heroes: string[] }) {
   useMusic('menu')
   const t = useT()
   const cardName = useCardName()
   const router = useRouter()
-  const { deleteDeck } = useCollection()
+  const { deleteDeck, setActiveDeck } = useCollection()
   const [decks, setDecks] = useState(initialDecks)
   const [choosingHero, setChoosingHero] = useState(false)
   const [confirming, setConfirming] = useState<number | null>(null)
@@ -31,6 +34,14 @@ export default function DeckList({ decks: initialDecks, heroes }: { decks: DeckS
     setDecks((current) => current.filter((candidate) => candidate.id !== deck.id))
     setConfirming(null)
     toast.success(t('decks.deleted'))
+    // The server picks another active deck when this one was: the list shows it on the next visit.
+    router.refresh()
+  }
+
+  const activate = async (deck: DeckSummary) => {
+    await setActiveDeck(deck.id)
+    setDecks((current) => current.map((candidate) => ({ ...candidate, active: candidate.id === deck.id })))
+    toast.success(t('decks.activated', { name: deck.name }))
   }
 
   return (
@@ -45,14 +56,22 @@ export default function DeckList({ decks: initialDecks, heroes }: { decks: DeckS
         </GameButton>
       </header>
 
-      {decks.length === 0 && <p className="deck-list__empty">{t('decks.empty')}</p>}
+      {decks.length === 0 ? (
+        <p className="deck-list__empty">{t('decks.empty')}</p>
+      ) : (
+        <p className="deck-list__hint">{t('decks.activeHint')}</p>
+      )}
 
       <div className="deck-list__grid">
         {decks.map((deck) => {
           const hero = getCard(deck.heroId)
 
           return (
-            <article key={deck.id} className={classNames('deck-list__deck', `faction-${hero.faction}`)}>
+            <article
+              key={deck.id}
+              className={classNames('deck-list__deck', `faction-${hero.faction}`, { active: deck.active })}
+            >
+              {deck.active && <span className="deck-list__active">★ {t('decks.active')}</span>}
               <span className="deck-list__hero">{initials(hero.name)}</span>
               <div className="deck-list__info">
                 <h2>{deck.name}</h2>
@@ -76,6 +95,11 @@ export default function DeckList({ decks: initialDecks, heroes }: { decks: DeckS
                   </>
                 ) : (
                   <>
+                    {!deck.active && deck.playable && (
+                      <GameButton size="small" color="gold" onClick={() => activate(deck)}>
+                        {t('decks.setActive')}
+                      </GameButton>
+                    )}
                     <GameButton size="small" color="cyan" href={`/decks/${deck.id}`}>
                       {t('decks.edit')}
                     </GameButton>

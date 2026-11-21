@@ -8,18 +8,16 @@ import { useRequests } from '@/app/hooks/useRequests'
 export function usePvp() {
   const executeRequest = useRequests()
   const createRoom = useCallback(
-    (visibility: MatchVisibility, deckId: number) =>
-      executeRequest<{ id: number; code: string | null }>('/createRoom', { visibility, deckId }),
+    (visibility: MatchVisibility) => executeRequest<{ id: number; code: string | null }>('/createRoom', { visibility }),
     [executeRequest]
   )
   const listRooms = useCallback(() => executeRequest<RoomSummary[]>('/listRooms', {}, false), [executeRequest])
   const joinRoom = useCallback(
-    (target: { matchId?: number; code?: string }, deckId: number) =>
-      executeRequest<{ id: number }>('/joinRoom', { ...target, deckId }),
+    (target: { matchId?: number; code?: string }) => executeRequest<{ id: number }>('/joinRoom', target),
     [executeRequest]
   )
   const quickMatch = useCallback(
-    (deckId: number) => executeRequest<{ id: number; joined: boolean }>('/quickMatch', { deckId }),
+    () => executeRequest<{ id: number; joined: boolean }>('/quickMatch', {}),
     [executeRequest]
   )
   const getMatchState = useCallback(

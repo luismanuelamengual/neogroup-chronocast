@@ -16,7 +16,14 @@ export interface DeckSummary {
   size: number
   /** Whether it can be played (no broken rule and every card owned). */
   playable: boolean
+  /** The deck every game mode plays with. */
+  active: boolean
   updatedAt: string
+}
+
+/** The deck every game mode plays with, with whether it can be played right now. */
+export interface ActiveDeck extends DeckDto {
+  playable: boolean
 }
 
 /** What the deck editor sends to save a deck (`id` missing: a new deck). */

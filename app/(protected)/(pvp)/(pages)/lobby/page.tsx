@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 import { auth } from '@/app/(auth)/services/auth'
-import { playableDecks } from '@/app/(protected)/(collection)/services/decks'
+import { getActiveDeck } from '@/app/(protected)/(collection)/services/decks'
 import Lobby from '@/app/(protected)/(pvp)/components/Lobby'
 import { activeMatchId, listRooms } from '@/app/(protected)/(pvp)/services/rooms'
 import { getT } from '@/app/i18n/server'
@@ -21,11 +21,11 @@ export default async function LobbyPage({ searchParams }: { searchParams: Promis
   }
 
   const { code } = await searchParams
-  const [decks, rooms, active] = await Promise.all([playableDecks(userId), listRooms(userId), activeMatchId(userId)])
+  const [deck, rooms, active] = await Promise.all([getActiveDeck(userId), listRooms(userId), activeMatchId(userId)])
 
   return (
     <Lobby
-      decks={decks}
+      deck={deck}
       rooms={rooms}
       activeMatch={active}
       rating={user.rating}

@@ -17,7 +17,8 @@ import { describeSetup } from '@/app/(protected)/(campaign)/utils/describeSetup'
 import { createCampaignMatch } from '@/app/(protected)/(campaign)/utils/playCampaign'
 import { stageKey, storyKey } from '@/app/(protected)/(campaign)/utils/storyKey'
 import CardView from '@/app/(protected)/(cards)/components/CardView'
-import { DeckDto } from '@/app/(protected)/(collection)/models/DeckDto'
+import ActiveDeckChip, { canPlayWith } from '@/app/(protected)/(collection)/components/ActiveDeckChip'
+import { ActiveDeck } from '@/app/(protected)/(collection)/models/DeckDto'
 import { MAX_AI_LEVEL } from '@/app/(protected)/(engine)/ai/levels'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
 import { findPack } from '@/app/(protected)/(shop)/data/packs'
@@ -28,8 +29,8 @@ import { useI18n } from '@/app/i18n/I18nProvider'
 
 interface CampaignMapProps {
   campaign: CampaignSummary
-  /** The player's playable decks of the campaign's hero. */
-  decks: DeckDto[]
+  /** The deck every mode plays with (it has to be of the campaign's hero). */
+  deck: ActiveDeck | null
 }
 
 /**
@@ -38,7 +39,7 @@ interface CampaignMapProps {
  * situation and rewards, and the battle itself. The match runs in the
  * browser from the seed the server deals; a win is sent to be verified.
  */
-export default function CampaignMap({ campaign: initial, decks }: CampaignMapProps) {
+export default function CampaignMap({ campaign: initial, deck }: CampaignMapProps) {
   const { t, locale } = useI18n()
   const cardName = useCardName()
   const router = useRouter()
@@ -46,7 +47,6 @@ export default function CampaignMap({ campaign: initial, decks }: CampaignMapPro
   const campaign = findCampaign(initial.heroId)!
   const [progress, setProgress] = useState(initial.stage)
   const [selected, setSelected] = useState(Math.min(initial.stage + 1, STAGES_PER_CAMPAIGN))
-  const [deckId, setDeckId] = useState<number | null>(decks[0]?.id ?? null)
   const [ticket, setTicket] = useState<BattleTicket | null>(null)
   const [busy, setBusy] = useState(false)
   const mode = useBattleStore((store) => store.mode)
@@ -64,14 +64,14 @@ export default function CampaignMap({ campaign: initial, decks }: CampaignMapPro
   useEffect(() => () => leave(), [leave])
 
   const play = async (number: number) => {
-    if (deckId == null) {
+    if (!canPlayWith(deck, campaign.heroId)) {
       return
     }
 
     setBusy(true)
 
     try {
-      const dealt = await api.startBattle(campaign.heroId, number, deckId)
+      const dealt = await api.startBattle(campaign.heroId, number)
       const battle = campaign.stages[number - 1]
 
       setSelected(number)
@@ -206,26 +206,15 @@ export default function CampaignMap({ campaign: initial, decks }: CampaignMapPro
             </dl>
             {!unlocked ? (
               <p className="campaign-map__muted">🔒 {t('campaign.stageLocked')}</p>
-            ) : decks.length === 0 ? (
-              <div className="campaign-map__start">
-                <p className="campaign-map__muted">{t('campaign.noDecks', { hero: hero.name })}</p>
-                <GameButton color="violet" href="/decks">
-                  {t('campaign.goToDecks')}
-                </GameButton>
-              </div>
             ) : (
               <div className="campaign-map__start">
-                <label>
-                  {t('campaign.yourDeck')}
-                  <select value={deckId ?? ''} onChange={(event) => setDeckId(Number(event.target.value))}>
-                    {decks.map((deck) => (
-                      <option key={deck.id} value={deck.id}>
-                        {deck.name}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-                <GameButton color="gold" size="large" disabled={busy} onClick={() => void play(stage.number)}>
+                <ActiveDeckChip deck={deck} heroId={campaign.heroId} />
+                <GameButton
+                  color="gold"
+                  size="large"
+                  disabled={busy || !canPlayWith(deck, campaign.heroId)}
+                  onClick={() => void play(stage.number)}
+                >
                   {t('campaign.start')}
                 </GameButton>
               </div>

@@ -23,7 +23,6 @@
     font-weight: 700;
   }
 
-  &__decks,
   &__rivals,
   footer {
     display: flex;
@@ -31,56 +30,6 @@
     justify-content: center;
     gap: 10px;
     margin-top: 6px;
-  }
-
-  &__deck {
-    --faction: var(--faction-neutral);
-
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 14px 6px 6px;
-    border: 3px solid var(--color-panel-border);
-    border-radius: 999px;
-    background: white;
-    color: var(--color-text);
-    cursor: pointer;
-    font: inherit;
-    text-align: left;
-
-    @each $faction in primal, bronze, arcane, clockwork, neon, void, neutral {
-      &.faction-#{$faction} {
-        --faction: var(--faction-#{$faction});
-      }
-    }
-
-    &.selected {
-      border-color: var(--color-violet);
-      box-shadow: var(--frame-glow);
-    }
-
-    strong,
-    small {
-      display: block;
-    }
-
-    small {
-      color: var(--color-text-secondary);
-      font-weight: 700;
-    }
-  }
-
-  &__hero {
-    display: grid;
-    place-items: center;
-    width: 40px;
-    height: 40px;
-    border: 2px solid var(--color-outline);
-    border-radius: 50%;
-    background: var(--faction);
-    color: white;
-    font-family: var(--font-display);
-    text-shadow: 0 2px 0 var(--color-outline);
   }
 
   &__rival-card {

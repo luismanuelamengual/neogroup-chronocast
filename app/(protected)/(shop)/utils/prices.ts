@@ -52,9 +52,17 @@ export function copyLimit(card: CardDefinition): number {
 }
 
 /**
+ * The copies of a card that can be sold: the ones the active deck does not
+ * hold (`used`: its copies in the active deck).
+ */
+export function sellableCopies(owned: number, used = 0): number {
+  return Math.max(0, owned - used)
+}
+
+/**
  * Quick sell (docs/PLAN.md, section 11.3): every copy beyond the deck limit
- * of each card, but never one a saved deck needs (`deckUsage`: the most copies
- * of each card any saved deck holds).
+ * of each card, but never one the active deck needs (`deckUsage`: its copies
+ * of each card).
  */
 export function quickSellPlan(
   collection: Record<string, number>,

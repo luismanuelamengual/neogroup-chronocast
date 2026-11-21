@@ -5,48 +5,37 @@ import classNames from 'classnames'
 import { useEffect, useState } from 'react'
 import { useMusic } from '@/app/(protected)/(art)/hooks/useMusic'
 import BattleScreen from '@/app/(protected)/(battle)/components/BattleScreen'
-import { initials } from '@/app/(protected)/(battle)/components/UnitToken'
 import { useBattleStore } from '@/app/(protected)/(battle)/stores/battle'
 import CardView from '@/app/(protected)/(cards)/components/CardView'
-import { STARTER_HERO_IDS, starterDeck } from '@/app/(protected)/(cards)/data/starters'
-import { DeckDto } from '@/app/(protected)/(collection)/models/DeckDto'
+import { STARTER_HERO_IDS } from '@/app/(protected)/(cards)/data/starters'
+import ActiveDeckChip, { canPlayWith } from '@/app/(protected)/(collection)/components/ActiveDeckChip'
+import { ActiveDeck } from '@/app/(protected)/(collection)/models/DeckDto'
 import { expandCards } from '@/app/(protected)/(collection)/utils/deckProblems'
 import { DeckList } from '@/app/(protected)/(engine)/models/DeckList'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
 import GameButton from '@/app/components/GameButton'
-import { useCardName } from '@/app/i18n/cards/useCardName'
 import { useT } from '@/app/i18n/I18nProvider'
 
 interface PracticeSetupProps {
-  /** The player's playable decks (empty: the starter decks are offered instead). */
-  decks: DeckDto[]
-  /** The guided first match: starts right away with the first deck and shows the tips. */
+  /** The deck every mode plays with (null: the player has no decks). */
+  deck: ActiveDeck | null
+  /** The guided first match: starts right away with the active deck and shows the tips. */
   tutorial?: boolean
 }
 
 /**
- * Practice (/practice): the player picks one of its decks and the computer's
- * hero, then plays the battle against the computer. Nothing is saved and there
- * are no rewards.
+ * Practice (/practice): the player picks the computer's hero and plays its
+ * active deck against it. Nothing is saved and there are no rewards.
  */
-export default function PracticeSetup({ decks, tutorial = false }: PracticeSetupProps) {
+export default function PracticeSetup({ deck: active, tutorial = false }: PracticeSetupProps) {
   const t = useT()
-  const cardName = useCardName()
   const mode = useBattleStore((store) => store.mode)
   const start = useBattleStore((store) => store.start)
   const leave = useBattleStore((store) => store.leave)
-  const options: { key: string; name: string; deck: DeckList }[] =
-    decks.length > 0
-      ? decks.map((deck) => ({
-          key: `deck-${deck.id}`,
-          name: deck.name,
-          deck: { heroId: deck.heroId, cards: expandCards(deck.cards) }
-        }))
-      : STARTER_HERO_IDS.map((heroId) => ({ key: heroId, name: cardName(heroId), deck: starterDeck(heroId) }))
-  const [choice, setChoice] = useState(options[0].key)
-  const chosen = options.find((option) => option.key === choice) ?? options[0]
+  const ready = canPlayWith(active)
+  const deck: DeckList | null = ready ? { heroId: active.heroId, cards: expandCards(active.cards) } : null
   const [rivalHeroId, setRivalHeroId] = useState(
-    STARTER_HERO_IDS.find((heroId) => heroId !== chosen.deck.heroId) ?? STARTER_HERO_IDS[0]
+    STARTER_HERO_IDS.find((heroId) => heroId !== deck?.heroId) ?? STARTER_HERO_IDS[0]
   )
   const [playing, setPlaying] = useState(false)
   const [guided, setGuided] = useState(tutorial)
@@ -54,8 +43,8 @@ export default function PracticeSetup({ decks, tutorial = false }: PracticeSetup
   useMusic(playing && mode !== 'idle' ? null : 'menu')
 
   useEffect(() => {
-    if (tutorial) {
-      start(chosen.deck, rivalHeroId)
+    if (tutorial && deck) {
+      start(deck, rivalHeroId)
       setPlaying(true)
     }
     // Only when the page opens.
@@ -83,31 +72,7 @@ export default function PracticeSetup({ decks, tutorial = false }: PracticeSetup
         <h1>{t('battle.practice.title')}</h1>
         <p>{t('battle.practice.text')}</p>
       </header>
-      <section>
-        <h2>{t('battle.practice.yourDeck')}</h2>
-        <div className="practice-setup__decks">
-          {options.map((option) => {
-            const hero = getCard(option.deck.heroId)
-
-            return (
-              <button
-                key={option.key}
-                type="button"
-                className={classNames('practice-setup__deck', `faction-${hero.faction}`, {
-                  selected: option.key === chosen.key
-                })}
-                onClick={() => setChoice(option.key)}
-              >
-                <span className="practice-setup__hero">{initials(hero.name)}</span>
-                <span>
-                  <strong>{option.name}</strong>
-                  <small>{cardName(hero)}</small>
-                </span>
-              </button>
-            )
-          })}
-        </div>
-      </section>
+      <ActiveDeckChip deck={active} />
       <section className="practice-setup__rival">
         <h2>{t('battle.practice.rivalHero')}</h2>
         <div className="practice-setup__rivals">
@@ -130,8 +95,9 @@ export default function PracticeSetup({ decks, tutorial = false }: PracticeSetup
         <GameButton
           color="gold"
           size="large"
+          disabled={!deck}
           onClick={() => {
-            start(chosen.deck, rivalHeroId)
+            start(deck!, rivalHeroId)
             setPlaying(true)
           }}
         >
