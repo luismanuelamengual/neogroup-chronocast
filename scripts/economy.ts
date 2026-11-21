@@ -21,7 +21,7 @@ import { GOLD_REWARDS } from '@/app/(protected)/(shop)/data/gold'
 import { findPack, PackDefinition } from '@/app/(protected)/(shop)/data/packs'
 import { UNLOCK_COSTS } from '@/app/(protected)/(shop)/data/prices'
 import { drawPack } from '@/app/(protected)/(shop)/utils/drawPack'
-import { copyLimit, isBuyable, sellPrice } from '@/app/(protected)/(shop)/utils/prices'
+import { copyLimit, isInPacks, sellPrice } from '@/app/(protected)/(shop)/utils/prices'
 
 const matchesPerDay = Number(process.argv[2] ?? 8)
 const winRate = Number(process.argv[3] ?? 0.5)
@@ -45,7 +45,7 @@ const days = (gold: number) => (gold / daily).toFixed(1)
 function missingCards(hero: CardDefinition, owned: Record<string, number>): Record<string, number> {
   const missing: Record<string, number> = {}
 
-  for (const card of CARDS.filter((candidate) => isBuyable(candidate) && canUseCard(hero, candidate))) {
+  for (const card of CARDS.filter((candidate) => isInPacks(candidate) && canUseCard(hero, candidate))) {
     const count = copyLimit(card) - (owned[card.id] ?? 0)
 
     if (count > 0) {
@@ -104,7 +104,7 @@ for (const rarity of RARITIES.slice(1)) {
 }
 
 const byRarity = RARITIES.map(
-  (rarity) => `${rarity} ${CARDS.filter((card) => card.rarity === rarity && isBuyable(card)).length}`
+  (rarity) => `${rarity} ${CARDS.filter((card) => card.rarity === rarity && isInPacks(card)).length}`
 )
 
 console.log(`\nCatalog for sale: ${byRarity.join(', ')}`)

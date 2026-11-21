@@ -40,7 +40,7 @@ El diseño completo (reglas, cartas, tienda, PvP, campañas, arquitectura y hoja
    yarn db:seed
    ```
 
-   Los dos usuarios demo arrancan con 20.000 de oro y su starter para probar la tienda; con dos navegadores (o una ventana de incógnito) se puede jugar una partida PvP entre ellos. Para darle oro a otro jugador (por ejemplo tu cuenta de Google): `yarn db:gold <email> [cantidad]` (10.000 por defecto; nunca corre contra producción). Para volver a empezar de cero con un usuario (sin cartas, mazos, campañas ni partidas, con 0 de oro y 1200 de Prestigio, y la elección del héroe inicial otra vez): `yarn db:reset-user <email>` (la cuenta y la contraseña se mantienen; tampoco corre contra producción).
+   Los dos usuarios demo arrancan con 20.000 de oro y su starter para probar la tienda; con dos navegadores (o una ventana de incógnito) se puede jugar una partida PvP entre ellos. Para darle oro a otro jugador (por ejemplo tu cuenta de Google): `yarn db:gold <email> [cantidad]` (10.000 por defecto; nunca corre contra producción). Para volver a empezar de cero con un usuario (sin cartas, mazos, campañas ni partidas, con 2.000 de oro y 1200 de Prestigio, y la elección del héroe inicial otra vez): `yarn db:reset-user <email>` (la cuenta y la contraseña se mantienen; tampoco corre contra producción).
 
    Para recrear la base local desde cero: `yarn db:reset` y después `yarn db:seed`.
 
@@ -74,7 +74,7 @@ app/
     (engine)/             Motor de combate puro (sin React ni base): estado, fases, palabras clave, efectos, reglas de mazo, rating, IA
     (onboarding)/         Primera visita (/welcome): elección del héroe inicial y apertura del starter
     (collection)/         Colección (/collection), mazos y editor (/decks): user_cards, decks, deck_cards
-    (shop)/               Tienda (/shop): sobres con su sorteo y apertura, cartas sueltas, desbloqueos, venta y venta rápida
+    (shop)/               Tienda (/shop): sobres con su sorteo y apertura, cartas sueltas y héroes, desbloqueos, venta y venta rápida
     (campaign)/           Campañas (/campaign): datos de cada campaña, progreso, verificación del resultado y premios
     (pvp)/                PvP en línea (/lobby, /match/<id>): salas, servidor autoritativo, plazos, polling, abandono, rating y oro
     (ranking)/            Ranking (/ranking): top 100 por Prestigio y ligas
@@ -184,10 +184,10 @@ En PostgreSQL los nombres de columna sin comillas quedan en minúscula (`heroId`
 
 ## Tienda y economía
 
-- **Sobres** (`(shop)/data/packs.ts`): Viajero (300), Cronista (800), Guardián (2.000), Eterno (5.000) y uno por facción (1.000), de 8 cartas, con las probabilidades de cada carta visibles en la tienda. El sorteo se hace en el servidor (`POST /api/buyPack`, con `utils/drawPack.ts`, determinístico por semilla) y la pantalla anima la apertura: las cartas boca abajo se dan vuelta de la rareza más baja a la más alta, las mejores brillan y las nuevas llevan un cartel. Cada carta que se da vuelta a mano (o que se toca ya dada vuelta) se muestra grande en el centro (`CardSpotlight`); lo mismo en el mazo inicial y en el sobre de premio de las campañas. **Garantía**: después de 10 sobres Guardián o Eterno seguidos sin legendaria, el siguiente trae una (`users.packsWithoutLegendary`). Mientras el catálogo no tenga cartas de una rareza, sale la mejor disponible por debajo.
+- **Sobres** (`(shop)/data/packs.ts`): Viajero (300), Cronista (800), Guardián (2.000), Eterno (5.000) y uno por facción (1.000), de 8 cartas, con las probabilidades de cada carta visibles en la tienda. En la tienda cada sobre se ve como un sobre de figuritas metalizado (`PackWrapper`) con el arte de un personaje de las cartas. El sorteo se hace en el servidor (`POST /api/buyPack`, con `utils/drawPack.ts`, determinístico por semilla) y la pantalla anima la apertura: las cartas boca abajo se dan vuelta de la rareza más baja a la más alta, las mejores brillan y las nuevas llevan un cartel. Cada carta que se da vuelta a mano (o que se toca ya dada vuelta) se muestra grande en el centro (`CardSpotlight`); lo mismo en el mazo inicial y en el sobre de premio de las campañas. **Garantía**: después de 10 sobres Guardián o Eterno seguidos sin legendaria, el siguiente trae una (`users.packsWithoutLegendary`). Mientras el catálogo no tenga cartas de una rareza, sale la mejor disponible por debajo.
 - **Cartas sueltas**: cada carta a su propio `price`. Las comunes están abiertas; las demás rarezas se desbloquean de a una y en orden (`(shop)/data/prices.ts`: 1.000, 3.000, 8.000, 20.000, 50.000 y 100.000). Ni los héroes ni las cartas premio de campaña (`reward: true`) se venden ni salen en sobres.
 - **Venta**: el 15 % del precio, redondeado. Pide confirmación si la carta es épica o mejor. **No se pueden vender las copias que usa el mazo activo**, solo las de sobra, así el mazo activo siempre sigue jugable (los demás mazos pueden quedar incompletos); el servidor también lo controla (`errors.cardInDeck`). La **venta rápida** vende las copias que pasan de 4 (de 1 si es `unique`) sin tocar las que usa el mazo activo, y muestra el total antes de confirmar.
-- Todo cambio de oro pasa por el servidor dentro de una transacción. Las APIs: `buyPack`, `unlockRarity`, `buyCard`, `sellCards`, `quickSell`.
+- Las cuentas nuevas arrancan con 2.000 de oro (`STARTING_GOLD` en `(shop)/data/gold.ts`). Todo cambio de oro pasa por el servidor dentro de una transacción. Las APIs: `buyPack`, `unlockRarity`, `buyCard`, `sellCards`, `quickSell`.
 - **`yarn economy [partidas por día] [% de victorias] [simulaciones]`**: el oro por día de un jugador típico (con los premios de `(shop)/data/gold.ts`), los días para desbloquear cada rareza y para completar la colección de cada héroe starter comprando sueltas o sobres (con venta rápida de las sobrantes).
 
 ## PvP y ranking

@@ -600,7 +600,6 @@ export const es = {
       faction: 'Como el del Cronista, con cartas de {faction} y neutrales.'
     },
     factionPacks: 'Sobres de facción',
-    cardsPerPack: '{count} cartas',
     buy: 'Comprar',
     odds: 'Probabilidades',
     hideOdds: 'Ocultar',
@@ -623,16 +622,13 @@ export const es = {
       close: 'Seguir'
     },
     cards: {
-      unlocks: 'Rarezas a la venta',
-      unlockHint: 'Las rarezas se desbloquean de a una y en orden. Las comunes están abiertas desde el inicio.',
-      unlock: 'Desbloquear {rarity} por {cost}',
-      allUnlocked: 'Ya desbloqueaste todas las rarezas.',
+      unlock: 'Desbloquear',
+      unlockFirst: 'Primero desbloqueá {rarity}',
       unlocked: '¡Desbloqueaste las cartas {rarity}!',
-      locked: 'Rareza bloqueada',
-      lockedText: 'Desbloqueá la rareza {rarity} para comprar esta carta.',
       buyOne: 'Comprar 1 por {price}',
       complete: 'Completar a {count} por {price}',
       bought: { one: 'Compraste {card}', other: 'Compraste {count} copias de {card}' },
+      heroOwned: 'Ya tenés este héroe',
       empty: 'Ninguna carta a la venta coincide con los filtros.'
     },
     sell: {
@@ -1309,6 +1305,7 @@ export const es = {
     rarityLocked: 'Esa rareza todavía está bloqueada en la tienda',
     invalidCount: 'Cantidad inválida',
     cardNotForSale: 'Esa carta no se vende suelta',
+    heroOwned: 'Ya tenés ese héroe',
     cardNotSellable: 'Esa carta no se puede vender',
     notEnoughCopies: 'No tenés tantas copias de {card}',
     cardInDeck: 'Tu mazo activo usa esas copias de {card}: solo se venden las de sobra',

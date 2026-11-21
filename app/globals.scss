@@ -139,6 +139,18 @@ textarea,
   -webkit-touch-callout: default;
 }
 
+// Every select draws its own caret, with room from the right edge (the native
+// one sits glued to it on most browsers). Components set background-color only.
+select {
+  appearance: none;
+  padding-right: 32px !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%232b2350' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 11px 8px;
+  cursor: pointer;
+}
+
 html,
 body {
   margin: 0;

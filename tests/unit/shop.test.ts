@@ -4,15 +4,17 @@ import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition
 import { Faction } from '@/app/(protected)/(engine)/models/Faction'
 import { RARITIES, Rarity } from '@/app/(protected)/(engine)/models/Rarity'
 import { findPack, PACK_SIZE, PackDefinition, PACKS } from '@/app/(protected)/(shop)/data/packs'
-import { UNLOCK_COSTS } from '@/app/(protected)/(shop)/data/prices'
+import { HERO_PRICES, UNLOCK_COSTS } from '@/app/(protected)/(shop)/data/prices'
 import { availableRarity, drawPack, packPool, rollRarity } from '@/app/(protected)/(shop)/utils/drawPack'
 import { slotOdds } from '@/app/(protected)/(shop)/utils/odds'
 import {
   copyLimit,
   isBuyable,
+  isInPacks,
   nextUnlock,
   quickSellPlan,
   sellPrice,
+  shopPrice,
   unlockedRarities
 } from '@/app/(protected)/(shop)/utils/prices'
 
@@ -212,9 +214,17 @@ describe('prices, unlocks and selling', () => {
     expect(Object.values(UNLOCK_COSTS)).toEqual([0, 1000, 3000, 8000, 20000, 50000, 100000])
   })
 
-  it('every card for sale has a price; heroes and campaign rewards are never for sale', () => {
+  it('sells every card with a price and the playable heroes (dear), never campaign rewards or bosses', () => {
     for (const card of CARDS) {
-      expect(isBuyable(card), card.id).toBe(card.type !== 'hero' && !card.reward)
+      expect(isBuyable(card), card.id).toBe(!card.reward && !card.boss)
+      expect(isInPacks(card), card.id).toBe(!card.reward && !card.boss && card.type !== 'hero')
+
+      if (card.type === 'hero') {
+        expect(shopPrice(card), card.id).toBe(HERO_PRICES[card.rarity])
+        expect(copyLimit(card), card.id).toBe(1)
+      } else if (isBuyable(card)) {
+        expect(shopPrice(card), card.id).toBe(card.price)
+      }
     }
   })
 

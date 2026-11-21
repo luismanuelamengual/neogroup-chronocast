@@ -2,10 +2,10 @@
 
 import './index.scss'
 import { CardFilter } from '@/app/(protected)/(collection)/utils/filters'
-import { CARD_TYPES } from '@/app/(protected)/(engine)/models/CardType'
+import { CARD_TYPES, CardType } from '@/app/(protected)/(engine)/models/CardType'
 import { FACTIONS } from '@/app/(protected)/(engine)/models/Faction'
 import { HERO_CLASSES } from '@/app/(protected)/(engine)/models/HeroClass'
-import { RARITIES } from '@/app/(protected)/(engine)/models/Rarity'
+import { RARITIES, Rarity } from '@/app/(protected)/(engine)/models/Rarity'
 import { useCardName } from '@/app/i18n/cards/useCardName'
 import { useT } from '@/app/i18n/I18nProvider'
 
@@ -16,12 +16,23 @@ interface CardFiltersProps {
   onChange: (filter: CardFilter) => void
   /** Heroes offered in "usable by" (empty: no such filter). */
   heroes?: string[]
+  /** Card types offered in the type filter (default: all of them). */
+  types?: readonly CardType[]
+  /** Rarities offered in the rarity filter (default: all of them). */
+  rarities?: readonly Rarity[]
   /** Hide the filters that make no sense in the context (e.g. the hero in the deck editor). */
   hide?: (keyof CardFilter)[]
 }
 
 /** The filter bar of the collection and the deck editor. */
-export default function CardFilters({ filter, onChange, heroes = [], hide = [] }: CardFiltersProps) {
+export default function CardFilters({
+  filter,
+  onChange,
+  heroes = [],
+  types = CARD_TYPES,
+  rarities = RARITIES,
+  hide = []
+}: CardFiltersProps) {
   const t = useT()
   const cardName = useCardName()
   const set = <K extends keyof CardFilter>(key: K, value: CardFilter[K]) => onChange({ ...filter, [key]: value })
@@ -38,7 +49,7 @@ export default function CardFilters({ filter, onChange, heroes = [], hide = [] }
       {shown('type') && (
         <select value={filter.type} onChange={(event) => set('type', event.target.value as CardFilter['type'])}>
           <option value="">{t('collection.allTypes')}</option>
-          {CARD_TYPES.map((type) => (
+          {types.map((type) => (
             <option key={type} value={type}>
               {t(`game.types.${type}`)}
             </option>
@@ -74,7 +85,7 @@ export default function CardFilters({ filter, onChange, heroes = [], hide = [] }
       {shown('rarity') && (
         <select value={filter.rarity} onChange={(event) => set('rarity', event.target.value as CardFilter['rarity'])}>
           <option value="">{t('collection.allRarities')}</option>
-          {RARITIES.map((rarity) => (
+          {rarities.map((rarity) => (
             <option key={rarity} value={rarity}>
               {t(`game.rarities.${rarity}`)}
             </option>

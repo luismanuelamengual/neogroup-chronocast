@@ -14,6 +14,21 @@ export const UNLOCK_COSTS: Record<Rarity, number> = {
   mythic: 100000
 }
 
+/**
+ * Price of a playable hero in the shop, by its rarity: much more than any card
+ * of the same rarity, since a hero opens a whole new way to play. Boss heroes
+ * are never sold. Like the cards, its rarity must be unlocked first.
+ */
+export const HERO_PRICES: Record<Rarity, number> = {
+  common: 5000,
+  uncommon: 8000,
+  rare: 12000,
+  epic: 25000,
+  legendary: 50000,
+  exotic: 100000,
+  mythic: 200000
+}
+
 /** A card sells for this share of its price, rounded (docs/PLAN.md, section 11.3). */
 export const SELL_RATE = 0.15
 

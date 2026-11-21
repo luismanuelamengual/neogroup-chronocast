@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs'
 import { RegisterInput } from '@/app/(auth)/models/RegisterInput'
 import { sendVerificationEmail } from '@/app/(auth)/services/tokens'
+import { STARTING_GOLD } from '@/app/(protected)/(shop)/data/gold'
 import { getLocale } from '@/app/i18n/server'
 import { ApiException } from '@/app/models/ApiException'
 import { User } from '@/app/models/User'
@@ -56,6 +57,12 @@ export const POST = withApi(async (request) => {
   user.emailVerified = false
   user.active = true
   user.locale = await getLocale()
+
+  // A brand new account starts with some gold (re-registering an unverified one keeps it).
+  if (!existing) {
+    user.gold = STARTING_GOLD
+  }
+
   await user.save()
 
   await sendVerificationEmail(user, request.headers.get('host') ?? '')

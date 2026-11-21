@@ -2,7 +2,7 @@
 /**
  * Development: takes a player back to a brand new account, keeping the account
  * itself (email, password, name): no cards, decks, shop unlocks, campaign
- * progress or PvP matches, gold 0 and Prestige 1200. The next visit goes to
+ * progress or PvP matches, the starting gold (2000) and Prestige 1200. The next visit goes to
  * /welcome to choose the starter hero again. Refuses to run against production.
  *
  * Usage: yarn db:reset-user <email>
@@ -13,6 +13,7 @@ config({ path: '.env.local' })
 config({ path: '.env' })
 
 import { DB } from '@neogroup/neorm'
+import { STARTING_GOLD } from '@/app/(protected)/(shop)/data/gold'
 
 async function run(): Promise<void> {
   if (process.env.VERCEL_ENV === 'production') {
@@ -45,7 +46,7 @@ async function run(): Promise<void> {
     await DB.table('decks').where('userId', userId).delete()
     await DB.table('user_cards').where('userId', userId).delete()
     await DB.table('users').where('id', userId).update({
-      gold: 0,
+      gold: STARTING_GOLD,
       rating: 1200,
       starterHeroId: null,
       packsWithoutLegendary: 0,

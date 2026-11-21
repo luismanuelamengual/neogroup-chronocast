@@ -516,7 +516,7 @@ Módulo `(shop)`, con tres pestañas: **Sobres**, **Cartas** y **Vender**. Preci
 | Mítica     | 25.000 – 35.000           | 100.000                 |
 
 - El centro de cada rango es el doble de los precios del plan anterior.
-- Para desbloquear una rareza hay que tener la anterior desbloqueada. La pestaña Cartas muestra el catálogo con filtros (facción, clase, tipo, costo, rareza, "usables con mi héroe") y las rarezas bloqueadas con candado y su costo de desbloqueo.
+- Para desbloquear una rareza hay que tener la anterior desbloqueada. También se venden los héroes jugables (no los jefes), uno por jugador y caros, según su rareza: común 5.000, rara 12.000, épica 25.000 y legendaria 50.000 (`HERO_PRICES`); no salen en sobres ni se venden. La pestaña Cartas muestra el catálogo con filtros (facción, clase, tipo, costo, rareza, "usables con mi héroe") solo con las rarezas desbloqueadas: cada rareza bloqueada aparece al final como una carta boca abajo con "?" y su costo, para que sus cartas sean una sorpresa; la siguiente en orden se desbloquea desde su propia carta.
 - Las cartas premio de las campañas no se venden sueltas.
 
 ### 11.3 Vender

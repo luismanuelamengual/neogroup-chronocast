@@ -5,6 +5,7 @@ import { CARDS } from '@/app/(protected)/(cards)/utils/catalog'
 import { addCards, chooseStarter, getCollection } from '@/app/(protected)/(collection)/services/collection'
 import { getDeck, listDecks, saveDeck, setActiveDeck } from '@/app/(protected)/(collection)/services/decks'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
+import { HERO_PRICES } from '@/app/(protected)/(shop)/data/prices'
 import { buyPack } from '@/app/(protected)/(shop)/services/packs'
 import { buyCard, getShopState, quickSell, sellCards, unlockRarity } from '@/app/(protected)/(shop)/services/shop'
 import { copyLimit, sellPrice } from '@/app/(protected)/(shop)/utils/prices'
@@ -94,7 +95,8 @@ describe('the shop', () => {
     expect(state.collection[COMMON.id]).toBe(2)
 
     await expect(buyCard(ana, UNCOMMON.id)).rejects.toMatchObject({ messageKey: 'errors.rarityLocked' })
-    await expect(buyCard(ana, VARRO)).rejects.toMatchObject({ messageKey: 'errors.cardNotForSale' })
+    await expect(buyCard(ana, VARRO)).rejects.toMatchObject({ messageKey: 'errors.notEnoughGold' })
+    await expect(buyCard(ana, 'queen-static')).rejects.toMatchObject({ messageKey: 'errors.cardNotForSale' })
     await expect(buyCard(ana, COMMON.id, 0)).rejects.toMatchObject({ messageKey: 'errors.invalidCount' })
 
     await unlockRarity(ana, 'uncommon')
@@ -102,6 +104,29 @@ describe('the shop', () => {
     state = await buyCard(ana, UNCOMMON.id)
 
     expect(state).toMatchObject({ gold: 0, collection: { [UNCOMMON.id]: 1 } })
+  })
+
+  it('sells a playable hero once, for its dear price, after its rarity is unlocked', async () => {
+    const hero = CARDS.find(
+      (card) => card.type === 'hero' && !card.boss && card.rarity === 'common' && card.id !== VARRO
+    )!
+    const price = HERO_PRICES.common
+
+    await setGold(ana, price)
+    let state = await buyCard(ana, hero.id)
+
+    expect(state).toMatchObject({ gold: 0, collection: { [hero.id]: 1 } })
+    await setGold(ana, price * 2)
+    await expect(buyCard(ana, hero.id)).rejects.toMatchObject({ messageKey: 'errors.heroOwned' })
+
+    const other = CARDS.find(
+      (card) => card.type === 'hero' && !card.boss && card.rarity === 'common' && card.id !== hero.id
+    )!
+
+    await expect(buyCard(ana, other.id, 2)).rejects.toMatchObject({ messageKey: 'errors.heroOwned' })
+    await expect(buyCard(ana, 'queen-static')).rejects.toMatchObject({ messageKey: 'errors.cardNotForSale' })
+    state = await getShopState(ana)
+    expect(state.gold).toBe(price * 2)
   })
 
   it('buys back cards for 15 % of their price', async () => {

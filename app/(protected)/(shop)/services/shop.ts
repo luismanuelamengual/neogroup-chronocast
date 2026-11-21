@@ -13,6 +13,7 @@ import {
   quickSellPlan,
   sellableCopies,
   sellPrice,
+  shopPrice,
   unlockedRarities
 } from '@/app/(protected)/(shop)/utils/prices'
 import { ApiException } from '@/app/models/ApiException'
@@ -117,7 +118,7 @@ function checkCount(count: unknown, max: number): number {
   return value
 }
 
-/** Buys copies of a single card at its own price: its rarity must be unlocked. */
+/** Buys copies of a single card at its own price (a hero: one, if not owned yet): its rarity must be unlocked. */
 export async function buyCard(userId: number, cardId: string, count: number = 1): Promise<ShopState> {
   const copies = checkCount(count, MAX_BUY_COUNT)
 
@@ -132,7 +133,11 @@ export async function buyCard(userId: number, cardId: string, count: number = 1)
       throw new ApiException('errors.rarityLocked')
     }
 
-    await spendGold(userId, card.price! * copies)
+    if (card.type === 'hero' && (copies > 1 || ((await getCollection(userId))[cardId] ?? 0) > 0)) {
+      throw new ApiException('errors.heroOwned')
+    }
+
+    await spendGold(userId, shopPrice(card) * copies)
     await addCards(userId, { [cardId]: copies })
   })
 

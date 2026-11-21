@@ -5,6 +5,7 @@ import classNames from 'classnames'
 import { useState } from 'react'
 import GoldAmount from '@/app/(protected)/(shop)/components/GoldAmount'
 import type { OpenedPack } from '@/app/(protected)/(shop)/components/PackOpening'
+import PackWrapper from '@/app/(protected)/(shop)/components/PackWrapper'
 import { PACK_SIZE, PackDefinition, PACKS, PITY_PACKS } from '@/app/(protected)/(shop)/data/packs'
 import { usePackPurchase } from '@/app/(protected)/(shop)/hooks/usePackPurchase'
 import { ShopState } from '@/app/(protected)/(shop)/models/ShopState'
@@ -14,6 +15,19 @@ import GameButton from '@/app/components/GameButton'
 import { useT } from '@/app/i18n/I18nProvider'
 
 const ICONS: Record<string, string> = { traveler: '🧭', chronicler: '📜', guardian: '🛡️', eternal: '⏳' }
+/** The card whose art goes on each pack (faction packs by their faction). */
+const ARTS: Record<string, string> = {
+  traveler: 'cave-scout',
+  chronicler: 'candle-keeper',
+  guardian: 'bronze-colossus-guard',
+  eternal: 'eternal-emperor',
+  primal: 'cave-bear',
+  bronze: 'legate-varro-portrait',
+  arcane: 'archmage-of-the-spire',
+  clockwork: 'gideon-ironsteam-portrait',
+  neon: 'ryn-voltblade-portrait',
+  void: 'malachar-the-unmade-portrait'
+}
 
 interface PackShopProps {
   state: ShopState
@@ -21,7 +35,7 @@ interface PackShopProps {
   onOpened: (pack: OpenedPack) => void
 }
 
-/** The packs tab: each pack with its price, what it brings and its odds (always visible on request). */
+/** The packs tab: each pack as a foil booster with its price, what it brings and its odds (on request). */
 export default function PackShop({ state, onChange, onOpened }: PackShopProps) {
   const t = useT()
   const [odds, setOdds] = useState<string | null>(null)
@@ -29,13 +43,14 @@ export default function PackShop({ state, onChange, onOpened }: PackShopProps) {
   const left = Math.max(0, PITY_PACKS - state.packsWithoutLegendary)
   const tile = (pack: PackDefinition) => (
     <article key={pack.id} className={classNames('pack-shop__pack', `pack-${pack.faction ?? pack.id}`)}>
-      <div className="pack-shop__art" aria-hidden="true">
-        <span>{pack.faction ? '✦' : ICONS[pack.id]}</span>
-      </div>
+      <PackWrapper
+        name={packName(pack, t)}
+        art={ARTS[pack.faction ?? pack.id]}
+        icon={pack.faction ? '✦' : ICONS[pack.id]}
+        count={PACK_SIZE}
+      />
       <div className="pack-shop__info">
-        <h3>{packName(pack, t)}</h3>
         <p>{packText(pack, t)}</p>
-        <p className="pack-shop__size">{t('shop.cardsPerPack', { count: PACK_SIZE })}</p>
         {odds === pack.id ? (
           <ul className="pack-shop__odds">
             {pack.slots.map((slot, index) => (

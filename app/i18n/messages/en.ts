@@ -595,7 +595,6 @@ export const en: Messages = {
       faction: 'Like the Chronicler, with {faction} and neutral cards.'
     },
     factionPacks: 'Faction packs',
-    cardsPerPack: '{count} cards',
     buy: 'Buy',
     odds: 'Odds',
     hideOdds: 'Hide',
@@ -618,16 +617,13 @@ export const en: Messages = {
       close: 'Continue'
     },
     cards: {
-      unlocks: 'Rarities for sale',
-      unlockHint: 'Rarities unlock one at a time, in order. Commons are open from the start.',
-      unlock: 'Unlock {rarity} for {cost}',
-      allUnlocked: 'You unlocked every rarity.',
+      unlock: 'Unlock',
+      unlockFirst: 'Unlock {rarity} first',
       unlocked: 'You unlocked the {rarity} cards!',
-      locked: 'Rarity locked',
-      lockedText: 'Unlock the {rarity} rarity to buy this card.',
       buyOne: 'Buy 1 for {price}',
       complete: 'Complete to {count} for {price}',
       bought: { one: 'You bought {card}', other: 'You bought {count} copies of {card}' },
+      heroOwned: 'You already have this hero',
       empty: 'No card for sale matches the filters.'
     },
     sell: {
@@ -1289,6 +1285,7 @@ export const en: Messages = {
     rarityLocked: 'That rarity is still locked in the shop',
     invalidCount: 'Invalid amount',
     cardNotForSale: 'That card is not sold as a single',
+    heroOwned: 'You already have that hero',
     cardNotSellable: 'That card cannot be sold',
     notEnoughCopies: 'You do not own that many copies of {card}',
     cardInDeck: 'Your active deck uses those copies of {card}: only the spare ones can be sold',

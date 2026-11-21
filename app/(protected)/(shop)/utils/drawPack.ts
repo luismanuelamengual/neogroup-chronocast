@@ -3,7 +3,7 @@ import { RARITIES, Rarity } from '@/app/(protected)/(engine)/models/Rarity'
 import { nextRandom } from '@/app/(protected)/(engine)/utils/random'
 import { allCards } from '@/app/(protected)/(engine)/utils/registry'
 import { PackDefinition, PackSlot } from '@/app/(protected)/(shop)/data/packs'
-import { isBuyable } from '@/app/(protected)/(shop)/utils/prices'
+import { isInPacks } from '@/app/(protected)/(shop)/utils/prices'
 
 export interface PackResult {
   /** The cards, from the lowest rarity to the highest (the order of the opening). */
@@ -17,7 +17,7 @@ const LEGENDARY = RARITIES.indexOf('legendary')
 /** The cards a pack can bring: no heroes nor campaign rewards; faction packs, only their faction and neutrals. */
 export function packPool(pack: PackDefinition, cards: CardDefinition[] = allCards()): CardDefinition[] {
   return cards.filter(
-    (card) => isBuyable(card) && (!pack.faction || card.faction === pack.faction || card.faction === 'neutral')
+    (card) => isInPacks(card) && (!pack.faction || card.faction === pack.faction || card.faction === 'neutral')
   )
 }
 

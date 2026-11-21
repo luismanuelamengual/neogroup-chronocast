@@ -27,7 +27,8 @@ describe('account deletion', () => {
     expect(await User.find(beto)).toBeTruthy()
   })
 
-  it('starts every player with 1200 of Prestige and no gold', async () => {
+  // A raw row starts with no gold: the sign up gives STARTING_GOLD.
+  it('starts every row with 1200 of Prestige and no gold', async () => {
     const user = await User.find(beto)
 
     expect(Number(user!.rating)).toBe(1200)

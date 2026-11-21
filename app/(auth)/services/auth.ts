@@ -4,6 +4,7 @@ import Credentials from 'next-auth/providers/credentials'
 import Google from 'next-auth/providers/google'
 import { cache } from 'react'
 import { authConfig } from '@/app/(auth)/services/auth.config'
+import { STARTING_GOLD } from '@/app/(protected)/(shop)/data/gold'
 import { isLocale } from '@/app/i18n/config'
 import { detectLocale } from '@/app/i18n/detect'
 import { User } from '@/app/models/User'
@@ -62,6 +63,7 @@ export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
           dbUser.emailVerified = true
           dbUser.active = true
           dbUser.locale = await detectLocale()
+          dbUser.gold = STARTING_GOLD
           await dbUser.save()
         } else {
           let changed = false

@@ -4,6 +4,9 @@
  * rival. The PvP module pays them (pvp/utils/rewards.ts); `yarn economy` uses them to tell
  * how long things take.
  */
+/** Gold of a brand new account (sign up, first Google sign in and `yarn db:reset-user`). */
+export const STARTING_GOLD = 2000
+
 export const GOLD_REWARDS = {
   win: 40,
   /** Extra for a win, up to this, when the rival had a higher rating. */

@@ -2,11 +2,25 @@ import { MAX_COPIES, MAX_UNIQUE_COPIES } from '@/app/(protected)/(engine)/data/r
 import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition'
 import { RARITIES, Rarity } from '@/app/(protected)/(engine)/models/Rarity'
 import { getCard, hasCard } from '@/app/(protected)/(engine)/utils/registry'
-import { CONFIRM_SELL_FROM, SELL_RATE, UNLOCK_COSTS } from '@/app/(protected)/(shop)/data/prices'
+import { CONFIRM_SELL_FROM, HERO_PRICES, SELL_RATE, UNLOCK_COSTS } from '@/app/(protected)/(shop)/data/prices'
 
-/** Cards the shop sells and buys: everything but heroes, campaign rewards and boss cards. */
+/** Cards the shop sells: playable heroes and every card with a price, but campaign rewards and boss cards. */
 export function isBuyable(card: CardDefinition): boolean {
-  return card.type !== 'hero' && !card.reward && !card.boss && card.price != null
+  if (card.reward || card.boss) {
+    return false
+  }
+
+  return card.type === 'hero' || card.price != null
+}
+
+/** Cards that can come in a pack: the buyable ones but heroes (they are only bought). */
+export function isInPacks(card: CardDefinition): boolean {
+  return isBuyable(card) && card.type !== 'hero'
+}
+
+/** Gold a copy of a card costs in the shop (heroes by their rarity, see HERO_PRICES). */
+export function shopPrice(card: CardDefinition): number {
+  return card.type === 'hero' ? HERO_PRICES[card.rarity] : (card.price ?? 0)
 }
 
 /** Cards a player can sell: everything with a price but heroes. */
@@ -46,8 +60,12 @@ export function nextUnlock(unlocked: Rarity[]): { rarity: Rarity; cost: number }
   return rarity ? { rarity, cost: UNLOCK_COSTS[rarity] } : null
 }
 
-/** The most copies of a card a deck can hold (4, or 1 if it is unique). */
+/** The most copies of a card worth having: 1 of a hero, 4 of a card (1 if it is unique). */
 export function copyLimit(card: CardDefinition): number {
+  if (card.type === 'hero') {
+    return 1
+  }
+
   return card.keywords?.includes('unique') ? MAX_UNIQUE_COPIES : MAX_COPIES
 }
 
