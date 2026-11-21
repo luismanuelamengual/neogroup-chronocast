@@ -509,14 +509,14 @@ Módulo `(shop)`, con tres pestañas: **Sobres**, **Cartas** y **Vender**. Preci
 | ---------- | ------------------------- | ----------------------- |
 | Común      | 40 – 80                   | Abierta desde el inicio |
 | Poco común | 140 – 220                 | 1.000                   |
-| Rara       | 450 – 750                 | 3.000                   |
-| Épica      | 1.400 – 2.200             | 8.000                   |
-| Legendaria | 4.000 – 6.000             | 20.000                  |
-| Exótica    | 10.000 – 14.000           | 50.000                  |
-| Mítica     | 25.000 – 35.000           | 100.000                 |
+| Rara       | 450 – 750                 | 2.000                   |
+| Épica      | 1.400 – 2.200             | 5.000                   |
+| Legendaria | 4.000 – 6.000             | 10.000                  |
+| Exótica    | 10.000 – 14.000           | 20.000                  |
+| Mítica     | 25.000 – 35.000           | 40.000                  |
 
 - El centro de cada rango es el doble de los precios del plan anterior.
-- Para desbloquear una rareza hay que tener la anterior desbloqueada. También se venden los héroes jugables (no los jefes), uno por jugador y caros, según su rareza: común 5.000, rara 12.000, épica 25.000 y legendaria 50.000 (`HERO_PRICES`); no salen en sobres ni se venden. La pestaña Cartas muestra el catálogo con filtros (facción, clase, tipo, costo, rareza, "usables con mi héroe") solo con las rarezas desbloqueadas: cada rareza bloqueada aparece al final como una carta boca abajo con "?" y su costo, para que sus cartas sean una sorpresa; la siguiente en orden se desbloquea desde su propia carta.
+- Para desbloquear una rareza hay que tener la anterior desbloqueada. También se venden los héroes jugables (no los jefes), uno por jugador, según su rareza: común 2.000, rara 3.000, épica 5.000 y legendaria 8.000 (`HERO_PRICES`); no salen en sobres ni se venden. La pestaña Cartas muestra el catálogo con filtros (facción, clase, tipo, costo, rareza, "usables con mi héroe") solo con las rarezas desbloqueadas: cada rareza bloqueada aparece al final como una carta boca abajo con "?" y su costo, para que sus cartas sean una sorpresa; la siguiente en orden se desbloquea desde su propia carta.
 - Las cartas premio de las campañas no se venden sueltas.
 
 ### 11.3 Vender

@@ -209,9 +209,9 @@ describe('prices, unlocks and selling', () => {
     expect(unlockedRarities([])).toEqual(['common'])
     expect(unlockedRarities(['uncommon', 'epic'])).toEqual(['common', 'uncommon'])
     expect(nextUnlock(['common'])).toEqual({ rarity: 'uncommon', cost: 1000 })
-    expect(nextUnlock(['common', 'uncommon'])).toEqual({ rarity: 'rare', cost: 3000 })
+    expect(nextUnlock(['common', 'uncommon'])).toEqual({ rarity: 'rare', cost: 2000 })
     expect(nextUnlock([...RARITIES])).toBeNull()
-    expect(Object.values(UNLOCK_COSTS)).toEqual([0, 1000, 3000, 8000, 20000, 50000, 100000])
+    expect(Object.values(UNLOCK_COSTS)).toEqual([0, 1000, 2000, 5000, 10000, 20000, 40000])
   })
 
   it('sells every card with a price and the playable heroes (dear), never campaign rewards or bosses', () => {

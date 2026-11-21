@@ -7,26 +7,26 @@ import { Rarity } from '@/app/(protected)/(engine)/models/Rarity'
 export const UNLOCK_COSTS: Record<Rarity, number> = {
   common: 0,
   uncommon: 1000,
-  rare: 3000,
-  epic: 8000,
-  legendary: 20000,
-  exotic: 50000,
-  mythic: 100000
+  rare: 2000,
+  epic: 5000,
+  legendary: 10000,
+  exotic: 20000,
+  mythic: 40000
 }
 
 /**
- * Price of a playable hero in the shop, by its rarity: much more than any card
- * of the same rarity, since a hero opens a whole new way to play. Boss heroes
+ * Price of a playable hero in the shop, by its rarity: more than a card of the
+ * same rarity, since a hero opens a whole new way to play. Boss heroes
  * are never sold. Like the cards, its rarity must be unlocked first.
  */
 export const HERO_PRICES: Record<Rarity, number> = {
-  common: 5000,
-  uncommon: 8000,
-  rare: 12000,
-  epic: 25000,
-  legendary: 50000,
-  exotic: 100000,
-  mythic: 200000
+  common: 2000,
+  uncommon: 2500,
+  rare: 3000,
+  epic: 5000,
+  legendary: 8000,
+  exotic: 12000,
+  mythic: 20000
 }
 
 /** A card sells for this share of its price, rounded (docs/PLAN.md, section 11.3). */

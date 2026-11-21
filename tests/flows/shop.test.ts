@@ -83,7 +83,7 @@ describe('the shop', () => {
 
     expect((await unlockRarity(ana, 'rare')).unlocked).toEqual(['common', 'uncommon', 'rare'])
     await expect(unlockRarity(ana, 'epic')).rejects.toMatchObject({ messageKey: 'errors.notEnoughGold' })
-    expect((await getShopState(ana)).gold).toBe(500)
+    expect((await getShopState(ana)).gold).toBe(1500)
   })
 
   it('sells single cards at their own price, only of unlocked rarities', async () => {
