@@ -4,7 +4,6 @@ import { alliesOf, buff } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'aquila-of-the-ninth',
   type: 'location',
-  reward: true,
   name: 'Aquila of the Ninth',
   text: 'At the start of each phase, your allies gain +1 attack and +3 health.',
   flavor: 'The lost legion found its way back, one century late.',

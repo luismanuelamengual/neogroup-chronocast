@@ -13,7 +13,7 @@ export default defineCard({
   price: 14000,
   cost: 8,
   attack: 30,
-  health: 80,
+  health: 40,
   keywords: ['guardian', 'thorns', 'unique'],
   thorns: 10,
   onEnter(ctx) {

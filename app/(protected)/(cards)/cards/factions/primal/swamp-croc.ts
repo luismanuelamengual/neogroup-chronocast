@@ -12,7 +12,7 @@ export default defineCard({
   price: 55,
   cost: 3,
   attack: 11,
-  health: 24,
+  health: 12,
   ai: { value: 3 },
   art: {
     subject: 'a giant crocodile with mossy armored scales lurking half-submerged in a steaming swamp'

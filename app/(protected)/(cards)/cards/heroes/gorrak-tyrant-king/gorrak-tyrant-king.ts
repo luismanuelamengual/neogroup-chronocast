@@ -13,7 +13,7 @@ export default defineCard({
   restriction: { kind: 'hero', heroId: 'gorrak-tyrant-king' },
   rarity: 'legendary',
   cost: 0,
-  health: 120,
+  health: 60,
   ability: {
     name: 'Devour',
     text: 'Deal 8 damage to an enemy slot and your hero heals 8.',

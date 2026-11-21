@@ -12,7 +12,7 @@ export default defineCard({
   rarity: 'epic',
   cost: 3,
   attack: 13,
-  health: 20,
+  health: 10,
   keywords: ['charge'],
   ai: { value: 4, tags: ['aggro'] },
   art: { subject: 'a baby tyrannosaurus with oversized jaws bursting out of a cracked egg, roaring' }

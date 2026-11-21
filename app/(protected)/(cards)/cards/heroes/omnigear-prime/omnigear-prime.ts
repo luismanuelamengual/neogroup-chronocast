@@ -13,7 +13,7 @@ export default defineCard({
   restriction: { kind: 'hero', heroId: 'omnigear-prime' },
   rarity: 'legendary',
   cost: 0,
-  health: 120,
+  health: 60,
   ability: {
     name: 'Assembly Line',
     text: 'Your allies gain +2 attack and +4 health.',

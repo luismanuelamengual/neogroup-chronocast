@@ -34,6 +34,13 @@ export interface SpotlightAction {
   onClick: () => void
 }
 
+/** One card of a stack: a card on the board and the ones attached to it. */
+export interface SpotlightCard {
+  cardId: string
+  /** Its line over the actions (replaces `note` while it is shown). */
+  note?: ReactNode
+}
+
 interface CardSpotlightProps {
   cardId: string
   /** Shines in its rarity's color (the best cards of a pack). */
@@ -45,6 +52,8 @@ interface CardSpotlightProps {
   actions?: SpotlightAction[]
   /** A line over the actions (e.g. the live stats of a unit on the board). */
   note?: ReactNode
+  /** The card and its attachments: a tap on the card shows the next one. */
+  stack?: SpotlightCard[]
 }
 
 /**
@@ -52,10 +61,14 @@ interface CardSpotlightProps {
  * in detail (opening packs, the starter, the battle). A tap anywhere, or
  * Escape, closes it. With `actions`, its buttons stand beside the card.
  */
-export default function CardSpotlight({ cardId, shine, onClose, badge, actions, note }: CardSpotlightProps) {
+export default function CardSpotlight({ cardId, shine, onClose, badge, actions, note, stack }: CardSpotlightProps) {
   const t = useT()
-  const card = getCard(cardId)
-  const withActions = !!actions?.length || !!note
+  const [index, setIndex] = useState(0)
+  const cards = stack && stack.length > 1 ? stack : null
+  const shown = cards ? cards[index % cards.length] : { cardId, note }
+  const card = getCard(shown.cardId)
+  const shownNote = cards ? (shown.note ?? null) : note
+  const withActions = !!actions?.length || !!note || !!cards
   const [zoom, setZoom] = useState(() => fitZoom(withActions))
 
   useEffect(() => {
@@ -80,15 +93,32 @@ export default function CardSpotlight({ cardId, shine, onClose, badge, actions, 
       onClick={onClose}
     >
       <div className="card-spotlight__body">
-        <div className="card-spotlight__card" style={{ borderRadius: 18 * zoom }}>
+        <div
+          key={shown.cardId}
+          className={classNames('card-spotlight__card', { cycles: !!cards })}
+          style={{ borderRadius: 18 * zoom }}
+          onClick={(event) => {
+            if (cards) {
+              event.stopPropagation()
+              setIndex((current) => (current + 1) % cards.length)
+            }
+          }}
+        >
           <span className="card-spotlight__zoom" style={{ zoom }}>
             <CardView card={card} />
           </span>
           {badge}
+          {cards && (
+            <span className="card-spotlight__dots" aria-hidden="true">
+              {cards.map((entry, position) => (
+                <i key={entry.cardId + position} className={classNames({ on: position === index % cards.length })} />
+              ))}
+            </span>
+          )}
         </div>
         {withActions && (
           <div className="card-spotlight__actions" onClick={(event) => event.stopPropagation()}>
-            {note && <div className="card-spotlight__note">{note}</div>}
+            {shownNote && <div className="card-spotlight__note">{shownNote}</div>}
             {actions?.map((action) => (
               <div key={action.label} className="card-spotlight__action">
                 <GameButton
@@ -105,7 +135,7 @@ export default function CardSpotlight({ cardId, shine, onClose, badge, actions, 
           </div>
         )}
       </div>
-      <span className="card-spotlight__hint">{t('common.tapToClose')}</span>
+      <span className="card-spotlight__hint">{cards ? t('common.tapToCycle') : t('common.tapToClose')}</span>
     </div>,
     document.body
   )

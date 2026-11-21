@@ -12,7 +12,7 @@ export default defineCard({
   price: 65,
   cost: 5,
   attack: 20,
-  health: 42,
+  health: 21,
   ai: { value: 5 },
   art: {
     subject: 'a massive stone golem covered in glowing blue runes, lumbering through a ruined wizard tower'

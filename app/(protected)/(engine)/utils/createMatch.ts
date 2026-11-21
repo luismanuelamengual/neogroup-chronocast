@@ -5,6 +5,7 @@ import { PLAYER_IDS, PlayerId } from '@/app/(protected)/(engine)/models/PlayerId
 import { MatchEngine } from '@/app/(protected)/(engine)/utils/engine'
 import { startPhase } from '@/app/(protected)/(engine)/utils/phases'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
+import { isRetired } from '@/app/(protected)/(engine)/utils/retired'
 
 /** How a side starts beyond the rules (the campaign uses it for its adverse situations). */
 export interface SideSetup {
@@ -51,7 +52,7 @@ export function createMatch({ seed, decks, setup = {} }: MatchSetup): {
       throw new Error(`"${deck.heroId}" is not a hero`)
     }
 
-    const health = (hero.health ?? 100) + (side.extraHealth ?? 0)
+    const health = (hero.health ?? 50) + (side.extraHealth ?? 0)
 
     state.players[id] = {
       id,
@@ -69,10 +70,12 @@ export function createMatch({ seed, decks, setup = {} }: MatchSetup): {
       },
       allies: Array.from({ length: ALLY_SLOTS }, () => null),
       hand: [],
-      deck: deck.cards.map((cardId) => engine.newCard(cardId)),
+      // The retired types (locations, for now) are left out of the deck.
+      deck: deck.cards.filter((cardId) => !isRetired(getCard(cardId))).map((cardId) => engine.newCard(cardId)),
       discard: [],
       location: null,
       traps: [],
+      artifacts: [],
       chronos: 0,
       chronosCapacity: side.chronosCapacity ?? 0,
       sacrificesThisPhase: 0,

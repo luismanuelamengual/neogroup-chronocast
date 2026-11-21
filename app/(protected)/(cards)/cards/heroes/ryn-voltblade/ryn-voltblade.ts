@@ -12,7 +12,7 @@ export default defineCard({
   restriction: { kind: 'hero', heroId: 'ryn-voltblade' },
   rarity: 'epic',
   cost: 0,
-  health: 110,
+  health: 55,
   ability: {
     name: 'Overcharge',
     text: 'An ally of yours gains +8 attack this phase.',

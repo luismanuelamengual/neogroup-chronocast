@@ -13,7 +13,7 @@ export default defineCard({
   price: 45,
   cost: 1,
   attack: 3,
-  health: 10,
+  health: 5,
   onDeath(ctx) {
     draw(ctx, ctx.owner, 1)
   },

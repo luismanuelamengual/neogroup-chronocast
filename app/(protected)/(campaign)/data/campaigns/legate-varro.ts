@@ -7,12 +7,12 @@ import { defineCampaign } from '@/app/(protected)/(campaign)/utils/defineCampaig
  */
 export default defineCampaign({
   heroId: 'legate-varro',
-  rewardCardId: 'aquila-of-the-ninth',
+  rewardCardId: 'signifer-lucius',
   stages: [
     { rival: 'kora-wildfang' },
     { rival: 'ilyra-starweaver' },
-    { rival: 'kora-wildfang', cpuSetup: { extraHealth: 10 } },
-    { rival: 'ilyra-starweaver', cpuSetup: { extraHealth: 10 } },
+    { rival: 'kora-wildfang', cpuSetup: { extraHealth: 5 } },
+    { rival: 'ilyra-starweaver', cpuSetup: { extraHealth: 5 } },
     { rival: 'legate-varro', cpuSetup: { allies: ['phalanx-recruit'] } },
     { rival: 'kora-wildfang', cpuSetup: { allies: ['raptor-pack'] } },
     {
@@ -21,7 +21,7 @@ export default defineCampaign({
     },
     {
       rival: 'legate-varro',
-      cpuSetup: { extraHealth: 10 }
+      cpuSetup: { extraHealth: 5 }
     },
     {
       rival: 'kora-wildfang',
@@ -34,9 +34,8 @@ export default defineCampaign({
         ['praetorian-guard', 2],
         ['usurpers-decree', 3],
         ['bronze-legionary', 4],
-        ['phalanx-recruit', 3],
+        ['phalanx-recruit', 4],
         ['arena-champion', 4],
-        ['colosseum', 1],
         ['iron-gladius', 4],
         ['bronze-cuirass', 3],
         ['sky-courier', 3],

@@ -4,7 +4,6 @@ import { buffAllies, healAllAllies } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'the-ancestor-tree',
   type: 'location',
-  reward: true,
   name: 'The Ancestor Tree',
   text: 'At the start of each phase, your allies heal 4 and your allies gain +1 attack and +2 health.',
   flavor: 'Every leaf is a name. Every root is a story.',

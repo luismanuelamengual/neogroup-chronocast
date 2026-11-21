@@ -13,7 +13,7 @@ export default defineCard({
   restriction: { kind: 'hero', heroId: 'vorhal-the-last-hour' },
   rarity: 'legendary',
   cost: 0,
-  health: 116,
+  health: 58,
   ability: {
     name: 'Toll of the Last Hour',
     text: 'Deal 4 damage to every enemy ally.',

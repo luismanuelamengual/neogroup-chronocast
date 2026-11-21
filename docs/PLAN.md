@@ -1,6 +1,6 @@
 # ChronoCast — Plan de implementación
 
-Juego de cartas coleccionables al estilo _Shadow Era_, pero **sin turnos**: en cada fase los dos jugadores programan a la vez 5 acciones y después se ejecutan en paralelo, paso por paso. Se publica como PWA en Vercel y en Google Play como TWA, con la misma base técnica y la misma estructura de módulos que `neogroup-crisol`.
+Juego de cartas coleccionables al estilo _Shadow Era_, pero **sin turnos**: en cada fase los dos jugadores programan a la vez 6 acciones y después se ejecutan en paralelo, paso por paso. Se publica como PWA en Vercel y en Google Play como TWA, con la misma base técnica y la misma estructura de módulos que `neogroup-crisol`.
 
 Este documento es el plan completo. Todavía no hay código: cada sección dice qué se construye, dónde vive y en qué fase de la hoja de ruta entra. Los números (daño, costos, precios, oro) son un punto de partida y se ajustan con los scripts de simulación (sección 15).
 
@@ -17,7 +17,7 @@ Este documento es el plan completo. Todavía no hay código: cada sección dice 
 5. [Rarezas](#5-rarezas)
 6. [Reglas de mazo y starter pack](#6-reglas-de-mazo-y-starter-pack)
 7. [Una carta = un archivo `.ts`](#7-una-carta--un-archivo-ts)
-8. [El catálogo de 500 cartas](#8-el-catálogo-de-500-cartas)
+8. [El catálogo de 531 cartas](#8-el-catálogo-de-531-cartas)
 9. [Arte: archivo de prompts y `yarn art`](#9-arte-archivo-de-prompts-y-yarn-art)
 10. [Rating (el "ELO") y oro](#10-rating-el-elo-y-oro)
 11. [Tienda](#11-tienda)
@@ -58,21 +58,21 @@ El recurso se llama **Cronos** (`chronos` en el código). Los nombres en pantall
 
 Cada jugador tiene:
 
-- **Héroe**: en su slot propio, **detrás** de la fila de aliados (más lejos del centro). Tiene **entre 90 y 120 de vida** según el héroe, una habilidad pasiva y una habilidad activa. **Empieza sin arma ni armadura**: las armas y armaduras son cartas que se juegan y se adjuntan al héroe, como en Shadow Era (un lugar para arma y uno para armadura).
+- **Héroe**: en su slot propio, **detrás** de la fila de aliados (más lejos del centro). Tiene **entre 45 y 60 de vida** según el héroe, una habilidad pasiva y una habilidad activa. **Empieza sin arma ni armadura**: las armas y armaduras son cartas que se juegan y se adjuntan al héroe, como en Shadow Era (un lugar para arma y uno para armadura).
 - **5 slots de aliados** (1 a 5, en fila delante del héroe). Nunca más de 5 aliados.
-- **Ubicación**: un lugar para una carta de ubicación propia; una nueva reemplaza a la anterior.
-- **Trampas**: hasta 2 cartas boca abajo.
+- **Soporte**: 5 slots para las cartas que quedan en juego sin ser aliados: trampas (boca abajo) y artefactos (boca arriba, a veces con usos). Se pueden poner tantas trampas o artefactos como slots libres haya (`SUPPORT_SLOTS`).
+- **Ubicación**: un lugar para una carta de ubicación propia; una nueva reemplaza a la anterior. **Por ahora las ubicaciones están fuera del juego** (`RETIRED_CARD_TYPES`): no se venden, no salen en sobres, no se agregan a mazos y las copias que ya estaban en un mazo no entran a la partida. Siguen en el catálogo para que las colecciones guardadas carguen.
 - **Mazo**, **mano** (máximo **7** cartas) y **pila de descarte** (cartas usadas, descartadas, aliados muertos y héroes caídos). Algunas cartas (sobre todo del Vacío) devuelven cartas de la pila al juego.
 
 ```
                          RIVAL
-          [Mazo] [Descarte]     [Ubic] [Trampa][Trampa]
+          [Mazo] [Descarte]     [Soporte ×5]          
                  [ H ] [Arma] [Armadura]         ← héroe rival (atrás)
          [ 1 ][ 2 ][ 3 ][ 4 ][ 5 ]               ← aliados rivales
   ─────────── línea de tiempo: ① ② ③ ④ ⑤   ⏱ 90 s   [Listo] ───────────
          [ 1 ][ 2 ][ 3 ][ 4 ][ 5 ]               ← tus aliados
                  [ H ] [Arma] [Armadura]         ← tu héroe (atrás)
-          [Mazo] [Descarte]     [Ubic] [Trampa][Trampa]
+          [Mazo] [Descarte]     [Soporte ×5]          
                           VOS          [ mano (máx. 7) ]
 ```
 
@@ -90,14 +90,14 @@ En pantallas anchas el héroe puede ir al costado de su fila de aliados en lugar
 Cada fase tiene tres momentos:
 
 1. **Inicio de fase**: cada jugador roba 2 cartas (en la fase 1 no se roba). Si la mano ya tiene 7, cada carta de más va directo a la pila de descarte. Los Cronos se recargan hasta la capacidad, los aliados y el héroe quedan listos para atacar otra vez y se disparan los efectos "al inicio de la fase".
-2. **Programación** (simultánea, con reloj): cada jugador arma su **línea de tiempo** de 5 acciones. Nadie ve lo que programa el otro. Termina cuando los dos tocan **Listo** o cuando pasan los **90 segundos**. Al agotarse el tiempo, lo programado queda fijo y los pasos vacíos son "Esperar".
-3. **Resolución**: se ejecutan los 5 pasos en orden. En el paso _n_ se resuelven la acción _n_ del jugador A y la acción _n_ del jugador B (ver 2.5). Después de cada paso se revisa si cayó algún héroe.
+2. **Programación** (simultánea, con reloj): cada jugador arma su **línea de tiempo** de 6 acciones. Nadie ve lo que programa el otro. Termina cuando los dos tocan **Listo** o cuando pasan los **90 segundos**. Al agotarse el tiempo, lo programado queda fijo y los pasos vacíos son "Esperar".
+3. **Resolución**: se ejecutan los 6 pasos en orden. En el paso _n_ se resuelven la acción _n_ del jugador A y la acción _n_ del jugador B (ver 2.5). Después de cada paso se revisa si cayó algún héroe.
 
-Si después del paso 5 los dos héroes siguen en pie, empieza una nueva fase. Gana el primero que derrota al héroe rival. **Si los dos héroes caen en el mismo paso, la partida es un empate.**
+Si después del paso 6 los dos héroes siguen en pie, empieza una nueva fase. Gana el primero que derrota al héroe rival. **Si los dos héroes caen en el mismo paso, la partida es un empate.**
 
 ### 2.4 Las acciones
 
-Cada una de las 5 acciones de la línea de tiempo es una de estas:
+Cada una de las 6 acciones de la línea de tiempo es una de estas:
 
 | Acción                     | Qué hace                                                                                                                                   | Costo                     |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------- |
@@ -137,7 +137,7 @@ Cada acción tiene una **velocidad** (`instant`, `fast`, `normal`, `slow`). Dent
 
 ### 2.6 Combate
 
-- **Escala de números**: con héroes de 90 a 120 de vida, los aliados pegan aproximadamente entre 3 y 30 y tienen entre 5 y 50 de vida; una habilidad común hace de 8 a 15 de daño. La meta es que una partida dure de 6 a 12 fases.
+- **Escala de números**: con héroes de 45 a 60 de vida, los aliados pegan aproximadamente entre 3 y 30 y tienen entre 3 y 25 de vida (la vida se bajó a la mitad para que las partidas sean más cortas); una habilidad común hace de 8 a 15 de daño. La meta es que una partida dure de 6 a 12 fases.
 - **Ataque de un aliado**: hace su ataque como daño al objetivo. Si el objetivo es un aliado y el atacante no tiene _A distancia_, el defensor **contraataca** con su ataque (como en Shadow Era).
 - **Armadura** (carta adjunta): resta daño de cada golpe al héroe y tiene puntos que se gastan; al llegar a 0 se descarta.
 - **Arma** (carta adjunta): da el ataque del héroe y tiene durabilidad; al llegar a 0 se descarta. Sin arma, el héroe no ataca.
@@ -166,7 +166,9 @@ Todas las constantes de esta sección viven en `(engine)/data/rules.ts` (`STARTI
 | `ability`  | Habilidad          | Efecto de un solo uso (daño, curación, robo, control).                                              |
 | `weapon`   | Arma               | Se adjunta al héroe: ataque y durabilidad, a veces con efecto (veneno, robo de vida...).            |
 | `armor`    | Armadura           | Se adjunta al héroe: puntos de armadura y a veces un efecto (espinas, resistencia...).              |
-| `item`     | Objeto             | Consumible (poción, bomba) o artefacto permanente con un efecto pasivo o una activa.                |
+| `item`     | Objeto             | Consumible de un solo uso (poción, bomba).                                                          |
+| `attachment` | Adjunto          | Se adjunta a un aliado (propio o enemigo): suma ataque o vida, da palabras clave (Protector, Sigilo, Vuelo...), reduce o duplica el daño recibido. Se descarta cuando muere el aliado. |
+| `artifact` | Artefacto          | Queda en un slot de soporte con un efecto continuo o por fase; algunos tienen usos (`charges`) y se descartan al gastarlos. |
 | `location` | Ubicación          | Efecto continuo de campo. Una por jugador.                                                          |
 | `trap`     | Trampa             | Se juega boca abajo y se activa sola cuando se cumple su condición. Encaja con el juego simultáneo. |
 
@@ -375,7 +377,7 @@ Una carta sin traducción se muestra en inglés, así que **la traducción es op
 
 ---
 
-## 8. El catálogo de 500 cartas
+## 8. El catálogo de 531 cartas
 
 ### 8.1 Reparto por restricción
 
@@ -388,7 +390,8 @@ Una carta sin traducción se muestra en inglés, así que **la traducción es op
 | Por clase                   | 25               | 4      | 100     | 12 habilidades, 6 armas, 5 armaduras, 2 objetos                                        |
 | Exclusivas de un héroe      | 5                | 12     | 60      | 2 habilidades, 1 arma, 1 aliado compañero y 1 carta de premio de su campaña            |
 | Héroes                      | —                | —      | 12      |                                                                                        |
-| **Total**                   |                  |        | **500** |                                                                                        |
+| Adjuntos y artefactos (`neutral`) | —          | —      | 31      | 19 adjuntos para aliados y 12 artefactos de soporte (ronda 4)                          |
+| **Total**                   |                  |        | **531** |                                                                                        |
 
 Por tipo da aproximadamente: 220 aliados, 102 habilidades, 40 armas, 24 armaduras, 42 objetos, 22 ubicaciones, 26 trampas, 12 premios de campaña y 12 héroes.
 
@@ -547,7 +550,7 @@ Flujo de una fase:
 
 1. El servidor guarda el `MatchState` con `phaseDeadline` (ahora + 90 s).
 2. Cada cliente manda su línea de tiempo con `POST /api/submitPlan` (se puede reenviar hasta que el otro también esté listo).
-3. Cuando llega la segunda, o en el primer pedido que llega después del `phaseDeadline`, el servidor resuelve la fase: guarda el estado nuevo, el **registro de eventos** de los 5 pasos (para animarlos) y el plazo de la fase siguiente (tiempo de animación + 90 s).
+3. Cuando llega la segunda, o en el primer pedido que llega después del `phaseDeadline`, el servidor resuelve la fase: guarda el estado nuevo, el **registro de eventos** de los 6 pasos (para animarlos) y el plazo de la fase siguiente (tiempo de animación + 90 s).
 4. Los clientes reciben los eventos, los animan y siguen.
 
 **Sin servidor siempre prendido**: como Crisol corre en Vercel (funciones sin estado), la fase se resuelve "perezosamente" en el primer pedido que llega vencido el plazo, con bloqueo optimista (`version` en `matches`, como `saves.version` en Crisol) para que no se resuelva dos veces.
@@ -634,7 +637,7 @@ Oro por cada combate ganado la primera vez (de 50 a 300), un sobre en los combat
 
 - **Horizontal**, como Crisol: tablero del rival arriba, el tuyo abajo, la mano en abanico abajo a la derecha.
 - **El héroe va detrás de su fila de aliados**, nunca delante. En pantallas muy anchas puede ir al costado izquierdo de su fila para ganar altura. Al lado del héroe se ven su arma y su armadura adjuntas (lugares vacíos al empezar).
-- **Línea de tiempo** de 5 casilleros en el centro, con el reloj de 90 s (anillo que se vacía) y el botón **Listo**. Se arrastra una carta de la mano a un casillero, o se toca un aliado y después el slot objetivo (o un slot vacío propio para moverlo). Cada casillero muestra el ícono de la acción, su velocidad y los Cronos que quedan.
+- **Línea de tiempo** de 6 casilleros en una columna a la derecha del tablero, con el reloj de 90 s (anillo que se vacía) y el botón **Listo**. Se arrastra una carta de la mano a un casillero, o se toca un aliado y después el slot objetivo (o un slot vacío propio para moverlo). Cada casillero muestra el ícono de la acción, su velocidad y los Cronos que quedan.
 - **Proyección** en vivo (sección 2.4): los aliados que vas a invocar o mover aparecen translúcidos en su slot destino.
 - **Indicador del rival**: "programando..." / "listo".
 - **Resolución**: las dos líneas de tiempo se dan vuelta y se iluminan paso por paso; cada paso anima sus acciones en orden de velocidad (flechas de ataque, números de daño flotantes, aliados que se deslizan de slot, cartas que se dan vuelta). Botón ×2 y registro escrito de lo que pasó.
@@ -702,7 +705,7 @@ Sin React ni base de datos, determinístico, con tests:
     startPhase.ts       Draw, chronos refill, phase-start effects
     validatePlan.ts     Is the timeline valid? (projection)
     projectPlan.ts      Simulation with a passive opponent, for the UI
-    resolvePhase.ts     The 5 steps, by speed, with the event log
+    resolvePhase.ts     The 6 steps, by speed, with the event log
     deckRules.ts        Deck rules and canUseCard
     rating.ts           Rating calculation
     random.ts           Seeded randomness

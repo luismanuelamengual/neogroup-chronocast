@@ -8,6 +8,10 @@ export interface CardInstance {
   cardId: string
   /** An `echo` card that already came back to the hand once. */
   echoUsed?: boolean
+  /** An attachment: who played it (it can be on a rival's ally; it goes to this player's discard pile). */
+  owner?: PlayerId
+  /** An artifact: uses left (it is discarded at 0). */
+  charges?: number
 }
 
 /** An ally on the board. */
@@ -33,6 +37,8 @@ export interface Unit {
   /** It can't act while the phase is not past this one. */
   stunnedUntilPhase: number
   echoUsed: boolean
+  /** Cards attached to the ally (shown under it; discarded when it leaves the board). */
+  attachments?: CardInstance[]
 }
 
 export interface HeroState {
@@ -61,7 +67,10 @@ export interface PlayerState {
   deck: CardInstance[]
   discard: CardInstance[]
   location: CardInstance | null
+  /** Face down. Traps and artifacts share the SUPPORT_SLOTS. */
   traps: CardInstance[]
+  /** Support cards that stay in play with a lasting effect. */
+  artifacts: CardInstance[]
   /** Chronos available this phase and capacity (refilled at the start of each phase). */
   chronos: number
   chronosCapacity: number
@@ -85,7 +94,7 @@ export interface MatchState {
   seed: number
   /** State of the seeded random generator. */
   rng: number
-  /** Current phase (1, 2...) and step being resolved (0 to 4; -1 while programming). */
+  /** Current phase (1, 2...) and step being resolved (0 to 5; -1 while programming). */
   phase: number
   step: number
   status: 'planning' | 'finished'

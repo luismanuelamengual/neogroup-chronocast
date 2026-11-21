@@ -13,7 +13,7 @@ export default defineCard({
   price: 170,
   cost: 3,
   attack: 9,
-  health: 18,
+  health: 9,
   onEnter(ctx) {
     for (const unit of alliesOf(ctx, ctx.owner)) {
       if (unit.uid !== ctx.self.uid) {

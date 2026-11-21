@@ -161,14 +161,14 @@ interface TimelineBarProps {
   step: number | null
   failures: Record<PlayerId, (FailReason | null)[]>
   deadline: number
-  /** While planning, how many of the 5 actions are still free (null hides the counter). */
+  /** While planning, how many of the 6 actions are still free (null hides the counter). */
   actionsLeft?: number | null
   onRemove: (index: number) => void
   onReady: () => void
 }
 
 /**
- * The timelines in the middle of the board: the rival's 5 actions (face down
+ * The timelines in the middle of the board: the rival's 6 actions (face down
  * until the resolution) above, the player's below with the Chronos left after
  * each one, the 90 s clock and the Ready button.
  */

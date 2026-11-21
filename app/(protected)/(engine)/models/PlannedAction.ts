@@ -1,6 +1,6 @@
 import { SlotRef } from '@/app/(protected)/(engine)/models/SlotRef'
 
-/** One of the 5 actions of a timeline (docs/PLAN.md, section 2.4). */
+/** One of the 6 actions of a timeline (docs/PLAN.md, section 2.4). */
 export type PlannedAction =
   | { kind: 'wait' }
   /** Discard a card of the hand for +1 Chronos capacity. */

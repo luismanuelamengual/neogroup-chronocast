@@ -13,7 +13,7 @@ export default defineCard({
   price: 55,
   cost: 3,
   attack: 9,
-  health: 18,
+  health: 9,
   onEnter(ctx) {
     if (discardSize(ctx, ctx.owner) >= 5) {
       buffSelf(ctx, 4, 4)

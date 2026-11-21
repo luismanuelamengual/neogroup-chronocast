@@ -13,7 +13,7 @@ export default defineCard({
   price: 560,
   cost: 3,
   attack: 6,
-  health: 18,
+  health: 9,
   onPhaseStart(ctx) {
     draw(ctx, ctx.owner, 1)
   },

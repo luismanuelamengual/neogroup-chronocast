@@ -13,7 +13,7 @@ export default defineCard({
   restriction: { kind: 'hero', heroId: 'morgrath-lich-abbot' },
   rarity: 'legendary',
   cost: 0,
-  health: 120,
+  health: 60,
   ability: {
     name: 'Unholy Bolt',
     text: 'Deal 12 damage to an enemy slot and your hero heals 6.',

@@ -13,7 +13,7 @@ export default defineCard({
   restriction: { kind: 'hero', heroId: 'overseer-kade' },
   rarity: 'legendary',
   cost: 0,
-  health: 115,
+  health: 58,
   ability: {
     name: 'Lockdown',
     text: 'Stun an enemy ally for two phases.',

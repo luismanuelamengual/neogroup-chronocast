@@ -13,7 +13,7 @@ export default defineCard({
   price: 5500,
   cost: 6,
   attack: 16,
-  health: 44,
+  health: 22,
   keywords: ['unique'],
   onEnter(ctx) {
     summonCard(ctx, ctx.owner, 'raptor-pack')

@@ -13,7 +13,7 @@ export default defineCard({
   price: 55,
   cost: 3,
   attack: 8,
-  health: 26,
+  health: 13,
   keywords: ['guardian'],
   onPhaseStart(ctx) {
     gainArmor(ctx, ctx.owner, 2)

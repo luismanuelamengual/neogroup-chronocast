@@ -10,12 +10,12 @@ export default defineCampaign({
   stages: [
     { rival: 'gideon-ironsteam' },
     { rival: 'ilyra-starweaver' },
-    { rival: 'ryn-voltblade', cpuSetup: { extraHealth: 10 } },
-    { rival: 'nysa-goldbow', cpuSetup: { extraHealth: 10 } },
+    { rival: 'ryn-voltblade', cpuSetup: { extraHealth: 5 } },
+    { rival: 'nysa-goldbow', cpuSetup: { extraHealth: 5 } },
     { rival: 'gideon-ironsteam', cpuSetup: { allies: ['rivet-hound'] } },
     { rival: 'vex-nightwire', cpuSetup: { allies: ['security-drone'] } },
     { rival: 'ilyra-starweaver', cpuSetup: { allies: ['tower-novice'] } },
-    { rival: 'aldric-dawnkeeper', cpuSetup: { extraHealth: 10 } },
+    { rival: 'aldric-dawnkeeper', cpuSetup: { extraHealth: 5 } },
     { rival: 'malachar-the-unmade', cpuSetup: { weapon: 'apprentice-wand' }, playerSetup: { handSize: 6 } },
     {
       rival: 'omnigear-prime',
@@ -35,7 +35,7 @@ export default defineCampaign({
         ['chainmail', 2],
         ['iron-gladius', 2]
       ],
-      cpuSetup: { allies: ['steam-sentry'], extraHealth: 10 }
+      cpuSetup: { allies: ['steam-sentry'], extraHealth: 5 }
     }
   ]
 })

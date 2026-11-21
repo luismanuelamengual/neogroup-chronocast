@@ -30,6 +30,7 @@ export function eventSound(event: MatchEvent): SfxId | null {
     case 'summon':
       return 'summon'
     case 'attach':
+    case 'artifact':
     case 'location':
       return 'attach'
     case 'trapSet':

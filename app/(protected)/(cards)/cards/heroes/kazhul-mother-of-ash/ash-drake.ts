@@ -12,7 +12,7 @@ export default defineCard({
   rarity: 'epic',
   cost: 5,
   attack: 20,
-  health: 30,
+  health: 15,
   keywords: ['flying'],
   ai: { value: 6 },
   art: {

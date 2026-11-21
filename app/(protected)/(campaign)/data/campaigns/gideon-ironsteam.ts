@@ -10,12 +10,12 @@ export default defineCampaign({
   stages: [
     { rival: 'ada-copperwick' },
     { rival: 'legate-varro' },
-    { rival: 'vex-nightwire', cpuSetup: { extraHealth: 10 } },
-    { rival: 'kora-wildfang', cpuSetup: { extraHealth: 10 } },
+    { rival: 'vex-nightwire', cpuSetup: { extraHealth: 5 } },
+    { rival: 'kora-wildfang', cpuSetup: { extraHealth: 5 } },
     { rival: 'ada-copperwick', cpuSetup: { allies: ['cog-apprentice'] } },
     { rival: 'ryn-voltblade', cpuSetup: { allies: ['neon-blade'] } },
     { rival: 'legate-varro', cpuSetup: { allies: ['legion-slinger'] } },
-    { rival: 'malachar-the-unmade', cpuSetup: { extraHealth: 10 } },
+    { rival: 'malachar-the-unmade', cpuSetup: { extraHealth: 5 } },
     { rival: 'ilyra-starweaver', cpuSetup: { weapon: 'staff-of-embers' }, playerSetup: { handSize: 6 } },
     {
       rival: 'chancellor-brassmaw',

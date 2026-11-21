@@ -11,8 +11,8 @@ export default defineCampaign({
   stages: [
     { rival: 'ilyra-starweaver' },
     { rival: 'legate-varro' },
-    { rival: 'ilyra-starweaver', cpuSetup: { extraHealth: 10 } },
-    { rival: 'legate-varro', cpuSetup: { extraHealth: 10 } },
+    { rival: 'ilyra-starweaver', cpuSetup: { extraHealth: 5 } },
+    { rival: 'legate-varro', cpuSetup: { extraHealth: 5 } },
     { rival: 'kora-wildfang', cpuSetup: { allies: ['raptor-pack'] } },
     { rival: 'ilyra-starweaver', cpuSetup: { allies: ['apprentice-mage'] } },
     {
@@ -21,7 +21,7 @@ export default defineCampaign({
     },
     {
       rival: 'kora-wildfang',
-      cpuSetup: { extraHealth: 10 }
+      cpuSetup: { extraHealth: 5 }
     },
     {
       rival: 'kora-wildfang',

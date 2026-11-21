@@ -13,7 +13,7 @@ export default defineCard({
   price: 600,
   cost: 4,
   attack: 10,
-  health: 24,
+  health: 12,
   ability: {
     name: 'Tune-up',
     text: 'An ally of yours gains +2 attack and +4 health.',

@@ -13,7 +13,7 @@ export default defineCard({
   restriction: { kind: 'hero', heroId: 'xulthar-the-devourer' },
   rarity: 'legendary',
   cost: 0,
-  health: 120,
+  health: 60,
   ability: {
     name: 'Consume',
     text: 'Deal 10 damage to an enemy slot and your hero heals 8.',

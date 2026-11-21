@@ -13,7 +13,7 @@ export default defineCard({
   price: 160,
   cost: 2,
   attack: 6,
-  health: 10,
+  health: 5,
   onEnter(ctx) {
     damage(ctx, { player: ctx.opponent, slot: 'hero' }, 3)
     gainChronos(ctx, ctx.owner, 1)

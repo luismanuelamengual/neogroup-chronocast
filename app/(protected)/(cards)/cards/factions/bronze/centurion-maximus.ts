@@ -13,7 +13,7 @@ export default defineCard({
   price: 5500,
   cost: 6,
   attack: 24,
-  health: 48,
+  health: 24,
   keywords: ['guardian', 'shield', 'unique'],
   onDeath(ctx) {
     summonCard(ctx, ctx.owner, 'bronze-legionary')

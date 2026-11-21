@@ -4,7 +4,6 @@ import { heal, reviveFromDiscard } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'the-singing-graves',
   type: 'location',
-  reward: true,
   name: 'The Singing Graves',
   text: 'At the start of each phase, a random ally of your discard pile returns to play and your hero heals 3.',
   flavor: 'Listen closely. They are singing your name.',

@@ -13,7 +13,7 @@ export default defineCard({
   restriction: { kind: 'hero', heroId: 'tauron-labyrinth-lord' },
   rarity: 'legendary',
   cost: 0,
-  health: 112,
+  health: 56,
   ability: {
     name: 'Gore',
     text: 'Deal 12 damage to an enemy slot.',

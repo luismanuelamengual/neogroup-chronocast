@@ -10,12 +10,12 @@ export default defineCampaign({
   stages: [
     { rival: 'ilyra-starweaver' },
     { rival: 'nyx-hollowsong' },
-    { rival: 'legate-varro', cpuSetup: { extraHealth: 10 } },
-    { rival: 'kora-wildfang', cpuSetup: { extraHealth: 10 } },
+    { rival: 'legate-varro', cpuSetup: { extraHealth: 5 } },
+    { rival: 'kora-wildfang', cpuSetup: { extraHealth: 5 } },
     { rival: 'nyx-hollowsong', cpuSetup: { allies: ['grave-whisperer'] } },
     { rival: 'ilyra-starweaver', cpuSetup: { allies: ['rune-sprite'] } },
     { rival: 'malachar-the-unmade', cpuSetup: { allies: ['hollow-cultist'] } },
-    { rival: 'ada-copperwick', cpuSetup: { extraHealth: 10 } },
+    { rival: 'ada-copperwick', cpuSetup: { extraHealth: 5 } },
     { rival: 'nysa-goldbow', cpuSetup: { weapon: 'shortbow' }, playerSetup: { handSize: 6 } },
     {
       rival: 'morgrath-lich-abbot',

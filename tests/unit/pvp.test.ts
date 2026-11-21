@@ -67,6 +67,7 @@ describe('timelines from the client', () => {
       { kind: 'heroAttack', target: { player: 'b', slot: 'hero' } },
       { kind: 'wait' },
       { kind: 'wait' },
+      { kind: 'wait' },
       { kind: 'wait' }
     ])
   })

@@ -13,7 +13,7 @@ export default defineCard({
   price: 55,
   cost: 2,
   attack: 8,
-  health: 16,
+  health: 8,
   keywords: ['guardian'],
   onEnter(ctx) {
     if (neighbors(ctx).some((ally) => cardOf(ally).faction === 'bronze')) {

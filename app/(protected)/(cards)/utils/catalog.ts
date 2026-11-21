@@ -1,6 +1,7 @@
 import { CARD_FILES } from '@/app/(protected)/(cards)/cards/index.generated'
 import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition'
 import { getCard, registerCards } from '@/app/(protected)/(engine)/utils/registry'
+import { isRetired } from '@/app/(protected)/(engine)/utils/retired'
 
 /**
  * Every card: each file of cards/ (through the generated index), the campaign
@@ -11,8 +12,8 @@ export const ALL_CARDS: CardDefinition[] = CARD_FILES.map(({ card }) => card)
 
 registerCards(ALL_CARDS)
 
-/** The cards players can own: everything but the campaign bosses and their cards. */
-export const CARDS: CardDefinition[] = ALL_CARDS.filter((card) => !card.boss)
+/** The cards players can own: everything but the campaign bosses and their cards, and the retired types. */
+export const CARDS: CardDefinition[] = ALL_CARDS.filter((card) => !card.boss && !isRetired(card))
 
 export const HEROES: CardDefinition[] = CARDS.filter((card) => card.type === 'hero')
 

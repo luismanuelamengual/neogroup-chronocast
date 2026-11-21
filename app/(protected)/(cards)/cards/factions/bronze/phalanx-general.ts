@@ -13,7 +13,7 @@ export default defineCard({
   price: 1900,
   cost: 5,
   attack: 14,
-  health: 36,
+  health: 18,
   keywords: ['guardian'],
   ability: {
     name: 'Shield Wall',

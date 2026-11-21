@@ -13,7 +13,7 @@ export default defineCard({
   price: 170,
   cost: 3,
   attack: 8,
-  health: 18,
+  health: 9,
   onEnter(ctx) {
     gainChronos(ctx, ctx.owner, 1)
     draw(ctx, ctx.owner, 1)

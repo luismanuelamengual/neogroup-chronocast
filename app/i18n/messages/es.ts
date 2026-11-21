@@ -9,7 +9,8 @@ export const es = {
     cancel: 'Cancelar',
     close: 'Cerrar',
     loading: 'Cargando...',
-    tapToClose: 'Tocá para cerrar'
+    tapToClose: 'Tocá para cerrar',
+    tapToCycle: 'Tocá la carta para ver sus adjuntos · afuera para cerrar'
   },
   sound: {
     title: 'Sonido',
@@ -46,7 +47,7 @@ export const es = {
   },
   pwa: {
     description:
-      'Juego de cartas sin turnos: programá 5 acciones por fase, mirá cómo chocan con las de tu rival y derrotá a su héroe.',
+      'Juego de cartas sin turnos: programá 6 acciones por fase, mirá cómo chocan con las de tu rival y derrotá a su héroe.',
     installPrompt:
       'Instalá ChronoCast en tu celular y jugá en pantalla completa, con un ícono en tu pantalla de inicio como cualquier otro juego.',
     install: 'Instalar',
@@ -68,7 +69,7 @@ export const es = {
       },
       fight: {
         title: 'Programá',
-        text: 'Sin turnos: los dos jugadores eligen 5 acciones a la vez y se resuelven juntas, paso por paso.'
+        text: 'Sin turnos: los dos jugadores eligen 6 acciones a la vez y se resuelven juntas, paso por paso.'
       },
       rise: {
         title: 'Competí',
@@ -278,7 +279,9 @@ export const es = {
       armor: 'Armadura',
       item: 'Objeto',
       location: 'Ubicación',
-      trap: 'Trampa'
+      trap: 'Trampa',
+      attachment: 'Adjunto',
+      artifact: 'Artefacto'
     },
     rarities: {
       common: 'Común',
@@ -424,7 +427,7 @@ export const es = {
       mulligan:
         'Esta es tu mano inicial. Podés cambiar las cartas que no te gusten, una sola vez. Por ahora quedátelas.',
       phases:
-        'La partida se juega por fases. En cada una programás 5 acciones en tu línea de tiempo (a la derecha) mientras la CPU programa las suyas. Después se resuelven juntas, paso por paso.',
+        'La partida se juega por fases. En cada una programás 6 acciones en tu línea de tiempo (a la derecha) mientras la CPU programa las suyas. Después se resuelven juntas, paso por paso.',
       chronos:
         'Las cartas cuestan Cronos (⌛). Para tener más, tocá una carta y elegí "Generar Cronos": la descartás y ganás +1 de capacidad para siempre. Una vez por fase.',
       summon:
@@ -475,6 +478,11 @@ export const es = {
       change: { one: 'Cambiar {count} carta', other: 'Cambiar {count} cartas' },
       waiting: 'Esperando al rival...'
     },
+    attached: {
+      weapon: 'Arma del héroe\n🗡️ {attack} de ataque · {durability} usos',
+      armor: 'Armadura del héroe\n🛡️ {armor} puntos',
+      ally: 'Adjunta al aliado'
+    },
     rivalHand: 'Mano del rival',
     zones: {
       hero: 'Héroe',
@@ -482,11 +490,7 @@ export const es = {
       support: 'Soporte',
       deck: 'Mazo',
       chronos: 'Cronos',
-      graveyard: 'Cementerio',
-      weapon: 'Arma',
-      armor: 'Armadura',
-      location: 'Ubicación',
-      trap: 'Trampa'
+      graveyard: 'Cementerio'
     },
     actionsLeft: { one: 'Queda {count} acción', other: 'Quedan {count} acciones' },
     hints: {
@@ -537,9 +541,9 @@ export const es = {
       invalidTarget: 'Objetivo inválido',
       stunned: 'Está aturdido',
       heroFallen: 'El héroe cayó',
-      trapsFull: 'Ya tenés 2 trampas',
+      supportFull: 'Los 5 slots de soporte están ocupados',
       cancelled: 'Cancelada por una trampa',
-      timelineFull: 'La línea de tiempo ya tiene 5 acciones'
+      timelineFull: 'La línea de tiempo ya tiene 6 acciones'
     },
     floats: {
       miss: 'Falló',
@@ -555,6 +559,9 @@ export const es = {
       play: '{player} juega {card}',
       summon: '{card} entra en el slot {slot}',
       attach: '{player} equipa {card}',
+      attachAlly: '{player} adjunta {card} a {target}',
+      artifact: '{player} pone el artefacto {card}',
+      artifactSpent: '{card} se agota',
       location: '{player} pone la ubicación {card}',
       trapSet: '{player} pone una trampa',
       trapTriggered: 'Se activa la trampa {card} de {player}',

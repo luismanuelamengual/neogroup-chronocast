@@ -4,7 +4,6 @@ import { buffAllies, damageRandomAlly } from '@/app/(protected)/(engine)/effects
 export default defineCard({
   id: 'temple-of-the-huntress',
   type: 'location',
-  reward: true,
   name: 'Temple of the Huntress',
   text: 'At the start of each phase, deal 4 damage to a random enemy ally and your allies gain +1 attack.',
   flavor: 'Every arrow loosed here is a prayer.',

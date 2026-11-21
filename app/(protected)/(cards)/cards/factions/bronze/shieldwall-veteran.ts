@@ -13,7 +13,7 @@ export default defineCard({
   price: 55,
   cost: 3,
   attack: 7,
-  health: 24,
+  health: 12,
   keywords: ['guardian'],
   onEnter(ctx) {
     for (const unit of neighbors(ctx)) {

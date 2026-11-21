@@ -13,7 +13,7 @@ export default defineCard({
   price: 560,
   cost: 3,
   attack: 7,
-  health: 22,
+  health: 11,
   keywords: ['guardian'],
   ability: {
     name: 'Blessing',

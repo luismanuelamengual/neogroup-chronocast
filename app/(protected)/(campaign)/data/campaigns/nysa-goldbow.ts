@@ -6,16 +6,16 @@ import { defineCampaign } from '@/app/(protected)/(campaign)/utils/defineCampaig
  */
 export default defineCampaign({
   heroId: 'nysa-goldbow',
-  rewardCardId: 'temple-of-the-huntress',
+  rewardCardId: 'argos-the-silver-hound',
   stages: [
     { rival: 'kora-wildfang' },
     { rival: 'legate-varro' },
-    { rival: 'ilyra-starweaver', cpuSetup: { extraHealth: 10 } },
-    { rival: 'aldric-dawnkeeper', cpuSetup: { extraHealth: 10 } },
+    { rival: 'ilyra-starweaver', cpuSetup: { extraHealth: 5 } },
+    { rival: 'aldric-dawnkeeper', cpuSetup: { extraHealth: 5 } },
     { rival: 'kora-wildfang', cpuSetup: { allies: ['raptor-pack'] } },
     { rival: 'gideon-ironsteam', cpuSetup: { allies: ['steam-sentry'] } },
     { rival: 'legate-varro', cpuSetup: { allies: ['bronze-cohort'] } },
-    { rival: 'ooma-bonewhisper', cpuSetup: { extraHealth: 10 } },
+    { rival: 'ooma-bonewhisper', cpuSetup: { extraHealth: 5 } },
     { rival: 'vex-nightwire', cpuSetup: { weapon: 'holo-crossbow' }, playerSetup: { handSize: 6 } },
     {
       rival: 'tauron-labyrinth-lord',

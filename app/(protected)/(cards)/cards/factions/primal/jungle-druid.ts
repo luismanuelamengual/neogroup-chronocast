@@ -13,7 +13,7 @@ export default defineCard({
   price: 600,
   cost: 4,
   attack: 9,
-  health: 24,
+  health: 12,
   ability: {
     name: 'Rejuvenate',
     text: 'An ally of yours heals 10.',

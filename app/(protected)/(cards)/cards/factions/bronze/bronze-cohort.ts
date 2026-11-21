@@ -13,7 +13,7 @@ export default defineCard({
   price: 50,
   cost: 2,
   attack: 6,
-  health: 12,
+  health: 6,
   onEnter(ctx) {
     if (neighbors(ctx).some((ally) => cardOf(ally).faction === 'bronze')) {
       buffSelf(ctx, 2, 4)

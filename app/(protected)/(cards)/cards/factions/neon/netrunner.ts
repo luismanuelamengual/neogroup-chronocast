@@ -13,7 +13,7 @@ export default defineCard({
   price: 170,
   cost: 3,
   attack: 7,
-  health: 14,
+  health: 7,
   ability: {
     name: 'Hack',
     text: 'Stun a random enemy ally.',

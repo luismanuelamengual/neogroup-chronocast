@@ -12,7 +12,7 @@ export default defineCard({
   restriction: { kind: 'hero', heroId: 'kora-wildfang' },
   rarity: 'common',
   cost: 0,
-  health: 100,
+  health: 50,
   ability: {
     name: 'Quick Shot',
     text: 'Deal 5 damage to an enemy slot.',

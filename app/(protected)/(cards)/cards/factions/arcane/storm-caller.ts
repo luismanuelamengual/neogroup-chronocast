@@ -13,7 +13,7 @@ export default defineCard({
   price: 190,
   cost: 5,
   attack: 14,
-  health: 28,
+  health: 14,
   keywords: ['ranged'],
   ability: {
     name: 'Chain Lightning',

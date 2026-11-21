@@ -12,7 +12,7 @@ export default defineCard({
   restriction: { kind: 'hero', heroId: 'malachar-the-unmade' },
   rarity: 'legendary',
   cost: 0,
-  health: 100,
+  health: 50,
   ability: {
     name: 'Unmake',
     text: 'Deal 8 damage to an enemy slot. If your discard pile has 6 or more cards, your hero heals 4.',

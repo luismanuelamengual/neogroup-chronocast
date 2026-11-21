@@ -1,4 +1,4 @@
-import { ALLY_SLOTS, FATIGUE_START, FATIGUE_STEP, MAX_HAND } from '@/app/(protected)/(engine)/data/rules'
+import { ALLY_SLOTS, FATIGUE_START, FATIGUE_STEP, MAX_HAND, SUPPORT_SLOTS } from '@/app/(protected)/(engine)/data/rules'
 import { CardDefinition, TrapEvent, TrapTrigger } from '@/app/(protected)/(engine)/models/CardDefinition'
 import { EffectContext } from '@/app/(protected)/(engine)/models/EffectContext'
 import { Keyword } from '@/app/(protected)/(engine)/models/Keyword'
@@ -202,7 +202,13 @@ export class MatchEngine {
 
       for (const hit of batch) {
         if (hit.kind === 'hero') {
-          const dealt = this.applyHeroDamage(hit.player, hit.amount)
+          const amount = this.modifiedDamage({ player: hit.player, slot: 'hero' }, hit.amount)
+
+          if (amount <= 0) {
+            continue
+          }
+
+          const dealt = this.applyHeroDamage(hit.player, amount)
 
           this.applyLifesteal(hit.source, dealt)
         } else {
@@ -221,7 +227,13 @@ export class MatchEngine {
             continue
           }
 
-          const amount = hit.source?.poison ? Math.max(hit.amount, unit.health) : hit.amount
+          const modified = this.modifiedDamage(ref, hit.amount)
+          const amount = hit.source?.poison ? Math.max(hit.amount, unit.health) : modified
+
+          if (amount <= 0) {
+            this.emit({ type: 'damage', target: ref, amount: 0, absorbed: hit.amount })
+            continue
+          }
 
           unit.health -= amount
           this.emit({ type: 'damage', target: ref, amount, absorbed: 0 })
@@ -240,6 +252,23 @@ export class MatchEngine {
 
       this.processDeaths()
     }
+  }
+
+  /** A damage about to land on `target`, after every `modifyDamage` in play (never below 0). */
+  private modifiedDamage(target: SlotRef, amount: number): number {
+    let result = amount
+
+    for (const player of PLAYER_IDS) {
+      for (const card of this.inPlay(player)) {
+        const modify = getCard(card.cardId).modifyDamage
+
+        if (modify) {
+          result = modify(this.context(player, card), target, result)
+        }
+      }
+    }
+
+    return Math.max(0, Math.round(result))
   }
 
   private applyHeroDamage(player: PlayerId, amount: number): number {
@@ -283,6 +312,7 @@ export class MatchEngine {
 
         state.allies[slot] = null
         this.emit({ type: 'death', player, cardId: unit.cardId, slot })
+        this.dropAttachments(player, unit)
         getCard(unit.cardId).onDeath?.(this.context(player, unit))
 
         if (this.hasKeyword(unit, 'echo') && !unit.echoUsed) {
@@ -293,6 +323,61 @@ export class MatchEngine {
         }
       }
     }
+  }
+
+  /** An ally leaves the board: its attachments go to their owners' discard piles (and their "when it dies" runs). */
+  dropAttachments(player: PlayerId, unit: Unit, died = true): void {
+    for (const attachment of unit.attachments ?? []) {
+      const owner = attachment.owner ?? player
+
+      this.player(owner).discard.push({ uid: attachment.uid, cardId: attachment.cardId })
+
+      if (died) {
+        getCard(attachment.cardId).onHostDeath?.(this.context(owner, attachment), unit)
+      }
+    }
+
+    unit.attachments = []
+  }
+
+  /** The ally an attachment is on (null when it is no longer in play). */
+  hostOf(attachmentUid: number): { player: PlayerId; slot: number; unit: Unit } | null {
+    for (const player of PLAYER_IDS) {
+      for (let slot = 0; slot < ALLY_SLOTS; slot++) {
+        const unit = this.player(player).allies[slot]
+
+        if (unit?.attachments?.some((attachment) => attachment.uid === attachmentUid)) {
+          return { player, slot, unit }
+        }
+      }
+    }
+
+    return null
+  }
+
+  /** Spends a use of an artifact: at 0 it goes to the discard pile. */
+  spendCharge(player: PlayerId, artifactUid: number): void {
+    const side = this.player(player)
+    const artifact = side.artifacts.find((card) => card.uid === artifactUid)
+
+    if (!artifact || artifact.charges == null) {
+      return
+    }
+
+    artifact.charges--
+
+    if (artifact.charges <= 0) {
+      side.artifacts = side.artifacts.filter((card) => card.uid !== artifactUid)
+      side.discard.push({ uid: artifact.uid, cardId: artifact.cardId })
+      this.emit({ type: 'artifactSpent', player, cardId: artifact.cardId })
+    }
+  }
+
+  /** Free support slots of a player (traps and artifacts share them). */
+  freeSupport(player: PlayerId): number {
+    const side = this.player(player)
+
+    return SUPPORT_SLOTS - side.traps.length - side.artifacts.length
   }
 
   heal(target: SlotRef, amount: number): number {
@@ -523,7 +608,11 @@ export class MatchEngine {
     }
   }
 
-  /** Every card of a side that is in play: the hero, its weapon and armor, its location and its allies. */
+  /**
+   * Every card of a side that is in play: the hero, its weapon and armor, its
+   * location, its artifacts, its allies and the attachments it played (on its
+   * allies or on the rival's).
+   */
   inPlay(player: PlayerId): { uid: number; cardId: string }[] {
     const state = this.player(player)
     const cards: { uid: number; cardId: string }[] = [state.hero]
@@ -540,7 +629,13 @@ export class MatchEngine {
       cards.push(state.location)
     }
 
-    return [...cards, ...this.allies(player)]
+    cards.push(...state.artifacts)
+
+    const attachments = PLAYER_IDS.flatMap((side) =>
+      this.allies(side).flatMap((unit) => (unit.attachments ?? []).filter((card) => (card.owner ?? side) === player))
+    )
+
+    return [...cards, ...this.allies(player), ...attachments]
   }
 
   dispatch(player: PlayerId, hook: SharedHook): void {

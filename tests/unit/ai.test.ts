@@ -9,7 +9,7 @@ import { resolvePhase } from '@/app/(protected)/(engine)/utils/resolvePhase'
 import { playMatch } from '@/scripts/duel'
 
 describe('the computer player', () => {
-  it('plans 5 actions that never fail on their own', () => {
+  it('plans 6 actions that never fail on their own', () => {
     for (const [index, heroA] of STARTER_HERO_IDS.entries()) {
       const heroB = STARTER_HERO_IDS[(index + 1) % STARTER_HERO_IDS.length]
       let { state } = createMatch({ seed: index + 1, decks: { a: starterDeck(heroA), b: starterDeck(heroB) } })
@@ -17,7 +17,7 @@ describe('the computer player', () => {
       for (let phase = 0; phase < 6 && state.status === 'planning'; phase++) {
         const timeline = planTimeline(state, 'a')
 
-        expect(timeline).toHaveLength(5)
+        expect(timeline).toHaveLength(6)
         expect(projectTimeline(state, 'a', timeline).failures).toEqual([])
 
         state = resolvePhase(state, { a: timeline, b: planTimeline(state, 'b') }).state

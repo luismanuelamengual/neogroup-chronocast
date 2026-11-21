@@ -13,7 +13,7 @@ export default defineCard({
   restriction: { kind: 'hero', heroId: 'caelus-the-usurper' },
   rarity: 'legendary',
   cost: 0,
-  health: 95,
+  health: 48,
   ability: {
     name: 'Decimate',
     text: 'Deal 2 damage to every enemy ally.',

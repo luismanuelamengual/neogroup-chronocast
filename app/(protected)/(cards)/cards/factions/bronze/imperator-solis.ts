@@ -13,7 +13,7 @@ export default defineCard({
   price: 5750,
   cost: 7,
   attack: 26,
-  health: 54,
+  health: 27,
   keywords: ['unique'],
   onPhaseStart(ctx) {
     buffAllies(ctx, ctx.owner, 2, 2)

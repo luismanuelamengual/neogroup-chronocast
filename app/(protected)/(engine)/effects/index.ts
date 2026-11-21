@@ -135,6 +135,7 @@ export function returnToHand(ctx: EffectContext, unit: Unit): void {
   }
 
   ctx.engine.player(found.player).allies[found.slot] = null
+  ctx.engine.dropAttachments(found.player, found.unit, false)
   ctx.engine.addToHand(found.player, { uid: unit.uid, cardId: unit.cardId })
   ctx.engine.emit({ type: 'returnToHand', player: found.player, cardId: unit.cardId })
 }
@@ -265,4 +266,41 @@ export function returnAt(ctx: EffectContext, target: SlotRef | undefined): void 
   if (unit) {
     returnToHand(ctx, unit)
   }
+}
+
+// ─── Attachments and artifacts ───────────────────────────────────────────────
+
+/** The ally an attachment (`ctx.self`) is on, with its slot (null when it is no longer in play). */
+export function host(ctx: EffectContext): { unit: Unit; ref: SlotRef } | null {
+  const found = ctx.engine.hostOf(ctx.self.uid)
+
+  return found ? { unit: found.unit, ref: { player: found.player, slot: found.slot } } : null
+}
+
+/** Whether a slot is the one of the ally this attachment (`ctx.self`) is on. */
+export function isHost(ctx: EffectContext, target: SlotRef): boolean {
+  const found = host(ctx)
+
+  return !!found && found.ref.player === target.player && found.ref.slot === target.slot
+}
+
+/** Whether a slot holds an ally of `player` (not the hero). */
+export function isAllyOf(ctx: EffectContext, target: SlotRef, player: PlayerId): boolean {
+  return target.player === player && target.slot !== 'hero' && !!ctx.engine.targetUnit(target)
+}
+
+/** Uses left of this artifact (`ctx.self`; null: it has no limit). */
+export function chargesLeft(ctx: EffectContext): number | null {
+  return ctx.engine.player(ctx.owner).artifacts.find((card) => card.uid === ctx.self.uid)?.charges ?? null
+}
+
+/** Spends a use of this artifact (`ctx.self`): at 0 it is discarded. */
+export function spendCharge(ctx: EffectContext): void {
+  ctx.engine.spendCharge(ctx.owner, ctx.self.uid)
+}
+
+/** Sets an ally's health and max health (an attachment that trades life for power). */
+export function setHealth(ctx: EffectContext, unit: Unit, health: number): void {
+  unit.maxHealth = health
+  unit.health = Math.min(unit.health, health)
 }

@@ -30,14 +30,14 @@ function duel(levelA: number, levelB: number, seed: number): MatchState {
 }
 
 describe('the computer player by levels', () => {
-  it('every level plans 5 actions that never fail on their own, and always the same', () => {
+  it('every level plans 6 actions that never fail on their own, and always the same', () => {
     let { state } = createMatch({ seed: 3, decks: { a: starterDeck('legate-varro'), b: starterDeck('kora-wildfang') } })
 
     for (let phase = 0; phase < 4 && state.status === 'planning'; phase++) {
       for (const { level } of AI_LEVELS) {
         const timeline = chooseTimeline(state, 'a', level)
 
-        expect(timeline).toHaveLength(5)
+        expect(timeline).toHaveLength(6)
         expect(projectTimeline(state, 'a', timeline).failures, `level ${level}`).toEqual([])
         expect(chooseTimeline(structuredClone(state), 'a', level)).toEqual(timeline)
       }
@@ -46,13 +46,13 @@ describe('the computer player by levels', () => {
     }
   })
 
-  it('looking ahead beats the greedy computer', () => {
+  it('looking two phases ahead beats the greedy computer', () => {
     let wins = 0
     const matches = 24
 
     for (let seed = 1; seed <= matches; seed++) {
       // Half of the matches on each side.
-      const state = seed % 2 ? duel(4, 1, seed) : duel(1, 4, seed)
+      const state = seed % 2 ? duel(5, 1, seed) : duel(1, 5, seed)
 
       wins += state.result?.winner === (seed % 2 ? 'a' : 'b') ? 1 : 0
     }

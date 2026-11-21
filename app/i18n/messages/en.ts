@@ -6,7 +6,8 @@ export const en: Messages = {
     cancel: 'Cancel',
     close: 'Close',
     loading: 'Loading...',
-    tapToClose: 'Tap to close'
+    tapToClose: 'Tap to close',
+    tapToCycle: 'Tap the card to see its attachments · outside to close'
   },
   sound: {
     title: 'Sound',
@@ -43,7 +44,7 @@ export const en: Messages = {
   },
   pwa: {
     description:
-      "A turnless card game: program 5 actions per phase, watch them clash with your rival's and defeat their hero.",
+      "A turnless card game: program 6 actions per phase, watch them clash with your rival's and defeat their hero.",
     installPrompt:
       'Install ChronoCast on your phone and play full screen, with an icon on your home screen like any other game.',
     install: 'Install',
@@ -65,7 +66,7 @@ export const en: Messages = {
       },
       fight: {
         title: 'Program',
-        text: 'No turns: both players choose 5 actions at once and they resolve together, step by step.'
+        text: 'No turns: both players choose 6 actions at once and they resolve together, step by step.'
       },
       rise: {
         title: 'Compete',
@@ -274,7 +275,9 @@ export const en: Messages = {
       armor: 'Armor',
       item: 'Item',
       location: 'Location',
-      trap: 'Trap'
+      trap: 'Trap',
+      attachment: 'Attachment',
+      artifact: 'Artifact'
     },
     rarities: {
       common: 'Common',
@@ -419,7 +422,7 @@ export const en: Messages = {
     tips: {
       mulligan: 'This is your opening hand. You can replace the cards you do not like, only once. For now, keep them.',
       phases:
-        'The match is played in phases. In each one you program 5 actions on your timeline (on the right) while the CPU programs its own. Then they resolve together, step by step.',
+        'The match is played in phases. In each one you program 6 actions on your timeline (on the right) while the CPU programs its own. Then they resolve together, step by step.',
       chronos:
         'Cards cost Chronos (⌛). To get more, tap a card and choose "Generate Chronos": you discard it and gain +1 capacity for good. Once per phase.',
       summon:
@@ -470,6 +473,11 @@ export const en: Messages = {
       change: { one: 'Replace {count} card', other: 'Replace {count} cards' },
       waiting: 'Waiting for the rival...'
     },
+    attached: {
+      weapon: "Hero's weapon\n🗡️ {attack} attack · {durability} uses",
+      armor: "Hero's armor\n🛡️ {armor} points",
+      ally: 'Attached to the ally'
+    },
     rivalHand: 'Rival hand',
     zones: {
       hero: 'Hero',
@@ -477,11 +485,7 @@ export const en: Messages = {
       support: 'Support',
       deck: 'Deck',
       chronos: 'Chronos',
-      graveyard: 'Graveyard',
-      weapon: 'Weapon',
-      armor: 'Armor',
-      location: 'Location',
-      trap: 'Trap'
+      graveyard: 'Graveyard'
     },
     actionsLeft: { one: '{count} action left', other: '{count} actions left' },
     hints: {
@@ -532,9 +536,9 @@ export const en: Messages = {
       invalidTarget: 'Invalid target',
       stunned: 'It is stunned',
       heroFallen: 'The hero fell',
-      trapsFull: 'You already have 2 traps',
+      supportFull: 'The 5 support slots are taken',
       cancelled: 'Cancelled by a trap',
-      timelineFull: 'The timeline already has 5 actions'
+      timelineFull: 'The timeline already has 6 actions'
     },
     floats: {
       miss: 'Miss',
@@ -550,6 +554,9 @@ export const en: Messages = {
       play: '{player} plays {card}',
       summon: '{card} enters slot {slot}',
       attach: '{player} equips {card}',
+      attachAlly: '{player} attaches {card} to {target}',
+      artifact: '{player} sets the artifact {card}',
+      artifactSpent: '{card} is spent',
       location: '{player} sets the location {card}',
       trapSet: '{player} sets a trap',
       trapTriggered: "{player}'s trap {card} goes off",

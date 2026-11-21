@@ -13,7 +13,7 @@ export default defineCard({
   price: 180,
   cost: 4,
   attack: 10,
-  health: 18,
+  health: 9,
   keywords: ['flying'],
   ability: {
     name: 'Bomb Run',

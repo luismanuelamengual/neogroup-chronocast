@@ -31,9 +31,9 @@ import {
   sameRef,
   summonRefs
 } from '@/app/(protected)/(battle)/utils/targets'
-import CardSpotlight, { SpotlightAction } from '@/app/(protected)/(cards)/components/CardSpotlight'
-import { ACTIONS_PER_PHASE, ALLY_SLOTS, MAX_TRAPS } from '@/app/(protected)/(engine)/data/rules'
-import { CardInstance, MatchState, PlayerState, Unit } from '@/app/(protected)/(engine)/models/MatchState'
+import CardSpotlight, { SpotlightAction, SpotlightCard } from '@/app/(protected)/(cards)/components/CardSpotlight'
+import { ACTIONS_PER_PHASE, ALLY_SLOTS, SUPPORT_SLOTS } from '@/app/(protected)/(engine)/data/rules'
+import { HeroState, MatchState, PlayerState, Unit } from '@/app/(protected)/(engine)/models/MatchState'
 import { PlannedAction } from '@/app/(protected)/(engine)/models/PlannedAction'
 import { PlayerId } from '@/app/(protected)/(engine)/models/PlayerId'
 import { SlotRef } from '@/app/(protected)/(engine)/models/SlotRef'
@@ -42,8 +42,14 @@ import { useT } from '@/app/i18n/I18nProvider'
 import type { MessageKey } from '@/app/i18n/messages'
 
 const SLOTS = Array.from({ length: ALLY_SLOTS }, (_, slot) => slot)
-/** Share of the board's height of each band, top to bottom (the hand takes the rest). */
-const BANDS = { top: 0.075, support: 0.13, allies: 0.21 }
+/** Share of the board's height of the top bar and of each side (the hand takes the rest). */
+const BANDS = { top: 0.075, side: 0.37 }
+/** Share of a side's height of its allies row (the supports take the rest). */
+const ALLIES_SHARE = 0.65
+/** Part of an attached card's height that shows behind the card it is attached to. */
+const PEEK = 0.15
+/** Width of a side that isn't cards: paddings, gaps, the row labels (px). */
+const SIDE_ROOM = 96
 /** Width of the column on the right with the timelines (px). */
 const TIMELINE_WIDTH = 236
 
@@ -79,16 +85,23 @@ function useMetrics() {
 
   return useMemo(() => {
     const height = size.height - 8
-    const width = size.width - TIMELINE_WIDTH - 24
-    const fit = (band: number, room = 6) => Math.max(20, (height * band - room) / 1.4)
-    // On a very wide window the board shouldn't grow past what its width allows.
-    const ally = Math.min(fit(BANDS.allies), width / 9.5)
-    const support = Math.min(fit(BANDS.support, 4), ally * 0.7)
+    const width = size.width - TIMELINE_WIDTH - 20
+    const side = height * BANDS.side - 12
+    // Room is kept above the allies for one attached card, and above the hero for two.
+    const allyFit = Math.max(20, (side * ALLIES_SHARE - 4) / (1.4 * (1 + PEEK)))
+    const heroFit = Math.max(30, (side - 4) / (1.4 * (1 + 2 * PEEK)))
+    // A side must fit its width: hero + 5 allies + 3 piles (a pile is about 0.735 of an ally).
+    const byWidth =
+      heroFit <= 1.7 * ((width - SIDE_ROOM - heroFit) / 7.2)
+        ? (width - SIDE_ROOM - heroFit) / 7.2
+        : (width - SIDE_ROOM) / 8.9
+    const ally = Math.min(allyFit, byWidth)
+    const support = Math.min((side * (1 - ALLIES_SHARE) - 4) / 1.4, ally * 0.7)
 
     return {
       ally,
       support,
-      hero: Math.min(fit(BANDS.allies + BANDS.support, 8), ally * 1.7),
+      hero: Math.min(heroFit, ally * 1.7),
       pile: support * 1.05,
       hand: Math.min((height * 0.33) / 1.4, width / 7),
       rivalHand: Math.max(14, (height * BANDS.top - 6) / 1.4)
@@ -98,8 +111,9 @@ function useMetrics() {
 
 /**
  * The battle screen (docs/PLAN.md, section 14.3), laid out like a card table:
- * each side has its hero, a row of 5 allies and a row of 5 supports (weapon,
- * armor, location and 2 traps), and its deck, Chronos and graveyard; the
+ * each side has its hero (its weapon and armor peeking from behind it), a row
+ * of 5 allies (with what is attached to them, the same way), a row of 5
+ * supports (traps and artifacts), and its deck, Chronos and graveyard; the
  * rival's hand face down on top, the player's hand below, and the timelines in
  * the middle with the actions left to program. Every card is drawn whole, and
  * a tap shows it big with what can be done with it: what can't be done right
@@ -525,6 +539,35 @@ export default function BattleScreen({
     spotNote = spot.note
   }
 
+  // The card tapped and what is attached to it: a tap on the big card shows the next one.
+  const note = (text: string | undefined) => text && <span className="battle-screen__note">{text}</span>
+  let spotStack: SpotlightCard[] | undefined
+
+  if (spot?.kind === 'hero') {
+    const hero = board.players[spot.player].hero
+
+    spotStack = [
+      { cardId: hero.cardId, note: note(spotNote) },
+      ...heroAttachments(hero).map((card) => ({
+        cardId: card.cardId,
+        note: note(
+          card.kind === 'weapon' && hero.weapon
+            ? t('battle.attached.weapon', { attack: hero.weapon.attack, durability: hero.weapon.durability })
+            : t('battle.attached.armor', { armor: hero.armor })
+        )
+      }))
+    ]
+  } else if (spot?.kind === 'ally') {
+    const unit = board.players[spot.player].allies.find((candidate) => candidate?.uid === spot.uid)
+
+    spotStack = unit
+      ? [
+          { cardId: unit.cardId, note: note(spotNote) },
+          ...allyAttachments(unit).map((card) => ({ cardId: card.cardId, note: note(t('battle.attached.ally')) }))
+        ]
+      : undefined
+  }
+
   // ─── The hint while aiming ────────────────────────────────────────────────
 
   let aimHint: string | null = null
@@ -570,7 +613,12 @@ export default function BattleScreen({
             slotKey={refKey(ref)}
             onClick={() => onSlotClick(ref)}
           >
-            {unit && <UnitCard unit={unit} width={metrics.ally} phase={board.phase} />}
+            {unit && (
+              <>
+                <Attached cards={allyAttachments(unit)} width={metrics.ally} down={player !== me} />
+                <UnitCard unit={unit} width={metrics.ally} phase={board.phase} />
+              </>
+            )}
           </BoardSlot>
         )
       })}
@@ -579,45 +627,33 @@ export default function BattleScreen({
 
   const supportRow = (player: PlayerId) => {
     const side = board.players[player]
-    const hidden = player !== me
-    const weapon = side.hero.weapon
-    const traps = Array.from({ length: MAX_TRAPS }, (_, index) => side.traps[index] ?? null)
-    const cell = (key: string, icon: string, card: CardInstance | null, badge?: ReactNode, faceDown = false) => (
-      <button
-        key={key}
-        type="button"
-        className={classNames('battle-screen__support', { empty: !card })}
-        disabled={!card || faceDown}
-        title={t(`battle.zones.${key.replace(/\d/, '')}` as MessageKey)}
-        onClick={() => card && !faceDown && inspect(card.cardId)}
-      >
-        {card ? (
-          <MiniCard cardId={faceDown ? null : card.cardId} width={metrics.support}>
-            {badge}
-          </MiniCard>
-        ) : (
-          <span className="battle-screen__support-icon">{icon}</span>
-        )}
-      </button>
-    )
+    // Artifacts are face up for both sides; traps are face down for the rival.
+    const cards = [
+      ...(side.artifacts ?? []).map((card) => ({ card, faceDown: false })),
+      ...side.traps.map((card) => ({ card, faceDown: player !== me }))
+    ]
 
     return (
       <div className="battle-screen__row support">
         <span className="battle-screen__zone">{t('battle.zones.support')}</span>
-        {cell(
-          'weapon',
-          '🗡️',
-          weapon?.card ?? null,
-          weapon && <span className="battle-screen__badge attack">{`${weapon.attack}·${weapon.durability}`}</span>
-        )}
-        {cell(
-          'armor',
-          '🛡️',
-          side.hero.armorCard,
-          <span className="battle-screen__badge armor">{side.hero.armor}</span>
-        )}
-        {cell('location', '🏛️', side.location)}
-        {traps.map((trap, index) => cell(`trap${index}`, '🪤', trap, undefined, hidden))}
+        {Array.from({ length: SUPPORT_SLOTS }, (_, index) => {
+          const entry = cards[index] ?? null
+
+          return (
+            <button
+              key={index}
+              type="button"
+              className={classNames('battle-screen__support', { empty: !entry })}
+              disabled={!entry || entry.faceDown}
+              onClick={() => entry && !entry.faceDown && inspect(entry.card.cardId)}
+            >
+              {entry && <MiniCard cardId={entry.faceDown ? null : entry.card.cardId} width={metrics.support} />}
+              {entry?.card.charges !== undefined && (
+                <span className="battle-screen__attached-badge">⏳{entry.card.charges}</span>
+              )}
+            </button>
+          )
+        })}
       </div>
     )
   }
@@ -637,11 +673,12 @@ export default function BattleScreen({
         frameKey={frame.key}
         onClick={() => onSlotClick(ref)}
       >
+        <Attached cards={heroAttachments(hero)} width={metrics.hero} down={player !== me} />
         <MiniCard cardId={hero.cardId} width={metrics.hero} className={classNames({ fallen: hero.fallen })}>
           <span className="battle-screen__badge health big">{Math.max(0, hero.health)}</span>
-          {hero.armor > 0 && <span className="battle-screen__badge armor big">{hero.armor}</span>}
+          {/* Armor from an ability, without an armor card attached. */}
+          {hero.armor > 0 && !hero.armorCard && <span className="battle-screen__badge armor big">{hero.armor}</span>}
         </MiniCard>
-        <span className="battle-screen__zone-label">{t('battle.zones.hero')}</span>
       </BoardSlot>
     )
   }
@@ -703,6 +740,7 @@ export default function BattleScreen({
     '--hero-w': `${metrics.hero}px`,
     '--pile-w': `${metrics.pile}px`,
     '--hand-w': `${metrics.hand}px`,
+    '--peek': PEEK,
     '--slot': `${metrics.ally}px`,
     '--timeline-w': `${TIMELINE_WIDTH}px`
   } as CSSProperties
@@ -846,10 +884,12 @@ export default function BattleScreen({
 
       {spot && (
         <CardSpotlight
+          key={`${spot.kind}-${spot.cardId}`}
           cardId={spot.cardId}
           onClose={() => setSpot(null)}
           actions={spotActions}
           note={spotNote && <span className="battle-screen__note">{spotNote}</span>}
+          stack={spotStack}
         />
       )}
 
@@ -905,4 +945,57 @@ function UnitCard({ unit, width, phase }: { unit: Unit; width: number; phase: nu
       {(stunned || fresh) && <span className="battle-screen__status">{stunned ? '💫' : '💤'}</span>}
     </MiniCard>
   )
+}
+
+/** A card attached to another one on the board, with what to show on its edge. */
+interface AttachedCard {
+  cardId: string
+  /** The value on the visible edge (the weapon's attack and uses, the armor's points). */
+  badge?: string
+  kind: 'weapon' | 'armor' | 'ally'
+}
+
+/** The hero's weapon and armor, in the order they show behind it. */
+function heroAttachments(hero: HeroState): AttachedCard[] {
+  const cards: AttachedCard[] = []
+
+  if (hero.weapon) {
+    cards.push({
+      cardId: hero.weapon.card.cardId,
+      badge: `🗡️${hero.weapon.attack}·${hero.weapon.durability}`,
+      kind: 'weapon'
+    })
+  }
+
+  if (hero.armorCard) {
+    cards.push({ cardId: hero.armorCard.cardId, badge: `🛡️${hero.armor}`, kind: 'armor' })
+  }
+
+  return cards
+}
+
+/** The cards attached to an ally. */
+function allyAttachments(unit: Unit): AttachedCard[] {
+  return (unit.attachments ?? []).map((card) => ({ cardId: card.cardId, kind: 'ally' }))
+}
+
+/**
+ * The cards attached to a card on the board, behind it: each one shows an
+ * edge toward the middle of the board (like a stack), with its value on a badge.
+ */
+function Attached({ cards, width, down = false }: { cards: AttachedCard[]; width: number; down?: boolean }) {
+  // Toward the middle of the board: up on the player's side, down on the rival's.
+  const peek = width * 1.4 * PEEK * (down ? -1 : 1)
+
+  return cards.map((card, index) => (
+    <span
+      key={`${card.cardId}-${index}`}
+      className={classNames('battle-screen__attached', card.kind)}
+      style={{ top: -peek * (index + 1), zIndex: -1 - index }}
+    >
+      <MiniCard cardId={card.cardId} width={width}>
+        {card.badge && <span className="battle-screen__attached-badge">{card.badge}</span>}
+      </MiniCard>
+    </span>
+  ))
 }

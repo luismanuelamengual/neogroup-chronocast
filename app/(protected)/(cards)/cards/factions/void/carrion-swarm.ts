@@ -13,7 +13,7 @@ export default defineCard({
   price: 170,
   cost: 3,
   attack: 10,
-  health: 12,
+  health: 6,
   keywords: ['flying'],
   onEnter(ctx) {
     if (discardSize(ctx, ctx.owner) >= 4) {

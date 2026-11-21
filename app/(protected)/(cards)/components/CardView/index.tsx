@@ -16,7 +16,9 @@ const TYPE_GLYPHS: Record<CardDefinition['type'], string> = {
   armor: '🛡️',
   item: '🧪',
   location: '🏛️',
-  trap: '🪤'
+  trap: '🪤',
+  attachment: '🔗',
+  artifact: '🏺'
 }
 
 /** "Ally · Bronze", "Hero · Bronze Warrior", "Weapon · Warrior class", "Ability · Signature". */

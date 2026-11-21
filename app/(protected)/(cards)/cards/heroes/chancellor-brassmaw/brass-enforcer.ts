@@ -12,7 +12,7 @@ export default defineCard({
   rarity: 'epic',
   cost: 4,
   attack: 14,
-  health: 34,
+  health: 17,
   keywords: ['guardian'],
   ai: { value: 5, tags: ['defense'] },
   art: {

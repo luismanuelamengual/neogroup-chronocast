@@ -13,7 +13,7 @@ export default defineCard({
   price: 190,
   cost: 5,
   attack: 17,
-  health: 42,
+  health: 21,
   onDamaged(ctx) {
     buffSelf(ctx, 2, 0)
   },

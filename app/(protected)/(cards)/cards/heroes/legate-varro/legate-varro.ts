@@ -12,7 +12,7 @@ export default defineCard({
   restriction: { kind: 'hero', heroId: 'legate-varro' },
   rarity: 'common',
   cost: 0,
-  health: 110,
+  health: 55,
   ability: {
     name: 'Fortify',
     text: 'Your hero gains 10 armor.',

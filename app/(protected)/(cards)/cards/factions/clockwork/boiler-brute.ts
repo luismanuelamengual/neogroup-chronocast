@@ -12,7 +12,7 @@ export default defineCard({
   price: 55,
   cost: 3,
   attack: 13,
-  health: 26,
+  health: 13,
   ai: { value: 3 },
   art: {
     subject: 'a hulking automaton with a glowing furnace in its chest and huge piston fists'

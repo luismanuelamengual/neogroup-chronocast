@@ -13,7 +13,7 @@ export default defineCard({
   price: 55,
   cost: 3,
   attack: 10,
-  health: 20,
+  health: 10,
   onEnter(ctx) {
     for (const unit of neighbors(ctx)) {
       buff(ctx, unit, 2, 0)

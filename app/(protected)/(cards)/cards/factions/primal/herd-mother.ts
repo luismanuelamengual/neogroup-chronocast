@@ -13,7 +13,7 @@ export default defineCard({
   price: 170,
   cost: 3,
   attack: 6,
-  health: 18,
+  health: 9,
   ability: {
     name: 'Call the Herd',
     text: 'Summon a Dino Hatchling.',

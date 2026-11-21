@@ -12,7 +12,7 @@ export default defineCard({
   price: 45,
   cost: 1,
   attack: 5,
-  health: 12,
+  health: 6,
   ai: { value: 1 },
   art: {
     subject: 'a young squire in mismatched armor from different eras, holding a dented bucket and a short sword'

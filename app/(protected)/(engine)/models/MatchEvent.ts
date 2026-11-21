@@ -20,7 +20,8 @@ export type FailReason =
   | 'invalidTarget'
   | 'stunned'
   | 'heroFallen'
-  | 'trapsFull'
+  /** The support slots (traps and artifacts) are full. */
+  | 'supportFull'
   | 'cancelled'
 
 /**
@@ -38,7 +39,9 @@ export type MatchEvent =
   | { type: 'sacrifice'; player: PlayerId; cardId: string; capacity: number }
   | { type: 'play'; player: PlayerId; cardId: string }
   | { type: 'summon'; player: PlayerId; cardId: string; uid: number; slot: number }
-  | { type: 'attach'; player: PlayerId; cardId: string }
+  | { type: 'attach'; player: PlayerId; cardId: string; target?: SlotRef }
+  | { type: 'artifact'; player: PlayerId; cardId: string }
+  | { type: 'artifactSpent'; player: PlayerId; cardId: string }
   | { type: 'location'; player: PlayerId; cardId: string }
   | { type: 'trapSet'; player: PlayerId }
   | { type: 'trapTriggered'; player: PlayerId; cardId: string }

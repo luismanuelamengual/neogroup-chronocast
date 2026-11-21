@@ -13,7 +13,7 @@ export default defineCard({
   restriction: { kind: 'hero', heroId: 'chancellor-brassmaw' },
   rarity: 'legendary',
   cost: 0,
-  health: 120,
+  health: 60,
   ability: {
     name: 'Iron Decree',
     text: 'Stun an enemy ally and deal 6 damage to it.',

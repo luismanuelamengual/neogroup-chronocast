@@ -12,7 +12,7 @@ export default defineCard({
   price: 65,
   cost: 5,
   attack: 22,
-  health: 44,
+  health: 22,
   ai: { value: 5 },
   art: {
     subject: 'a bulky combat mech suit with a pilot visible in the cockpit, standing in a neon-lit hangar'

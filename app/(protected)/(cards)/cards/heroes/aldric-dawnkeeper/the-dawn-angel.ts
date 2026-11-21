@@ -13,7 +13,7 @@ export default defineCard({
   rarity: 'legendary',
   cost: 6,
   attack: 20,
-  health: 48,
+  health: 24,
   keywords: ['flying', 'shield', 'unique'],
   onEnter(ctx) {
     heal(ctx, { player: ctx.owner, slot: 'hero' }, 15)

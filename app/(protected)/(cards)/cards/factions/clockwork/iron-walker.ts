@@ -12,7 +12,7 @@ export default defineCard({
   price: 65,
   cost: 5,
   attack: 20,
-  health: 44,
+  health: 22,
   ai: { value: 5 },
   art: {
     subject: 'a giant two-legged walking steam machine with a cabin on top crossing a foggy city street'

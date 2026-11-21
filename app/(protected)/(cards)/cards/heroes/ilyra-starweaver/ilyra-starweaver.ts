@@ -12,7 +12,7 @@ export default defineCard({
   restriction: { kind: 'hero', heroId: 'ilyra-starweaver' },
   rarity: 'common',
   cost: 0,
-  health: 100,
+  health: 50,
   ability: {
     name: 'Arcane Bolt',
     text: 'Deal 12 damage to an enemy slot.',

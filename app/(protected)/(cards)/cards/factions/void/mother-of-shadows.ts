@@ -13,7 +13,7 @@ export default defineCard({
   price: 1900,
   cost: 5,
   attack: 14,
-  health: 34,
+  health: 17,
   onDeath(ctx) {
     summonCard(ctx, ctx.owner, 'void-spawn')
     summonCard(ctx, ctx.owner, 'void-spawn')

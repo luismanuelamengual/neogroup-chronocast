@@ -79,6 +79,9 @@ export function cardProblems(card: CardDefinition): string[] {
     case 'trap':
       need('trigger')
       break
+    case 'attachment':
+      need('targets')
+      break
   }
 
   return problems

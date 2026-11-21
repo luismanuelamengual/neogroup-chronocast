@@ -13,7 +13,7 @@ export default defineCard({
   price: 50,
   cost: 1,
   attack: 5,
-  health: 12,
+  health: 6,
   onEnter(ctx) {
     for (const ally of neighbors(ctx)) {
       buff(ctx, ally, 0, 4)

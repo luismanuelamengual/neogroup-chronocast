@@ -10,12 +10,12 @@ export default defineCampaign({
   stages: [
     { rival: 'ryn-voltblade' },
     { rival: 'ada-copperwick' },
-    { rival: 'gideon-ironsteam', cpuSetup: { extraHealth: 10 } },
-    { rival: 'ilyra-starweaver', cpuSetup: { extraHealth: 10 } },
+    { rival: 'gideon-ironsteam', cpuSetup: { extraHealth: 5 } },
+    { rival: 'ilyra-starweaver', cpuSetup: { extraHealth: 5 } },
     { rival: 'ryn-voltblade', cpuSetup: { allies: ['neon-blade'] } },
     { rival: 'malachar-the-unmade', cpuSetup: { allies: ['void-spawn'] } },
     { rival: 'nysa-goldbow', cpuSetup: { allies: ['legion-slinger'] } },
-    { rival: 'kora-wildfang', cpuSetup: { extraHealth: 10 } },
+    { rival: 'kora-wildfang', cpuSetup: { extraHealth: 5 } },
     { rival: 'legate-varro', cpuSetup: { weapon: 'war-axe' }, playerSetup: { handSize: 6 } },
     {
       rival: 'overseer-kade',

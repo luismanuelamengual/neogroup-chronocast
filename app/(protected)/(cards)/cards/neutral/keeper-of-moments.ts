@@ -13,7 +13,7 @@ export default defineCard({
   price: 2000,
   cost: 6,
   attack: 18,
-  health: 44,
+  health: 22,
   onPhaseStart(ctx) {
     heal(ctx, { player: ctx.owner, slot: 'hero' }, 6)
     gainArmor(ctx, ctx.owner, 4)

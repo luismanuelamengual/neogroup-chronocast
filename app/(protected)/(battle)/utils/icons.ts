@@ -29,7 +29,9 @@ export const TYPE_ICONS: Record<CardType, string> = {
   armor: '🛡️',
   item: '🧪',
   location: '🏛️',
-  trap: '🪤'
+  trap: '🪤',
+  attachment: '🔗',
+  artifact: '🏺'
 }
 
 export const ACTION_ICONS: Record<PlannedAction['kind'], string> = {

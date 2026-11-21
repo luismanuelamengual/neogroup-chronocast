@@ -12,7 +12,7 @@ export default defineCard({
   restriction: { kind: 'hero', heroId: 'gideon-ironsteam' },
   rarity: 'rare',
   cost: 0,
-  health: 115,
+  health: 58,
   ability: {
     name: 'Piston Punch',
     text: 'Deal 10 damage to an enemy slot and your hero gains 4 armor.',

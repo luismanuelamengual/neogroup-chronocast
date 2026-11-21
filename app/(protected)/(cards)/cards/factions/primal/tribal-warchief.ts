@@ -13,7 +13,7 @@ export default defineCard({
   price: 1900,
   cost: 5,
   attack: 18,
-  health: 36,
+  health: 18,
   ability: {
     name: 'War Cry',
     text: 'An ally of yours gains +8 attack this phase.',

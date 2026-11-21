@@ -69,6 +69,30 @@
     }
   }
 
+  &__card.cycles {
+    cursor: pointer;
+  }
+
+  &__dots {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    display: flex;
+    gap: 6px;
+    transform: translateX(-50%);
+
+    i {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.35);
+
+      &.on {
+        background-color: white;
+      }
+    }
+  }
+
   &.shine &__card {
     box-shadow: 0 0 40px 10px var(--rarity);
   }

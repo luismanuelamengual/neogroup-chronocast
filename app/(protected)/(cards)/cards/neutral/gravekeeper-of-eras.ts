@@ -13,7 +13,7 @@ export default defineCard({
   price: 600,
   cost: 4,
   attack: 12,
-  health: 24,
+  health: 12,
   onEnter(ctx) {
     reviveFromDiscard(ctx, ctx.owner)
   },

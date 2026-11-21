@@ -13,7 +13,7 @@ export default defineCard({
   price: 190,
   cost: 5,
   attack: 14,
-  health: 26,
+  health: 13,
   keywords: ['ranged'],
   ability: {
     name: 'Volley',

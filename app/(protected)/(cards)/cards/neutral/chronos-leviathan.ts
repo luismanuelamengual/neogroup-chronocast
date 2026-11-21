@@ -13,7 +13,7 @@ export default defineCard({
   price: 14000,
   cost: 8,
   attack: 36,
-  health: 70,
+  health: 35,
   keywords: ['unique'],
   onEnter(ctx) {
     for (const unit of alliesOf(ctx, ctx.opponent)) {

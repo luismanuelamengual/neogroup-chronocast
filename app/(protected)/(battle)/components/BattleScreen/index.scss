@@ -19,7 +19,7 @@
       'theirs middle'
       'mine middle'
       'hand middle';
-    grid-template-rows: 7.5% 34% 34% 1fr;
+    grid-template-rows: 7.5% 37% 37% 1fr;
     grid-template-columns: minmax(0, 1fr) var(--timeline-w);
     column-gap: 8px;
     row-gap: 0;
@@ -116,7 +116,7 @@
       grid-template-areas:
         'hero support piles'
         'hero allies piles';
-      grid-template-rows: 38% 62%;
+      grid-template-rows: 35% 65%;
       margin-bottom: 2px;
       background-color: rgba(255, 236, 240, 0.5);
     }
@@ -126,7 +126,7 @@
       grid-template-areas:
         'hero allies piles'
         'hero support piles';
-      grid-template-rows: 62% 38%;
+      grid-template-rows: 65% 35%;
       margin-top: 2px;
       background-color: rgba(232, 244, 255, 0.55);
     }
@@ -176,7 +176,19 @@
   }
 
   // Cards on the board, sized by the screen (the slots are only frames).
+  // What is attached to a card peeks from behind it, toward the middle of the board: room
+  // for one beside the allies and two beside the hero, on that side, so both sides space
+  // their allies and supports the same.
+  .board-slot.battle-screen__slot,
+  .board-slot.battle-screen__hero {
+    .board-slot__body {
+      position: relative;
+      isolation: isolate;
+    }
+  }
+
   .board-slot.battle-screen__slot {
+    margin-top: calc(var(--ally-w) * 1.4 * var(--peek));
     width: var(--ally-w);
     height: calc(var(--ally-w) * 1.4);
     border-radius: 8px;
@@ -192,6 +204,7 @@
 
   .board-slot.battle-screen__hero {
     grid-area: hero;
+    margin-top: calc(var(--hero-w) * 2.8 * var(--peek));
     width: var(--hero-w);
     height: calc(var(--hero-w) * 1.4);
     border-radius: 10px;
@@ -205,6 +218,43 @@
     }
   }
 
+  &__attached {
+    position: absolute;
+    left: 0;
+    pointer-events: none;
+
+    .mini-card {
+      filter: brightness(0.92);
+      box-shadow: 0 1px 4px rgba(43, 35, 80, 0.35);
+    }
+  }
+
+  &__attached-badge {
+    position: absolute;
+    top: 1px;
+    right: 2px;
+    z-index: 2;
+    padding: 0 4px;
+    border: 1.5px solid var(--color-outline);
+    border-radius: 999px;
+    background-color: white;
+    color: var(--color-outline);
+    font-family: var(--font-display);
+    font-size: 9px;
+    line-height: 13px;
+    white-space: nowrap;
+  }
+
+  &__side.theirs .board-slot.battle-screen__slot {
+    margin-top: 0;
+    margin-bottom: calc(var(--ally-w) * 1.4 * var(--peek));
+  }
+
+  &__side.theirs .board-slot.battle-screen__hero {
+    margin-top: 0;
+    margin-bottom: calc(var(--hero-w) * 2.8 * var(--peek));
+  }
+
   .mini-card.fallen {
     filter: grayscale(1);
     opacity: 0.6;
@@ -216,6 +266,7 @@
 
   &__support {
     display: grid;
+    position: relative;
     place-items: center;
     width: var(--support-w);
     height: calc(var(--support-w) * 1.4);
@@ -237,11 +288,6 @@
     }
   }
 
-  &__support-icon {
-    font-size: calc(var(--support-w) * 0.42);
-    opacity: 0.35;
-    filter: grayscale(1);
-  }
 
   // ─── Badges over the cards ──────────────────────────────────────────────
 

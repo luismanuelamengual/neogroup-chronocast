@@ -14,7 +14,7 @@ function material(side: PlayerState): number {
   )
   const hand = Math.min(side.hand.length, MAX_HAND) * 3
   const chronos = Math.min(side.chronosCapacity, 8) * 4
-  const extras = (side.location ? 6 : 0) + side.traps.length * 4
+  const extras = (side.location ? 6 : 0) + side.traps.length * 4 + (side.artifacts ?? []).length * 5
 
   return hero + weapon + board + hand + chronos + extras
 }

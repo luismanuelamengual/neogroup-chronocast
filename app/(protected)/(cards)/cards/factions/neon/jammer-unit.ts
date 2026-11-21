@@ -13,7 +13,7 @@ export default defineCard({
   price: 170,
   cost: 3,
   attack: 7,
-  health: 22,
+  health: 11,
   onEnter(ctx) {
     stunRandomAlly(ctx, ctx.opponent)
   },

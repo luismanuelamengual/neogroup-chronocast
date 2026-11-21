@@ -13,7 +13,7 @@ export default defineCard({
   price: 170,
   cost: 3,
   attack: 7,
-  health: 18,
+  health: 9,
   ability: {
     name: 'Augury',
     text: 'Draw a card.',

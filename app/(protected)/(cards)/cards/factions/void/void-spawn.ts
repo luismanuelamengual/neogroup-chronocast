@@ -12,7 +12,7 @@ export default defineCard({
   price: 45,
   cost: 1,
   attack: 5,
-  health: 6,
+  health: 3,
   ai: { value: 1 },
   art: {
     subject: 'a small wriggling creature of black goo with many glowing green eyes crawling out of a crack in reality'

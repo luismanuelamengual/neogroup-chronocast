@@ -12,7 +12,7 @@ export default defineCard({
   price: 60,
   cost: 4,
   attack: 16,
-  health: 32,
+  health: 16,
   ai: { value: 4 },
   art: {
     subject: 'a big golem made of stone, wood, bronze and rusty metal pieces stitched together with glowing seams'

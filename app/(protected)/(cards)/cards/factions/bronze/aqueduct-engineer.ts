@@ -13,7 +13,7 @@ export default defineCard({
   price: 180,
   cost: 4,
   attack: 12,
-  health: 28,
+  health: 14,
   onEnter(ctx) {
     gainArmor(ctx, ctx.owner, 8)
   },

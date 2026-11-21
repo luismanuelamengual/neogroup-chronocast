@@ -13,7 +13,7 @@ export default defineCard({
   price: 35000,
   cost: 8,
   attack: 30,
-  health: 64,
+  health: 32,
   keywords: ['unique', 'quick', 'cleave'],
   onEnter(ctx) {
     damageAllAllies(ctx, ctx.opponent, 10)

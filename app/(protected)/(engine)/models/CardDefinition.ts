@@ -67,9 +67,9 @@ export interface CardDefinition {
   keywords?: Keyword[]
   /** Damage dealt to whoever attacks it, with the `thorns` keyword. */
   thorns?: number
-  /** Allies and weapons. */
+  /** Allies and weapons; attachments: the attack they add to their ally (negative takes it away). */
   attack?: number
-  /** Allies and heroes. */
+  /** Allies and heroes; attachments: the health they add to their ally (negative takes it away). */
   health?: number
   /** Weapons: attacks before it breaks. */
   durability?: number
@@ -83,12 +83,14 @@ export interface CardDefinition {
   targets?: TargetKind[]
   /** Traps. */
   trigger?: TrapTrigger
+  /** Artifacts: uses before it is discarded (spent with `spendCharge`); none: it stays for good. */
+  charges?: number
   /** Hints for the computer player. */
   ai?: { value: number; tags?: string[] }
   /** The subject of its illustration (the art prompt adds the style and the faction look). */
   art: { subject: string }
 
-  /** Abilities, items, weapons, armors and locations: when it is played. */
+  /** Abilities, items, weapons, armors, attachments, artifacts and locations: when it is played. */
   onPlay?(ctx: EffectContext): void
   /** Allies: when it enters the board. */
   onEnter?(ctx: EffectContext): void
@@ -106,4 +108,12 @@ export interface CardDefinition {
   onPhaseEnd?(ctx: EffectContext): void
   /** Traps: when the trigger happens. */
   onTrigger?(ctx: EffectContext, event: TrapEvent): void
+  /**
+   * Any card in play, and attachments wherever they are: changes a damage
+   * about to land on `target` (return the new amount). Runs before shields
+   * and armor; a poisonous hit still destroys.
+   */
+  modifyDamage?(ctx: EffectContext, target: SlotRef, amount: number): number
+  /** Attachments: when the ally it is attached to dies. */
+  onHostDeath?(ctx: EffectContext, host: Unit): void
 }

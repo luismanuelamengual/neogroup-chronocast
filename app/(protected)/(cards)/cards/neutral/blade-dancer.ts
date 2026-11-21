@@ -12,7 +12,7 @@ export default defineCard({
   price: 560,
   cost: 3,
   attack: 10,
-  health: 16,
+  health: 8,
   keywords: ['cleave', 'quick'],
   ai: { value: 4, tags: ['aggro'] },
   art: {

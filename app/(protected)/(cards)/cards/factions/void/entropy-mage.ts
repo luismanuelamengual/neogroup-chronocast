@@ -13,7 +13,7 @@ export default defineCard({
   price: 180,
   cost: 4,
   attack: 10,
-  health: 20,
+  health: 10,
   keywords: ['ranged'],
   ability: {
     name: 'Decay',

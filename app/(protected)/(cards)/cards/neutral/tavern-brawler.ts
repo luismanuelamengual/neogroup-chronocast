@@ -12,7 +12,7 @@ export default defineCard({
   price: 55,
   cost: 3,
   attack: 12,
-  health: 24,
+  health: 12,
   ai: { value: 3 },
   art: {
     subject: 'a burly brawler with rolled-up sleeves and a broken chair leg, grinning in a crowded tavern'

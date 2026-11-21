@@ -12,7 +12,7 @@ export default defineCard({
   restriction: { kind: 'hero', heroId: 'ada-copperwick' },
   rarity: 'epic',
   cost: 0,
-  health: 105,
+  health: 53,
   ability: {
     name: 'Tinker',
     text: 'An ally of yours gains +4 attack and +4 health.',

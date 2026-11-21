@@ -101,10 +101,12 @@ describe('the card catalog', () => {
     }
   })
 
-  it('the catalog has the 500 collectible cards of the plan, by rarity (docs/PLAN.md, sections 5 and 8.1)', () => {
-    const count = (rarity: string) => CARDS.filter((card) => card.rarity === rarity).length
+  it('the catalog has the 531 collectible cards of the plan, by rarity (docs/PLAN.md, sections 5 and 8.1)', () => {
+    // The retired types (locations, for now) count: they are still part of the plan.
+    const collectible = ALL_CARDS.filter((card) => !card.boss)
+    const count = (rarity: string) => collectible.filter((card) => card.rarity === rarity).length
 
-    expect(CARDS.length).toBe(500)
+    expect(collectible.length).toBe(531)
     expect(HEROES.length).toBe(12)
     expect([
       count('common'),
@@ -114,7 +116,12 @@ describe('the card catalog', () => {
       count('legendary'),
       count('exotic'),
       count('mythic')
-    ]).toEqual([170, 120, 90, 55, 35, 18, 12])
+    ]).toEqual([176, 131, 98, 59, 37, 18, 12])
+  })
+
+  it('leaves the retired types out of what players can own (the campaign rewards stay)', () => {
+    expect(CARDS.filter((card) => card.type === 'location' && !card.reward)).toEqual([])
+    expect(ALL_CARDS.filter((card) => card.type === 'location' && card.reward)).toEqual([])
   })
 
   it('every hero has a basic deck that is legal, and every card has its Spanish name', () => {

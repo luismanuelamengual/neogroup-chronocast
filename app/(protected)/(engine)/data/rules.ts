@@ -4,7 +4,7 @@
  */
 
 /** Actions each player programs per phase. */
-export const ACTIONS_PER_PHASE = 5
+export const ACTIONS_PER_PHASE = 6
 
 /** Seconds to program the timeline of a phase. */
 export const PLANNING_SECONDS = 90
@@ -22,8 +22,8 @@ export const DRAW_PER_PHASE = 2
 /** "Generate Chronos" actions allowed per phase. Each one adds +1 to the Chronos capacity for good. */
 export const MAX_SACRIFICES_PER_PHASE = 1
 
-/** Most traps a player can have face down. */
-export const MAX_TRAPS = 2
+/** Support slots of each player: its traps (face down) and artifacts share them. */
+export const SUPPORT_SLOTS = 5
 
 /** Damage of the first draw from an empty deck, and how much it grows on each one after it. */
 export const FATIGUE_START = 10
@@ -33,8 +33,8 @@ export const FATIGUE_STEP = 5
 export const PHASE_LIMIT = 30
 
 /** Hero health range (validated in the catalog). */
-export const HERO_MIN_HEALTH = 90
-export const HERO_MAX_HEALTH = 120
+export const HERO_MIN_HEALTH = 45
+export const HERO_MAX_HEALTH = 60
 
 /** Deck size (the hero included), copies per card and copies of a card with the `unique` keyword. */
 export const MIN_DECK_SIZE = 40
@@ -49,3 +49,11 @@ export const MIN_RATING = 100
 
 /** PvP: phases in a row with nothing programmed that lose the match by abandon. */
 export const ABANDON_IDLE_PHASES = 3
+
+/**
+ * Card types out of the game for now: they are not sold, don't come in packs,
+ * can't be added to a deck, and the copies already in a deck are left out of
+ * the match (their cards stay in the catalog, so saved collections still load).
+ * Campaign rewards of these types stay in the game.
+ */
+export const RETIRED_CARD_TYPES: readonly string[] = ['location']

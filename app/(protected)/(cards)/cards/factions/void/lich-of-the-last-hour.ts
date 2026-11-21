@@ -13,7 +13,7 @@ export default defineCard({
   price: 640,
   cost: 5,
   attack: 14,
-  health: 32,
+  health: 16,
   ability: {
     name: 'Drain Life',
     text: 'Deal 6 damage to the enemy hero and your hero heals 6.',

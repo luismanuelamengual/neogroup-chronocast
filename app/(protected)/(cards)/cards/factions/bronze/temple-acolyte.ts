@@ -13,7 +13,7 @@ export default defineCard({
   price: 50,
   cost: 2,
   attack: 5,
-  health: 14,
+  health: 7,
   onEnter(ctx) {
     heal(ctx, { player: ctx.owner, slot: 'hero' }, 5)
   },

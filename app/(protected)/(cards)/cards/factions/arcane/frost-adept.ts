@@ -13,7 +13,7 @@ export default defineCard({
   price: 170,
   cost: 3,
   attack: 7,
-  health: 16,
+  health: 8,
   ability: {
     name: 'Frostbolt',
     text: 'Deal 6 damage to an enemy ally.',

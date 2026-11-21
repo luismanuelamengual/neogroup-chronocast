@@ -13,7 +13,7 @@ export default defineCard({
   price: 2000,
   cost: 6,
   attack: 20,
-  health: 40,
+  health: 20,
   onEnter(ctx) {
     damageAllAllies(ctx, ctx.opponent, 6)
     damageAllAllies(ctx, ctx.owner, 6)

@@ -1,4 +1,4 @@
-import { ACTIONS_PER_PHASE, MAX_SACRIFICES_PER_PHASE, MAX_TRAPS } from '@/app/(protected)/(engine)/data/rules'
+import { ACTIONS_PER_PHASE, MAX_SACRIFICES_PER_PHASE, SUPPORT_SLOTS } from '@/app/(protected)/(engine)/data/rules'
 import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition'
 import { CardInstance, MatchState, Unit } from '@/app/(protected)/(engine)/models/MatchState'
 import { PlannedAction, Timeline, WAIT } from '@/app/(protected)/(engine)/models/PlannedAction'
@@ -98,7 +98,7 @@ export function planTimeline(state: MatchState, player: PlayerId, style: PlanSty
   let freeSlots = side.allies.filter((unit) => !unit).length
   let hasWeapon = !!side.hero.weapon
   let hasArmor = side.hero.armor > 0
-  let traps = side.traps.length
+  let support = side.traps.length + (side.artifacts ?? []).length
 
   for (const { card, definition } of playable) {
     if (definition.cost > budget - reserve || timeline.length >= ACTIONS_PER_PHASE - 1) {
@@ -122,8 +122,12 @@ export function planTimeline(state: MatchState, player: PlayerId, style: PlanSty
         action = side.location ? null : { kind: 'play', cardUid: card.uid }
         break
       case 'trap':
-        action = traps < MAX_TRAPS ? { kind: 'play', cardUid: card.uid } : null
+        action = support < SUPPORT_SLOTS ? { kind: 'play', cardUid: card.uid } : null
         break
+      case 'artifact':
+        action = support < SUPPORT_SLOTS ? { kind: 'play', cardUid: card.uid } : null
+        break
+      case 'attachment':
       case 'ability':
 
       case 'item': {
@@ -144,7 +148,7 @@ export function planTimeline(state: MatchState, player: PlayerId, style: PlanSty
       freeSlots -= definition.type === 'ally' ? 1 : 0
       hasWeapon ||= definition.type === 'weapon'
       hasArmor ||= definition.type === 'armor'
-      traps += definition.type === 'trap' ? 1 : 0
+      support += definition.type === 'trap' || definition.type === 'artifact' ? 1 : 0
     }
   }
 

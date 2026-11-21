@@ -24,8 +24,7 @@ const HERO_DECK_LISTS: Record<string, [string, number][]> = {
     ['silk-robe', 2],
     ['mana-shield', 1],
     ['pocket-watch', 2],
-    ['spare-parts', 1],
-    ['great-foundry', 1],
+    ['spare-parts', 2],
     ['bear-trap-gears', 2]
   ],
   'aldric-dawnkeeper': [
@@ -45,8 +44,7 @@ const HERO_DECK_LISTS: Record<string, [string, number][]> = {
     ['acolyte-vestments', 2],
     ['spirit-ward', 1],
     ['mana-crystal', 2],
-    ['scroll-of-wisdom', 1],
-    ['tower-of-stars', 1],
+    ['scroll-of-wisdom', 2],
     ['counter-rune', 2]
   ],
   'gideon-ironsteam': [
@@ -66,8 +64,7 @@ const HERO_DECK_LISTS: Record<string, [string, number][]> = {
     ['chainmail', 2],
     ['spiked-pauldrons', 1],
     ['pocket-watch', 2],
-    ['spare-parts', 1],
-    ['great-foundry', 1],
+    ['spare-parts', 2],
     ['bear-trap-gears', 2]
   ],
   'malachar-the-unmade': [
@@ -87,8 +84,7 @@ const HERO_DECK_LISTS: Record<string, [string, number][]> = {
     ['silk-robe', 2],
     ['mana-shield', 1],
     ['cursed-skull', 2],
-    ['soul-jar', 1],
-    ['boneyard', 1],
+    ['soul-jar', 2],
     ['grasping-dead', 2]
   ],
   'nysa-goldbow': [
@@ -108,8 +104,7 @@ const HERO_DECK_LISTS: Record<string, [string, number][]> = {
     ['leather-jerkin', 2],
     ['ghillie-cloak', 1],
     ['legion-rations', 2],
-    ['cohort-banner', 1],
-    ['colosseum', 1],
+    ['cohort-banner', 2],
     ['pila-volley', 2]
   ],
   'nyx-hollowsong': [
@@ -129,8 +124,7 @@ const HERO_DECK_LISTS: Record<string, [string, number][]> = {
     ['acolyte-vestments', 2],
     ['spirit-ward', 1],
     ['cursed-skull', 2],
-    ['soul-jar', 1],
-    ['boneyard', 1],
+    ['soul-jar', 2],
     ['grasping-dead', 2]
   ],
   'ooma-bonewhisper': [
@@ -150,8 +144,7 @@ const HERO_DECK_LISTS: Record<string, [string, number][]> = {
     ['acolyte-vestments', 2],
     ['spirit-ward', 1],
     ['healing-herbs', 2],
-    ['amber-totem', 1],
-    ['primal-grove', 1],
+    ['amber-totem', 2],
     ['pit-trap', 2]
   ],
   'ryn-voltblade': [
@@ -171,8 +164,7 @@ const HERO_DECK_LISTS: Record<string, [string, number][]> = {
     ['chainmail', 2],
     ['spiked-pauldrons', 1],
     ['stim-pack', 2],
-    ['cloaking-device', 1],
-    ['broken-clocktower', 1],
+    ['cloaking-device', 2],
     ['firewall', 2]
   ],
   'vex-nightwire': [
@@ -192,8 +184,7 @@ const HERO_DECK_LISTS: Record<string, [string, number][]> = {
     ['leather-jerkin', 2],
     ['ghillie-cloak', 1],
     ['stim-pack', 2],
-    ['cloaking-device', 1],
-    ['broken-clocktower', 1],
+    ['cloaking-device', 2],
     ['firewall', 2]
   ]
 }

@@ -2,11 +2,12 @@ import { MAX_COPIES, MAX_UNIQUE_COPIES } from '@/app/(protected)/(engine)/data/r
 import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition'
 import { RARITIES, Rarity } from '@/app/(protected)/(engine)/models/Rarity'
 import { getCard, hasCard } from '@/app/(protected)/(engine)/utils/registry'
+import { isRetired } from '@/app/(protected)/(engine)/utils/retired'
 import { CONFIRM_SELL_FROM, HERO_PRICES, SELL_RATE, UNLOCK_COSTS } from '@/app/(protected)/(shop)/data/prices'
 
 /** Cards the shop sells: playable heroes and every card with a price, but campaign rewards and boss cards. */
 export function isBuyable(card: CardDefinition): boolean {
-  if (card.reward || card.boss) {
+  if (card.reward || card.boss || isRetired(card)) {
     return false
   }
 

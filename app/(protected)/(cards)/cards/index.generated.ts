@@ -449,94 +449,125 @@ import card444 from '@/app/(protected)/(cards)/cards/heroes/vorhal-the-last-hour
 import card445 from '@/app/(protected)/(cards)/cards/heroes/xulthar-the-devourer/endless-hunger'
 import card446 from '@/app/(protected)/(cards)/cards/heroes/xulthar-the-devourer/maw-of-xulthar'
 import card447 from '@/app/(protected)/(cards)/cards/heroes/xulthar-the-devourer/xulthar-the-devourer'
-import card448 from '@/app/(protected)/(cards)/cards/neutral/aegis-of-eternity'
-import card449 from '@/app/(protected)/(cards)/cards/neutral/aeon-phoenix'
-import card450 from '@/app/(protected)/(cards)/cards/neutral/banner-of-the-rift'
-import card451 from '@/app/(protected)/(cards)/cards/neutral/battle-herald'
-import card452 from '@/app/(protected)/(cards)/cards/neutral/blade-dancer'
-import card453 from '@/app/(protected)/(cards)/cards/neutral/blade-of-ages'
-import card454 from '@/app/(protected)/(cards)/cards/neutral/broken-clocktower'
-import card455 from '@/app/(protected)/(cards)/cards/neutral/chrono-acrobat'
-import card456 from '@/app/(protected)/(cards)/cards/neutral/chrono-battery'
-import card457 from '@/app/(protected)/(cards)/cards/neutral/chrono-golem'
-import card458 from '@/app/(protected)/(cards)/cards/neutral/chronomancer-adept'
-import card459 from '@/app/(protected)/(cards)/cards/neutral/chronos-leviathan'
-import card460 from '@/app/(protected)/(cards)/cards/neutral/counterspell-glyph'
-import card461 from '@/app/(protected)/(cards)/cards/neutral/drifting-merchant'
-import card462 from '@/app/(protected)/(cards)/cards/neutral/echoing-knight'
-import card463 from '@/app/(protected)/(cards)/cards/neutral/elixir-of-vigor'
-import card464 from '@/app/(protected)/(cards)/cards/neutral/end-of-days'
-import card465 from '@/app/(protected)/(cards)/cards/neutral/era-hopper'
-import card466 from '@/app/(protected)/(cards)/cards/neutral/eye-of-the-storm'
-import card467 from '@/app/(protected)/(cards)/cards/neutral/ferryman-of-hours'
-import card468 from '@/app/(protected)/(cards)/cards/neutral/fire-flask'
-import card469 from '@/app/(protected)/(cards)/cards/neutral/flash-powder'
-import card470 from '@/app/(protected)/(cards)/cards/neutral/garden-of-forever'
-import card471 from '@/app/(protected)/(cards)/cards/neutral/grappling-hook'
-import card472 from '@/app/(protected)/(cards)/cards/neutral/gravekeeper-of-eras'
-import card473 from '@/app/(protected)/(cards)/cards/neutral/hall-of-echoes'
-import card474 from '@/app/(protected)/(cards)/cards/neutral/healing-draught'
-import card475 from '@/app/(protected)/(cards)/cards/neutral/hourglass-dagger'
-import card476 from '@/app/(protected)/(cards)/cards/neutral/hourglass-sentry'
-import card477 from '@/app/(protected)/(cards)/cards/neutral/hourglass-warden'
-import card478 from '@/app/(protected)/(cards)/cards/neutral/iron-rations'
-import card479 from '@/app/(protected)/(cards)/cards/neutral/keeper-of-moments'
-import card480 from '@/app/(protected)/(cards)/cards/neutral/lost-squire'
-import card481 from '@/app/(protected)/(cards)/cards/neutral/mend-the-timeline'
-import card482 from '@/app/(protected)/(cards)/cards/neutral/mirror-ward'
-import card483 from '@/app/(protected)/(cards)/cards/neutral/paradox-loop'
-import card484 from '@/app/(protected)/(cards)/cards/neutral/paradox-twin'
-import card485 from '@/app/(protected)/(cards)/cards/neutral/patched-leather'
-import card486 from '@/app/(protected)/(cards)/cards/neutral/patchwork-golem'
-import card487 from '@/app/(protected)/(cards)/cards/neutral/phase-stalker'
-import card488 from '@/app/(protected)/(cards)/cards/neutral/philosophers-hourglass'
-import card489 from '@/app/(protected)/(cards)/cards/neutral/pitfall'
-import card490 from '@/app/(protected)/(cards)/cards/neutral/quicken'
-import card491 from '@/app/(protected)/(cards)/cards/neutral/repair-kit'
-import card492 from '@/app/(protected)/(cards)/cards/neutral/rewind'
-import card493 from '@/app/(protected)/(cards)/cards/neutral/rift-behemoth'
-import card494 from '@/app/(protected)/(cards)/cards/neutral/rift-bomb'
-import card495 from '@/app/(protected)/(cards)/cards/neutral/rift-collapse'
-import card496 from '@/app/(protected)/(cards)/cards/neutral/rift-dragonling'
-import card497 from '@/app/(protected)/(cards)/cards/neutral/rift-grenade'
-import card498 from '@/app/(protected)/(cards)/cards/neutral/rift-guardian'
-import card499 from '@/app/(protected)/(cards)/cards/neutral/rift-hound'
-import card500 from '@/app/(protected)/(cards)/cards/neutral/rift-leech'
-import card501 from '@/app/(protected)/(cards)/cards/neutral/rift-mail'
-import card502 from '@/app/(protected)/(cards)/cards/neutral/rift-market'
-import card503 from '@/app/(protected)/(cards)/cards/neutral/rift-medic'
-import card504 from '@/app/(protected)/(cards)/cards/neutral/rift-moth'
-import card505 from '@/app/(protected)/(cards)/cards/neutral/rift-scavenger'
-import card506 from '@/app/(protected)/(cards)/cards/neutral/rift-snare'
-import card507 from '@/app/(protected)/(cards)/cards/neutral/rusty-sword'
-import card508 from '@/app/(protected)/(cards)/cards/neutral/sanctum-of-hours'
-import card509 from '@/app/(protected)/(cards)/cards/neutral/sand-wraith'
-import card510 from '@/app/(protected)/(cards)/cards/neutral/sharpening-stone'
-import card511 from '@/app/(protected)/(cards)/cards/neutral/shatter-time'
-import card512 from '@/app/(protected)/(cards)/cards/neutral/shieldbearer-of-ages'
-import card513 from '@/app/(protected)/(cards)/cards/neutral/shifting-sands'
-import card514 from '@/app/(protected)/(cards)/cards/neutral/sky-courier'
-import card515 from '@/app/(protected)/(cards)/cards/neutral/skyship-gunner'
-import card516 from '@/app/(protected)/(cards)/cards/neutral/smoke-bomb'
-import card517 from '@/app/(protected)/(cards)/cards/neutral/spyglass'
-import card518 from '@/app/(protected)/(cards)/cards/neutral/tavern-brawler'
-import card519 from '@/app/(protected)/(cards)/cards/neutral/temporal-prison'
-import card520 from '@/app/(protected)/(cards)/cards/neutral/temporal-shock'
-import card521 from '@/app/(protected)/(cards)/cards/neutral/the-last-sentinel'
-import card522 from '@/app/(protected)/(cards)/cards/neutral/the-nexus'
-import card523 from '@/app/(protected)/(cards)/cards/neutral/thorned-colossus'
-import card524 from '@/app/(protected)/(cards)/cards/neutral/time-capsule'
-import card525 from '@/app/(protected)/(cards)/cards/neutral/time-thief'
-import card526 from '@/app/(protected)/(cards)/cards/neutral/time-wanderer'
-import card527 from '@/app/(protected)/(cards)/cards/neutral/timeguard-plate'
-import card528 from '@/app/(protected)/(cards)/cards/neutral/timeworn-champion'
-import card529 from '@/app/(protected)/(cards)/cards/neutral/training-grounds'
-import card530 from '@/app/(protected)/(cards)/cards/neutral/tripwire'
-import card531 from '@/app/(protected)/(cards)/cards/neutral/veteran-of-many-wars'
-import card532 from '@/app/(protected)/(cards)/cards/neutral/wanderers-camp'
-import card533 from '@/app/(protected)/(cards)/cards/neutral/wanderers-sling'
-import card534 from '@/app/(protected)/(cards)/cards/neutral/wandering-sellsword'
-import card535 from '@/app/(protected)/(cards)/cards/neutral/wayfinder-scout'
+import card448 from '@/app/(protected)/(cards)/cards/neutral/aegis-lantern'
+import card449 from '@/app/(protected)/(cards)/cards/neutral/aegis-of-eternity'
+import card450 from '@/app/(protected)/(cards)/cards/neutral/aeon-phoenix'
+import card451 from '@/app/(protected)/(cards)/cards/neutral/banner-of-the-rift'
+import card452 from '@/app/(protected)/(cards)/cards/neutral/bannerman-sash'
+import card453 from '@/app/(protected)/(cards)/cards/neutral/battle-herald'
+import card454 from '@/app/(protected)/(cards)/cards/neutral/berserker-pact'
+import card455 from '@/app/(protected)/(cards)/cards/neutral/blade-dancer'
+import card456 from '@/app/(protected)/(cards)/cards/neutral/blade-of-ages'
+import card457 from '@/app/(protected)/(cards)/cards/neutral/brittle-hex'
+import card458 from '@/app/(protected)/(cards)/cards/neutral/broken-clocktower'
+import card459 from '@/app/(protected)/(cards)/cards/neutral/bulwark-totem'
+import card460 from '@/app/(protected)/(cards)/cards/neutral/buried-capsule'
+import card461 from '@/app/(protected)/(cards)/cards/neutral/chrono-acrobat'
+import card462 from '@/app/(protected)/(cards)/cards/neutral/chrono-anchor'
+import card463 from '@/app/(protected)/(cards)/cards/neutral/chrono-battery'
+import card464 from '@/app/(protected)/(cards)/cards/neutral/chrono-golem'
+import card465 from '@/app/(protected)/(cards)/cards/neutral/chronomancer-adept'
+import card466 from '@/app/(protected)/(cards)/cards/neutral/chronos-leviathan'
+import card467 from '@/app/(protected)/(cards)/cards/neutral/clockheart-engine'
+import card468 from '@/app/(protected)/(cards)/cards/neutral/counterspell-glyph'
+import card469 from '@/app/(protected)/(cards)/cards/neutral/cursed-idol'
+import card470 from '@/app/(protected)/(cards)/cards/neutral/drifting-merchant'
+import card471 from '@/app/(protected)/(cards)/cards/neutral/echoing-knight'
+import card472 from '@/app/(protected)/(cards)/cards/neutral/elixir-of-vigor'
+import card473 from '@/app/(protected)/(cards)/cards/neutral/end-of-days'
+import card474 from '@/app/(protected)/(cards)/cards/neutral/era-hopper'
+import card475 from '@/app/(protected)/(cards)/cards/neutral/eye-of-the-storm'
+import card476 from '@/app/(protected)/(cards)/cards/neutral/ferryman-of-hours'
+import card477 from '@/app/(protected)/(cards)/cards/neutral/fire-flask'
+import card478 from '@/app/(protected)/(cards)/cards/neutral/flash-powder'
+import card479 from '@/app/(protected)/(cards)/cards/neutral/garden-of-forever'
+import card480 from '@/app/(protected)/(cards)/cards/neutral/grail-of-ages'
+import card481 from '@/app/(protected)/(cards)/cards/neutral/grappling-hook'
+import card482 from '@/app/(protected)/(cards)/cards/neutral/gravekeeper-of-eras'
+import card483 from '@/app/(protected)/(cards)/cards/neutral/hall-of-echoes'
+import card484 from '@/app/(protected)/(cards)/cards/neutral/healing-draught'
+import card485 from '@/app/(protected)/(cards)/cards/neutral/healing-spring'
+import card486 from '@/app/(protected)/(cards)/cards/neutral/hourglass-dagger'
+import card487 from '@/app/(protected)/(cards)/cards/neutral/hourglass-plating'
+import card488 from '@/app/(protected)/(cards)/cards/neutral/hourglass-sentry'
+import card489 from '@/app/(protected)/(cards)/cards/neutral/hourglass-warden'
+import card490 from '@/app/(protected)/(cards)/cards/neutral/iron-buckler'
+import card491 from '@/app/(protected)/(cards)/cards/neutral/iron-rations'
+import card492 from '@/app/(protected)/(cards)/cards/neutral/keeper-of-moments'
+import card493 from '@/app/(protected)/(cards)/cards/neutral/last-oath'
+import card494 from '@/app/(protected)/(cards)/cards/neutral/lost-squire'
+import card495 from '@/app/(protected)/(cards)/cards/neutral/mend-the-timeline'
+import card496 from '@/app/(protected)/(cards)/cards/neutral/mirror-ward'
+import card497 from '@/app/(protected)/(cards)/cards/neutral/paradox-loop'
+import card498 from '@/app/(protected)/(cards)/cards/neutral/paradox-twin'
+import card499 from '@/app/(protected)/(cards)/cards/neutral/patched-leather'
+import card500 from '@/app/(protected)/(cards)/cards/neutral/patchwork-golem'
+import card501 from '@/app/(protected)/(cards)/cards/neutral/phase-cloak'
+import card502 from '@/app/(protected)/(cards)/cards/neutral/phase-stalker'
+import card503 from '@/app/(protected)/(cards)/cards/neutral/philosophers-hourglass'
+import card504 from '@/app/(protected)/(cards)/cards/neutral/phoenix-feather'
+import card505 from '@/app/(protected)/(cards)/cards/neutral/pitfall'
+import card506 from '@/app/(protected)/(cards)/cards/neutral/quicken'
+import card507 from '@/app/(protected)/(cards)/cards/neutral/recruiting-tent'
+import card508 from '@/app/(protected)/(cards)/cards/neutral/regrowth-moss'
+import card509 from '@/app/(protected)/(cards)/cards/neutral/repair-kit'
+import card510 from '@/app/(protected)/(cards)/cards/neutral/rewind'
+import card511 from '@/app/(protected)/(cards)/cards/neutral/rift-behemoth'
+import card512 from '@/app/(protected)/(cards)/cards/neutral/rift-bomb'
+import card513 from '@/app/(protected)/(cards)/cards/neutral/rift-collapse'
+import card514 from '@/app/(protected)/(cards)/cards/neutral/rift-dragonling'
+import card515 from '@/app/(protected)/(cards)/cards/neutral/rift-grenade'
+import card516 from '@/app/(protected)/(cards)/cards/neutral/rift-guardian'
+import card517 from '@/app/(protected)/(cards)/cards/neutral/rift-hound'
+import card518 from '@/app/(protected)/(cards)/cards/neutral/rift-leech'
+import card519 from '@/app/(protected)/(cards)/cards/neutral/rift-mail'
+import card520 from '@/app/(protected)/(cards)/cards/neutral/rift-market'
+import card521 from '@/app/(protected)/(cards)/cards/neutral/rift-medic'
+import card522 from '@/app/(protected)/(cards)/cards/neutral/rift-moth'
+import card523 from '@/app/(protected)/(cards)/cards/neutral/rift-scavenger'
+import card524 from '@/app/(protected)/(cards)/cards/neutral/rift-snare'
+import card525 from '@/app/(protected)/(cards)/cards/neutral/rusted-shackles'
+import card526 from '@/app/(protected)/(cards)/cards/neutral/rusty-sword'
+import card527 from '@/app/(protected)/(cards)/cards/neutral/sanctum-of-hours'
+import card528 from '@/app/(protected)/(cards)/cards/neutral/sand-wraith'
+import card529 from '@/app/(protected)/(cards)/cards/neutral/scholars-lens'
+import card530 from '@/app/(protected)/(cards)/cards/neutral/sharpening-stone'
+import card531 from '@/app/(protected)/(cards)/cards/neutral/shatter-time'
+import card532 from '@/app/(protected)/(cards)/cards/neutral/shieldbearer-of-ages'
+import card533 from '@/app/(protected)/(cards)/cards/neutral/shifting-sands'
+import card534 from '@/app/(protected)/(cards)/cards/neutral/siege-engine'
+import card535 from '@/app/(protected)/(cards)/cards/neutral/sky-courier'
+import card536 from '@/app/(protected)/(cards)/cards/neutral/skyship-gunner'
+import card537 from '@/app/(protected)/(cards)/cards/neutral/smoke-bomb'
+import card538 from '@/app/(protected)/(cards)/cards/neutral/spyglass'
+import card539 from '@/app/(protected)/(cards)/cards/neutral/stasis-bubble'
+import card540 from '@/app/(protected)/(cards)/cards/neutral/sundial-of-plenty'
+import card541 from '@/app/(protected)/(cards)/cards/neutral/tavern-brawler'
+import card542 from '@/app/(protected)/(cards)/cards/neutral/temporal-prison'
+import card543 from '@/app/(protected)/(cards)/cards/neutral/temporal-shock'
+import card544 from '@/app/(protected)/(cards)/cards/neutral/the-last-sentinel'
+import card545 from '@/app/(protected)/(cards)/cards/neutral/the-nexus'
+import card546 from '@/app/(protected)/(cards)/cards/neutral/thorned-colossus'
+import card547 from '@/app/(protected)/(cards)/cards/neutral/thorned-mail'
+import card548 from '@/app/(protected)/(cards)/cards/neutral/time-capsule'
+import card549 from '@/app/(protected)/(cards)/cards/neutral/time-thief'
+import card550 from '@/app/(protected)/(cards)/cards/neutral/time-wanderer'
+import card551 from '@/app/(protected)/(cards)/cards/neutral/timeguard-plate'
+import card552 from '@/app/(protected)/(cards)/cards/neutral/timeworn-champion'
+import card553 from '@/app/(protected)/(cards)/cards/neutral/titan-gauntlet'
+import card554 from '@/app/(protected)/(cards)/cards/neutral/training-grounds'
+import card555 from '@/app/(protected)/(cards)/cards/neutral/tripwire'
+import card556 from '@/app/(protected)/(cards)/cards/neutral/twin-blades'
+import card557 from '@/app/(protected)/(cards)/cards/neutral/vampire-fang'
+import card558 from '@/app/(protected)/(cards)/cards/neutral/venom-coating'
+import card559 from '@/app/(protected)/(cards)/cards/neutral/veteran-of-many-wars'
+import card560 from '@/app/(protected)/(cards)/cards/neutral/wanderers-camp'
+import card561 from '@/app/(protected)/(cards)/cards/neutral/wanderers-sling'
+import card562 from '@/app/(protected)/(cards)/cards/neutral/wandering-sellsword'
+import card563 from '@/app/(protected)/(cards)/cards/neutral/war-drum'
+import card564 from '@/app/(protected)/(cards)/cards/neutral/wayfinder-scout'
+import card565 from '@/app/(protected)/(cards)/cards/neutral/whetted-edge'
+import card566 from '@/app/(protected)/(cards)/cards/neutral/winged-harness'
 
 /** Every card of the game, with the path of its file (relative to this folder). */
 export const CARD_FILES: { file: string; card: CardDefinition }[] = [
@@ -988,92 +1019,123 @@ export const CARD_FILES: { file: string; card: CardDefinition }[] = [
   { file: 'heroes/xulthar-the-devourer/endless-hunger', card: card445 },
   { file: 'heroes/xulthar-the-devourer/maw-of-xulthar', card: card446 },
   { file: 'heroes/xulthar-the-devourer/xulthar-the-devourer', card: card447 },
-  { file: 'neutral/aegis-of-eternity', card: card448 },
-  { file: 'neutral/aeon-phoenix', card: card449 },
-  { file: 'neutral/banner-of-the-rift', card: card450 },
-  { file: 'neutral/battle-herald', card: card451 },
-  { file: 'neutral/blade-dancer', card: card452 },
-  { file: 'neutral/blade-of-ages', card: card453 },
-  { file: 'neutral/broken-clocktower', card: card454 },
-  { file: 'neutral/chrono-acrobat', card: card455 },
-  { file: 'neutral/chrono-battery', card: card456 },
-  { file: 'neutral/chrono-golem', card: card457 },
-  { file: 'neutral/chronomancer-adept', card: card458 },
-  { file: 'neutral/chronos-leviathan', card: card459 },
-  { file: 'neutral/counterspell-glyph', card: card460 },
-  { file: 'neutral/drifting-merchant', card: card461 },
-  { file: 'neutral/echoing-knight', card: card462 },
-  { file: 'neutral/elixir-of-vigor', card: card463 },
-  { file: 'neutral/end-of-days', card: card464 },
-  { file: 'neutral/era-hopper', card: card465 },
-  { file: 'neutral/eye-of-the-storm', card: card466 },
-  { file: 'neutral/ferryman-of-hours', card: card467 },
-  { file: 'neutral/fire-flask', card: card468 },
-  { file: 'neutral/flash-powder', card: card469 },
-  { file: 'neutral/garden-of-forever', card: card470 },
-  { file: 'neutral/grappling-hook', card: card471 },
-  { file: 'neutral/gravekeeper-of-eras', card: card472 },
-  { file: 'neutral/hall-of-echoes', card: card473 },
-  { file: 'neutral/healing-draught', card: card474 },
-  { file: 'neutral/hourglass-dagger', card: card475 },
-  { file: 'neutral/hourglass-sentry', card: card476 },
-  { file: 'neutral/hourglass-warden', card: card477 },
-  { file: 'neutral/iron-rations', card: card478 },
-  { file: 'neutral/keeper-of-moments', card: card479 },
-  { file: 'neutral/lost-squire', card: card480 },
-  { file: 'neutral/mend-the-timeline', card: card481 },
-  { file: 'neutral/mirror-ward', card: card482 },
-  { file: 'neutral/paradox-loop', card: card483 },
-  { file: 'neutral/paradox-twin', card: card484 },
-  { file: 'neutral/patched-leather', card: card485 },
-  { file: 'neutral/patchwork-golem', card: card486 },
-  { file: 'neutral/phase-stalker', card: card487 },
-  { file: 'neutral/philosophers-hourglass', card: card488 },
-  { file: 'neutral/pitfall', card: card489 },
-  { file: 'neutral/quicken', card: card490 },
-  { file: 'neutral/repair-kit', card: card491 },
-  { file: 'neutral/rewind', card: card492 },
-  { file: 'neutral/rift-behemoth', card: card493 },
-  { file: 'neutral/rift-bomb', card: card494 },
-  { file: 'neutral/rift-collapse', card: card495 },
-  { file: 'neutral/rift-dragonling', card: card496 },
-  { file: 'neutral/rift-grenade', card: card497 },
-  { file: 'neutral/rift-guardian', card: card498 },
-  { file: 'neutral/rift-hound', card: card499 },
-  { file: 'neutral/rift-leech', card: card500 },
-  { file: 'neutral/rift-mail', card: card501 },
-  { file: 'neutral/rift-market', card: card502 },
-  { file: 'neutral/rift-medic', card: card503 },
-  { file: 'neutral/rift-moth', card: card504 },
-  { file: 'neutral/rift-scavenger', card: card505 },
-  { file: 'neutral/rift-snare', card: card506 },
-  { file: 'neutral/rusty-sword', card: card507 },
-  { file: 'neutral/sanctum-of-hours', card: card508 },
-  { file: 'neutral/sand-wraith', card: card509 },
-  { file: 'neutral/sharpening-stone', card: card510 },
-  { file: 'neutral/shatter-time', card: card511 },
-  { file: 'neutral/shieldbearer-of-ages', card: card512 },
-  { file: 'neutral/shifting-sands', card: card513 },
-  { file: 'neutral/sky-courier', card: card514 },
-  { file: 'neutral/skyship-gunner', card: card515 },
-  { file: 'neutral/smoke-bomb', card: card516 },
-  { file: 'neutral/spyglass', card: card517 },
-  { file: 'neutral/tavern-brawler', card: card518 },
-  { file: 'neutral/temporal-prison', card: card519 },
-  { file: 'neutral/temporal-shock', card: card520 },
-  { file: 'neutral/the-last-sentinel', card: card521 },
-  { file: 'neutral/the-nexus', card: card522 },
-  { file: 'neutral/thorned-colossus', card: card523 },
-  { file: 'neutral/time-capsule', card: card524 },
-  { file: 'neutral/time-thief', card: card525 },
-  { file: 'neutral/time-wanderer', card: card526 },
-  { file: 'neutral/timeguard-plate', card: card527 },
-  { file: 'neutral/timeworn-champion', card: card528 },
-  { file: 'neutral/training-grounds', card: card529 },
-  { file: 'neutral/tripwire', card: card530 },
-  { file: 'neutral/veteran-of-many-wars', card: card531 },
-  { file: 'neutral/wanderers-camp', card: card532 },
-  { file: 'neutral/wanderers-sling', card: card533 },
-  { file: 'neutral/wandering-sellsword', card: card534 },
-  { file: 'neutral/wayfinder-scout', card: card535 }
+  { file: 'neutral/aegis-lantern', card: card448 },
+  { file: 'neutral/aegis-of-eternity', card: card449 },
+  { file: 'neutral/aeon-phoenix', card: card450 },
+  { file: 'neutral/banner-of-the-rift', card: card451 },
+  { file: 'neutral/bannerman-sash', card: card452 },
+  { file: 'neutral/battle-herald', card: card453 },
+  { file: 'neutral/berserker-pact', card: card454 },
+  { file: 'neutral/blade-dancer', card: card455 },
+  { file: 'neutral/blade-of-ages', card: card456 },
+  { file: 'neutral/brittle-hex', card: card457 },
+  { file: 'neutral/broken-clocktower', card: card458 },
+  { file: 'neutral/bulwark-totem', card: card459 },
+  { file: 'neutral/buried-capsule', card: card460 },
+  { file: 'neutral/chrono-acrobat', card: card461 },
+  { file: 'neutral/chrono-anchor', card: card462 },
+  { file: 'neutral/chrono-battery', card: card463 },
+  { file: 'neutral/chrono-golem', card: card464 },
+  { file: 'neutral/chronomancer-adept', card: card465 },
+  { file: 'neutral/chronos-leviathan', card: card466 },
+  { file: 'neutral/clockheart-engine', card: card467 },
+  { file: 'neutral/counterspell-glyph', card: card468 },
+  { file: 'neutral/cursed-idol', card: card469 },
+  { file: 'neutral/drifting-merchant', card: card470 },
+  { file: 'neutral/echoing-knight', card: card471 },
+  { file: 'neutral/elixir-of-vigor', card: card472 },
+  { file: 'neutral/end-of-days', card: card473 },
+  { file: 'neutral/era-hopper', card: card474 },
+  { file: 'neutral/eye-of-the-storm', card: card475 },
+  { file: 'neutral/ferryman-of-hours', card: card476 },
+  { file: 'neutral/fire-flask', card: card477 },
+  { file: 'neutral/flash-powder', card: card478 },
+  { file: 'neutral/garden-of-forever', card: card479 },
+  { file: 'neutral/grail-of-ages', card: card480 },
+  { file: 'neutral/grappling-hook', card: card481 },
+  { file: 'neutral/gravekeeper-of-eras', card: card482 },
+  { file: 'neutral/hall-of-echoes', card: card483 },
+  { file: 'neutral/healing-draught', card: card484 },
+  { file: 'neutral/healing-spring', card: card485 },
+  { file: 'neutral/hourglass-dagger', card: card486 },
+  { file: 'neutral/hourglass-plating', card: card487 },
+  { file: 'neutral/hourglass-sentry', card: card488 },
+  { file: 'neutral/hourglass-warden', card: card489 },
+  { file: 'neutral/iron-buckler', card: card490 },
+  { file: 'neutral/iron-rations', card: card491 },
+  { file: 'neutral/keeper-of-moments', card: card492 },
+  { file: 'neutral/last-oath', card: card493 },
+  { file: 'neutral/lost-squire', card: card494 },
+  { file: 'neutral/mend-the-timeline', card: card495 },
+  { file: 'neutral/mirror-ward', card: card496 },
+  { file: 'neutral/paradox-loop', card: card497 },
+  { file: 'neutral/paradox-twin', card: card498 },
+  { file: 'neutral/patched-leather', card: card499 },
+  { file: 'neutral/patchwork-golem', card: card500 },
+  { file: 'neutral/phase-cloak', card: card501 },
+  { file: 'neutral/phase-stalker', card: card502 },
+  { file: 'neutral/philosophers-hourglass', card: card503 },
+  { file: 'neutral/phoenix-feather', card: card504 },
+  { file: 'neutral/pitfall', card: card505 },
+  { file: 'neutral/quicken', card: card506 },
+  { file: 'neutral/recruiting-tent', card: card507 },
+  { file: 'neutral/regrowth-moss', card: card508 },
+  { file: 'neutral/repair-kit', card: card509 },
+  { file: 'neutral/rewind', card: card510 },
+  { file: 'neutral/rift-behemoth', card: card511 },
+  { file: 'neutral/rift-bomb', card: card512 },
+  { file: 'neutral/rift-collapse', card: card513 },
+  { file: 'neutral/rift-dragonling', card: card514 },
+  { file: 'neutral/rift-grenade', card: card515 },
+  { file: 'neutral/rift-guardian', card: card516 },
+  { file: 'neutral/rift-hound', card: card517 },
+  { file: 'neutral/rift-leech', card: card518 },
+  { file: 'neutral/rift-mail', card: card519 },
+  { file: 'neutral/rift-market', card: card520 },
+  { file: 'neutral/rift-medic', card: card521 },
+  { file: 'neutral/rift-moth', card: card522 },
+  { file: 'neutral/rift-scavenger', card: card523 },
+  { file: 'neutral/rift-snare', card: card524 },
+  { file: 'neutral/rusted-shackles', card: card525 },
+  { file: 'neutral/rusty-sword', card: card526 },
+  { file: 'neutral/sanctum-of-hours', card: card527 },
+  { file: 'neutral/sand-wraith', card: card528 },
+  { file: 'neutral/scholars-lens', card: card529 },
+  { file: 'neutral/sharpening-stone', card: card530 },
+  { file: 'neutral/shatter-time', card: card531 },
+  { file: 'neutral/shieldbearer-of-ages', card: card532 },
+  { file: 'neutral/shifting-sands', card: card533 },
+  { file: 'neutral/siege-engine', card: card534 },
+  { file: 'neutral/sky-courier', card: card535 },
+  { file: 'neutral/skyship-gunner', card: card536 },
+  { file: 'neutral/smoke-bomb', card: card537 },
+  { file: 'neutral/spyglass', card: card538 },
+  { file: 'neutral/stasis-bubble', card: card539 },
+  { file: 'neutral/sundial-of-plenty', card: card540 },
+  { file: 'neutral/tavern-brawler', card: card541 },
+  { file: 'neutral/temporal-prison', card: card542 },
+  { file: 'neutral/temporal-shock', card: card543 },
+  { file: 'neutral/the-last-sentinel', card: card544 },
+  { file: 'neutral/the-nexus', card: card545 },
+  { file: 'neutral/thorned-colossus', card: card546 },
+  { file: 'neutral/thorned-mail', card: card547 },
+  { file: 'neutral/time-capsule', card: card548 },
+  { file: 'neutral/time-thief', card: card549 },
+  { file: 'neutral/time-wanderer', card: card550 },
+  { file: 'neutral/timeguard-plate', card: card551 },
+  { file: 'neutral/timeworn-champion', card: card552 },
+  { file: 'neutral/titan-gauntlet', card: card553 },
+  { file: 'neutral/training-grounds', card: card554 },
+  { file: 'neutral/tripwire', card: card555 },
+  { file: 'neutral/twin-blades', card: card556 },
+  { file: 'neutral/vampire-fang', card: card557 },
+  { file: 'neutral/venom-coating', card: card558 },
+  { file: 'neutral/veteran-of-many-wars', card: card559 },
+  { file: 'neutral/wanderers-camp', card: card560 },
+  { file: 'neutral/wanderers-sling', card: card561 },
+  { file: 'neutral/wandering-sellsword', card: card562 },
+  { file: 'neutral/war-drum', card: card563 },
+  { file: 'neutral/wayfinder-scout', card: card564 },
+  { file: 'neutral/whetted-edge', card: card565 },
+  { file: 'neutral/winged-harness', card: card566 }
 ]

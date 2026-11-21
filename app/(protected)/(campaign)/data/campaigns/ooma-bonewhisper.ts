@@ -6,16 +6,16 @@ import { defineCampaign } from '@/app/(protected)/(campaign)/utils/defineCampaig
  */
 export default defineCampaign({
   heroId: 'ooma-bonewhisper',
-  rewardCardId: 'the-ancestor-tree',
+  rewardCardId: 'old-tusk',
   stages: [
     { rival: 'kora-wildfang' },
     { rival: 'nysa-goldbow' },
-    { rival: 'aldric-dawnkeeper', cpuSetup: { extraHealth: 10 } },
-    { rival: 'legate-varro', cpuSetup: { extraHealth: 10 } },
+    { rival: 'aldric-dawnkeeper', cpuSetup: { extraHealth: 5 } },
+    { rival: 'legate-varro', cpuSetup: { extraHealth: 5 } },
     { rival: 'kora-wildfang', cpuSetup: { allies: ['tusked-hog'] } },
     { rival: 'gideon-ironsteam', cpuSetup: { allies: ['cog-apprentice'] } },
     { rival: 'nyx-hollowsong', cpuSetup: { allies: ['bone-crawler'] } },
-    { rival: 'ryn-voltblade', cpuSetup: { extraHealth: 10 } },
+    { rival: 'ryn-voltblade', cpuSetup: { extraHealth: 5 } },
     { rival: 'vex-nightwire', cpuSetup: { weapon: 'holo-crossbow' }, playerSetup: { handSize: 6 } },
     {
       rival: 'kazhul-mother-of-ash',

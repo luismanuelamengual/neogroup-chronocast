@@ -13,7 +13,7 @@ export default defineCard({
   rarity: 'epic',
   cost: 3,
   attack: 10,
-  health: 18,
+  health: 9,
   onEnter(ctx) {
     draw(ctx, ctx.owner, 1)
   },

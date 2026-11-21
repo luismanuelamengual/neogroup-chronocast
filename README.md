@@ -1,6 +1,6 @@
 # NeoGroup ChronoCast
 
-Juego de cartas coleccionables **sin turnos**, al estilo de _Shadow Era_: en cada fase los dos jugadores programan a la vez 5 acciones y después se ejecutan en paralelo, paso por paso. Gana el primero que derrota al héroe rival. Se publica como PWA en Vercel y en Google Play como TWA.
+Juego de cartas coleccionables **sin turnos**, al estilo de _Shadow Era_: en cada fase los dos jugadores programan a la vez 6 acciones y después se ejecutan en paralelo, paso por paso. Gana el primero que derrota al héroe rival. Se publica como PWA en Vercel y en Google Play como TWA.
 
 El diseño completo (reglas, cartas, tienda, PvP, campañas, arquitectura y hoja de ruta) está en [`docs/PLAN.md`](docs/PLAN.md). Este repositorio va por la **fase 6**: sobre la base del proyecto (auth, i18n, PWA, base de datos, tema pastel, landing y menú principal) están el motor de combate, el formato de las cartas, un set de prueba de 30 cartas, la pantalla de batalla contra la CPU (`/practice`), la elección del héroe inicial con su starter (`/welcome`), el tutorial guiado, la colección (`/collection`), los mazos con su editor (`/decks`) la tienda (`/shop`: sobres, cartas sueltas, desbloqueos y venta), el PvP en línea (`/lobby`: salas públicas y privadas, partida rápida), el ranking (`/ranking`) y las campañas contra la CPU (`/campaign`: una por héroe inicial, de 10 combates con jefe final).
 
@@ -114,7 +114,7 @@ Siempre `POST` con body JSON, nombre `verbNoun`, respuesta `{ success, data }` /
 `app/(protected)/(engine)/` es TypeScript puro y determinístico (el azar sale de una semilla guardada en el estado), así que el mismo código corre en el navegador, en el servidor y en los tests.
 
 - `createMatch({ seed, decks, setup? })` arma la partida (héroes, mazos mezclados, 7 cartas, fase 1 lista). `setup` permite arrancar con aliados, Cronos o vida extra (las situaciones adversas de las campañas).
-- `resolvePhase(state, { a, b })` recibe las dos líneas de tiempo de 5 acciones y devuelve el nuevo estado y la lista de eventos (lo que la pantalla de batalla va a animar). Dentro de cada paso las acciones van de la más rápida a la más lenta (`instant`, `fast`, `normal`, `slow`); las de la misma velocidad son simultáneas: el daño cae junto al final del tramo.
+- `resolvePhase(state, { a, b })` recibe las dos líneas de tiempo de 6 acciones y devuelve el nuevo estado y la lista de eventos (lo que la pantalla de batalla va a animar). Dentro de cada paso las acciones van de la más rápida a la más lenta (`instant`, `fast`, `normal`, `slow`); las de la misma velocidad son simultáneas: el daño cae junto al final del tramo.
 - `projectTimeline(state, player, timeline)` simula la línea de un jugador con el rival quieto: sirve para la proyección en pantalla y para la IA.
 - `validateDeck(deck)` aplica las reglas de mazo (1 héroe, 40 a 200 cartas contando al héroe, máximo 4 copias, restricciones).
 - `planTimeline(state, player, style?)` arma una línea golosa (con un estilo: qué cartas primero, a quién atacar, si generar Cronos). `chooseTimeline(state, player, level)` es la CPU por niveles (`ai/levels.ts`): los niveles 1 y 2 juegan la línea golosa (con algún error a propósito); del 3 al 6 arman una candidata por estilo, la simulan contra las respuestas probables del rival (mirando solo su tablero, nunca su mano) una o dos fases adelante y se quedan con la mejor según `ai/evaluate.ts`. Es determinística: la misma partida da siempre la misma jugada.
@@ -143,7 +143,7 @@ Cada carta es un archivo en `app/(protected)/(cards)/cards/` que exporta `define
 | `heroes/<hero-id>/`   | El héroe (su archivo) y sus cartas exclusivas |
 
 - El `id` es el nombre del archivo (kebab-case) y todo está en inglés. La lógica se escribe con los hooks (`onPlay`, `onEnter`, `onDeath`, `onPhaseStart`, `onTrigger`...) y los efectos reutilizables de `(engine)/effects`.
-- `defineCard` valida el formato (campos por tipo, costo, precio dentro del rango de su rareza, vida de héroe entre 90 y 120) y tira error al importar si algo está mal.
+- `defineCard` valida el formato (campos por tipo, costo, precio dentro del rango de su rareza, vida de héroe entre 45 y 60) y tira error al importar si algo está mal.
 - **Índice automático**: `yarn cards:index` regenera `cards/index.generated.ts` con un import por archivo. Corre solo antes de `yarn dev`, `yarn build` y `yarn test`, así que agregar una carta es solo crear su archivo. `yarn cards:index --check` falla si está desactualizado.
 - **`/dev/cards`** (solo fuera de producción, con sesión iniciada) dibuja todo el catálogo con `CardView`.
 - **El catálogo**: 500 cartas coleccionables (88 neutrales, 40 por facción, 25 por clase, 12 héroes con 5 cartas propias cada uno) con el reparto de rarezas del plan (170 comunes, 120 poco comunes, 90 raras, 55 épicas, 35 legendarias, 18 exóticas y 12 míticas), más las cartas de los 12 jefes de campaña. `tests/unit/cards.test.ts` controla esos números, que ninguna carta tenga stats por encima del presupuesto de su costo (la rareza no da números más grandes) y que cada carta se pueda jugar en una partida.

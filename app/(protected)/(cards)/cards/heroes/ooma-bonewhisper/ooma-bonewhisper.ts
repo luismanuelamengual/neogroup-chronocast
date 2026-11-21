@@ -12,7 +12,7 @@ export default defineCard({
   restriction: { kind: 'hero', heroId: 'ooma-bonewhisper' },
   rarity: 'epic',
   cost: 0,
-  health: 95,
+  health: 48,
   ability: {
     name: 'Ancestral Growth',
     text: 'An ally of yours gains +2 attack and +3 health.',

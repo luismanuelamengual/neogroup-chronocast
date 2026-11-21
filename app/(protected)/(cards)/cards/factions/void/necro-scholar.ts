@@ -13,7 +13,7 @@ export default defineCard({
   price: 170,
   cost: 3,
   attack: 6,
-  health: 16,
+  health: 8,
   ability: {
     name: 'Raise the Dead',
     text: 'A random ally of your discard pile returns to play.',

@@ -12,7 +12,7 @@ export default defineCard({
   price: 50,
   cost: 2,
   attack: 8,
-  health: 12,
+  health: 6,
   ai: { value: 2 },
   art: {
     subject: 'a hairy prehistoric hog with enormous curved tusks snorting in the mud'

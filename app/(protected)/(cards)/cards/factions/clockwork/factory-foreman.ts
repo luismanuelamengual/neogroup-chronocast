@@ -13,7 +13,7 @@ export default defineCard({
   price: 60,
   cost: 4,
   attack: 13,
-  health: 28,
+  health: 14,
   onEnter(ctx) {
     summonCard(ctx, ctx.owner, 'gear-drone')
   },

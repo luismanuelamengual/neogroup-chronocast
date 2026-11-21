@@ -13,7 +13,7 @@ export default defineCard({
   price: 640,
   cost: 5,
   attack: 12,
-  health: 26,
+  health: 13,
   ability: {
     name: 'Arcane Lance',
     text: 'Deal 10 damage to an enemy ally.',

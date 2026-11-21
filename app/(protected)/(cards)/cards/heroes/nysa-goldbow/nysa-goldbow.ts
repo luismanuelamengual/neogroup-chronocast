@@ -12,7 +12,7 @@ export default defineCard({
   restriction: { kind: 'hero', heroId: 'nysa-goldbow' },
   rarity: 'rare',
   cost: 0,
-  health: 90,
+  health: 45,
   ability: {
     name: 'Golden Arrow',
     text: 'Deal 8 damage to an enemy slot.',

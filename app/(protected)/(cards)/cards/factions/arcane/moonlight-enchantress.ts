@@ -13,7 +13,7 @@ export default defineCard({
   price: 600,
   cost: 4,
   attack: 10,
-  health: 24,
+  health: 12,
   onPhaseStart(ctx) {
     damageRandomAlly(ctx, ctx.opponent, 4)
   },

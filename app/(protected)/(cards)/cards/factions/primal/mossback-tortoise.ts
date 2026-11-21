@@ -13,7 +13,7 @@ export default defineCard({
   price: 180,
   cost: 4,
   attack: 6,
-  health: 36,
+  health: 18,
   keywords: ['guardian'],
   onPhaseEnd(ctx) {
     healAllAllies(ctx, ctx.owner, 2)

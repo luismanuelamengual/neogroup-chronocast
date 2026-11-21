@@ -13,7 +13,7 @@ export default defineCard({
   price: 170,
   cost: 2,
   attack: 5,
-  health: 8,
+  health: 4,
   keywords: ['flying'],
   onEnter(ctx) {
     draw(ctx, ctx.owner, 1)

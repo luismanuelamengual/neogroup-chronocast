@@ -13,7 +13,7 @@ export default defineCard({
   price: 170,
   cost: 3,
   attack: 9,
-  health: 16,
+  health: 8,
   onAllyEnter(ctx, ally) {
     buff(ctx, ally, 1, 2)
   },

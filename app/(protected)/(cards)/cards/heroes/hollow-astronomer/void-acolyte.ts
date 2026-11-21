@@ -12,7 +12,7 @@ export default defineCard({
   rarity: 'epic',
   cost: 3,
   attack: 11,
-  health: 22,
+  health: 11,
   keywords: ['ranged'],
   ai: { value: 4 },
   art: { subject: 'a hooded acolyte made of shadow, with a small black hole spinning between its hands' }

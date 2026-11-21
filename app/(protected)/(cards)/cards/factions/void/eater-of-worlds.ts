@@ -13,7 +13,7 @@ export default defineCard({
   price: 14000,
   cost: 8,
   attack: 32,
-  health: 64,
+  health: 32,
   keywords: ['unique'],
   onEnter(ctx) {
     if (sacrificeAlly(ctx)) {

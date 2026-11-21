@@ -12,7 +12,7 @@ export default defineCard({
   price: 65,
   cost: 5,
   attack: 20,
-  health: 36,
+  health: 18,
   ai: { value: 5 },
   art: {
     subject: 'an undead knight in black cracked armor with green fire in his visor riding through floating ruins'

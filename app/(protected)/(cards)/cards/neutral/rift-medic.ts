@@ -13,7 +13,7 @@ export default defineCard({
   price: 170,
   cost: 3,
   attack: 6,
-  health: 20,
+  health: 10,
   onPhaseEnd(ctx) {
     healAllAllies(ctx, ctx.owner, 4)
   },

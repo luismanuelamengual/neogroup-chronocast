@@ -12,7 +12,7 @@ export default defineCard({
   price: 65,
   cost: 5,
   attack: 20,
-  health: 40,
+  health: 20,
   ai: { value: 5 },
   art: {
     subject: 'a grizzled old warrior with armor pieces from many eras and a giant two-handed sword'

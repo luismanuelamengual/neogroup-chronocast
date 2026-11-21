@@ -22,11 +22,11 @@ Todo lo que pide Play Console para publicar ChronoCast, listo para copiar. La ap
 
 **Descripción breve** (máx. 80 caracteres):
 
-> Cartas sin turnos: programá 5 acciones y chocá en simultáneo con tu rival.
+> Cartas sin turnos: programá 6 acciones y chocá en simultáneo con tu rival.
 
 **Descripción completa**:
 
-> **ChronoCast** es un juego de cartas coleccionables sin turnos. Los dos jugadores programan a la vez una línea de tiempo de 5 acciones y después se resuelven juntas, paso por paso: las más rápidas primero, y lo que choca en el mismo instante pasa al mismo tiempo. Leé a tu rival, anticipá su jugada y derrotá a su héroe.
+> **ChronoCast** es un juego de cartas coleccionables sin turnos. Los dos jugadores programan a la vez una línea de tiempo de 6 acciones y después se resuelven juntas, paso por paso: las más rápidas primero, y lo que choca en el mismo instante pasa al mismo tiempo. Leé a tu rival, anticipá su jugada y derrotá a su héroe.
 >
 > **Un héroe, un mazo, una estrategia**
 > • 12 héroes de 6 facciones (Bronce, Arcana, Primal, Relojería, Neón y Vacío) y 4 clases (Guerrero, Mago, Cazador y Místico), cada uno con su habilidad y sus cartas exclusivas.
@@ -48,11 +48,11 @@ Todo lo que pide Play Console para publicar ChronoCast, listo para copiar. La ap
 
 **Short description**:
 
-> A turnless card game: program 5 actions and clash with your rival at once.
+> A turnless card game: program 6 actions and clash with your rival at once.
 
 **Full description**:
 
-> **ChronoCast** is a turnless collectible card game. Both players program a timeline of 5 actions at the same time, then both resolve together, step by step: the fastest first, and whatever clashes in the same instant happens at once. Read your rival, predict their move and defeat their hero.
+> **ChronoCast** is a turnless collectible card game. Both players program a timeline of 6 actions at the same time, then both resolve together, step by step: the fastest first, and whatever clashes in the same instant happens at once. Read your rival, predict their move and defeat their hero.
 >
 > **One hero, one deck, one strategy**
 > • 12 heroes from 6 factions (Bronze, Arcane, Primal, Clockwork, Neon and Void) and 4 classes (Warrior, Mage, Hunter and Mystic), each with its own ability and exclusive cards.

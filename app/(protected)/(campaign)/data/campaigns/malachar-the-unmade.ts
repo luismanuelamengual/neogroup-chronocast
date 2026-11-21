@@ -10,12 +10,12 @@ export default defineCampaign({
   stages: [
     { rival: 'nyx-hollowsong' },
     { rival: 'ilyra-starweaver' },
-    { rival: 'aldric-dawnkeeper', cpuSetup: { extraHealth: 10 } },
-    { rival: 'ada-copperwick', cpuSetup: { extraHealth: 10 } },
+    { rival: 'aldric-dawnkeeper', cpuSetup: { extraHealth: 5 } },
+    { rival: 'ada-copperwick', cpuSetup: { extraHealth: 5 } },
     { rival: 'nyx-hollowsong', cpuSetup: { allies: ['grave-whisperer'] } },
     { rival: 'ryn-voltblade', cpuSetup: { allies: ['data-courier'] } },
     { rival: 'ooma-bonewhisper', cpuSetup: { allies: ['cave-scout'] } },
-    { rival: 'gideon-ironsteam', cpuSetup: { extraHealth: 10 } },
+    { rival: 'gideon-ironsteam', cpuSetup: { extraHealth: 5 } },
     { rival: 'legate-varro', cpuSetup: { weapon: 'iron-gladius' }, playerSetup: { handSize: 6 } },
     {
       rival: 'xulthar-the-devourer',

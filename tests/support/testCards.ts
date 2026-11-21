@@ -35,7 +35,7 @@ export const TEST_CARDS: CardDefinition[] = [
     type: 'hero',
     name: 'Test Hero',
     cost: 0,
-    health: 100,
+    health: 50,
     heroClass: 'warrior',
     restriction: { kind: 'hero', heroId: 'test-hero' }
   }),
@@ -89,6 +89,50 @@ export const TEST_CARDS: CardDefinition[] = [
     trigger: 'enemyAttack',
     onTrigger(_ctx, event) {
       event.cancel()
+    }
+  }),
+  defineCard({
+    ...base,
+    id: 'test-blade',
+    type: 'attachment',
+    name: 'Test Blade',
+    cost: 1,
+    attack: 5,
+    keywords: ['guardian'],
+    targets: ['friendlyAlly']
+  }),
+  defineCard({
+    ...base,
+    id: 'test-ward',
+    type: 'attachment',
+    name: 'Test Ward',
+    cost: 1,
+    targets: ['friendlyAlly'],
+    modifyDamage(ctx, target, amount) {
+      const host = ctx.engine.hostOf(ctx.self.uid)
+
+      return host && target.player === host.player && target.slot === host.slot ? amount - 3 : amount
+    }
+  }),
+  defineCard({
+    ...base,
+    id: 'test-curse',
+    type: 'attachment',
+    name: 'Test Curse',
+    cost: 1,
+    attack: -4,
+    targets: ['enemyAlly']
+  }),
+  defineCard({
+    ...base,
+    id: 'test-idol',
+    type: 'artifact',
+    name: 'Test Idol',
+    cost: 1,
+    charges: 2,
+    onPhaseStart(ctx) {
+      ctx.engine.heal({ player: ctx.owner, slot: 'hero' }, 5)
+      ctx.engine.spendCharge(ctx.owner, ctx.self.uid)
     }
   })
 ]

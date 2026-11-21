@@ -35,7 +35,7 @@ describe('createMatch', () => {
     expect(state.status).toBe('planning')
 
     for (const side of [state.players.a, state.players.b]) {
-      expect(side.hero.health).toBe(100)
+      expect(side.hero.health).toBe(50)
       expect(side.hero.weapon).toBeNull()
       expect(side.hero.armor).toBe(0)
       expect(side.hand).toHaveLength(7)
@@ -57,7 +57,7 @@ describe('createMatch', () => {
     expect(state.players.b.allies[0]?.cardId).toBe('test-soldier')
     expect(state.players.b.allies[1]?.cardId).toBe('test-guard')
     expect(state.players.b.chronos).toBe(3)
-    expect(state.players.b.hero.health).toBe(120)
+    expect(state.players.b.hero.health).toBe(70)
     expect(state.players.b.hero.weapon?.attack).toBe(10)
   })
 
@@ -157,7 +157,7 @@ describe('allies', () => {
     )
 
     expect(fails(events)).toEqual([])
-    expect(next.players.b.hero.health).toBe(92)
+    expect(next.players.b.hero.health).toBe(42)
   })
 
   it('a summon goes to the nearest free slot', () => {
@@ -176,7 +176,7 @@ describe('allies', () => {
     const soldier = place(state, 'a', 'test-soldier', 0)
     const { state: next } = run(state, timeline({ kind: 'allyAttack', allyUid: soldier.uid, target: HERO_B }))
 
-    expect(next.players.b.hero.health).toBe(90)
+    expect(next.players.b.hero.health).toBe(40)
   })
 
   it('an ally attacks once per phase', () => {
@@ -241,7 +241,7 @@ describe('speed and simultaneity', () => {
     )
 
     expect(next.players.b.allies[0]).toBeNull()
-    expect(next.players.a.hero.health).toBe(95)
+    expect(next.players.a.hero.health).toBe(45)
   })
 
   it('a faster action resolves first: the slower ally dies before acting', () => {
@@ -255,7 +255,7 @@ describe('speed and simultaneity', () => {
     )
 
     expect(fails(events)).toEqual(['b:0:noUnit'])
-    expect(next.players.a.hero.health).toBe(100)
+    expect(next.players.a.hero.health).toBe(50)
     expect(next.players.a.allies[0]?.health).toBe(5) // the archer's counterattack
   })
 
@@ -342,7 +342,7 @@ describe('keywords', () => {
 
     const { state: next } = run(state, timeline({ kind: 'allyAttack', allyUid: soldier.uid, target: HERO_B }))
 
-    expect(next.players.b.hero.health).toBe(100)
+    expect(next.players.b.hero.health).toBe(50)
     expect(next.players.b.allies[3]?.health).toBe(20)
     expect(next.players.a.allies[0]?.health).toBe(18) // counterattack
   })
@@ -436,7 +436,7 @@ describe('keywords', () => {
 
     expect(fails(events)).toEqual(['a:0:invalidTarget'])
     expect(next.players.b.allies[0]?.health).toBe(5)
-    expect(next.players.a.hero.health).toBe(95)
+    expect(next.players.a.hero.health).toBe(45)
   })
 
   it('poison kills any ally it damages', () => {
@@ -457,11 +457,11 @@ describe('keywords', () => {
     const state = richMatch()
     const vampire = place(state, 'a', 'test-vampire', 0)
 
-    state.players.a.hero.health = 80
+    state.players.a.hero.health = 30
 
     const { state: next } = run(state, timeline({ kind: 'allyAttack', allyUid: vampire.uid, target: HERO_B }))
 
-    expect(next.players.a.hero.health).toBe(86)
+    expect(next.players.a.hero.health).toBe(36)
   })
 
   it('frenzy attacks twice per phase', () => {
@@ -471,7 +471,7 @@ describe('keywords', () => {
     const { state: next, events } = run(state, timeline(attack, attack, attack))
 
     expect(fails(events)).toEqual(['a:2:alreadyAttacked'])
-    expect(next.players.b.hero.health).toBe(90)
+    expect(next.players.b.hero.health).toBe(40)
   })
 
   it('cleave also hits the neighbors of the target', () => {
@@ -541,7 +541,7 @@ describe('ally abilities', () => {
     const { state: next, events } = run(state, timeline(bolt(caster.uid), bolt(caster.uid)))
 
     expect(fails(events)).toEqual(['a:1:abilityUsed'])
-    expect(next.players.b.hero.health).toBe(93)
+    expect(next.players.b.hero.health).toBe(43)
   })
 
   it('an ally that used its ability does not attack that phase, and the other way around', () => {
@@ -591,7 +591,7 @@ describe('the hero', () => {
 
     result = run(result.state, timeline(attack))
 
-    expect(result.state.players.b.hero.health).toBe(80)
+    expect(result.state.players.b.hero.health).toBe(30)
     expect(result.state.players.a.hero.weapon).toBeNull()
     expect(result.state.players.a.discard.some((card) => card.cardId === 'test-sword')).toBe(true)
   })
@@ -610,14 +610,14 @@ describe('the hero', () => {
     let next = run(state, timeline({ kind: 'play', cardUid: plate.uid }), timeline({ kind: 'wait' }, strike)).state
 
     expect(next.players.a.hero.armor).toBe(10)
-    expect(next.players.a.hero.health).toBe(100)
+    expect(next.players.a.hero.health).toBe(50)
 
     next.players.b.allies[0]!.attack = 15
     next = run(next, emptyTimeline(), timeline(strike)).state
 
     expect(next.players.a.hero.armor).toBe(0)
     expect(next.players.a.hero.armorCard).toBeNull()
-    expect(next.players.a.hero.health).toBe(95)
+    expect(next.players.a.hero.health).toBe(45)
   })
 
   it('abilities check their targets when they resolve', () => {
@@ -633,7 +633,7 @@ describe('the hero', () => {
     )
 
     expect(fails(events)).toEqual(['a:0:invalidTarget'])
-    expect(next.players.b.hero.health).toBe(95)
+    expect(next.players.b.hero.health).toBe(45)
     expect(next.players.a.hand.some((card) => card.uid === wrong.uid)).toBe(true)
   })
 })
@@ -650,17 +650,26 @@ describe('traps', () => {
     )
 
     expect(fails(events)).toEqual(['a:1:cancelled'])
-    expect(next.players.b.hero.health).toBe(100)
+    expect(next.players.b.hero.health).toBe(50)
     expect(next.players.b.traps).toHaveLength(0)
     expect(next.players.b.discard.some((card) => card.uid === snare.uid)).toBe(true)
   })
 
-  it('at most 2 traps can be set', () => {
+  it('traps and artifacts share the 5 support slots', () => {
     const state = richMatch()
-    const snares = [give(state, 'a', 'test-snare'), give(state, 'a', 'test-snare'), give(state, 'a', 'test-snare')]
-    const { events } = run(state, timeline(...snares.map((card) => ({ kind: 'play', cardUid: card.uid }) as const)))
+    const idol = give(state, 'a', 'test-idol')
+    const snares = Array.from({ length: 5 }, () => give(state, 'a', 'test-snare'))
+    const { state: next, events } = run(
+      state,
+      timeline(
+        { kind: 'play', cardUid: idol.uid },
+        ...snares.map((card) => ({ kind: 'play', cardUid: card.uid }) as const)
+      )
+    )
 
-    expect(fails(events)).toEqual(['a:2:trapsFull'])
+    expect(fails(events)).toEqual(['a:5:supportFull'])
+    expect(next.players.a.traps).toHaveLength(4)
+    expect(next.players.a.artifacts).toHaveLength(1)
   })
 })
 
@@ -681,6 +690,88 @@ describe('cards and fatigue', () => {
     const { state: next } = run(state)
 
     expect(next.players.a.fatigue).toBe(2)
-    expect(next.players.a.hero.health).toBe(100 - 10 - 15)
+    expect(next.players.a.hero.health).toBe(50 - 10 - 15)
+  })
+})
+
+describe('attachments and artifacts', () => {
+  it('an attachment goes on an ally: its stats and keywords, and it is discarded when the ally dies', () => {
+    const state = richMatch()
+    const soldier = place(state, 'a', 'test-soldier', 0)
+    const blade = give(state, 'a', 'test-blade')
+    const { state: next, events } = run(
+      state,
+      timeline({ kind: 'play', cardUid: blade.uid, targets: [{ player: 'a', slot: 0 }] })
+    )
+    const unit = next.players.a.allies[0]!
+
+    expect(fails(events)).toEqual([])
+    expect(unit.attack).toBe(15)
+    expect(unit.keywords).toContain('guardian')
+    expect(unit.attachments?.map((card) => card.uid)).toEqual([blade.uid])
+
+    unit.health = 1
+    next.players.b.chronos = 10
+    const zap = give(next, 'b', 'test-zap')
+    const after = run(
+      next,
+      emptyTimeline(),
+      timeline({ kind: 'play', cardUid: zap.uid, targets: [{ player: 'a', slot: 0 }] })
+    )
+
+    expect(after.state.players.a.allies[0]).toBeNull()
+    expect(after.state.players.a.discard.map((card) => card.uid)).toEqual(
+      expect.arrayContaining([blade.uid, soldier.uid])
+    )
+  })
+
+  it('an attachment can reduce the damage its ally takes', () => {
+    const state = richMatch()
+
+    place(state, 'a', 'test-soldier', 0)
+    const ward = give(state, 'a', 'test-ward')
+    const zap = give(state, 'b', 'test-zap')
+    const { state: next } = run(
+      state,
+      timeline({ kind: 'play', cardUid: ward.uid, targets: [{ player: 'a', slot: 0 }] }),
+      timeline({ kind: 'wait' }, { kind: 'play', cardUid: zap.uid, targets: [{ player: 'a', slot: 0 }] })
+    )
+
+    expect(next.players.a.allies[0]?.health).toBe(18)
+  })
+
+  it('a curse on a rival ally goes back to its owner discard pile', () => {
+    const state = richMatch()
+
+    place(state, 'b', 'test-soldier', 2)
+    const curse = give(state, 'a', 'test-curse')
+    const { state: next } = run(
+      state,
+      timeline({ kind: 'play', cardUid: curse.uid, targets: [{ player: 'b', slot: 2 }] })
+    )
+    const unit = next.players.b.allies[2]!
+
+    expect(unit.attack).toBe(6)
+    unit.health = 1
+    next.players.a.chronos = 10
+    const zap = give(next, 'a', 'test-zap')
+    const after = run(next, timeline({ kind: 'play', cardUid: zap.uid, targets: [{ player: 'b', slot: 2 }] }))
+
+    expect(after.state.players.a.discard.some((card) => card.uid === curse.uid)).toBe(true)
+    expect(after.state.players.b.discard.some((card) => card.uid === curse.uid)).toBe(false)
+  })
+
+  it('an artifact stays in support and is discarded when its charges run out', () => {
+    const state = richMatch()
+
+    state.players.a.hero.health = 30
+    const idol = give(state, 'a', 'test-idol')
+    let current = run(state, timeline({ kind: 'play', cardUid: idol.uid })).state
+
+    expect(current.players.a.artifacts.map((card) => card.uid)).toEqual([idol.uid])
+    current = run(current).state
+    expect(current.players.a.hero.health).toBe(40)
+    expect(current.players.a.artifacts).toHaveLength(0)
+    expect(current.players.a.discard.some((card) => card.uid === idol.uid)).toBe(true)
   })
 })

@@ -6,16 +6,16 @@ import { defineCampaign } from '@/app/(protected)/(campaign)/utils/defineCampaig
  */
 export default defineCampaign({
   heroId: 'nyx-hollowsong',
-  rewardCardId: 'the-singing-graves',
+  rewardCardId: 'echo-the-spirit-crow',
   stages: [
     { rival: 'malachar-the-unmade' },
     { rival: 'aldric-dawnkeeper' },
-    { rival: 'ooma-bonewhisper', cpuSetup: { extraHealth: 10 } },
-    { rival: 'vex-nightwire', cpuSetup: { extraHealth: 10 } },
+    { rival: 'ooma-bonewhisper', cpuSetup: { extraHealth: 5 } },
+    { rival: 'vex-nightwire', cpuSetup: { extraHealth: 5 } },
     { rival: 'malachar-the-unmade', cpuSetup: { allies: ['bone-crawler'] } },
     { rival: 'kora-wildfang', cpuSetup: { allies: ['cave-scout'] } },
     { rival: 'aldric-dawnkeeper', cpuSetup: { allies: ['rune-sprite'] } },
-    { rival: 'nysa-goldbow', cpuSetup: { extraHealth: 10 } },
+    { rival: 'nysa-goldbow', cpuSetup: { extraHealth: 5 } },
     { rival: 'ryn-voltblade', cpuSetup: { weapon: 'war-axe' }, playerSetup: { handSize: 6 } },
     {
       rival: 'vorhal-the-last-hour',

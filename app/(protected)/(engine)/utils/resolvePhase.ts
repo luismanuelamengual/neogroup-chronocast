@@ -2,7 +2,6 @@ import {
   ACTIONS_PER_PHASE,
   ALLY_SLOTS,
   MAX_SACRIFICES_PER_PHASE,
-  MAX_TRAPS,
   PHASE_LIMIT
 } from '@/app/(protected)/(engine)/data/rules'
 import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition'
@@ -19,7 +18,7 @@ import { getCard } from '@/app/(protected)/(engine)/utils/registry'
 
 /** One moment of the resolution, for the battle screen to animate: what happened and how the board ended up. */
 export interface ResolutionFrame {
-  /** The step (0 to 4), or -1 for the end of the phase and the start of the next one. */
+  /** The step (0 to 5), or -1 for the end of the phase and the start of the next one. */
   step: number
   speed: Speed | null
   events: MatchEvent[]
@@ -32,7 +31,7 @@ export interface ResolveOptions {
 }
 
 /**
- * Resolves a phase (docs/PLAN.md, section 2): the 5 steps in order and, within
+ * Resolves a phase (docs/PLAN.md, section 2): the 6 steps in order and, within
  * each step, the actions of both players from the fastest to the slowest.
  * Actions of the same speed are simultaneous (their damage lands together).
  * After each step a fallen hero ends the match (a draw if both fell). When
@@ -371,9 +370,52 @@ function play(
       return null
     }
 
+    case 'attachment': {
+      const target = targets[0]
+      const host = target ? engine.targetUnit(target) : null
+
+      if (!host || !validTargets(engine, player, definition.targets ?? ['friendlyAlly'], targets)) {
+        return 'invalidTarget'
+      }
+
+      pay()
+      host.attachments = [...(host.attachments ?? []), { uid: card.uid, cardId: card.cardId, owner: player }]
+
+      if (definition.attack || definition.health) {
+        engine.buff(host.uid, definition.attack ?? 0, definition.health ?? 0)
+      }
+
+      for (const keyword of definition.keywords ?? []) {
+        if (!host.keywords.includes(keyword)) {
+          host.keywords.push(keyword)
+        }
+
+        host.shield ||= keyword === 'shield'
+      }
+
+      host.thorns += definition.thorns ?? 0
+      engine.emit({ type: 'attach', player, cardId: definition.id, target })
+      definition.onPlay?.(engine.context(player, card, targets))
+
+      return null
+    }
+
+    case 'artifact': {
+      if (engine.freeSupport(player) <= 0) {
+        return 'supportFull'
+      }
+
+      pay()
+      side.artifacts.push({ uid: card.uid, cardId: card.cardId, charges: definition.charges })
+      engine.emit({ type: 'artifact', player, cardId: definition.id })
+      definition.onPlay?.(engine.context(player, card, targets))
+
+      return null
+    }
+
     case 'trap': {
-      if (side.traps.length >= MAX_TRAPS) {
-        return 'trapsFull'
+      if (engine.freeSupport(player) <= 0) {
+        return 'supportFull'
       }
 
       pay()

@@ -13,7 +13,7 @@ export default defineCard({
   price: 180,
   cost: 4,
   attack: 14,
-  health: 20,
+  health: 10,
   keywords: ['quick'],
   onEnter(ctx) {
     buffAllies(ctx, ctx.owner, 2, 0, true)

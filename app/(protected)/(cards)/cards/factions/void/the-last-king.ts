@@ -13,7 +13,7 @@ export default defineCard({
   price: 5750,
   cost: 7,
   attack: 24,
-  health: 54,
+  health: 27,
   keywords: ['unique', 'lifesteal'],
   onEnter(ctx) {
     reviveFromDiscard(ctx, ctx.owner)

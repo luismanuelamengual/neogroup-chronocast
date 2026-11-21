@@ -13,7 +13,7 @@ export default defineCard({
   price: 5500,
   cost: 6,
   attack: 24,
-  health: 36,
+  health: 18,
   keywords: ['flying', 'echo', 'unique'],
   onEnter(ctx) {
     damageAllAllies(ctx, ctx.opponent, 6)

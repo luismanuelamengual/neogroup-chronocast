@@ -34,9 +34,9 @@ describe('resolution frames', () => {
       [0, 'normal'],
       [-1, null]
     ])
-    expect(frames[0].state.players.b.hero.health).toBe(90)
-    expect(frames[0].state.players.a.hero.health).toBe(100)
-    expect(frames[1].state.players.a.hero.health).toBe(90)
+    expect(frames[0].state.players.b.hero.health).toBe(40)
+    expect(frames[0].state.players.a.hero.health).toBe(50)
+    expect(frames[1].state.players.a.hero.health).toBe(40)
     expect(frames.flatMap((frame) => frame.events)).toEqual(events)
   })
 
@@ -58,8 +58,8 @@ describe('the projection', () => {
     ] as const
     const { steps, board } = projectPlan(state, 'a', [...plan])
 
-    expect(steps.map((step) => step.chronos)).toEqual([1, 0, 0, 0, 0])
-    expect(steps.map((step) => step.failure)).toEqual([null, null, 'notEnoughChronos', null, null])
+    expect(steps.map((step) => step.chronos)).toEqual([1, 0, 0, 0, 0, 0])
+    expect(steps.map((step) => step.failure)).toEqual([null, null, 'notEnoughChronos', null, null, null])
     expect(board.players.a.allies[0]?.cardId).toBe('test-soldier')
     expect(usedCards([...plan])).toEqual(new Set([fodder.uid, soldier.uid, other.uid]))
   })

@@ -13,7 +13,7 @@ export default defineCard({
   restriction: { kind: 'hero', heroId: 'kazhul-mother-of-ash' },
   rarity: 'legendary',
   cost: 0,
-  health: 118,
+  health: 59,
   ability: {
     name: 'Ash Breath',
     text: 'Deal 5 damage to every enemy ally.',

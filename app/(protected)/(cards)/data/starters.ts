@@ -23,8 +23,7 @@ const STARTER_LISTS: Record<string, [string, number][]> = {
     ['chainmail', 2],
     ['spiked-pauldrons', 1],
     ['legion-rations', 2],
-    ['cohort-banner', 1],
-    ['colosseum', 1],
+    ['cohort-banner', 2],
     ['pila-volley', 2]
   ],
   'ilyra-starweaver': [
@@ -44,8 +43,7 @@ const STARTER_LISTS: Record<string, [string, number][]> = {
     ['silk-robe', 2],
     ['mana-shield', 1],
     ['mana-crystal', 2],
-    ['scroll-of-wisdom', 1],
-    ['tower-of-stars', 1],
+    ['scroll-of-wisdom', 2],
     ['counter-rune', 2]
   ],
   'kora-wildfang': [
@@ -65,8 +63,7 @@ const STARTER_LISTS: Record<string, [string, number][]> = {
     ['leather-jerkin', 2],
     ['ghillie-cloak', 1],
     ['healing-herbs', 2],
-    ['amber-totem', 1],
-    ['primal-grove', 1],
+    ['amber-totem', 2],
     ['pit-trap', 2]
   ]
 }

@@ -10,12 +10,12 @@ export default defineCampaign({
   stages: [
     { rival: 'vex-nightwire' },
     { rival: 'gideon-ironsteam' },
-    { rival: 'ada-copperwick', cpuSetup: { extraHealth: 10 } },
-    { rival: 'legate-varro', cpuSetup: { extraHealth: 10 } },
+    { rival: 'ada-copperwick', cpuSetup: { extraHealth: 5 } },
+    { rival: 'legate-varro', cpuSetup: { extraHealth: 5 } },
     { rival: 'vex-nightwire', cpuSetup: { allies: ['street-runner'] } },
     { rival: 'ilyra-starweaver', cpuSetup: { allies: ['battlemage-squire'] } },
     { rival: 'nyx-hollowsong', cpuSetup: { allies: ['abyssal-hound'] } },
-    { rival: 'ooma-bonewhisper', cpuSetup: { extraHealth: 10 } },
+    { rival: 'ooma-bonewhisper', cpuSetup: { extraHealth: 5 } },
     { rival: 'kora-wildfang', cpuSetup: { weapon: 'shortbow' }, playerSetup: { handSize: 6 } },
     {
       rival: 'queen-static',

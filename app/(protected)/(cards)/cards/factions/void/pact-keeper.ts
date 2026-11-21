@@ -13,7 +13,7 @@ export default defineCard({
   price: 160,
   cost: 2,
   attack: 6,
-  health: 14,
+  health: 7,
   onEnter(ctx) {
     if (sacrificeAlly(ctx)) {
       draw(ctx, ctx.owner, 2)

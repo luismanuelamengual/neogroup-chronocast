@@ -13,7 +13,7 @@ export default defineCard({
   price: 640,
   cost: 5,
   attack: 15,
-  health: 26,
+  health: 13,
   keywords: ['ranged'],
   ability: {
     name: 'Overcharge',

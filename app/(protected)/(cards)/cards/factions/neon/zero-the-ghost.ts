@@ -13,7 +13,7 @@ export default defineCard({
   price: 13000,
   cost: 6,
   attack: 24,
-  health: 30,
+  health: 15,
   keywords: ['unique', 'stealth', 'quick', 'frenzy'],
   onEnter(ctx) {
     damage(ctx, { player: ctx.opponent, slot: 'hero' }, 8)

@@ -13,7 +13,7 @@ export default defineCard({
   restriction: { kind: 'hero', heroId: 'queen-static' },
   rarity: 'legendary',
   cost: 0,
-  health: 112,
+  health: 56,
   ability: {
     name: 'Feedback',
     text: 'Deal 8 damage to an enemy slot.',

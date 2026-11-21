@@ -12,7 +12,7 @@ export default defineCard({
   restriction: { kind: 'hero', heroId: 'aldric-dawnkeeper' },
   rarity: 'epic',
   cost: 0,
-  health: 110,
+  health: 55,
   ability: {
     name: 'Dawnlight',
     text: 'Your hero heals 10 and your allies heal 6.',

@@ -48,7 +48,17 @@ export function describeEvent(
     case 'summon':
       return t('battle.events.summon', { card: card(event.cardId), slot: event.slot + 1 })
     case 'attach':
-      return t('battle.events.attach', { player: player(event.player), card: card(event.cardId) })
+      return event.target && event.target.slot !== 'hero'
+        ? t('battle.events.attachAlly', {
+            player: player(event.player),
+            card: card(event.cardId),
+            target: ref(event.target)
+          })
+        : t('battle.events.attach', { player: player(event.player), card: card(event.cardId) })
+    case 'artifact':
+      return t('battle.events.artifact', { player: player(event.player), card: card(event.cardId) })
+    case 'artifactSpent':
+      return t('battle.events.artifactSpent', { card: card(event.cardId) })
     case 'location':
       return t('battle.events.location', { player: player(event.player), card: card(event.cardId) })
     case 'trapSet':

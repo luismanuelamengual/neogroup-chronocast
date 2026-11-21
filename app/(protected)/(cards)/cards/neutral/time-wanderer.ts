@@ -12,7 +12,7 @@ export default defineCard({
   price: 45,
   cost: 1,
   attack: 6,
-  health: 10,
+  health: 5,
   ai: { value: 1 },
   art: {
     subject: 'a cheerful traveler in a patched coat covered in pocket watches, walking out of a swirling time portal'
