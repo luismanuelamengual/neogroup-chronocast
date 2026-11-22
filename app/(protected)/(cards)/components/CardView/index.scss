@@ -1,9 +1,21 @@
-// A card: vivid and high-contrast, to pop over the pastel screens.
+// A card: vivid and high-contrast, to pop over the pastel screens. Its whole
+// frame takes the color of its rarity, so it can be told at a glance even
+// drawn small on the board; the faction tints the art's background.
 .card-view {
   --faction: var(--faction-neutral);
   --rarity: var(--rarity-common);
+  --frame: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--rarity) 70%, white),
+    var(--rarity) 45%,
+    color-mix(in srgb, var(--rarity) 55%, #1b1440)
+  );
+  --glow: 0 0 0 transparent;
 
   position: relative;
+  // Its own stacking context: the z-index of the gem, art and texts stay
+  // inside the card and never cover badges drawn over it (shop counters).
+  isolation: isolate;
   display: flex;
   flex-direction: column;
   width: 220px;
@@ -13,9 +25,10 @@
   border-radius: 18px;
   background:
     radial-gradient(circle at 30% 0%, rgba(255, 255, 255, 0.45), transparent 55%),
-    linear-gradient(160deg, var(--faction), color-mix(in srgb, var(--faction) 60%, #1b1440));
+    var(--frame);
+  background-size: 100% 100%;
   box-shadow:
-    0 0 0 3px var(--rarity),
+    var(--glow),
     0 10px 24px rgba(43, 35, 80, 0.3);
   color: var(--color-outline);
   font-family: var(--font-body);
@@ -30,6 +43,39 @@
   @each $rarity in common, uncommon, rare, epic, legendary, exotic, mythic {
     &.rarity-#{$rarity} {
       --rarity: var(--rarity-#{$rarity});
+    }
+  }
+
+  // From legendary up, a soft glow around the frame.
+  &.rarity-legendary,
+  &.rarity-exotic,
+  &.rarity-mythic {
+    --glow: 0 0 14px 3px color-mix(in srgb, var(--rarity) 75%, transparent);
+  }
+
+  // Exotic: iridescent turquoise.
+  &.rarity-exotic {
+    --frame: linear-gradient(135deg, #7ff5e8, var(--rarity) 25%, #6fb8ff 45%, #c79bff 60%, var(--rarity) 78%, #0e8f86);
+  }
+
+  // Mythic: crimson with a shine that sweeps the frame and a pulsing glow.
+  &.rarity-mythic {
+    --frame: linear-gradient(
+      120deg,
+      color-mix(in srgb, var(--rarity) 60%, #3a0614) 0%,
+      var(--rarity) 30%,
+      #ffd0d8 45%,
+      var(--rarity) 60%,
+      color-mix(in srgb, var(--rarity) 60%, #3a0614) 100%
+    );
+
+    background-size: 100% 100%, 250% 250%;
+    animation: card-view-mythic 3.2s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &.rarity-mythic {
+      animation: none;
     }
   }
 
@@ -80,14 +126,18 @@
     text-shadow: 0 2px 0 var(--color-outline);
   }
 
+  // The rarity gem, at the bottom center of the frame.
   &__gem {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 18px;
-    height: 18px;
+    bottom: 3px;
+    left: calc(50% - 11px);
+    z-index: 2;
+    width: 22px;
+    height: 22px;
     border: 3px solid var(--color-outline);
-    background: var(--rarity);
+    background:
+      radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.85), transparent 45%),
+      var(--rarity);
     transform: rotate(45deg);
   }
 
@@ -212,10 +262,10 @@
       z-index: 1;
     }
 
-    // A thin frame of the faction's color stays around the picture.
+    // A frame of the rarity's color stays around the picture.
     .card-view__art {
       position: absolute;
-      inset: 5px;
+      inset: 9px;
       z-index: 0;
       border: 2px solid var(--color-outline);
       border-radius: 10px;
@@ -242,7 +292,7 @@
 
     .card-view__speed {
       top: 12px;
-      right: 36px;
+      right: 14px;
     }
 
     .card-view__name {
@@ -254,5 +304,22 @@
       max-height: 38%;
       background: rgba(255, 255, 255, 0.9);
     }
+  }
+}
+
+@keyframes card-view-mythic {
+  0%,
+  100% {
+    background-position: 0 0, 0% 50%;
+    box-shadow:
+      0 0 10px 2px color-mix(in srgb, var(--rarity) 60%, transparent),
+      0 10px 24px rgba(43, 35, 80, 0.3);
+  }
+
+  50% {
+    background-position: 0 0, 100% 50%;
+    box-shadow:
+      0 0 20px 6px color-mix(in srgb, var(--rarity) 85%, transparent),
+      0 10px 24px rgba(43, 35, 80, 0.3);
   }
 }

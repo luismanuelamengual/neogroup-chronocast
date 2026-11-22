@@ -106,6 +106,7 @@
 
   &__owned {
     position: absolute;
+    z-index: 3;
     top: -4px;
     right: 4px;
     padding: 0 8px;

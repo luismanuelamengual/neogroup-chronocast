@@ -246,15 +246,17 @@ Cada carta declara para quién es (`restriction` en su archivo):
 
 | Rareza (id) | Nombre en pantalla | Color del marco                        | Cartas en el catálogo |
 | ----------- | ------------------ | -------------------------------------- | --------------------- |
-| `common`    | Común              | Gris plata                             | 170                   |
-| `uncommon`  | Poco común         | Verde esmeralda                        | 120                   |
-| `rare`      | Rara               | Azul eléctrico                         | 90                    |
-| `epic`      | Épica              | Violeta                                | 55                    |
-| `legendary` | Legendaria         | Dorado anaranjado                      | 35                    |
+| `common`    | Común              | Gris piedra                            | 176                   |
+| `uncommon`  | Poco común         | Verde esmeralda                        | 131                   |
+| `rare`      | Rara               | Azul eléctrico                         | 98                    |
+| `epic`      | Épica              | Violeta                                | 59                    |
+| `legendary` | Legendaria         | Dorado                                 | 37                    |
 | `exotic`    | Exótica            | Turquesa iridiscente                   | 18                    |
 | `mythic`    | Mítica             | Carmesí con brillo holográfico animado | 12                    |
 
-Las rarezas altas no son "más fuertes por número": tienen efectos más complejos y más sinergia. Un mazo de comunes bien armado tiene que poder ganarle a uno de míticas mal armado. La validación del catálogo controla que costo y estadísticas estén dentro del rango de su rareza.
+Las rarezas altas no son "más fuertes por número": tienen efectos más complejos y más sinergia. El **marco entero** de la carta (no solo un borde) es del color de su rareza, con una gema del mismo color abajo al centro, para reconocerla de un vistazo aunque se vea chica en el tablero; de Legendaria para arriba tiene además un brillo suave alrededor, y en Mítica el brillo late y un reflejo recorre el marco. La facción se ve en la línea de tipo y en el fondo de la ilustración.
+
+Un mazo de comunes bien armado tiene que poder ganarle a uno de míticas mal armado. La validación del catálogo controla que costo y estadísticas estén dentro del rango de su rareza.
 
 ---
 
@@ -616,7 +618,7 @@ Oro por cada combate ganado la primera vez (de 50 a 300), un sobre en los combat
 ### 14.1 Estilo
 
 - **Fondos claros y pastel**: crema (`#FFF8EE`), lavanda (`#EDE7FF`), menta (`#E3F7EF`), celeste (`#E4F1FF`) y durazno (`#FFE9DC`), con texturas muy suaves y paneles blancos con sombra suave y bordes redondeados.
-- **Cartas muy coloridas**: ilustración saturada, marco grueso del color de su facción, borde oscuro casi negro para que resalten con alto contraste sobre el fondo claro, gema de rareza y brillo animado en épicas para arriba (holográfico en míticas).
+- **Cartas muy coloridas**: ilustración saturada, marco grueso del color de su rareza (sección 5), borde oscuro casi negro para que resalten con alto contraste sobre el fondo claro, gema de rareza abajo, brillo en legendarias para arriba (animado en míticas).
 - **Tipografías** self-hosted con `@fontsource`: _Fredoka_ o _Baloo 2_ para títulos y números de las cartas, _Nunito_ para el texto.
 - **Tokens** en `app/globals.scss` (fondos, colores de facción, de rareza, de vida, Cronos, armadura) espejados en el tema de MUI, como en Crisol.
 - **Accesibilidad**: los colores de facción y rareza siempre van con un ícono o texto, no solo color.
