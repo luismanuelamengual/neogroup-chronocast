@@ -11,40 +11,26 @@ export default defineCampaign({
   stages: [
     { rival: 'legate-varro' },
     { rival: 'kora-wildfang' },
-    { rival: 'legate-varro', cpuSetup: { extraHealth: 5 } },
-    { rival: 'kora-wildfang', cpuSetup: { extraHealth: 5 } },
-    { rival: 'ilyra-starweaver', cpuSetup: { allies: ['apprentice-mage'] } },
-    { rival: 'kora-wildfang', cpuSetup: { allies: ['raptor-pack'] } },
+    { rival: 'nyx-hollowsong', cpuSetup: { extraHealth: 5 } },
+    { rival: 'vex-nightwire', cpuSetup: { extraHealth: 5 } },
+    { rival: 'gideon-ironsteam', cpuSetup: { allies: ['brass-steam-knight'] } },
+    { rival: 'nysa-goldbow', cpuSetup: { allies: ['loyal-charioteer'] } },
     {
-      rival: 'ilyra-starweaver',
-      cpuSetup: { allies: ['apprentice-mage'] }
+      rival: 'ada-copperwick',
+      cpuSetup: { allies: ['brass-steam-knight'] }
     },
     {
-      rival: 'kora-wildfang',
+      rival: 'ooma-bonewhisper',
       cpuSetup: { extraHealth: 5 }
     },
     {
-      rival: 'kora-wildfang',
-      cpuSetup: { weapon: 'hunting-bow' },
+      rival: 'ryn-voltblade',
+      cpuSetup: { weapon: 'bloodied-glaive' },
       playerSetup: { handSize: 6 }
     },
     {
       rival: 'hollow-astronomer',
-      deck: [
-        ['void-acolyte', 4],
-        ['black-comet', 3],
-        ['apprentice-mage', 4],
-        ['spellward-knight', 4],
-        ['arcane-familiar', 4],
-        ['fireball', 4],
-        ['frost-nova', 3],
-        ['rift-guardian', 3],
-        ['sky-courier', 2],
-        ['chrono-golem', 2],
-        ['healing-draught', 3],
-        ['rift-snare', 3]
-      ],
-      cpuSetup: { weapon: 'staff-of-embers', extraHealth: 5 }
+      cpuSetup: { weapon: 'frozen-wand', extraHealth: 5 }
     }
   ]
 })

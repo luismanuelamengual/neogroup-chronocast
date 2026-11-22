@@ -58,7 +58,7 @@ El recurso se llama **Cronos** (`chronos` en el código). Los nombres en pantall
 
 Cada jugador tiene:
 
-- **Héroe**: en su slot propio, **detrás** de la fila de aliados (más lejos del centro). Tiene **entre 45 y 60 de vida** según el héroe, una habilidad pasiva y una habilidad activa. **Empieza sin arma ni armadura**: las armas y armaduras son cartas que se juegan y se adjuntan al héroe, como en Shadow Era (un lugar para arma y uno para armadura).
+- **Héroe**: en su slot propio, **detrás** de la fila de aliados (más lejos del centro). Tiene **entre 50 y 65 de vida** según el héroe, una habilidad pasiva y una habilidad activa. **Empieza sin arma ni armadura**: las armas y armaduras son cartas que se juegan y se adjuntan al héroe, como en Shadow Era (un lugar para arma y uno para armadura).
 - **5 slots de aliados** (1 a 5, en fila delante del héroe). Nunca más de 5 aliados.
 - **Soporte**: 5 slots para las cartas que quedan en juego sin ser aliados: trampas (boca abajo) y artefactos (boca arriba, a veces con usos). Se pueden poner tantas trampas o artefactos como slots libres haya (`SUPPORT_SLOTS`).
 - **Sin ubicaciones**: las 26 cartas que eran ubicaciones ahora son **artefactos** (van a un slot de soporte, con el mismo efecto) y volvieron al juego: se venden, salen en sobres y entran a los mazos. Las 4 exclusivas de héroe que eran premio de campaña se compran como legendarias. El tipo `location` sigue en `RETIRED_CARD_TYPES` por si quedara alguna carta guardada de ese tipo.
@@ -137,7 +137,7 @@ Cada acción tiene una **velocidad** (`instant`, `fast`, `normal`, `slow`). Dent
 
 ### 2.6 Combate
 
-- **Escala de números**: con héroes de 45 a 60 de vida, los aliados pegan aproximadamente entre 3 y 30 y tienen entre 3 y 25 de vida (la vida se bajó a la mitad para que las partidas sean más cortas); una habilidad común hace de 8 a 15 de daño. La meta es que una partida dure de 6 a 12 fases.
+- **Escala de números**: la del catálogo de Shadow Era (`docs/data.json`) multiplicada por 2. Con héroes de 50 a 65 de vida, los aliados pegan entre 0 y 18 y tienen entre 3 y 18 de vida (un aliado de costo 4 ronda 5/10); una habilidad de costo 2 hace unos 6 de daño. Las partidas simuladas duran de 10 a 14 fases.
 - **Ataque de un aliado**: hace su ataque como daño al objetivo. Si el objetivo es un aliado y el atacante no tiene _A distancia_, el defensor **contraataca** con su ataque (como en Shadow Era).
 - **Armadura** (carta adjunta): resta daño de cada golpe al héroe y tiene puntos que se gastan; al llegar a 0 se descarta.
 - **Arma** (carta adjunta): da el ataque del héroe y tiene durabilidad; al llegar a 0 se descarta. Sin arma, el héroe no ataca.
@@ -193,6 +193,22 @@ Todas las constantes de esta sección viven en `(engine)/data/rules.ts` (`STARTI
 | `echo`      | Eco                | Al morir vuelve a la mano una vez                                                |
 | `resurge`   | Resurgir           | Se puede jugar desde la pila de descarte                                         |
 
+### 3.4 Tribus
+
+Cada aliado puede tener una **tribu** (`tribe` en su archivo, `(engine)/models/Tribe.ts`): 3 por facción y 2 neutrales. Son la base de la sinergia: cartas que potencian a otros de su tribu al entrar, que crecen por cada uno, que roban el primero de la tribu del mazo (`seekTribe`) o que pegan más por cada uno en juego.
+
+| Facción     | Tribus                       |
+| ----------- | ---------------------------- |
+| `primal`    | Saurio, Cavernario, Fiera    |
+| `bronze`    | Legionario, Oráculo, Coloso  |
+| `arcane`    | Hechicero, Hada, Draco       |
+| `clockwork` | Autómata, Inventor, Aeronave |
+| `neon`      | Cíborg, Hacker, Sicario      |
+| `void`      | No-muerto, Cultista, Horror  |
+| `neutral`   | Errante, Elemental           |
+
+Las cartas de clase usan tribus de varias facciones, así un héroe encuentra sinergias fuera de la suya. Las **fichas** (`token: true`) son aliados que solo crean otras cartas: no se coleccionan ni entran en mazos.
+
 ### 3.3 Estados
 
 | Estado         | Efecto                                                                                                                                           |
@@ -206,6 +222,29 @@ El Antídoto y otras cartas limpian los estados. Los adjuntos sobre aliados enem
 Regla de invocación: un aliado que entra en el paso _n_ puede actuar desde la fase siguiente; con `charge`, desde el paso _n + 1_.
 
 Cada palabra clave es un módulo de `(engine)/keywords/` con sus tests. El texto de reglas de la carta se arma solo a partir de sus palabras clave más la descripción de sus efectos propios.
+
+### 3.5 Elementos de daño
+
+Todo daño tiene un **elemento** (`element` en el archivo de la carta, `(engine)/models/Element.ts`). Si la carta no tiene, el daño es **físico**. El elemento se aplica a todo el daño que hace la carta: sus efectos y, si es un aliado o un arma, también sus ataques (y el contraataque del aliado). Un héroe con elemento lo usa en su habilidad y su pasiva. El veneno y la quemadura no tienen elemento.
+
+| Elemento | Regla al pegar                                                                                   | Facción típica     |
+| -------- | ------------------------------------------------------------------------------------------------ | ------------------ |
+| Fuego    | El objetivo queda Quemándose 1 durante 2 fases.                                                  | Arcana, Primal     |
+| Hielo    | Hace el doble a un objetivo congelado.                                                           | Primal, Maga       |
+| Rayo     | La mitad del daño salta a un aliado vecino al azar (no vuelve a saltar).                         | Neón               |
+| Sombra   | Pasa escudos y armadura.                                                                         | Vacío              |
+| Luz      | Cura a tu héroe la mitad del daño hecho; el doble contra No-muertos y Horrores.                  | Bronce, Mística    |
+| Tiempo   | El objetivo pierde también vida máxima (no se cura). Un golpe de 3+ al héroe le quita 1 Chronos. | Errantes, Vorhal   |
+| Ácido    | Envenena 1; contra un héroe rompe 1 punto más de armadura.                                       | Primal, Neón       |
+| Arcano   | No se reduce: ignora resistencias y reducciones de daño.                                         | Arcana, Maga       |
+| Tierra   | Aturde a un aliado de 3 de ataque o menos; los voladores son inmunes.                            | Primal, Relojería  |
+| Sónico   | El objetivo pierde Sigilo.                                                                       | Neón               |
+| Agua     | El aliado pierde 1 de ataque para siempre.                                                       | Primal, Errantes   |
+| Viento   | Hace el doble a los voladores.                                                                   | Cazador, Relojería |
+
+**Resistente** (`resist`) recibe la mitad de ese elemento (redondeando hacia arriba) y **Vulnerable** (`weak`) el doble. Van por tribu: Draco resiste fuego y es vulnerable a hielo; Saurio vulnerable a hielo; Cavernario resiste hielo; Coloso resiste tierra y es vulnerable a ácido; Autómata resiste ácido y es vulnerable a rayo; Cíborg vulnerable a rayo; Aeronave vulnerable a viento; No-muerto resiste sombra y hielo; Horror resiste sombra y es vulnerable a sónico; Hada resiste arcano y es vulnerable a sombra; Oráculo resiste luz; Hechicero resiste arcano. Cada Elemental resiste su propio elemento y es vulnerable a su opuesto.
+
+Orden del cálculo: multiplicador del elemento → vulnerabilidad → resistencia (salvo arcano) → `modifyDamage` de las cartas en juego (salvo arcano) → escudo y armadura (salvo sombra). La regla extra se aplica solo si el golpe hizo daño. Hoy hay 218 cartas con elemento y 181 aliados con resistencias o vulnerabilidades.
 
 ---
 
@@ -389,42 +428,33 @@ Una carta sin traducción se muestra en inglés, así que **la traducción es op
 
 ---
 
-## 8. El catálogo de 590 cartas
+## 8. El catálogo de 720 cartas
 
-### 8.1 Reparto por restricción
+El catálogo se rehízo desde cero tomando `docs/data.json` (Shadow Era) solo como guía de proporciones: reparto por tipo, curva de costos, mezcla de rarezas y la parte de cartas con sinergia de tribu. Los nombres, efectos y textos son propios, pensados para las fases en lugar de los turnos, y los números van a la escala x2 (sección 2.6). Las ubicaciones no existen.
 
-**12 héroes** y **488 cartas**:
+### 8.1 Reparto
 
-| Grupo                                         | Cartas por grupo | Grupos | Total   | Composición de cada grupo                                                                                                                                  |
-| --------------------------------------------- | ---------------- | ------ | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `neutral` (cualquier héroe)                   | 88               | 1      | 88      | 40 aliados, 6 habilidades, 4 armas, 4 armaduras, 16 objetos, 10 ubicaciones, 8 trampas                                                                     |
-| Por facción                                   | 40               | 6      | 240     | 28 aliados, 4 habilidades, 3 objetos, 2 ubicaciones, 3 trampas                                                                                             |
-| Por clase                                     | 25               | 4      | 100     | 12 habilidades, 6 armas, 5 armaduras, 2 objetos                                                                                                            |
-| Exclusivas de un héroe                        | 5                | 12     | 60      | 2 habilidades, 1 arma, 1 aliado compañero y 1 carta de premio de su campaña                                                                                |
-| Héroes                                        | —                | —      | 12      |                                                                                                                                                            |
-| Adjuntos y artefactos (`neutral`)             | —                | —      | 31      | 19 adjuntos para aliados y 12 artefactos de soporte (ronda 4)                                                                                              |
-| Robo, energía, estados y maldiciones          | —                | —      | 47      | Robo de cartas en todas las facciones (y el Bazar neutral para ambos), energía, veneno/quemadura/congelación y maldiciones para aliados enemigos (ronda 5) |
-| Contra armas, armaduras, artefactos y trampas | —                | —      | 12      | Destruyen o desgastan el arma y la armadura del rival, y destruyen sus artefactos y trampas (ronda 6)                                                      |
-| **Total**                                     |                  |        | **590** |                                                                                                                                                            |
+| Grupo                   | Cartas  | Composición                                                                          |
+| ----------------------- | ------- | ------------------------------------------------------------------------------------ |
+| Héroes (todos jugables) | 24      | 2 por facción y clase de la tabla 4.1, más los 12 que antes eran jefes               |
+| Exclusivas de héroe     | 48      | 2 por héroe: los 12 premios de campaña, 12 compañeros y 24 cartas propias            |
+| Por clase (4 grupos)    | 320     | 23 aliados, 26 a 33 habilidades, armas, armaduras, adjuntos, artefactos, trampas     |
+| Por facción (6 grupos)  | 216     | 25 aliados (3 tribus), 5 a 8 habilidades y algunos artefactos, adjuntos y trampas    |
+| Neutrales               | 112     | 48 aliados, 28 habilidades, 12 objetos, 10 artefactos, 6 adjuntos, armas y armaduras |
+| **Total coleccionable** | **720** | Más 9 fichas que solo aparecen invocadas                                             |
 
-Por tipo da aproximadamente: 220 aliados, 102 habilidades, 40 armas, 24 armaduras, 42 objetos, 22 ubicaciones, 26 trampas, 12 premios de campaña y 12 héroes.
+Rarezas: 260 comunes, 178 poco comunes, 129 raras, 80 épicas, 54 legendarias, 13 exóticas y 6 míticas.
 
-Así, un héroe puede usar unas 88 neutrales + 40 de su facción + 25 de su clase + 5 propias = **unas 158 cartas distintas**, suficiente para variedad de mazos.
+### 8.2 Mecánicas de Shadow Era que se adaptaron a las fases
 
-Las rarezas se reparten según la tabla de la sección 5 dentro de cada grupo, con comunes y poco comunes suficientes en `neutral`, en las 3 facciones iniciales y en las 3 clases iniciales para armar los starters. Los 3 héroes iniciales son comunes; los otros 9 son de rara para arriba.
-
-### 8.2 Cómo se generan
-
-Las cartas se escriben por **lotes**, en este orden: `neutral`, las 3 facciones y clases iniciales con sus héroes (`bronze` + `warrior`, `arcane` + `mage`, `primal` + `hunter`), y después las demás. Cada lote incluye:
-
-1. Una hoja de diseño: identidad, curva de costos, sinergias internas y con las cartas neutrales.
-2. Los archivos `.ts` de sus cartas.
-3. Sus prompts de arte (sección 9).
-4. Una corrida de simulación (sección 16) para ajustar números antes de cerrar el lote.
-
-Antes del primer lote se escribe un **set de prueba de 30 cartas** para validar el motor, la interfaz y el formato de archivo.
-
----
+- "Hasta tu próximo turno" o "al final del turno" pasan a "esta fase" o "al empezar/terminar cada fase".
+- La Shadow Energy pasa a la energía del héroe (habilidades de aliado con ⚡).
+- Los recursos pasan a Cronos: ganar Cronos en la fase, sumar capacidad (`gainChronosCapacity`) o quitársela al rival (`drainChronosCapacity`).
+- Exiliar pasa a desterrar de la pila de descarte (`banishFromDiscard`), que corta los revivir y los resurgir.
+- Las reacciones en el turno del rival pasan a trampas.
+- Buscar en el mazo pasa a `seek` / `seekTribe`: la primera carta que cumple, desde arriba, sin mezclar.
+- Descartar de la mano rival solo al terminar la fase (`discardRandom`), para no romper lo ya programado.
+- Tomar el control de un aliado rival y las ubicaciones no se crearon.
 
 ## 9. Arte: archivo de prompts y `yarn art`
 

@@ -261,6 +261,44 @@ export const en: Messages = {
       void: 'Void',
       neutral: 'Neutral'
     },
+    elements: {
+      fire: 'Fire',
+      ice: 'Ice',
+      lightning: 'Lightning',
+      shadow: 'Shadow',
+      light: 'Light',
+      time: 'Time',
+      acid: 'Acid',
+      arcane: 'Arcane',
+      earth: 'Earth',
+      sonic: 'Sonic',
+      water: 'Water',
+      wind: 'Wind'
+    },
+    resists: 'Resists {elements}',
+    weakTo: 'Weak to {elements}',
+    tribes: {
+      saurian: 'Saurian',
+      caveborn: 'Caveborn',
+      beast: 'Beast',
+      legionnaire: 'Legionnaire',
+      oracle: 'Oracle',
+      colossus: 'Colossus',
+      magus: 'Magus',
+      fae: 'Fae',
+      drake: 'Drake',
+      automaton: 'Automaton',
+      inventor: 'Inventor',
+      skyship: 'Skyship',
+      cyborg: 'Cyborg',
+      netrunner: 'Netrunner',
+      enforcer: 'Enforcer',
+      undead: 'Undead',
+      cultist: 'Cultist',
+      horror: 'Horror',
+      drifter: 'Drifter',
+      elemental: 'Elemental'
+    },
     classes: {
       warrior: 'Warrior',
       mage: 'Mage',
@@ -587,6 +625,7 @@ export const en: Messages = {
       attack: '{attacker} attacks {target}',
       miss: '{attacker} misses: {target} is empty or out of reach',
       damage: '{target} takes {amount} damage',
+      damageElement: '{target} takes {amount} damage ({element})',
       damageAbsorbed: '{target} takes {amount} damage ({absorbed} absorbed by armor)',
       shieldBlock: "{target}'s shield blocks the hit",
       heal: '{target} heals {amount}',
@@ -611,6 +650,7 @@ export const en: Messages = {
       returnToHand: '{card} returns to the hand',
       heroFell: '{player} falls',
       chronos: '{player} gains {amount} Chronos',
+      chronosLoss: '{player} loses {amount} Chronos',
       fail: '{player}, step {step}: {reason}',
       end: 'The match is over'
     },
@@ -803,40 +843,40 @@ export const en: Messages = {
         'Caelus falls and his laurel crown shatters into a thousand clocks. The Ninth goes home, a century late, with the eagle held high.',
       stages: {
         s1: {
-          name: 'The Danube rift',
-          text: 'A huntress from another era shows up across the river. She has no idea where she is, but she knows how to fight.'
+          name: 'Kora Wildfang',
+          text: 'A jungle huntress who always shoots first. The rift dropped this rival right on the road.'
         },
         s2: {
-          name: 'Stars over the camp',
-          text: 'A mage reads the sky above the tents. She says the stars are going out. First, she should yield.'
+          name: 'Ilyra Starweaver',
+          text: 'A star mage who fights with falling stars. The rift dropped this rival right on the road.'
         },
         s3: {
-          name: 'Ambush in the woods',
-          text: "The huntress is back with her pack and has prepared the ground. It won't be so easy this time."
+          name: 'Nyx Hollowsong',
+          text: 'A singer of the Void whose songs wake the dead. The rift dropped this rival right on the road.'
         },
         s4: {
-          name: "The augurs' beacon",
-          text: 'The mage took the beacon and her spells hit from afar. Time to climb the hill.'
+          name: 'Nysa Goldbow',
+          text: 'An archer of the bronze age with a golden bow. Word of the journey has spread, and this rival wants to end it.'
         },
         s5: {
-          name: 'The legate of another Rome',
-          text: 'Facing Varro, a legate with his own face and another standard. He fights for the usurper.'
+          name: 'Vex Nightwire',
+          text: 'A neon huntress who hacks her prey before she shoots. Word of the journey has spread, and this rival wants to end it.'
         },
         s6: {
-          name: 'The beasts of the circus',
-          text: 'In the arena of this false Rome they unleash beasts from another era. Let the crowd see how the Ninth fights.'
+          name: 'Gideon Ironsteam',
+          text: 'A steam-powered brawler who never takes a step back. Word of the journey has spread, and this rival wants to end it.'
         },
         s7: {
-          name: 'The tower of prophecies',
-          text: "The usurper's astrologers read every step Varro takes before he takes it. The prophecy must be broken."
+          name: 'Ooma Bonewhisper',
+          text: 'A shaman of the first tribes who speaks with the bones of the ancestors. Caelus the Usurper sent this champion to stop the march before the final battle.'
         },
         s8: {
-          name: 'The Senate guard',
-          text: 'The legate of the other Rome defends the Senate with his best men. Behind those doors lies the palace.'
+          name: 'Ryn Voltblade',
+          text: 'A neon blade fighter who strikes before anyone can react. Caelus the Usurper sent this champion to stop the march before the final battle.'
         },
         s9: {
-          name: 'The palace gates',
-          text: 'The huntress from the rift, now serving Caelus, blocks the way. Varro arrives with little to spare.'
+          name: 'Ada Copperwick',
+          text: 'An inventor from the steam era whose machines run on stolen seconds. Caelus the Usurper sent this champion to stop the march before the final battle.'
         },
         s10: {
           name: 'Caelus the Usurper',
@@ -852,40 +892,40 @@ export const en: Messages = {
         'The Hollow Astronomer crumbles into stardust. That night, for the first time in centuries, the sky is full again.',
       stages: {
         s1: {
-          name: 'The lost legionary',
-          text: "A legionary came out of the rift right below Ilyra's tower. He thinks she brought him here."
+          name: 'Legate Varro',
+          text: 'The legate of the lost Ninth Legion, behind a wall of shields. The rift dropped this rival right on the road.'
         },
         s2: {
-          name: 'Tracks in the snow',
-          text: "A huntress follows the same trail as Ilyra, and she doesn't like competition."
+          name: 'Kora Wildfang',
+          text: 'A jungle huntress who always shoots first. The rift dropped this rival right on the road.'
         },
         s3: {
-          name: 'The shield wall',
-          text: 'The legionary is back with his cohort. Their shields stop even starlight.'
+          name: 'Nyx Hollowsong',
+          text: 'A singer of the Void whose songs wake the dead. The rift dropped this rival right on the road.'
         },
         s4: {
-          name: 'The night pack',
-          text: 'In the starless night, the huntress and her beasts see better than Ilyra.'
+          name: 'Vex Nightwire',
+          text: 'A neon huntress who hacks her prey before she shoots. Word of the journey has spread, and this rival wants to end it.'
         },
         s5: {
-          name: 'The reflection',
-          text: 'In the observatory mirror, another Ilyra smiles at her. She believes putting out the stars is right.'
+          name: 'Gideon Ironsteam',
+          text: 'A steam-powered brawler who never takes a step back. Word of the journey has spread, and this rival wants to end it.'
         },
         s6: {
-          name: 'The comet hunter',
-          text: 'The huntress found a shard of black comet and turned it into an arrow.'
+          name: 'Nysa Goldbow',
+          text: 'An archer of the bronze age with a golden bow. Word of the journey has spread, and this rival wants to end it.'
         },
         s7: {
-          name: 'The crystal library',
-          text: "Ilyra's reflection burned the star maps. What is left is behind her."
+          name: 'Ada Copperwick',
+          text: 'An inventor from the steam era whose machines run on stolen seconds. The Hollow Astronomer sent this champion to stop the march before the final battle.'
         },
         s8: {
-          name: 'The moonless jungle',
-          text: 'The beasts of the jungle go mad without light. Their queen leads them straight at Ilyra.'
+          name: 'Ooma Bonewhisper',
+          text: 'A shaman of the first tribes who speaks with the bones of the ancestors. The Hollow Astronomer sent this champion to stop the march before the final battle.'
         },
         s9: {
-          name: 'The last beacon',
-          text: 'A single star is still shining, and the black comet huntress guards it for the Astronomer.'
+          name: 'Ryn Voltblade',
+          text: 'A neon blade fighter who strikes before anyone can react. The Hollow Astronomer sent this champion to stop the march before the final battle.'
         },
         s10: {
           name: 'The Hollow Astronomer',
@@ -901,40 +941,40 @@ export const en: Messages = {
         'Gorrak falls and his tyrannosaurus flees into the jungle. Fang, the sabertooth, roars on the hill: the jungle has a new protector.',
       stages: {
         s1: {
-          name: 'The stranger from the stars',
-          text: "A mage fell from the sky right in the middle of Kora's land. She talks funny and throws fire."
+          name: 'Ilyra Starweaver',
+          text: 'A star mage who fights with falling stars. The rift dropped this rival right on the road.'
         },
         s2: {
-          name: 'The bronze men',
-          text: "Metal soldiers march through the jungle as if they owned it. Nobody marches through Kora's jungle."
+          name: 'Legate Varro',
+          text: 'The legate of the lost Ninth Legion, behind a wall of shields. The rift dropped this rival right on the road.'
         },
         s3: {
-          name: 'Fire in the ferns',
-          text: 'The mage is back, and this time she brought more fire. The ferns are burning.'
+          name: 'Vex Nightwire',
+          text: 'A neon huntress who hacks her prey before she shoots. The rift dropped this rival right on the road.'
         },
         s4: {
-          name: 'The Roman camp',
-          text: 'The bronze legate built a fort by the river. It has to go before it grows.'
+          name: 'Nyx Hollowsong',
+          text: 'A singer of the Void whose songs wake the dead. Word of the journey has spread, and this rival wants to end it.'
         },
         s5: {
-          name: 'The rival huntress',
-          text: 'Another huntress, with the same war paint, says this jungle belongs to the King.'
+          name: 'Gideon Ironsteam',
+          text: 'A steam-powered brawler who never takes a step back. Word of the journey has spread, and this rival wants to end it.'
         },
         s6: {
-          name: 'The tower in the mist',
-          text: 'The mage built a tower in the swamp and spies on Kora from above.'
+          name: 'Aldric Dawnkeeper',
+          text: 'A paladin of the Arcane Order who heals as hard as he hits. Word of the journey has spread, and this rival wants to end it.'
         },
         s7: {
-          name: 'The eyes of the King',
-          text: "The mage's apprentices now work for Gorrak. They see everything that happens in the jungle."
+          name: 'Ooma Bonewhisper',
+          text: 'A shaman of the first tribes who speaks with the bones of the ancestors. Gorrak, the Tyrant King sent this champion to stop the march before the final battle.'
         },
         s8: {
-          name: 'The traitor pack',
-          text: 'The rival huntress leads the beasts that used to follow Kora. They must be won back.'
+          name: 'Ryn Voltblade',
+          text: 'A neon blade fighter who strikes before anyone can react. Gorrak, the Tyrant King sent this champion to stop the march before the final battle.'
         },
         s9: {
-          name: 'The bow of betrayal',
-          text: "The rival huntress carries the bow of Kora's father. She is the last guard before the throne."
+          name: 'Ada Copperwick',
+          text: 'An inventor from the steam era whose machines run on stolen seconds. Gorrak, the Tyrant King sent this champion to stop the march before the final battle.'
         },
         s10: {
           name: 'Gorrak, Tyrant King',
@@ -950,31 +990,40 @@ export const en: Messages = {
         'Tauron falls in the heart of the maze and its walls crumble into sunlight. The hounds run back to Nysa, wagging their tails, a little older.',
       stages: {
         s1: {
-          name: 'The hidden door',
-          text: 'A huntress from the jungle guards the entrance of the maze. She thinks Nysa is the beast.'
+          name: 'Kora Wildfang',
+          text: 'A jungle huntress who always shoots first. The rift dropped this rival right on the road.'
         },
         s2: {
-          name: 'Legion in the corridors',
-          text: 'A Roman legate marches in circles. He has been lost in the maze for a week.'
+          name: 'Legate Varro',
+          text: 'The legate of the lost Ninth Legion, behind a wall of shields. The rift dropped this rival right on the road.'
         },
         s3: {
-          name: 'Stars on the ceiling',
-          text: 'A mage reads a map in the stones above. She will not share it without a duel.'
+          name: 'Ilyra Starweaver',
+          text: 'A star mage who fights with falling stars. The rift dropped this rival right on the road.'
         },
-        s4: { name: 'The lantern bearer', text: 'An old monk lights the way, but only for those who beat him.' },
-        s5: { name: 'Tracks of claws', text: 'The jungle huntress returns with her raptors. This time she is sure.' },
+        s4: {
+          name: 'Nyx Hollowsong',
+          text: 'A singer of the Void whose songs wake the dead. Word of the journey has spread, and this rival wants to end it.'
+        },
+        s5: {
+          name: 'Gideon Ironsteam',
+          text: 'A steam-powered brawler who never takes a step back. Word of the journey has spread, and this rival wants to end it.'
+        },
         s6: {
-          name: 'Steam in the maze',
-          text: 'A brass engineer is drilling a shortcut through the walls. Nysa needs it more.'
+          name: 'Vex Nightwire',
+          text: 'A neon huntress who hacks her prey before she shoots. Word of the journey has spread, and this rival wants to end it.'
         },
-        s7: { name: 'The shield wall', text: 'The legate has found his cohort, and they block the only way forward.' },
+        s7: {
+          name: 'Ada Copperwick',
+          text: 'An inventor from the steam era whose machines run on stolen seconds. Tauron, Labyrinth Lord sent this champion to stop the march before the final battle.'
+        },
         s8: {
-          name: 'The bone garden',
-          text: 'A shaman tends a garden of bones at a crossroads. Her spirits do not want visitors.'
+          name: 'Ooma Bonewhisper',
+          text: 'A shaman of the first tribes who speaks with the bones of the ancestors. Tauron, Labyrinth Lord sent this champion to stop the march before the final battle.'
         },
         s9: {
-          name: 'Neon in the dark',
-          text: 'A bounty hunter from the future has a contract on the beast. And on Nysa.'
+          name: 'Ryn Voltblade',
+          text: 'A neon blade fighter who strikes before anyone can react. Tauron, Labyrinth Lord sent this champion to stop the march before the final battle.'
         },
         s10: {
           name: 'Tauron, Lord of the Labyrinth',
@@ -989,35 +1038,41 @@ export const en: Messages = {
       ending:
         'Morgrath crumbles into dust as the first ray of dawn touches the abbey. The bells ring again, and Aldric finally sleeps.',
       stages: {
-        s1: { name: 'The dark road', text: 'A young mage blocks the road. She says the stars told her to stop him.' },
+        s1: {
+          name: 'Kora Wildfang',
+          text: 'A jungle huntress who always shoots first. The rift dropped this rival right on the road.'
+        },
         s2: {
-          name: 'A song in the graveyard',
-          text: 'A pale singer wakes the dead with her voice. Aldric asks her to stop, politely.'
+          name: 'Legate Varro',
+          text: 'The legate of the lost Ninth Legion, behind a wall of shields. The rift dropped this rival right on the road.'
         },
         s3: {
-          name: 'The lost soldier',
-          text: 'A Roman legate guards the bridge. He swore to let no one pass, not even the light.'
+          name: 'Ilyra Starweaver',
+          text: 'A star mage who fights with falling stars. The rift dropped this rival right on the road.'
         },
         s4: {
-          name: 'The huntress at the gate',
-          text: 'A huntress from the jungle thinks the night is better for hunting. Aldric disagrees.'
+          name: 'Vex Nightwire',
+          text: 'A neon huntress who hacks her prey before she shoots. Word of the journey has spread, and this rival wants to end it.'
         },
-        s5: { name: 'The singer returns', text: 'The singer has brought her choir of the dead this time.' },
+        s5: {
+          name: 'Nyx Hollowsong',
+          text: 'A singer of the Void whose songs wake the dead. Word of the journey has spread, and this rival wants to end it.'
+        },
         s6: {
-          name: 'Crystal walls',
-          text: 'The mage raised walls of crystal around the abbey. They have to come down.'
+          name: 'Nysa Goldbow',
+          text: 'An archer of the bronze age with a golden bow. Word of the journey has spread, and this rival wants to end it.'
         },
         s7: {
-          name: 'The unmade one',
-          text: 'A sorcerer from the end of time feeds on the darkness. He is not happy to share it.'
+          name: 'Gideon Ironsteam',
+          text: 'A steam-powered brawler who never takes a step back. Morgrath, the Lich Abbot sent this champion to stop the march before the final battle.'
         },
         s8: {
-          name: 'Clocks in the dark',
-          text: 'An inventor tries to restart the sun with a machine. It is making things worse.'
+          name: 'Ryn Voltblade',
+          text: 'A neon blade fighter who strikes before anyone can react. Morgrath, the Lich Abbot sent this champion to stop the march before the final battle.'
         },
         s9: {
-          name: 'The golden bow',
-          text: 'A Greek huntress was hired to guard the abbot. She does not know who he really is.'
+          name: 'Ada Copperwick',
+          text: 'An inventor from the steam era whose machines run on stolen seconds. Morgrath, the Lich Abbot sent this champion to stop the march before the final battle.'
         },
         s10: {
           name: 'Morgrath, the Lich Abbot',
@@ -1032,30 +1087,42 @@ export const en: Messages = {
       ending:
         'Kazhul sinks back into the lava, asleep for another ten thousand years. Ash turns into soil, and soil into a new forest.',
       stages: {
-        s1: { name: 'The young hunter', text: 'Kora does not believe in whispers. She believes in arrows.' },
+        s1: {
+          name: 'Legate Varro',
+          text: 'The legate of the lost Ninth Legion, behind a wall of shields. The rift dropped this rival right on the road.'
+        },
         s2: {
-          name: 'A stranger with a golden bow',
-          text: 'A huntress from another era tracks a fire beast. She thinks Ooma is in the way.'
+          name: 'Kora Wildfang',
+          text: 'A jungle huntress who always shoots first. The rift dropped this rival right on the road.'
         },
         s3: {
-          name: 'The man with the lantern',
-          text: 'An old monk says the dragon can be reasoned with. Ooma says no.'
+          name: 'Ilyra Starweaver',
+          text: 'A star mage who fights with falling stars. The rift dropped this rival right on the road.'
         },
         s4: {
-          name: 'Soldiers in the ash',
-          text: 'Legionaries lost in time are camping on the slope. They do not like visitors.'
+          name: 'Vex Nightwire',
+          text: 'A neon huntress who hacks her prey before she shoots. Word of the journey has spread, and this rival wants to end it.'
         },
-        s5: { name: 'The hunt goes wrong', text: 'Kora comes back with a hog and a grudge.' },
-        s6: { name: 'The steam diggers', text: 'An engineer is drilling into the volcano for heat. Very bad idea.' },
+        s5: {
+          name: 'Nysa Goldbow',
+          text: 'An archer of the bronze age with a golden bow. Word of the journey has spread, and this rival wants to end it.'
+        },
+        s6: {
+          name: 'Gideon Ironsteam',
+          text: 'A steam-powered brawler who never takes a step back. Word of the journey has spread, and this rival wants to end it.'
+        },
         s7: {
-          name: 'The singer of the dead',
-          text: 'A pale singer wants the bones Ooma carries. They are not for sale.'
+          name: 'Nyx Hollowsong',
+          text: 'A singer of the Void whose songs wake the dead. Kazhul, Mother of Ash sent this champion to stop the march before the final battle.'
         },
         s8: {
-          name: 'Lightning on the mountain',
-          text: 'A warrior from the future thinks she can cut the dragon in half.'
+          name: 'Ada Copperwick',
+          text: 'An inventor from the steam era whose machines run on stolen seconds. Kazhul, Mother of Ash sent this champion to stop the march before the final battle.'
         },
-        s9: { name: 'The last guard', text: 'A bounty hunter took a contract from the dragon itself.' },
+        s9: {
+          name: 'Aldric Dawnkeeper',
+          text: 'A paladin of the Arcane Order who heals as hard as he hits. Kazhul, Mother of Ash sent this champion to stop the march before the final battle.'
+        },
         s10: {
           name: 'Kazhul, Mother of Ash',
           text: 'The mountain opens, and the oldest dragon of all spreads her wings of ash.'
@@ -1069,32 +1136,41 @@ export const en: Messages = {
       ending:
         'Brassmaw is buried under his own paperwork and a broken mechanical jaw. The factory whistles blow, and the workers walk back in.',
       stages: {
-        s1: { name: 'The inventor next door', text: 'Ada built the automatons. She swears they were meant to help.' },
-        s2: { name: 'Strikebreakers', text: 'The chancellor hired legionaries from another era to break the strike.' },
+        s1: {
+          name: 'Ilyra Starweaver',
+          text: 'A star mage who fights with falling stars. The rift dropped this rival right on the road.'
+        },
+        s2: {
+          name: 'Legate Varro',
+          text: 'The legate of the lost Ninth Legion, behind a wall of shields. The rift dropped this rival right on the road.'
+        },
         s3: {
-          name: 'A hunter in the smoke',
-          text: 'A bounty hunter from the future has a warrant for Gideon. Unpaid fines.'
+          name: 'Kora Wildfang',
+          text: 'A jungle huntress who always shoots first. The rift dropped this rival right on the road.'
         },
         s4: {
-          name: 'Wild things in the sewers',
-          text: 'A huntress from the jungle got lost in the tunnels. She is not in a good mood.'
+          name: 'Nysa Goldbow',
+          text: 'An archer of the bronze age with a golden bow. Word of the journey has spread, and this rival wants to end it.'
         },
-        s5: { name: 'The second prototype', text: 'Ada comes back with an apprentice and a better machine.' },
+        s5: {
+          name: 'Nyx Hollowsong',
+          text: 'A singer of the Void whose songs wake the dead. Word of the journey has spread, and this rival wants to end it.'
+        },
         s6: {
-          name: 'Riot police',
-          text: 'A warrior from the megacity leads the riot squad. Gideon brings his own squad.'
+          name: 'Vex Nightwire',
+          text: 'A neon huntress who hacks her prey before she shoots. Word of the journey has spread, and this rival wants to end it.'
         },
         s7: {
-          name: 'The marching legion',
-          text: 'The legionaries march on the union hall. They have to be stopped at the bridge.'
+          name: 'Ada Copperwick',
+          text: 'An inventor from the steam era whose machines run on stolen seconds. Chancellor Brassmaw sent this champion to stop the march before the final battle.'
         },
         s8: {
-          name: 'The void accountant',
-          text: "A sorcerer from the end of time keeps the chancellor's books. Everything adds up to zero."
+          name: 'Ryn Voltblade',
+          text: 'A neon blade fighter who strikes before anyone can react. Chancellor Brassmaw sent this champion to stop the march before the final battle.'
         },
         s9: {
-          name: 'The mage of the tower',
-          text: "A mage guards the chancellor's office. She was promised a pension."
+          name: 'Ooma Bonewhisper',
+          text: 'A shaman of the first tribes who speaks with the bones of the ancestors. Chancellor Brassmaw sent this champion to stop the march before the final battle.'
         },
         s10: {
           name: 'Chancellor Brassmaw',
@@ -1110,25 +1186,40 @@ export const en: Messages = {
         'Omnigear powers down with a long, sad whistle. Ada keeps one gear on a chain, to remember that inventions need kindness too.',
       stages: {
         s1: {
-          name: 'The angry neighbor',
-          text: 'Gideon blames Ada for the automatons. He has a point, and a big metal arm.'
+          name: 'Kora Wildfang',
+          text: 'A jungle huntress who always shoots first. The rift dropped this rival right on the road.'
         },
-        s2: { name: 'The rival scholar', text: 'A mage says science is cheating. They settle it the old way.' },
-        s3: { name: 'Sparks from the future', text: "A warrior from the megacity came for Omnigear's blueprints." },
+        s2: {
+          name: 'Legate Varro',
+          text: 'The legate of the lost Ninth Legion, behind a wall of shields. The rift dropped this rival right on the road.'
+        },
+        s3: {
+          name: 'Ilyra Starweaver',
+          text: 'A star mage who fights with falling stars. The rift dropped this rival right on the road.'
+        },
         s4: {
-          name: 'The huntress of gears',
-          text: 'A Greek huntress was hired to hunt rogue machines. Ada looks like one.'
+          name: 'Vex Nightwire',
+          text: 'A neon huntress who hacks her prey before she shoots. Word of the journey has spread, and this rival wants to end it.'
         },
-        s5: { name: 'Gideon again', text: 'Gideon is back, with more coal and less patience.' },
-        s6: { name: 'Drones over the city', text: 'A hunter from the future controls a swarm of security drones.' },
-        s7: { name: 'The golem of the tower', text: 'The mage built a golem of her own, to prove a point.' },
+        s5: {
+          name: 'Nyx Hollowsong',
+          text: 'A singer of the Void whose songs wake the dead. Word of the journey has spread, and this rival wants to end it.'
+        },
+        s6: {
+          name: 'Gideon Ironsteam',
+          text: 'A steam-powered brawler who never takes a step back. Word of the journey has spread, and this rival wants to end it.'
+        },
+        s7: {
+          name: 'Nysa Goldbow',
+          text: 'An archer of the bronze age with a golden bow. Omnigear Prime sent this champion to stop the march before the final battle.'
+        },
         s8: {
-          name: 'The keeper of the dawn',
-          text: "An old monk believes machines have souls. He defends Omnigear's."
+          name: 'Ryn Voltblade',
+          text: 'A neon blade fighter who strikes before anyone can react. Omnigear Prime sent this champion to stop the march before the final battle.'
         },
         s9: {
-          name: 'The sorcerer of endings',
-          text: 'A sorcerer from the end of time wants Omnigear to unmake the world.'
+          name: 'Ooma Bonewhisper',
+          text: 'A shaman of the first tribes who speaks with the bones of the ancestors. Omnigear Prime sent this champion to stop the march before the final battle.'
         },
         s10: {
           name: 'Omnigear Prime',
@@ -1143,35 +1234,41 @@ export const en: Messages = {
       ending:
         "Kade's cameras go dark one by one. For the first time in a century, nobody is watching the megacity, and it looks beautiful.",
       stages: {
-        s1: { name: 'A familiar blade', text: 'Ryn wants the bounty on Vex. They used to be partners.' },
+        s1: {
+          name: 'Kora Wildfang',
+          text: 'A jungle huntress who always shoots first. The rift dropped this rival right on the road.'
+        },
         s2: {
-          name: "The inventor's drones",
-          text: 'A Victorian inventor sold her drones to the tower. Vex wants a refund.'
+          name: 'Ilyra Starweaver',
+          text: 'A star mage who fights with falling stars. The rift dropped this rival right on the road.'
         },
         s3: {
-          name: 'The man with the iron arm',
-          text: 'A brawler from the steam era was hired as security. He punches first.'
+          name: 'Legate Varro',
+          text: 'The legate of the lost Ninth Legion, behind a wall of shields. The rift dropped this rival right on the road.'
         },
         s4: {
-          name: 'Stars on the screens',
-          text: "A mage got trapped inside the city's network. She thinks Vex is a virus."
+          name: 'Nyx Hollowsong',
+          text: 'A singer of the Void whose songs wake the dead. Word of the journey has spread, and this rival wants to end it.'
         },
-        s5: { name: 'Ryn strikes back', text: 'Ryn returns with a cyber ninja. Business is business.' },
+        s5: {
+          name: 'Gideon Ironsteam',
+          text: 'A steam-powered brawler who never takes a step back. Word of the journey has spread, and this rival wants to end it.'
+        },
         s6: {
-          name: 'Shadows in the server room',
-          text: "A sorcerer from the end of time is erasing the city's memory."
+          name: 'Ryn Voltblade',
+          text: 'A neon blade fighter who strikes before anyone can react. Word of the journey has spread, and this rival wants to end it.'
         },
         s7: {
-          name: 'The archer from the past',
-          text: 'A Greek huntress was promised a way home. All she has to do is stop Vex.'
+          name: 'Ada Copperwick',
+          text: 'An inventor from the steam era whose machines run on stolen seconds. Overseer Kade sent this champion to stop the march before the final battle.'
         },
         s8: {
-          name: 'The jungle in the arcade',
-          text: 'A huntress from the jungle is lost in a virtual reality arcade. Very lost.'
+          name: 'Ooma Bonewhisper',
+          text: 'A shaman of the first tribes who speaks with the bones of the ancestors. Overseer Kade sent this champion to stop the march before the final battle.'
         },
         s9: {
-          name: "The legate's axe",
-          text: "A Roman legate guards the tower's elevator. He does not trust buttons."
+          name: 'Aldric Dawnkeeper',
+          text: 'A paladin of the Arcane Order who heals as hard as he hits. Overseer Kade sent this champion to stop the march before the final battle.'
         },
         s10: {
           name: 'Overseer Kade',
@@ -1186,35 +1283,41 @@ export const en: Messages = {
       ending:
         'Queen Static dissolves into silence. The screens show only the rain, and the city wakes up from a very long dream.',
       stages: {
-        s1: { name: 'The old partner', text: 'Vex has been listening to the song. She does not recognize Ryn.' },
+        s1: {
+          name: 'Ilyra Starweaver',
+          text: 'A star mage who fights with falling stars. The rift dropped this rival right on the road.'
+        },
         s2: {
-          name: 'A brawler from the past',
-          text: 'A steam-era brawler wandered into the city. He thinks the song is a factory whistle.'
+          name: 'Legate Varro',
+          text: 'The legate of the lost Ninth Legion, behind a wall of shields. The rift dropped this rival right on the road.'
         },
         s3: {
-          name: "The tinkerer's antenna",
-          text: 'An inventor built an antenna to study the signal. It is broadcasting it instead.'
+          name: 'Kora Wildfang',
+          text: 'A jungle huntress who always shoots first. The rift dropped this rival right on the road.'
         },
         s4: {
-          name: 'The legate on the highway',
-          text: 'A Roman legate is marching his legion down the freeway. Traffic is terrible.'
+          name: 'Nysa Goldbow',
+          text: 'An archer of the bronze age with a golden bow. Word of the journey has spread, and this rival wants to end it.'
         },
-        s5: { name: 'Vex, again', text: 'Vex is back with a street runner. The song is louder now.' },
+        s5: {
+          name: 'Vex Nightwire',
+          text: 'A neon huntress who hacks her prey before she shoots. Word of the journey has spread, and this rival wants to end it.'
+        },
         s6: {
-          name: 'The mage in the static',
-          text: 'A mage from the tower is trying to cast a counter-song. It is not working.'
+          name: 'Gideon Ironsteam',
+          text: 'A steam-powered brawler who never takes a step back. Word of the journey has spread, and this rival wants to end it.'
         },
         s7: {
-          name: 'Hounds of the void',
-          text: 'A singer from the end of time brought her hounds. She likes the song.'
+          name: 'Nyx Hollowsong',
+          text: 'A singer of the Void whose songs wake the dead. Queen Static sent this champion to stop the march before the final battle.'
         },
         s8: {
-          name: "The shaman's drum",
-          text: 'A tribal shaman says the song is an old spirit. She wants to keep it.'
+          name: 'Ooma Bonewhisper',
+          text: 'A shaman of the first tribes who speaks with the bones of the ancestors. Queen Static sent this champion to stop the march before the final battle.'
         },
         s9: {
-          name: 'The huntress on the rooftop',
-          text: 'A jungle huntress guards the broadcast tower. Someone promised her meat.'
+          name: 'Aldric Dawnkeeper',
+          text: 'A paladin of the Arcane Order who heals as hard as he hits. Queen Static sent this champion to stop the march before the final battle.'
         },
         s10: {
           name: 'Queen Static',
@@ -1229,33 +1332,42 @@ export const en: Messages = {
       ending:
         "Xul'thar chokes on its own darkness and collapses into a single dead star. Malachar keeps it in his pocket. Just in case.",
       stages: {
-        s1: { name: 'The singer of the graves', text: 'Nyx says Malachar brought the hunger. She is not wrong.' },
+        s1: {
+          name: 'Ilyra Starweaver',
+          text: 'A star mage who fights with falling stars. The rift dropped this rival right on the road.'
+        },
         s2: {
-          name: 'The weaver of stars',
-          text: 'A mage wants to stitch the sky shut, with Malachar on the other side.'
+          name: 'Kora Wildfang',
+          text: 'A jungle huntress who always shoots first. The rift dropped this rival right on the road.'
         },
         s3: {
-          name: 'The keeper of the dawn',
-          text: 'An old monk sees the darkness in Malachar and tries to cure it. With a mace.'
+          name: 'Legate Varro',
+          text: 'The legate of the lost Ninth Legion, behind a wall of shields. The rift dropped this rival right on the road.'
         },
         s4: {
-          name: "The clockmaker's daughter",
-          text: 'An inventor built a machine to see the future. It only shows Malachar.'
+          name: 'Gideon Ironsteam',
+          text: 'A steam-powered brawler who never takes a step back. Word of the journey has spread, and this rival wants to end it.'
         },
         s5: {
-          name: 'Nyx and her choir',
-          text: 'Nyx returns with tendrils of the void. She has been listening to the hunger.'
+          name: 'Nyx Hollowsong',
+          text: 'A singer of the Void whose songs wake the dead. Word of the journey has spread, and this rival wants to end it.'
         },
         s6: {
-          name: 'The voltblade',
-          text: 'A warrior from the future was sent to end Malachar before he ends everything.'
+          name: 'Nysa Goldbow',
+          text: 'An archer of the bronze age with a golden bow. Word of the journey has spread, and this rival wants to end it.'
         },
         s7: {
-          name: 'The bones of the swamp',
-          text: 'A shaman of the swamps offers the hunger a deal: Malachar for her tribe.'
+          name: 'Vex Nightwire',
+          text: 'A neon huntress who hacks her prey before she shoots. Xulthar the Devourer sent this champion to stop the march before the final battle.'
         },
-        s8: { name: 'The iron man', text: 'A steam brawler stands in the way. He does not know what he is guarding.' },
-        s9: { name: 'The last legate', text: 'A Roman legate holds the final gate. He has held worse.' },
+        s8: {
+          name: 'Ada Copperwick',
+          text: 'An inventor from the steam era whose machines run on stolen seconds. Xulthar the Devourer sent this champion to stop the march before the final battle.'
+        },
+        s9: {
+          name: 'Aldric Dawnkeeper',
+          text: 'A paladin of the Arcane Order who heals as hard as he hits. Xulthar the Devourer sent this champion to stop the march before the final battle.'
+        },
         s10: { name: "Xul'thar the Devourer", text: 'At the edge of nothing, the hunger opens its thousand mouths.' }
       }
     },
@@ -1266,26 +1378,41 @@ export const en: Messages = {
       ending:
         "Vorhal's bell cracks in two and the last hour never comes. In the graveyards of every era, the dead start singing again.",
       stages: {
-        s1: { name: 'The unmade sorcerer', text: 'Malachar wants the bell for himself. Nyx wants him to go away.' },
+        s1: {
+          name: 'Legate Varro',
+          text: 'The legate of the lost Ninth Legion, behind a wall of shields. The rift dropped this rival right on the road.'
+        },
         s2: {
-          name: 'The light that burns',
-          text: 'An old monk thinks Nyx is the one ringing the bell. He is wrong, and very insistent.'
+          name: 'Kora Wildfang',
+          text: 'A jungle huntress who always shoots first. The rift dropped this rival right on the road.'
         },
         s3: {
-          name: 'Bones that talk',
-          text: "A shaman wants to ask Nyx's dead some questions. They do not want to answer."
+          name: 'Ilyra Starweaver',
+          text: 'A star mage who fights with falling stars. The rift dropped this rival right on the road.'
         },
-        s4: { name: 'A hunter in the fog', text: "A bounty hunter from the future was paid to silence Nyx's song." },
-        s5: { name: 'The sorcerer insists', text: 'Malachar is back, with a crawling army of bones.' },
-        s6: { name: 'The jungle scouts', text: 'A jungle huntress and her scouts block the path between the eras.' },
-        s7: { name: "The monk's oracle", text: 'The old monk brought an oracle. She saw Nyx lose. She is wrong too.' },
+        s4: {
+          name: 'Gideon Ironsteam',
+          text: 'A steam-powered brawler who never takes a step back. Word of the journey has spread, and this rival wants to end it.'
+        },
+        s5: {
+          name: 'Nysa Goldbow',
+          text: 'An archer of the bronze age with a golden bow. Word of the journey has spread, and this rival wants to end it.'
+        },
+        s6: {
+          name: 'Vex Nightwire',
+          text: 'A neon huntress who hacks her prey before she shoots. Word of the journey has spread, and this rival wants to end it.'
+        },
+        s7: {
+          name: 'Aldric Dawnkeeper',
+          text: 'A paladin of the Arcane Order who heals as hard as he hits. Vorhal, the Last Hour sent this champion to stop the march before the final battle.'
+        },
         s8: {
-          name: 'The golden huntress',
-          text: 'A Greek huntress is guarding the bell tower. Someone told her it was a temple.'
+          name: 'Ooma Bonewhisper',
+          text: 'A shaman of the first tribes who speaks with the bones of the ancestors. Vorhal, the Last Hour sent this champion to stop the march before the final battle.'
         },
         s9: {
-          name: 'The blade of lightning',
-          text: 'A warrior from the future thinks the bell can be cut down. Vorhal has other plans for her.'
+          name: 'Ada Copperwick',
+          text: 'An inventor from the steam era whose machines run on stolen seconds. Vorhal, the Last Hour sent this champion to stop the march before the final battle.'
         },
         s10: {
           name: 'Vorhal, the Last Hour',

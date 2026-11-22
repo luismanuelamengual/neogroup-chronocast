@@ -4,24 +4,24 @@ import { damage, discardSize, heal, reviveFromDiscard } from '@/app/(protected)/
 export default defineCard({
   id: 'xulthar-the-devourer',
   type: 'hero',
-  boss: true,
   name: "Xul'thar the Devourer",
-  text: 'Consume (3): deal 10 damage to an enemy slot and your hero heals 8. At the start of each phase, if your discard pile has 10 or more cards, a random ally of your discard pile returns to play.',
+  text: 'Consume (3): deal 5 acid damage to an enemy slot and your hero heals 4. At the start of each phase, if your discard pile has 10 or more cards, a random ally of your discard pile returns to play.',
   flavor: 'It ate the last star. It is still hungry.',
   faction: 'void',
   heroClass: 'mystic',
   restriction: { kind: 'hero', heroId: 'xulthar-the-devourer' },
   rarity: 'legendary',
+  element: 'acid',
   cost: 0,
   health: 60,
   ability: {
     name: 'Consume',
-    text: 'Deal 10 damage to an enemy slot and your hero heals 8.',
+    text: 'Deal 5 acid damage to an enemy slot and your hero heals 4.',
     cost: 3,
     targets: ['enemySlot'],
     activate(ctx) {
-      damage(ctx, ctx.targets[0], 10)
-      heal(ctx, { player: ctx.owner, slot: 'hero' }, 8)
+      damage(ctx, ctx.targets[0], 5)
+      heal(ctx, { player: ctx.owner, slot: 'hero' }, 4)
     }
   },
   onPhaseStart(ctx) {

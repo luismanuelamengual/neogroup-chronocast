@@ -5,21 +5,22 @@ export default defineCard({
   id: 'ilyra-starweaver',
   type: 'hero',
   name: 'Ilyra Starweaver',
-  text: 'Arcane Bolt (2): deal 12 damage to an enemy slot.',
+  text: 'Arcane Bolt (2): deal 6 arcane damage to an enemy slot.',
   flavor: 'She reads the future in the constellations, then rewrites it.',
   faction: 'arcane',
   heroClass: 'mage',
   restriction: { kind: 'hero', heroId: 'ilyra-starweaver' },
   rarity: 'common',
+  element: 'arcane',
   cost: 0,
-  health: 50,
+  health: 60,
   ability: {
     name: 'Arcane Bolt',
-    text: 'Deal 12 damage to an enemy slot.',
+    text: 'Deal 6 arcane damage to an enemy slot.',
     cost: 2,
     targets: ['enemySlot'],
     activate(ctx) {
-      damage(ctx, ctx.targets[0], 12)
+      damage(ctx, ctx.targets[0], 6)
     }
   },
   ai: { value: 0 },

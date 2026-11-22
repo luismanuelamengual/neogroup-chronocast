@@ -4,19 +4,19 @@ import { alliesOf, buff, damageAllAllies } from '@/app/(protected)/(engine)/effe
 export default defineCard({
   id: 'caelus-the-usurper',
   type: 'hero',
-  boss: true,
   name: 'Caelus the Usurper',
-  text: 'Decimate (4): deal 2 damage to every enemy ally. At the start of each phase, your allies gain +1 attack.',
+  text: 'Decimate (4): deal 2 light damage to every enemy ally. At the start of each phase, your allies gain +1 attack.',
   flavor: 'He stole a crown from a Rome that never was, and wants the real one.',
   faction: 'bronze',
   heroClass: 'warrior',
   restriction: { kind: 'hero', heroId: 'caelus-the-usurper' },
   rarity: 'legendary',
+  element: 'light',
   cost: 0,
-  health: 48,
+  health: 53,
   ability: {
     name: 'Decimate',
-    text: 'Deal 2 damage to every enemy ally.',
+    text: 'Deal 2 light damage to every enemy ally.',
     cost: 4,
     activate(ctx) {
       damageAllAllies(ctx, ctx.opponent, 2)

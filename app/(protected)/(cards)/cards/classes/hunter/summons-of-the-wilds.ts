@@ -1,0 +1,21 @@
+import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { summonCard } from '@/app/(protected)/(engine)/effects'
+
+export default defineCard({
+  id: 'summons-of-the-wilds',
+  type: 'ability',
+  name: 'Summons of the Wilds',
+  text: 'Summon a Sabertooth Cub.',
+  faction: 'neutral',
+  restriction: { kind: 'class', heroClass: 'hunter' },
+  rarity: 'rare',
+  price: 510,
+  cost: 2,
+  onPlay(ctx) {
+    summonCard(ctx, ctx.owner, 'sabertooth-cub')
+  },
+  ai: { value: 3, tags: ['summon'] },
+  art: {
+    subject: 'Summons of the Wilds: a glowing portal with a creature stepping through, hunter style'
+  }
+})

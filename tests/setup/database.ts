@@ -1,11 +1,6 @@
 /* eslint-disable */
 import { DB } from '@neogroup/neorm'
-import baseTables from '@/database/migrations/001-create-base-tables'
-import collectionTables from '@/database/migrations/002-create-collection-tables'
-import shopTables from '@/database/migrations/003-create-shop-tables'
-import matchTables from '@/database/migrations/004-create-match-tables'
-import campaignTables from '@/database/migrations/005-create-campaign-tables'
-import activeDeck from '@/database/migrations/006-add-active-deck'
+import createTables from '@/database/migrations/001-create-tables'
 
 const TABLES = [
   'campaign_progress',
@@ -25,12 +20,7 @@ export async function resetDatabase(): Promise<void> {
     await DB.execute(`DROP TABLE IF EXISTS "${table}"`)
   }
 
-  await baseTables.up()
-  await collectionTables.up()
-  await shopTables.up()
-  await matchTables.up()
-  await campaignTables.up()
-  await activeDeck.up()
+  await createTables.up()
 }
 
 /** Inserts a verified user and returns its id. */

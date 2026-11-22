@@ -13,7 +13,7 @@ export const ALL_CARDS: CardDefinition[] = CARD_FILES.map(({ card }) => card)
 registerCards(ALL_CARDS)
 
 /** The cards players can own: everything but the campaign bosses and their cards, and the retired types. */
-export const CARDS: CardDefinition[] = ALL_CARDS.filter((card) => !card.boss && !isRetired(card))
+export const CARDS: CardDefinition[] = ALL_CARDS.filter((card) => !card.boss && !card.token && !isRetired(card))
 
 export const HEROES: CardDefinition[] = CARDS.filter((card) => card.type === 'hero')
 

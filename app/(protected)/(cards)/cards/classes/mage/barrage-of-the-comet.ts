@@ -1,0 +1,23 @@
+import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { damage } from '@/app/(protected)/(engine)/effects'
+
+export default defineCard({
+  id: 'barrage-of-the-comet',
+  type: 'ability',
+  name: 'Barrage of the Comet',
+  text: 'Deal 8 arcane damage to an enemy slot.',
+  faction: 'neutral',
+  restriction: { kind: 'class', heroClass: 'mage' },
+  rarity: 'common',
+  element: 'arcane',
+  price: 55,
+  cost: 3,
+  targets: ['enemySlot'],
+  onPlay(ctx) {
+    damage(ctx, ctx.targets[0], 8)
+  },
+  ai: { value: 3, tags: ['removal'] },
+  art: {
+    subject: 'Barrage of the Comet: a crackling bolt of energy striking a lone target, mage style'
+  }
+})

@@ -1,3 +1,4 @@
+import { Element } from '@/app/(protected)/(engine)/models/Element'
 import { PlannedAction } from '@/app/(protected)/(engine)/models/PlannedAction'
 import { PlayerId } from '@/app/(protected)/(engine)/models/PlayerId'
 import { SlotRef } from '@/app/(protected)/(engine)/models/SlotRef'
@@ -61,7 +62,7 @@ export type MatchEvent =
   | { type: 'trapTriggered'; player: PlayerId; cardId: string }
   | { type: 'attack'; attacker: SlotRef; target: SlotRef }
   | { type: 'miss'; attacker: SlotRef; target: SlotRef }
-  | { type: 'damage'; target: SlotRef; amount: number; absorbed: number; status?: StatusKind }
+  | { type: 'damage'; target: SlotRef; amount: number; absorbed: number; status?: StatusKind; element?: Element }
   | { type: 'status'; target: SlotRef; status: StatusKind; amount: number }
   | { type: 'cleanse'; target: SlotRef }
   | { type: 'energy'; player: PlayerId; amount: number }

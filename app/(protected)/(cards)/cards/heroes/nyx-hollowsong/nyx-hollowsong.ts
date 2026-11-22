@@ -12,7 +12,7 @@ export default defineCard({
   restriction: { kind: 'hero', heroId: 'nyx-hollowsong' },
   rarity: 'rare',
   cost: 0,
-  health: 50,
+  health: 55,
   ability: {
     name: 'Call the Fallen',
     text: 'A random ally of your discard pile returns to play.',

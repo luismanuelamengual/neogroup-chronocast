@@ -1,0 +1,19 @@
+import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+
+export default defineCard({
+  id: 'armored-mace',
+  type: 'weapon',
+  name: 'Armored Mace',
+  text: '',
+  faction: 'neutral',
+  restriction: { kind: 'class', heroClass: 'warrior' },
+  rarity: 'common',
+  price: 70,
+  cost: 5,
+  attack: 6,
+  durability: 4,
+  ai: { value: 5 },
+  art: {
+    subject: 'Armored Mace: a single mace weapon floating in dramatic light, warrior style'
+  }
+})

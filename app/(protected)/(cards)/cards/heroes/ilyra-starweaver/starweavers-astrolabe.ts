@@ -6,8 +6,7 @@ export default defineCard({
   type: 'item',
   reward: true,
   name: "Starweaver's Astrolabe",
-  text: 'Draw 2 cards and gain 2 Chronos. Fast.',
-  flavor: 'It shows where every star was, and where it will be.',
+  text: 'Draw 2 cards and you gain 2 Chronos this phase.',
   faction: 'arcane',
   restriction: { kind: 'hero', heroId: 'ilyra-starweaver' },
   rarity: 'legendary',
@@ -18,6 +17,8 @@ export default defineCard({
     draw(ctx, ctx.owner, 2)
     gainChronos(ctx, ctx.owner, 2)
   },
-  ai: { value: 4, tags: ['draw'] },
-  art: { subject: 'an ornate silver astrolabe floating in the air, its rings spinning around a tiny shining star' }
+  ai: { value: 5, tags: ['draw', 'ramp'] },
+  art: {
+    subject: 'an ornate silver astrolabe floating in the air, its rings spinning around a tiny shining star'
+  }
 })

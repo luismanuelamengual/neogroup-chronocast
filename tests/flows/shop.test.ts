@@ -96,7 +96,7 @@ describe('the shop', () => {
 
     await expect(buyCard(ana, UNCOMMON.id)).rejects.toMatchObject({ messageKey: 'errors.rarityLocked' })
     await expect(buyCard(ana, VARRO)).rejects.toMatchObject({ messageKey: 'errors.notEnoughGold' })
-    await expect(buyCard(ana, 'queen-static')).rejects.toMatchObject({ messageKey: 'errors.cardNotForSale' })
+    await expect(buyCard(ana, 'hoplite-conscript')).rejects.toMatchObject({ messageKey: 'errors.cardNotForSale' })
     await expect(buyCard(ana, COMMON.id, 0)).rejects.toMatchObject({ messageKey: 'errors.invalidCount' })
 
     await unlockRarity(ana, 'uncommon')
@@ -124,7 +124,7 @@ describe('the shop', () => {
     )!
 
     await expect(buyCard(ana, other.id, 2)).rejects.toMatchObject({ messageKey: 'errors.heroOwned' })
-    await expect(buyCard(ana, 'queen-static')).rejects.toMatchObject({ messageKey: 'errors.cardNotForSale' })
+    await expect(buyCard(ana, 'hoplite-conscript')).rejects.toMatchObject({ messageKey: 'errors.cardNotForSale' })
     state = await getShopState(ana)
     expect(state.gold).toBe(price * 2)
   })

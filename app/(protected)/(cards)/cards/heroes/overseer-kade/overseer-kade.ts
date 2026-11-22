@@ -4,20 +4,19 @@ import { gainArmor, stunAt } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'overseer-kade',
   type: 'hero',
-  boss: true,
   name: 'Overseer Kade',
-  text: 'Lockdown (3): stun an enemy ally for two phases. At the start of each phase, your hero gains 2 armor.',
+  text: 'Lockdown (4): stun an enemy ally for two phases. At the start of each phase, your hero gains 2 armor.',
   flavor: 'He sees every camera in the megacity. All at once.',
   faction: 'neon',
   heroClass: 'warrior',
   restriction: { kind: 'hero', heroId: 'overseer-kade' },
   rarity: 'legendary',
   cost: 0,
-  health: 58,
+  health: 63,
   ability: {
     name: 'Lockdown',
     text: 'Stun an enemy ally for two phases.',
-    cost: 3,
+    cost: 4,
     targets: ['enemyAlly'],
     activate(ctx) {
       stunAt(ctx, ctx.targets[0], 1)

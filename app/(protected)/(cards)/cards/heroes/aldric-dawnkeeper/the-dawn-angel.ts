@@ -1,25 +1,27 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { heal, reviveFromDiscard } from '@/app/(protected)/(engine)/effects'
+import { healHero, reviveFromDiscard } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'the-dawn-angel',
   type: 'ally',
   reward: true,
   name: 'The Dawn Angel',
-  text: 'On enter: your hero heals 15 and a random ally of your discard pile returns to play.',
-  flavor: 'She appears once in a thousand years, at the first light.',
+  text: 'When it enters: your hero heals 8 and a random ally of your discard pile returns to play.',
   faction: 'arcane',
   restriction: { kind: 'hero', heroId: 'aldric-dawnkeeper' },
   rarity: 'legendary',
+  resist: ['arcane'],
+  weak: ['shadow'],
   cost: 6,
-  attack: 20,
-  health: 24,
+  tribe: 'fae',
   keywords: ['flying', 'shield', 'unique'],
+  attack: 7,
+  health: 13,
   onEnter(ctx) {
-    heal(ctx, { player: ctx.owner, slot: 'hero' }, 15)
+    healHero(ctx, 8)
     reviveFromDiscard(ctx, ctx.owner)
   },
-  ai: { value: 8, tags: ['heal', 'revive', 'defense'] },
+  ai: { value: 5, tags: ['heal', 'revive'] },
   art: {
     subject: 'a radiant angel with golden wings descending from the clouds at dawn, holding a sword of light'
   }

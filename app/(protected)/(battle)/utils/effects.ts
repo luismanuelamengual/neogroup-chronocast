@@ -1,3 +1,4 @@
+import { ELEMENT_ICONS } from '@/app/(protected)/(battle)/utils/icons'
 import { MatchEvent } from '@/app/(protected)/(engine)/models/MatchEvent'
 import { SlotRef } from '@/app/(protected)/(engine)/models/SlotRef'
 import { Translator } from '@/app/i18n/translate'
@@ -60,7 +61,10 @@ export function slotEffects(events: MatchEvent[], t: Translator): Map<string, Sl
         }
 
         if (event.amount > 0) {
-          of(event.target).floats.push({ text: `-${event.amount}`, tone: 'damage' })
+          of(event.target).floats.push({
+            text: `-${event.amount}${event.element ? ` ${ELEMENT_ICONS[event.element]}` : ''}`,
+            tone: 'damage'
+          })
           of(event.target).hit = true
         }
 

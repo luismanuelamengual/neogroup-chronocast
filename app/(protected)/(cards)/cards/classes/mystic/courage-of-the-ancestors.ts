@@ -1,0 +1,22 @@
+import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { buffAt } from '@/app/(protected)/(engine)/effects'
+
+export default defineCard({
+  id: 'courage-of-the-ancestors',
+  type: 'ability',
+  name: 'Courage of the Ancestors',
+  text: 'An ally of yours gains +3 attack and +4 health.',
+  faction: 'neutral',
+  restriction: { kind: 'class', heroClass: 'mystic' },
+  rarity: 'common',
+  price: 50,
+  cost: 2,
+  targets: ['friendlyAlly'],
+  onPlay(ctx) {
+    buffAt(ctx, ctx.targets[0], 3, 4)
+  },
+  ai: { value: 2, tags: ['buff'] },
+  art: {
+    subject: 'Courage of the Ancestors: a warrior surrounded by a surging aura of power, mystic healer style'
+  }
+})

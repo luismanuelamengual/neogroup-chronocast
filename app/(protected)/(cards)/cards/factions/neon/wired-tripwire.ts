@@ -1,0 +1,25 @@
+import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { freeze } from '@/app/(protected)/(engine)/effects'
+
+export default defineCard({
+  id: 'wired-tripwire',
+  type: 'trap',
+  name: 'Wired Tripwire',
+  text: 'When an enemy ally is summoned: freeze it.',
+  faction: 'neon',
+  restriction: { kind: 'faction', faction: 'neon' },
+  rarity: 'common',
+  price: 65,
+  cost: 4,
+  speed: 'instant',
+  trigger: 'enemySummon',
+  onTrigger(ctx, event) {
+    if (event.unit) {
+      freeze(ctx, event.unit)
+    }
+  },
+  ai: { value: 4, tags: ['trap'] },
+  art: {
+    subject: 'Wired Tripwire: a hidden tripwire about to spring, neon cyberpunk future style'
+  }
+})

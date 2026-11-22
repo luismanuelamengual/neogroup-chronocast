@@ -1,0 +1,25 @@
+import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { healHero } from '@/app/(protected)/(engine)/effects'
+
+export default defineCard({
+  id: 'young-tyrant',
+  type: 'ally',
+  name: 'Young Tyrant',
+  text: 'When it attacks: your hero heals 2.',
+  faction: 'primal',
+  restriction: { kind: 'faction', faction: 'primal' },
+  rarity: 'common',
+  weak: ['ice'],
+  price: 40,
+  cost: 1,
+  tribe: 'saurian',
+  attack: 3,
+  health: 3,
+  onAttack(ctx) {
+    healHero(ctx, 2)
+  },
+  ai: { value: 1, tags: ['aggro', 'heal'] },
+  art: {
+    subject: 'a dinosaur, the young tyrant, roaring, prehistoric jungle era style'
+  }
+})

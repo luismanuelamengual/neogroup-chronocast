@@ -1,0 +1,23 @@
+import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { healHero } from '@/app/(protected)/(engine)/effects'
+
+export default defineCard({
+  id: 'javelin-of-the-wilds',
+  type: 'weapon',
+  name: 'Javelin of the Wilds',
+  text: 'When it is equipped: your hero heals 4.',
+  faction: 'neutral',
+  restriction: { kind: 'class', heroClass: 'hunter' },
+  rarity: 'uncommon',
+  price: 155,
+  cost: 2,
+  attack: 3,
+  durability: 2,
+  onPlay(ctx) {
+    healHero(ctx, 4)
+  },
+  ai: { value: 2 },
+  art: {
+    subject: 'Javelin of the Wilds: a single javelin weapon floating in dramatic light, hunter style'
+  }
+})

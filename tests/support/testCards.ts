@@ -56,6 +56,9 @@ export const TEST_CARDS: CardDefinition[] = [
   ally('test-cleaver', 10, 30, ['cleave']),
   ally('test-ghost', 4, 4, ['resurge']),
   ally('test-agile', 4, 10, ['agile']),
+  ally('test-drake', 5, 20, [], { resist: ['fire'], weak: ['ice'] }),
+  ally('test-undead', 5, 20, [], { tribe: 'undead' }),
+  ally('test-pyro', 6, 20, [], { element: 'fire' }),
   ally('test-caster', 3, 20, [], {
     ability: {
       name: 'Test Bolt',

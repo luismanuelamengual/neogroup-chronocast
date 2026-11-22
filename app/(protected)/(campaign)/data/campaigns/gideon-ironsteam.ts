@@ -8,34 +8,18 @@ export default defineCampaign({
   heroId: 'gideon-ironsteam',
   rewardCardId: 'ironsteam-exosuit',
   stages: [
-    { rival: 'ada-copperwick' },
+    { rival: 'ilyra-starweaver' },
     { rival: 'legate-varro' },
-    { rival: 'vex-nightwire', cpuSetup: { extraHealth: 5 } },
     { rival: 'kora-wildfang', cpuSetup: { extraHealth: 5 } },
-    { rival: 'ada-copperwick', cpuSetup: { allies: ['cog-apprentice'] } },
-    { rival: 'ryn-voltblade', cpuSetup: { allies: ['neon-blade'] } },
-    { rival: 'legate-varro', cpuSetup: { allies: ['legion-slinger'] } },
-    { rival: 'malachar-the-unmade', cpuSetup: { extraHealth: 5 } },
-    { rival: 'ilyra-starweaver', cpuSetup: { weapon: 'staff-of-embers' }, playerSetup: { handSize: 6 } },
+    { rival: 'nysa-goldbow', cpuSetup: { extraHealth: 5 } },
+    { rival: 'nyx-hollowsong', cpuSetup: { allies: ['bone-knight-of-the-void'] } },
+    { rival: 'vex-nightwire', cpuSetup: { allies: ['cyber-hound-of-the-grid'] } },
+    { rival: 'ada-copperwick', cpuSetup: { allies: ['brass-steam-knight'] } },
+    { rival: 'ryn-voltblade', cpuSetup: { extraHealth: 5 } },
+    { rival: 'ooma-bonewhisper', cpuSetup: { weapon: 'lantern-staff-of-renewal' }, playerSetup: { handSize: 6 } },
     {
       rival: 'chancellor-brassmaw',
-      deck: [
-        ['brass-enforcer', 4],
-        ['tax-automaton', 4],
-        ['cog-apprentice', 3],
-        ['gear-drone', 3],
-        ['automaton-duelist', 3],
-        ['clocktower-watchman', 2],
-        ['perpetual-engine', 3],
-        ['master-artificer', 2],
-        ['brass-behemoth', 3],
-        ['clockwork-dragon', 2],
-        ['overclock', 3],
-        ['steam-blast', 3],
-        ['apprentice-wand', 2],
-        ['silk-robe', 2]
-      ],
-      cpuSetup: { allies: ['brass-enforcer'] }
+      cpuSetup: { allies: ['brass-steam-knight'] }
     }
   ]
 })

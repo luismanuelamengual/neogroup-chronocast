@@ -1,0 +1,26 @@
+import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { healHero, isTribe } from '@/app/(protected)/(engine)/effects'
+
+export default defineCard({
+  id: 'bodyguard-of-the-vanguard',
+  type: 'ally',
+  name: 'Bodyguard of the Vanguard',
+  text: 'When another Enforcer of yours enters: your hero heals 2.',
+  faction: 'neutral',
+  restriction: { kind: 'class', heroClass: 'warrior' },
+  rarity: 'rare',
+  price: 630,
+  cost: 4,
+  tribe: 'enforcer',
+  attack: 4,
+  health: 12,
+  onAllyEnter(ctx, ally) {
+    if (isTribe(ally, 'enforcer')) {
+      healHero(ctx, 2)
+    }
+  },
+  ai: { value: 5, tags: ['heal'] },
+  art: {
+    subject: 'a cyberpunk street criminal, the bodyguard of the vanguard, lunging forward, warrior style'
+  }
+})

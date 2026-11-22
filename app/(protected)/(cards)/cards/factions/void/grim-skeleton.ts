@@ -1,0 +1,25 @@
+import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { healHero } from '@/app/(protected)/(engine)/effects'
+
+export default defineCard({
+  id: 'grim-skeleton',
+  type: 'ally',
+  name: 'Grim Skeleton',
+  text: 'When it attacks: your hero heals 3.',
+  faction: 'void',
+  restriction: { kind: 'faction', faction: 'void' },
+  rarity: 'rare',
+  resist: ['shadow', 'ice'],
+  price: 690,
+  cost: 5,
+  tribe: 'undead',
+  attack: 7,
+  health: 9,
+  onAttack(ctx) {
+    healHero(ctx, 3)
+  },
+  ai: { value: 6, tags: ['heal'] },
+  art: {
+    subject: 'an undead creature, the grim skeleton, charging into battle, dark end-of-time void style'
+  }
+})

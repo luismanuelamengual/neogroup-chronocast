@@ -1,0 +1,27 @@
+import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { damageRandomAlly } from '@/app/(protected)/(engine)/effects'
+
+export default defineCard({
+  id: 'stone-golem-of-lightning',
+  type: 'ally',
+  name: 'Stone Golem of Lightning',
+  text: 'When it enters: deal 7 earth damage to a random enemy ally.',
+  faction: 'neutral',
+  restriction: { kind: 'class', heroClass: 'mage' },
+  rarity: 'rare',
+  element: 'earth',
+  resist: ['earth'],
+  weak: ['wind'],
+  price: 750,
+  cost: 6,
+  tribe: 'elemental',
+  attack: 7,
+  health: 14,
+  onEnter(ctx) {
+    damageRandomAlly(ctx, ctx.opponent, 7)
+  },
+  ai: { value: 7, tags: ['removal'] },
+  art: {
+    subject: 'an elemental spirit, the stone golem of lightning, lunging forward, mage style'
+  }
+})

@@ -5,21 +5,21 @@ export default defineCard({
   id: 'ada-copperwick',
   type: 'hero',
   name: 'Ada Copperwick',
-  text: 'Tinker (2): an ally of yours gains +4 attack and +4 health. When another ally of yours enters, it gains +1 attack.',
+  text: 'Tinker (2): an ally of yours gains +2 attack and +2 health. When another ally of yours enters, it gains +1 attack.',
   flavor: 'Magic is just engineering nobody has explained yet.',
   faction: 'clockwork',
   heroClass: 'mage',
   restriction: { kind: 'hero', heroId: 'ada-copperwick' },
   rarity: 'epic',
   cost: 0,
-  health: 53,
+  health: 58,
   ability: {
     name: 'Tinker',
-    text: 'An ally of yours gains +4 attack and +4 health.',
+    text: 'An ally of yours gains +2 attack and +2 health.',
     cost: 2,
     targets: ['friendlyAlly'],
     activate(ctx) {
-      buffAt(ctx, ctx.targets[0], 4, 4)
+      buffAt(ctx, ctx.targets[0], 2, 2)
     }
   },
   onAllyEnter(ctx, ally) {

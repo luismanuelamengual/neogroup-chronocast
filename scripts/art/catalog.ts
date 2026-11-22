@@ -17,7 +17,9 @@ import { FACTION_STYLES } from '@/scripts/art/factions'
 
 export const BASE_PROMPT =
   'Collectible card game illustration, painted cartoon style, very vivid and saturated colors, high contrast, ' +
-  'clean thick outlines, dramatic lighting, background with depth, vertical framing, no text, no frame, no watermark'
+  'clean thick outlines, dramatic lighting, one clear main subject in sharp focus filling most of the frame, ' +
+  'simple soft-focus background with few objects, muted and darker than the subject, ' +
+  'vertical framing, no text, no frame, no watermark'
 
 export const CARD_SIZE = { width: 1024, height: 1280 }
 

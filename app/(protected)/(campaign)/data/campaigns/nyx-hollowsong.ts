@@ -8,33 +8,17 @@ export default defineCampaign({
   heroId: 'nyx-hollowsong',
   rewardCardId: 'echo-the-spirit-crow',
   stages: [
-    { rival: 'malachar-the-unmade' },
-    { rival: 'aldric-dawnkeeper' },
+    { rival: 'legate-varro' },
+    { rival: 'kora-wildfang' },
+    { rival: 'ilyra-starweaver', cpuSetup: { extraHealth: 5 } },
+    { rival: 'gideon-ironsteam', cpuSetup: { extraHealth: 5 } },
+    { rival: 'nysa-goldbow', cpuSetup: { allies: ['loyal-charioteer'] } },
+    { rival: 'vex-nightwire', cpuSetup: { allies: ['cyber-hound-of-the-grid'] } },
+    { rival: 'aldric-dawnkeeper', cpuSetup: { allies: ['moonlit-battlemage'] } },
     { rival: 'ooma-bonewhisper', cpuSetup: { extraHealth: 5 } },
-    { rival: 'vex-nightwire', cpuSetup: { extraHealth: 5 } },
-    { rival: 'malachar-the-unmade', cpuSetup: { allies: ['bone-crawler'] } },
-    { rival: 'kora-wildfang', cpuSetup: { allies: ['cave-scout'] } },
-    { rival: 'aldric-dawnkeeper', cpuSetup: { allies: ['rune-sprite'] } },
-    { rival: 'nysa-goldbow', cpuSetup: { extraHealth: 5 } },
-    { rival: 'ryn-voltblade', cpuSetup: { weapon: 'war-axe' }, playerSetup: { handSize: 6 } },
+    { rival: 'ada-copperwick', cpuSetup: { weapon: 'frozen-wand' }, playerSetup: { handSize: 6 } },
     {
-      rival: 'vorhal-the-last-hour',
-      deck: [
-        ['final-toll', 4],
-        ['hour-wraith', 4],
-        ['grave-whisperer', 3],
-        ['pact-keeper', 3],
-        ['carrion-swarm', 3],
-        ['necro-scholar', 2],
-        ['soul-reaver', 3],
-        ['nightmare-steed', 2],
-        ['tomb-warden', 3],
-        ['devourer-of-light', 2],
-        ['dark-pact', 3],
-        ['soul-drain', 3],
-        ['apprentice-wand', 2],
-        ['silk-robe', 2]
-      ]
+      rival: 'vorhal-the-last-hour'
     }
   ]
 })

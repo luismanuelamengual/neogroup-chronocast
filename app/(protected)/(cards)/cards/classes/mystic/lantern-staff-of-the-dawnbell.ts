@@ -1,0 +1,25 @@
+import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { healHero } from '@/app/(protected)/(engine)/effects'
+
+export default defineCard({
+  id: 'lantern-staff-of-the-dawnbell',
+  type: 'weapon',
+  name: 'Lantern Staff of the Dawnbell',
+  text: 'When it is equipped: your hero heals 6.',
+  faction: 'neutral',
+  restriction: { kind: 'class', heroClass: 'mystic' },
+  rarity: 'uncommon',
+  price: 190,
+  cost: 4,
+  keywords: ['lifesteal'],
+  attack: 4,
+  durability: 3,
+  onPlay(ctx) {
+    healHero(ctx, 6)
+  },
+  ai: { value: 4 },
+  art: {
+    subject:
+      'Lantern Staff of the Dawnbell: a single lantern staff weapon floating in dramatic light, mystic healer style'
+  }
+})

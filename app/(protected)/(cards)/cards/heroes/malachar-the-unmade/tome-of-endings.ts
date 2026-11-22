@@ -6,19 +6,19 @@ export default defineCard({
   type: 'item',
   reward: true,
   name: 'Tome of Endings',
-  text: 'Deal 10 damage to every enemy ally, a random ally of your discard pile returns to play and draw 2 cards.',
-  flavor: 'Every story ends. This book knows how.',
+  text: 'Deal 5 shadow damage to every enemy ally, a random ally of your discard pile returns to play and draw 2 cards.',
   faction: 'void',
   restriction: { kind: 'hero', heroId: 'malachar-the-unmade' },
   rarity: 'mythic',
+  element: 'shadow',
   cost: 4,
   keywords: ['unique'],
   onPlay(ctx) {
-    damageAllAllies(ctx, ctx.opponent, 10)
+    damageAllAllies(ctx, ctx.opponent, 5)
     reviveFromDiscard(ctx, ctx.owner)
     draw(ctx, ctx.owner, 2)
   },
-  ai: { value: 7, tags: ['removal', 'revive', 'draw'] },
+  ai: { value: 7, tags: ['draw', 'removal', 'revive'] },
   art: {
     subject: 'an ancient black book with a cover made of void crystal, its pages showing the end of every era'
   }

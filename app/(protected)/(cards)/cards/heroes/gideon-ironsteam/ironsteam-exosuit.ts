@@ -6,14 +6,13 @@ export default defineCard({
   type: 'armor',
   reward: true,
   name: 'Ironsteam Exosuit',
-  text: 'At the start of each phase, gain 1 Chronos.',
-  flavor: 'Twelve boilers, eighty gears and one very angry man.',
+  text: 'At the start of each phase: you gain 1 Chronos this phase.',
   faction: 'clockwork',
   restriction: { kind: 'hero', heroId: 'gideon-ironsteam' },
   rarity: 'legendary',
   cost: 5,
-  armor: 36,
   keywords: ['unique'],
+  armor: 16,
   onPhaseStart(ctx) {
     gainChronos(ctx, ctx.owner, 1)
   },

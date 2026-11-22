@@ -7,19 +7,20 @@ export default defineCard({
   reward: true,
   name: 'Echo, the Spirit Crow',
   text: 'When it dies: a random ally of your discard pile returns to play.',
-  flavor: 'It has died nine times. It always comes back with someone.',
   faction: 'void',
   restriction: { kind: 'hero', heroId: 'nyx-hollowsong' },
   rarity: 'legendary',
+  resist: ['shadow', 'ice'],
   cost: 3,
-  attack: 10,
-  health: 9,
+  tribe: 'undead',
   keywords: ['flying', 'echo', 'unique'],
+  attack: 4,
+  health: 5,
   onDeath(ctx) {
     reviveFromDiscard(ctx, ctx.owner)
   },
   ai: { value: 5, tags: ['revive'] },
   art: {
-    subject: "a ghostly translucent crow with green glowing eyes perched on Nyx's shoulder"
+    subject: 'a ghostly translucent crow with green glowing eyes perched on a gravestone'
   }
 })

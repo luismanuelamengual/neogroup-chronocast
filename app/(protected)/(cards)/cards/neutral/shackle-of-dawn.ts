@@ -1,0 +1,23 @@
+import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { stunAt } from '@/app/(protected)/(engine)/effects'
+
+export default defineCard({
+  id: 'shackle-of-dawn',
+  type: 'ability',
+  name: 'Shackle of Dawn',
+  text: 'Stun an enemy ally. Fast.',
+  faction: 'neutral',
+  restriction: { kind: 'any' },
+  rarity: 'rare',
+  price: 510,
+  cost: 2,
+  speed: 'fast',
+  targets: ['enemyAlly'],
+  onPlay(ctx) {
+    stunAt(ctx, ctx.targets[0])
+  },
+  ai: { value: 3, tags: ['removal'] },
+  art: {
+    subject: 'Shackle of Dawn: glowing chains binding a struggling creature, time rift wanderer style'
+  }
+})

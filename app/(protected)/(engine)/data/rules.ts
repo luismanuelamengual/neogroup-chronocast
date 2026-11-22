@@ -40,8 +40,8 @@ export const FATIGUE_STEP = 5
 export const PHASE_LIMIT = 30
 
 /** Hero health range (validated in the catalog). */
-export const HERO_MIN_HEALTH = 45
-export const HERO_MAX_HEALTH = 60
+export const HERO_MIN_HEALTH = 50
+export const HERO_MAX_HEALTH = 65
 
 /** Deck size (the hero included), copies per card and copies of a card with the `unique` keyword. */
 export const MIN_DECK_SIZE = 40

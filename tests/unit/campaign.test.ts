@@ -65,8 +65,10 @@ describe('the campaigns', () => {
   const es = createTranslator('es')
   const en = createTranslator('en')
 
-  it('one per hero, with 10 battles, the boss last, and an exclusive card for the hero', () => {
-    expect(CAMPAIGNS.map((campaign) => campaign.heroId).sort()).toEqual(HEROES.map((hero) => hero.id).sort())
+  it('one per campaign hero, with 10 battles against 10 different heroes, the boss last, and an exclusive card for the hero', () => {
+    const heroIds = HEROES.map((hero) => hero.id)
+
+    expect(CAMPAIGNS.length).toBe(12)
 
     for (const campaign of CAMPAIGNS) {
       const reward = getCard(campaign.rewardCardId)
@@ -74,7 +76,12 @@ describe('the campaigns', () => {
       expect(campaign.stages).toHaveLength(STAGES_PER_CAMPAIGN)
       expect(reward.reward, reward.id).toBe(true)
       expect(reward.restriction).toEqual({ kind: 'hero', heroId: campaign.heroId })
-      expect(getCard(campaign.stages[STAGES_PER_CAMPAIGN - 1].rival).boss).toBe(true)
+      expect(heroIds, campaign.heroId).toContain(campaign.heroId)
+      expect(new Set(campaign.stages.map((stage) => stage.rival)).size, campaign.heroId).toBe(STAGES_PER_CAMPAIGN)
+      expect(
+        campaign.stages.map((stage) => stage.rival),
+        campaign.heroId
+      ).not.toContain(campaign.heroId)
       expect(campaign.stages.filter((stage) => stage.boss).map((stage) => stage.number)).toEqual([10])
     }
   })

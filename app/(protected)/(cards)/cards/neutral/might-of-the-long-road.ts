@@ -1,0 +1,23 @@
+import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { buffAt } from '@/app/(protected)/(engine)/effects'
+
+export default defineCard({
+  id: 'might-of-the-long-road',
+  type: 'ability',
+  name: 'Might of the Long Road',
+  text: 'An ally of yours gains +3 attack and +4 health. Instant.',
+  faction: 'neutral',
+  restriction: { kind: 'any' },
+  rarity: 'epic',
+  price: 1560,
+  cost: 2,
+  speed: 'instant',
+  targets: ['friendlyAlly'],
+  onPlay(ctx) {
+    buffAt(ctx, ctx.targets[0], 3, 4)
+  },
+  ai: { value: 3, tags: ['buff'] },
+  art: {
+    subject: 'Might of the Long Road: a warrior surrounded by a surging aura of power, time rift wanderer style'
+  }
+})

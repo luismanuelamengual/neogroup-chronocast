@@ -14,11 +14,11 @@ describe('canUseCard', () => {
   const varro = getCard(VARRO)
 
   it('follows the restriction of each card', () => {
-    expect(canUseCard(varro, getCard('time-wanderer'))).toBe(true) // any
-    expect(canUseCard(varro, getCard('bronze-legionary'))).toBe(true) // its faction
-    expect(canUseCard(varro, getCard('apprentice-mage'))).toBe(false) // another faction
-    expect(canUseCard(varro, getCard('iron-gladius'))).toBe(true) // its class
-    expect(canUseCard(varro, getCard('fireball'))).toBe(false) // another class
+    expect(canUseCard(varro, getCard('bold-gust'))).toBe(true) // any
+    expect(canUseCard(varro, getCard('laureled-dream-reader'))).toBe(true) // its faction
+    expect(canUseCard(varro, getCard('arcane-runecarver'))).toBe(false) // another faction
+    expect(canUseCard(varro, getCard('armored-mace'))).toBe(true) // its class
+    expect(canUseCard(varro, getCard('astral-bolt'))).toBe(false) // another class
     expect(canUseCard(varro, getCard('ilyra-starweaver'))).toBe(false) // a hero
   })
 })
@@ -42,22 +42,26 @@ describe('validateDeck', () => {
 
   it('allows at most 4 copies of a card', () => {
     const cards = [
-      ...legal.filter((cardId) => cardId !== 'chrono-golem'),
-      ...Array.from({ length: 5 }, () => 'chrono-golem')
+      ...legal.filter((cardId) => cardId !== 'lost-chrononaut'),
+      ...Array.from({ length: 5 }, () => 'lost-chrononaut')
     ]
 
-    expect(validateDeck(deckOf(cards))).toEqual([{ code: 'tooManyCopies', cardId: 'chrono-golem', count: 5, max: 4 }])
+    expect(validateDeck(deckOf(cards))).toEqual([
+      { code: 'tooManyCopies', cardId: 'lost-chrononaut', count: 5, max: 4 }
+    ])
   })
 
   it('rejects cards the hero cannot use, heroes inside the deck and unknown cards', () => {
-    const cards = [...legal.slice(3), 'fireball', 'kora-wildfang', 'no-such-card']
+    const cards = [...legal.slice(3), 'astral-bolt', 'kora-wildfang', 'no-such-card']
     const codes = validateDeck(deckOf(cards)).map((problem) => problem.code)
 
     expect(codes).toEqual(expect.arrayContaining(['restricted', 'heroInDeck', 'unknownCard']))
   })
 
   it('needs a hero as the hero of the deck', () => {
-    expect(validateDeck({ heroId: 'chrono-golem', cards: legal }).map((problem) => problem.code)).toContain('notAHero')
+    expect(validateDeck({ heroId: 'lost-chrononaut', cards: legal }).map((problem) => problem.code)).toContain(
+      'notAHero'
+    )
     expect(validateDeck({ heroId: 'nobody', cards: legal })).toEqual([{ code: 'unknownCard', cardId: 'nobody' }])
   })
 })

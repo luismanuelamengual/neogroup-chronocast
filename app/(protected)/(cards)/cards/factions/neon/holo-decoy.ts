@@ -3,19 +3,20 @@ import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
 export default defineCard({
   id: 'holo-decoy',
   type: 'ally',
+  token: true,
   name: 'Holo Decoy',
   text: '',
-  flavor: 'Hit it all you want. It is not really there.',
   faction: 'neon',
   restriction: { kind: 'faction', faction: 'neon' },
   rarity: 'common',
-  price: 45,
+  weak: ['lightning'],
   cost: 1,
-  attack: 3,
-  health: 8,
+  tribe: 'cyborg',
   keywords: ['guardian'],
-  ai: { value: 1, tags: ['defense'] },
+  attack: 0,
+  health: 6,
+  ai: { value: 1 },
   art: {
-    subject: 'a flickering cyan hologram of a soldier projected from a small floating drone'
+    subject: 'a flickering cyan hologram of a soldier, neon cyberpunk future style'
   }
 })

@@ -5,21 +5,21 @@ export default defineCard({
   id: 'legate-varro',
   type: 'hero',
   name: 'Legate Varro',
-  text: 'Fortify (2): your hero gains 10 armor. Instant.',
+  text: 'Fortify (1): your hero gains 5 armor. Instant.',
   flavor: 'He has held the line in more centuries than he can count.',
   faction: 'bronze',
   heroClass: 'warrior',
   restriction: { kind: 'hero', heroId: 'legate-varro' },
   rarity: 'common',
   cost: 0,
-  health: 55,
+  health: 65,
   ability: {
     name: 'Fortify',
-    text: 'Your hero gains 10 armor.',
-    cost: 2,
+    text: 'Your hero gains 5 armor.',
+    cost: 1,
     speed: 'instant',
     activate(ctx) {
-      gainArmor(ctx, ctx.owner, 10)
+      gainArmor(ctx, ctx.owner, 5)
     }
   },
   ai: { value: 0 },

@@ -4,23 +4,23 @@ import { damage } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'hollow-astronomer',
   type: 'hero',
-  boss: true,
   name: 'The Hollow Astronomer',
-  text: 'Collapse Star (3): deal 10 damage to an enemy slot. At the start of each phase, deal 2 damage to the enemy hero.',
+  text: 'Collapse Star (3): deal 5 arcane damage to an enemy slot. At the start of each phase, deal 2 arcane damage to the enemy hero.',
   flavor: 'He mapped every star, then started putting them out.',
   faction: 'arcane',
   heroClass: 'mage',
   restriction: { kind: 'hero', heroId: 'hollow-astronomer' },
   rarity: 'legendary',
+  element: 'arcane',
   cost: 0,
-  health: 55,
+  health: 60,
   ability: {
     name: 'Collapse Star',
-    text: 'Deal 10 damage to an enemy slot.',
+    text: 'Deal 5 arcane damage to an enemy slot.',
     cost: 3,
     targets: ['enemySlot'],
     activate(ctx) {
-      damage(ctx, ctx.targets[0], 10)
+      damage(ctx, ctx.targets[0], 5)
     }
   },
   onPhaseStart(ctx) {

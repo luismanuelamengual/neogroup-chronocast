@@ -6,19 +6,19 @@ export default defineCard({
   type: 'ally',
   reward: true,
   name: 'Old Tusk',
-  text: 'On enter: your allies heal 6.',
-  flavor: 'He carried the tribe across the ice. Twice.',
+  text: 'When it enters: your allies heal 3.',
   faction: 'primal',
   restriction: { kind: 'hero', heroId: 'ooma-bonewhisper' },
   rarity: 'rare',
   cost: 5,
-  attack: 16,
-  health: 22,
+  tribe: 'beast',
   keywords: ['guardian'],
+  attack: 5,
+  health: 13,
   onEnter(ctx) {
-    healAllAllies(ctx, ctx.owner, 6)
+    healAllAllies(ctx, ctx.owner, 3)
   },
-  ai: { value: 6, tags: ['heal', 'defense'] },
+  ai: { value: 5, tags: ['heal'] },
   art: {
     subject: 'an ancient woolly mammoth with broken tusks and tribal paint, children riding on its back'
   }

@@ -6,20 +6,20 @@ export default defineCard({
   type: 'ally',
   reward: true,
   name: 'Argos, the Silver Hound',
-  text: 'On enter: deal 4 damage to a random enemy ally.',
-  flavor: 'He waited twenty years for her. He would wait twenty more.',
+  text: 'When it enters: deal 3 wind damage to a random enemy ally.',
   faction: 'bronze',
   restriction: { kind: 'hero', heroId: 'nysa-goldbow' },
   rarity: 'rare',
+  element: 'wind',
   cost: 3,
-  attack: 12,
-  health: 9,
   keywords: ['quick'],
+  attack: 4,
+  health: 6,
   onEnter(ctx) {
-    damageRandomAlly(ctx, ctx.opponent, 4)
+    damageRandomAlly(ctx, ctx.opponent, 3)
   },
-  ai: { value: 4, tags: ['removal'] },
+  ai: { value: 5, tags: ['removal'] },
   art: {
-    subject: 'a sleek silver hound with a golden collar leaping beside Nysa in a sunny meadow'
+    subject: 'a sleek silver hound with a golden collar leaping through a sunny meadow'
   }
 })

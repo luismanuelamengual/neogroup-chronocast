@@ -1,0 +1,24 @@
+import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { gainArmor } from '@/app/(protected)/(engine)/effects'
+
+export default defineCard({
+  id: 'stalwart-street-samurai',
+  type: 'ally',
+  name: 'Stalwart Street Samurai',
+  text: 'When it enters: your hero gains 8 armor.',
+  faction: 'neutral',
+  restriction: { kind: 'class', heroClass: 'warrior' },
+  rarity: 'rare',
+  price: 750,
+  cost: 6,
+  tribe: 'enforcer',
+  attack: 9,
+  health: 11,
+  onEnter(ctx) {
+    gainArmor(ctx, ctx.owner, 8)
+  },
+  ai: { value: 7, tags: ['defense'] },
+  art: {
+    subject: 'a cyberpunk street criminal, the stalwart street samurai, mid-leap, warrior style'
+  }
+})

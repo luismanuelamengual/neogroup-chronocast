@@ -1,5 +1,6 @@
 import { CardType } from '@/app/(protected)/(engine)/models/CardType'
 import { EffectContext } from '@/app/(protected)/(engine)/models/EffectContext'
+import { Element } from '@/app/(protected)/(engine)/models/Element'
 import { Faction } from '@/app/(protected)/(engine)/models/Faction'
 import { HeroClass } from '@/app/(protected)/(engine)/models/HeroClass'
 import { Keyword } from '@/app/(protected)/(engine)/models/Keyword'
@@ -9,6 +10,7 @@ import { Restriction } from '@/app/(protected)/(engine)/models/Restriction'
 import { SlotRef } from '@/app/(protected)/(engine)/models/SlotRef'
 import { Speed } from '@/app/(protected)/(engine)/models/Speed'
 import { TargetKind } from '@/app/(protected)/(engine)/models/TargetKind'
+import { Tribe } from '@/app/(protected)/(engine)/models/Tribe'
 
 /**
  * An active ability: programmed as an action of the timeline, once per phase,
@@ -65,6 +67,16 @@ export interface CardDefinition {
   reward?: boolean
   /** A campaign boss or one of its cards: only the computer plays it (never in collections, packs or the shop). */
   boss?: boolean
+  /** A token: only other cards create it (never in collections, decks, packs or the shop). */
+  token?: boolean
+  /** Allies: the family it belongs to (other cards care about it). */
+  tribe?: Tribe
+  /** The element of all the damage it deals: its effects and, for allies and weapons, its attacks (none: physical). */
+  element?: Element
+  /** Allies and heroes: elements it takes half damage from. */
+  resist?: Element[]
+  /** Allies and heroes: elements it takes double damage from. */
+  weak?: Element[]
   /** Cost in Chronos (0 for heroes). */
   cost: number
   /** Speed of the action that plays it (traps and moves are instant; the rest normal by default). */

@@ -42,7 +42,7 @@ describe('the starter', () => {
   })
 
   it('can only be chosen once, and only among the starter heroes', async () => {
-    await expect(chooseStarter(ana, 'chrono-golem')).rejects.toMatchObject({ messageKey: 'errors.invalidHero' })
+    await expect(chooseStarter(ana, 'lost-chrononaut')).rejects.toMatchObject({ messageKey: 'errors.invalidHero' })
     await chooseStarter(ana, VARRO)
     await expect(chooseStarter(ana, 'kora-wildfang')).rejects.toMatchObject({
       messageKey: 'errors.starterAlreadyChosen'
@@ -63,10 +63,10 @@ describe('decks', () => {
   })
 
   it('saves an unfinished deck, which then cannot be played', async () => {
-    const deck = await saveDeck(ana, { name: '  Fast   bronze ', heroId: VARRO, cards: { 'arena-champion': 2 } })
+    const deck = await saveDeck(ana, { name: '  Fast   bronze ', heroId: VARRO, cards: { 'loyal-charioteer': 2 } })
 
     expect(deck.name).toBe('Fast bronze')
-    expect(deck.cards).toEqual({ 'arena-champion': 2 })
+    expect(deck.cards).toEqual({ 'loyal-charioteer': 2 })
     expect((await listDecks(ana)).find((summary) => summary.id === deck.id)).toMatchObject({
       size: 3,
       playable: false
@@ -80,7 +80,7 @@ describe('decks', () => {
 
     const starter = await getDeck(ana, starterId)
     const copy = await saveDeck(ana, { name: 'Copy', heroId: VARRO, cards: starter.cards })
-    const unfinished = await saveDeck(ana, { name: 'Half', heroId: VARRO, cards: { 'arena-champion': 2 } })
+    const unfinished = await saveDeck(ana, { name: 'Half', heroId: VARRO, cards: { 'loyal-charioteer': 2 } })
 
     // Marked, it stays active even if another deck is edited later.
     expect((await getActiveDeck(ana))?.id).toBe(starterId)
@@ -115,7 +115,7 @@ describe('decks', () => {
     const starter = await getDeck(ana, starterId)
 
     await expect(
-      saveDeck(ana, { name: 'Greedy', heroId: VARRO, cards: { ...starter.cards, 'arena-champion': 9 } })
+      saveDeck(ana, { name: 'Greedy', heroId: VARRO, cards: { ...starter.cards, 'loyal-charioteer': 9 } })
     ).rejects.toMatchObject({ messageKey: 'errors.cardsNotOwned' })
     await expect(saveDeck(ana, { name: 'Other', heroId: 'kora-wildfang', cards: {} })).rejects.toMatchObject({
       messageKey: 'errors.heroNotOwned'
@@ -142,12 +142,12 @@ describe('decks', () => {
   })
 
   it('adds copies to the collection', async () => {
-    await addCards(ana, { 'chrono-golem': 2, fireball: 1 })
+    await addCards(ana, { 'lost-chrononaut': 2, 'astral-bolt': 1 })
 
     const collection = await getCollection(ana)
 
-    expect(collection.fireball).toBe(1)
-    expect(collection['chrono-golem']).toBe((countCards(starterDeck(VARRO).cards)['chrono-golem'] ?? 0) + 2)
+    expect(collection['astral-bolt']).toBe(1)
+    expect(collection['lost-chrononaut']).toBe((countCards(starterDeck(VARRO).cards)['lost-chrononaut'] ?? 0) + 2)
   })
 
   it('goes away with the account', async () => {

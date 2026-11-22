@@ -1,0 +1,28 @@
+import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { buffTribe, draw } from '@/app/(protected)/(engine)/effects'
+
+export default defineCard({
+  id: 'fixer-of-the-mainframe',
+  type: 'ally',
+  name: 'Fixer of the Mainframe',
+  text: 'When it enters: your other Enforcers gain +2 attack and +2 health. When it dies: draw a card.',
+  faction: 'neon',
+  restriction: { kind: 'faction', faction: 'neon' },
+  rarity: 'epic',
+  price: 2040,
+  cost: 5,
+  tribe: 'enforcer',
+  attack: 6,
+  health: 8,
+  onEnter(ctx) {
+    buffTribe(ctx, ctx.owner, 'enforcer', 2, 2, true)
+  },
+  onDeath(ctx) {
+    draw(ctx, ctx.owner, 1)
+  },
+  ai: { value: 6, tags: ['buff', 'draw', 'tribe'] },
+  art: {
+    subject:
+      'a cyberpunk street criminal, the fixer of the mainframe, crouching, ready to strike, neon cyberpunk future style'
+  }
+})

@@ -1,0 +1,27 @@
+import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { buffSelf, discardSize } from '@/app/(protected)/(engine)/effects'
+
+export default defineCard({
+  id: 'cursed-lich',
+  type: 'ally',
+  name: 'Cursed Lich',
+  text: 'When it enters: if your discard pile has 6 or more cards, it gains +2 attack and +2 health.',
+  faction: 'void',
+  restriction: { kind: 'faction', faction: 'void' },
+  rarity: 'common',
+  resist: ['shadow', 'ice'],
+  price: 55,
+  cost: 3,
+  tribe: 'undead',
+  attack: 4,
+  health: 8,
+  onEnter(ctx) {
+    if (discardSize(ctx, ctx.owner) >= 6) {
+      buffSelf(ctx, 2, 2)
+    }
+  },
+  ai: { value: 3, tags: ['buff'] },
+  art: {
+    subject: 'an undead creature, the cursed lich, lunging forward, dark end-of-time void style'
+  }
+})

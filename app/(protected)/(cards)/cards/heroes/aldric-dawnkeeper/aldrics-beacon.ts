@@ -1,0 +1,23 @@
+import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { healAllAllies, healHero } from '@/app/(protected)/(engine)/effects'
+
+export default defineCard({
+  id: 'aldrics-beacon',
+  type: 'artifact',
+  name: "Aldric's Beacon",
+  text: 'At the start of each phase: your hero heals 3 and your allies heal 2.',
+  faction: 'arcane',
+  restriction: { kind: 'hero', heroId: 'aldric-dawnkeeper' },
+  rarity: 'epic',
+  price: 1720,
+  cost: 3,
+  keywords: ['unique'],
+  onPhaseStart(ctx) {
+    healHero(ctx, 3)
+    healAllAllies(ctx, ctx.owner, 2)
+  },
+  ai: { value: 5 },
+  art: {
+    subject: "Aldric's Beacon: a sacred relic of the hero glowing on an altar, medieval magic order style"
+  }
+})

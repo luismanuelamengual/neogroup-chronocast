@@ -1,0 +1,23 @@
+import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { returnAt } from '@/app/(protected)/(engine)/effects'
+
+export default defineCard({
+  id: 'hex-of-the-enchanted-wood',
+  type: 'ability',
+  name: 'Hex of the Enchanted Wood',
+  text: "Return an enemy ally to its owner's hand. Fast.",
+  faction: 'arcane',
+  restriction: { kind: 'faction', faction: 'arcane' },
+  rarity: 'uncommon',
+  price: 155,
+  cost: 2,
+  speed: 'fast',
+  targets: ['enemyAlly'],
+  onPlay(ctx) {
+    returnAt(ctx, ctx.targets[0])
+  },
+  ai: { value: 2, tags: ['removal'] },
+  art: {
+    subject: 'Hex of the Enchanted Wood: glowing chains binding a struggling creature, medieval magic order style'
+  }
+})

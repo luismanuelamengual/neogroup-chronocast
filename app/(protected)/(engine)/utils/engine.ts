@@ -9,6 +9,13 @@ import {
 } from '@/app/(protected)/(engine)/data/rules'
 import { CardDefinition, TrapEvent, TrapTrigger } from '@/app/(protected)/(engine)/models/CardDefinition'
 import { EffectContext } from '@/app/(protected)/(engine)/models/EffectContext'
+import {
+  EARTH_STUN_MAX_ATTACK,
+  Element,
+  FIRE_BURN,
+  FIRE_BURN_PHASES,
+  TIME_DRAIN_MIN_DAMAGE
+} from '@/app/(protected)/(engine)/models/Element'
 import { Keyword } from '@/app/(protected)/(engine)/models/Keyword'
 import { MatchEvent, StatusKind } from '@/app/(protected)/(engine)/models/MatchEvent'
 import { Afflictions, CardInstance, MatchState, PlayerState, Unit } from '@/app/(protected)/(engine)/models/MatchState'
@@ -24,6 +31,10 @@ export interface DamageSource {
   lifesteal?: boolean
   /** Damage of poison or a burn: it goes past shields and armor. */
   status?: StatusKind
+  /** Its element (none: physical). */
+  element?: Element
+  /** The jump of a lightning damage (it doesn't jump again). */
+  chained?: boolean
 }
 
 type PendingDamage =
@@ -222,15 +233,17 @@ export class MatchEngine {
 
       for (const hit of batch) {
         if (hit.kind === 'hero') {
-          const amount = this.modifiedDamage({ player: hit.player, slot: 'hero' }, hit.amount)
+          const ref: SlotRef = { player: hit.player, slot: 'hero' }
+          const amount = this.elementalDamage(ref, null, hit.amount, hit.source)
 
           if (amount <= 0) {
             continue
           }
 
-          const dealt = this.applyHeroDamage(hit.player, amount, hit.source?.status)
+          const dealt = this.applyHeroDamage(hit.player, amount, hit.source)
 
           this.applyLifesteal(hit.source, dealt)
+          this.afterElementalHit(ref, null, dealt, hit.source)
         } else {
           const found = this.findUnit(hit.uid)
 
@@ -240,24 +253,31 @@ export class MatchEngine {
 
           const { unit, player, slot } = found
           const ref = { player, slot }
+          const element = hit.source?.element
 
-          if (unit.shield && !hit.source?.status) {
+          if (element === 'earth' && this.hasKeyword(unit, 'flying')) {
+            this.emit({ type: 'damage', target: ref, amount: 0, absorbed: hit.amount, element })
+            continue
+          }
+
+          if (unit.shield && !hit.source?.status && element !== 'shadow') {
             unit.shield = false
             this.emit({ type: 'shieldBlock', target: ref })
             continue
           }
 
-          const modified = this.modifiedDamage(ref, hit.amount)
+          const modified = this.elementalDamage(ref, unit, hit.amount, hit.source)
           const amount = hit.source?.poison ? Math.max(hit.amount, unit.health) : modified
 
           if (amount <= 0) {
-            this.emit({ type: 'damage', target: ref, amount: 0, absorbed: hit.amount })
+            this.emit({ type: 'damage', target: ref, amount: 0, absorbed: hit.amount, element })
             continue
           }
 
           unit.health -= amount
-          this.emit({ type: 'damage', target: ref, amount, absorbed: 0, status: hit.source?.status })
+          this.emit({ type: 'damage', target: ref, amount, absorbed: 0, status: hit.source?.status, element })
           this.applyLifesteal(hit.source, hit.amount)
+          this.afterElementalHit(ref, unit, amount, hit.source)
           damaged.push({ uid: unit.uid, amount })
         }
       }
@@ -271,6 +291,123 @@ export class MatchEngine {
       }
 
       this.processDeaths()
+    }
+  }
+
+  /**
+   * A damage about to land on `target` (`unit` when it is an ally): the
+   * element's own multiplier, then resistances and vulnerabilities, then every
+   * `modifyDamage` in play (arcane damage skips the reductions). Never below 0.
+   */
+  private elementalDamage(target: SlotRef, unit: Unit | null, amount: number, source?: DamageSource): number {
+    const element = source?.element
+
+    if (!element || source?.status) {
+      return this.modifiedDamage(target, amount)
+    }
+
+    let result = amount
+    const definition = getCard(unit ? unit.cardId : this.player(target.player).hero.cardId)
+    const subject: Afflictions = unit ?? this.player(target.player).hero
+
+    if (element === 'ice' && this.isFrozen(subject)) {
+      result *= 2
+    } else if (element === 'light' && (definition.tribe === 'undead' || definition.tribe === 'horror')) {
+      result *= 2
+    } else if (element === 'wind' && unit && this.hasKeyword(unit, 'flying')) {
+      result *= 2
+    }
+
+    if (definition.weak?.includes(element)) {
+      result *= 2
+    }
+
+    if (element === 'arcane') {
+      return Math.max(0, Math.round(result))
+    }
+
+    if (definition.resist?.includes(element)) {
+      result = Math.ceil(result / 2)
+    }
+
+    return this.modifiedDamage(target, result)
+  }
+
+  /** The rule an element adds once its damage landed (`dealt` > 0) on `target`. */
+  private afterElementalHit(target: SlotRef, unit: Unit | null, dealt: number, source?: DamageSource): void {
+    const element = source?.element
+
+    if (!element || source?.status || dealt <= 0) {
+      return
+    }
+
+    switch (element) {
+      case 'fire':
+        this.afflict(target, 'burn', FIRE_BURN, FIRE_BURN_PHASES)
+        break
+      case 'acid':
+        this.afflict(target, 'poison', 1)
+        break
+      case 'lightning':
+        if (unit && !source.chained && typeof target.slot === 'number') {
+          const neighbors = [target.slot - 1, target.slot + 1]
+            .map((slot) => this.player(target.player).allies[slot])
+            .filter((other): other is Unit => !!other && other.health > 0)
+
+          if (neighbors.length > 0) {
+            const next = neighbors[Math.floor(this.random() * neighbors.length)]
+
+            this.damageUnit(next.uid, Math.max(1, Math.floor(dealt / 2)), {
+              ...source,
+              chained: true,
+              lifesteal: false
+            })
+          }
+        }
+
+        break
+      case 'light':
+        this.heal({ player: source.player, slot: 'hero' }, Math.ceil(dealt / 2))
+        break
+
+      case 'time': {
+        const subject = unit ?? this.player(target.player).hero
+
+        subject.maxHealth = Math.max(1, subject.maxHealth - dealt)
+
+        if (!unit && dealt >= TIME_DRAIN_MIN_DAMAGE) {
+          const side = this.player(target.player)
+
+          if (side.chronos > 0) {
+            side.chronos--
+            this.emit({ type: 'chronos', player: target.player, amount: -1 })
+          }
+        }
+
+        break
+      }
+
+      case 'earth':
+        if (unit && unit.health > 0 && this.attackOf(unit) <= EARTH_STUN_MAX_ATTACK) {
+          this.stun(unit.uid, 1)
+        }
+
+        break
+      case 'sonic':
+        if (unit) {
+          unit.keywords = unit.keywords.filter((keyword) => keyword !== 'stealth')
+        }
+
+        break
+      case 'water':
+        if (unit && unit.attack > 0) {
+          unit.attack--
+          this.emit({ type: 'buff', target, attack: -1, health: 0 })
+        }
+
+        break
+      default:
+        break
     }
   }
 
@@ -291,15 +428,23 @@ export class MatchEngine {
     return Math.max(0, Math.round(result))
   }
 
-  private applyHeroDamage(player: PlayerId, amount: number, status?: StatusKind): number {
+  private applyHeroDamage(player: PlayerId, amount: number, source?: DamageSource): number {
     const hero = this.player(player).hero
-    // Poison and burns go past the armor.
-    const absorbed = status ? 0 : Math.min(hero.armor, amount)
+    const status = source?.status
+    const element = source?.element
+    // Poison, burns and shadow damage go past the armor.
+    const absorbed = status || element === 'shadow' ? 0 : Math.min(hero.armor, amount)
     const rest = amount - absorbed
 
     hero.armor -= absorbed
+
+    // Acid breaks one more armor point.
+    if (element === 'acid' && !status && hero.armor > 0) {
+      hero.armor--
+    }
+
     hero.health -= rest
-    this.emit({ type: 'damage', target: { player, slot: 'hero' }, amount: rest, absorbed, status })
+    this.emit({ type: 'damage', target: { player, slot: 'hero' }, amount: rest, absorbed, status, element })
 
     if (hero.armor <= 0 && hero.armorCard) {
       this.player(player).discard.push(hero.armorCard)

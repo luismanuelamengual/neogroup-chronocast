@@ -6,16 +6,16 @@ export default defineCard({
   type: 'armor',
   reward: true,
   name: 'Storm Plate',
-  text: 'At the start of each phase, deal 4 damage to a random enemy ally.',
-  flavor: 'It crackles when you touch it. And when you think about it.',
+  text: 'At the start of each phase: deal 2 lightning damage to a random enemy ally.',
   faction: 'neon',
   restriction: { kind: 'hero', heroId: 'ryn-voltblade' },
   rarity: 'legendary',
+  element: 'lightning',
   cost: 4,
-  armor: 28,
   keywords: ['unique'],
+  armor: 12,
   onPhaseStart(ctx) {
-    damageRandomAlly(ctx, ctx.opponent, 4)
+    damageRandomAlly(ctx, ctx.opponent, 2)
   },
   ai: { value: 6, tags: ['removal'] },
   art: {

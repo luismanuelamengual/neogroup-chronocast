@@ -8,33 +8,17 @@ export default defineCampaign({
   heroId: 'vex-nightwire',
   rewardCardId: 'nightwire-net',
   stages: [
-    { rival: 'ryn-voltblade' },
-    { rival: 'ada-copperwick' },
-    { rival: 'gideon-ironsteam', cpuSetup: { extraHealth: 5 } },
-    { rival: 'ilyra-starweaver', cpuSetup: { extraHealth: 5 } },
-    { rival: 'ryn-voltblade', cpuSetup: { allies: ['neon-blade'] } },
-    { rival: 'malachar-the-unmade', cpuSetup: { allies: ['void-spawn'] } },
-    { rival: 'nysa-goldbow', cpuSetup: { allies: ['legion-slinger'] } },
-    { rival: 'kora-wildfang', cpuSetup: { extraHealth: 5 } },
-    { rival: 'legate-varro', cpuSetup: { weapon: 'war-axe' }, playerSetup: { handSize: 6 } },
+    { rival: 'kora-wildfang' },
+    { rival: 'ilyra-starweaver' },
+    { rival: 'legate-varro', cpuSetup: { extraHealth: 5 } },
+    { rival: 'nyx-hollowsong', cpuSetup: { extraHealth: 5 } },
+    { rival: 'gideon-ironsteam', cpuSetup: { allies: ['brass-steam-knight'] } },
+    { rival: 'ryn-voltblade', cpuSetup: { allies: ['augmented-thug'] } },
+    { rival: 'ada-copperwick', cpuSetup: { allies: ['brass-steam-knight'] } },
+    { rival: 'ooma-bonewhisper', cpuSetup: { extraHealth: 5 } },
+    { rival: 'aldric-dawnkeeper', cpuSetup: { weapon: 'lantern-staff-of-the-dawnbell' }, playerSetup: { handSize: 6 } },
     {
-      rival: 'overseer-kade',
-      deck: [
-        ['surveillance-net', 4],
-        ['syndicate-enforcer', 4],
-        ['holo-decoy', 3],
-        ['street-runner', 3],
-        ['information-broker', 3],
-        ['synth-brawler', 2],
-        ['velocity-queen', 3],
-        ['cyber-samurai', 2],
-        ['aegis-android', 3],
-        ['arc-trooper', 2],
-        ['adrenaline-shot', 3],
-        ['quick-hack', 3],
-        ['chainmail', 2],
-        ['iron-gladius', 2]
-      ]
+      rival: 'overseer-kade'
     }
   ]
 })

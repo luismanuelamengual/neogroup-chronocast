@@ -1,0 +1,18 @@
+import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+
+export default defineCard({
+  id: 'circlet-of-mana',
+  type: 'armor',
+  name: 'Circlet of Mana',
+  text: '',
+  faction: 'neutral',
+  restriction: { kind: 'class', heroClass: 'mage' },
+  rarity: 'common',
+  price: 70,
+  cost: 5,
+  armor: 15,
+  ai: { value: 5 },
+  art: {
+    subject: 'Circlet of Mana: a single piece of armor on a stand, mage style'
+  }
+})

@@ -1,0 +1,22 @@
+import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { draw, healHero } from '@/app/(protected)/(engine)/effects'
+
+export default defineCard({
+  id: 'blessed-secret',
+  type: 'ability',
+  name: 'Blessed Secret',
+  text: 'Draw a card and your hero heals 3.',
+  faction: 'neutral',
+  restriction: { kind: 'class', heroClass: 'mystic' },
+  rarity: 'uncommon',
+  price: 155,
+  cost: 2,
+  onPlay(ctx) {
+    draw(ctx, ctx.owner, 1)
+    healHero(ctx, 3)
+  },
+  ai: { value: 2, tags: ['draw', 'heal'] },
+  art: {
+    subject: 'Blessed Secret: glowing cards and runes swirling out of an open book, mystic healer style'
+  }
+})

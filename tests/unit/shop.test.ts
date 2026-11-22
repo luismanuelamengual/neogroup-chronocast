@@ -230,16 +230,16 @@ describe('prices, unlocks and selling', () => {
 
   it('quick sell keeps 4 copies (1 of a unique card) and whatever a saved deck uses', () => {
     const plan = quickSellPlan(
-      { 'time-wanderer': 7, 'rift-scavenger': 9, 'chrono-golem': 3, 'legate-varro': 2 },
-      { 'rift-scavenger': 6 }
+      { 'bold-gust': 7, 'clever-fortune-teller': 9, 'lost-chrononaut': 3, 'legate-varro': 2 },
+      { 'clever-fortune-teller': 6 }
     )
 
-    expect(plan.cards).toEqual({ 'time-wanderer': 3, 'rift-scavenger': 3 })
+    expect(plan.cards).toEqual({ 'bold-gust': 3, 'clever-fortune-teller': 3 })
     expect(copyLimit({ ...FAKE[0], keywords: ['unique'] })).toBe(1)
     expect(copyLimit(FAKE[0])).toBe(4)
     expect(plan.gold).toBe(
-      3 * sellPrice(CARDS.find((card) => card.id === 'time-wanderer')!) +
-        3 * sellPrice(CARDS.find((card) => card.id === 'rift-scavenger')!)
+      3 * sellPrice(CARDS.find((card) => card.id === 'bold-gust')!) +
+        3 * sellPrice(CARDS.find((card) => card.id === 'clever-fortune-teller')!)
     )
   })
 })

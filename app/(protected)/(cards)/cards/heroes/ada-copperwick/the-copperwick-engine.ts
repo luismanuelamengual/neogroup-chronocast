@@ -6,19 +6,18 @@ export default defineCard({
   type: 'item',
   reward: true,
   name: 'The Copperwick Engine',
-  text: 'Gain 3 Chronos, draw 2 cards and summon a Gear Drone.',
-  flavor: 'Her masterpiece. It runs on time itself.',
+  text: 'You gain 2 Chronos this phase, draw 2 cards and summon a Cog Drone.',
   faction: 'clockwork',
   restriction: { kind: 'hero', heroId: 'ada-copperwick' },
   rarity: 'exotic',
   cost: 3,
   keywords: ['unique'],
   onPlay(ctx) {
-    gainChronos(ctx, ctx.owner, 3)
+    gainChronos(ctx, ctx.owner, 2)
     draw(ctx, ctx.owner, 2)
-    summonCard(ctx, ctx.owner, 'gear-drone')
+    summonCard(ctx, ctx.owner, 'cog-drone')
   },
-  ai: { value: 5, tags: ['ramp', 'draw', 'summon'] },
+  ai: { value: 5, tags: ['draw', 'ramp', 'summon'] },
   art: {
     subject:
       'an incredible glowing copper engine with turquoise time energy flowing through glass tubes and spinning gears'

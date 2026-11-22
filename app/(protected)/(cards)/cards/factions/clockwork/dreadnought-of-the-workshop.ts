@@ -1,0 +1,25 @@
+import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { gainArmor } from '@/app/(protected)/(engine)/effects'
+
+export default defineCard({
+  id: 'dreadnought-of-the-workshop',
+  type: 'ally',
+  name: 'Dreadnought of the Workshop',
+  text: 'At the start of each phase: your hero gains 2 armor.',
+  faction: 'clockwork',
+  restriction: { kind: 'faction', faction: 'clockwork' },
+  rarity: 'uncommon',
+  weak: ['wind'],
+  price: 205,
+  cost: 5,
+  tribe: 'skyship',
+  attack: 6,
+  health: 11,
+  onPhaseStart(ctx) {
+    gainArmor(ctx, ctx.owner, 2)
+  },
+  ai: { value: 5, tags: ['defense'] },
+  art: {
+    subject: 'a steampunk flying machine, the dreadnought of the workshop, mid-leap, steampunk steam era style'
+  }
+})

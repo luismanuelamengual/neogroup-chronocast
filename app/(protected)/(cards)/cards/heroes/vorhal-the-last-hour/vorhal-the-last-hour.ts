@@ -4,26 +4,26 @@ import { damage, damageAllAllies } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'vorhal-the-last-hour',
   type: 'hero',
-  boss: true,
   name: 'Vorhal, the Last Hour',
-  text: 'Toll of the Last Hour (3): deal 4 damage to every enemy ally. At the start of each phase, deal 2 damage to the enemy hero.',
+  text: 'Toll of the Last Hour (3): deal 2 time damage to every enemy ally. At the start of each phase, deal 1 time damage to the enemy hero.',
   flavor: 'When the last clock stops, he is what is left.',
   faction: 'void',
   heroClass: 'mage',
   restriction: { kind: 'hero', heroId: 'vorhal-the-last-hour' },
   rarity: 'legendary',
+  element: 'time',
   cost: 0,
-  health: 58,
+  health: 63,
   ability: {
     name: 'Toll of the Last Hour',
-    text: 'Deal 4 damage to every enemy ally.',
+    text: 'Deal 2 time damage to every enemy ally.',
     cost: 3,
     activate(ctx) {
-      damageAllAllies(ctx, ctx.opponent, 4)
+      damageAllAllies(ctx, ctx.opponent, 2)
     }
   },
   onPhaseStart(ctx) {
-    damage(ctx, { player: ctx.opponent, slot: 'hero' }, 2)
+    damage(ctx, { player: ctx.opponent, slot: 'hero' }, 1)
   },
   ai: { value: 0 },
   art: {

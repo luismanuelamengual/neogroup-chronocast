@@ -89,7 +89,13 @@ export function describeEvent(
             amount: event.amount,
             absorbed: event.absorbed
           })
-        : t('battle.events.damage', { target: ref(event.target), amount: event.amount })
+        : event.element
+          ? t('battle.events.damageElement', {
+              target: ref(event.target),
+              amount: event.amount,
+              element: t(`game.elements.${event.element}`)
+            })
+          : t('battle.events.damage', { target: ref(event.target), amount: event.amount })
     case 'shieldBlock':
       return t('battle.events.shieldBlock', { target: ref(event.target) })
     case 'heal':
@@ -115,7 +121,9 @@ export function describeEvent(
     case 'heroFell':
       return t('battle.events.heroFell', { player: player(event.player) })
     case 'chronos':
-      return t('battle.events.chronos', { player: player(event.player), amount: event.amount })
+      return event.amount < 0
+        ? t('battle.events.chronosLoss', { player: player(event.player), amount: -event.amount })
+        : t('battle.events.chronos', { player: player(event.player), amount: event.amount })
     case 'fail':
       return t('battle.events.fail', {
         player: player(event.player),

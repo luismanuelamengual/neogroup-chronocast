@@ -2,2604 +2,1748 @@ import { CardTranslation } from '@/app/i18n/cards'
 
 /** The Spanish texts of every card, by id (docs/PLAN.md, section 7.6). */
 export const CARDS_ES: Record<string, CardTranslation> = {
-  'abyssal-hound': { name: 'Sabueso Abisal', flavor: 'Persigue el olor del miedo hasta el fin de los tiempos.' },
-  'acid-flask': {
-    name: 'Frasco de Ácido',
-    text: 'El arma enemiga pierde 1 de durabilidad y el héroe enemigo pierde 4 de armadura. Rápida.',
-    flavor: 'Se come el metal en el desayuno.'
-  },
-  'acolyte-vestments': {
-    name: 'Vestiduras de Acólito',
-    text: 'Al jugarla: tu héroe se cura 4.',
-    flavor: 'Simples, blancas y bendecidas.'
+  'acolyte-of-spirits': { name: 'Acólito de los Espíritus', text: 'Al entrar: tus otros aliados ganan +2 de vida.' },
+  'acolyte-of-the-senate': {
+    name: 'Acólito del Senado',
+    text: 'Al entrar: gana +1 de ataque y +1 de vida por cada otro Oráculo tuyo. Al empezar cada fase: tu héroe gana 2 de armadura.'
   },
   'ada-copperwick': {
     name: 'Ada Copperwick',
-    text: 'Inventar (2): un aliado tuyo gana +4 de ataque y +4 de vida. Cuando entra otro aliado tuyo, gana +1 de ataque.',
+    text: 'Inventar (2): un aliado tuyo gana +2 de ataque y +2 de vida. Cuando entra otro aliado tuyo, gana +1 de ataque.',
     flavor: 'La magia es ingeniería que nadie explicó todavía.',
-    ability: { name: 'Inventar', text: 'Un aliado tuyo gana +4 de ataque y +4 de vida.' }
+    ability: { name: 'Inventar', text: 'Un aliado tuyo gana +2 de ataque y +2 de vida.' }
   },
-  'adrenaline-shot': {
-    name: 'Dosis de Adrenalina',
-    text: 'Un aliado tuyo gana +8 de ataque esta fase. Instantánea.',
-    flavor: 'Efectos secundarios: ganar.'
+  'adas-strike': { name: 'Golpe de Ada', text: 'Hacé 10 de daño a un slot enemigo y robá una carta.' },
+  'aegis-of-rage': { name: 'Égida de la Ira', text: 'Tu héroe gana 9 de armadura. Instantánea.' },
+  'aegis-of-the-first-fire': { name: 'Égida del Primer Fuego', text: 'Tu héroe gana 12 de armadura y robá una carta.' },
+  'airship-of-brass': {
+    name: 'Dirigible de Latón',
+    text: 'Al entrar: si tenés otra Aeronave, robá una carta. Al empezar cada fase: tu héroe gana 2 de armadura.'
   },
-  'aegis-android': {
-    name: 'Androide Égida',
-    text: 'Cuando entra otro aliado tuyo, gana +6 de vida.',
-    flavor: 'Protocolo uno: proteger. No hay protocolo dos.'
-  },
-  'aegis-lantern': {
-    name: 'Farol de la Égida',
-    text: 'Artefacto. Cada daño que reciben tus aliados se reduce en 1.',
-    flavor: 'Su luz cae sobre todos los escudos a la vez.'
-  },
-  'aegis-of-eternity': {
-    name: 'Égida de la Eternidad',
-    text: 'Al empezar cada fase, tu héroe gana 3 de armadura.',
-    flavor: 'Nunca se rompe. Solo espera.'
-  },
-  'aegis-of-faith': {
-    name: 'Égida de la Fe',
-    text: 'Al jugarla: tu héroe se cura 10.',
-    flavor: 'La fe es la armadura más fuerte.'
-  },
-  'aegis-of-the-warlord': {
-    name: 'Égida del Señor de la Guerra',
-    text: 'Al empezar cada fase, tu héroe gana 2 de armadura.',
-    flavor: 'Nunca la atravesaron. Ni una vez.'
-  },
-  'aeon-phoenix': {
-    name: 'Fénix del Eón',
-    text: 'Al entrar: hacé 6 de daño a cada aliado enemigo.',
-    flavor: 'Ardió al final de cada era y renació al comienzo de la siguiente.'
-  },
-  'aimed-shot': {
-    name: 'Disparo Certero',
-    text: 'Hacé 10 de daño a un slot enemigo.',
-    flavor: 'Inspirá. Exhalá. Soltá.'
-  },
-  'airship-bombardier': {
-    name: 'Bombardera del Dirigible',
-    text: 'Al entrar: hacé 6 de daño a un aliado enemigo al azar.',
-    flavor: '¡Bombas fuera! Casi todas.',
-    ability: { name: 'Bombardeo', text: 'Hacé 10 de daño a un aliado enemigo al azar.' }
+  'alchemist-of-the-clocktower': {
+    name: 'Alquimista de la Torre del Reloj',
+    text: 'Al entrar: hacé 1 de daño al héroe enemigo por cada Inventor tuyo.'
   },
   'aldric-dawnkeeper': {
     name: 'Aldric Dawnkeeper',
-    text: 'Luz del Alba (2): tu héroe se cura 10 y tus aliados se curan 6. Al final de cada fase, tu héroe gana 2 de armadura.',
+    text: 'Luz del Alba (2): tu héroe se cura 5 y tus aliados se curan 3. Al final de cada fase, tu héroe gana 2 de armadura.',
     flavor: 'Todas las noches terminan. Él se ocupa de eso.',
-    ability: { name: 'Luz del Alba', text: 'Tu héroe se cura 10 y tus aliados se curan 6.' }
+    ability: { name: 'Luz del Alba', text: 'Tu héroe se cura 5 y tus aliados se curan 3.' }
   },
-  'amber-totem': {
-    name: 'Tótem de Ámbar',
-    text: 'Tus aliados ganan +1 de ataque y +3 de vida y tu héroe se cura 4.',
-    flavor: 'Un bicho atrapado en ámbar, un espíritu atrapado en el bicho.'
+  'aldrics-beacon': {
+    name: 'Faro de Aldric',
+    text: 'Al empezar cada fase: tu héroe se cura 3 y tus aliados se curan 2.'
   },
-  'ambush-of-raptors': {
-    name: 'Emboscada de Raptores',
-    text: 'Cuando el rival invoca un aliado: hacele 10 de daño y invocá una Manada de Raptores.',
-    flavor: 'Chicas listas.'
+  'altar-of-lost-time': { name: 'Altar del Tiempo Perdido', text: 'Cada daño que reciben tus aliados es 1 menor.' },
+  'altar-of-pistons': { name: 'Altar de Pistones', text: 'Al empezar cada fase: tu héroe gana 1 de energía.' },
+  'altar-of-the-hawk': { name: 'Altar del Halcón', text: 'Al empezar cada fase: tu héroe gana 1 de energía.' },
+  'altar-of-the-shieldwall': {
+    name: 'Altar del Muro de Escudos',
+    text: 'Al empezar cada fase: hacé 2 de daño al héroe enemigo. (3 usos)'
   },
-  'analytical-engine': {
-    name: 'Máquina Analítica',
-    text: 'Artefacto con 3 usos. Al empezar cada fase, robá una carta.',
-    flavor: 'Piensa para que no tengas que hacerlo. Solo necesita más cartas.'
+  'altar-of-the-sun-temple': {
+    name: 'Altar del Templo del Sol',
+    text: 'Al empezar cada fase: hacé 2 de daño de luz al héroe enemigo. (4 usos)'
   },
-  'ancient-treant': {
-    name: 'Ent Ancestral',
-    text: 'Al empezar cada fase, gana +2 de ataque y +4 de vida y tu héroe se cura 4.',
-    flavor: 'Era una semilla cuando el mundo era joven.'
+  'amber-eyed-blessing': { name: 'Bendición de Ojos de Ámbar', text: 'Tu héroe se cura 15.' },
+  'amber-eyed-wolf-pup': { name: 'Lobezno de Ojos de Ámbar', text: 'Al entrar: gana +1 de ataque y +2 de vida.' },
+  'arcane-familiar': { name: 'Familiar Arcano' },
+  'arcane-mine': { name: 'Mina Arcana', text: 'Cuando el rival invoca un aliado: congelalo.' },
+  'arcane-runecarver': {
+    name: 'Tallarrunas Arcano',
+    text: 'Al empezar cada fase: hacé 1 de daño de arcano al héroe enemigo.'
   },
-  antidote: {
-    name: 'Antídoto',
-    text: 'Tu héroe y tus aliados pierden todos sus estados (veneno, quemadura y congelación). Rápida.',
-    flavor: 'Sabe horrible. Funciona de maravilla.'
-  },
-  'apprentice-mage': {
-    name: 'Aprendiz de Mago',
-    text: 'Al entrar: hacé 4 de daño a un aliado enemigo al azar.',
-    flavor: 'Apunta al blanco. Casi siempre le pega a algo.'
-  },
-  'apprentice-wand': { name: 'Varita de Aprendiz', flavor: 'Apuntá, agitá, esperá lo mejor.' },
-  'aqueduct-engineer': {
-    name: 'Ingeniera de Acueductos',
-    text: 'Al entrar: tu héroe gana 8 de armadura.',
-    flavor: 'Agua, caminos y murallas. Los imperios los construyen los plomeros.'
-  },
-  'aquila-of-the-ninth': {
-    name: 'Águila de la Novena',
-    text: 'Artefacto. Al empezar cada fase, tus aliados ganan +1 de ataque y +3 de vida.',
-    flavor: 'La legión perdida encontró el camino de vuelta, con un siglo de retraso.'
-  },
-  'arc-trooper': {
-    name: 'Soldado de Arco',
-    text: 'Al atacar: hacé 3 de daño a un aliado enemigo al azar.',
-    flavor: 'Cada disparo salta al blanco siguiente.',
-    ability: { name: 'Sobrecarga', text: 'Hacé 12 de daño a un aliado enemigo.' }
-  },
-  'arcane-backlash': {
-    name: 'Contragolpe Arcano',
-    text: 'Cuando el héroe enemigo usa su habilidad: cancelala, hacé 10 de daño al héroe enemigo y robá una carta.',
-    flavor: 'La magia siempre vuelve a quien la tira.'
-  },
-  'arcane-explosion': {
-    name: 'Explosión Arcana',
-    text: 'Hacé 20 de daño a un slot enemigo y hacé 6 de daño a cada aliado enemigo. Lenta.',
-    flavor: 'La torre perdió una pared. El enemigo, todo.'
-  },
-  'arcane-familiar': {
-    name: 'Familiar Arcano',
-    text: 'Al entrar: robá una carta.',
-    flavor: 'Siempre sabe qué libro estabas buscando.'
-  },
-  'arcane-intellect': {
-    name: 'Intelecto Arcano',
-    text: 'Robá 2 cartas y ganá 1 de Cronos.',
-    flavor: 'El conocimiento es el único poder que crece cuando lo gastás.'
-  },
-  'arcane-missiles': {
-    name: 'Proyectiles Arcanos',
-    text: 'Hacé 6 de daño a un aliado enemigo al azar. Rápida.',
-    flavor: 'Tres lucecitas, un gran problema.'
-  },
-  'archive-guardian': {
-    name: 'Guardiana del Archivo',
-    text: 'Al entrar: robá una carta y tu héroe gana 5 de armadura.',
-    flavor: 'Silencio en la biblioteca. O si no...'
-  },
-  'archmage-of-the-spire': {
-    name: 'Archimago de la Aguja',
-    text: 'Al entrar: hacé 10 de daño a un aliado enemigo al azar. Al empezar cada fase, hacé 3 de daño al héroe enemigo.',
-    flavor: 'Desde lo alto de la aguja gobierna el clima y la guerra.'
-  },
-  'archwizard-morvane': {
-    name: 'Archimago Morvane',
-    text: 'Al entrar: hacé 8 de daño a cada aliado enemigo y robá una carta.',
-    flavor: 'Vivió en todos los siglos. En la mayoría fue el villano.'
-  },
-  'arena-champion': { name: 'Campeona de la Arena', flavor: 'El público canta su nombre en once idiomas.' },
   'argos-the-silver-hound': {
     name: 'Argos, el Sabueso Plateado',
-    text: 'Al entrar: hacé 4 de daño a un aliado enemigo al azar.',
-    flavor: 'La esperó veinte años. Esperaría veinte más.'
+    text: 'Al entrar: hacé 3 de daño de viento a un aliado enemigo al azar.'
   },
-  'armor-breaker': {
-    name: 'Rompecorazas',
-    text: 'Al entrar: el héroe enemigo pierde toda su armadura.',
-    flavor: 'No golpea la puerta. Entra.'
+  'armored-fortune-teller': { name: 'Adivina Acorazada', text: 'Cuando recibe daño: gana +2 de ataque.' },
+  'armored-fury': { name: 'Furia Acorazada', text: 'Un aliado tuyo gana +3 de ataque y +4 de vida. Instantánea.' },
+  'armored-mace': { name: 'Maza Acorazada' },
+  'armored-sabotage': { name: 'Sabotaje Acorazado', text: 'Destruí el arma enemiga. Rápida.' },
+  'armored-tower-shield': { name: 'Escudo Torre Acorazado', text: 'Al equiparla: tus aliados se curan 2.' },
+  'ash-covered-stonethrower': { name: 'Lanzapiedras Cubierto de Ceniza' },
+  'ashen-hierophant': {
+    name: 'Hierofante Ceniciento',
+    text: 'Al morir: tus Cultistas ganan +1 de ataque y +1 de vida. Al entrar: envenená al héroe enemigo (3).'
   },
-  'arrow-of-the-sun': {
-    name: 'Flecha del Sol',
-    text: 'Hacé 8 de daño a un aliado enemigo y robá una carta. Rápida.',
-    flavor: 'Disparada al amanecer, cae al mediodía.'
+  'ashen-skeleton': {
+    name: 'Esqueleto Ceniciento',
+    text: 'Cuando entra otro No-muerto tuyo: gana +2 de ataque y +2 de vida. Su habilidad se paga con energía (⚡).',
+    ability: { name: 'Inspirar', text: 'Un aliado tuyo gana +1 de ataque y +2 de vida.' }
   },
-  'ash-drake': { name: 'Draco de Ceniza', flavor: 'Sus hijos son más chicos. Solo un poco.' },
-  'automaton-duelist': { name: 'Duelista Autómata', flavor: 'Programado para la elegancia. Y para apuñalar.' },
-  'ballista-crew': {
-    name: 'Dotación de Balista',
-    text: 'Al entrar: hacé 6 de daño a un aliado enemigo al azar.',
-    flavor: 'Apuntá, tensá y que los dioses decidan.',
-    ability: { name: 'Andanada', text: 'Hacé 8 de daño a un aliado enemigo al azar.' }
+  'ashen-stasis': { name: 'Estasis Cenicienta', text: 'Devolvé un aliado enemigo a la mano de su dueño. Rápida.' },
+  'astral-bolt': { name: 'Rayo Astral', text: 'Hacé 6 de daño de arcano a un slot enemigo. Rápida.' },
+  'astral-daze': {
+    name: 'Aturdimiento Astral',
+    text: 'Congelá a un aliado enemigo y hacé 5 de daño de arcano al héroe enemigo.'
   },
-  'banner-of-the-rift': {
-    name: 'Estandarte de la Grieta',
-    text: 'Tus aliados ganan +3 de ataque y +6 de vida.',
-    flavor: 'Bajo él, todas las eras pelean como una.'
+  'astral-robe': { name: 'Túnica Astral' },
+  'augmented-thug': { name: 'Matón Aumentado', text: 'Al entrar: robá una carta.' },
+  'augur-of-the-laurel': { name: 'Augur del Laurel', text: 'Al empezar cada fase: tu héroe gana 2 de armadura.' },
+  'axe-of-the-vanguard': { name: 'Hacha de la Vanguardia' },
+  'balloon-scout-of-pistons': {
+    name: 'Globo Explorador de Pistones',
+    text: 'Cuando entra otra Aeronave tuya: gana +1 de ataque y +1 de vida. Su habilidad se paga con energía (⚡).',
+    ability: { name: 'Golpe', text: 'Hacé 5 de daño a un slot enemigo.' }
   },
-  'bannerman-sash': {
-    name: 'Banda del Abanderado',
-    text: 'Adjuntala a un aliado tuyo: tiene +6 de vida y protector.',
-    flavor: 'Ponetela y las flechas te buscan a vos.'
+  'balloon-scout-of-the-foundry': {
+    name: 'Globo Explorador de la Fundición',
+    text: 'Al entrar: tu héroe gana 7 de armadura. Su habilidad se paga con energía (⚡).',
+    ability: { name: 'Golpe', text: 'Hacé 8 de daño a un slot enemigo.' }
   },
-  'battle-cry': {
-    name: 'Grito de Batalla',
-    text: 'Tus aliados ganan +2 de ataque y +2 de vida.',
-    flavor: 'Más fuerte que los tambores de guerra.'
+  'banshee-of-grace': { name: 'Banshee de la Gracia', text: 'Al empezar cada fase: tu héroe se cura 2.' },
+  'banshee-of-light': {
+    name: 'Banshee de la Luz',
+    text: 'Cuando entra otro No-muerto tuyo: gana +1 de ataque y +1 de vida.'
   },
-  'battle-herald': {
-    name: 'Heraldo de Batalla',
-    text: 'Al entrar: tus otros aliados ganan +3 de ataque.',
-    flavor: 'Cuando sopla el cuerno, todas las eras responden.'
+  'banshee-of-shadows': {
+    name: 'Banshee de las Sombras',
+    text: 'Al entrar: desterrá las últimas 3 cartas de la pila de descarte enemiga.'
   },
-  'battlemage-squire': { name: 'Escudero Hechicero', flavor: 'Mitad espada, mitad hechizo, todo entusiasmo.' },
-  'bazaar-of-ages': {
-    name: 'Bazar de las Eras',
-    text: 'Artefacto. Al empezar cada fase, cada jugador roba una carta.',
-    flavor: 'Todo está a la venta. Hasta el mañana.'
+  'banshee-of-the-last-hour': {
+    name: 'Banshee de la Última Hora',
+    text: 'Al entrar: si tu pila de descarte tiene 6 cartas o más, gana +2 de ataque y +2 de vida.'
   },
-  'bear-trap': {
-    name: 'Trampa para Osos',
-    text: 'Cuando un aliado enemigo ataca: cancelá el ataque y aturdilo.',
-    flavor: 'Clac.'
+  'barrage-of-chrome': { name: 'Andanada de Cromo', text: 'Hacé 8 de daño de rayo a un slot enemigo.' },
+  'barrage-of-the-ambush': { name: 'Andanada de la Emboscada', text: 'Hacé 12 de daño a un slot enemigo.' },
+  'barrage-of-the-comet': { name: 'Andanada del Cometa', text: 'Hacé 8 de daño de arcano a un slot enemigo.' },
+  'barrage-of-the-hawk': { name: 'Andanada del Halcón', text: 'Hacé 6 de daño de viento a un aliado enemigo. Rápida.' },
+  'battle-scarred-disarm': {
+    name: 'Desarme Curtido',
+    text: 'El arma enemiga pierde 2 de durabilidad y el héroe enemigo pierde 6 de armadura. Rápida.'
   },
-  'bear-trap-gears': {
-    name: 'Trampa de Engranajes',
-    text: 'Cuando un aliado enemigo ataca: cancelá el ataque y hacele 6 de daño.',
-    flavor: '¡Clac!'
+  'battle-scarred-helm': { name: 'Yelmo Curtido' },
+  'battle-scarred-sentinel': { name: 'Centinela Curtido', text: 'Cuando recibe daño: gana +2 de ataque.' },
+  'battle-scarred-warplate': { name: 'Armadura de Guerra Curtida', text: 'Al equiparla: tus aliados se curan 2.' },
+  'binding-of-flame': { name: 'Atadura de Llamas', text: 'Congelá a un aliado enemigo.' },
+  'binding-of-lightning': {
+    name: 'Atadura del Relámpago',
+    text: 'Aturdí a un aliado enemigo por dos fases y robá una carta. Rápida.'
   },
-  'berserker-pact': {
-    name: 'Pacto del Berserker',
-    text: 'Adjuntalo a un aliado tuyo: su vida pasa a ser 1 y tiene +12 de ataque.',
-    flavor: 'Todo o nada. Nada guardado.'
+  'binding-of-ruin': { name: 'Atadura de la Ruina', text: 'Devolvé un aliado enemigo a la mano de su dueño. Rápida.' },
+  'binding-of-the-legion': {
+    name: 'Atadura de la Legión',
+    text: 'Aturdí a un aliado enemigo por dos fases y robá una carta. Rápida.'
   },
-  'black-comet': {
-    name: 'Cometa Negro',
-    text: 'Hacé 9 de daño a cada aliado enemigo. Lenta.',
-    flavor: 'No brilla. Solo cae.'
+  'binding-of-the-moon': { name: 'Atadura de la Luna', text: 'Aturdí a un aliado enemigo. Rápida.' },
+  'binding-of-the-pack': {
+    name: 'Atadura de la Jauría',
+    text: 'Congelá a un aliado enemigo y hacé 5 de daño de hielo al héroe enemigo.'
   },
-  'black-grimoire': {
-    name: 'Grimorio Negro',
-    text: 'Un aliado al azar de tu descarte vuelve al juego, un aliado al azar de tu descarte vuelve al juego y robá una carta.',
-    flavor: 'Cada página es una puerta. Cada puerta se abre hacia adentro.'
+  'blast-of-lightning': {
+    name: 'Estallido del Relámpago',
+    text: 'Hacé 4 de daño de rayo a un aliado enemigo. Rápida.'
   },
-  'black-ice-hacker': {
-    name: 'Hacker de Hielo Negro',
-    text: 'Al entrar: robá 2 cartas.',
-    flavor: 'No entra. Siempre estuvo adentro.'
+  'blast-of-the-arcanum': { name: 'Estallido del Arcano', text: 'Hacé 9 de daño de arcano a un slot enemigo.' },
+  'blast-of-the-jungle': {
+    name: 'Estallido de la Jungla',
+    text: 'Hacé 10 de daño de tierra a un slot enemigo, +2 por cada Fiera tuya.'
   },
-  'blackout-specialist': {
-    name: 'Especialista en Apagones',
-    text: 'Al entrar: aturdí a cada aliado enemigo.',
-    flavor: 'Se apagan las luces. Fin del juego.'
+  'blast-of-thorns': { name: 'Estallido de Espinas', text: 'Hacé 8 de daño a un slot enemigo.' },
+  'blazing-daze': {
+    name: 'Aturdimiento Ardiente',
+    text: 'Aturdí a un aliado enemigo por dos fases y robá una carta. Rápida.'
   },
-  'blade-dancer': { name: 'Danzarina de Hojas', flavor: 'A su danza ya no le queda público.' },
-  'blade-of-ages': { name: 'Hoja de las Eras', flavor: 'Bebe los años de quienes corta.' },
-  'blessed-mail': { name: 'Malla Bendita', flavor: 'Cada anillo lo bendijo un santo distinto.' },
-  blessing: { name: 'Bendición', text: 'Un aliado tuyo gana +3 de ataque y +8 de vida.', flavor: 'Andá, y sé más.' },
-  blizzard: {
-    name: 'Ventisca',
-    text: 'Hacé 6 de daño a cada aliado enemigo y aturdí a cada aliado enemigo. Lenta.',
-    flavor: 'El invierno llegó temprano. Y enojado.'
+  'blazing-dragon': {
+    name: 'Dragón Ardiente',
+    text: 'Al entrar: hacé 1 de daño de fuego al héroe enemigo por cada Draco tuyo. Al morir: hacé 1 de daño de fuego a todos los aliados enemigos.'
   },
-  'bloodthirst-cleaver': { name: 'Cuchilla Sedienta', flavor: 'Nunca está satisfecha.' },
-  blueprint: { name: 'Plano', text: 'Robá 2 cartas.', flavor: 'Versión cuarenta y dos. Esta va a funcionar.' },
-  'blueprint-cache': {
-    name: 'Tubo de Planos',
-    text: 'Robá una carta y ganá 1 Cronos.',
-    flavor: 'Todo invento empieza con las notas de otro.'
+  'blazing-fireball': { name: 'Bola de Fuego Ardiente', text: 'Quemá un slot enemigo (4).' },
+  'blazing-strike': { name: 'Golpe Ardiente', text: 'Hacé 9 de daño de fuego a un slot enemigo.' },
+  'blessed-deserter': { name: 'Desertor Bendito', text: 'Al empezar cada fase: tu héroe se cura 2.' },
+  'blessed-halo': { name: 'Halo Bendito', text: 'Al equiparla: tu héroe se cura 4.' },
+  'blessed-idol': { name: 'Ídolo Bendito', text: 'Al empezar cada fase: tu héroe se cura 3. (3 usos)' },
+  'blessed-secret': { name: 'Secreto Bendito', text: 'Robá una carta y tu héroe se cura 3.' },
+  'bloodied-echo': {
+    name: 'Eco Ensangrentado',
+    text: 'Un aliado al azar de tu pila de descarte vuelve al juego. Lenta.'
   },
-  'boiler-brute': { name: 'Bruto de Caldera', flavor: 'Seguí echándole carbón. No preguntes qué pasa si parás.' },
-  'boiler-burst': {
-    name: 'Estallido de Caldera',
-    text: 'Hacé 8 de daño a un aliado enemigo y ganá 1 de Cronos.',
-    flavor: 'Presión: demasiada. Resultado: excelente.'
+  'bloodied-glaive': { name: 'Guja Ensangrentada', text: 'Al equiparla: tu héroe se cura 4.' },
+  'bloodied-helm': { name: 'Yelmo Ensangrentado', text: 'Al equiparla: tus aliados se curan 2.' },
+  'bloodied-hitman': { name: 'Asesino a Sueldo Ensangrentado', text: 'Al entrar: tu héroe gana 7 de armadura.' },
+  'bodyguard-of-the-vanguard': {
+    name: 'Guardaespaldas de la Vanguardia',
+    text: 'Cuando entra otro Sicario tuyo: tu héroe se cura 2.'
   },
-  'bolt-the-iron-bulldog': {
-    name: 'Bolt, el Bulldog de Hierro',
-    text: 'Al entrar: tu héroe gana 6 de armadura.',
-    flavor: 'Lo construyeron para cuidar la fábrica. Decidió cuidar a Gideon.'
+  'boilerguard-of-gears': {
+    name: 'Guardacalderas de Engranajes',
+    text: 'Al empezar cada fase: tu héroe gana 2 de armadura. Su habilidad se paga con energía (⚡).',
+    ability: { name: 'Aturdir', text: 'Aturdí a un aliado enemigo.' }
   },
-  'bone-carver': {
-    name: 'Talladora de Huesos',
-    text: 'Al morir: tu héroe se cura 8.',
-    flavor: 'No se desperdicia nada. Ni siquiera vos.'
+  'bold-blessing': { name: 'Bendición Audaz', text: 'Tu héroe se cura 16 y robá una carta.' },
+  'bold-gust': { name: 'Ráfaga Audaz', text: 'Al entrar: destruí el artefacto enemigo más caro.' },
+  'bold-rust': {
+    name: 'Herrumbre Audaz',
+    text: 'El arma enemiga pierde 1 de durabilidad y el héroe enemigo pierde 3 de armadura. Rápida.'
   },
-  'bone-crawler': { name: 'Reptador de Huesos', flavor: 'Matalo. Vuelve para el almuerzo.' },
-  'bone-crusher': {
-    name: 'Trituradora de Huesos',
-    text: 'Cuando ataca al héroe enemigo, el arma enemiga pierde 1 de durabilidad y el héroe pierde 4 de armadura.',
-    flavor: 'La armadura es solo un caparazón. Los caparazones se parten.'
+  'bold-traveler-cloak': { name: 'Capa de Viajero Audaz', text: 'Al equiparla: tu héroe se cura 6.' },
+  'bone-knight-of-dying-stars': {
+    name: 'Caballero de Hueso de las Estrellas Moribundas',
+    text: 'Cuando entra otro No-muerto tuyo: tu héroe se cura 2.'
   },
-  'bone-dragon': { name: 'Dragón de Hueso', flavor: 'Murió hace mil años. Se olvidó de parar.' },
-  'bone-reading': {
-    name: 'Lectura de Huesos',
-    text: 'Robá una carta y tu héroe se cura 4. Rápida.',
-    flavor: 'Caen los huesos. Se muestra el futuro.'
+  'bone-knight-of-the-void': { name: 'Caballero de Hueso del Vacío' },
+  'borrowed-hour-of-grace': { name: 'Hora Prestada de la Gracia', text: 'Tu héroe gana 3 de energía. Instantánea.' },
+  'borrowed-hour-of-lost-time': {
+    name: 'Hora Prestada del Tiempo Perdido',
+    text: 'Tu héroe gana 3 de energía. Instantánea.'
   },
-  'bonefang-bow': { name: 'Arco Colmillo de Hueso', flavor: 'Tallado del diente del primer tirano.' },
-  boneyard: {
-    name: 'El Osario',
-    text: 'Artefacto. Al empezar cada fase, si tu descarte tiene 5 cartas o más, tus aliados ganan +1 de ataque y +1 de vida.',
-    flavor: 'Cada hueso de acá fue un héroe alguna vez.'
+  'bounty-hunter-of-borrowed-hours': {
+    name: 'Cazarrecompensas de las Horas Prestadas',
+    text: 'Al entrar: robá una carta.'
   },
-  'bounty-contract': {
-    name: 'Contrato de Recompensa',
-    text: 'Destruí un aliado enemigo. Lenta.',
-    flavor: 'Nada personal. Solo negocios.'
+  'bounty-hunter-of-flame': { name: 'Cazarrecompensas de Llamas' },
+  'bounty-hunter-of-the-long-road': {
+    name: 'Cazarrecompensas del Largo Camino',
+    text: 'Al entrar: destruí el artefacto enemigo más caro.'
   },
-  brace: {
-    name: 'Afirmarse',
-    text: 'Tu héroe gana 8 de armadura. Instantánea.',
-    flavor: 'Plantá los pies. Ahí viene.'
+  'bounty-hunter-of-the-rift': {
+    name: 'Cazarrecompensas de la Grieta',
+    text: 'Al entrar: tu héroe gana 5 de armadura. Su habilidad se paga con energía (⚡).',
+    ability: { name: 'Golpe', text: 'Hacé 5 de daño de tiempo a un slot enemigo.' }
   },
-  'brass-behemoth': { name: 'Behemot de Latón', flavor: 'La fábrica lo construyó. Después, ya no hubo fábrica.' },
-  'brass-enforcer': { name: 'Ejecutor de Latón', flavor: 'Los impuestos se pagan. Ya.' },
-  'brass-musketeer': { name: 'Mosquetero de Latón', flavor: 'Un disparo, una nube de humo, un problema menos.' },
-  'brittle-hex': {
-    name: 'Maleficio Quebradizo',
-    text: 'Adjuntalo a un aliado enemigo: cada daño que recibe se duplica.',
-    flavor: 'Su piel se vuelve vidrio; su armadura, papel.'
+  'bounty-hunter-of-the-silent-trail': {
+    name: 'Cazarrecompensas del Rastro Silencioso',
+    text: 'Al morir: hacé 3 de daño a un aliado enemigo al azar.'
   },
-  'broken-clocktower': {
-    name: 'Torre del Reloj Rota',
-    text: 'Artefacto. Tus aliados entran con +6 de vida.',
-    flavor: 'Se detuvo en el momento justo.'
+  'bracers-of-the-ambush': { name: 'Brazales de la Emboscada' },
+  'bramble-of-the-wanderer': { name: 'Zarza del Errante', text: 'Al morir: robá una carta.' },
+  'brand-of-the-comet': {
+    name: 'Estigma del Cometa',
+    text: 'Adjuntala a un aliado enemigo: no puede usar su habilidad y tiene -1 de ataque.'
   },
-  'bronze-cohort': {
-    name: 'Cohorte de Bronce',
-    text: 'Al entrar: si tiene al lado otro aliado de Bronce, gana +2 de ataque y +4 de vida.',
-    flavor: 'Solo, un soldado. Juntos, una muralla.'
+  'brass-golem-of-coal': {
+    name: 'Gólem de Latón del Carbón',
+    text: 'Cuando entra otro Autómata tuyo: gana +1 de ataque y +1 de vida.'
   },
-  'bronze-colossus-guard': {
-    name: 'Guardia Coloso de Bronce',
-    flavor: 'Fundido en bronce, enfriado en sangre de gigantes.'
+  'brass-golem-of-gears': { name: 'Gólem de Latón de Engranajes' },
+  'brass-steam-knight': { name: 'Caballero de Vapor de Latón', text: 'Al entrar: ganás 1 Cronos en esta fase.' },
+  'brassmaws-bolt': {
+    name: 'Rayo de Bocabronce',
+    text: 'Hacé 10 de daño de sónico a un slot enemigo y robá una carta.'
   },
-  'bronze-cuirass': { name: 'Coraza de Bronce', flavor: 'Lustrada cada mañana, abollada cada tarde.' },
-  'bronze-legionary': {
-    name: 'Legionario de Bronce',
-    text: 'Al entrar: si tiene al lado otro aliado de Bronce, robá una carta.',
-    flavor: 'Primero el escudo, después el nombre.'
+  'brassmaws-gadgeteer': {
+    name: 'Artilugista de Bocabronce',
+    text: 'Cuando entra otro Inventor tuyo: tu héroe se cura 2. Al morir: invocá un Dron de Engranajes.'
   },
-  'bulwark-totem': {
-    name: 'Tótem Baluarte',
-    text: 'Artefacto. Cada daño que recibe tu héroe se reduce en 2.',
-    flavor: 'Tallado de una muralla que nunca cayó.'
+  'brave-fortune-teller': { name: 'Adivina Valiente', text: 'Cuando recibe daño: gana +2 de ataque.' },
+  'brave-secret': { name: 'Secreto Valiente', text: 'Robá 2 cartas.' },
+  'brave-squire': { name: 'Escudero Valiente', text: 'Al entrar: robá la primera arma de tu mazo.' },
+  'brazier-of-the-ancestors': {
+    name: 'Brasero de los Ancestros',
+    text: 'Al empezar cada fase: tu héroe se cura 3. (3 usos)'
   },
-  'buried-capsule': {
-    name: 'Cápsula Enterrada',
-    text: 'Artefacto con 2 usos. Cuando se gasta el último, al empezar una fase, robás 3 cartas.',
-    flavor: 'Abrir en dos fases. No antes.'
+  'brazier-of-the-wanderer': {
+    name: 'Brasero del Errante',
+    text: 'Al empezar cada fase: hacé 1 de daño al héroe enemigo. (3 usos)'
   },
+  'breastplate-of-rage': { name: 'Peto de la Ira' },
   'caelus-the-usurper': {
     name: 'Caelus el Usurpador',
-    text: 'Diezmar (4): hacé 2 de daño a cada aliado enemigo. Al empezar cada fase, tus aliados ganan +1 de ataque.',
+    text: 'Diezmar (4): hacé 2 de daño de luz a cada aliado enemigo. Al empezar cada fase, tus aliados ganan +1 de ataque.',
     flavor: 'Robó una corona de una Roma que nunca existió, y quiere la verdadera.',
-    ability: { name: 'Diezmar', text: 'Hacé 2 de daño a cada aliado enemigo.' }
+    ability: { name: 'Diezmar', text: 'Hacé 2 de daño de luz a cada aliado enemigo.' }
   },
-  'call-of-the-wild': {
-    name: 'Llamado de la Naturaleza',
-    text: 'Invocá una Manada de Raptores y tu héroe se cura 6.',
-    flavor: 'La jungla te escucha. Y manda ayuda.'
+  'caeluss-axe': { name: 'Hacha de Caelus', text: 'Al equiparla: tu héroe gana 5 de armadura.' },
+  'caeluss-chimera': {
+    name: 'Quimera de Caelus',
+    text: 'Cuando entra otro Coloso tuyo: gana +2 de ataque y +2 de vida. Al atacar: tu héroe gana 2 de armadura.'
   },
-  'candle-keeper': {
-    name: 'Guardián de las Velas',
-    text: 'Al morir: robá una carta.',
-    flavor: 'Cuando se apaga su vela, se da vuelta una página.'
+  'camouflaged-brontosaur': { name: 'Brontosaurio Camuflado', text: 'Al atacar: hacé 3 de daño al héroe enemigo.' },
+  'cave-bear-of-the-hunt-moon': {
+    name: 'Oso Cavernario de la Luna de Caza',
+    text: 'Al entrar: tus aliados se curan 3.'
   },
-  'carrion-swarm': {
-    name: 'Enjambre Carroñero',
-    text: 'Al entrar: si tu descarte tiene 4 cartas o más, robá una carta.',
-    flavor: 'Siempre saben dónde fue la batalla.'
+  'centurion-of-steel': {
+    name: 'Centurión de Acero',
+    text: 'Cuando entra otro Legionario tuyo: gana +1 de ataque y +1 de vida. Al atacar: gana +1 de ataque.'
   },
-  'cave-bear': {
-    name: 'Oso de las Cavernas',
-    text: 'Al recibir daño: gana +3 de ataque.',
-    flavor: 'Despertarlo fue el último error de muchos cazadores.'
-  },
-  'cave-scout': { name: 'Exploradora de las Cavernas', flavor: 'Conoce todas las cuevas. Y lo que vive en ellas.' },
-  'celestial-phoenix': {
-    name: 'Fénix Celestial',
-    text: 'Al entrar: hacé 10 de daño al héroe enemigo. Al morir: hacé 6 de daño a cada aliado enemigo.',
-    flavor: 'Arde en azul, y nunca se queda muerto.'
-  },
-  'censer-of-souls': {
-    name: 'Incensario de Almas',
-    text: 'Al empezar cada fase, tu héroe se cura 3.',
-    flavor: 'Su humo lleva plegarias a todas las eras.'
-  },
-  'centurion-drillmaster': {
-    name: 'Centurión Instructor',
-    text: 'Al entrar: los aliados de al lado ganan +2 de ataque.',
-    flavor: '¡Otra vez! ¡Más rápido! ¡Hasta que se cansen los dioses!'
-  },
-  'centurion-maximus': {
-    name: 'Centurión Máximo',
-    text: 'Al morir: invocá un Legionario de Bronce.',
-    flavor: 'El primero en llegar, el último en irse.'
-  },
-  'chain-lightning': {
-    name: 'Rayo en Cadena',
-    text: 'Hacé 8 de daño a cada aliado enemigo. Lenta.',
-    flavor: 'Nunca cae una sola vez en el mismo lugar.'
-  },
-  chainmail: { name: 'Cota de Malla', flavor: 'Mil anillos chiquitos, un gran consuelo.' },
   'chancellor-brassmaw': {
     name: 'Canciller Bocabronce',
-    text: 'Decreto de Hierro (3): aturdí a un aliado enemigo y hacele 6 de daño. Al final de cada fase, tu héroe gana 3 de armadura.',
+    text: 'Decreto de Hierro (3): aturdí a un aliado enemigo y hacele 3 de daño de sónico. Al final de cada fase, tu héroe gana 3 de armadura.',
     flavor: 'Es dueño de las fábricas, de la ciudad y de casi todos los relojes.',
-    ability: { name: 'Decreto de Hierro', text: 'Aturdí a un aliado enemigo y hacele 6 de daño.' }
+    ability: { name: 'Decreto de Hierro', text: 'Aturdí a un aliado enemigo y hacele 3 de daño de sónico.' }
   },
-  'charge-in': {
-    name: 'A la Carga',
-    text: 'Un aliado tuyo gana +12 de ataque esta fase. Rápida.',
-    flavor: 'Las preguntas, después.'
+  'charm-of-the-vanguard': {
+    name: 'Dije de la Vanguardia',
+    text: 'Adjuntala a un aliado tuyo: gana +1 de ataque y +4 de vida.'
   },
-  'charged-shard': {
-    name: 'Esquirla Cargada',
-    text: 'Tu héroe gana 2 de energía.',
-    flavor: 'Una astilla de rayo, guardada en un frasco.'
+  'chimera-of-the-shieldwall': { name: 'Quimera del Muro de Escudos', text: 'Al morir: tu héroe gana 8 de armadura.' },
+  'chimera-of-the-sun-temple': {
+    name: 'Quimera del Templo del Sol',
+    text: 'Al morir: tus otros aliados ganan +1 de ataque. Al empezar cada fase: tu héroe gana 2 de armadura.'
   },
-  'chariot-racer': { name: 'Auriga', flavor: 'Siete vueltas. Sin frenos.' },
-  'chief-engineer-vance': {
-    name: 'Ingeniera Jefa Vance',
-    text: 'Cuando entra otro aliado tuyo, gana +2 de ataque y +4 de vida. Al entrar: ganá 2 de Cronos.',
-    flavor: 'Si tiene engranajes, ella lo puede mejorar.'
+  'circlet-of-flame': { name: 'Diadema de Llamas' },
+  'circlet-of-mana': { name: 'Diadema de Maná' },
+  'cleaver-of-the-vanguard': { name: 'Cuchilla de la Vanguardia', text: 'Al equiparla: tu héroe se cura 5.' },
+  'cleaver-of-valor': { name: 'Cuchilla del Valor' },
+  'clever-chrononaut': {
+    name: 'Crononauta Astuto',
+    text: 'Al empezar cada fase: tu héroe se cura 2. Su habilidad se paga con energía (⚡).',
+    ability: { name: 'Aturdir', text: 'Aturdí a un aliado enemigo.' }
   },
-  'chrome-medic': {
-    name: 'Médica Cromada',
-    text: 'Al final de cada fase, tus aliados se curan 3.',
-    flavor: 'Entran nanobots, salen heridas.',
-    ability: { name: 'Nanobots', text: 'Un aliado tuyo se cura 8.' }
+  'clever-fortune-teller': { name: 'Adivina Astuta' },
+  'clever-merchant': { name: 'Mercader Astuto', text: 'Al entrar: destruí el artefacto enemigo más caro.' },
+  'clever-scroll': { name: 'Pergamino Astuto', text: 'Destruí el arma enemiga. Rápida.' },
+  'cloak-of-the-quarry': { name: 'Capa de la Presa' },
+  'clock-of-dusk': { name: 'Reloj del Ocaso', text: 'Al empezar cada fase: tu héroe gana 1 de energía. (3 usos)' },
+  'clock-of-embers': { name: 'Reloj de Brasas', text: 'Al empezar cada fase: tu héroe gana 3 de armadura. (3 usos)' },
+  'clockwork-hound-of-coal': {
+    name: 'Sabueso Mecánico del Carbón',
+    text: 'Al empezar cada fase: tu héroe gana 2 de armadura.'
   },
-  'chrono-acrobat': { name: 'Acróbata del Tiempo', flavor: 'Dobla un segundo hasta que se rompe.' },
-  'chrono-anchor': {
-    name: 'Ancla Temporal',
-    text: 'Adjuntala a un aliado enemigo: tiene -4 de ataque y queda aturdido hasta el final de la fase siguiente.',
-    flavor: 'Atrapado entre dos segundos.'
+  'codebreaker-of-neon': {
+    name: 'Descifradora de Neón',
+    text: 'Al morir: tus Hackers ganan +1 de ataque y +1 de vida.'
   },
-  'chrono-battery': {
-    name: 'Batería de Cronos',
-    text: 'Ganás 2 de Cronos. Instantánea.',
-    flavor: 'Tiempo embotellado. Agitar antes de usar.'
+  'codebreaker-of-the-hawk': {
+    name: 'Descifradora del Halcón',
+    text: 'Al entrar: robá el primer Hacker de tu mazo. Su habilidad se paga con energía (⚡).',
+    ability: { name: 'Aturdir', text: 'Aturdí a un aliado enemigo.' }
   },
-  'chrono-golem': { name: 'Gólem del Tiempo', flavor: 'Su corazón es un reloj al que nunca le dieron cuerda.' },
-  'chronomancer-adept': {
-    name: 'Adepta Cronomante',
-    text: 'Al entrar: ganás 2 de Cronos.',
-    flavor: 'Guarda segundos de repuesto en un frasco.'
+  'cog-drone': { name: 'Dron de Engranajes' },
+  'copper-glider': {
+    name: 'Planeador de Cobre',
+    text: 'Al entrar: invocá un Dron de Engranajes. Al morir: invocá un Dron de Engranajes.'
   },
-  'chronometer-savant': {
-    name: 'Sabio del Cronómetro',
-    text: 'Al entrar: ganá 1 de Cronos y robá una carta.',
-    flavor: 'Mide el tiempo hasta la millonésima de segundo. Después lo roba.'
+  'copper-gyrocopter': { name: 'Girocóptero de Cobre' },
+  'courage-of-iron': { name: 'Coraje de Hierro', text: 'Un aliado tuyo gana +3 de ataque y +4 de vida.' },
+  'courage-of-spirits': {
+    name: 'Coraje de los Espíritus',
+    text: 'Un aliado tuyo gana +8 de ataque en esta fase. Instantánea.'
   },
-  'chronos-leviathan': {
-    name: 'Leviatán de Cronos',
-    text: 'Al entrar: aturdí a cada aliado enemigo.',
-    flavor: 'Se traga las horas enteras.'
+  'courage-of-the-ancestors': {
+    name: 'Coraje de los Ancestros',
+    text: 'Un aliado tuyo gana +3 de ataque y +4 de vida.'
   },
-  'cleaving-strike': {
-    name: 'Tajo Partidor',
-    text: 'Hacé 14 de daño a un aliado enemigo.',
-    flavor: 'Un golpe, dos mitades.'
+  'courage-of-the-last-stand': {
+    name: 'Coraje de la Última Defensa',
+    text: 'Un aliado tuyo gana +8 de ataque en esta fase. Instantánea.'
   },
-  'cloaking-device': {
-    name: 'Dispositivo de Camuflaje',
-    text: 'Un aliado tuyo gana +2 de ataque y +6 de vida y robá una carta. Instantáneo.',
-    flavor: 'Ahora lo ves. Ahora no.'
+  'courier-of-the-mainframe': {
+    name: 'Mensajero del Servidor Central',
+    text: 'Al atacar: hacé 3 de daño de sónico al héroe enemigo.'
   },
-  'clockheart-engine': {
-    name: 'Motor Corazón de Reloj',
-    text: 'Artefacto. Al empezar cada fase, ganás 1 Cronos y robás una carta.',
-    flavor: 'Un corazón de engranajes que late en Cronos.'
+  'crawler-of-the-grave': {
+    name: 'Reptante de la Tumba',
+    text: 'Al entrar: sacrificá a tu otro aliado más débil: si lo hacés, robá 2 cartas.'
   },
-  'clocktower-watchman': {
-    name: 'Sereno del Campanario',
-    text: 'Al empezar cada fase, tu héroe gana 2 de armadura.',
-    flavor: 'Toca la hora hace doscientos años. Nunca llegó tarde.'
+  'crook-of-the-ancestors': {
+    name: 'Báculo de los Ancestros',
+    text: 'Al equiparla: hacé 4 de daño de luz a un aliado enemigo al azar.'
   },
-  'clockwork-dragon': {
-    name: 'Dragón Mecánico',
-    text: 'Al entrar: hacé 4 de daño a cada aliado enemigo.',
-    flavor: 'Su fuego funciona a carbón y muy malas intenciones.'
+  'crystal-cockatrice': {
+    name: 'Cocatriz de Cristal',
+    text: 'Al entrar: robá una carta. Al empezar cada fase: hacé 1 de daño de arcano al héroe enemigo.'
   },
-  'cog-apprentice': {
-    name: 'Aprendiz de Engranajes',
-    text: 'Al entrar: ganá 1 de Cronos.',
-    flavor: 'Cuidá los dedos. Los engranajes no lo hacen.'
+  'crystal-wisp': {
+    name: 'Fuego Fatuo de Cristal',
+    text: 'Al empezar cada fase: hacé 1 de daño de fuego al héroe enemigo.'
   },
-  'cogsworth-the-assistant': {
-    name: 'Cogsworth, el Asistente',
-    text: 'Al entrar: ganá 1 de Cronos y robá una carta. Al morir: invocá un Dron de Engranajes.',
-    flavor: 'Asistente de laboratorio, mayordomo y extintor ocasional.',
-    ability: { name: 'Arreglo Rápido', text: 'Un aliado tuyo se cura 8.' }
+  'cursed-lich': {
+    name: 'Liche Maldito',
+    text: 'Al entrar: si tu pila de descarte tiene 6 cartas o más, gana +2 de ataque y +2 de vida.'
   },
-  'cogwork-courier': {
-    name: 'Mensajero de Engranajes',
-    text: 'Al morir: robá 2 cartas.',
-    flavor: 'Entrega garantizada. El mensajero, no tanto.'
+  'cursed-trap': { name: 'Trampa Maldita', text: 'Cuando el rival invoca un aliado: congelalo.' },
+  'cutlass-of-the-long-road': { name: 'Alfanje del Largo Camino' },
+  'cyber-hound-of-the-grid': { name: 'Cibersabueso de la Red' },
+  'cyclops-of-rage': {
+    name: 'Cíclope de la Ira',
+    text: 'Al entrar: hacé 1 de daño al héroe enemigo por cada Coloso tuyo.'
   },
-  'cohort-banner': {
-    name: 'Estandarte de la Cohorte',
-    text: 'Tus aliados ganan +1 de ataque y +4 de vida.',
-    flavor: 'Perdelo y toda la cohorte responde por eso.'
+  'decoy-of-the-undercity': {
+    name: 'Señuelo de la Ciudad Baja',
+    text: 'Cuando el rival usa una habilidad: robá una carta y hacé 5 de daño de rayo al héroe enemigo.'
   },
-  colosseum: {
-    name: 'Coliseo',
-    text: 'Artefacto. Tus aliados entran con +4 de ataque.',
-    flavor: 'Cincuenta mil voces, un solo rugido.'
+  'devout-bell': { name: 'Campana Devota', text: 'Al equiparla: tu héroe se cura 4.' },
+  'devout-fury': { name: 'Furia Devota', text: 'Un aliado tuyo gana +1 de ataque y +1 de vida.' },
+  'devout-haruspex': { name: 'Arúspice Devoto', text: 'Al entrar: robá el primer Oráculo de tu mazo.' },
+  'devout-prayer-staff': { name: 'Vara de Plegarias Devota', text: 'Al equiparla: tu héroe se cura 7.' },
+  'devout-pythia': { name: 'Pitonisa Devota', text: 'Al entrar: tus aliados se curan 4.' },
+  'devout-saddle': { name: 'Montura Devota', text: 'Adjuntala a un aliado tuyo: gana +1 de ataque y +3 de vida.' },
+  'dilophosaur-of-the-silent-trail': {
+    name: 'Dilofosaurio del Rastro Silencioso',
+    text: 'Al entrar: hacé 5 de daño a un aliado enemigo al azar.'
   },
-  'colossus-mark-ix': {
-    name: 'Coloso Mark IX',
-    text: 'Al entrar: invocá un Dron de Engranajes y invocá un Dron de Engranajes.',
-    flavor: 'De los Mark I al VIII no se habla.'
+  'dire-wolf-of-amber': {
+    name: 'Lobo Terrible de Ámbar',
+    text: 'Al morir: tus Fieras ganan +1 de ataque y +1 de vida.'
   },
-  'colossus-of-the-harbor': {
-    name: 'Coloso del Puerto',
-    text: 'Al entrar: tu héroe gana 15 de armadura.',
-    flavor: 'Los barcos pasan entre sus pies. Los ejércitos, no.'
+  'dire-wolf-of-the-fang': {
+    name: 'Lobo Terrible del Colmillo',
+    text: 'Al entrar: gana +1 de ataque y +1 de vida por cada otra Fiera tuya.'
   },
-  'constellation-weave': {
-    name: 'Tejido de Constelaciones',
-    text: 'Hacé 6 de daño a cada aliado enemigo y aturdí a un aliado enemigo al azar. Lenta.',
-    flavor: 'Ata las estrellas entre sí, y el cielo obedece.'
+  'dire-wolf-of-the-first-fire': {
+    name: 'Lobo Terrible del Primer Fuego',
+    text: 'Cuando entra otra Fiera tuya: gana +1 de ataque y +1 de vida.'
   },
-  'core-meltdown': {
-    name: 'Fusión del Núcleo',
-    text: 'Hacé 10 de daño a cada aliado enemigo. Lenta.',
-    flavor: 'Atención. Atención. Aten-'
+  'doomsayer-of-rot': {
+    name: 'Agorero de la Podredumbre',
+    text: 'Al morir: hacé 2 de daño de sombra al héroe enemigo.'
   },
-  'corrosion-totem': {
-    name: 'Tótem de Corrosión',
-    text: 'Artefacto. Al empezar cada fase, el arma enemiga pierde 1 de durabilidad y el héroe enemigo pierde 3 de armadura.',
-    flavor: 'Todo lo que toca envejece.'
+  'drake-of-the-tower': { name: 'Draco de la Torre' },
+  'dreadnought-of-the-workshop': {
+    name: 'Acorazado Volador del Taller',
+    text: 'Al empezar cada fase: tu héroe gana 2 de armadura.'
   },
-  'counter-rune': {
-    name: 'Runa de Contrahechizo',
-    text: 'Cuando el héroe enemigo usa su habilidad: cancelala.',
-    flavor: 'Lindo hechizo. Lástima el final.'
+  'dreaming-fury': { name: 'Furia Soñadora', text: 'Un aliado tuyo gana +5 de ataque y +7 de vida.' },
+  'dreaming-pyre': { name: 'Pira Soñadora', text: 'Quemá un slot enemigo (3).' },
+  'dreaming-pythia': {
+    name: 'Pitonisa Soñadora',
+    text: 'Al entrar: gana +1 de ataque y +1 de vida por cada otro Oráculo tuyo.'
   },
-  'counterspell-glyph': {
-    name: 'Glifo de Contrahechizo',
-    text: 'Cuando el héroe enemigo usa su habilidad: la cancelás.',
-    flavor: 'Hoy no. En ninguna era.'
+  'dreaming-seer': { name: 'Vidente Soñadora', text: 'Al empezar cada fase: tu héroe se cura 2.' },
+  'drone-of-the-datastream': {
+    name: 'Dron del Flujo de Datos',
+    text: 'Al morir: tus Cíborgs ganan +1 de ataque y +1 de vida. Al atacar: hacé 1 de daño de sónico al héroe enemigo.'
   },
-  'court-illusionist': {
-    name: 'Ilusionista de la Corte',
-    text: 'Al entrar: robá una carta.',
-    flavor: '¿Está realmente ahí? Preguntale. Esperá, ¿adónde se fue?'
-  },
-  'cowards-brand': {
-    name: 'Marca del Cobarde',
-    text: 'Adjuntala a un aliado enemigo: pierde protector y tiene -2 de ataque.',
-    flavor: 'Nadie sigue a un cobarde a la batalla.'
-  },
-  'crown-of-the-arcanist': {
-    name: 'Corona del Arcanista',
-    text: 'Al empezar cada fase, robá una carta.',
-    flavor: 'Te susurra hechizos en los sueños.'
-  },
-  'cryo-turret': {
-    name: 'Torreta Criogénica',
-    text: 'Cuando ataca, congela a su objetivo por el resto de la fase y la siguiente.',
-    flavor: 'Calmate. Es una orden.'
-  },
-  'crystal-sentinel': { name: 'Centinela de Cristal', flavor: 'La luz lo atraviesa. Nada más.' },
-  'cursed-crown': {
-    name: 'Corona Maldita',
-    text: 'Adjuntala a un aliado enemigo: no puede atacar ni usar su habilidad, y cada daño que recibe es 2 mayor.',
-    flavor: 'Pesada es la cabeza. Más pesada, la maldición.'
-  },
-  'cursed-idol': {
-    name: 'Ídolo Maldito',
-    text: 'Artefacto con 4 usos. Al empezar cada fase, le hace 3 de daño al héroe enemigo.',
-    flavor: 'Sonríe. Nadie sabe a quién.'
-  },
-  'cursed-skull': {
-    name: 'Calavera Maldita',
-    text: 'Hacé 4 de daño al héroe enemigo y robá una carta.',
-    flavor: 'Se ríe de noche. Solo de noche.'
-  },
-  'cyber-samurai': {
-    name: 'Samurái Cibernético',
-    text: 'Al atacar: robá una carta.',
-    flavor: 'Un código antiguo, reescrito en luz.'
-  },
-  'dark-pact': {
-    name: 'Pacto Oscuro',
-    text: 'Destruí tu otro aliado más débil: si lo hacés, robá 2 cartas y tu héroe se cura 5.',
-    flavor: 'Todo tiene un precio. Pagalo con otro.'
-  },
-  'dark-sermon': {
-    name: 'Sermón Oscuro',
-    text: 'Hacé 6 de daño a cada aliado enemigo. Lenta.',
-    flavor: 'La congregación escucha. Para siempre.'
-  },
-  'data-burst': {
-    name: 'Ráfaga de Datos',
-    text: 'Robá 2 cartas. Rápida.',
-    flavor: 'Descargado en un parpadeo.'
-  },
-  'data-courier': {
-    name: 'Mensajero de Datos',
-    text: 'Al entrar: robá una carta.',
-    flavor: 'Tus secretos, entregados cifrados. Casi siempre.'
-  },
-  'dead-end': {
-    name: 'Callejón sin Salida',
-    text: 'Cuando un aliado enemigo ataca: cancelá el ataque y aturdilo.',
-    flavor: 'Doblaste mal.'
-  },
-  'death-mark': {
-    name: 'Marca de la Muerte',
-    text: 'Cuando el rival invoca un aliado: hacele 10 de daño y robá una carta.',
-    flavor: 'Tiene tu nombre. Siempre lo tuvo.'
-  },
-  'devourer-of-light': {
-    name: 'Devorador de Luz',
-    text: 'Al entrar: destruí tu otro aliado más débil: si lo hacés, hacé 8 de daño a cada aliado enemigo.',
-    flavor: 'Las estrellas se apagan por donde pasa.'
-  },
-  'dino-egg': {
-    name: 'Huevo Gigante',
-    text: 'Invocá una Cría de Dinosaurio y robá una carta.',
-    flavor: 'No preguntes quién lo puso.'
-  },
-  'dino-hatchling': {
-    name: 'Cría de Dinosaurio',
-    text: 'Al empezar cada fase, gana +1 de ataque y +1 de vida.',
-    flavor: 'Come, crece, vuelve a comer.'
-  },
-  'disarming-strike': {
-    name: 'Golpe Desarmador',
-    text: 'Hacé 3 de daño al héroe enemigo. Su arma pierde 2 de durabilidad.',
-    flavor: 'Un legionario apunta a la mano que sostiene la espada.'
-  },
-  'dispel-wave': {
-    name: 'Onda de Disipación',
-    text: 'Destruí el artefacto enemigo más caro.',
-    flavor: 'Todo encantamiento tiene un final. Es este.'
-  },
-  'divine-shield': {
-    name: 'Escudo Divino',
-    text: 'Un aliado tuyo gana +14 de vida y tu héroe gana 6 de armadura. Instantánea.',
-    flavor: 'A los fieles no los toca nada.'
-  },
-  'dragon-of-runes': {
-    name: 'Dragón de las Runas',
-    text: 'Al entrar: hacé 5 de daño a cada aliado enemigo.',
-    flavor: 'Cada escama es un hechizo más viejo que el reino.'
-  },
-  'drakescale-vest': { name: 'Chaleco de Escamas de Draco', flavor: 'El draco ya no lo necesitaba.' },
-  'dread-knight': {
-    name: 'Caballero del Terror',
-    flavor: 'Su juramento sobrevivió a su reino, a su cuerpo y a su nombre.'
-  },
-  'drifting-merchant': {
-    name: 'Mercader a la Deriva',
-    text: 'Al entrar: tu héroe se cura 6.',
-    flavor: 'Pociones de mañana a precios de ayer.'
-  },
-  'drone-swarm': { name: 'Enjambre de Drones', flavor: 'Uno es un juguete. Mil son un fenómeno climático.' },
-  'dynamo-golem': {
-    name: 'Gólem Dínamo',
-    text: 'Su habilidad se paga con energía (⚡).',
-    flavor: 'Funciona con rayos guardados y terquedad.',
-    ability: { name: 'Descarga', text: 'Ganá 2 Cronos y robá una carta.' }
-  },
-  'eater-of-worlds': {
-    name: 'Devoradora de Mundos',
-    text: 'Al entrar: destruí tu otro aliado más débil: si lo hacés, hacé 12 de daño a cada aliado enemigo y robá 2 cartas.',
-    flavor: 'Los planetas son solo la entrada.'
-  },
+  'dryad-of-the-archmage': { name: 'Dríade del Archimago', text: 'Cuando entra otra Hada tuya: tu héroe se cura 2.' },
   'echo-the-spirit-crow': {
     name: 'Eco, el Cuervo Espiritual',
-    text: 'Al morir: un aliado al azar de tu descarte vuelve al juego.',
-    flavor: 'Murió nueve veces. Siempre vuelve con alguien.'
+    text: 'Al morir: un aliado al azar de tu pila de descarte vuelve al juego.'
   },
-  'echoing-knight': { name: 'Caballero del Eco', flavor: 'Vencelo una vez y vuelve un momento antes.' },
-  'elder-mammoth': { name: 'Mamut Anciano', flavor: 'La tierra recuerda cada paso que da.' },
-  'elixir-of-vigor': { name: 'Elixir de Vigor', text: 'Tu héroe se cura 25.', flavor: 'Sirve para otros cien años.' },
-  'emp-mine': {
-    name: 'Mina de Pulso',
-    text: 'Cuando el rival invoca un aliado: aturdilo por dos fases, aturdí a cada aliado enemigo y robá una carta.',
-    flavor: 'Todas las luces del distrito se apagan a la vez.'
+  'electric-glitch': {
+    name: 'Glitch Eléctrico',
+    text: 'Al terminar cada fase: hacé 1 de daño de rayo al héroe enemigo.'
   },
-  'end-of-days': {
-    name: 'Fin de los Días',
-    text: 'Hacé 20 de daño a cada aliado, también a los tuyos. Lenta.',
-    flavor: 'Todas las eras terminan. Así.'
+  'electric-mech': { name: 'Mecha Eléctrico', text: 'Al entrar: tus otros Cíborgs ganan +1 de ataque y +1 de vida.' },
+  'elk-of-the-wilds': { name: 'Alce de lo Salvaje', text: 'Al morir: hacé 7 de daño a un aliado enemigo al azar.' },
+  'ember-of-the-rift': { name: 'Ascua de la Grieta', text: 'Al entrar: destruí el artefacto enemigo más caro.' },
+  'empowerment-of-the-dawnbell': {
+    name: 'Potenciación de la Campana del Alba',
+    text: 'Un aliado tuyo gana +4 de ataque y +5 de vida.'
   },
-  'endless-hunger': {
-    name: 'Hambre Infinita',
-    text: 'Un aliado al azar de tu descarte vuelve al juego y un aliado al azar de tu descarte vuelve al juego.',
-    flavor: 'Nada de lo que come se queda ido.'
+  'empowerment-of-the-last-stand': {
+    name: 'Potenciación de la Última Defensa',
+    text: 'Un aliado tuyo gana +10 de ataque en esta fase. Instantánea.'
   },
-  'entropy-mage': {
-    name: 'Mago de la Entropía',
-    text: 'Al entrar: hacé 6 de daño a un aliado enemigo al azar.',
-    flavor: 'Todo se desarma. Él solo ayuda.',
-    ability: { name: 'Decadencia', text: 'Hacé 9 de daño a un aliado enemigo.' }
+  'empowerment-of-the-warlord': {
+    name: 'Potenciación del Caudillo',
+    text: 'Un aliado tuyo gana +2 de ataque y +2 de vida.'
   },
-  'era-hopper': { name: 'Saltaeras', flavor: 'Nunca dos veces en el mismo siglo.' },
-  eruption: {
-    name: 'Erupción',
-    text: 'Hacé 8 de daño a cada aliado enemigo. Lenta.',
-    flavor: 'La montaña se despierta enojada.'
+  'enchanted-cryomancer': {
+    name: 'Criomante Encantada',
+    text: 'Al entrar: hacé 4 de daño de hielo a un aliado enemigo al azar.'
   },
-  'eternal-emperor': {
-    name: 'El Emperador Eterno',
-    text: 'Al entrar: tus otros aliados ganan +4 de ataque y +10 de vida y tu héroe gana 20 de armadura.',
-    flavor: 'Roma cayó cien veces. Él nunca.'
+  'enchanted-shot': { name: 'Disparo Encantado', text: 'Hacé 12 de daño de arcano a un aliado enemigo.' },
+  'enchanted-wyvern': { name: 'Guiverno Encantado', text: 'Al entrar: robá una carta.' },
+  'enchantress-of-runes': {
+    name: 'Encantadora de las Runas',
+    text: 'Al entrar: congelá a un aliado enemigo al azar. Al empezar cada fase: hacé 1 de daño de arcano al héroe enemigo.'
   },
-  execute: { name: 'Ejecutar', text: 'Destruí un aliado enemigo. Lenta.', flavor: 'El veredicto es acero.' },
-  'explosive-trap': {
-    name: 'Trampa Explosiva',
-    text: 'Cuando un aliado enemigo ataca: hacele 8 de daño y hacé 4 de daño a cada aliado enemigo.',
-    flavor: 'Pisá despacito.'
+  'enchantress-of-the-archmage': {
+    name: 'Encantadora del Archimago',
+    text: 'Al morir: hacé 4 de daño de fuego a un aliado enemigo al azar.'
   },
-  'eye-of-the-storm': {
-    name: 'Ojo de la Tormenta',
-    text: 'Artefacto. Al empezar cada fase, hacé 5 de daño al héroe enemigo.',
-    flavor: 'Calma en el centro. Ruina alrededor.'
+  'enchantress-of-the-tower': { name: 'Encantadora de la Torre', text: 'Al entrar: robá una carta.' },
+  'encrypted-mech': { name: 'Mecha Encriptado', text: 'Al entrar: el héroe enemigo pierde 1 de energía.' },
+  'encrypted-monolith': {
+    name: 'Monolito Encriptado',
+    text: 'Al empezar cada fase: hacé 2 de daño de tierra al héroe enemigo. (3 usos)'
   },
-  'factory-foreman': {
-    name: 'Capataz de la Fábrica',
-    text: 'Al entrar: invocá un Dron de Engranajes.',
-    flavor: 'Más producción, menos quejas.'
+  'encrypted-street-samurai': { name: 'Samurái Callejero Encriptado', text: 'Al morir: robá una carta.' },
+  'encrypted-thug': { name: 'Matón Encriptado', text: 'Cuando entra otro Sicario tuyo: tu héroe se cura 2.' },
+  'endless-plan': { name: 'Plan Interminable', text: 'Robá una carta.' },
+  'endless-tentacle': { name: 'Tentáculo Interminable', text: 'Al morir: hacé 5 de daño de sombra al héroe enemigo.' },
+  'endless-voidcaller': {
+    name: 'Invocadora del Vacío Interminable',
+    text: 'Cuando entra otro Cultista tuyo: gana +1 de ataque y +1 de vida.'
   },
-  'falling-star': {
-    name: 'Estrella Fugaz',
-    text: 'Hacé 10 de daño a un slot enemigo y robá una carta.',
-    flavor: 'Pedí un deseo. Después agachate.'
+  'eternal-haruspex': {
+    name: 'Arúspice Eterno',
+    text: 'Al entrar: hacé 1 de daño de tiempo al héroe enemigo por cada Oráculo tuyo. Su habilidad se paga con energía (⚡).',
+    ability: { name: 'Aturdir', text: 'Aturdí a un aliado enemigo.' }
   },
-  'fang-the-sabertooth': {
-    name: 'Colmillo, el Dientes de Sable',
-    flavor: 'Kora lo crió. El rey tirano aprendió a temerle.'
+  'ethereal-apprentice': { name: 'Aprendiz Etéreo', text: 'Al entrar: congelá a un aliado enemigo al azar.' },
+  'ethereal-basilisk': { name: 'Basilisco Etéreo' },
+  'ethereal-beacon': {
+    name: 'Faro Etéreo',
+    text: 'Al empezar cada fase: hacé 2 de daño de arcano a un aliado enemigo al azar. (4 usos)'
   },
-  'feral-growth': {
-    name: 'Crecimiento Salvaje',
-    text: 'Un aliado tuyo gana +4 de ataque y +8 de vida.',
-    flavor: 'Comete la verdura. Toda.'
+  'ethereal-cockatrice': { name: 'Cocatriz Etérea' },
+  'ethereal-runecarver': { name: 'Tallarrunas Etéreo', text: 'Al entrar: robá el primer Hechicero de tu mazo.' },
+  'ethereal-terminal': { name: 'Terminal Etérea', text: 'Al empezar cada fase: tu héroe se cura 3. (3 usos)' },
+  'experimental-aeronaut': { name: 'Aeronauta Experimental', text: 'Al entrar: invocá un Dron de Engranajes.' },
+  'faithful-amulet': { name: 'Amuleto Fiel', text: 'Adjuntala a un aliado tuyo: gana +2 de ataque y +3 de vida.' },
+  'faithful-bomb': { name: 'Bomba Fiel', text: 'Hacé 4 de daño a un slot enemigo.' },
+  'faithful-cartographer': { name: 'Cartógrafa Fiel' },
+  'faithful-moment': { name: 'Instante Fiel', text: 'Ganás 4 Cronos en esta fase. Instantánea.' },
+  'faithful-wanderer': { name: 'Vagabundo Fiel' },
+  'fang-the-sabertooth': { name: 'Colmillo, el Dientes de Sable' },
+  'feral-healer': { name: 'Curandera Salvaje', text: 'Al atacar: tu héroe se cura 3.' },
+  'firedrake-of-the-arcanum': {
+    name: 'Draco de Fuego del Arcano',
+    text: 'Al entrar: congelá a un aliado enemigo al azar.'
   },
-  'ferryman-of-hours': {
-    name: 'Barquero de las Horas',
-    text: 'Al entrar: robá una carta.',
-    flavor: 'Por una moneda, te lleva remando al día que quieras.'
+  'firedrake-of-the-moon': {
+    name: 'Draco de Fuego de la Luna',
+    text: 'Cuando entra otro Draco tuyo: gana +1 de ataque y +1 de vida.'
   },
-  'final-toll': {
-    name: 'El Toque Final',
-    text: 'Hacé 20 de daño a un slot enemigo y hacé 4 de daño a cada aliado enemigo. Lenta.',
-    flavor: 'La campana suena una vez. Solo una.'
+  'firedrake-of-the-tower': {
+    name: 'Draco de Fuego de la Torre',
+    text: 'Al entrar: gana +1 de ataque y +1 de vida por cada otro Draco tuyo.'
   },
-  'fire-flask': {
-    name: 'Frasco de Fuego',
-    text: 'Hacé 14 de daño a un slot enemigo. Rápida.',
-    flavor: 'Manipular con guantes de cocina.'
+  'fixer-of-the-datastream': {
+    name: 'Intermediaria del Flujo de Datos',
+    text: 'Al atacar: hacé 3 de daño de sónico al héroe enemigo.'
   },
-  fireball: {
-    name: 'Bola de Fuego',
-    text: 'Hacé 18 de daño a un slot enemigo. Lenta.',
-    flavor: 'El hechizo más viejo de todas las eras.'
+  'fixer-of-the-mainframe': {
+    name: 'Intermediaria del Servidor Central',
+    text: 'Al entrar: tus otros Sicarios ganan +2 de ataque y +2 de vida. Al morir: robá una carta.'
   },
-  firewall: {
-    name: 'Cortafuegos',
-    text: 'Cuando el héroe enemigo usa su habilidad: cancelala y robá una carta.',
-    flavor: 'Acceso denegado.'
+  'fixer-of-the-undercity': {
+    name: 'Intermediaria de la Ciudad Baja',
+    text: 'Al morir: tus Sicarios ganan +1 de ataque y +1 de vida. Al entrar: robá una carta.'
   },
-  'flame-legionary': {
-    name: 'Legionario de las Llamas',
-    text: 'Cuando ataca, prende fuego a su objetivo (2 por fase durante 3 fases).',
-    flavor: 'La legión le trajo el fuego al mundo. Él te lo trae a vos.'
+  'flail-of-the-vanguard': { name: 'Mangual de la Vanguardia' },
+  'flask-of-dawn': {
+    name: 'Frasco del Alba',
+    text: 'Robá el primer Elemental de tu mazo y robá el primer Elemental de tu mazo.'
   },
-  'flame-wave': {
-    name: 'Ola de Llamas',
-    text: 'Hacé 6 de daño a cada aliado enemigo. Lenta.',
-    flavor: 'Manos tibias, corazones fríos.'
+  'flask-of-dusk': { name: 'Frasco del Ocaso', text: 'Un aliado tuyo gana +6 de ataque en esta fase. Instantánea.' },
+  'flask-of-the-wanderer': { name: 'Frasco del Errante', text: 'Tu héroe se cura 13 y robá una carta.' },
+  'flickering-bolt': { name: 'Rayo Titilante', text: 'Hacé 4 de daño de arcano a un slot enemigo. Rápida.' },
+  'flickering-daze': {
+    name: 'Aturdimiento Titilante',
+    text: 'Congelá a un aliado enemigo y hacé 2 de daño de hielo al héroe enemigo.'
   },
-  'flash-powder': {
-    name: 'Polvo Cegador',
-    text: 'Hacé 4 de daño a cada aliado enemigo.',
-    flavor: 'Ciega, y pica un poquito.'
+  'flickering-frost-wyrm': { name: 'Sierpe de Escarcha Titilante' },
+  'flickering-mantle': { name: 'Manto Titilante' },
+  'flickering-mist': {
+    name: 'Neblina Titilante',
+    text: 'Al entrar: gana +1 de ataque y +1 de vida por cada otro Elemental tuyo.'
   },
-  'flesh-weaver': {
-    name: 'Tejedora de Carne',
-    text: 'Cuando entra otro aliado tuyo, gana +4 de vida. Al morir: invocá un Engendro del Vacío.',
-    flavor: 'Cose a los caídos de nuevo. No siempre bien.'
+  'flickering-muster': { name: 'Leva Titilante', text: 'Invocá un Familiar Arcano.' },
+  'flickering-rust': {
+    name: 'Herrumbre Titilante',
+    text: 'Adjuntala a un aliado enemigo: cada vez que ataca, recibe 3 de daño de ácido.'
   },
-  'forced-march': {
-    name: 'Marcha Forzada',
-    text: 'Un aliado tuyo gana +10 de ataque esta fase y robá una carta. Instantánea.',
-    flavor: 'Dormir es para los conquistados.'
+  'flickering-stance': { name: 'Postura Titilante', text: 'Tu héroe gana 15 de armadura y robá una carta.' },
+  'flickering-ward': { name: 'Guarda Titilante' },
+  'focus-of-lightning': { name: 'Foco del Relámpago' },
+  'foreman-of-gears': { name: 'Capataz de Engranajes', text: 'Al entrar: el arma enemiga pierde 1 de durabilidad.' },
+  'forsaken-resurrection': {
+    name: 'Resurrección Abandonada',
+    text: 'Un aliado al azar de tu pila de descarte vuelve al juego. Lenta.'
   },
-  'forum-of-heroes': {
-    name: 'Foro de los Héroes',
-    text: 'Artefacto. Al empezar cada fase, tu héroe gana 4 de armadura y tus aliados se curan 2.',
-    flavor: 'Cada estatua de acá fue un soldado con nombre.'
+  'forsaken-zombie': { name: 'Zombi Abandonado' },
+  'frost-of-grace': { name: 'Escarcha de la Gracia', text: 'Congelá a un aliado enemigo.' },
+  'frost-of-ruin': {
+    name: 'Escarcha de la Ruina',
+    text: 'Aturdí a un aliado enemigo por dos fases y robá una carta. Rápida.'
   },
-  'freezing-trap': {
-    name: 'Trampa Congelante',
-    text: 'Cuando el rival invoca un aliado: aturdilo por dos fases, hacele 6 de daño y robá una carta.',
-    flavor: 'Bienvenido. Quedate un rato.'
+  'frost-of-the-arcanum': { name: 'Escarcha del Arcano', text: 'Congelá a un aliado enemigo.' },
+  'frost-of-the-hawk': {
+    name: 'Escarcha del Halcón',
+    text: 'Congelá a un aliado enemigo y hacé 3 de daño de hielo al héroe enemigo.'
   },
-  'frost-adept': {
-    name: 'Adepto de Escarcha',
-    text: 'Al entrar: aturdí a un aliado enemigo al azar.',
-    flavor: 'Quedate quieto. Solo va a doler un poco.',
-    ability: { name: 'Rayo de Escarcha', text: 'Hacé 6 de daño a un aliado enemigo.' }
+  'frost-of-the-oracle': { name: 'Escarcha del Oráculo', text: 'Aturdí a un aliado enemigo por dos fases. Rápida.' },
+  'frost-of-the-pack': {
+    name: 'Escarcha de la Jauría',
+    text: 'Aturdí a un aliado enemigo por dos fases y robá una carta. Rápida.'
   },
-  'frost-nova': {
-    name: 'Nova de Escarcha',
-    text: 'Hacé 6 de daño a cada aliado enemigo. Lenta.',
-    flavor: 'El invierno, todo de golpe.'
+  'frozen-bolt': { name: 'Rayo Helado', text: 'Hacé 11 de daño de hielo a un slot enemigo.' },
+  'frozen-wand': { name: 'Varita Helada' },
+  'frozen-ward': { name: 'Guarda Helada' },
+  'furious-banner': {
+    name: 'Estandarte Furioso',
+    text: 'Al empezar cada fase: hacé 2 de daño al héroe enemigo. (3 usos)'
   },
-  'frost-sigil': {
-    name: 'Sello de Escarcha',
-    text: 'Cuando un aliado enemigo ataca: cancelá el ataque y aturdilo.',
-    flavor: 'Un paso sobre el sello y el invierno viene por vos.'
+  'furious-chrononaut': { name: 'Crononauta Furioso', text: 'Al morir: tu héroe gana 3 de armadura.' },
+  'furious-sabotage': { name: 'Sabotaje Furioso', text: 'Destruí el arma enemiga. Rápida.' },
+  'gadgeteer-of-steam': {
+    name: 'Artilugista de Vapor',
+    text: 'Al entrar: tu héroe gana 6 de armadura. Al morir: invocá un Dron de Engranajes.'
   },
-  'frost-spear': {
-    name: 'Pica de Escarcha',
-    text: 'Hacé 4 de daño a un slot enemigo y congelalo por el resto de esta fase y la siguiente.',
-    flavor: 'Fría, filosa y al grano.'
+  'gathering-of-flame': { name: 'Reunión de Llamas', text: 'Invocá una Chispa de la Grieta.' },
+  'gathering-of-lightning': { name: 'Reunión del Relámpago', text: 'Invocá un Familiar Arcano.' },
+  'gentle-balm': { name: 'Bálsamo Gentil', text: 'Tu héroe se cura 16 y robá una carta.' },
+  'gentle-banner': { name: 'Estandarte Gentil', text: 'Cuando entra un Oráculo tuyo: gana +1 de ataque y +2 de vida.' },
+  'gentle-bard': { name: 'Bardo Gentil' },
+  'gentle-return': {
+    name: 'Regreso Gentil',
+    text: 'Un aliado al azar de tu pila de descarte vuelve al juego y tu héroe se cura 4. Lenta.'
   },
-  'frost-staff': {
-    name: 'Bastón de Escarcha',
-    text: 'Al jugarla: aturdí a un aliado enemigo al azar.',
-    flavor: 'Agarralo con guantes.'
-  },
-  'frozen-shackles': {
-    name: 'Grilletes Congelados',
-    text: 'Adjuntalos a un aliado enemigo: queda congelado mientras estén adjuntos.',
-    flavor: 'Hielo que nunca se derrite, para un preso que nunca sale.'
-  },
-  'full-steam-ahead': {
-    name: 'A Todo Vapor',
-    text: 'Tus aliados ganan +3 de ataque y +3 de vida y ganá 1 de Cronos.',
-    flavor: '¡Todos los motores, ya!'
-  },
-  'gag-of-silence': {
-    name: 'Mordaza del Silencio',
-    text: 'Adjuntala a un aliado enemigo: no puede usar su habilidad.',
-    flavor: 'Ni cantos, ni órdenes, ni hechizos.'
-  },
-  'galvanic-spark': {
-    name: 'Chispa Galvánica',
-    text: 'Hacé 6 de daño a un slot enemigo. Rápida.',
-    flavor: 'Un poco de electricidad para despertar las cosas.'
-  },
-  'garden-of-forever': {
-    name: 'Jardín del Para Siempre',
-    text: 'Artefacto. Al empezar cada fase, tus aliados ganan +2 de ataque y +2 de vida, y tu héroe se cura 4.',
-    flavor: 'Acá nada se marchita. Nunca.'
-  },
-  'gate-of-oblivion': {
-    name: 'Portal del Olvido',
-    text: 'Artefacto. Al empezar cada fase, hacé 5 de daño a un aliado enemigo al azar. Si tu descarte tiene 10 cartas o más, un aliado al azar de tu descarte vuelve al juego.',
-    flavor: 'Lo que entra nunca vuelve. Casi nunca.'
-  },
-  'gear-drone': { name: 'Dron de Engranajes', flavor: 'Dale cuerda y soltalo. Sabe el camino.' },
-  'gear-weaver': {
-    name: 'Tejedora de Engranajes',
-    text: 'Cuando entra otro aliado tuyo, gana +1 de ataque y +2 de vida.',
-    flavor: 'Les construye mejoras chiquitas a todos los que conoce.'
-  },
-  'gearworks-tower': {
-    name: 'Torre de los Engranajes',
-    text: 'Artefacto. Al empezar cada fase, ganá 1 de Cronos. Al final de cada fase, tu héroe gana 3 de armadura.',
-    flavor: 'Sus campanas suenan cada hora de cada era.'
-  },
-  'ghillie-cloak': { name: 'Capa de Camuflaje', text: 'Al jugarla: robá una carta.', flavor: 'Ahora sos el bosque.' },
+  'gentle-ward': { name: 'Guarda Gentil', text: 'Cuando ataca un aliado enemigo: hacele 7 de daño de luz.' },
+  'ghost-of-the-mainframe': { name: 'Fantasma Digital del Servidor Central', text: 'Al entrar: robá una carta.' },
+  'ghoul-of-mercy': { name: 'Necrófago de la Misericordia' },
   'gideon-ironsteam': {
     name: 'Gideon Ironsteam',
-    text: 'Puño de Pistón (2): hacé 10 de daño a un slot enemigo y tu héroe gana 4 de armadura.',
+    text: 'Puño de Pistón (2): hacé 5 de daño de fuego a un slot enemigo y tu héroe gana 2 de armadura.',
     flavor: 'Mitad hombre, mitad motor, todo testarudez.',
-    ability: { name: 'Puño de Pistón', text: 'Hacé 10 de daño a un slot enemigo y tu héroe gana 4 de armadura.' }
+    ability: {
+      name: 'Puño de Pistón',
+      text: 'Hacé 5 de daño de fuego a un slot enemigo y tu héroe gana 2 de armadura.'
+    }
   },
-  'glacial-pulse': {
-    name: 'Pulso Glacial',
-    text: 'Congelá a todos los aliados enemigos por el resto de esta fase y la siguiente.',
-    flavor: 'Todo se detiene. Hasta los gritos.'
+  'gideons-hammer': { name: 'Martillo de Gideon', text: 'Al equiparla: tu héroe gana 5 de armadura.' },
+  'gleaming-wyvern': {
+    name: 'Guiverno Reluciente',
+    text: 'Al entrar: gana +1 de ataque y +1 de vida por cada otro Draco tuyo. Al morir: hacé 4 de daño de arcano a un aliado enemigo al azar.'
   },
-  'gladiator-twins': { name: 'Gladiadores Gemelos', flavor: 'Nadie recuerda cuál ganó. Ganaron los dos.' },
-  'gladius-of-the-legate': {
-    name: 'Gladius del Legado',
-    text: 'Al jugarla: tu héroe gana 5 de armadura.',
-    flavor: 'Cada muesca de su hoja es un siglo.'
-  },
-  'glitch-runner': { name: 'Corredor Glitch', flavor: 'Ahora lo ves. Ahora ves un mensaje de error.' },
-  goldbow: {
-    name: 'El Arco Dorado',
-    text: 'Al jugarla: robá una carta.',
-    flavor: 'Un regalo del sol al mejor arquero bajo su luz.'
-  },
-  'golden-laurel': {
-    name: 'Laurel Dorado',
-    text: 'Un aliado tuyo gana +6 de ataque y +12 de vida y robá 2 cartas.',
-    flavor: 'No pesa nada. Vale todo.'
+  'glitched-glitch': { name: 'Glitch Corrupto', text: 'Al atacar: hacé 2 de daño de rayo al héroe enemigo.' },
+  'glitched-plan': { name: 'Plan Corrupto', text: 'Robá una carta y tu héroe se cura 3.' },
+  'glyptodon-of-the-volcano': {
+    name: 'Gliptodonte del Volcán',
+    text: 'Al entrar: invocá un Cachorro de Dientes de Sable.'
   },
   'gorrak-tyrant-king': {
     name: 'Gorrak, Rey Tirano',
-    text: 'Devorar (2): hacé 8 de daño a un slot enemigo y tu héroe se cura 8. Al empezar cada fase, tu héroe se cura 3.',
+    text: 'Devorar (2): hacé 4 de daño de tierra a un slot enemigo y tu héroe se cura 4. Al empezar cada fase, tu héroe se cura 3.',
     flavor: 'La jungla tiene un solo rey. Se come a los demás.',
-    ability: { name: 'Devorar', text: 'Hacé 8 de daño a un slot enemigo y tu héroe se cura 8.' }
+    ability: { name: 'Devorar', text: 'Hacé 4 de daño de tierra a un slot enemigo y tu héroe se cura 4.' }
   },
-  'grail-of-ages': {
-    name: 'Grial de las Eras',
-    text: 'Artefacto. Al empezar cada fase, tu héroe se cura 4.',
-    flavor: 'Cada siglo vertió una gota.'
+  'gorraks-cave-bear': {
+    name: 'Oso Cavernario de Gorrak',
+    text: 'Cuando entra otra Fiera tuya: tu héroe se cura 2. Al empezar cada fase: gana +1 de ataque y +1 de vida.'
   },
-  'grand-conjurer': {
-    name: 'Gran Conjurador',
-    text: 'Al entrar: invocá un Familiar Arcano.',
-    flavor: '¿Para qué pelear solo si podés traer amigos del aire?',
-    ability: { name: 'Lanza Arcana', text: 'Hacé 10 de daño a un aliado enemigo.' }
+  'gorraks-recurve-bow': {
+    name: 'Arco Recurvo de Gorrak',
+    text: 'Al equiparla: hacé 4 de daño de tierra a un aliado enemigo al azar.'
   },
-  'grand-triumph': {
-    name: 'Gran Triunfo',
-    text: 'Tus aliados ganan +4 de ataque y +6 de vida y tu héroe se cura 10.',
-    flavor: 'Pétalos de rosa, carros dorados y una ciudad de pie.'
+  'grave-hound-of-grace': { name: 'Sabueso de Tumba de la Gracia' },
+  'griffin-of-the-last-stand': {
+    name: 'Grifo de la Última Defensa',
+    text: 'Al entrar: robá el primer Coloso de tu mazo. Al atacar: gana +1 de ataque.'
   },
-  'grappling-hook': {
-    name: 'Garfio',
-    text: 'Hacé 6 de daño a un slot enemigo y robá una carta.',
-    flavor: 'Acercá un poco el futuro.'
+  'grim-shot': {
+    name: 'Disparo Sombrío',
+    text: 'Hacé 2 de daño de sombra a un slot enemigo, +2 por cada Horror tuyo.'
   },
-  'grasping-dead': {
-    name: 'Manos de los Muertos',
-    text: 'Cuando un aliado enemigo ataca: cancelá el ataque y aturdilo.',
-    flavor: 'La tierra te agarra. Ellos también.'
+  'grim-skeleton': { name: 'Esqueleto Sombrío', text: 'Al atacar: tu héroe se cura 3.' },
+  'guard-of-the-ancestors': {
+    name: 'Guardia de los Ancestros',
+    text: 'Tu héroe gana 13 de armadura y robá una carta.'
   },
-  'grave-whisperer': {
-    name: 'Susurradora de Tumbas',
-    text: 'Al morir: robá una carta.',
-    flavor: 'Los muertos le cuentan todo. Ella no le cuenta a nadie.'
+  'guard-of-the-warlord': { name: 'Guardia del Caudillo', text: 'Tu héroe gana 12 de armadura y robá una carta.' },
+  'guardian-spirit': { name: 'Espíritu Guardián' },
+  'halberd-of-valor': { name: 'Alabarda del Valor', text: 'Al equiparla: robá una carta.' },
+  'hallowed-battle-cry': { name: 'Grito de Guerra Consagrado', text: 'Un aliado tuyo gana +4 de ataque y +5 de vida.' },
+  'hallowed-deserter': { name: 'Desertor Consagrado', text: 'Al entrar: tus otros aliados ganan +2 de vida.' },
+  'hallowed-dream-reader': { name: 'Lectora de Sueños Consagrada', text: 'Al entrar: tu héroe se cura 7.' },
+  'hallowed-revenant': {
+    name: 'Aparecido Consagrado',
+    text: 'Al entrar: hacé 1 de daño de sombra al héroe enemigo por cada No-muerto tuyo.'
   },
-  'gravebound-colossus': { name: 'Coloso de las Tumbas', flavor: 'Mil tumbas, un solo cuerpo.' },
-  'gravekeeper-of-eras': {
-    name: 'Sepulturero de las Eras',
-    text: 'Al entrar: un aliado al azar de tu descarte vuelve al juego.',
-    flavor: 'En la Grieta nadie queda enterrado.'
+  'harpoon-of-the-ambush': { name: 'Arpón de la Emboscada' },
+  'harpoon-of-the-quarry': {
+    name: 'Arpón de la Presa',
+    text: 'Al equiparla: hacé 4 de daño a un aliado enemigo al azar.'
   },
-  'grawl-the-dire-wolf': {
-    name: 'Grawl, el Lobo Huargo',
-    text: 'Al atacar: tu héroe se cura 3.',
-    flavor: 'Era el más chico de la manada. Después se comió a la manada.'
+  'hatchet-of-dawn': { name: 'Hachuela del Alba' },
+  'healing-amulet': { name: 'Amuleto Sanador' },
+  'healing-muster': { name: 'Leva Sanadora', text: 'Invocá un Espíritu Guardián.' },
+  'healing-prayer': { name: 'Plegaria Sanadora', text: 'Tu héroe se cura 10 y robá una carta.' },
+  'hex-of-dawn': { name: 'Maleficio del Alba', text: 'Adjuntala a un aliado enemigo: tiene -3 de ataque.' },
+  'hex-of-lightning': { name: 'Maleficio del Relámpago', text: 'Aturdí a un aliado enemigo. Rápida.' },
+  'hex-of-runes': {
+    name: 'Maleficio de las Runas',
+    text: 'Devolvé un aliado enemigo a la mano de su dueño y robá una carta. Rápida.'
   },
-  'great-foundry': {
-    name: 'La Gran Fundición',
-    text: 'Artefacto. Al empezar cada fase, si tenés menos de 3 aliados, invocá un Dron de Engranajes.',
-    flavor: 'Día y noche fabrica más de todo.'
+  'hex-of-steel': {
+    name: 'Maleficio de Acero',
+    text: 'Congelá a un aliado enemigo y hacé 2 de daño de arcano al héroe enemigo.'
   },
-  'great-purge': {
-    name: 'Gran Purga',
-    text: 'Destruí todos los artefactos y las trampas boca abajo del rival.',
-    flavor: 'Borrón y cuenta nueva. Tablero limpio.'
+  'hex-of-the-enchanted-wood': {
+    name: 'Maleficio del Bosque Encantado',
+    text: 'Devolvé un aliado enemigo a la mano de su dueño. Rápida.'
   },
-  'greatsword-of-dawn': { name: 'Mandoble del Alba', flavor: 'Brilla más con la primera luz de la batalla.' },
-  'hall-of-echoes': {
-    name: 'Salón de los Ecos',
-    text: 'Artefacto. Al final de cada fase, robá una carta si tenés 3 o menos en la mano.',
-    flavor: 'Cada palabra dicha alguna vez todavía resuena acá.'
+  'hex-of-the-hunt': {
+    name: 'Maleficio de la Cacería',
+    text: 'Congelá a un aliado enemigo y hacé 3 de daño de arcano al héroe enemigo.'
   },
-  'hall-of-mirrors': {
-    name: 'Salón de los Espejos',
-    text: 'Artefacto. Al final de cada fase, hacé 3 de daño a un aliado enemigo al azar. Al empezar cada fase, tu héroe se cura 3.',
-    flavor: 'Cada reflejo es un hechizo esperando su turno.'
+  'hex-of-the-oracle': {
+    name: 'Maleficio del Oráculo',
+    text: 'Adjuntala a un aliado enemigo: cada daño que recibe es 3 mayor.'
   },
-  'halo-of-dawn': {
-    name: 'Halo del Alba',
-    text: 'Al empezar cada fase, tus aliados se curan 2.',
-    flavor: 'Cada mañana brilla un poco más.'
-  },
-  'hammer-of-the-ages': {
-    name: 'Martillo de las Eras',
-    text: 'Al jugarla: hacé 6 de daño a cada aliado enemigo y tu héroe gana 10 de armadura.',
-    flavor: 'Cada era forjó una parte.'
-  },
-  headshot: {
-    name: 'Disparo a la Cabeza',
-    text: 'Destruí un aliado enemigo. Lenta.',
-    flavor: 'Alcanza con una flecha.'
-  },
-  'healing-draught': {
-    name: 'Brebaje Curativo',
-    text: 'Tu héroe se cura 15.',
-    flavor: 'Tiene gusto a frutillas del año 3000.'
-  },
-  'healing-herbs': {
-    name: 'Hierbas Curativas',
-    text: 'Tu héroe se cura 8 y tus aliados se curan 3.',
-    flavor: 'Masticá, tragá y tratá de no poner cara.'
-  },
-  'healing-spring': {
-    name: 'Manantial Sanador',
-    text: 'Artefacto. Al empezar cada fase, tus aliados se curan 3.',
-    flavor: 'El agua recuerda cuando estabas entero.'
-  },
-  'herald-of-the-end': {
-    name: 'Heraldo del Fin',
-    text: 'Al entrar: hacé 6 de daño a cada aliado, también a los tuyos y robá una carta.',
-    flavor: 'No trae el fin. Lo anuncia.'
-  },
-  'herd-mother': {
-    name: 'Madre de la Manada',
-    text: 'Cuando entra otro aliado tuyo, gana +4 de vida.',
-    flavor: 'Todas las crías del valle le dicen mamá.',
-    ability: { name: 'Llamar a la Manada', text: 'Invocá una Cría de Dinosaurio.' }
-  },
-  'hold-the-line': {
-    name: 'Mantener la Línea',
-    text: 'Cuando un aliado enemigo ataca: cancelá el ataque, aturdilo por dos fases y tus aliados ganan +8 de vida.',
-    flavor: 'La línea aguanta. La línea siempre aguanta.'
-  },
+  'hex-of-thorns': { name: 'Maleficio de Espinas', text: 'Congelá a un aliado enemigo.' },
   'hollow-astronomer': {
     name: 'El Astrónomo Hueco',
-    text: 'Colapsar Estrella (3): hacé 10 de daño a un slot enemigo. Al empezar cada fase, hacé 2 de daño al héroe enemigo.',
+    text: 'Colapsar Estrella (3): hacé 5 de daño de arcano a un slot enemigo. Al empezar cada fase, hacé 2 de daño de arcano al héroe enemigo.',
     flavor: 'Trazó el mapa de cada estrella, y después empezó a apagarlas.',
-    ability: { name: 'Colapsar Estrella', text: 'Hacé 10 de daño a un slot enemigo.' }
+    ability: { name: 'Colapsar Estrella', text: 'Hacé 5 de daño de arcano a un slot enemigo.' }
   },
-  'hollow-cultist': {
-    name: 'Cultista Hueco',
-    text: 'Al entrar: destruí tu otro aliado más débil: si lo hacés, gana +4 de ataque y +6 de vida.',
-    flavor: 'Le dio su nombre al vacío. El vacío le dio dientes.'
+  'hollow-vision': { name: 'Visión Hueca', text: 'Robá 2 cartas.' },
+  'hollow-void-spawn': {
+    name: 'Engendro del Vacío Hueco',
+    text: 'Al entrar: si tu pila de descarte tiene 6 cartas o más, gana +2 de ataque y +2 de vida. Su habilidad se paga con energía (⚡).',
+    ability: { name: 'Curar', text: 'Un aliado tuyo se cura 6.' }
   },
-  'hollow-harp': {
-    name: 'El Arpa Hueca',
-    text: 'Al empezar cada fase, si tu descarte tiene 6 cartas o más, tus aliados se curan 3.',
-    flavor: 'Sus cuerdas son el último aliento de los muertos.'
+  'holo-decoy': { name: 'Señuelo Holográfico' },
+  'holo-mech': { name: 'Mecha Holográfico', text: 'Al atacar: hacé 3 de daño de sónico al héroe enemigo.' },
+  'holo-secret': { name: 'Secreto Holográfico', text: 'Robá 2 cartas.' },
+  'hoplite-conscript': { name: 'Conscripto Hoplita' },
+  'hourglass-of-ice': { name: 'Reloj de Arena de Hielo', text: 'Ganás 4 Cronos en esta fase. Instantánea.' },
+  'hourglass-of-storms': { name: 'Reloj de Arena de Tormentas', text: 'Tu héroe gana 1 de energía. Instantánea.' },
+  'hourglass-shard-of-borrowed-hours': {
+    name: 'Esquirla de Reloj de las Horas Prestadas',
+    text: 'Ganás 4 Cronos en esta fase. Instantánea.'
   },
-  'holo-crossbow': { name: 'Ballesta Holográfica', flavor: 'Las flechas son de luz. Los agujeros son reales.' },
-  'holo-decoy': { name: 'Señuelo Holográfico', flavor: 'Pegale todo lo que quieras. No está ahí de verdad.' },
-  'holy-smite': {
-    name: 'Castigo Sagrado',
-    text: 'Hacé 8 de daño a un slot enemigo y tu héroe se cura 4.',
-    flavor: 'La luz cura. La luz también quema.'
+  'hungry-banner': {
+    name: 'Estandarte Hambriento',
+    text: 'Al empezar cada fase: hacé 3 de daño de hielo a un aliado enemigo al azar. (3 usos)'
   },
-  'holy-water': {
-    name: 'Agua Bendita',
-    text: 'Tu héroe se cura 8 y tus aliados se curan 4.',
-    flavor: 'Salpicá con generosidad.'
+  'hungry-blessing': {
+    name: 'Bendición Hambrienta',
+    text: 'Adjuntala a un aliado tuyo: gana +1 de ataque y +3 de vida.'
   },
-  'hoplite-sentry': { name: 'Hoplita Centinela', flavor: 'Detrás de su escudo duerme una ciudad entera.' },
-  'hour-wraith': { name: 'Espectro de las Horas', flavor: 'Hecho de minutos que nadie usó.' },
-  'hourglass-dagger': { name: 'Daga del Reloj de Arena', flavor: 'Un corte, y la arena empieza a caer.' },
-  'hourglass-plating': {
-    name: 'Placas de Reloj de Arena',
-    text: 'Adjuntalas a un aliado tuyo: cada daño que recibe se reduce en 2.',
-    flavor: 'Cada golpe llega un poco tarde, y un poco más débil.'
+  'hungry-cave-painter': {
+    name: 'Pintora de Cuevas Hambrienta',
+    text: 'Cuando entra otro Cavernario tuyo: gana +1 de ataque y +1 de vida.'
   },
-  'hourglass-sentry': { name: 'Centinela del Reloj de Arena', flavor: 'Cuenta cada segundo que pasás frente a él.' },
-  'hourglass-warden': { name: 'Guardiana del Reloj', flavor: 'El tiempo se detiene en su escudo.' },
-  'hover-biker': { name: 'Motociclista Flotante', flavor: 'Sin ruedas, sin frenos, sin arrepentimientos.' },
-  'hunt-of-the-goddess': {
-    name: 'Cacería de la Diosa',
-    text: 'Hacé 8 de daño a un aliado enemigo al azar y hacé 8 de daño a un aliado enemigo al azar.',
-    flavor: 'Corré, si creés que sirve.'
-  },
-  'hunters-mark': {
-    name: 'Marca del Cazador',
-    text: 'Hacé 4 de daño a un aliado enemigo y robá una carta. Instantánea.',
-    flavor: 'Una vez marcado, no hay dónde esconderse.'
-  },
-  'hunting-bow': { name: 'Arco de Caza', flavor: 'Hueso, tendón y paciencia.' },
-  'hunting-horn': {
-    name: 'Cuerno de Caza',
-    text: 'Tus aliados ganan +3 de ataque. Rápido.',
-    flavor: 'Empieza la cacería.'
-  },
-  'hunting-party': {
-    name: 'Partida de Caza',
-    text: 'Hacé 4 de daño a un aliado enemigo y robá una carta.',
-    flavor: 'Esta noche comen todos.'
-  },
-  'ice-lance': {
-    name: 'Lanza de Hielo',
-    text: 'Hacé 8 de daño a un aliado enemigo y aturdilo.',
-    flavor: 'Fría, filosa y al grano.'
-  },
+  'hydra-of-the-senate': { name: 'Hidra del Senado', text: 'Al entrar: tu héroe gana 5 de armadura.' },
   'ilyra-starweaver': {
     name: 'Ilyra Starweaver',
-    text: 'Rayo Arcano (2): hacé 12 de daño a un slot enemigo.',
+    text: 'Rayo Arcano (2): hacé 6 de daño de arcano a un slot enemigo.',
     flavor: 'Lee el futuro en las constelaciones, y después lo reescribe.',
-    ability: { name: 'Rayo Arcano', text: 'Hacé 12 de daño a un slot enemigo.' }
+    ability: { name: 'Rayo Arcano', text: 'Hacé 6 de daño de arcano a un slot enemigo.' }
   },
-  'imperator-solis': {
-    name: 'Imperator Solis',
-    text: 'Al empezar cada fase, tus aliados ganan +2 de ataque y +2 de vida.',
-    flavor: 'Bajo su sol, ninguna legión se pone.'
+  'ilyras-slash': { name: 'Tajo de Ilyra', text: 'Hacé 10 de daño de arcano a un slot enemigo y robá una carta.' },
+  'imperial-charioteer': {
+    name: 'Auriga Imperial',
+    text: 'Al morir: tus Legionarios ganan +1 de ataque y +1 de vida.'
   },
-  'information-broker': {
-    name: 'Traficante de Información',
-    text: 'Al empezar cada fase, robá una carta.',
-    flavor: 'Todos tienen un precio. Ella los conoce todos.'
+  'imperial-haruspex': { name: 'Arúspice Imperial', text: 'Al atacar: tu héroe gana 2 de armadura.' },
+  'imperial-horn': { name: 'Cuerno Imperial', text: 'Invocá un Conscripto Hoplita.' },
+  'implant-of-spirits': {
+    name: 'Implante de los Espíritus',
+    text: 'Adjuntala a un aliado tuyo: gana +2 de ataque y +5 de vida.'
   },
-  'inner-fire': {
-    name: 'Fuego Interior',
-    text: 'Un aliado tuyo gana +6 de ataque esta fase y se cura 6. Rápida.',
-    flavor: 'La llama siempre estuvo ahí.'
+  'implant-of-the-quarry': {
+    name: 'Implante de la Presa',
+    text: 'Adjuntala a un aliado tuyo: gana +1 de ataque y +2 de vida.'
   },
-  'inventor-of-hours': {
-    name: 'Inventor de Horas',
-    text: 'Al empezar cada fase, ganá 1 de Cronos.',
-    flavor: 'Inventó la hora veinticinco. Nadie más la encuentra.',
-    ability: { name: 'Resorte del Tiempo', text: 'Robá 2 cartas.' }
+  'infiltrator-of-midnight': {
+    name: 'Infiltradora de Medianoche',
+    text: 'Cuando entra otro Hacker tuyo: gana +1 de ataque y +1 de vida.'
   },
-  'iron-buckler': {
-    name: 'Rodela de Hierro',
-    text: 'Adjuntala a un aliado tuyo: tiene +6 de vida.',
-    flavor: 'Chica, redonda y testaruda.'
+  'infiltrator-of-static': {
+    name: 'Infiltradora de Estática',
+    text: 'Al atacar: hacé 3 de daño de rayo al héroe enemigo.'
   },
-  'iron-gladius': { name: 'Gladius de Hierro', flavor: 'Corto, filoso y muy, muy confiable.' },
-  'iron-manacles': {
-    name: 'Esposas de Hierro',
-    text: 'Adjuntalas a un aliado enemigo: no puede atacar.',
-    flavor: 'Todavía te puede mirar feo.'
+  'infiltrator-of-the-ambush': {
+    name: 'Infiltradora de la Emboscada',
+    text: 'Al entrar: invocá un Cachorro de Dientes de Sable.'
   },
-  'iron-rations': {
-    name: 'Raciones de Hierro',
-    text: 'Un aliado tuyo gana +10 de vida.',
-    flavor: 'Saben a hierro. Funcionan como hierro.'
+  'infiltrator-of-the-silent-trail': {
+    name: 'Infiltradora del Rastro Silencioso',
+    text: 'Al morir: hacé 3 de daño a un aliado enemigo al azar.'
   },
-  'iron-resolve': {
-    name: 'Determinación de Hierro',
-    text: 'Tu héroe gana 12 de armadura y ganá 1 de Cronos. Instantánea.',
-    flavor: 'Los remaches no se doblan.'
+  'insight-of-still-waters': { name: 'Revelación de las Aguas Quietas', text: 'Robá una carta.' },
+  'insight-of-the-warlord': {
+    name: 'Revelación del Caudillo',
+    text: 'Robá el primer Legionario de tu mazo y robá el primer Legionario de tu mazo.'
   },
-  'iron-walker': { name: 'Caminante de Hierro', flavor: 'Lento, ruidoso y absolutamente imparable.' },
-  'iron-will': {
-    name: 'Voluntad de Hierro',
-    text: 'Tu héroe gana 12 de armadura y tu héroe se cura 10.',
-    flavor: 'Doblarse, nunca romperse.'
+  'iron-gorgon': {
+    name: 'Gorgona de Hierro',
+    text: 'Al entrar: robá la primera arma de tu mazo. Su habilidad se paga con energía (⚡).',
+    ability: { name: 'Inspirar', text: 'Un aliado tuyo gana +1 de ataque y +2 de vida.' }
   },
-  'ironsteam-exosuit': {
-    name: 'Exotraje Ironsteam',
-    text: 'Al empezar cada fase, ganá 1 de Cronos.',
-    flavor: 'Doce calderas, ochenta engranajes y un hombre muy enojado.'
-  },
-  'jammer-unit': {
-    name: 'Unidad Bloqueadora',
-    text: 'Al entrar: aturdí a un aliado enemigo al azar.',
-    flavor: 'Todas las frecuencias: estática.'
-  },
-  'jungle-druid': {
-    name: 'Druida de la Jungla',
-    text: 'Al empezar cada fase, tus aliados se curan 4 y tus aliados ganan +1 de ataque.',
-    flavor: 'Les habla a los árboles. Ellos contestan creciendo.',
-    ability: { name: 'Rejuvenecer', text: 'Un aliado tuyo se cura 10.' }
-  },
-  'kaze-the-cyber-ronin': {
-    name: 'Kaze, el Ronin Cibernético',
-    flavor: 'Su viejo maestro. Su nuevo rival. Su único amigo.'
+  'iron-mark': { name: 'Marca de Hierro', text: 'Adjuntala a un aliado enemigo: tiene -2 de ataque.' },
+  'iron-terminal': { name: 'Terminal de Hierro', text: 'Al empezar cada fase: tu héroe se cura 3. (4 usos)' },
+  'ironsteam-exosuit': { name: 'Exotraje Ironsteam', text: 'Al empezar cada fase: ganás 1 Cronos en esta fase.' },
+  'javelin-of-the-wilds': { name: 'Jabalina de lo Salvaje', text: 'Al equiparla: tu héroe se cura 4.' },
+  'kades-cleaver': { name: 'Cuchilla de Kade', text: 'Al equiparla: tu héroe gana 5 de armadura.' },
+  'kades-courier': {
+    name: 'Mensajero de Kade',
+    text: 'Al entrar: hacé 1 de daño al héroe enemigo por cada Sicario tuyo. Al atacar: hacé 3 de daño al héroe enemigo.'
   },
   'kazhul-mother-of-ash': {
     name: 'Kazhul, Madre de la Ceniza',
-    text: 'Aliento de Ceniza (4): hacé 5 de daño a cada aliado enemigo. Al empezar cada fase, tu héroe se cura 3.',
+    text: 'Aliento de Ceniza (2): hacé 3 de daño de fuego a cada aliado enemigo. Al empezar cada fase, tu héroe se cura 3.',
     flavor: 'Duerme bajo el volcán. Nadie la quiere despierta.',
-    ability: { name: 'Aliento de Ceniza', text: 'Hacé 5 de daño a cada aliado enemigo.' }
+    ability: { name: 'Aliento de Ceniza', text: 'Hacé 3 de daño de fuego a cada aliado enemigo.' }
   },
-  'keeper-of-moments': {
-    name: 'Guardiana de los Momentos',
-    text: 'Al empezar cada fase, tu héroe se cura 6 y gana 4 de armadura.',
-    flavor: 'Guarda los mejores momentos, y los protege.'
+  'kazhuls-brontosaur': {
+    name: 'Brontosaurio de Kazhul',
+    text: 'Al entrar: tus otros Saurios ganan +2 de ataque y +2 de vida. Al empezar cada fase: gana +1 de ataque y +1 de vida.'
   },
-  'kill-command': {
-    name: 'Orden de Matar',
-    text: 'Hacé 12 de daño a un aliado enemigo y un aliado tuyo gana +4 de ataque esta fase.',
-    flavor: 'Atacá.'
+  'kazhuls-longbow': {
+    name: 'Arco Largo de Kazhul',
+    text: 'Al equiparla: hacé 4 de daño de fuego a un aliado enemigo al azar.'
   },
-  'knights-plate': { name: 'Placas de Caballero', flavor: 'Hace mucho ruido. Sobrevive mucho más.' },
+  'keen-eyed-blight': { name: 'Plaga de Ojo Certero', text: 'Envenená a un aliado enemigo (3).' },
+  'keen-eyed-crossbow': { name: 'Ballesta de Ojo Certero', text: 'Al equiparla: tu héroe se cura 4.' },
+  'keen-eyed-daze': {
+    name: 'Aturdimiento de Ojo Certero',
+    text: 'Devolvé un aliado enemigo a la mano de su dueño y robá una carta. Rápida.'
+  },
+  'keen-eyed-hide': { name: 'Piel Curtida de Ojo Certero' },
+  'keen-eyed-secret': { name: 'Secreto de Ojo Certero', text: 'Robá una carta.' },
+  'kite-shield-of-iron': { name: 'Escudo Cometa de Hierro' },
+  'kite-shield-of-rage': { name: 'Escudo Cometa de la Ira' },
   'kora-wildfang': {
     name: 'Kora Wildfang',
-    text: 'Disparo Rápido (1): hacé 5 de daño a un slot enemigo. Rápida.',
+    text: 'Disparo Rápido (1): hacé 3 de daño de viento a un slot enemigo. Rápida.',
     flavor: 'La jungla le enseñó una regla: disparar primero.',
-    ability: { name: 'Disparo Rápido', text: 'Hacé 5 de daño a un slot enemigo.' }
+    ability: { name: 'Disparo Rápido', text: 'Hacé 3 de daño de viento a un slot enemigo.' }
   },
-  'labyrinth-guardian': { name: 'Guardián del Laberinto', flavor: 'Cada pasillo tiene uno.' },
-  'lantern-of-dawn': {
-    name: 'Linterna del Alba',
-    text: 'Al empezar cada fase, tu héroe se cura 2.',
-    flavor: 'Nunca se apagó.'
+  'koras-blowgun': {
+    name: 'Cerbatana de Kora',
+    text: 'Al equiparla: hacé 4 de daño de viento a un aliado enemigo al azar.'
   },
-  'laser-grid': {
-    name: 'Rejilla Láser',
-    text: 'Cuando un aliado enemigo ataca: cancelá el ataque y hacele 5 de daño.',
-    flavor: 'Cuidado con las líneas rojas.'
+  'lamplighter-of-the-crossroads': {
+    name: 'Farolera de la Encrucijada',
+    text: 'Al morir: invocá una Chispa de la Grieta. Al entrar: tu héroe se cura 4.'
   },
-  'last-oath': {
-    name: 'Último Juramento',
-    text: 'Adjuntalo a un aliado tuyo: tiene +2 de ataque. Cuando muere, robás 2 cartas.',
-    flavor: 'Juralo, y tu muerte no será en vano.'
+  'lamplighter-of-the-dawnbell': { name: 'Farolera de la Campana del Alba' },
+  'lamplighter-of-the-wanderer': {
+    name: 'Farolera del Errante',
+    text: 'Al entrar: tus otros Errantes ganan +1 de ataque y +1 de vida.'
   },
-  'last-stand': {
-    name: 'Última Resistencia',
-    text: 'Tu héroe gana 10 de armadura. Si tu héroe tiene menos de la mitad de su vida, tu héroe gana 10 de armadura y robá una carta. Instantánea.',
-    flavor: 'Hoy no.'
+  'lamplighter-of-thorns': {
+    name: 'Farolera de Espinas',
+    text: 'Al morir: hacé 5 de daño a un aliado enemigo al azar.'
   },
-  'leather-jerkin': { name: 'Jubón de Cuero', flavor: 'Silencioso, liviano y cómodo.' },
-  'leeching-mark': {
-    name: 'Marca Sanguijuela',
-    text: 'Adjuntala a un aliado enemigo: al empezar cada fase, pierde 3 de vida y tu héroe se cura 3.',
-    flavor: 'Su fuerza se vuelve tuya, gota a gota.'
+  'lance-of-mana': { name: 'Lanza de Maná', text: 'Hacé 9 de daño de arcano a un slot enemigo.' },
+  'lance-of-runes': { name: 'Lanza de las Runas', text: 'Hacé 9 de daño de arcano a un aliado enemigo.' },
+  'lance-of-the-wilds': { name: 'Lanza de lo Salvaje', text: 'Hacé 11 de daño a un slot enemigo.' },
+  'lantern-of-flame': {
+    name: 'Farol de Llamas',
+    text: 'Al empezar cada fase: hacé 3 de daño de fuego a un aliado enemigo al azar. (3 usos)'
   },
-  'legate-of-the-eagle': {
-    name: 'Legado del Águila',
-    text: 'Al entrar: tus otros aliados ganan +2 de ataque. Si tenés 3 aliados de Bronce o más, robá 2 cartas.',
-    flavor: 'Adonde va el águila, van las legiones.'
+  'lantern-of-the-foundry': {
+    name: 'Farol de la Fundición',
+    text: 'Al empezar cada fase: tu héroe gana 3 de armadura. (3 usos)'
   },
+  'lantern-of-the-wanderer': {
+    name: 'Farol del Errante',
+    text: 'Al empezar cada fase: tu héroe gana 3 de armadura. (3 usos)'
+  },
+  'lantern-staff-of-mercy': {
+    name: 'Bastón Farol de la Misericordia',
+    text: 'Al equiparla: tu héroe gana 5 de armadura.'
+  },
+  'lantern-staff-of-renewal': { name: 'Bastón Farol de la Renovación' },
+  'lantern-staff-of-the-dawnbell': {
+    name: 'Bastón Farol de la Campana del Alba',
+    text: 'Al equiparla: tu héroe se cura 6.'
+  },
+  'laureled-dream-reader': { name: 'Lectora de Sueños Laureada', text: 'Al entrar: robá una carta.' },
+  'laureled-sentinel': { name: 'Centinela Laureado', text: 'Al entrar: robá el primer Coloso de tu mazo.' },
+  'learned-cryomancer': {
+    name: 'Criomante Erudita',
+    text: 'Al entrar: hacé 7 de daño de hielo a un aliado enemigo al azar.'
+  },
+  'learned-mist': { name: 'Neblina Erudita', text: 'Al entrar: quemá a un aliado enemigo al azar (5).' },
+  'learned-wyvern': { name: 'Guiverno Erudito', text: 'Cuando entra otro Draco tuyo: gana +1 de ataque y +1 de vida.' },
+  'leech-of-lost-time': {
+    name: 'Sanguijuela del Tiempo Perdido',
+    text: 'Adjuntala a un aliado enemigo: no puede usar su habilidad y tiene -1 de ataque.'
+  },
+  'leech-of-mercy': {
+    name: 'Sanguijuela de la Misericordia',
+    text: 'Adjuntala a un aliado enemigo: cada daño que recibe es 3 mayor.'
+  },
+  'leech-of-runes': {
+    name: 'Sanguijuela de las Runas',
+    text: 'Adjuntala a un aliado enemigo: cada daño que recibe es 3 mayor.'
+  },
+  'leech-of-the-quarry': { name: 'Sanguijuela de la Presa', text: 'Adjuntala a un aliado enemigo: no puede atacar.' },
   'legate-varro': {
     name: 'Legado Varro',
-    text: 'Fortificar (2): tu héroe gana 10 de armadura. Instantánea.',
+    text: 'Fortificar (1): tu héroe gana 5 de armadura. Instantánea.',
     flavor: 'Aguantó la línea en más siglos de los que puede contar.',
-    ability: { name: 'Fortificar', text: 'Tu héroe gana 10 de armadura.' }
+    ability: { name: 'Fortificar', text: 'Tu héroe gana 5 de armadura.' }
   },
-  'legion-quartermaster': {
-    name: 'Intendente de la Legión',
-    text: 'Al entrar: robá una carta por cada otro aliado Bronce que tengas (hasta 2).',
-    flavor: 'Cada escudo contado, cada lanza en su lugar.'
+  'longbow-of-the-hawk': { name: 'Arco Largo del Halcón' },
+  'longbow-of-the-silent-trail': { name: 'Arco Largo del Rastro Silencioso' },
+  'lost-chrononaut': { name: 'Crononauta Perdido' },
+  'lost-stance': { name: 'Postura Perdida', text: 'Tu héroe gana 13 de armadura y robá una carta.' },
+  'lost-vision': { name: 'Visión Perdida', text: 'Robá 2 cartas.' },
+  'loyal-charioteer': { name: 'Auriga Leal' },
+  'loyal-gorgon': {
+    name: 'Gorgona Leal',
+    text: 'Al entrar: hacé 1 de daño de luz al héroe enemigo por cada Coloso tuyo.'
   },
-  'legion-rations': {
-    name: 'Raciones de la Legión',
-    text: 'Tus aliados se curan 6.',
-    flavor: 'Pan, queso y un trago de vino. Alcanza para conquistar la Galia.'
+  'lucky-blessing': { name: 'Bendición Afortunada', text: 'Tu héroe se cura 12.' },
+  'lucky-shrine': {
+    name: 'Santuario Afortunado',
+    text: 'Al empezar cada fase: hacé 4 de daño a un aliado enemigo al azar. (3 usos)'
   },
-  'legion-slinger': { name: 'Hondero de la Legión', flavor: 'Una piedra de lejos igual duele.' },
-  'ley-line-conduit': {
-    name: 'Conducto de Líneas Ley',
-    text: 'Artefacto. Al empezar cada fase, tu héroe gana 1 de energía más.',
-    flavor: 'Aprovechá el río de poder bajo el mundo.'
+  'lucky-stasis': {
+    name: 'Estasis Afortunada',
+    text: 'Devolvé un aliado enemigo a la mano de su dueño y robá una carta. Rápida.'
   },
-  'lich-of-the-last-hour': {
-    name: 'Liche de la Última Hora',
-    flavor: 'A la última hora, los muertos se levantan por él.',
-    ability: { name: 'Drenar Vida', text: 'Hacé 6 de daño al héroe enemigo y tu héroe se cura 6.' }
+  'luminous-resurrection': {
+    name: 'Resurrección Luminosa',
+    text: 'Un aliado al azar de tu pila de descarte vuelve al juego y tu héroe se cura 4. Lenta.'
   },
-  lightbringer: { name: 'Portadora de Luz', flavor: 'Corta la oscuridad misma.' },
-  'lightning-bolt': {
-    name: 'Relámpago',
-    text: 'Hacé 12 de daño a un slot enemigo. Rápida.',
-    flavor: 'Desde el cielo, con cariño.'
+  'luminous-squire': {
+    name: 'Escudero Luminoso',
+    text: 'Al morir: un aliado al azar de tu pila de descarte vuelve al juego.'
   },
-  'lightning-dash': {
-    name: 'Carrera Relámpago',
-    text: 'Hacé 8 de daño a un aliado enemigo y tu héroe gana 4 de armadura. Instantánea.',
-    flavor: 'Parpadeaste. Ya está detrás tuyo.'
+  'machinist-of-brass': {
+    name: 'Maquinista de Latón',
+    text: 'Al entrar: si tenés otro Inventor, robá una carta. Su habilidad se paga con energía (⚡).',
+    ability: { name: 'Inspirar', text: 'Un aliado tuyo gana +1 de ataque y +2 de vida.' }
   },
-  longbow: { name: 'Arco Largo', flavor: 'Dispara más lejos de lo que ve el ojo.' },
-  'lost-squire': { name: 'Escudero Perdido', flavor: 'Lo mandaron a buscar agua. Hace seis siglos.' },
-  'lullaby-of-the-lost': {
-    name: 'Canción de Cuna de los Perdidos',
-    text: 'Aturdí a un aliado enemigo al azar y tu héroe se cura 5.',
-    flavor: 'Dormí. Al final, todos duermen.'
-  },
-  'lumen-the-star-owl': {
-    name: 'Lumen, la Lechuza Estelar',
-    text: 'Al entrar: robá una carta. Al empezar cada fase, hacé 3 de daño a un aliado enemigo al azar.',
-    flavor: 'Ilyra la encontró adentro de una estrella fugaz.'
-  },
-  'magic-bolt': {
-    name: 'Saeta Mágica',
-    text: 'Hacé 7 de daño a un slot enemigo. Rápida.',
-    flavor: 'El primer hechizo que aprende un aprendiz. Y el último que ven algunos.'
+  'machinist-of-the-foundry': { name: 'Maquinista de la Fundición' },
+  'magma-brute-of-mana': { name: 'Bruto de Magma de Maná', text: 'Al empezar cada fase: tu héroe gana 1 de energía.' },
+  'magma-brute-of-the-long-road': {
+    name: 'Bruto de Magma del Largo Camino',
+    text: 'Al morir: tus Elementales ganan +1 de ataque y +1 de vida.'
   },
   'malachar-the-unmade': {
     name: 'Malachar el Deshecho',
-    text: 'Deshacer (2): hacé 8 de daño a un slot enemigo. Si tu descarte tiene 6 cartas o más, tu héroe se cura 4. Al empezar cada fase, si tu descarte tiene 8 cartas o más, hacé 2 de daño al héroe enemigo.',
+    text: 'Deshacer (2): hacé 5 de daño de sombra a un slot enemigo. Si tu descarte tiene 6 cartas o más, tu héroe se cura 2. Al empezar cada fase, si tu descarte tiene 8 cartas o más, hacé 2 de daño de sombra al héroe enemigo.',
     flavor: 'Se deshizo a sí mismo para ver qué hay más allá del tiempo.',
     ability: {
       name: 'Deshacer',
-      text: 'Hacé 8 de daño a un slot enemigo. Si tu descarte tiene 6 cartas o más, tu héroe se cura 4.'
+      text: 'Hacé 5 de daño de sombra a un slot enemigo. Si tu descarte tiene 6 cartas o más, tu héroe se cura 2.'
     }
   },
-  'mammoth-skull-staff': {
-    name: 'Bastón de Cráneo de Mamut',
-    text: 'Al empezar cada fase, tus aliados se curan 2.',
-    flavor: 'El mamut todavía recuerda el hielo.'
+  'malachars-blast': {
+    name: 'Estallido de Malachar',
+    text: 'Hacé 10 de daño de sombra a un slot enemigo y robá una carta.'
   },
-  'mana-crystal': { name: 'Cristal de Maná', text: 'Ganá 1 de Cronos.', flavor: 'Zumba cuando está lleno.' },
-  'mana-potion': {
-    name: 'Poción de Maná',
-    text: 'Ganá 2 de Cronos.',
-    flavor: 'Azul, burbujeante y llena de posibilidades.'
+  'mammoth-of-the-hunt': {
+    name: 'Mamut de la Cacería',
+    text: 'Cuando entra otra Fiera tuya: gana +1 de ataque y +1 de vida. Su habilidad se paga con energía (⚡).',
+    ability: { name: 'Inspirar', text: 'Un aliado tuyo gana +1 de ataque y +2 de vida.' }
   },
-  'mana-shield': { name: 'Escudo de Maná', flavor: 'Una pared de pensamiento.' },
-  'mantle-of-the-hunt': {
-    name: 'Manto de la Cacería',
-    text: 'Al empezar cada fase, hacé 4 de daño a un aliado enemigo al azar.',
-    flavor: 'La presa siempre lo siente primero.'
+  'mana-bound-mine': {
+    name: 'Mina Atada al Maná',
+    text: 'Cuando el rival usa una habilidad: robá una carta y hacé 5 de daño de arcano al héroe enemigo.'
   },
-  'marching-legion': { name: 'Legión en Marcha', flavor: 'Los escuchás una hora antes de verlos.' },
-  'mark-of-the-hunted': {
-    name: 'Marca del Cazado',
-    text: 'Adjuntala a un aliado enemigo: cada daño que recibe es 3 mayor.',
-    flavor: 'Una vez marcado, no hay dónde esconderse.'
+  'mana-bound-pyromancer': {
+    name: 'Piromante Atado al Maná',
+    text: 'Al entrar: robá la primera habilidad de tu mazo.'
   },
-  'mass-revival': {
-    name: 'Resurrección en Masa',
-    text: 'Un aliado al azar de tu descarte vuelve al juego, un aliado al azar de tu descarte vuelve al juego y tus aliados se curan 6. Lenta.',
-    flavor: 'Levántense, todos.'
+  'manacle-of-the-hawk': {
+    name: 'Grillete del Halcón',
+    text: 'Adjuntala a un aliado enemigo: cada vez que ataca, recibe 5 de daño de viento.'
   },
-  'master-artificer': {
-    name: 'Maestro Artífice',
-    text: 'Al entrar: invocá un Dron de Engranajes y ganá 1 de Cronos.',
-    flavor: 'Dale un resorte y una moneda y te construye una ciudad.',
-    ability: { name: 'Ajuste Fino', text: 'Un aliado tuyo gana +2 de ataque y +4 de vida.' }
+  'map-of-the-long-road': { name: 'Mapa del Largo Camino', text: 'Destruí el arma enemiga. Rápida.' },
+  'map-of-the-wanderer': {
+    name: 'Mapa del Errante',
+    text: 'Un aliado tuyo gana +8 de ataque en esta fase. Instantánea.'
   },
-  'maw-of-xulthar': { name: "Fauces de Xul'thar", flavor: 'Solo una de sus bocas.' },
-  'mech-trooper': { name: 'Soldado Mecha', flavor: 'Equipo estándar. Exceso estándar.' },
-  'mechanical-heart': {
-    name: 'Corazón Mecánico',
-    text: 'Un aliado tuyo gana +8 de ataque y +20 de vida y ganá 2 de Cronos.',
-    flavor: 'Late sesenta veces por minuto, para siempre.'
+  'marble-fury': { name: 'Furia de Mármol', text: 'Un aliado tuyo gana +6 de ataque en esta fase. Instantánea.' },
+  'mending-of-light': { name: 'Remedio de la Luz', text: 'Tu héroe se cura 9.' },
+  'mending-of-mercy': { name: 'Remedio de la Misericordia', text: 'Tu héroe se cura 12.' },
+  'mercenary-of-borrowed-hours': {
+    name: 'Mercenario de las Horas Prestadas',
+    text: 'Al entrar: robá una carta. Su habilidad se paga con energía (⚡).',
+    ability: { name: 'Golpe', text: 'Hacé 6 de daño de tiempo a un slot enemigo.' }
   },
-  'mechanical-knight': { name: 'Caballero Mecánico', flavor: 'Pulido, aceitado y leal a quien tenga la llave.' },
-  'megacity-titan': {
-    name: 'Titán de la Megaciudad',
-    text: 'Al entrar: hacé 10 de daño a cada aliado enemigo y robá 2 cartas.',
-    flavor: 'La ciudad lo construyó para protegerse. Se equivocó.'
+  'mercenary-of-the-crossroads': {
+    name: 'Mercenario de la Encrucijada',
+    text: 'Al entrar: el arma enemiga pierde 1 de durabilidad.'
   },
-  mend: { name: 'Sanar', text: 'Un aliado tuyo se cura 12. Rápida.', flavor: 'Un toque de luz, un suspiro de alivio.' },
-  'mend-the-timeline': {
-    name: 'Remendar la Línea',
-    text: 'Tu héroe se cura 12 y tus aliados se curan 6.',
-    flavor: 'Puntada a puntada, el pasado sana.'
+  'mercenary-of-the-wanderer': {
+    name: 'Mercenario del Errante',
+    text: 'Al entrar: tu héroe gana 5 de armadura. Al empezar cada fase: tu héroe se cura 2.'
   },
-  meteor: {
-    name: 'Meteoro',
-    text: 'Hacé 26 de daño a un slot enemigo y hacé 4 de daño a cada aliado enemigo. Lenta.',
-    flavor: 'Mirá para arriba. Después corré.'
+  'midnight-chrome-brawler': {
+    name: 'Peleador Cromado de Medianoche',
+    text: 'Al entrar: el héroe enemigo pierde 1 de energía.'
   },
-  'mighty-blow': {
-    name: 'Golpe Poderoso',
-    text: 'Hacé 20 de daño a un slot enemigo y tu héroe gana 6 de armadura.',
-    flavor: 'Puso toda una carrera en ese golpe.'
+  'midnight-countermeasure': {
+    name: 'Contramedida de Medianoche',
+    text: 'Cuando el rival usa una habilidad: robá una carta y hacé 4 de daño de sombra al héroe enemigo.'
   },
-  'mind-freeze': {
-    name: 'Mente Congelada',
-    text: 'Aturdí a un aliado enemigo y hacele 6 de daño.',
-    flavor: 'Pensar está sobrevalorado.'
+  'midnight-daze': { name: 'Aturdimiento de Medianoche', text: 'Aturdí a un aliado enemigo. Rápida.' },
+  'midnight-insignia': {
+    name: 'Insignia de Medianoche',
+    text: 'Adjuntala a un aliado tuyo: gana +1 de ataque y +3 de vida.'
   },
-  miracle: {
-    name: 'Milagro',
-    text: 'Tu héroe se cura 30, un aliado al azar de tu descarte vuelve al juego y robá 2 cartas. Lenta.',
-    flavor: 'Nadie lo puede explicar. Nadie lo necesita.'
+  'midnight-mech': { name: 'Mecha de Medianoche', text: 'Al entrar: robá el primer Cíborg de tu mazo.' },
+  'might-of-iron': { name: 'Fuerza de Hierro', text: 'Un aliado tuyo gana +8 de ataque en esta fase. Instantánea.' },
+  'might-of-light': { name: 'Fuerza de la Luz', text: 'Tus Hadas ganan +2 de ataque y +3 de vida.' },
+  'might-of-lost-time': {
+    name: 'Fuerza del Tiempo Perdido',
+    text: 'Un aliado tuyo gana +12 de ataque en esta fase. Instantánea.'
   },
-  'mirror-mage': {
-    name: 'Mago del Espejo',
-    text: 'Al entrar: hacé 6 de daño a un aliado enemigo al azar.',
-    flavor: 'Rompé el espejo y aparecen dos.'
+  'might-of-the-long-road': {
+    name: 'Fuerza del Largo Camino',
+    text: 'Un aliado tuyo gana +3 de ataque y +4 de vida. Instantánea.'
   },
-  'mirror-mantle': {
-    name: 'Manto de Espejos',
-    text: 'Al empezar cada fase, hacé 2 de daño al héroe enemigo.',
-    flavor: 'Lo que tirás vuelve.'
+  'might-of-the-tar-pits': {
+    name: 'Fuerza de los Pozos de Brea',
+    text: 'Un aliado tuyo gana +3 de ataque y +4 de vida.'
   },
-  'mirror-ward': {
-    name: 'Guarda del Espejo',
-    text: 'Cuando un aliado enemigo ataca: cancelás el ataque y le hacés 8 de daño.',
-    flavor: 'Se pega a sí mismo y nunca sabe por qué.'
+  'might-of-the-vanguard': {
+    name: 'Fuerza de la Vanguardia',
+    text: 'Un aliado tuyo gana +6 de ataque en esta fase. Instantánea.'
   },
-  'moonlight-enchantress': {
-    name: 'Encantadora de la Luna',
-    text: 'Al empezar cada fase, hacé 4 de daño a un aliado enemigo al azar.',
-    flavor: 'Bajo la luna, cada deseo tiene un precio.'
+  'might-of-the-warlord': {
+    name: 'Fuerza del Caudillo',
+    text: 'Un aliado tuyo gana +4 de ataque en esta fase. Instantánea.'
   },
+  'might-of-valor': { name: 'Fuerza del Valor', text: 'Un aliado tuyo gana +4 de ataque en esta fase. Instantánea.' },
+  'moonlit-basilisk': {
+    name: 'Basilisco Lunar',
+    text: 'Al morir: hacé 4 de daño de fuego a un aliado enemigo al azar.'
+  },
+  'moonlit-battlemage': {
+    name: 'Mago de Batalla Lunar',
+    text: 'Cuando entra otro Hechicero tuyo: tu héroe se cura 2.'
+  },
+  'moonlit-wisp': { name: 'Fuego Fatuo Lunar', text: 'Al entrar: robá una carta.' },
   'morgrath-lich-abbot': {
     name: 'Morgrath, el Abad Liche',
-    text: 'Rayo Impío (3): hacé 12 de daño a un slot enemigo y tu héroe se cura 6. Al empezar cada fase, hacé 5 de daño a un aliado enemigo al azar.',
+    text: 'Rayo Impío (3): hacé 6 de daño de sombra a un slot enemigo y tu héroe se cura 3. Al empezar cada fase, hacé 3 de daño de sombra a un aliado enemigo al azar.',
     flavor: 'Rezó por la vida eterna. Algo le contestó.',
-    ability: { name: 'Rayo Impío', text: 'Hacé 12 de daño a un slot enemigo y tu héroe se cura 6.' }
+    ability: { name: 'Rayo Impío', text: 'Hacé 6 de daño de sombra a un slot enemigo y tu héroe se cura 3.' }
   },
-  'morning-prayer': {
-    name: 'Plegaria Matinal',
-    text: 'Tu héroe se cura 6 y robá una carta.',
-    flavor: 'La reza todas las mañanas hace trescientos años.'
+  'morgraths-blast': {
+    name: 'Estallido de Morgrath',
+    text: 'Hacé 10 de daño de sombra a un slot enemigo y robá una carta.'
   },
-  'mossback-tortoise': {
-    name: 'Tortuga Musgosa',
-    text: 'Al final de cada fase, tus aliados se curan 2.',
-    flavor: 'Sobre su caparazón crece un bosquecito.'
+  'morgraths-satyr': {
+    name: 'Sátiro de Morgrath',
+    text: 'Al entrar: gana +1 de ataque y +1 de vida por cada otra Hada tuya. Al morir: hacé 6 de daño de sombra a un aliado enemigo al azar.'
   },
-  'mother-of-beasts': {
-    name: 'Madre de las Bestias',
-    text: 'Al entrar: invocá una Manada de Raptores y invocá un Jabalí Espinoso.',
-    flavor: 'Todas las bestias de la jungla nacieron de su canto.'
+  'nameless-saddle': {
+    name: 'Montura Sin Nombre',
+    text: 'Adjuntala a un aliado tuyo: gana +2 de ataque y +3 de vida.'
   },
-  'mother-of-shadows': {
-    name: 'Madre de las Sombras',
-    text: 'Al morir: invocá un Engendro del Vacío y invocá un Engendro del Vacío. Al empezar cada fase, si tu descarte tiene 8 cartas o más, invocá un Engendro del Vacío.',
-    flavor: 'Toda oscuridad viene de algún lado. Viene de ella.'
+  'neon-mech': { name: 'Mecha de Neón', text: 'Al atacar: hacé 2 de daño de rayo al héroe enemigo.' },
+  'neon-thug': { name: 'Matón de Neón' },
+  'net-of-ice': { name: 'Red de Hielo', text: 'Cuando el rival invoca un aliado: congelalo.' },
+  'net-of-the-pack': { name: 'Red de la Jauría', text: 'Cuando el rival invoca un aliado: hacele 11 de daño.' },
+  'net-of-the-quarry': { name: 'Red de la Presa', text: 'Cuando el rival invoca un aliado: hacele 5 de daño.' },
+  'net-of-the-volcano': { name: 'Red del Volcán', text: 'Cuando el rival invoca un aliado: congelalo.' },
+  'netrunner-of-the-grid': {
+    name: 'Corredora de Red de la Red',
+    text: 'Al entrar: tus otros Hackers ganan +1 de ataque y +1 de vida.'
   },
-  'multi-shot': {
-    name: 'Disparo Múltiple',
-    text: 'Hacé 6 de daño a un aliado enemigo al azar y hacé 6 de daño a un aliado enemigo al azar. Rápida.',
-    flavor: '¿Para qué elegir?'
+  'netrunner-of-the-pack': { name: 'Corredora de Red de la Jauría' },
+  'nightmare-of-the-abyss': { name: 'Pesadilla del Abismo', text: 'Al entrar: envenená al héroe enemigo (3).' },
+  'nightmare-of-the-void': {
+    name: 'Pesadilla del Vacío',
+    text: 'Al morir: tus Horrores ganan +1 de ataque y +1 de vida.'
   },
-  'murmillo-champion': { name: 'Campeón Murmillo', flavor: 'Pelea dos veces antes de que el público respire.' },
-  'necro-scholar': {
-    name: 'Erudito Nigromante',
-    text: 'Al entrar: un aliado al azar de tu descarte vuelve al juego.',
-    flavor: 'La muerte es solo un capítulo. Él se lo saltea.',
-    ability: { name: 'Alzar a los Muertos', text: 'Un aliado al azar de tu descarte vuelve al juego.' }
-  },
-  'neon-battery': {
-    name: 'Batería de Neón',
-    text: 'Tu héroe gana 1 de energía. Instantánea.',
-    flavor: 'Carga completa en un latido.'
-  },
-  'neon-blade': { name: 'Hoja de Neón', flavor: 'Cuanto más rápido el corte, más brilla.' },
-  'neon-dancer': { name: 'Bailarina de Neón', flavor: 'Esquiva balas al ritmo de la música.' },
-  'neon-district': {
-    name: 'Distrito Neón',
-    text: 'Artefacto. Al empezar cada fase, robá una carta. Al final de cada fase, hacé 2 de daño al héroe enemigo.',
-    flavor: 'Nunca duerme. Nunca olvida.'
-  },
-  'nest-keeper': {
-    name: 'Guardiana del Nido',
-    text: 'Al empezar cada fase, si tenés 3 aliados o más, robá una carta.',
-    flavor: 'Un nido lleno es un nido feliz.'
-  },
-  'net-fighter': {
-    name: 'Reciario',
-    text: 'Al entrar: aturdí a un aliado enemigo al azar.',
-    flavor: 'Primero la red. Después el tridente. Después el aplauso.'
-  },
-  netrunner: {
-    name: 'Netrunner',
-    text: 'Al entrar: robá una carta y hacé 3 de daño al héroe enemigo.',
-    flavor: 'Tu firewall es tierno.',
-    ability: { name: 'Hackeo', text: 'Aturdí a un aliado enemigo al azar.' }
-  },
-  'nightmare-steed': { name: 'Corcel de Pesadilla', flavor: 'Corre a base de gritos.' },
   'nightwire-net': {
     name: 'Red Nightwire',
-    text: 'Cuando un aliado enemigo ataca: cancelá el ataque, destruilo y robá una carta.',
-    flavor: 'Invisible, irrompible, ineludible.'
+    text: 'Cuando ataca un aliado enemigo: cancelá el ataque, destruilo y robá una carta.'
   },
-  'null-field': {
-    name: 'Campo Nulo',
-    text: 'Trampa: cuando el rival usa una habilidad, cancelala y el héroe enemigo pierde 2 de energía.',
-    flavor: 'Acá, la magia simplemente se detiene.'
+  'nocturnal-call': { name: 'Llamado Nocturno', text: 'Invocá un Cachorro de Dientes de Sable.' },
+  'nocturnal-idol': {
+    name: 'Ídolo Nocturno',
+    text: 'Al empezar cada fase: hacé 2 de daño de sombra al héroe enemigo. (3 usos)'
   },
+  'nocturnal-shot': {
+    name: 'Disparo Nocturno',
+    text: 'Hacé 5 de daño de sombra a un slot enemigo, +2 por cada Errante tuyo.'
+  },
+  'nocturnal-vest': { name: 'Chaleco Nocturno', text: 'Al equiparla: robá una carta.' },
+  'nymph-of-grace': { name: 'Ninfa de la Gracia', text: 'Al entrar: tus otros aliados ganan +2 de vida.' },
+  'nymph-of-the-ancestors': { name: 'Ninfa de los Ancestros', text: 'Al morir: invocá un Espíritu Guardián.' },
+  'nymph-of-the-tower': { name: 'Ninfa de la Torre' },
   'nysa-goldbow': {
     name: 'Nysa Goldbow',
-    text: 'Flecha Dorada (2): hacé 8 de daño a un slot enemigo. Cuando entra otro aliado tuyo, gana +1 de ataque.',
+    text: 'Flecha Dorada (2): hacé 4 de daño de viento a un slot enemigo. Cuando entra otro aliado tuyo, gana +1 de ataque.',
     flavor: 'Una vez cazó con los dioses. Ahora caza para ella.',
-    ability: { name: 'Flecha Dorada', text: 'Hacé 8 de daño a un slot enemigo.' }
+    ability: { name: 'Flecha Dorada', text: 'Hacé 4 de daño de viento a un slot enemigo.' }
   },
+  'nysas-bow': { name: 'Arco de Nysa', text: 'Al equiparla: hacé 4 de daño de viento a un aliado enemigo al azar.' },
   'nyx-hollowsong': {
     name: 'Nyx Hollowsong',
     text: 'Llamar a los Caídos (2): un aliado al azar de tu descarte vuelve al juego. Al final de cada fase, tu héroe se cura 2.',
     flavor: 'Su canto llega a los muertos. Siempre vuelven a escuchar.',
     ability: { name: 'Llamar a los Caídos', text: 'Un aliado al azar de tu descarte vuelve al juego.' }
   },
-  'oak-scepter': { name: 'Cetro de Roble', text: 'Al jugarla: tu héroe se cura 4.', flavor: 'Cultivado, no forjado.' },
-  oblivion: {
-    name: 'Olvido',
-    text: 'Destruí un aliado enemigo. Si tu descarte tiene 6 cartas o más, robá una carta. Lenta.',
-    flavor: 'No murió. Simplemente nunca existió.'
+  'nyxs-idol': { name: 'Ídolo de Nyx', text: 'Al empezar cada fase: tu héroe se cura 3 y tus aliados se curan 2.' },
+  'obelisk-of-dusk': {
+    name: 'Obelisco del Ocaso',
+    text: 'Al empezar cada fase: tu héroe gana 3 de armadura. (3 usos)'
   },
-  'old-tusk': {
-    name: 'Viejo Colmillo',
-    text: 'Al entrar: tus aliados se curan 6.',
-    flavor: 'Llevó a la tribu a través del hielo. Dos veces.'
+  'obelisk-of-flame': {
+    name: 'Obelisco de Llamas',
+    text: 'Al empezar cada fase: hacé 2 de daño de fuego al héroe enemigo. (3 usos)'
   },
+  'obelisk-of-the-grave': {
+    name: 'Obelisco de la Tumba',
+    text: 'Al empezar cada fase: tu héroe gana 3 de armadura. (4 usos)'
+  },
+  'oiled-clockmaker': { name: 'Relojero Aceitado', text: 'Cuando entra otro Inventor tuyo: tu héroe se cura 2.' },
+  'oiled-monolith': {
+    name: 'Monolito Aceitado',
+    text: 'Cuando entra un Autómata tuyo: gana +1 de ataque y +2 de vida.'
+  },
+  'old-blessing': { name: 'Bendición Vieja', text: 'Tu héroe se cura 13 y robá una carta.' },
+  'old-cartographer': { name: 'Cartógrafa Vieja', text: 'Al morir: invocá una Chispa de la Grieta.' },
+  'old-chrononaut': { name: 'Crononauta Viejo', text: 'Al entrar: robá una carta.' },
+  'old-potion': { name: 'Poción Vieja', text: 'Aturdí a un aliado enemigo. Rápida.' },
+  'old-tusk': { name: 'Viejo Colmillo', text: 'Al entrar: tus aliados se curan 3.' },
   'omnigear-prime': {
     name: 'Omnigear Prime',
-    text: 'Línea de Montaje (3): tus aliados ganan +2 de ataque y +4 de vida. Al empezar cada fase, tu héroe gana 2 de armadura.',
+    text: 'Línea de Montaje (3): tus aliados ganan +2 de ataque y +2 de vida. Al empezar cada fase, tu héroe gana 2 de armadura.',
     flavor: 'La máquina que construye máquinas decidió que ya no necesita constructores.',
-    ability: { name: 'Línea de Montaje', text: 'Tus aliados ganan +2 de ataque y +4 de vida.' }
+    ability: { name: 'Línea de Montaje', text: 'Tus aliados ganan +2 de ataque y +2 de vida.' }
   },
-  'omnigear-sentinel': { name: 'Centinela Omnigear', flavor: 'Perfecto. Idéntico. Infinito.' },
+  'omnigears-gyrocopter': {
+    name: 'Girocóptero de Omnigear',
+    text: 'Al entrar: tus otras Aeronaves ganan +2 de ataque y +2 de vida. Al empezar cada fase: tu héroe gana 2 de armadura.'
+  },
+  'omnigears-hammer': { name: 'Martillo de Omnigear', text: 'Al equiparla: tu héroe gana 5 de armadura.' },
   'ooma-bonewhisper': {
     name: 'Ooma Bonewhisper',
     text: 'Crecimiento Ancestral (2): un aliado tuyo gana +2 de ataque y +3 de vida. Al empezar cada fase, tus aliados se curan 2.',
     flavor: 'Los huesos de los ancestros hablan. Ella escucha.',
     ability: { name: 'Crecimiento Ancestral', text: 'Un aliado tuyo gana +2 de ataque y +3 de vida.' }
   },
-  'open-market': {
-    name: 'Mercado Abierto',
-    text: 'Cada jugador roba 2 cartas.',
-    flavor: 'Las puertas se abren para todos. Quién gana más depende de vos.'
+  'oomas-banner': {
+    name: 'Estandarte de Ooma',
+    text: 'Al empezar cada fase: tu héroe se cura 3 y tus aliados se curan 2.'
   },
-  'orbital-strike': {
-    name: 'Ataque Orbital',
-    text: 'Hacé 24 de daño a un slot enemigo. Rápida.',
-    flavor: 'Mirá para arriba. Sonreí.'
+  'orb-of-flame': { name: 'Orbe de Llamas', text: 'Al equiparla: robá una carta.' },
+  'orb-of-storms': { name: 'Orbe de Tormentas', text: 'Al equiparla: robá una carta.' },
+  'overclocked-piston-titan': {
+    name: 'Titán de Pistones Acelerado',
+    text: 'Al empezar cada fase: tu héroe gana 2 de armadura.'
   },
-  overclock: {
-    name: 'Sobrecarga',
-    text: 'Un aliado tuyo gana +8 de ataque esta fase. Instantánea.',
-    flavor: '¡Más rápido! ¡Más rápido! Uy, no.'
+  'overdriven-sentry-bot': {
+    name: 'Robot Centinela Sobrecargado',
+    text: 'Al terminar cada fase: hacé 1 de daño de sónico al héroe enemigo.'
   },
-  'overdrive-mech': { name: 'Mecha en Sobremarcha', flavor: 'Límites de seguridad desactivados.' },
   'overseer-kade': {
     name: 'Supervisor Kade',
-    text: 'Bloqueo Total (3): aturdí a un aliado enemigo por dos fases. Al empezar cada fase, tu héroe gana 2 de armadura.',
+    text: 'Bloqueo Total (4): aturdí a un aliado enemigo por dos fases. Al empezar cada fase, tu héroe gana 2 de armadura.',
     flavor: 'Ve todas las cámaras de la megaciudad. Todas a la vez.',
     ability: { name: 'Bloqueo Total', text: 'Aturdí a un aliado enemigo por dos fases.' }
   },
-  'owl-messenger': {
-    name: 'Lechuza Mensajera',
-    text: 'Al entrar: robá una carta.',
-    flavor: 'Entrega las cartas que vas a escribir mañana.'
+  'pale-voidcaller': { name: 'Invocadora del Vacío Pálida' },
+  'pale-zealot': {
+    name: 'Fanática Pálida',
+    text: 'Al entrar: robá el primer Cultista de tu mazo. Al morir: hacé 3 de daño de sombra al héroe enemigo.'
   },
-  'pact-keeper': {
-    name: 'Guardián del Pacto',
-    text: 'Al entrar: destruí tu otro aliado más débil: si lo hacés, robá 2 cartas.',
-    flavor: 'Firmá acá. Y acá. Y acá.'
+  'patchwork-armor-of-lost-time': {
+    name: 'Armadura de Retazos del Tiempo Perdido',
+    text: 'Al equiparla: robá una carta.'
   },
-  'pact-of-hunger': {
-    name: 'Pacto del Hambre',
-    text: 'Tu héroe pierde 4 de vida. Robá 2 cartas.',
-    flavor: 'El vacío te alimenta. Después se alimenta de vos.'
+  'patented-tick': { name: 'Tic Patentado', text: 'Tu héroe gana 3 de energía. Instantánea.' },
+  'patented-tripwire': { name: 'Cable Trampa Patentado', text: 'Cuando el rival invoca un aliado: hacele 7 de daño.' },
+  'patient-bard': { name: 'Bardo Paciente', text: 'Al entrar: robá la primera trampa de tu mazo.' },
+  'patient-sabertooth': {
+    name: 'Dientes de Sable Paciente',
+    text: 'Al entrar: invocá un Cachorro de Dientes de Sable. Al morir: hacé 8 de daño a un aliado enemigo al azar.'
   },
-  'paradox-loop': {
-    name: 'Bucle Paradoja',
-    text: 'Cuando un aliado enemigo ataca: cancelás el ataque, vuelve a la mano de su dueño y robás una carta.',
-    flavor: 'Atacó. Atacará. Nunca lo hizo.'
+  'patient-sabotage': {
+    name: 'Sabotaje Paciente',
+    text: 'El arma enemiga pierde 2 de durabilidad y el héroe enemigo pierde 6 de armadura. Rápida.'
   },
-  'paradox-twin': {
-    name: 'Gemelo Paradoja',
-    text: 'Al morir: robá una carta y tu héroe se cura 8.',
-    flavor: 'Eran dos. Siempre lo serán.'
+  'patient-vest': { name: 'Chaleco Paciente' },
+  'pegasus-of-still-waters': { name: 'Pegaso de las Aguas Quietas' },
+  'pegasus-of-the-tower': { name: 'Pegaso de la Torre', text: 'Al entrar: robá la primera Hada de tu mazo.' },
+  'phalanx-of-bronze': { name: 'Falange de Bronce' },
+  'phalanx-of-steel': { name: 'Falange de Acero', text: 'Al entrar: si tenés otro Legionario, robá una carta.' },
+  'phalanx-of-the-legion': { name: 'Falange de la Legión', text: 'Al entrar: tu héroe gana 9 de armadura.' },
+  'phalanx-of-the-warlord': { name: 'Falange del Caudillo', text: 'Al atacar: gana +1 de ataque.' },
+  'pickaxe-of-borrowed-hours': { name: 'Pico de las Horas Prestadas', text: 'Al equiparla: tu héroe se cura 4.' },
+  'pickaxe-of-lost-time': { name: 'Pico del Tiempo Perdido', text: 'Al equiparla: tu héroe gana 6 de armadura.' },
+  'pilgrim-of-dawn': { name: 'Peregrina del Alba', text: 'Al entrar: destruí el artefacto enemigo más caro.' },
+  'pilgrim-of-dusk': { name: 'Peregrina del Ocaso', text: 'Al entrar: ganás 1 Cronos en esta fase.' },
+  'pilgrim-of-ice': {
+    name: 'Peregrina de Hielo',
+    text: 'Al entrar: congelá a un aliado enemigo al azar. Su habilidad se paga con energía (⚡).',
+    ability: { name: 'Aturdir', text: 'Aturdí a un aliado enemigo.' }
   },
-  'patched-leather': { name: 'Cuero Remendado', flavor: 'Cada parche, de un siglo distinto.' },
-  'patchwork-golem': { name: 'Gólem de Retazos', flavor: 'Hecho con restos de cinco siglos distintos.' },
-  'perpetual-engine': {
-    name: 'Motor Perpetuo',
-    text: 'Al empezar cada fase, ganá 1 de Cronos y robá una carta.',
-    flavor: 'Nunca lo encendieron. Nunca va a parar.'
+  'pilgrim-of-the-crossroads': {
+    name: 'Peregrina de la Encrucijada',
+    text: 'Al entrar: ganás 1 Cronos en esta fase. Al morir: invocá una Chispa de la Grieta. Su habilidad se paga con energía (⚡).',
+    ability: { name: 'Inspirar', text: 'Un aliado tuyo gana +1 de ataque y +2 de vida.' }
   },
-  'phalanx-general': {
-    name: 'General de la Falange',
-    text: 'Cuando entra otro aliado tuyo, gana +6 de vida.',
-    flavor: 'Una lanza es un palo. Mil son una fortaleza.',
-    ability: { name: 'Muro de Escudos', text: 'Tu héroe gana 8 de armadura.' }
+  'pit-of-iron': { name: 'Foso de Hierro', text: 'Cuando el rival invoca un aliado: congelalo.' },
+  'pit-of-spirits': {
+    name: 'Foso de los Espíritus',
+    text: 'Cuando el rival usa una habilidad: robá una carta y hacé 5 de daño de luz al héroe enemigo.'
   },
-  'phalanx-recruit': {
-    name: 'Recluta de la Falange',
-    text: 'Al entrar: los aliados de al lado ganan +4 de vida.',
-    flavor: 'Hombro con hombro, incluso el primer día.'
+  'pixie-of-spirits': {
+    name: 'Hadita de los Espíritus',
+    text: 'Al entrar: hacé 1 de daño de luz al héroe enemigo por cada Hada tuya.'
   },
-  'phantom-assassin': { name: 'Asesina Fantasma', flavor: 'Su camuflaje óptico es lo último que no vas a ver.' },
-  'phase-cloak': {
-    name: 'Capa de Fase',
-    text: 'Adjuntala a un aliado tuyo: gana sigilo y ágil.',
-    flavor: 'Ahora lo ves. Casi siempre, no.'
+  'pixie-of-the-ancestors': {
+    name: 'Hadita de los Ancestros',
+    text: 'Al morir: un aliado al azar de tu pila de descarte vuelve al juego.'
   },
-  'phase-stalker': { name: 'Acechador de Fase', flavor: 'Ataca desde el instante entre dos instantes.' },
-  'philosophers-hourglass': {
-    name: 'Reloj del Filósofo',
-    text: 'Ganás 4 de Cronos y robá una carta. Rápida.',
-    flavor: 'Dalo vuelta y la hora es tuya.'
+  'plate-of-rage': { name: 'Coraza de la Ira' },
+  'plate-of-steel': { name: 'Coraza de Acero' },
+  'plate-of-the-last-stand': { name: 'Coraza de la Última Defensa', text: 'Al equiparla: robá una carta.' },
+  'plating-of-mana': { name: 'Blindaje de Maná', text: 'Adjuntala a un aliado tuyo: gana +3 de ataque y +5 de vida.' },
+  'precise-clockmaker': { name: 'Relojero Preciso', text: 'Al entrar: ganás 1 Cronos en esta fase.' },
+  'prismatic-battlemage': {
+    name: 'Mago de Batalla Prismático',
+    text: 'Al morir: tus Hechiceros ganan +1 de ataque y +1 de vida. Al entrar: tu héroe gana 1 de energía.'
   },
-  'phoenix-feather': {
-    name: 'Pluma de Fénix',
-    text: 'Adjuntala a un aliado tuyo: gana eco (la primera vez que muere, vuelve a tu mano).',
-    flavor: 'Las cenizas son solo una pausa.'
+  'prophet-of-the-labyrinth': {
+    name: 'Profeta del Laberinto',
+    text: 'Al empezar cada fase: tu héroe gana 2 de armadura. Su habilidad se paga con energía (⚡).',
+    ability: { name: 'Inspirar', text: 'Un aliado tuyo gana +1 de ataque y +2 de vida.' }
   },
-  'pila-volley': {
-    name: 'Lluvia de Pilos',
-    text: 'Cuando el rival invoca un aliado: hacele 8 de daño.',
-    flavor: 'Primero se tira, después se pregunta.'
-  },
-  'piston-golem': {
-    name: 'Gólem de Pistones',
-    text: 'Al recibir daño: gana +2 de ataque.',
-    flavor: 'Cada golpe le da un poco más de cuerda.'
-  },
-  'pit-trap': {
-    name: 'Pozo Trampa',
-    text: 'Cuando un aliado enemigo ataca: cancelá el ataque y hacele 6 de daño.',
-    flavor: 'Cuidado con las hojas.'
-  },
-  pitfall: {
-    name: 'Foso',
-    text: 'Cuando un aliado enemigo ataca: le hacés 14 de daño.',
-    flavor: 'La trampa más vieja que hay, y todavía la mejor.'
-  },
-  'pixel-the-drone-fox': {
-    name: 'Pixel, el Zorro Dron',
-    text: 'Al entrar: robá una carta.',
-    flavor: 'Mitad zorro, mitad dron, todo problemas.'
-  },
-  'plague-brand': {
-    name: 'Marca de la Peste',
-    text: 'Adjuntala a un aliado enemigo: al empezar cada fase, queda envenenado (2).',
-    flavor: 'La enfermedad se esparce desde adentro.'
-  },
-  'plague-vial': {
-    name: 'Frasco de Peste',
-    text: 'Envenená a todos los aliados enemigos (2).',
-    flavor: 'Rompelo y alejate. Rápido.'
-  },
-  'pocket-watch': { name: 'Reloj de Bolsillo', text: 'Ganá 1 de Cronos.', flavor: 'No da la hora. La presta.' },
-  'poison-arrows': {
-    name: 'Flechas Envenenadas',
-    text: 'Hacé 2 de daño a un slot enemigo y envenenalo (3).',
-    flavor: 'La flecha es el mensaje. El veneno, el final.'
-  },
-  'poisoned-crossbow': { name: 'Ballesta Envenenada', flavor: 'Alcanza con un rasguño.' },
-  polymorph: {
-    name: 'Polimorfia',
-    text: 'Devolvé un aliado enemigo a la mano de su dueño y robá una carta.',
-    flavor: 'Ahora es un sapo. Un sapo muy confundido.'
-  },
-  pounce: {
-    name: 'Abalanzarse',
-    text: 'Hacé 10 de daño a un aliado enemigo y tu héroe se cura 4. Rápida.',
-    flavor: 'La jungla no espera. Kora tampoco.'
-  },
-  'praetorian-guard': { name: 'Guardia Pretoriana', flavor: 'Leal al trono, se siente quien se siente.' },
-  'prayer-of-healing': {
-    name: 'Plegaria de Curación',
-    text: 'Tu héroe se cura 10 y tus aliados se curan 8.',
-    flavor: 'Cada voz alzada, cada herida cerrada.'
-  },
-  'primal-grove': {
-    name: 'Arboleda Primigenia',
-    text: 'Artefacto. Al empezar cada fase, tus aliados se curan 4.',
-    flavor: 'El bosque más viejo cura las heridas más viejas.'
-  },
-  'primal-rage': {
-    name: 'Furia Primigenia',
-    text: 'Un aliado tuyo gana +14 de ataque esta fase y gana +10 de vida. Instantánea.',
-    flavor: 'Sangre vieja, rabia más vieja.'
-  },
-  'primal-roar': {
-    name: 'Rugido Primigenio',
-    text: 'Tus aliados ganan +7 de ataque esta fase. Rápida.',
-    flavor: 'Todas las bestias a una legua lo escuchan, y obedecen.'
-  },
-  'primeval-titan': {
-    name: 'El Titán Primigenio',
-    text: 'Al empezar cada fase, tus aliados ganan +2 de ataque y +4 de vida y tu héroe se cura 5.',
-    flavor: 'Antes de las eras, solo existía él.'
-  },
-  'pterodactyl-rider': {
-    name: 'Jinete de Pterodáctilo',
-    flavor: 'El primer piloto de la historia. También el primero en estrellarse.'
-  },
-  'pulse-sniper': { name: 'Francotiradora de Pulso', flavor: 'Apunta al futuro. Al tuyo.' },
-  pyroblast: {
-    name: 'Piroexplosión',
-    text: 'Hacé 40 de daño a un slot enemigo. Lenta.',
-    flavor: 'Tarda mucho en lanzarse. No tarda nada en terminar.'
-  },
-  pyromancer: {
-    name: 'Piromante',
-    text: 'Al entrar: hacé 8 de daño a un aliado enemigo al azar.',
-    flavor: 'Le pidieron que prendiera la chimenea. Prendió el castillo.'
-  },
-  'quantum-chip': {
-    name: 'Chip Cuántico',
-    text: 'Robá 3 cartas. Rápido.',
-    flavor: 'Tiene todas las respuestas. Algunas al mismo tiempo.'
+  'proud-gorgon': {
+    name: 'Gorgona Orgullosa',
+    text: 'Al entrar: invocá un Conscripto Hoplita. Al atacar: tu héroe gana 2 de armadura.'
   },
   'queen-static': {
     name: 'Reina Estática',
-    text: 'Retroalimentación (2): hacé 8 de daño a un slot enemigo. Rápida. Al final de cada fase, hacé 2 de daño al héroe enemigo.',
+    text: 'Retroalimentación (2): hacé 4 de daño de rayo a un slot enemigo. Rápida. Al final de cada fase, hacé 2 de daño de rayo al héroe enemigo.',
     flavor: 'Vive en el ruido entre los canales.',
-    ability: { name: 'Retroalimentación', text: 'Hacé 8 de daño a un slot enemigo.' }
+    ability: { name: 'Retroalimentación', text: 'Hacé 4 de daño de rayo a un slot enemigo.' }
   },
-  'quick-hack': {
-    name: 'Hackeo Rápido',
-    text: 'Hacé 6 de daño a un aliado enemigo y robá una carta. Instantánea.',
-    flavor: 'Tres teclas. Listo.'
+  'queen-statics-blowgun': {
+    name: 'Cerbatana de la Reina Estática',
+    text: 'Al equiparla: hacé 4 de daño de rayo a un aliado enemigo al azar.'
   },
-  quicken: {
-    name: 'Acelerar',
-    text: 'Un aliado tuyo gana +8 de ataque esta fase. Instantánea.',
-    flavor: 'Más rápido que el instante.'
+  'queen-statics-gunslinger': {
+    name: 'Pistolera de la Reina Estática',
+    text: 'Al morir: tus Sicarios ganan +1 de ataque y +1 de vida. Al terminar cada fase: hacé 1 de daño de rayo al héroe enemigo.'
   },
-  'quiver-of-plenty': {
-    name: 'Carcaj Infinito',
-    text: 'Robá 2 cartas. Rápido.',
-    flavor: 'De alguna forma, siempre queda una flecha más.'
+  'radiant-fury': { name: 'Furia Radiante', text: 'Un aliado tuyo gana +4 de ataque en esta fase. Instantánea.' },
+  'radiant-halo': { name: 'Halo Radiante' },
+  'radiant-insignia': { name: 'Insignia Radiante', text: 'Adjuntala a un aliado tuyo: gana +2 de vida.' },
+  'radiant-stance': { name: 'Postura Radiante', text: 'Tu héroe gana 12 de armadura y robá una carta.' },
+  'radiant-zombie': { name: 'Zombi Radiante' },
+  'rally-of-grace': { name: 'Arenga de la Gracia', text: 'Un aliado tuyo gana +4 de ataque y +5 de vida.' },
+  'rally-of-light': { name: 'Arenga de la Luz', text: 'Un aliado tuyo gana +10 de ataque en esta fase. Instantánea.' },
+  'rally-of-lost-time': {
+    name: 'Arenga del Tiempo Perdido',
+    text: 'Un aliado tuyo gana +4 de ataque en esta fase. Instantánea.'
   },
-  radiance: {
-    name: 'Resplandor',
-    text: 'Tu héroe se cura 15, tus aliados se curan 10 y tus aliados ganan +2 de ataque.',
-    flavor: 'Por un momento, todas las eras brillan.'
+  'rally-of-steel': { name: 'Arenga de Acero', text: 'Tus Colosos ganan +1 de ataque y +2 de vida.' },
+  'rally-of-the-arcanum': {
+    name: 'Arenga del Arcano',
+    text: 'Un aliado tuyo gana +6 de ataque en esta fase. Instantánea.'
   },
-  'raise-the-dead': {
-    name: 'Levantar a los Muertos',
-    text: 'Un aliado al azar de tu descarte vuelve al juego.',
-    flavor: 'Arriba. A trabajar.'
+  'rally-of-the-hawk': {
+    name: 'Arenga del Halcón',
+    text: 'Un aliado tuyo gana +4 de ataque y +5 de vida. Instantánea.'
   },
-  'rally-the-cohort': {
-    name: 'Reunir la Cohorte',
-    text: 'Tus aliados ganan +2 de ataque y +4 de vida.',
-    flavor: 'Suena el cuerno. Todos los escudos giran.'
+  'rally-of-the-hunt-moon': {
+    name: 'Arenga de la Luna de Caza',
+    text: 'Un aliado tuyo gana +3 de ataque y +4 de vida. Instantánea.'
   },
-  rampage: {
-    name: 'Arrasar',
-    text: 'Hacé 10 de daño a cada aliado enemigo y tu héroe gana 10 de armadura. Lenta.',
-    flavor: 'No paró hasta que el campo quedó vacío.'
+  'rally-of-the-labyrinth': {
+    name: 'Arenga del Laberinto',
+    text: 'Un aliado tuyo gana +4 de ataque en esta fase. Instantánea.'
   },
-  'raptor-alpha': {
-    name: 'Raptor Alfa',
-    text: 'Al entrar: tus otros aliados ganan +2 de ataque.',
-    flavor: 'Un llamado y viene corriendo toda la manada.'
+  'rally-of-the-volcano': {
+    name: 'Arenga del Volcán',
+    text: 'Un aliado tuyo gana +4 de ataque en esta fase. Instantánea.'
   },
-  'raptor-pack': { name: 'Manada de Raptores', flavor: 'Nunca ves uno solo.' },
-  'raptor-scout': {
-    name: 'Raptor Explorador',
-    text: 'Al morir: robá una carta.',
-    flavor: 'Siempre vuelve con noticias, aun cuando no vuelve.'
+  'rally-of-valor': { name: 'Arenga del Valor', text: 'Un aliado tuyo gana +1 de ataque y +1 de vida.' },
+  'raptor-hatchling': { name: 'Cría de Raptor' },
+  'recruit-of-the-warlord': { name: 'Recluta del Caudillo', text: 'Al entrar: robá la primera arma de tu mazo.' },
+  'relentless-fury': { name: 'Furia Implacable', text: 'Un aliado tuyo gana +4 de ataque en esta fase. Instantánea.' },
+  'relentless-hitman': { name: 'Asesino a Sueldo Implacable' },
+  'relentless-rune': { name: 'Runa Implacable', text: 'Adjuntala a un aliado tuyo: gana +1 de ataque y +3 de vida.' },
+  'relic-of-the-ancestors': {
+    name: 'Reliquia de los Ancestros',
+    text: 'Al empezar cada fase: hacé 2 de daño de luz a un aliado enemigo al azar.'
   },
-  'recruiting-tent': {
-    name: 'Carpa de Reclutamiento',
-    text: 'Artefacto. Cada aliado tuyo que entra tiene +4 de vida.',
-    flavor: 'Firmá acá, agarrá un casco, marchá.'
+  'respite-of-mercy': { name: 'Respiro de la Misericordia', text: 'Tu héroe se cura 9.' },
+  'respite-of-renewal': { name: 'Respiro de la Renovación', text: 'Tu héroe se cura 9.' },
+  'respite-of-the-crossroads': { name: 'Respiro de la Encrucijada', text: 'Tu héroe se cura 6.' },
+  'restless-banner': {
+    name: 'Estandarte Inquieto',
+    text: 'Al empezar cada fase: hacé 3 de daño a un aliado enemigo al azar. (3 usos)'
   },
-  'regrowth-moss': {
-    name: 'Musgo Regenerador',
-    text: 'Adjuntalo a un aliado tuyo: al empezar cada fase, se cura 5.',
-    flavor: 'Crece sobre las heridas, no sobre las piedras.'
+  'restless-deserter': { name: 'Desertor Inquieto', text: 'Al entrar: robá una carta.' },
+  'restless-icicle': { name: 'Carámbano Inquieto', text: 'Al entrar: destruí el artefacto enemigo más caro.' },
+  'restless-ration': { name: 'Ración Inquieta', text: 'Un aliado tuyo gana +6 de ataque en esta fase. Instantánea.' },
+  'restless-wanderer': { name: 'Vagabundo Inquieto', text: 'Al empezar cada fase: tu héroe se cura 2.' },
+  'rift-spark': { name: 'Chispa de la Grieta' },
+  'rift-touched-idol': {
+    name: 'Ídolo Tocado por la Grieta',
+    text: 'Al empezar cada fase: tu héroe se cura 4. (3 usos)'
   },
-  'relic-of-the-saints': {
-    name: 'Reliquia de los Santos',
-    text: 'Un aliado al azar de tu descarte vuelve al juego y robá una carta.',
-    flavor: 'Todavía recuerda las manos que la sostuvieron.'
+  'rift-touched-squire': { name: 'Escudero Tocado por la Grieta', text: 'Al morir: robá una carta.' },
+  'rift-touched-wanderer': {
+    name: 'Vagabundo Tocado por la Grieta',
+    text: 'Al entrar: robá una carta. Su habilidad se paga con energía (⚡).',
+    ability: { name: 'Aturdir', text: 'Aturdí a un aliado enemigo.' }
   },
-  'repair-kit': {
-    name: 'Kit de Reparación',
-    text: 'Tu héroe gana 12 de armadura.',
-    flavor: 'Martillo, remaches y mucha esperanza.'
+  'risen-skeleton': { name: 'Esqueleto Alzado' },
+  'ritualist-of-ash': {
+    name: 'Ritualista de Ceniza',
+    text: 'Al entrar: sacrificá a tu otro aliado más débil: si lo hacés, robá 2 cartas.'
   },
-  requiem: {
-    name: 'Réquiem',
-    text: 'Un aliado al azar de tu descarte vuelve al juego y tus aliados se curan 6.',
-    flavor: 'Por los que cayeron. Y los que van a caer.'
+  'riveted-blessing': {
+    name: 'Bendición Remachada',
+    text: 'Adjuntala a un aliado tuyo: gana +1 de ataque y +3 de vida.'
   },
-  resurrection: {
-    name: 'Resurrección',
-    text: 'Un aliado al azar de tu descarte vuelve al juego y tu héroe se cura 5.',
-    flavor: 'Todavía no. Todavía no terminaste.'
+  'riveted-tick': { name: 'Tic Remachado', text: 'Ganás 4 Cronos en esta fase. Instantánea.' },
+  'rod-of-ruin': { name: 'Vara de la Ruina', text: 'Al equiparla: tu héroe gana 7 de armadura.' },
+  'rotting-eye-of-nothing': {
+    name: 'Ojo de la Nada Putrefacto',
+    text: 'Al entrar: tus otros Horrores ganan +1 de ataque y +1 de vida.'
   },
-  rewind: { name: 'Rebobinar', text: 'Devolvé un aliado enemigo a la mano de su dueño.', flavor: 'Probemos de nuevo.' },
-  'rewind-the-gears': {
-    name: 'Rebobinar los Engranajes',
-    text: 'Ganá 2 de Cronos y robá una carta. Rápida.',
-    flavor: 'Una vuelta a la izquierda te devuelve un minuto.'
+  'rotting-hierophant': { name: 'Hierofante Putrefacto', text: 'Al morir: invocá un Esqueleto Alzado.' },
+  'rotting-zombie': {
+    name: 'Zombi Putrefacto',
+    text: 'Al entrar: hacé 1 de daño de sombra al héroe enemigo por cada No-muerto tuyo. Su habilidad se paga con energía (⚡).',
+    ability: { name: 'Golpe', text: 'Hacé 5 de daño de sombra a un slot enemigo.' }
   },
-  'rex-the-unbroken': {
-    name: 'Rex el Indomable',
-    text: 'Al atacar: gana +2 de ataque y +2 de vida.',
-    flavor: 'Los reyes vienen y van. Rex se queda.'
+  'runic-pyromancer': {
+    name: 'Piromante Rúnico',
+    text: 'Al entrar: robá el primer Hechicero de tu mazo. Su habilidad se paga con energía (⚡).',
+    ability: { name: 'Curar', text: 'Un aliado tuyo se cura 5.' }
   },
-  'rift-behemoth': { name: 'Behemot de la Grieta', flavor: 'Cuando camina, tiemblan los siglos.' },
-  'rift-bomb': {
-    name: 'Bomba de la Grieta',
-    text: 'Hacé 10 de daño a un aliado enemigo.',
-    flavor: 'Manejala con cuidado. Y de lejos.'
-  },
-  'rift-collapse': {
-    name: 'Colapso de la Grieta',
-    text: 'Cuando un aliado enemigo ataca: lo destruís.',
-    flavor: 'La Grieta se cierra y se lleva algo con ella.'
-  },
-  'rift-dragonling': { name: 'Dragoncito de la Grieta', flavor: 'Alas chicas, carácter enorme.' },
-  'rift-grenade': {
-    name: 'Granada de la Grieta',
-    text: 'Hacé 12 de daño a un aliado enemigo y 6 a los aliados de al lado.',
-    flavor: 'Sacá el seguro. Retrocedé unos siglos.'
-  },
-  'rift-guardian': { name: 'Guardián de la Grieta', flavor: 'No pasa nada. Ni siquiera el tiempo.' },
-  'rift-hound': { name: 'Sabueso de la Grieta', flavor: 'Huele el miedo a través de los siglos.' },
-  'rift-leech': { name: 'Sanguijuela de la Grieta', flavor: 'Se alimenta de segundos robados.' },
-  'rift-mail': { name: 'Malla de la Grieta', flavor: 'Los eslabones titilan entre el ahora y el antes.' },
-  'rift-market': {
-    name: 'Mercado de la Grieta',
-    text: 'Artefacto. Al empezar cada fase, ganás 1 de Cronos.',
-    flavor: 'Todo está a la venta. Sobre todo el tiempo.'
-  },
-  'rift-medic': {
-    name: 'Médica de la Grieta',
-    text: 'Al final de cada fase, tus aliados se curan 4.',
-    flavor: 'Cura heridas que todavía no pasaron.'
-  },
-  'rift-moth': { name: 'Polilla de la Grieta', flavor: 'La atrae la luz de las grietas abiertas.' },
-  'rift-scavenger': {
-    name: 'Carroñero de la Grieta',
-    text: 'Al morir: robá una carta.',
-    flavor: 'La basura de una era es el tesoro de otra.'
-  },
-  'rift-snare': {
-    name: 'Lazo de la Grieta',
-    text: 'Cuando un aliado enemigo ataca: cancelá el ataque y aturdilo.',
-    flavor: 'Un bolsillito de tiempo congelado, esperando.'
-  },
-  'riot-enforcer': { name: 'Antidisturbios', flavor: 'Dispérsense. Ya.' },
-  'rivet-hound': { name: 'Sabueso de Remaches', flavor: '¡Buscá! ¡No, el brazo no!' },
-  'robe-of-stars': {
-    name: 'Túnica Estelar',
-    text: 'Al empezar cada fase, ganá 1 de Cronos.',
-    flavor: 'Vestí la noche. Mandá en el día.'
-  },
-  'rotting-giant': { name: 'Gigante Putrefacto', flavor: 'El olor aguanta la línea mejor que el escudo.' },
-  'rune-golem': { name: 'Gólem Rúnico', flavor: 'Cada runa de su cuerpo es una orden que nunca va a olvidar.' },
-  'rune-sprite': { name: 'Duende Rúnico', flavor: 'Escribe su nombre en el aire y después lo borra.' },
-  runeblade: {
-    name: 'Hoja Rúnica',
-    text: 'Al jugarla: robá una carta.',
-    flavor: 'Mitad espada, mitad libro de hechizos.'
-  },
-  'rust-swarm': {
-    name: 'Enjambre de Óxido',
-    text: 'El arma enemiga pierde 2 de durabilidad y el héroe enemigo pierde 6 de armadura.',
-    flavor: 'Escarabajos de bronce diminutos con gusto por el hierro.'
-  },
-  'rusted-shackles': {
-    name: 'Grilletes Oxidados',
-    text: 'Adjuntalos a un aliado enemigo: tiene -6 de ataque.',
-    flavor: 'Las cadenas viejas igual muerden.'
-  },
-  'rusty-sword': { name: 'Espada Oxidada', flavor: 'Vieja, mellada y todavía bastante filosa.' },
+  'rusty-sabotage': { name: 'Sabotaje Oxidado', text: 'Destruí el arma enemiga. Rápida.' },
   'ryn-voltblade': {
     name: 'Ryn Voltblade',
-    text: 'Sobrecarga (1): un aliado tuyo gana +8 de ataque esta fase. Instantánea. Al empezar cada fase, tu héroe gana 2 de armadura.',
+    text: 'Sobrecarga (1): un aliado tuyo gana +4 de ataque esta fase. Instantánea. Al empezar cada fase, tu héroe gana 2 de armadura.',
     flavor: 'La hoja más rápida de la megaciudad.',
-    ability: { name: 'Sobrecarga', text: 'Un aliado tuyo gana +8 de ataque esta fase.' }
+    ability: { name: 'Sobrecarga', text: 'Un aliado tuyo gana +4 de ataque esta fase.' }
   },
-  'sabertooth-stalker': { name: 'Acechador Dientes de Sable', flavor: 'El pasto se mueve. Después ya es tarde.' },
-  saboteur: {
-    name: 'Saboteadora',
-    text: 'Al entrar: destruí una trampa enemiga boca abajo al azar. Si no había ninguna, destruí el artefacto enemigo más barato.',
-    flavor: 'Cables cortados, alarmas apagadas, nadie vio nada.'
+  'ryns-mace': { name: 'Maza de Ryn', text: 'Al equiparla: tu héroe gana 5 de armadura.' },
+  'sabertooth-cub': { name: 'Cachorro de Dientes de Sable' },
+  'salve-of-the-wanderer': { name: 'Ungüento del Errante', text: 'Tu héroe se cura 6.' },
+  'sandstorm-of-dawn': { name: 'Tormenta de Arena del Alba', text: 'Al entrar: tu héroe gana 7 de armadura.' },
+  'satyr-of-embers': { name: 'Sátiro de Brasas', text: 'Al entrar: tus otras Hadas ganan +2 de ataque y +2 de vida.' },
+  'satyr-of-renewal': { name: 'Sátiro de la Renovación', text: 'Al empezar cada fase: tu héroe se cura 2.' },
+  'scarred-cave-painter': {
+    name: 'Pintora de Cuevas Marcada',
+    text: 'Al entrar: tus otros Cavernarios ganan +1 de ataque y +1 de vida.'
   },
-  'sanctum-of-hours': {
-    name: 'Santuario de las Horas',
-    text: 'Artefacto. Al empezar cada fase, tu héroe se cura 5 y tus aliados se curan 5.',
-    flavor: 'Acá cada herida tiene todo el tiempo del mundo para sanar.'
+  'scarred-raptor': { name: 'Raptor Marcado' },
+  'scarred-spearman': { name: 'Lancero Marcado', text: 'Cuando recibe daño: gana +2 de ataque.' },
+  'scavenger-of-borrowed-hours': {
+    name: 'Carroñera de las Horas Prestadas',
+    text: 'Al entrar: destruí el artefacto enemigo más caro. Al morir: robá una carta.'
   },
-  'sand-wraith': { name: 'Espectro de Arena', flavor: 'Nunca lo ves venir. Solo escuchás la arena.' },
-  'scent-of-prey': {
-    name: 'Olor a Presa',
-    text: 'Robá una carta. Si tenés un aliado Primal, robá 2.',
-    flavor: 'La manada siempre sabe adónde ir.'
+  'scavenger-of-storms': {
+    name: 'Carroñera de Tormentas',
+    text: 'Al entrar: hacé 4 de daño de rayo a un aliado enemigo al azar.'
   },
-  'scepter-of-storms': { name: 'Cetro de las Tormentas', flavor: 'Zumba antes del trueno.' },
-  'scepter-of-unmaking': { name: 'Cetro del Deshacer', flavor: 'Termina lo que toca.' },
-  'scholars-lens': {
-    name: 'Lente del Erudito',
-    text: 'Artefacto con 3 usos. Al empezar cada fase, robás una carta.',
-    flavor: 'Lee lo que todavía no se escribió.'
+  'scavenger-of-the-ambush': { name: 'Carroñera de la Emboscada', text: 'Al atacar: hacé 2 de daño al héroe enemigo.' },
+  'scavenger-of-the-crossroads': {
+    name: 'Carroñera de la Encrucijada',
+    text: 'Al entrar: ganás 1 Cronos en esta fase. Al morir: robá una carta.'
   },
-  'scrap-golem': {
-    name: 'Gólem de Chatarra',
-    text: 'Al entrar: destruí el artefacto enemigo más caro.',
-    flavor: 'Se come las máquinas y crece con sus piezas.'
+  'scavenger-of-the-rift': {
+    name: 'Carroñera de la Grieta',
+    text: 'Cuando entra otro Errante tuyo: gana +1 de ataque y +1 de vida. Su habilidad se paga con energía (⚡).',
+    ability: { name: 'Golpe', text: 'Hacé 4 de daño de tiempo a un slot enemigo.' }
   },
-  'scroll-of-wisdom': {
-    name: 'Pergamino de Sabiduría',
-    text: 'Robá 2 cartas.',
-    flavor: 'Leelo dos veces. La segunda dice otra cosa.'
+  'scepter-of-flame': { name: 'Cetro de Llamas', text: 'Al equiparla: robá una carta.' },
+  'scepter-of-storms': { name: 'Cetro de Tormentas' },
+  'scholarly-daze': { name: 'Aturdimiento Docto', text: 'Aturdí a un aliado enemigo. Rápida.' },
+  'scholarly-pyromancer': {
+    name: 'Piromante Docto',
+    text: 'Al entrar: hacé 5 de daño de fuego a un aliado enemigo al azar.'
   },
-  'scry-the-stars': {
-    name: 'Leer las Estrellas',
-    text: 'Robá una carta. Tu héroe gana 1 de energía.',
-    flavor: 'Las constelaciones nunca mienten. Solo hablan despacio.'
+  'scholarly-rust': {
+    name: 'Herrumbre Docta',
+    text: 'El arma enemiga pierde 2 de durabilidad y el héroe enemigo pierde 6 de armadura. Rápida.'
   },
-  'searing-brand': {
-    name: 'Marca Abrasadora',
-    text: 'Prendé fuego un slot enemigo: pierde 3 de vida al empezar cada una de las próximas 3 fases.',
-    flavor: 'La marca se borra. El dolor, no tan pronto.'
+  'scholarly-stasis': {
+    name: 'Estasis Docta',
+    text: 'Congelá a un aliado enemigo y hacé 2 de daño de tiempo al héroe enemigo.'
   },
-  'security-drone': { name: 'Dron de Seguridad', flavor: 'Por favor, quedate quieto mientras te escaneamos.' },
-  'senator-of-coin': {
-    name: 'Senador de las Monedas',
-    text: 'Al entrar: robá una carta y ganá 1 de Cronos.',
-    flavor: 'Cada voto tiene un precio. Cada precio tiene un voto.'
+  'scrap-plate-of-the-rift': { name: 'Coraza de Chatarra de la Grieta' },
+  'serene-prayer-staff': { name: 'Vara de Plegarias Serena', text: 'Al equiparla: robá una carta.' },
+  'serene-return': {
+    name: 'Regreso Sereno',
+    text: 'Un aliado al azar de tu pila de descarte vuelve al juego y tu héroe se cura 4. Lenta.'
   },
-  'server-farm': {
-    name: 'Granja de Servidores',
-    text: 'Artefacto. Al empezar cada fase, robá una carta y ganá 1 de Cronos.',
-    flavor: 'Cada byte de cada era, guardado y zumbando.'
+  'serene-rune': { name: 'Runa Serena', text: 'Adjuntala a un aliado tuyo: gana +2 de ataque y +4 de vida.' },
+  'serene-saddle': {
+    name: 'Montura Serena',
+    text: 'Adjuntala a un aliado tuyo: gana +1 de ataque y +4 de vida. Cuando ese aliado muere: robá una carta.'
   },
-  'shade-lurker': { name: 'Sombra Acechante', flavor: 'Cada sombra del vacío tiene a alguien adentro.' },
-  'shaman-of-the-tribe': {
-    name: 'Chamán de la Tribu',
-    text: 'Al final de cada fase, tu héroe se cura 2.',
-    flavor: 'Sus cantos son más viejos que las palabras.'
+  'serene-stance': { name: 'Postura Serena', text: 'Tu héroe gana 6 de armadura. Instantánea.' },
+  'shackle-of-dawn': { name: 'Grillete del Alba', text: 'Aturdí a un aliado enemigo. Rápida.' },
+  'shackle-of-the-pack': {
+    name: 'Grillete de la Jauría',
+    text: 'Aturdí a un aliado enemigo por dos fases y robá una carta. Rápida.'
   },
-  'sharpening-stone': {
-    name: 'Piedra de Afilar',
-    text: 'Un aliado tuyo gana +4 de ataque.',
-    flavor: 'Todo filo puede ser más filoso.'
+  'shade-of-dying-stars': { name: 'Sombra de las Estrellas Moribundas' },
+  'sharp-blessing': { name: 'Bendición Afilada', text: 'Adjuntala a un aliado tuyo: gana +1 de ataque y +4 de vida.' },
+  'sharp-boar': { name: 'Jabalí Afilado', text: 'Al entrar: hacé 3 de daño a un aliado enemigo al azar.' },
+  'sharp-crossbow': { name: 'Ballesta Afilada' },
+  'sharp-jerkin': { name: 'Jubón Afilado', text: 'Al equiparla: robá una carta.' },
+  'sharp-raptor': { name: 'Raptor Afilado', text: 'Al morir: tus Saurios ganan +1 de ataque y +1 de vida.' },
+  'shatter-of-the-long-road': {
+    name: 'Quiebre del Largo Camino',
+    text: 'El arma enemiga pierde 2 de durabilidad y el héroe enemigo pierde 6 de armadura. Rápida.'
   },
-  'shatter-time': {
-    name: 'Romper el Tiempo',
-    text: 'Destruí un aliado enemigo. Lenta.',
-    flavor: 'Hay momentos que es mejor romper.'
+  'signifer-lucius': { name: 'Signífero Lucio', text: 'Al entrar: tus otros aliados ganan +1 de ataque y +2 de vida.' },
+  'silent-monolith': { name: 'Monolito Silencioso', text: 'Cada daño que reciben tus aliados es 1 menor.' },
+  'silk-wrap-of-ruin': { name: 'Envoltura de Seda de la Ruina', text: 'Al equiparla: tus aliados se curan 2.' },
+  'silver-sprite': { name: 'Duende Plateado' },
+  'silver-wisp': { name: 'Fuego Fatuo Plateado' },
+  'slash-of-rot': { name: 'Tajo de la Podredumbre', text: 'Hacé 15 de daño de sombra a un aliado enemigo.' },
+  'slash-of-the-last-stand': { name: 'Tajo de la Última Defensa', text: 'Hacé 6 de daño a un slot enemigo.' },
+  'slash-of-the-long-road': { name: 'Tajo del Largo Camino', text: 'Hacé 11 de daño a un slot enemigo.' },
+  'sling-of-thorns': { name: 'Honda de Espinas' },
+  'slinger-of-bronze': { name: 'Hondero de Bronce', text: 'Al morir: tus otros aliados ganan +1 de ataque.' },
+  'slinger-of-the-sun-temple': { name: 'Hondero del Templo del Sol', text: 'Al entrar: invocá un Conscripto Hoplita.' },
+  'snare-of-dusk': { name: 'Lazo del Ocaso', text: 'Devolvé un aliado enemigo a la mano de su dueño. Rápida.' },
+  'snare-of-embers': { name: 'Lazo de Brasas', text: 'Devolvé un aliado enemigo a la mano de su dueño. Rápida.' },
+  'snare-of-rage': {
+    name: 'Lazo de la Ira',
+    text: 'Cuando el rival usa una habilidad: robá una carta y hacé 4 de daño al héroe enemigo.'
   },
-  'shield-bash': {
-    name: 'Golpe de Escudo',
-    text: 'Hacé 5 de daño a un aliado enemigo y tu héroe gana 4 de armadura. Rápida.',
-    flavor: 'La mejor defensa es un escudo en la cara.'
+  'snare-of-the-ambush': {
+    name: 'Lazo de la Emboscada',
+    text: 'Devolvé un aliado enemigo a la mano de su dueño y robá una carta. Rápida.'
   },
-  'shield-wall': {
-    name: 'Muro de Escudos',
-    text: 'Cuando un aliado enemigo ataca: cancelá el ataque y tu héroe gana 8 de armadura.',
-    flavor: 'No pasa nada. Nada.'
+  'snare-of-the-rift': {
+    name: 'Lazo de la Grieta',
+    text: 'Aturdí a un aliado enemigo por dos fases y robá una carta. Rápida.'
   },
-  'shieldbearer-of-ages': {
-    name: 'Escudera de las Eras',
-    flavor: 'Su escudo tiene abolladuras de cien batallas, algunas todavía no peleadas.'
+  'snare-of-the-wilds': {
+    name: 'Lazo de lo Salvaje',
+    text: 'Cuando ataca un aliado enemigo: cancelá el ataque y aturdilo.'
   },
-  'shields-up': {
-    name: 'Escudos Arriba',
-    text: 'Un aliado tuyo gana +14 de vida. Rápida.',
-    flavor: '¡Arriba! ¡Ya! ¡Todos juntos!'
+  'solar-archer': {
+    name: 'Arquero Solar',
+    text: 'Al entrar: gana +1 de ataque y +1 de vida por cada otro Legionario tuyo. Su habilidad se paga con energía (⚡).',
+    ability: { name: 'Aturdir', text: 'Aturdí a un aliado enemigo.' }
   },
-  'shieldwall-veteran': {
-    name: 'Veterano del Muro de Escudos',
-    text: 'Al entrar: los aliados de al lado ganan +4 de vida.',
-    flavor: 'Treinta años en la primera fila. Ni un paso atrás.'
+  'solar-idol': { name: 'Ídolo Solar', text: 'Al empezar cada fase: robá una carta. (3 usos)' },
+  'solar-muster': { name: 'Leva Solar', text: 'Invocá 2 Conscriptos Hoplitas.' },
+  'spark-of-dusk': { name: 'Chispa del Ocaso', text: 'Al empezar cada fase: tu héroe se cura 2.' },
+  'spark-of-the-crossroads': { name: 'Chispa de la Encrucijada' },
+  'spider-engine-of-the-foundry': {
+    name: 'Araña Mecánica de la Fundición',
+    text: 'Al entrar: hacé 1 de daño al héroe enemigo por cada Autómata tuyo.'
   },
-  'shifting-sands': {
-    name: 'Arenas Movedizas',
-    text: 'Artefacto. Al empezar cada fase, hacé 2 de daño a cada aliado enemigo.',
-    flavor: 'El suelo mismo se olvida de dónde estaba.'
+  'spike-of-storms': { name: 'Púa de Tormentas', text: 'Hacé 11 de daño de rayo a un aliado enemigo.' },
+  'spike-of-the-ambush': {
+    name: 'Púa de la Emboscada',
+    text: 'Hacé 3 de daño a un slot enemigo, +2 por cada Hacker tuyo.'
   },
-  shortbow: { name: 'Arco Corto', flavor: 'Liviano, rápido y siempre a mano.' },
-  'siege-engine': {
-    name: 'Máquina de Asedio',
-    text: 'Artefacto con 3 usos. Al empezar cada fase, le hace 6 de daño a un aliado enemigo al azar.',
-    flavor: 'No la apunta nadie. Le pega a cualquiera.'
+  'spike-of-the-comet': { name: 'Púa del Cometa', text: 'Hacé 9 de daño de arcano a un slot enemigo.' },
+  'spike-of-the-hawk': { name: 'Púa del Halcón', text: 'Hacé 9 de daño de viento a un slot enemigo.' },
+  'spike-of-the-hunt': { name: 'Púa de la Cacería', text: 'Hacé 4 de daño a un aliado enemigo. Rápida.' },
+  'spike-of-the-oracle': { name: 'Púa del Oráculo', text: 'Hacé 8 de daño de luz a un slot enemigo.' },
+  'spike-of-the-wanderer': { name: 'Púa del Errante', text: 'Hacé 11 de daño a un slot enemigo.' },
+  'spinosaur-of-the-hunt': {
+    name: 'Espinosaurio de la Cacería',
+    text: 'Al entrar: hacé 1 de daño al héroe enemigo por cada Saurio tuyo. Su habilidad se paga con energía (⚡).',
+    ability: { name: 'Golpe', text: 'Hacé 5 de daño a un slot enemigo.' }
   },
-  'signal-storm': {
-    name: 'Tormenta de Señales',
-    text: 'Hacé 6 de daño a cada aliado enemigo y robá una carta.',
-    flavor: 'Todas las pantallas de la ciudad gritan a la vez.'
+  'spinosaur-of-the-tar-pits': {
+    name: 'Espinosaurio de los Pozos de Brea',
+    text: 'Cuando entra otro Saurio tuyo: gana +2 de ataque y +2 de vida.'
   },
-  'signifer-lucius': {
-    name: 'Signífero Lucio',
-    text: 'Al entrar: tus otros aliados ganan +2 de ataque y +4 de vida.',
-    flavor: 'Llevó el estandarte entre el fuego, la inundación y el tiempo.'
+  'spirit-bound-bell': { name: 'Campana Ligada a los Espíritus' },
+  'spirit-bound-disarm': {
+    name: 'Desarme Ligado a los Espíritus',
+    text: 'El arma enemiga pierde 2 de durabilidad y el héroe enemigo pierde 6 de armadura. Rápida.'
   },
-  'silk-robe': {
-    name: 'Túnica de Seda',
-    text: 'Al jugarla: robá una carta.',
-    flavor: 'Bolsillos para cada pergamino.'
+  'spirit-bound-shroud': { name: 'Sudario Ligado a los Espíritus' },
+  'stalking-blight': { name: 'Plaga Acechante', text: 'Envenená a un aliado enemigo (2).' },
+  'stalking-fortune-teller': {
+    name: 'Adivina Acechante',
+    text: 'Al entrar: hacé 3 de daño a un aliado enemigo al azar. Al atacar: hacé 1 de daño al héroe enemigo.'
   },
-  'siphon-rune': {
-    name: 'Runa Sifón',
-    text: 'El héroe enemigo pierde 2 de energía. El tuyo gana 1.',
-    flavor: 'Lo suyo fluye, despacio, hacia vos.'
+  'stalwart-battle-cry': {
+    name: 'Grito de Guerra Firme',
+    text: 'Un aliado tuyo gana +8 de ataque en esta fase. Instantánea.'
   },
-  'sister-elowen': {
-    name: 'Hermana Elowen',
-    text: 'Al final de cada fase, tus aliados se curan 3.',
-    flavor: 'Fue su primera alumna. Ahora le cuida la espalda.',
-    ability: { name: 'Bendición', text: 'Tu héroe se cura 8.' }
+  'stalwart-saddle': { name: 'Montura Firme', text: 'Adjuntala a un aliado tuyo: gana +2 de ataque y +5 de vida.' },
+  'stalwart-street-samurai': { name: 'Samurái Callejero Firme', text: 'Al entrar: tu héroe gana 8 de armadura.' },
+  'standard-bearer-of-the-last-stand': {
+    name: 'Abanderado de la Última Defensa',
+    text: 'Al atacar: gana +1 de ataque.'
   },
-  'skeletal-monk': { name: 'Monje Esqueleto', flavor: 'Votos de silencio. Huesos en silencio.' },
-  'sky-courier': { name: 'Mensajero del Cielo', flavor: 'Entrega cartas al pasado. Tarde, como siempre.' },
-  'skyship-gunner': {
-    name: 'Artillera del Aeronave',
-    flavor: 'Desde la cubierta de su barco volador, nada queda fuera de alcance.'
+  'standard-bearer-of-the-laurel': {
+    name: 'Abanderado del Laurel',
+    text: 'Al entrar: tu héroe gana 7 de armadura. Al empezar cada fase: tu héroe gana 2 de armadura.'
   },
-  'smoke-bomb': { name: 'Bomba de Humo', text: 'Aturdí a un aliado enemigo.', flavor: 'Ahora los ves, ahora esperás.' },
-  'snare-trap': {
-    name: 'Trampa de Lazo',
-    text: 'Cuando un aliado enemigo ataca: hacele 10 de daño.',
-    flavor: 'Escondida bajo las hojas, esperando un paso descuidado.'
+  'starlit-dragon': { name: 'Dragón Estelar', text: 'Al entrar: aturdí a un aliado enemigo al azar.' },
+  'starweavers-astrolabe': { name: 'Astrolabio de Ilyra', text: 'Robá 2 cartas y ganás 2 Cronos en esta fase.' },
+  'stegosaur-of-the-first-fire': {
+    name: 'Estegosaurio del Primer Fuego',
+    text: 'Al entrar: gana +1 de ataque y +2 de vida.'
   },
-  'soul-drain': {
-    name: 'Drenar Almas',
-    text: 'Hacé 12 de daño a un aliado enemigo y tu héroe se cura 8.',
-    flavor: 'Tu fuerza me queda mejor a mí.'
+  'stegosaur-of-the-hunt': {
+    name: 'Estegosaurio de la Cacería',
+    text: 'Al entrar: invocá un Cachorro de Dientes de Sable.'
   },
-  'soul-harvester': {
-    name: 'Cosechador de Almas',
-    text: 'Al entrar: si tu descarte tiene 5 cartas o más, gana +4 de ataque y +4 de vida.',
-    flavor: 'Cosecha donde otros cayeron.'
+  'sting-of-the-silent-trail': { name: 'Aguijón del Rastro Silencioso', text: 'Envenená a un aliado enemigo (3).' },
+  'stole-of-light': { name: 'Estola de la Luz' },
+  'stole-of-renewal': { name: 'Estola de la Renovación' },
+  'stone-golem-of-dawn': { name: 'Gólem de Piedra del Alba', text: 'Al entrar: ganás 1 Cronos en esta fase.' },
+  'stone-golem-of-lightning': {
+    name: 'Gólem de Piedra del Relámpago',
+    text: 'Al entrar: hacé 7 de daño de tierra a un aliado enemigo al azar.'
   },
-  'soul-jar': {
-    name: 'Frasco de Almas',
-    text: 'Si tu descarte tiene 4 cartas o más, robá 2 cartas. Tu héroe se cura 4.',
-    flavor: 'Agitar antes de usar. Después correr.'
+  'stone-golem-of-mana': {
+    name: 'Gólem de Piedra de Maná',
+    text: 'Al morir: hacé 1 de daño de tierra a todos los aliados enemigos.'
   },
-  'soul-reaver': {
-    name: 'Segadora de Almas',
-    text: 'Al atacar: gana +1 de ataque y +2 de vida.',
-    flavor: 'Cada alma que toma la hace más fuerte.'
+  'storm-called-cartographer': {
+    name: 'Cartógrafa de la Tormenta',
+    text: 'Al morir: hacé 1 de daño de rayo a todos los aliados enemigos.'
   },
-  'spare-parts': {
-    name: 'Repuestos',
-    text: 'Un aliado tuyo se cura 10 y gana +1 de ataque.',
-    flavor: 'Un tornillo acá, un resorte allá. Como nuevo.'
-  },
-  'spark-engineer': {
-    name: 'Ingeniera de Chispas',
-    text: 'Al final de cada fase, hacé 2 de daño a un aliado enemigo al azar.',
-    flavor: 'Todo lo que inventa explota. Algunas cosas a propósito.'
-  },
-  'spell-eater': {
-    name: 'Devorador de Hechizos',
-    text: 'Al recibir daño: gana +2 de ataque.',
-    flavor: 'Fuego, hielo, rayo. Los prueba todos.'
-  },
-  spellbinder: {
-    name: 'Atadora de Hechizos',
-    text: 'Al atacar: hacé 2 de daño al héroe enemigo.',
-    flavor: 'Cada golpe lleva una pequeña maldición.'
-  },
-  spellbook: { name: 'Libro de Hechizos', text: 'Robá 3 cartas.', flavor: 'Capítulo uno: no leas el capítulo dos.' },
-  'spellward-knight': { name: 'Caballera Rúnica', flavor: 'Su armadura tiene grabadas mil runas de protección.' },
-  'spiked-pauldrons': {
-    name: 'Hombreras con Púas',
-    text: 'Al empezar cada fase, hacé 2 de daño a un aliado enemigo al azar.',
-    flavor: 'No se recomiendan los abrazos.'
-  },
-  'spinosaur-hunter': { name: 'Espinosaurio Cazador', flavor: 'El río es su coto de caza. Y su mesa.' },
-  'spirit-caller': {
-    name: 'Invocadora de Espíritus',
-    text: 'Su habilidad se paga con energía (⚡).',
-    flavor: 'Los viejos espíritus de la selva curan lo que desgarran las garras.',
-    ability: { name: 'Llamado de los Ancestros', text: 'Un aliado tuyo se cura 8 y gana +2 de ataque.' }
-  },
-  'spirit-guardian': {
-    name: 'Guardián Espiritual',
-    text: 'Invocá un Guardián de la Grieta y tu héroe gana 6 de armadura.',
-    flavor: 'Un viejo amigo del más allá responde al llamado.'
-  },
-  'spirit-link': {
-    name: 'Vínculo Espiritual',
-    text: 'Tus aliados ganan +1 de ataque y +4 de vida.',
-    flavor: 'Un corazón, muchos cuerpos.'
-  },
-  'spirit-of-the-herd': {
-    name: 'Espíritu de la Manada',
-    text: 'Tus aliados ganan +2 de ataque y +4 de vida y tu héroe se cura 4.',
-    flavor: 'Mil pezuñas, un solo corazón.'
-  },
-  'spirit-ward': {
-    name: 'Amparo Espiritual',
-    text: 'Al empezar cada fase, tu héroe se cura 2.',
-    flavor: 'Los ancestros se ponen entre vos y el golpe.'
-  },
-  spyglass: { name: 'Catalejo', text: 'Robá una carta.', flavor: 'Mirá lo que viene.' },
-  'spoils-of-war': {
-    name: 'Botín de Guerra',
-    text: 'Artefacto. Al empezar cada fase, si tenés más aliados que el rival, robá una carta.',
-    flavor: 'Al ganador, los cofres.'
-  },
-  'staff-of-embers': { name: 'Bastón de Brasas', flavor: 'Siempre tibio, nunca se apaga.' },
-  'staff-of-eternity': {
-    name: 'Bastón de la Eternidad',
-    text: 'Al jugarla: un aliado al azar de tu descarte vuelve al juego.',
-    flavor: 'Curó a todos los héroes de todas las épocas.'
-  },
-  'staff-of-renewal': {
-    name: 'Bastón de la Renovación',
-    text: 'Al empezar cada fase, tus aliados se curan 2.',
-    flavor: 'Donde toca el suelo crecen flores.'
-  },
-  'staff-of-the-archmage': {
-    name: 'Bastón del Archimago',
-    text: 'Al empezar cada fase, hacé 4 de daño a un aliado enemigo al azar. Al jugarla: ganá 2 de Cronos.',
-    flavor: 'Solo una mano por era lo puede sostener.'
-  },
-  'staff-of-the-starweaver': {
-    name: 'Bastón de la Tejeestrellas',
-    text: 'Al empezar cada fase, hacé 2 de daño al héroe enemigo.',
-    flavor: 'Su punta es una estrella capturada. Sigue enojada.'
-  },
-  stampede: {
-    name: 'Estampida',
-    text: 'Hacé 6 de daño a cada aliado enemigo y tus aliados ganan +2 de ataque. Lenta.',
-    flavor: 'No te quedes en el valle. Nunca.'
-  },
-  'starlit-unicorn': {
-    name: 'Unicornio Estelar',
-    text: 'Al entrar: tu héroe se cura 8. Al final de cada fase, tus aliados se curan 2.',
-    flavor: 'Su cuerno apunta siempre a la estrella más brillante.'
-  },
-  'starshot-bow': {
-    name: 'Arco Estelar',
-    text: 'Al jugarla: hacé 6 de daño a cada aliado enemigo.',
-    flavor: 'Sus flechas son estrellas fugaces.'
-  },
-  'starweavers-astrolabe': {
-    name: 'Astrolabio de Ilyra',
-    text: 'Robá 2 cartas y ganá 2 de Cronos. Rápido.',
-    flavor: 'Muestra dónde estaba cada estrella, y dónde va a estar.'
-  },
-  'stasis-bubble': {
-    name: 'Burbuja de Estasis',
-    text: 'Adjuntala a un aliado tuyo: gana escudo (ignora el primer daño que recibe).',
-    flavor: 'El tiempo se frena a un dedo de la espada.'
-  },
-  'static-wraith': { name: 'Espectro de Estática', flavor: 'Apagalo. Sigue ahí.' },
-  'steam-blast': {
-    name: 'Chorro de Vapor',
-    text: 'Hacé 10 de daño a un aliado enemigo y aturdilo.',
-    flavor: 'Bastante caliente para cocinar a un caballero en su armadura.'
-  },
-  'steam-hammer': {
-    name: 'Martillo a Vapor',
-    text: 'Al jugarla: ganá 1 de Cronos.',
-    flavor: 'Cada golpe viene con un silbido.'
-  },
-  'steam-sentry': { name: 'Centinela a Vapor', flavor: 'Silba antes de pelear. Por educación.' },
-  'steam-tank': { name: 'Tanque a Vapor', flavor: 'A carbón y muy, muy enojado.' },
-  'stim-pack': {
-    name: 'Estimulante',
-    text: 'Tu héroe se cura 6 y robá una carta. Rápido.',
-    flavor: 'Tiene gusto a pila.'
-  },
-  'stone-thrower': { name: 'Lanzapiedras', flavor: 'Tecnología: una piedra grande. Estrategia: tirarla.' },
-  'storm-adept': {
-    name: 'Adepta de la Tormenta',
-    text: 'Su habilidad se paga con energía (⚡).',
-    flavor: 'El rayo responde cuando lo llama, pero cobra.',
-    ability: { name: 'Trueno', text: 'Hacé 6 de daño a un slot enemigo.' }
-  },
-  'storm-caller': {
-    name: 'Invocador de Tormentas',
-    flavor: 'Las nubes le contestan antes de que termine la palabra.',
-    ability: { name: 'Cadena de Rayos', text: 'Hacé 4 de daño a cada aliado enemigo.' }
+  'storm-called-strike': {
+    name: 'Golpe de la Tormenta',
+    text: 'Hacé 2 de daño de rayo a un slot enemigo, +2 por cada Inventor tuyo.'
   },
   'storm-plate': {
     name: 'Armadura de Tormenta',
-    text: 'Al empezar cada fase, hacé 4 de daño a un aliado enemigo al azar.',
-    flavor: 'Chisporrotea cuando la tocás. Y cuando pensás en ella.'
+    text: 'Al empezar cada fase: hacé 2 de daño de rayo a un aliado enemigo al azar.'
   },
-  'street-runner': { name: 'Corredora Callejera', flavor: 'Entregas en menos de un segundo, o la próxima es gratis.' },
-  'sun-chariot': {
-    name: 'Carro del Sol',
-    text: 'Al entrar: hacé 6 de daño al héroe enemigo.',
-    flavor: 'Cruza el cielo todos los días. Hoy te cruza a vos.'
+  'stray-cartographer': { name: 'Cartógrafa Extraviada', text: 'Al entrar: ganás 1 Cronos en esta fase.' },
+  'stray-fury': { name: 'Furia Extraviada', text: 'Un aliado tuyo gana +3 de ataque y +4 de vida. Instantánea.' },
+  'stray-leather-coat': { name: 'Abrigo de Cuero Extraviado' },
+  'stray-strike': { name: 'Golpe Extraviado', text: 'Hacé 8 de daño a un aliado enemigo.' },
+  'study-of-dawn': { name: 'Estudio del Alba', text: 'Robá una carta y tu héroe se cura 3.' },
+  'study-of-flame': { name: 'Estudio de Llamas', text: 'Robá 2 cartas.' },
+  'summons-of-steam': { name: 'Convocatoria de Vapor', text: 'Invocá un Dron de Engranajes.' },
+  'summons-of-the-wilds': { name: 'Convocatoria de lo Salvaje', text: 'Invocá un Cachorro de Dientes de Sable.' },
+  'sundial-of-borrowed-hours': {
+    name: 'Reloj de Sol de las Horas Prestadas',
+    text: 'Al empezar cada fase: tu héroe gana 1 de energía. (3 usos)'
   },
-  'sun-mace': { name: 'Maza Solar', flavor: 'Un poco de luz de sol, aplicada con firmeza.' },
-  sunder: {
-    name: 'Quebrar',
-    text: 'Destruí el arma enemiga.',
-    flavor: 'El acero se rompe. El orgullo, más fuerte.'
+  'sundial-of-the-last-hour': {
+    name: 'Reloj de Sol de la Última Hora',
+    text: 'Al empezar cada fase: tu héroe se cura 3. (3 usos)'
   },
-  sunrise: {
-    name: 'Amanecer',
-    text: 'Tus aliados se curan 10 y tus aliados ganan +2 de ataque y +2 de vida.',
-    flavor: 'Vuelve la luz. Y la esperanza.'
+  'swift-pterodon': { name: 'Pterodonte Veloz' },
+  'swift-stonethrower': { name: 'Lanzapiedras Veloz', text: 'Al empezar cada fase: gana +1 de ataque y +1 de vida.' },
+  'talos-of-the-laurel': {
+    name: 'Talos del Laurel',
+    text: 'Al entrar: tus otros Colosos ganan +1 de ataque y +1 de vida.'
   },
-  'sundial-of-plenty': {
-    name: 'Reloj de Sol de la Abundancia',
-    text: 'Artefacto. Al empezar cada fase, ganás 1 Cronos.',
-    flavor: 'Su sombra siempre marca el ahora.'
+  'tar-soaked-ankylosaur': {
+    name: 'Anquilosaurio Empapado de Brea',
+    text: 'Al entrar: gana +1 de ataque y +2 de vida.'
   },
-  'surveillance-net': {
-    name: 'Red de Vigilancia',
-    text: 'Cuando el rival invoca un aliado: aturdilo por dos fases y robá una carta.',
-    flavor: 'Sonreí. Te están filmando.'
+  'tar-soaked-pterodon': {
+    name: 'Pterodonte Empapado de Brea',
+    text: 'Cuando entra otro Saurio tuyo: tu héroe se cura 2. Al atacar: tu héroe se cura 3.'
   },
-  'swamp-croc': { name: 'Cocodrilo del Pantano', flavor: 'Espera en este pantano desde antes de los dinosaurios.' },
-  'swamp-viper': {
-    name: 'Víbora del Pantano',
-    text: 'Cuando ataca, envenena a su objetivo (2).',
-    flavor: 'Su mordida es rápida. Lo demás, lento.'
-  },
-  'syndicate-enforcer': { name: 'Ejecutor del Sindicato', flavor: 'Política de la empresa, entregada en mano.' },
-  'synth-brawler': { name: 'Peleador Sintético', flavor: 'Puños mejorados. Actitud original.' },
-  'system-crash': {
-    name: 'Caída del Sistema',
-    text: 'Aturdí a un aliado enemigo por dos fases. Rápida.',
-    flavor: '¿Probaste apagarlo y no prenderlo nunca más?'
-  },
-  'tame-beast': {
-    name: 'Domar Bestia',
-    text: 'Invocá un Jabalí Espinoso y tu héroe se cura 5.',
-    flavor: 'Despacito. Despacito. Buen chico.'
-  },
-  'tar-pits': {
-    name: 'Pozos de Brea',
-    text: 'Artefacto. Al empezar cada fase, hacé 4 de daño a un aliado enemigo al azar y tu héroe se cura 3.',
-    flavor: 'Entraron muchos. Salieron pocos.'
-  },
-  'target-lock': {
-    name: 'Fijar Blanco',
-    text: 'Hacé 4 de daño a un aliado enemigo y robá una carta. Instantánea.',
-    flavor: 'Fijado. Cargado. Me voy.'
-  },
+  'tar-soaked-sabertooth': { name: 'Dientes de Sable Empapado de Brea', text: 'Al atacar: tu héroe se cura 3.' },
   'tauron-labyrinth-lord': {
     name: 'Tauron, Señor del Laberinto',
-    text: 'Cornada (3): hacé 12 de daño a un slot enemigo. Al empezar cada fase, tu héroe gana 2 de armadura.',
+    text: 'Cornada (3): hacé 6 de daño de tierra a un slot enemigo. Al empezar cada fase, tu héroe gana 2 de armadura.',
     flavor: 'Nadie que entró a su laberinto encontró la salida.',
-    ability: { name: 'Cornada', text: 'Hacé 12 de daño a un slot enemigo.' }
+    ability: { name: 'Cornada', text: 'Hacé 6 de daño de tierra a un slot enemigo.' }
   },
-  'tavern-brawler': { name: 'Camorrero de Taberna', flavor: 'Cada era tiene una taberna. Cada taberna lo tiene a él.' },
-  'tax-automaton': {
-    name: 'Autómata Recaudador',
-    text: 'Al entrar: robá una carta.',
-    flavor: 'Cuenta todo. Incluso a vos.'
+  'taurons-halberd': { name: 'Alabarda de Tauron', text: 'Al equiparla: tu héroe gana 5 de armadura.' },
+  'taurons-prophet': {
+    name: 'Profeta de Tauron',
+    text: 'Al entrar: si tenés otro Oráculo, robá una carta. Al morir: tus otros aliados ganan +1 de ataque.'
   },
-  'temple-acolyte': {
-    name: 'Acólita del Templo',
-    text: 'Al entrar: tu héroe se cura 5.',
-    flavor: 'Prende una vela por cada soldado que vuelve.'
+  'tempest-of-the-arcanum': {
+    name: 'Tempestad del Arcano',
+    text: 'Hacé 6 de daño de viento a todos los aliados enemigos. Lenta.'
   },
-  'temple-of-the-huntress': {
-    name: 'Templo de la Cazadora',
-    text: 'Artefacto. Al empezar cada fase, hacé 4 de daño a un aliado enemigo al azar y tus aliados ganan +1 de ataque.',
-    flavor: 'Cada flecha que sale de acá es una plegaria.'
+  'temple-keeper-of-the-laurel': {
+    name: 'Guardiana del Templo del Laurel',
+    text: 'Al entrar: si tenés otro Oráculo, robá una carta.'
   },
-  'temple-oracle': {
-    name: 'Oráculo del Templo',
-    text: 'Al entrar: robá una carta.',
-    flavor: 'Ve el futuro. Casi todo es humo.',
-    ability: { name: 'Augurio', text: 'Robá una carta.' }
+  'temple-keeper-of-the-sun-temple': { name: 'Guardiana del Templo del Templo del Sol' },
+  'the-astronomers-dryad': {
+    name: 'Dríade del Astrónomo',
+    text: 'Al entrar: tus otras Hadas ganan +2 de ataque y +2 de vida. Al empezar cada fase: hacé 1 de daño de arcano al héroe enemigo.'
   },
-  'temporal-prison': {
-    name: 'Prisión Temporal',
-    text: 'Cuando el rival invoca un aliado: lo aturdís por dos fases.',
-    flavor: 'Bienvenido. Por favor, espere.'
-  },
-  'temporal-shock': {
-    name: 'Choque Temporal',
-    text: 'Hacé 10 de daño a un aliado enemigo. Rápida.',
-    flavor: 'Una sacudida de un segundo que salió mal.'
-  },
-  'tesla-sentinel': { name: 'Centinela Tesla', flavor: 'Tocalo. Dale.' },
-  'tesla-wand': {
-    name: 'Varita Tesla',
-    text: 'Al empezar cada fase, hacé 2 de daño a un aliado enemigo al azar.',
-    flavor: 'Apuntala lejos del pelo.'
-  },
-  'testudo-squad': { name: 'Escuadra Tortuga', flavor: 'Llueven flechas. La tortuga sigue caminando.' },
-  'the-ancestor-tree': {
-    name: 'El Árbol de los Ancestros',
-    text: 'Artefacto. Al empezar cada fase, tus aliados se curan 4 y tus aliados ganan +1 de ataque y +2 de vida.',
-    flavor: 'Cada hoja es un nombre. Cada raíz, una historia.'
-  },
-  'the-clockmaker': {
-    name: 'El Relojero',
-    text: 'Al entrar: ganá 4 de Cronos y robá 2 cartas. Al empezar cada fase, ganá 1 de Cronos y tus aliados ganan +1 de ataque y +2 de vida.',
-    flavor: 'Construyó el primer reloj. Después construyó el tiempo para ponerle adentro.'
+  'the-astronomers-lance': {
+    name: 'Lanza del Astrónomo',
+    text: 'Hacé 10 de daño de arcano a un slot enemigo y robá una carta.'
   },
   'the-copperwick-engine': {
     name: 'La Máquina Copperwick',
-    text: 'Ganá 3 de Cronos, robá 2 cartas y invocá un Dron de Engranajes.',
-    flavor: 'Su obra maestra. Funciona a tiempo puro.'
+    text: 'Ganás 2 Cronos en esta fase, robá 2 cartas y invocá un Dron de Engranajes.'
   },
   'the-dawn-angel': {
     name: 'El Ángel del Alba',
-    text: 'Al entrar: tu héroe se cura 15 y un aliado al azar de tu descarte vuelve al juego.',
-    flavor: 'Aparece una vez cada mil años, con la primera luz.'
+    text: 'Al entrar: tu héroe se cura 8 y un aliado al azar de tu pila de descarte vuelve al juego.'
   },
-  'the-final-silence': {
-    name: 'El Silencio Final',
-    text: 'Al entrar: hacé 15 de daño a cada aliado, también a los tuyos y un aliado al azar de tu descarte vuelve al juego.',
-    flavor: 'Después del último sonido, solo esto.'
+  'thunderhead-of-dawn': { name: 'Nubarrón del Alba', text: 'Al entrar: ganás 1 Cronos en esta fase.' },
+  'thunderhead-of-dusk': { name: 'Nubarrón del Ocaso', text: 'Al entrar: robá una carta.' },
+  'thunderhead-of-the-comet': {
+    name: 'Nubarrón del Cometa',
+    text: 'Al entrar: tus otros Elementales ganan +1 de ataque y +1 de vida. Su habilidad se paga con energía (⚡).',
+    ability: { name: 'Curar', text: 'Un aliado tuyo se cura 5.' }
   },
-  'the-first-wizard': {
-    name: 'El Primer Mago',
-    text: 'Al entrar: aturdí a cada aliado enemigo y robá 2 cartas. Al empezar cada fase, hacé 6 de daño a un aliado enemigo al azar.',
-    flavor: 'Antes de él, la magia era una palabra que nadie sabía decir.'
+  'thundering-gatherer': { name: 'Recolectora Atronadora', text: 'Al entrar: gana +1 de ataque y +2 de vida.' },
+  'thundering-raptor': { name: 'Raptor Atronador', text: 'Al morir: invocá una Cría de Raptor.' },
+  'thundering-sabertooth': {
+    name: 'Dientes de Sable Atronador',
+    text: 'Al entrar: invocá un Cachorro de Dientes de Sable.'
   },
-  'the-grand-orrery': {
-    name: 'El Gran Planetario',
-    text: 'Al entrar: ganá 3 de Cronos y robá 2 cartas.',
-    flavor: 'Mueve los planetas, y los planetas mueven la guerra.'
+  'timeless-fortune-teller': { name: 'Adivina Atemporal', text: 'Al entrar: ganás 1 Cronos en esta fase.' },
+  'timeless-gust': { name: 'Ráfaga Atemporal', text: 'Al morir: invocá una Chispa de la Grieta.' },
+  'timeless-icicle': {
+    name: 'Carámbano Atemporal',
+    text: 'Al entrar: el arma enemiga pierde 1 de durabilidad. Al morir: robá una carta.'
   },
-  'the-hollow-crown': {
-    name: 'La Corona Hueca',
-    text: 'Al entrar: destruí tu otro aliado más débil: si lo hacés, robá 2 cartas y hacé 6 de daño a cada aliado enemigo.',
-    flavor: 'Era su corona. Ahora es su único sirviente.'
+  'timeless-rune': { name: 'Runa Atemporal', text: 'Adjuntala a un aliado tuyo: gana +1 de ataque y +4 de vida.' },
+  'timeless-tick': { name: 'Tic Atemporal', text: 'Ganás 3 Cronos en esta fase. Instantánea.' },
+  'timeless-tide': { name: 'Marea Atemporal' },
+  'timeless-wanderer': {
+    name: 'Vagabundo Atemporal',
+    text: 'Al empezar cada fase: tu héroe se cura 2. Su habilidad se paga con energía (⚡).',
+    ability: { name: 'Aturdir', text: 'Aturdí a un aliado enemigo.' }
   },
-  'the-last-king': {
-    name: 'El Último Rey',
-    text: 'Al entrar: un aliado al azar de tu descarte vuelve al juego y un aliado al azar de tu descarte vuelve al juego.',
-    flavor: 'Gobierna el fin de los tiempos. Todos sus súbditos están muertos.'
+  'tireless-zeppelin': {
+    name: 'Zepelín Incansable',
+    text: 'Al entrar: robá la primera Aeronave de tu mazo. Su habilidad se paga con energía (⚡).',
+    ability: { name: 'Inspirar', text: 'Un aliado tuyo gana +1 de ataque y +2 de vida.' }
   },
-  'the-last-sentinel': {
-    name: 'El Último Centinela',
-    flavor: 'Cuando el tiempo termine, todavía va a estar de guardia.'
-  },
-  'the-nexus': {
-    name: 'El Nexo',
-    text: 'Artefacto. Al empezar cada fase, ganás 1 de Cronos y robá una carta.',
-    flavor: 'Donde se cruzan todas las eras y empiezan todos los caminos.'
-  },
-  'the-ninths-stand': {
-    name: 'La Resistencia de la Novena',
-    text: 'Tu héroe gana 15 de armadura y tus aliados ganan +6 de vida. Instantánea.',
-    flavor: 'Aguantaron un siglo. Pueden aguantar un minuto.'
-  },
-  'the-oracle-ai': {
-    name: 'La IA Oráculo',
-    text: 'Al entrar: robá 2 cartas. Al empezar cada fase, robá una carta.',
-    flavor: 'Calculó todos los futuros posibles. Perdés en todos.'
-  },
-  'the-singing-graves': {
-    name: 'Las Tumbas que Cantan',
-    text: 'Artefacto. Al empezar cada fase, un aliado al azar de tu descarte vuelve al juego y tu héroe se cura 3.',
-    flavor: 'Escuchá bien. Están cantando tu nombre.'
-  },
-  'the-starlight-oracle': {
-    name: 'El Oráculo Estelar',
-    text: 'Al empezar cada fase, robá una carta.',
-    flavor: 'Vio esta partida hace mucho. Le gustó el final.'
-  },
-  'the-world-serpent': {
-    name: 'La Serpiente del Mundo',
-    text: 'Al entrar: hacé 8 de daño a cada aliado enemigo.',
-    flavor: 'Su cola está en el pasado. Su cabeza, en el futuro.'
-  },
-  'thorn-collar': {
-    name: 'Collar de Espinas',
-    text: 'Adjuntalo a un aliado enemigo: cada vez que ataca, pierde 4 de vida.',
-    flavor: 'Cada golpe lo aprieta más.'
-  },
-  'thornback-boar': { name: 'Jabalí Espinoso', flavor: 'No se recomienda acariciarlo.' },
-  'thorned-colossus': { name: 'Coloso Espinoso', flavor: 'Abrazalo bajo tu propio riesgo.' },
-  'thorned-mail': {
-    name: 'Malla de Espinas',
-    text: 'Adjuntala a un aliado tuyo: tiene +3 de vida y espinas 4.',
-    flavor: 'Abrazalo si te animás.'
-  },
-  'thunder-lizard': {
-    name: 'Lagarto del Trueno',
-    text: 'Al entrar: tus aliados se curan 8.',
-    flavor: 'Cuando camina, la lluvia cae para arriba.'
-  },
-  thunderclap: {
-    name: 'Trueno',
-    text: 'Hacé 6 de daño a cada aliado enemigo y tu héroe gana 6 de armadura. Rápida.',
-    flavor: 'Todos lo escuchan. Nadie queda de pie.'
-  },
-  'time-capsule': {
-    name: 'Cápsula del Tiempo',
-    text: 'Robá 3 cartas. Lenta.',
-    flavor: 'Enterrada en el pasado, abierta justo a tiempo.'
-  },
-  'time-lock': {
-    name: 'Cerrojo del Tiempo',
-    text: 'Cuando un aliado enemigo ataca: cancelá el ataque, aturdilo por dos fases y ganá 2 de Cronos.',
-    flavor: 'Tus minutos ahora están en mi caja fuerte.'
-  },
-  'time-thief': {
-    name: 'Ladrona de Tiempo',
-    text: 'Al entrar: hacé 3 de daño al héroe enemigo y ganás 1 de Cronos.',
-    flavor: 'Tus segundos quedan mejor en su bolsillo.'
-  },
-  'time-wanderer': { name: 'Viajero del Tiempo', flavor: 'Perdido en algún lugar entre ayer y mañana.' },
-  'time-warp': {
-    name: 'Distorsión Temporal',
-    text: 'Ganá 3 de Cronos y robá 2 cartas. Rápida.',
-    flavor: 'Un poquito más de tiempo. Solo un poquito.'
-  },
-  'timeguard-plate': { name: 'Placas del Guardián del Tiempo', flavor: 'Forjada para sobrevivir al fin del tiempo.' },
-  'timeworn-champion': { name: 'Campeón Gastado', flavor: 'Peleó en todas las batallas finales. Dos veces.' },
-  'tinker-gnome': {
-    name: 'Gnomo Hojalatero',
-    text: 'Al morir: invocá un Dron de Engranajes.',
-    flavor: 'Nunca se va sin dejar algo atrás.'
-  },
-  'titan-gauntlet': {
-    name: 'Guantelete del Titán',
-    text: 'Adjuntalo a un aliado tuyo: tiene +8 de ataque, +8 de vida y barrido.',
-    flavor: 'Forjado para una mano tres veces más grande. Igual te queda.'
-  },
-  'tomb-listener': {
-    name: 'Oyente de Tumbas',
-    text: 'Al entrar: robá una carta por cada 5 cartas de tu pila de descarte (hasta 3).',
-    flavor: 'Los muertos hablan. Ella escucha.'
-  },
-  'tomb-warden': {
-    name: 'Guardián de la Cripta',
-    text: 'Al morir: un aliado al azar de tu descarte vuelve al juego.',
-    flavor: 'Cuida a los muertos. Los muertos lo cuidan a él.'
-  },
+  'titan-of-valor': { name: 'Titán del Valor', text: 'Al atacar: gana +1 de ataque.' },
   'tome-of-endings': {
     name: 'Tomo de los Finales',
-    text: 'Hacé 10 de daño a cada aliado enemigo, un aliado al azar de tu descarte vuelve al juego y robá 2 cartas.',
-    flavor: 'Todas las historias terminan. Este libro sabe cómo.'
+    text: 'Hacé 5 de daño de sombra a todos los aliados enemigos, un aliado al azar de tu pila de descarte vuelve al juego y robá 2 cartas.'
   },
-  'tome-of-whispers': {
-    name: 'Tomo de los Susurros',
-    text: 'Artefacto. Al empezar cada fase, robá una carta y tu héroe pierde 2 de vida.',
-    flavor: 'Lo sabe todo. Pide un poco a cambio.'
+  'tonic-of-the-wanderer': {
+    name: 'Tónico del Errante',
+    text: 'Robá el primer Elemental de tu mazo y robá el primer Elemental de tu mazo.'
   },
-  'tower-mace': { name: 'Maza de Torre', text: 'Al jugarla: tu héroe gana 5 de armadura.', flavor: 'Toc, toc.' },
-  'tower-novice': {
-    name: 'Novicia de la Torre',
-    text: 'Al entrar: hacé 2 de daño al héroe enemigo.',
-    flavor: 'Su primer hechizo fue un accidente. El segundo también.'
+  'totem-of-coal': { name: 'Tótem del Carbón', text: 'Cuando entra un Inventor tuyo: gana +1 de ataque y +2 de vida.' },
+  'totem-of-the-herd': { name: 'Tótem de la Manada', text: 'Al empezar cada fase: tu héroe se cura 3.' },
+  'towering-boss': { name: 'Jefa Imponente', text: 'Al entrar: tus otros Sicarios ganan +1 de ataque y +1 de vida.' },
+  'towering-disarm': { name: 'Desarme Imponente', text: 'Destruí el arma enemiga. Rápida.' },
+  'towering-mace': { name: 'Maza Imponente' },
+  'toxin-of-midnight': { name: 'Toxina de Medianoche', text: 'Envenená a un aliado enemigo (3).' },
+  'toxin-of-pistons': { name: 'Toxina de Pistones', text: 'Envenená a un aliado enemigo (2).' },
+  'tracking-countermeasure': {
+    name: 'Contramedida Rastreadora',
+    text: 'Cuando el rival usa una habilidad: robá una carta y hacé 4 de daño al héroe enemigo.'
   },
-  'tower-of-stars': {
-    name: 'Torre de las Estrellas',
-    text: 'Artefacto. Al empezar cada fase, hacé 3 de daño al héroe enemigo.',
-    flavor: 'Desde arriba, todas las eras se ven chiquitas.'
+  'tracking-dagger': { name: 'Daga Rastreadora', text: 'Al equiparla: hacé 4 de daño a un aliado enemigo al azar.' },
+  'tracking-horn': { name: 'Cuerno Rastreador', text: 'Invocá un Cachorro de Dientes de Sable.' },
+  'tracking-stasis': { name: 'Estasis Rastreadora', text: 'Congelá a un aliado enemigo.' },
+  'tracking-vest': { name: 'Chaleco Rastreador' },
+  'tracking-woolly-rhino': {
+    name: 'Rinoceronte Lanudo Rastreador',
+    text: 'Cuando entra otra Fiera tuya: tu héroe se cura 2.'
   },
-  track: {
-    name: 'Rastrear',
-    text: 'Robá una carta. Rápida.',
-    flavor: 'Ramitas rotas, pasto doblado, huellas frescas.'
+  'triceratops-of-the-herd': {
+    name: 'Triceratops de la Manada',
+    text: 'Al entrar: gana +1 de ataque y +1 de vida por cada otro Saurio tuyo.'
   },
-  'training-grounds': {
-    name: 'Campo de Entrenamiento',
-    text: 'Artefacto. Al empezar cada fase, un aliado tuyo al azar gana +2 de ataque.',
-    flavor: 'La práctica hace eterno.'
+  'twilight-cryomancer': { name: 'Criomante Crepuscular' },
+  'unbound-hierophant': {
+    name: 'Hierofante Desatado',
+    text: 'Al entrar: envenená al héroe enemigo (3). Al morir: hacé 3 de daño de sombra al héroe enemigo.'
   },
-  'trap-finder': {
-    name: 'Buscatrampas',
-    text: 'Al entrar: destruí una trampa enemiga boca abajo al azar.',
-    flavor: 'Pisó todas las trampas. Una vez.'
+  'unbound-ruin': { name: 'Ruina Desatada', text: 'Destruí a un aliado enemigo. Lenta.' },
+  'unbroken-hitman': { name: 'Asesino a Sueldo Invicto', text: 'Al atacar: gana +1 de ataque.' },
+  'unbroken-merchant': { name: 'Mercader Invicto', text: 'Al atacar: gana +1 de ataque.' },
+  'unbroken-plan': { name: 'Plan Invicto', text: 'Robá el primer Errante de tu mazo y tu héroe se cura 3.' },
+  'unyielding-charioteer': { name: 'Auriga Inquebrantable', text: 'Al entrar: robá el primer Legionario de tu mazo.' },
+  'unyielding-trap': {
+    name: 'Trampa Inquebrantable',
+    text: 'Cuando el rival usa una habilidad: robá una carta y hacé 4 de daño de luz al héroe enemigo.'
   },
-  'tribal-warchief': {
-    name: 'Jefe de Guerra Tribal',
-    flavor: 'Su grito de guerra puede empezar una avalancha.',
-    ability: { name: 'Grito de Guerra', text: 'Un aliado tuyo gana +8 de ataque esta fase.' }
+  'varros-glaive': { name: 'Guja de Varro', text: 'Al equiparla: tu héroe gana 5 de armadura.' },
+  'venom-of-the-hunt': { name: 'Veneno de la Cacería', text: 'Envenená a un aliado enemigo (3).' },
+  'venomous-data-thief': {
+    name: 'Ladrón de Datos Venenoso',
+    text: 'Al entrar: invocá un Cachorro de Dientes de Sable.'
   },
-  'tribune-of-the-legion': {
-    name: 'Tribuno de la Legión',
-    text: 'Al entrar: tus otros aliados ganan +2 de ataque y +2 de vida.',
-    flavor: 'Su voz se escucha por encima del choque de mil escudos.'
+  'venomous-jerkin': { name: 'Jubón Venenoso', text: 'Al equiparla: robá una carta.' },
+  'venomous-tripwire': {
+    name: 'Cable Trampa Venenoso',
+    text: 'Cuando el rival invoca un aliado: hacele 7 de daño de ácido.'
   },
-  'triceratops-matriarch': {
-    name: 'Matriarca Triceratops',
-    text: 'Cuando entra otro aliado tuyo, gana +2 de ataque y +2 de vida.',
-    flavor: 'Tres cuernos, una regla: a la manada no la toca nadie.'
-  },
-  tripwire: {
-    name: 'Cable Trampa',
-    text: 'Cuando el rival invoca un aliado: le hacés 6 de daño.',
-    flavor: 'Cuidado dónde pisás. Y cuándo.'
-  },
-  'tripwire-turret': {
-    name: 'Torreta de Alambre',
-    text: 'Cuando el rival invoca un aliado: hacele 12 de daño.',
-    flavor: 'Solo le dispara a los amigos nuevos.'
-  },
-  'tusked-hog': { name: 'Cerdo Colmilludo', flavor: 'Mal carácter, peor aliento.' },
-  'twin-blades': {
-    name: 'Hojas Gemelas',
-    text: 'Adjuntalas a un aliado tuyo: tiene +3 de ataque y frenesí (puede atacar dos veces por fase).',
-    flavor: 'Dos filos, un solo ritmo.'
-  },
-  'twin-hunting-knives': {
-    name: 'Cuchillos de Caza Gemelos',
-    text: 'Al jugarla: robá una carta.',
-    flavor: 'Uno para despellejar, otro para ganar.'
-  },
-  'tyrant-hatchling': { name: 'Cría de Tirano', flavor: 'Chiquito. Por ahora.' },
-  unravel: {
-    name: 'Desentrañar',
-    text: 'Hacé 8 de daño a un aliado enemigo. Si tu descarte tiene 5 cartas o más, robá una carta.',
-    flavor: 'Tirá de un hilo y todo se desarma.'
-  },
-  'usurpers-decree': {
-    name: 'Decreto del Usurpador',
-    text: 'Hacé 12 de daño a un aliado enemigo y 4 al héroe enemigo.',
-    flavor: 'Firmado con una tinta que no se secó en dos mil años.'
-  },
-  'vampire-fang': {
-    name: 'Colmillo de Vampiro',
-    text: 'Adjuntalo a un aliado tuyo: tiene +2 de ataque y robo de vida.',
-    flavor: 'Un trofeo que todavía tiene hambre.'
-  },
-  'varros-orders': {
-    name: 'Órdenes de Varro',
-    text: 'Tus aliados ganan +1 de ataque y +3 de vida y tu héroe gana 3 de armadura. Rápida.',
-    flavor: 'Escudos arriba, mirada al frente, hoy no muere nadie.'
-  },
-  'velocity-queen': { name: 'Reina de la Velocidad', flavor: 'Primer puesto. Cada vuelta. Cada siglo.' },
-  'venom-coating': {
-    name: 'Baño de Veneno',
-    text: 'Adjuntalo a un aliado tuyo: gana veneno (el daño que le hace a un aliado lo destruye).',
-    flavor: 'Con un rasguño alcanza.'
-  },
-  'venom-spitter': { name: 'Escupidor de Veneno', flavor: 'No necesita morder.' },
-  'veteran-of-many-wars': { name: 'Veterano de Mil Guerras', flavor: 'Dejó de contar las guerras. Después, las eras.' },
+  'vestments-of-renewal': { name: 'Hábito de la Renovación', text: 'Al equiparla: tus aliados se curan 2.' },
+  'veteran-of-the-shieldwall': { name: 'Veterano del Muro de Escudos', text: 'Al atacar: gana +1 de ataque.' },
   'vex-nightwire': {
     name: 'Vex Nightwire',
-    text: 'Disparo Hackeado (1): hacé 6 de daño a un slot enemigo. Instantánea. Al final de cada fase, hacé 2 de daño al héroe enemigo.',
+    text: 'Disparo Hackeado (1): hacé 3 de daño de sombra a un slot enemigo. Instantánea. Al final de cada fase, hacé 1 de daño de sombra al héroe enemigo.',
     flavor: 'Caza blancos que nadie más puede encontrar.',
-    ability: { name: 'Disparo Hackeado', text: 'Hacé 6 de daño a un slot enemigo.' }
+    ability: { name: 'Disparo Hackeado', text: 'Hacé 3 de daño de sombra a un slot enemigo.' }
   },
-  'void-acolyte': { name: 'Acólito del Vacío', flavor: 'Lee el cielo al revés.' },
-  'void-collapse': {
-    name: 'Colapso del Vacío',
-    text: 'Cuando un aliado enemigo ataca: cancelá el ataque, destruilo y un aliado al azar de tu descarte vuelve al juego.',
-    flavor: 'El vacío se lleva uno y devuelve otro.'
+  'vexs-sling': { name: 'Honda de Vex', text: 'Al equiparla: hacé 4 de daño de sombra a un aliado enemigo al azar.' },
+  'victorious-bronze-giant': { name: 'Gigante de Bronce Victorioso', text: 'Al entrar: tu héroe gana 8 de armadura.' },
+  'victorious-minotaur': { name: 'Minotauro Victorioso' },
+  'vigor-of-dusk': { name: 'Vigor del Ocaso', text: 'Un aliado tuyo gana +12 de ataque en esta fase. Instantánea.' },
+  'vigor-of-the-ancestors': {
+    name: 'Vigor de los Ancestros',
+    text: 'Un aliado tuyo gana +8 de ataque en esta fase. Instantánea.'
   },
-  'void-leech': {
-    name: 'Sanguijuela del Vacío',
-    text: 'Al entrar: el héroe enemigo pierde 2 de energía.',
-    flavor: 'Se bebe lo que hace héroes a los héroes.'
+  'vigor-of-the-archmage': { name: 'Vigor del Archimago', text: 'Un aliado tuyo gana +4 de ataque y +5 de vida.' },
+  'vigor-of-the-jungle': {
+    name: 'Vigor de la Jungla',
+    text: 'Un aliado tuyo gana +8 de ataque en esta fase. Instantánea.'
   },
-  'void-rift': {
-    name: 'Grieta del Vacío',
-    text: 'Hacé 6 de daño a cada aliado enemigo y un aliado al azar de tu descarte vuelve al juego. Lenta.',
-    flavor: 'El vacío se abre. Algo sale.'
+  'vigor-of-the-shieldwall': {
+    name: 'Vigor del Muro de Escudos',
+    text: 'Un aliado tuyo gana +5 de ataque y +7 de vida.'
   },
-  'void-spawn': { name: 'Engendro del Vacío', flavor: 'Vino de la nada. Quiere todo.' },
-  'void-tendril': { name: 'Tentáculo del Vacío', flavor: 'Un toque y el vacío se acuerda de vos.' },
-  volley: {
-    name: 'Andanada',
-    text: 'Hacé 5 de daño a cada aliado enemigo. Lenta.',
-    flavor: 'El cielo se oscurece de flechas.'
+  'virus-of-dusk': { name: 'Virus del Ocaso', text: 'Adjuntala a un aliado enemigo: tiene -5 de ataque.' },
+  'virus-of-neon': { name: 'Virus de Neón', text: 'Al entrar: tu héroe gana 1 de energía.' },
+  'virus-of-the-silent-trail': {
+    name: 'Virus del Rastro Silencioso',
+    text: 'Cuando entra otro Hacker tuyo: tu héroe se cura 2.'
   },
-  voltblade: { name: 'La Hoja Voltaica', flavor: 'Cargada con los rayos del año 3000.' },
+  'volatile-fortune-teller': {
+    name: 'Adivina Volátil',
+    text: 'Al entrar: quemá a un aliado enemigo al azar (3). Al morir: hacé 1 de daño de fuego a todos los aliados enemigos.'
+  },
+  'volatile-mark': {
+    name: 'Marca Volátil',
+    text: 'Adjuntala a un aliado enemigo: cada vez que ataca, recibe 2 de daño de hielo.'
+  },
+  'volatile-runecarver': { name: 'Tallarrunas Volátil', text: 'Al entrar: si tenés otro Hechicero, robá una carta.' },
   'vorhal-the-last-hour': {
     name: 'Vorhal, la Última Hora',
-    text: 'Campanada Final (3): hacé 4 de daño a cada aliado enemigo. Al empezar cada fase, hacé 2 de daño al héroe enemigo.',
+    text: 'Campanada Final (3): hacé 2 de daño de tiempo a cada aliado enemigo. Al empezar cada fase, hacé 1 de daño de tiempo al héroe enemigo.',
     flavor: 'Cuando se detiene el último reloj, queda él.',
-    ability: { name: 'Campanada Final', text: 'Hacé 4 de daño a cada aliado enemigo.' }
+    ability: { name: 'Campanada Final', text: 'Hacé 2 de daño de tiempo a cada aliado enemigo.' }
   },
-  'wailing-banshee': {
-    name: 'Banshee Aullante',
-    text: 'Al morir: hacé 4 de daño a cada aliado enemigo.',
-    flavor: 'Su último grito es el más fuerte.'
+  'vorhals-flagellant': {
+    name: 'Flagelante de Vorhal',
+    text: 'Cuando entra otro Cultista tuyo: tu héroe se cura 2. Al morir: invocá un Esqueleto Alzado.'
   },
-  'wand-duelist': {
-    name: 'Duelista de Varita',
-    flavor: 'La varita más rápida del reino. La segunda del reino vecino.'
+  'vorhals-spike': { name: 'Púa de Vorhal', text: 'Hacé 10 de daño de tiempo a un slot enemigo y robá una carta.' },
+  'wandering-ferryman': { name: 'Barquero Errante', text: 'Al morir: robá una carta.' },
+  'wandering-gust': { name: 'Ráfaga Errante', text: 'Al entrar: tu héroe se cura 5. Al morir: robá una carta.' },
+  'wandering-mist': {
+    name: 'Neblina Errante',
+    text: 'Cuando entra otro Elemental tuyo: gana +1 de ataque y +1 de vida. Al empezar cada fase: tu héroe se cura 2.'
   },
-  'wand-of-ruin': {
-    name: 'Varita de la Ruina',
-    text: 'Hacé 16 de daño a un slot enemigo y robá una carta. Rápido.',
-    flavor: 'Apuntá con la punta correcta. Por favor.'
+  'wandering-monolith': {
+    name: 'Monolito Errante',
+    text: 'Al empezar cada fase: tu héroe gana 3 de armadura. (3 usos)'
   },
-  'wanderers-camp': {
-    name: 'Campamento Errante',
-    text: 'Artefacto. Al empezar cada fase, tu héroe se cura 3.',
-    flavor: 'Un fuego tibio, sea el siglo que sea.'
+  'wandering-plan': { name: 'Plan Errante', text: 'Robá 2 cartas.' },
+  'wandering-rune': { name: 'Runa Errante', text: 'Adjuntala a un aliado tuyo: gana +1 de ataque y +4 de vida.' },
+  'wandering-stasis': { name: 'Estasis Errante', text: 'Devolvé un aliado enemigo a la mano de su dueño. Rápida.' },
+  'wandering-wanderer': { name: 'Vagabundo Errante' },
+  'warpick-of-iron': { name: 'Pico de Guerra de Hierro', text: 'Al equiparla: robá una carta.' },
+  'warpick-of-rage': { name: 'Pico de Guerra de la Ira' },
+  'warpick-of-the-last-stand': { name: 'Pico de Guerra de la Última Defensa' },
+  'warpick-of-the-warlord': { name: 'Pico de Guerra del Caudillo', text: 'Al equiparla: tu héroe se cura 3.' },
+  'weary-merchant': { name: 'Mercader Cansado', text: 'Al morir: robá una carta.' },
+  'weary-plan': { name: 'Plan Cansado', text: 'Robá 2 cartas.' },
+  'weary-stasis': { name: 'Estasis Cansada', text: 'Congelá a un aliado enemigo.' },
+  'whispering-void-spawn': {
+    name: 'Engendro del Vacío Susurrante',
+    text: 'Al entrar: hacé 1 de daño de sombra al héroe enemigo por cada Horror tuyo. Al morir: invocá un Esqueleto Alzado.'
   },
-  'wanderers-sling': {
-    name: 'Honda del Errante',
-    flavor: 'Cualquier piedra es un arma si la tirás desde bastante lejos.'
+  'wild-boar': { name: 'Jabalí Silvestre', text: 'Al atacar: hacé 2 de daño al héroe enemigo.' },
+  'wild-crossbow': { name: 'Ballesta Silvestre' },
+  'wild-shot': { name: 'Disparo Silvestre', text: 'Hacé 7 de daño a un aliado enemigo. Rápida.' },
+  'wild-tyrant': { name: 'Tirano Silvestre', text: 'Al entrar: invocá un Cachorro de Dientes de Sable.' },
+  'wind-up-mechanic': { name: 'Mecánica a Cuerda' },
+  'wind-up-soldier-of-pistons': {
+    name: 'Soldado de Cuerda de Pistones',
+    text: 'Al entrar: tu héroe gana 4 de armadura.'
   },
-  'wandering-scribe': {
-    name: 'Escriba Errante',
-    text: 'Al entrar: robá una carta.',
-    flavor: 'Anota cada camino, para que elijas el tuyo.'
+  'wind-up-tin-sentry': {
+    name: 'Centinela de Hojalata a Cuerda',
+    text: 'Al entrar: robá el primer Autómata de tu mazo.'
   },
-  'wandering-sellsword': { name: 'Mercenario Errante', flavor: 'Cobra en cualquier moneda de cualquier siglo.' },
-  'war-axe': { name: 'Hacha de Guerra', flavor: 'Pesada, simple, efectiva.' },
-  'war-banner': {
-    name: 'Bandera de Guerra',
-    text: 'Tus aliados ganan +1 de ataque y +3 de vida.',
-    flavor: 'Seguí al rojo.'
-  },
-  'war-council': {
-    name: 'Consejo de Guerra',
-    text: 'Robá 2 cartas.',
-    flavor: 'Los planes se hacen en la mesa y se ganan en el campo.'
-  },
-  'war-drum': {
-    name: 'Tambor de Guerra',
-    text: 'Artefacto. Tus aliados tienen +2 de ataque, y también los que entren después.',
-    flavor: 'Cada golpe, un paso adelante.'
-  },
-  'war-priestess': {
-    name: 'Sacerdotisa de Guerra',
-    text: 'Su habilidad se paga con energía (⚡).',
-    flavor: 'Su himno vuelve a soldados cansados un muro de bronce.',
-    ability: { name: 'Himno de Batalla', text: 'Tus aliados ganan +3 de ataque esta fase.' }
-  },
-  'warlords-command': {
-    name: 'Orden del Señor de la Guerra',
-    text: 'Tus aliados ganan +5 de ataque y +5 de vida y robá 2 cartas.',
-    flavor: 'Todos los soldados conocen esa voz.'
-  },
-  'wayfinder-scout': { name: 'Exploradora Guía', flavor: 'Traza los caminos entre las eras.' },
-  whetstone: {
-    name: 'Piedra de Afilar',
-    text: 'Un aliado tuyo gana +6 de ataque esta fase y tu héroe gana 3 de armadura.',
-    flavor: 'Más filoso es mejor.'
-  },
-  whirlwind: { name: 'Torbellino', text: 'Hacé 7 de daño a cada aliado enemigo. Lenta.', flavor: 'Atrás. Más. Más.' },
-  'whetted-edge': {
-    name: 'Filo Afilado',
-    text: 'Adjuntalo a un aliado tuyo: tiene +4 de ataque.',
-    flavor: 'Afilado en la piedra de mil mañanas.'
-  },
-  'wild-hunt': {
-    name: 'Cacería Salvaje',
-    text: 'Invocá una Manada de Raptores y tus aliados ganan +2 de ataque.',
-    flavor: 'Cuando Kora aúlla, caza toda la jungla.'
-  },
-  wildfire: {
-    name: 'Fuego Salvaje',
-    text: 'Hacé 3 de daño a todos los aliados enemigos y prendelos fuego (2 por fase durante 2 fases).',
-    flavor: 'Una vez que empieza, nadie le puede decir dónde parar.'
-  },
-  'winged-harness': {
-    name: 'Arnés Alado',
-    text: 'Adjuntalo a un aliado tuyo: tiene +2 de ataque y vuelo.',
-    flavor: 'Alas a cuerda, correas de cuero, nada de vértigo.'
-  },
-  'wolfhide-armor': { name: 'Armadura de Piel de Lobo', flavor: 'La manada corre con vos, aunque no esté.' },
-  'woolly-rhino': { name: 'Rinoceronte Lanudo', flavor: 'No frena. No sabe cómo.' },
-  'wrath-of-the-volcano': {
-    name: 'Furia del Volcán',
-    text: 'Cuando un aliado enemigo ataca: cancelá el ataque, destruilo y hacé 4 de daño a cada aliado enemigo.',
-    flavor: 'La montaña decide quién se queda.'
-  },
+  'wired-tripwire': { name: 'Cable Trampa Conectado', text: 'Cuando el rival invoca un aliado: congelalo.' },
+  'wise-stasis': { name: 'Estasis Sabia', text: 'Congelá a un aliado enemigo.' },
   'xulthar-the-devourer': {
     name: "Xul'thar el Devorador",
-    text: 'Consumir (3): hacé 10 de daño a un slot enemigo y tu héroe se cura 8. Al empezar cada fase, si tu descarte tiene 10 cartas o más, un aliado al azar de tu descarte vuelve al juego.',
+    text: 'Consumir (3): hacé 5 de daño de ácido a un slot enemigo y tu héroe se cura 4. Al empezar cada fase, si tu descarte tiene 10 cartas o más, un aliado al azar de tu descarte vuelve al juego.',
     flavor: 'Se comió la última estrella. Todavía tiene hambre.',
-    ability: { name: 'Consumir', text: 'Hacé 10 de daño a un slot enemigo y tu héroe se cura 8.' }
+    ability: { name: 'Consumir', text: 'Hacé 5 de daño de ácido a un slot enemigo y tu héroe se cura 4.' }
   },
-  'zero-the-ghost': {
-    name: 'Zero, el Fantasma',
-    text: 'Al entrar: hacé 8 de daño al héroe enemigo.',
-    flavor: 'Sin nombre, sin cara, sin rastro.'
-  }
+  'xulthars-crystal': {
+    name: 'Cristal de Xulthar',
+    text: 'Al empezar cada fase: tu héroe se cura 3 y tus aliados se curan 2.'
+  },
+  'xulthars-void-spawn': {
+    name: 'Engendro del Vacío de Xulthar',
+    text: 'Cuando entra otro Horror tuyo: tu héroe se cura 2. Al morir: hacé 4 de daño de sombra al héroe enemigo.'
+  },
+  'young-stonethrower': {
+    name: 'Lanzapiedras Joven',
+    text: 'Cuando entra otro Cavernario tuyo: tu héroe se cura 2. Al atacar: tu héroe se cura 3.'
+  },
+  'young-tyrant': { name: 'Tirano Joven', text: 'Al atacar: tu héroe se cura 2.' }
 }

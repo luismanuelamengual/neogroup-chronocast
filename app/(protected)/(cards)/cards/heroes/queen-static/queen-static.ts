@@ -4,24 +4,24 @@ import { damage } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'queen-static',
   type: 'hero',
-  boss: true,
   name: 'Queen Static',
-  text: 'Feedback (2): deal 8 damage to an enemy slot. Fast. At the end of each phase, deal 2 damage to the enemy hero.',
+  text: 'Feedback (2): deal 4 lightning damage to an enemy slot. Fast. At the end of each phase, deal 2 lightning damage to the enemy hero.',
   flavor: 'She lives in the noise between channels.',
   faction: 'neon',
   heroClass: 'hunter',
   restriction: { kind: 'hero', heroId: 'queen-static' },
   rarity: 'legendary',
+  element: 'lightning',
   cost: 0,
-  health: 56,
+  health: 61,
   ability: {
     name: 'Feedback',
-    text: 'Deal 8 damage to an enemy slot.',
+    text: 'Deal 4 lightning damage to an enemy slot.',
     cost: 2,
     speed: 'fast',
     targets: ['enemySlot'],
     activate(ctx) {
-      damage(ctx, ctx.targets[0], 8)
+      damage(ctx, ctx.targets[0], 4)
     }
   },
   onPhaseEnd(ctx) {

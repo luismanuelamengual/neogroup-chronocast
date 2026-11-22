@@ -5,6 +5,7 @@ import {
   PHASE_LIMIT
 } from '@/app/(protected)/(engine)/data/rules'
 import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition'
+import { Element } from '@/app/(protected)/(engine)/models/Element'
 import { FailReason, MatchEvent } from '@/app/(protected)/(engine)/models/MatchEvent'
 import { CardInstance, MatchState, Unit } from '@/app/(protected)/(engine)/models/MatchState'
 import { PlannedAction, Timeline, WAIT } from '@/app/(protected)/(engine)/models/PlannedAction'
@@ -440,6 +441,8 @@ interface Striker {
   poison: boolean
   lifesteal: boolean
   cleave: boolean
+  /** Of the attacking ally or the hero's weapon (none: physical). */
+  element?: Element
 }
 
 /**
@@ -451,11 +454,16 @@ function strike(engine: MatchEngine, striker: Striker, target: SlotRef): void {
   const enemy = target.player
   const guardian = target.slot === 'hero' ? engine.guardianOf(enemy) : null
   const aimed: SlotRef = guardian == null ? target : { player: enemy, slot: guardian }
-  const source = { player: striker.ref.player, poison: striker.poison, lifesteal: striker.lifesteal }
-  const hitAttacker = (amount: number) =>
+  const source = {
+    player: striker.ref.player,
+    poison: striker.poison,
+    lifesteal: striker.lifesteal,
+    element: striker.element
+  }
+  const hitAttacker = (amount: number, element?: Element) =>
     striker.unitUid == null
-      ? engine.damageHero(striker.ref.player, amount)
-      : engine.damageUnit(striker.unitUid, amount, { player: enemy })
+      ? engine.damageHero(striker.ref.player, amount, { player: enemy, element })
+      : engine.damageUnit(striker.unitUid, amount, { player: enemy, element })
 
   if (aimed.slot === 'hero') {
     engine.emit({ type: 'attack', attacker: striker.ref, target: aimed })
@@ -480,7 +488,7 @@ function strike(engine: MatchEngine, striker: Striker, target: SlotRef): void {
   engine.damageUnit(unit.uid, striker.amount, source)
 
   if (!striker.ranged) {
-    hitAttacker(engine.attackOf(unit))
+    hitAttacker(engine.attackOf(unit), getCard(unit.cardId).element)
   }
 
   if (unit.thorns > 0 && engine.hasKeyword(unit, 'thorns')) {
@@ -565,7 +573,8 @@ function allyAttack(engine: MatchEngine, player: PlayerId, uid: number, target: 
       flying: engine.hasKeyword(unit, 'flying'),
       poison: engine.hasKeyword(unit, 'poison'),
       lifesteal: engine.hasKeyword(unit, 'lifesteal'),
-      cleave: engine.hasKeyword(unit, 'cleave')
+      cleave: engine.hasKeyword(unit, 'cleave'),
+      element: getCard(unit.cardId).element
     },
     target
   )
@@ -606,7 +615,8 @@ function heroAttack(engine: MatchEngine, player: PlayerId, target: SlotRef): Fai
       flying: keywords.includes('flying'),
       poison: keywords.includes('poison'),
       lifesteal: keywords.includes('lifesteal'),
-      cleave: keywords.includes('cleave')
+      cleave: keywords.includes('cleave'),
+      element: getCard(weapon.card.cardId).element
     },
     target
   )

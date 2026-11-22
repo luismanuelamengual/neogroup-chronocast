@@ -1,0 +1,26 @@
+import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { gainChronos } from '@/app/(protected)/(engine)/effects'
+
+export default defineCard({
+  id: 'brass-steam-knight',
+  type: 'ally',
+  name: 'Brass Steam Knight',
+  text: 'When it enters: you gain 1 Chronos this phase.',
+  faction: 'clockwork',
+  restriction: { kind: 'faction', faction: 'clockwork' },
+  rarity: 'common',
+  resist: ['acid'],
+  weak: ['lightning'],
+  price: 40,
+  cost: 1,
+  tribe: 'automaton',
+  attack: 2,
+  health: 3,
+  onEnter(ctx) {
+    gainChronos(ctx, ctx.owner, 1)
+  },
+  ai: { value: 1, tags: ['aggro', 'ramp'] },
+  art: {
+    subject: 'a steampunk brass automaton, the brass steam knight, mid-leap, steampunk steam era style'
+  }
+})

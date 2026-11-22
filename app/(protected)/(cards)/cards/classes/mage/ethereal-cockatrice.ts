@@ -1,0 +1,23 @@
+import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+
+export default defineCard({
+  id: 'ethereal-cockatrice',
+  type: 'ally',
+  name: 'Ethereal Cockatrice',
+  text: '',
+  faction: 'neutral',
+  restriction: { kind: 'class', heroClass: 'mage' },
+  rarity: 'common',
+  element: 'arcane',
+  resist: ['fire'],
+  weak: ['ice'],
+  price: 70,
+  cost: 5,
+  tribe: 'drake',
+  attack: 7,
+  health: 10,
+  ai: { value: 5 },
+  art: {
+    subject: 'a dragon-kin creature, the ethereal cockatrice, standing guard, mage style'
+  }
+})

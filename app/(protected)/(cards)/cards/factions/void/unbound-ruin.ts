@@ -1,0 +1,23 @@
+import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { destroyAt } from '@/app/(protected)/(engine)/effects'
+
+export default defineCard({
+  id: 'unbound-ruin',
+  type: 'ability',
+  name: 'Unbound Ruin',
+  text: 'Destroy an enemy ally. Slow.',
+  faction: 'void',
+  restriction: { kind: 'faction', faction: 'void' },
+  rarity: 'uncommon',
+  price: 190,
+  cost: 4,
+  speed: 'slow',
+  targets: ['enemyAlly'],
+  onPlay(ctx) {
+    destroyAt(ctx, ctx.targets[0])
+  },
+  ai: { value: 4, tags: ['removal'] },
+  art: {
+    subject: 'Unbound Ruin: a creature disintegrating into dust, dark end-of-time void style'
+  }
+})

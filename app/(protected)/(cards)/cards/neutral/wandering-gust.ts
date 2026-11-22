@@ -1,0 +1,31 @@
+import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { draw, healHero } from '@/app/(protected)/(engine)/effects'
+
+export default defineCard({
+  id: 'wandering-gust',
+  type: 'ally',
+  name: 'Wandering Gust',
+  text: 'When it enters: your hero heals 5. When it dies: draw a card.',
+  faction: 'neutral',
+  restriction: { kind: 'any' },
+  rarity: 'legendary',
+  element: 'wind',
+  resist: ['wind'],
+  weak: ['ice'],
+  price: 4800,
+  cost: 3,
+  tribe: 'elemental',
+  keywords: ['ranged', 'unique'],
+  attack: 3,
+  health: 11,
+  onEnter(ctx) {
+    healHero(ctx, 5)
+  },
+  onDeath(ctx) {
+    draw(ctx, ctx.owner, 1)
+  },
+  ai: { value: 5, tags: ['draw', 'heal'] },
+  art: {
+    subject: 'an elemental spirit, the wandering gust, mid-leap, time rift wanderer style'
+  }
+})

@@ -1,8 +1,10 @@
 import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition'
 import { EffectContext } from '@/app/(protected)/(engine)/models/EffectContext'
+import { Element } from '@/app/(protected)/(engine)/models/Element'
 import { Unit } from '@/app/(protected)/(engine)/models/MatchState'
 import { PlayerId } from '@/app/(protected)/(engine)/models/PlayerId'
 import { SlotRef } from '@/app/(protected)/(engine)/models/SlotRef'
+import { Tribe } from '@/app/(protected)/(engine)/models/Tribe'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
 
 /**
@@ -11,15 +13,20 @@ import { getCard } from '@/app/(protected)/(engine)/utils/registry'
  * lands when the current speed bracket ends (simultaneous with the rival's).
  */
 
-/** Damage to a slot (an empty one does nothing). */
-export function damage(ctx: EffectContext, target: SlotRef, amount: number): void {
-  ctx.engine.damage(target, amount, { player: ctx.owner })
+/** The element of the damage a card deals: the one given, else the card's own (none: physical). */
+export function elementOf(ctx: EffectContext, element?: Element | null): Element | undefined {
+  return element === null ? undefined : (element ?? getCard(ctx.self.cardId).element)
+}
+
+/** Damage to a slot (an empty one does nothing), of the card's element unless another is given. */
+export function damage(ctx: EffectContext, target: SlotRef, amount: number, element?: Element | null): void {
+  ctx.engine.damage(target, amount, { player: ctx.owner, element: elementOf(ctx, element) })
 }
 
 /** Damage to every ally of a side. */
-export function damageAllAllies(ctx: EffectContext, player: PlayerId, amount: number): void {
+export function damageAllAllies(ctx: EffectContext, player: PlayerId, amount: number, element?: Element | null): void {
   for (const unit of ctx.engine.allies(player)) {
-    ctx.engine.damageUnit(unit.uid, amount, { player: ctx.owner })
+    ctx.engine.damageUnit(unit.uid, amount, { player: ctx.owner, element: elementOf(ctx, element) })
   }
 }
 
@@ -146,16 +153,21 @@ export function cardOf(unit: Unit): CardDefinition {
 }
 
 /** Damage to an ally, wherever it is now. */
-export function damageAlly(ctx: EffectContext, unit: Unit, amount: number): void {
-  ctx.engine.damageUnit(unit.uid, amount)
+export function damageAlly(ctx: EffectContext, unit: Unit, amount: number, element?: Element | null): void {
+  ctx.engine.damageUnit(unit.uid, amount, { player: ctx.owner, element: elementOf(ctx, element) })
 }
 
 /** Damage to a random ally of a side (none when it has no allies). */
-export function damageRandomAlly(ctx: EffectContext, player: PlayerId, amount: number): Unit | null {
+export function damageRandomAlly(
+  ctx: EffectContext,
+  player: PlayerId,
+  amount: number,
+  element?: Element | null
+): Unit | null {
   const unit = randomAlly(ctx, player)
 
   if (unit) {
-    damageAlly(ctx, unit, amount)
+    damageAlly(ctx, unit, amount, element)
   }
 
   return unit
@@ -402,4 +414,128 @@ export function destroyArtifact(
 /** Destroys a random face-down trap of a player. False when it has none. */
 export function destroyTrap(ctx: EffectContext, player: PlayerId): boolean {
   return ctx.engine.destroyTrap(player)
+}
+
+/** The allies of a side that belong to a tribe (`others`: all but the one whose logic runs). */
+export function tribeAllies(ctx: EffectContext, player: PlayerId, tribe: Tribe, others = false): Unit[] {
+  return alliesOf(ctx, player).filter(
+    (unit) => getCard(unit.cardId).tribe === tribe && (!others || unit.uid !== ctx.self.uid)
+  )
+}
+
+/** Whether an ally belongs to a tribe. */
+export function isTribe(unit: Unit, tribe: Tribe): boolean {
+  return getCard(unit.cardId).tribe === tribe
+}
+
+/** Allies of a tribe gain attack and health (`others`: all but the one whose logic runs). */
+export function buffTribe(
+  ctx: EffectContext,
+  player: PlayerId,
+  tribe: Tribe,
+  attack: number,
+  health: number,
+  others = false
+): void {
+  for (const unit of tribeAllies(ctx, player, tribe, others)) {
+    buff(ctx, unit, attack, health)
+  }
+}
+
+/**
+ * Seeks a card: the first one from the top of the deck that matches goes to
+ * the hand (the deck is not shuffled: the match stays reproducible). False
+ * when none matches.
+ */
+export function seek(ctx: EffectContext, player: PlayerId, matches: (card: CardDefinition) => boolean): boolean {
+  const side = ctx.engine.player(player)
+
+  for (let index = side.deck.length - 1; index >= 0; index--) {
+    const card = side.deck[index]
+
+    if (matches(getCard(card.cardId))) {
+      side.deck.splice(index, 1)
+      ctx.engine.addToHand(player, card)
+      ctx.engine.emit({ type: 'draw', player, cardUid: card.uid })
+
+      return true
+    }
+  }
+
+  return false
+}
+
+/** Seeks an ally of a tribe (see `seek`). */
+export function seekTribe(ctx: EffectContext, player: PlayerId, tribe: Tribe): boolean {
+  return seek(ctx, player, (card) => card.type === 'ally' && card.tribe === tribe)
+}
+
+/** Takes away Chronos capacity for good (never below 0). Returns how much it took. */
+export function drainChronosCapacity(ctx: EffectContext, player: PlayerId, amount: number): number {
+  const side = ctx.engine.player(player)
+  const taken = Math.min(amount, side.chronosCapacity)
+
+  side.chronosCapacity -= taken
+  side.chronos = Math.min(side.chronos, side.chronosCapacity)
+
+  return taken
+}
+
+/** Adds Chronos capacity for good. */
+export function gainChronosCapacity(ctx: EffectContext, player: PlayerId, amount: number): void {
+  ctx.engine.player(player).chronosCapacity += amount
+}
+
+/**
+ * Banishes cards from the top of a discard pile (the last ones that went
+ * there): they leave the match, so nothing can bring them back. Returns how
+ * many it banished.
+ */
+export function banishFromDiscard(ctx: EffectContext, player: PlayerId, count: number): number {
+  const side = ctx.engine.player(player)
+  const banished = Math.min(count, side.discard.length)
+
+  side.discard.splice(side.discard.length - banished, banished)
+
+  return banished
+}
+
+/**
+ * A random card of a hand goes to the discard pile. Cards already programmed
+ * on the timeline are safe: use it at the end of a phase, never in the middle.
+ */
+export function discardRandom(ctx: EffectContext, player: PlayerId): boolean {
+  const side = ctx.engine.player(player)
+
+  if (side.hand.length === 0) {
+    return false
+  }
+
+  const [card] = side.hand.splice(Math.floor(ctx.random() * side.hand.length), 1)
+
+  side.discard.push(card)
+  ctx.engine.emit({ type: 'burn', player, cardId: card.cardId })
+
+  return true
+}
+
+/** The ally can attack again this phase (it is readied). */
+export function ready(ctx: EffectContext, unit: Unit): void {
+  unit.attacksThisPhase = 0
+  unit.abilityUsedThisPhase = false
+}
+
+/** How many cards a side has in its hand. */
+export function handSize(ctx: EffectContext, player: PlayerId): number {
+  return ctx.engine.player(player).hand.length
+}
+
+/** Damage to the rival hero (it ignores guardians, like every direct damage). */
+export function damageEnemyHero(ctx: EffectContext, amount: number, element?: Element | null): void {
+  damage(ctx, { player: ctx.opponent, slot: 'hero' }, amount, element)
+}
+
+/** Heals the owner's hero. */
+export function healHero(ctx: EffectContext, amount: number): void {
+  heal(ctx, { player: ctx.owner, slot: 'hero' }, amount)
 }

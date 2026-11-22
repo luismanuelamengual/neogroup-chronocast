@@ -2,8 +2,10 @@
 
 import './index.scss'
 import classNames from 'classnames'
+import { ELEMENT_ICONS } from '@/app/(protected)/(battle)/utils/icons'
 import { useCardArt } from '@/app/(protected)/(cards)/stores/cardArt'
 import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition'
+import { Element } from '@/app/(protected)/(engine)/models/Element'
 import { translateCard } from '@/app/i18n/cards'
 import { useI18n } from '@/app/i18n/I18nProvider'
 import { Translator } from '@/app/i18n/translate'
@@ -34,21 +36,35 @@ function typeLine(card: CardDefinition, t: Translator): string {
     })
   }
 
+  const tribe = card.tribe ? ` · ${t(`game.tribes.${card.tribe}`)}` : ''
+
   switch (card.restriction.kind) {
     case 'class':
-      return t('game.typeLine.class', { type, heroClass: t(`game.classes.${card.restriction.heroClass}`) })
+      return t('game.typeLine.class', { type, heroClass: t(`game.classes.${card.restriction.heroClass}`) }) + tribe
     case 'hero':
-      return t('game.typeLine.signature', { type })
+      return t('game.typeLine.signature', { type }) + tribe
     default:
-      return t('game.typeLine.faction', { type, faction })
+      return t('game.typeLine.faction', { type, faction }) + tribe
   }
 }
 
-/** The keywords line of a card, e.g. "Guardian. Thorns 4." */
+/** The names of some elements, with their icons: "🔥 Fire, ❄️ Ice". */
+function elementList(elements: Element[], t: Translator): string {
+  return elements.map((element) => `${ELEMENT_ICONS[element]} ${t(`game.elements.${element}`)}`).join(', ')
+}
+
+/** The keywords line of a card, e.g. "🔥 Fire. Guardian. Thorns 4. Resists: ❄️ Ice." */
 function keywordsLine(card: CardDefinition, t: Translator): string {
-  return (card.keywords ?? [])
-    .map((keyword) => `${t(`game.keywords.${keyword}`)}${keyword === 'thorns' ? ` ${card.thorns}` : ''}.`)
-    .join(' ')
+  // Abilities and the rest say it in their text; allies and weapons attack with it.
+  const attacks = card.type === 'ally' || card.type === 'weapon'
+  const element = card.element && attacks ? [`${elementList([card.element], t)}.`] : []
+  const keywords = (card.keywords ?? []).map(
+    (keyword) => `${t(`game.keywords.${keyword}`)}${keyword === 'thorns' ? ` ${card.thorns}` : ''}.`
+  )
+  const resist = card.resist?.length ? [`${t('game.resists', { elements: elementList(card.resist, t) })}.`] : []
+  const weak = card.weak?.length ? [`${t('game.weakTo', { elements: elementList(card.weak, t) })}.`] : []
+
+  return [...element, ...keywords, ...resist, ...weak].join(' ')
 }
 
 interface CardViewProps {

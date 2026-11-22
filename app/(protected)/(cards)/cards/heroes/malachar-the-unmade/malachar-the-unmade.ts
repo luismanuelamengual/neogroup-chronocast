@@ -5,24 +5,25 @@ export default defineCard({
   id: 'malachar-the-unmade',
   type: 'hero',
   name: 'Malachar the Unmade',
-  text: 'Unmake (2): deal 8 damage to an enemy slot. If your discard pile has 6 or more cards, your hero heals 4. At the start of each phase, if your discard pile has 8 or more cards, deal 2 damage to the enemy hero.',
+  text: 'Unmake (2): deal 5 shadow damage to an enemy slot. If your discard pile has 6 or more cards, your hero heals 2. At the start of each phase, if your discard pile has 8 or more cards, deal 2 shadow damage to the enemy hero.',
   flavor: 'He unmade himself to see what lies beyond time.',
   faction: 'void',
   heroClass: 'mage',
   restriction: { kind: 'hero', heroId: 'malachar-the-unmade' },
   rarity: 'legendary',
+  element: 'shadow',
   cost: 0,
-  health: 50,
+  health: 55,
   ability: {
     name: 'Unmake',
-    text: 'Deal 8 damage to an enemy slot. If your discard pile has 6 or more cards, your hero heals 4.',
+    text: 'Deal 5 shadow damage to an enemy slot. If your discard pile has 6 or more cards, your hero heals 2.',
     cost: 2,
     targets: ['enemySlot'],
     activate(ctx) {
-      damage(ctx, ctx.targets[0], 8)
+      damage(ctx, ctx.targets[0], 5)
 
       if (discardSize(ctx, ctx.owner) >= 6) {
-        heal(ctx, { player: ctx.owner, slot: 'hero' }, 4)
+        heal(ctx, { player: ctx.owner, slot: 'hero' }, 2)
       }
     }
   },
