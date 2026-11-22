@@ -3,9 +3,9 @@ import { damageRandomAlly, discardSize, reviveFromDiscard } from '@/app/(protect
 
 export default defineCard({
   id: 'gate-of-oblivion',
-  type: 'location',
+  type: 'artifact',
   name: 'Gate of Oblivion',
-  text: 'At the start of each phase, deal 5 damage to a random enemy ally. If your discard pile has 10 or more cards, a random ally of your discard pile returns to play.',
+  text: 'Artifact. At the start of each phase, deal 5 damage to a random enemy ally. If your discard pile has 10 or more cards, a random ally of your discard pile returns to play.',
   flavor: 'What goes in never comes back. Mostly.',
   faction: 'void',
   restriction: { kind: 'faction', faction: 'void' },

@@ -3,9 +3,9 @@ import { gainChronos } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'rift-market',
-  type: 'location',
+  type: 'artifact',
   name: 'Rift Market',
-  text: 'At the start of each phase, gain 1 Chronos.',
+  text: 'Artifact. At the start of each phase, gain 1 Chronos.',
   flavor: 'Everything is for sale. Especially time.',
   faction: 'neutral',
   restriction: { kind: 'any' },

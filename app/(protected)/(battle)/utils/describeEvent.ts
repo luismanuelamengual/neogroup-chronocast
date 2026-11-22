@@ -57,6 +57,12 @@ export function describeEvent(
         : t('battle.events.attach', { player: player(event.player), card: card(event.cardId) })
     case 'artifact':
       return t('battle.events.artifact', { player: player(event.player), card: card(event.cardId) })
+    case 'gearDestroyed':
+      return t(`battle.events.gearDestroyed_${event.kind}`, { player: player(event.player), card: card(event.cardId) })
+    case 'gearWorn':
+      return event.kind === 'weapon'
+        ? t('battle.events.weaponWorn', { player: player(event.player), amount: event.amount })
+        : t('battle.events.armorWorn', { player: player(event.player), amount: event.amount })
     case 'artifactSpent':
       return t('battle.events.artifactSpent', { card: card(event.cardId) })
     case 'location':

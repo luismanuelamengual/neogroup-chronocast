@@ -394,6 +394,124 @@ export class MatchEngine {
     }
   }
 
+  // ─── Breaking the rival's gear ───────────────────────────────────────────
+
+  /** Destroys the hero's weapon (to its discard pile). False when it has none. */
+  destroyWeapon(player: PlayerId): boolean {
+    const side = this.player(player)
+    const weapon = side.hero.weapon
+
+    if (!weapon) {
+      return false
+    }
+
+    side.hero.weapon = null
+    side.discard.push(weapon.card)
+    this.emit({ type: 'gearDestroyed', player, cardId: weapon.card.cardId, kind: 'weapon' })
+
+    return true
+  }
+
+  /** Takes away all the hero's armor (its armor card goes to the discard pile). False when it has none. */
+  destroyArmor(player: PlayerId): boolean {
+    const hero = this.player(player).hero
+
+    if (hero.armor <= 0 && !hero.armorCard) {
+      return false
+    }
+
+    const cardId = hero.armorCard?.cardId
+
+    hero.armor = 0
+
+    if (hero.armorCard) {
+      this.player(player).discard.push(hero.armorCard)
+      hero.armorCard = null
+    }
+
+    this.emit(
+      cardId
+        ? { type: 'gearDestroyed', player, cardId, kind: 'armor' }
+        : { type: 'gearWorn', player, kind: 'armor', amount: 0 }
+    )
+
+    return true
+  }
+
+  /** The hero's weapon loses durability (it breaks at 0). */
+  wearWeapon(player: PlayerId, amount: number): void {
+    const weapon = this.player(player).hero.weapon
+
+    if (!weapon || amount <= 0) {
+      return
+    }
+
+    weapon.durability -= amount
+    this.emit({ type: 'gearWorn', player, kind: 'weapon', amount })
+
+    if (weapon.durability <= 0) {
+      this.destroyWeapon(player)
+    }
+  }
+
+  /** The hero loses armor points (its armor card breaks at 0). */
+  wearArmor(player: PlayerId, amount: number): void {
+    const hero = this.player(player).hero
+    const lost = Math.min(hero.armor, amount)
+
+    if (lost <= 0) {
+      return
+    }
+
+    hero.armor -= lost
+    this.emit({ type: 'gearWorn', player, kind: 'armor', amount: lost })
+
+    if (hero.armor <= 0) {
+      this.destroyArmor(player)
+    }
+  }
+
+  /** Destroys an artifact of a player: the most expensive one, the cheapest or a random one. */
+  destroyArtifact(player: PlayerId, which: 'priciest' | 'cheapest' | 'random' = 'priciest'): boolean {
+    const side = this.player(player)
+
+    if (side.artifacts.length === 0) {
+      return false
+    }
+
+    let artifact: CardInstance
+
+    if (which === 'random') {
+      artifact = side.artifacts[Math.floor(this.random() * side.artifacts.length)]
+    } else {
+      const sorted = [...side.artifacts].sort((a, b) => getCard(b.cardId).cost - getCard(a.cardId).cost)
+
+      artifact = which === 'priciest' ? sorted[0] : sorted[sorted.length - 1]
+    }
+
+    side.artifacts = side.artifacts.filter((card) => card.uid !== artifact.uid)
+    side.discard.push({ uid: artifact.uid, cardId: artifact.cardId })
+    this.emit({ type: 'gearDestroyed', player, cardId: artifact.cardId, kind: 'artifact' })
+
+    return true
+  }
+
+  /** Destroys a random face-down trap of a player (it is revealed as it goes to the discard pile). */
+  destroyTrap(player: PlayerId): boolean {
+    const side = this.player(player)
+
+    if (side.traps.length === 0) {
+      return false
+    }
+
+    const [trap] = side.traps.splice(Math.floor(this.random() * side.traps.length), 1)
+
+    side.discard.push(trap)
+    this.emit({ type: 'gearDestroyed', player, cardId: trap.cardId, kind: 'trap' })
+
+    return true
+  }
+
   /** Free support slots of a player (traps and artifacts share them). */
   freeSupport(player: PlayerId): number {
     const side = this.player(player)

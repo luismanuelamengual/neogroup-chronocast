@@ -3,9 +3,9 @@ import { buff } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'broken-clocktower',
-  type: 'location',
+  type: 'artifact',
   name: 'Broken Clocktower',
-  text: 'Your allies enter with +6 health.',
+  text: 'Artifact. Your allies enter with +6 health.',
   flavor: 'It stopped at the right time.',
   faction: 'neutral',
   restriction: { kind: 'any' },

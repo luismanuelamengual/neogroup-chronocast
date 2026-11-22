@@ -3,13 +3,14 @@ import { buffAllies, damageRandomAlly } from '@/app/(protected)/(engine)/effects
 
 export default defineCard({
   id: 'temple-of-the-huntress',
-  type: 'location',
+  type: 'artifact',
   name: 'Temple of the Huntress',
-  text: 'At the start of each phase, deal 4 damage to a random enemy ally and your allies gain +1 attack.',
+  text: 'Artifact. At the start of each phase, deal 4 damage to a random enemy ally and your allies gain +1 attack.',
   flavor: 'Every arrow loosed here is a prayer.',
   faction: 'bronze',
   restriction: { kind: 'hero', heroId: 'nysa-goldbow' },
   rarity: 'legendary',
+  price: 4500,
   cost: 3,
   keywords: ['unique'],
   onPhaseStart(ctx) {

@@ -3,9 +3,9 @@ import { damage } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'eye-of-the-storm',
-  type: 'location',
+  type: 'artifact',
   name: 'Eye of the Storm',
-  text: 'At the start of each phase, deal 5 damage to the enemy hero.',
+  text: 'Artifact. At the start of each phase, deal 5 damage to the enemy hero.',
   flavor: 'Calm in the center. Ruin all around.',
   faction: 'neutral',
   restriction: { kind: 'any' },

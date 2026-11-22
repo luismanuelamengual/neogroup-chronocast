@@ -3,9 +3,9 @@ import { heal, healAllAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'sanctum-of-hours',
-  type: 'location',
+  type: 'artifact',
   name: 'Sanctum of Hours',
-  text: 'At the start of each phase, your hero heals 5 and your allies heal 5.',
+  text: 'Artifact. At the start of each phase, your hero heals 5 and your allies heal 5.',
   flavor: 'Here, every wound has all the time in the world to heal.',
   faction: 'neutral',
   restriction: { kind: 'any' },

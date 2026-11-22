@@ -17,7 +17,7 @@ Este documento es el plan completo. Todavía no hay código: cada sección dice 
 5. [Rarezas](#5-rarezas)
 6. [Reglas de mazo y starter pack](#6-reglas-de-mazo-y-starter-pack)
 7. [Una carta = un archivo `.ts`](#7-una-carta--un-archivo-ts)
-8. [El catálogo de 578 cartas](#8-el-catálogo-de-578-cartas)
+8. [El catálogo de 590 cartas](#8-el-catálogo-de-590-cartas)
 9. [Arte: archivo de prompts y `yarn art`](#9-arte-archivo-de-prompts-y-yarn-art)
 10. [Rating (el "ELO") y oro](#10-rating-el-elo-y-oro)
 11. [Tienda](#11-tienda)
@@ -61,7 +61,7 @@ Cada jugador tiene:
 - **Héroe**: en su slot propio, **detrás** de la fila de aliados (más lejos del centro). Tiene **entre 45 y 60 de vida** según el héroe, una habilidad pasiva y una habilidad activa. **Empieza sin arma ni armadura**: las armas y armaduras son cartas que se juegan y se adjuntan al héroe, como en Shadow Era (un lugar para arma y uno para armadura).
 - **5 slots de aliados** (1 a 5, en fila delante del héroe). Nunca más de 5 aliados.
 - **Soporte**: 5 slots para las cartas que quedan en juego sin ser aliados: trampas (boca abajo) y artefactos (boca arriba, a veces con usos). Se pueden poner tantas trampas o artefactos como slots libres haya (`SUPPORT_SLOTS`).
-- **Ubicación**: un lugar para una carta de ubicación propia; una nueva reemplaza a la anterior. **Por ahora las ubicaciones están fuera del juego** (`RETIRED_CARD_TYPES`): no se venden, no salen en sobres, no se agregan a mazos y las copias que ya estaban en un mazo no entran a la partida. Siguen en el catálogo para que las colecciones guardadas carguen.
+- **Sin ubicaciones**: las 26 cartas que eran ubicaciones ahora son **artefactos** (van a un slot de soporte, con el mismo efecto) y volvieron al juego: se venden, salen en sobres y entran a los mazos. Las 4 exclusivas de héroe que eran premio de campaña se compran como legendarias. El tipo `location` sigue en `RETIRED_CARD_TYPES` por si quedara alguna carta guardada de ese tipo.
 - **Mazo**, **mano** (máximo **7** cartas) y **pila de descarte** (cartas usadas, descartadas, aliados muertos y héroes caídos). Algunas cartas (sobre todo del Vacío) devuelven cartas de la pila al juego.
 
 ```
@@ -256,9 +256,9 @@ Cada carta declara para quién es (`restriction` en su archivo):
 
 | Rareza (id) | Nombre en pantalla | Color del marco                        | Cartas en el catálogo |
 | ----------- | ------------------ | -------------------------------------- | --------------------- |
-| `common`    | Común              | Gris piedra                            | 195                   |
-| `uncommon`  | Poco común         | Verde esmeralda                        | 151                   |
-| `rare`      | Rara               | Azul eléctrico                         | 105                   |
+| `common`    | Común              | Gris piedra                            | 199                   |
+| `uncommon`  | Poco común         | Verde esmeralda                        | 157                   |
+| `rare`      | Rara               | Azul eléctrico                         | 107                   |
 | `epic`      | Épica              | Violeta                                | 60                    |
 | `legendary` | Legendaria         | Dorado                                 | 37                    |
 | `exotic`    | Exótica            | Turquesa iridiscente                   | 18                    |
@@ -389,22 +389,23 @@ Una carta sin traducción se muestra en inglés, así que **la traducción es op
 
 ---
 
-## 8. El catálogo de 578 cartas
+## 8. El catálogo de 590 cartas
 
 ### 8.1 Reparto por restricción
 
 **12 héroes** y **488 cartas**:
 
-| Grupo                                | Cartas por grupo | Grupos | Total   | Composición de cada grupo                                                                                                                                  |
-| ------------------------------------ | ---------------- | ------ | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `neutral` (cualquier héroe)          | 88               | 1      | 88      | 40 aliados, 6 habilidades, 4 armas, 4 armaduras, 16 objetos, 10 ubicaciones, 8 trampas                                                                     |
-| Por facción                          | 40               | 6      | 240     | 28 aliados, 4 habilidades, 3 objetos, 2 ubicaciones, 3 trampas                                                                                             |
-| Por clase                            | 25               | 4      | 100     | 12 habilidades, 6 armas, 5 armaduras, 2 objetos                                                                                                            |
-| Exclusivas de un héroe               | 5                | 12     | 60      | 2 habilidades, 1 arma, 1 aliado compañero y 1 carta de premio de su campaña                                                                                |
-| Héroes                               | —                | —      | 12      |                                                                                                                                                            |
-| Adjuntos y artefactos (`neutral`)    | —                | —      | 31      | 19 adjuntos para aliados y 12 artefactos de soporte (ronda 4)                                                                                              |
-| Robo, energía, estados y maldiciones | —                | —      | 47      | Robo de cartas en todas las facciones (y el Bazar neutral para ambos), energía, veneno/quemadura/congelación y maldiciones para aliados enemigos (ronda 5) |
-| **Total**                            |                  |        | **578** |                                                                                                                                                            |
+| Grupo                                         | Cartas por grupo | Grupos | Total   | Composición de cada grupo                                                                                                                                  |
+| --------------------------------------------- | ---------------- | ------ | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `neutral` (cualquier héroe)                   | 88               | 1      | 88      | 40 aliados, 6 habilidades, 4 armas, 4 armaduras, 16 objetos, 10 ubicaciones, 8 trampas                                                                     |
+| Por facción                                   | 40               | 6      | 240     | 28 aliados, 4 habilidades, 3 objetos, 2 ubicaciones, 3 trampas                                                                                             |
+| Por clase                                     | 25               | 4      | 100     | 12 habilidades, 6 armas, 5 armaduras, 2 objetos                                                                                                            |
+| Exclusivas de un héroe                        | 5                | 12     | 60      | 2 habilidades, 1 arma, 1 aliado compañero y 1 carta de premio de su campaña                                                                                |
+| Héroes                                        | —                | —      | 12      |                                                                                                                                                            |
+| Adjuntos y artefactos (`neutral`)             | —                | —      | 31      | 19 adjuntos para aliados y 12 artefactos de soporte (ronda 4)                                                                                              |
+| Robo, energía, estados y maldiciones          | —                | —      | 47      | Robo de cartas en todas las facciones (y el Bazar neutral para ambos), energía, veneno/quemadura/congelación y maldiciones para aliados enemigos (ronda 5) |
+| Contra armas, armaduras, artefactos y trampas | —                | —      | 12      | Destruyen o desgastan el arma y la armadura del rival, y destruyen sus artefactos y trampas (ronda 6)                                                      |
+| **Total**                                     |                  |        | **590** |                                                                                                                                                            |
 
 Por tipo da aproximadamente: 220 aliados, 102 habilidades, 40 armas, 24 armaduras, 42 objetos, 22 ubicaciones, 26 trampas, 12 premios de campaña y 12 héroes.
 

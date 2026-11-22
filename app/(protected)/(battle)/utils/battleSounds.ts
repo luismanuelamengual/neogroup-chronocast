@@ -49,6 +49,9 @@ export function eventSound(event: MatchEvent): SfxId | null {
       return event.target.slot === 'hero' ? 'hero-hit' : 'hit'
     case 'shieldBlock':
       return 'shield'
+    case 'gearDestroyed':
+    case 'gearWorn':
+      return 'armor'
     case 'heal':
       return 'heal'
     case 'buff':

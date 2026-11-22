@@ -3,9 +3,9 @@ import { healAllAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'primal-grove',
-  type: 'location',
+  type: 'artifact',
   name: 'Primal Grove',
-  text: 'At the start of each phase, your allies heal 4.',
+  text: 'Artifact. At the start of each phase, your allies heal 4.',
   flavor: 'The oldest forest heals the oldest wounds.',
   faction: 'primal',
   restriction: { kind: 'faction', faction: 'primal' },

@@ -3,13 +3,14 @@ import { alliesOf, buff } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'aquila-of-the-ninth',
-  type: 'location',
+  type: 'artifact',
   name: 'Aquila of the Ninth',
-  text: 'At the start of each phase, your allies gain +1 attack and +3 health.',
+  text: 'Artifact. At the start of each phase, your allies gain +1 attack and +3 health.',
   flavor: 'The lost legion found its way back, one century late.',
   faction: 'bronze',
   restriction: { kind: 'hero', heroId: 'legate-varro' },
   rarity: 'legendary',
+  price: 4500,
   cost: 3,
   keywords: ['unique'],
   onPhaseStart(ctx) {

@@ -3,9 +3,9 @@ import { draw } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'hall-of-echoes',
-  type: 'location',
+  type: 'artifact',
   name: 'Hall of Echoes',
-  text: 'At the end of each phase, draw a card if you have 3 or fewer in hand.',
+  text: 'Artifact. At the end of each phase, draw a card if you have 3 or fewer in hand.',
   flavor: 'Every word ever spoken still rings here.',
   faction: 'neutral',
   restriction: { kind: 'any' },

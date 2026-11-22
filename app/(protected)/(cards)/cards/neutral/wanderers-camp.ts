@@ -3,9 +3,9 @@ import { heal } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'wanderers-camp',
-  type: 'location',
+  type: 'artifact',
   name: "Wanderer's Camp",
-  text: 'At the start of each phase, your hero heals 3.',
+  text: 'Artifact. At the start of each phase, your hero heals 3.',
   flavor: 'A warm fire, whatever the century.',
   faction: 'neutral',
   restriction: { kind: 'any' },

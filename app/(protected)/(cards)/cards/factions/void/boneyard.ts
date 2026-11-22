@@ -3,9 +3,9 @@ import { buffAllies, discardSize } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'boneyard',
-  type: 'location',
+  type: 'artifact',
   name: 'The Boneyard',
-  text: 'At the start of each phase, if your discard pile has 5 or more cards, your allies gain +1 attack and +1 health.',
+  text: 'Artifact. At the start of each phase, if your discard pile has 5 or more cards, your allies gain +1 attack and +1 health.',
   flavor: 'Every bone here was once a hero.',
   faction: 'void',
   restriction: { kind: 'faction', faction: 'void' },

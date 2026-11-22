@@ -275,6 +275,12 @@ function worthCasting(state: MatchState, player: PlayerId, card: CardDefinition)
     return side.hero.maxHealth - side.hero.health >= 15
   }
 
+  if (tags.includes('antiGear')) {
+    const rival = state.players[opponentOf(player)]
+
+    return !!rival.hero.weapon || rival.hero.armor > 0 || (rival.artifacts ?? []).length > 0
+  }
+
   if (!card.targets?.length && tags.includes('removal')) {
     return enemyAllies >= 2
   }

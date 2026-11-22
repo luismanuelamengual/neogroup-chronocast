@@ -3,9 +3,9 @@ import { draw, gainChronos } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'server-farm',
-  type: 'location',
+  type: 'artifact',
   name: 'Server Farm',
-  text: 'At the start of each phase, draw a card and gain 1 Chronos.',
+  text: 'Artifact. At the start of each phase, draw a card and gain 1 Chronos.',
   flavor: 'Every byte of every era, stored and humming.',
   faction: 'neon',
   restriction: { kind: 'faction', faction: 'neon' },

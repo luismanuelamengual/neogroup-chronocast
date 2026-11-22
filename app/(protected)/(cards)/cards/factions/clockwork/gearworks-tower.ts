@@ -3,9 +3,9 @@ import { gainArmor, gainChronos } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'gearworks-tower',
-  type: 'location',
+  type: 'artifact',
   name: 'Gearworks Tower',
-  text: 'At the start of each phase, gain 1 Chronos. At the end of each phase, your hero gains 3 armor.',
+  text: 'Artifact. At the start of each phase, gain 1 Chronos. At the end of each phase, your hero gains 3 armor.',
   flavor: 'Its bells ring every hour of every era.',
   faction: 'clockwork',
   restriction: { kind: 'faction', faction: 'clockwork' },

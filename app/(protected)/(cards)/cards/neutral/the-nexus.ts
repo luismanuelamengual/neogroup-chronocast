@@ -3,9 +3,9 @@ import { draw, gainChronos } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'the-nexus',
-  type: 'location',
+  type: 'artifact',
   name: 'The Nexus',
-  text: 'At the start of each phase, gain 1 Chronos and draw a card.',
+  text: 'Artifact. At the start of each phase, gain 1 Chronos and draw a card.',
   flavor: 'Where every era meets, and every road begins.',
   faction: 'neutral',
   restriction: { kind: 'any' },

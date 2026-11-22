@@ -3,9 +3,9 @@ import { damageRandomAlly, heal } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'hall-of-mirrors',
-  type: 'location',
+  type: 'artifact',
   name: 'Hall of Mirrors',
-  text: 'At the end of each phase, deal 3 damage to a random enemy ally. At the start of each phase, your hero heals 3.',
+  text: 'Artifact. At the end of each phase, deal 3 damage to a random enemy ally. At the start of each phase, your hero heals 3.',
   flavor: 'Every reflection is a spell waiting for its turn.',
   faction: 'arcane',
   restriction: { kind: 'faction', faction: 'arcane' },

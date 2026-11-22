@@ -3,9 +3,9 @@ import { buff } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'colosseum',
-  type: 'location',
+  type: 'artifact',
   name: 'Colosseum',
-  text: 'Your allies enter with +4 attack.',
+  text: 'Artifact. Your allies enter with +4 attack.',
   flavor: 'Fifty thousand voices, one roar.',
   faction: 'bronze',
   restriction: { kind: 'faction', faction: 'bronze' },

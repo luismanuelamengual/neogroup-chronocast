@@ -367,3 +367,39 @@ export function allyRefs(ctx: EffectContext, player: PlayerId): SlotRef[] {
 
   return refs
 }
+
+// ─── Breaking the rival's gear ───────────────────────────────────────────────
+
+/** Destroys a player's weapon. False when it has none. */
+export function destroyWeapon(ctx: EffectContext, player: PlayerId): boolean {
+  return ctx.engine.destroyWeapon(player)
+}
+
+/** Takes away all the armor of a player's hero. False when it has none. */
+export function destroyArmor(ctx: EffectContext, player: PlayerId): boolean {
+  return ctx.engine.destroyArmor(player)
+}
+
+/** A player's weapon loses durability (it breaks at 0). */
+export function wearWeapon(ctx: EffectContext, player: PlayerId, amount: number): void {
+  ctx.engine.wearWeapon(player, amount)
+}
+
+/** A player's hero loses armor points (its armor card breaks at 0). */
+export function wearArmor(ctx: EffectContext, player: PlayerId, amount: number): void {
+  ctx.engine.wearArmor(player, amount)
+}
+
+/** Destroys an artifact of a player (the most expensive by default). False when it has none. */
+export function destroyArtifact(
+  ctx: EffectContext,
+  player: PlayerId,
+  which: 'priciest' | 'cheapest' | 'random' = 'priciest'
+): boolean {
+  return ctx.engine.destroyArtifact(player, which)
+}
+
+/** Destroys a random face-down trap of a player. False when it has none. */
+export function destroyTrap(ctx: EffectContext, player: PlayerId): boolean {
+  return ctx.engine.destroyTrap(player)
+}

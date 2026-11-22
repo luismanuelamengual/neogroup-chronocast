@@ -3,9 +3,9 @@ import { damage } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'tower-of-stars',
-  type: 'location',
+  type: 'artifact',
   name: 'Tower of Stars',
-  text: 'At the start of each phase, deal 3 damage to the enemy hero.',
+  text: 'Artifact. At the start of each phase, deal 3 damage to the enemy hero.',
   flavor: 'From its top, every era looks small.',
   faction: 'arcane',
   restriction: { kind: 'faction', faction: 'arcane' },

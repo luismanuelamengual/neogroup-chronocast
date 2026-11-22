@@ -3,9 +3,9 @@ import { damage, draw } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'neon-district',
-  type: 'location',
+  type: 'artifact',
   name: 'Neon District',
-  text: 'At the start of each phase, draw a card. At the end of each phase, deal 2 damage to the enemy hero.',
+  text: 'Artifact. At the start of each phase, draw a card. At the end of each phase, deal 2 damage to the enemy hero.',
   flavor: 'It never sleeps. It never forgets.',
   faction: 'neon',
   restriction: { kind: 'faction', faction: 'neon' },

@@ -3,9 +3,9 @@ import { alliesOf, buff, heal } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'garden-of-forever',
-  type: 'location',
+  type: 'artifact',
   name: 'Garden of Forever',
-  text: 'At the start of each phase, your allies gain +2 attack and +2 health, and your hero heals 4.',
+  text: 'Artifact. At the start of each phase, your allies gain +2 attack and +2 health, and your hero heals 4.',
   flavor: 'Nothing withers here. Nothing ever will.',
   faction: 'neutral',
   restriction: { kind: 'any' },

@@ -3,9 +3,9 @@ import { gainArmor, healAllAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'forum-of-heroes',
-  type: 'location',
+  type: 'artifact',
   name: 'Forum of Heroes',
-  text: 'At the start of each phase, your hero gains 4 armor and your allies heal 2.',
+  text: 'Artifact. At the start of each phase, your hero gains 4 armor and your allies heal 2.',
   flavor: 'Every statue here was once a soldier with a name.',
   faction: 'bronze',
   restriction: { kind: 'faction', faction: 'bronze' },

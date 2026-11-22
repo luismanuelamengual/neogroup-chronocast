@@ -3,13 +3,14 @@ import { heal, reviveFromDiscard } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'the-singing-graves',
-  type: 'location',
+  type: 'artifact',
   name: 'The Singing Graves',
-  text: 'At the start of each phase, a random ally of your discard pile returns to play and your hero heals 3.',
+  text: 'Artifact. At the start of each phase, a random ally of your discard pile returns to play and your hero heals 3.',
   flavor: 'Listen closely. They are singing your name.',
   faction: 'void',
   restriction: { kind: 'hero', heroId: 'nyx-hollowsong' },
   rarity: 'legendary',
+  price: 4500,
   cost: 4,
   keywords: ['unique'],
   onPhaseStart(ctx) {

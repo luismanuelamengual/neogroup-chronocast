@@ -965,3 +965,47 @@ describe('curses on enemy allies', () => {
     expect(next.players.a.hero.health).toBe(40)
   })
 })
+
+describe("breaking the rival's gear", () => {
+  it('wears and destroys weapons and armor', () => {
+    const state = testMatch()
+    const engine = new MatchEngine(state)
+    const hero = state.players.b.hero
+
+    hero.weapon = { card: { uid: 900, cardId: 'test-sword' }, attack: 10, durability: 3 }
+    hero.armor = 20
+    hero.armorCard = { uid: 901, cardId: 'test-plate' }
+
+    engine.wearWeapon('b', 2)
+    engine.wearArmor('b', 15)
+
+    expect(hero.weapon?.durability).toBe(1)
+    expect(hero.armor).toBe(5)
+
+    engine.wearWeapon('b', 1)
+    engine.wearArmor('b', 9)
+
+    expect(hero.weapon).toBeNull()
+    expect(hero.armor).toBe(0)
+    expect(hero.armorCard).toBeNull()
+    expect(state.players.b.discard.map((card) => card.cardId)).toEqual(['test-sword', 'test-plate'])
+  })
+
+  it('destroys the most expensive artifact and a random trap', () => {
+    const state = testMatch()
+    const engine = new MatchEngine(state)
+    const side = state.players.b
+
+    side.artifacts = [
+      { uid: 900, cardId: 'test-idol' },
+      { uid: 901, cardId: 'test-blade' }
+    ]
+    side.traps = [{ uid: 902, cardId: 'test-snare' }]
+
+    expect(engine.destroyTrap('b')).toBe(true)
+    expect(engine.destroyTrap('b')).toBe(false)
+    expect(engine.destroyArtifact('b')).toBe(true)
+    expect(side.artifacts).toHaveLength(1)
+    expect(side.discard.map((card) => card.cardId)).toEqual(['test-snare', expect.any(String)])
+  })
+})

@@ -25,596 +25,608 @@ import card20 from '@/app/(protected)/(cards)/cards/classes/hunter/snare-trap'
 import card21 from '@/app/(protected)/(cards)/cards/classes/hunter/starshot-bow'
 import card22 from '@/app/(protected)/(cards)/cards/classes/hunter/tame-beast'
 import card23 from '@/app/(protected)/(cards)/cards/classes/hunter/track'
-import card24 from '@/app/(protected)/(cards)/cards/classes/hunter/twin-hunting-knives'
-import card25 from '@/app/(protected)/(cards)/cards/classes/hunter/volley'
-import card26 from '@/app/(protected)/(cards)/cards/classes/hunter/wolfhide-armor'
-import card27 from '@/app/(protected)/(cards)/cards/classes/mage/apprentice-wand'
-import card28 from '@/app/(protected)/(cards)/cards/classes/mage/arcane-intellect'
-import card29 from '@/app/(protected)/(cards)/cards/classes/mage/blizzard'
-import card30 from '@/app/(protected)/(cards)/cards/classes/mage/crown-of-the-arcanist'
-import card31 from '@/app/(protected)/(cards)/cards/classes/mage/fireball'
-import card32 from '@/app/(protected)/(cards)/cards/classes/mage/flame-wave'
-import card33 from '@/app/(protected)/(cards)/cards/classes/mage/frost-nova'
-import card34 from '@/app/(protected)/(cards)/cards/classes/mage/frost-spear'
-import card35 from '@/app/(protected)/(cards)/cards/classes/mage/frost-staff'
-import card36 from '@/app/(protected)/(cards)/cards/classes/mage/ice-lance'
-import card37 from '@/app/(protected)/(cards)/cards/classes/mage/lightning-bolt'
-import card38 from '@/app/(protected)/(cards)/cards/classes/mage/magic-bolt'
-import card39 from '@/app/(protected)/(cards)/cards/classes/mage/mana-potion'
-import card40 from '@/app/(protected)/(cards)/cards/classes/mage/mana-shield'
-import card41 from '@/app/(protected)/(cards)/cards/classes/mage/meteor'
-import card42 from '@/app/(protected)/(cards)/cards/classes/mage/mirror-mantle'
-import card43 from '@/app/(protected)/(cards)/cards/classes/mage/polymorph'
-import card44 from '@/app/(protected)/(cards)/cards/classes/mage/pyroblast'
-import card45 from '@/app/(protected)/(cards)/cards/classes/mage/robe-of-stars'
-import card46 from '@/app/(protected)/(cards)/cards/classes/mage/runeblade'
-import card47 from '@/app/(protected)/(cards)/cards/classes/mage/scepter-of-storms'
-import card48 from '@/app/(protected)/(cards)/cards/classes/mage/searing-brand'
-import card49 from '@/app/(protected)/(cards)/cards/classes/mage/silk-robe'
-import card50 from '@/app/(protected)/(cards)/cards/classes/mage/spellbook'
-import card51 from '@/app/(protected)/(cards)/cards/classes/mage/staff-of-embers'
-import card52 from '@/app/(protected)/(cards)/cards/classes/mage/staff-of-the-archmage'
-import card53 from '@/app/(protected)/(cards)/cards/classes/mage/time-warp'
-import card54 from '@/app/(protected)/(cards)/cards/classes/mystic/acolyte-vestments'
-import card55 from '@/app/(protected)/(cards)/cards/classes/mystic/aegis-of-faith'
-import card56 from '@/app/(protected)/(cards)/cards/classes/mystic/blessed-mail'
-import card57 from '@/app/(protected)/(cards)/cards/classes/mystic/blessing'
-import card58 from '@/app/(protected)/(cards)/cards/classes/mystic/censer-of-souls'
-import card59 from '@/app/(protected)/(cards)/cards/classes/mystic/divine-shield'
-import card60 from '@/app/(protected)/(cards)/cards/classes/mystic/halo-of-dawn'
-import card61 from '@/app/(protected)/(cards)/cards/classes/mystic/holy-smite'
-import card62 from '@/app/(protected)/(cards)/cards/classes/mystic/holy-water'
-import card63 from '@/app/(protected)/(cards)/cards/classes/mystic/inner-fire'
-import card64 from '@/app/(protected)/(cards)/cards/classes/mystic/lightbringer'
-import card65 from '@/app/(protected)/(cards)/cards/classes/mystic/mass-revival'
-import card66 from '@/app/(protected)/(cards)/cards/classes/mystic/mend'
-import card67 from '@/app/(protected)/(cards)/cards/classes/mystic/miracle'
-import card68 from '@/app/(protected)/(cards)/cards/classes/mystic/oak-scepter'
-import card69 from '@/app/(protected)/(cards)/cards/classes/mystic/prayer-of-healing'
-import card70 from '@/app/(protected)/(cards)/cards/classes/mystic/radiance'
-import card71 from '@/app/(protected)/(cards)/cards/classes/mystic/relic-of-the-saints'
-import card72 from '@/app/(protected)/(cards)/cards/classes/mystic/resurrection'
-import card73 from '@/app/(protected)/(cards)/cards/classes/mystic/spirit-guardian'
-import card74 from '@/app/(protected)/(cards)/cards/classes/mystic/spirit-link'
-import card75 from '@/app/(protected)/(cards)/cards/classes/mystic/spirit-ward'
-import card76 from '@/app/(protected)/(cards)/cards/classes/mystic/staff-of-eternity'
-import card77 from '@/app/(protected)/(cards)/cards/classes/mystic/staff-of-renewal'
-import card78 from '@/app/(protected)/(cards)/cards/classes/mystic/sun-mace'
-import card79 from '@/app/(protected)/(cards)/cards/classes/warrior/aegis-of-the-warlord'
-import card80 from '@/app/(protected)/(cards)/cards/classes/warrior/battle-cry'
-import card81 from '@/app/(protected)/(cards)/cards/classes/warrior/bloodthirst-cleaver'
-import card82 from '@/app/(protected)/(cards)/cards/classes/warrior/brace'
-import card83 from '@/app/(protected)/(cards)/cards/classes/warrior/bronze-cuirass'
-import card84 from '@/app/(protected)/(cards)/cards/classes/warrior/chainmail'
-import card85 from '@/app/(protected)/(cards)/cards/classes/warrior/charge-in'
-import card86 from '@/app/(protected)/(cards)/cards/classes/warrior/cleaving-strike'
-import card87 from '@/app/(protected)/(cards)/cards/classes/warrior/execute'
-import card88 from '@/app/(protected)/(cards)/cards/classes/warrior/greatsword-of-dawn'
-import card89 from '@/app/(protected)/(cards)/cards/classes/warrior/hammer-of-the-ages'
-import card90 from '@/app/(protected)/(cards)/cards/classes/warrior/iron-gladius'
-import card91 from '@/app/(protected)/(cards)/cards/classes/warrior/iron-will'
-import card92 from '@/app/(protected)/(cards)/cards/classes/warrior/knights-plate'
-import card93 from '@/app/(protected)/(cards)/cards/classes/warrior/last-stand'
-import card94 from '@/app/(protected)/(cards)/cards/classes/warrior/mighty-blow'
-import card95 from '@/app/(protected)/(cards)/cards/classes/warrior/rampage'
-import card96 from '@/app/(protected)/(cards)/cards/classes/warrior/shield-bash'
-import card97 from '@/app/(protected)/(cards)/cards/classes/warrior/spiked-pauldrons'
-import card98 from '@/app/(protected)/(cards)/cards/classes/warrior/tower-mace'
-import card99 from '@/app/(protected)/(cards)/cards/classes/warrior/war-axe'
-import card100 from '@/app/(protected)/(cards)/cards/classes/warrior/war-banner'
-import card101 from '@/app/(protected)/(cards)/cards/classes/warrior/warlords-command'
-import card102 from '@/app/(protected)/(cards)/cards/classes/warrior/whetstone'
-import card103 from '@/app/(protected)/(cards)/cards/classes/warrior/whirlwind'
-import card104 from '@/app/(protected)/(cards)/cards/factions/arcane/apprentice-mage'
-import card105 from '@/app/(protected)/(cards)/cards/factions/arcane/arcane-backlash'
-import card106 from '@/app/(protected)/(cards)/cards/factions/arcane/arcane-explosion'
-import card107 from '@/app/(protected)/(cards)/cards/factions/arcane/arcane-familiar'
-import card108 from '@/app/(protected)/(cards)/cards/factions/arcane/arcane-missiles'
-import card109 from '@/app/(protected)/(cards)/cards/factions/arcane/archive-guardian'
-import card110 from '@/app/(protected)/(cards)/cards/factions/arcane/archmage-of-the-spire'
-import card111 from '@/app/(protected)/(cards)/cards/factions/arcane/archwizard-morvane'
-import card112 from '@/app/(protected)/(cards)/cards/factions/arcane/battlemage-squire'
-import card113 from '@/app/(protected)/(cards)/cards/factions/arcane/candle-keeper'
-import card114 from '@/app/(protected)/(cards)/cards/factions/arcane/celestial-phoenix'
-import card115 from '@/app/(protected)/(cards)/cards/factions/arcane/chain-lightning'
-import card116 from '@/app/(protected)/(cards)/cards/factions/arcane/counter-rune'
-import card117 from '@/app/(protected)/(cards)/cards/factions/arcane/court-illusionist'
-import card118 from '@/app/(protected)/(cards)/cards/factions/arcane/crystal-sentinel'
-import card119 from '@/app/(protected)/(cards)/cards/factions/arcane/dragon-of-runes'
-import card120 from '@/app/(protected)/(cards)/cards/factions/arcane/frost-adept'
-import card121 from '@/app/(protected)/(cards)/cards/factions/arcane/frost-sigil'
-import card122 from '@/app/(protected)/(cards)/cards/factions/arcane/glacial-pulse'
-import card123 from '@/app/(protected)/(cards)/cards/factions/arcane/grand-conjurer'
-import card124 from '@/app/(protected)/(cards)/cards/factions/arcane/hall-of-mirrors'
-import card125 from '@/app/(protected)/(cards)/cards/factions/arcane/ley-line-conduit'
-import card126 from '@/app/(protected)/(cards)/cards/factions/arcane/mana-crystal'
-import card127 from '@/app/(protected)/(cards)/cards/factions/arcane/mind-freeze'
-import card128 from '@/app/(protected)/(cards)/cards/factions/arcane/mirror-mage'
-import card129 from '@/app/(protected)/(cards)/cards/factions/arcane/moonlight-enchantress'
-import card130 from '@/app/(protected)/(cards)/cards/factions/arcane/owl-messenger'
-import card131 from '@/app/(protected)/(cards)/cards/factions/arcane/pyromancer'
-import card132 from '@/app/(protected)/(cards)/cards/factions/arcane/rune-golem'
-import card133 from '@/app/(protected)/(cards)/cards/factions/arcane/rune-sprite'
-import card134 from '@/app/(protected)/(cards)/cards/factions/arcane/scroll-of-wisdom'
-import card135 from '@/app/(protected)/(cards)/cards/factions/arcane/scry-the-stars'
-import card136 from '@/app/(protected)/(cards)/cards/factions/arcane/spell-eater'
-import card137 from '@/app/(protected)/(cards)/cards/factions/arcane/spellbinder'
-import card138 from '@/app/(protected)/(cards)/cards/factions/arcane/spellward-knight'
-import card139 from '@/app/(protected)/(cards)/cards/factions/arcane/starlit-unicorn'
-import card140 from '@/app/(protected)/(cards)/cards/factions/arcane/storm-adept'
-import card141 from '@/app/(protected)/(cards)/cards/factions/arcane/storm-caller'
-import card142 from '@/app/(protected)/(cards)/cards/factions/arcane/the-first-wizard'
-import card143 from '@/app/(protected)/(cards)/cards/factions/arcane/the-starlight-oracle'
-import card144 from '@/app/(protected)/(cards)/cards/factions/arcane/tome-of-whispers'
-import card145 from '@/app/(protected)/(cards)/cards/factions/arcane/tower-novice'
-import card146 from '@/app/(protected)/(cards)/cards/factions/arcane/tower-of-stars'
-import card147 from '@/app/(protected)/(cards)/cards/factions/arcane/wand-duelist'
-import card148 from '@/app/(protected)/(cards)/cards/factions/arcane/wand-of-ruin'
-import card149 from '@/app/(protected)/(cards)/cards/factions/arcane/wildfire'
-import card150 from '@/app/(protected)/(cards)/cards/factions/bronze/aqueduct-engineer'
-import card151 from '@/app/(protected)/(cards)/cards/factions/bronze/arena-champion'
-import card152 from '@/app/(protected)/(cards)/cards/factions/bronze/ballista-crew'
-import card153 from '@/app/(protected)/(cards)/cards/factions/bronze/bronze-cohort'
-import card154 from '@/app/(protected)/(cards)/cards/factions/bronze/bronze-colossus-guard'
-import card155 from '@/app/(protected)/(cards)/cards/factions/bronze/bronze-legionary'
-import card156 from '@/app/(protected)/(cards)/cards/factions/bronze/centurion-drillmaster'
-import card157 from '@/app/(protected)/(cards)/cards/factions/bronze/centurion-maximus'
-import card158 from '@/app/(protected)/(cards)/cards/factions/bronze/chariot-racer'
-import card159 from '@/app/(protected)/(cards)/cards/factions/bronze/cohort-banner'
-import card160 from '@/app/(protected)/(cards)/cards/factions/bronze/colosseum'
-import card161 from '@/app/(protected)/(cards)/cards/factions/bronze/colossus-of-the-harbor'
-import card162 from '@/app/(protected)/(cards)/cards/factions/bronze/eternal-emperor'
-import card163 from '@/app/(protected)/(cards)/cards/factions/bronze/flame-legionary'
-import card164 from '@/app/(protected)/(cards)/cards/factions/bronze/forced-march'
-import card165 from '@/app/(protected)/(cards)/cards/factions/bronze/forum-of-heroes'
-import card166 from '@/app/(protected)/(cards)/cards/factions/bronze/gladiator-twins'
-import card167 from '@/app/(protected)/(cards)/cards/factions/bronze/golden-laurel'
-import card168 from '@/app/(protected)/(cards)/cards/factions/bronze/grand-triumph'
-import card169 from '@/app/(protected)/(cards)/cards/factions/bronze/hold-the-line'
-import card170 from '@/app/(protected)/(cards)/cards/factions/bronze/hoplite-sentry'
-import card171 from '@/app/(protected)/(cards)/cards/factions/bronze/imperator-solis'
-import card172 from '@/app/(protected)/(cards)/cards/factions/bronze/legate-of-the-eagle'
-import card173 from '@/app/(protected)/(cards)/cards/factions/bronze/legion-quartermaster'
-import card174 from '@/app/(protected)/(cards)/cards/factions/bronze/legion-rations'
-import card175 from '@/app/(protected)/(cards)/cards/factions/bronze/legion-slinger'
-import card176 from '@/app/(protected)/(cards)/cards/factions/bronze/marching-legion'
-import card177 from '@/app/(protected)/(cards)/cards/factions/bronze/murmillo-champion'
-import card178 from '@/app/(protected)/(cards)/cards/factions/bronze/net-fighter'
-import card179 from '@/app/(protected)/(cards)/cards/factions/bronze/phalanx-general'
-import card180 from '@/app/(protected)/(cards)/cards/factions/bronze/phalanx-recruit'
-import card181 from '@/app/(protected)/(cards)/cards/factions/bronze/pila-volley'
-import card182 from '@/app/(protected)/(cards)/cards/factions/bronze/rally-the-cohort'
-import card183 from '@/app/(protected)/(cards)/cards/factions/bronze/senator-of-coin'
-import card184 from '@/app/(protected)/(cards)/cards/factions/bronze/shield-wall'
-import card185 from '@/app/(protected)/(cards)/cards/factions/bronze/shields-up'
-import card186 from '@/app/(protected)/(cards)/cards/factions/bronze/shieldwall-veteran'
-import card187 from '@/app/(protected)/(cards)/cards/factions/bronze/spoils-of-war'
-import card188 from '@/app/(protected)/(cards)/cards/factions/bronze/sun-chariot'
-import card189 from '@/app/(protected)/(cards)/cards/factions/bronze/temple-acolyte'
-import card190 from '@/app/(protected)/(cards)/cards/factions/bronze/temple-oracle'
-import card191 from '@/app/(protected)/(cards)/cards/factions/bronze/testudo-squad'
-import card192 from '@/app/(protected)/(cards)/cards/factions/bronze/tribune-of-the-legion'
-import card193 from '@/app/(protected)/(cards)/cards/factions/bronze/war-council'
-import card194 from '@/app/(protected)/(cards)/cards/factions/bronze/war-priestess'
-import card195 from '@/app/(protected)/(cards)/cards/factions/clockwork/airship-bombardier'
-import card196 from '@/app/(protected)/(cards)/cards/factions/clockwork/analytical-engine'
-import card197 from '@/app/(protected)/(cards)/cards/factions/clockwork/automaton-duelist'
-import card198 from '@/app/(protected)/(cards)/cards/factions/clockwork/bear-trap-gears'
-import card199 from '@/app/(protected)/(cards)/cards/factions/clockwork/blueprint-cache'
-import card200 from '@/app/(protected)/(cards)/cards/factions/clockwork/boiler-brute'
-import card201 from '@/app/(protected)/(cards)/cards/factions/clockwork/brass-behemoth'
-import card202 from '@/app/(protected)/(cards)/cards/factions/clockwork/brass-musketeer'
-import card203 from '@/app/(protected)/(cards)/cards/factions/clockwork/chief-engineer-vance'
-import card204 from '@/app/(protected)/(cards)/cards/factions/clockwork/chronometer-savant'
-import card205 from '@/app/(protected)/(cards)/cards/factions/clockwork/clocktower-watchman'
-import card206 from '@/app/(protected)/(cards)/cards/factions/clockwork/clockwork-dragon'
-import card207 from '@/app/(protected)/(cards)/cards/factions/clockwork/cog-apprentice'
-import card208 from '@/app/(protected)/(cards)/cards/factions/clockwork/cogwork-courier'
-import card209 from '@/app/(protected)/(cards)/cards/factions/clockwork/colossus-mark-ix'
-import card210 from '@/app/(protected)/(cards)/cards/factions/clockwork/dynamo-golem'
-import card211 from '@/app/(protected)/(cards)/cards/factions/clockwork/factory-foreman'
-import card212 from '@/app/(protected)/(cards)/cards/factions/clockwork/full-steam-ahead'
-import card213 from '@/app/(protected)/(cards)/cards/factions/clockwork/gear-drone'
-import card214 from '@/app/(protected)/(cards)/cards/factions/clockwork/gear-weaver'
-import card215 from '@/app/(protected)/(cards)/cards/factions/clockwork/gearworks-tower'
-import card216 from '@/app/(protected)/(cards)/cards/factions/clockwork/great-foundry'
-import card217 from '@/app/(protected)/(cards)/cards/factions/clockwork/inventor-of-hours'
-import card218 from '@/app/(protected)/(cards)/cards/factions/clockwork/iron-walker'
-import card219 from '@/app/(protected)/(cards)/cards/factions/clockwork/master-artificer'
-import card220 from '@/app/(protected)/(cards)/cards/factions/clockwork/mechanical-heart'
-import card221 from '@/app/(protected)/(cards)/cards/factions/clockwork/mechanical-knight'
-import card222 from '@/app/(protected)/(cards)/cards/factions/clockwork/overclock'
-import card223 from '@/app/(protected)/(cards)/cards/factions/clockwork/perpetual-engine'
-import card224 from '@/app/(protected)/(cards)/cards/factions/clockwork/piston-golem'
-import card225 from '@/app/(protected)/(cards)/cards/factions/clockwork/pocket-watch'
-import card226 from '@/app/(protected)/(cards)/cards/factions/clockwork/rewind-the-gears'
-import card227 from '@/app/(protected)/(cards)/cards/factions/clockwork/rivet-hound'
-import card228 from '@/app/(protected)/(cards)/cards/factions/clockwork/spare-parts'
-import card229 from '@/app/(protected)/(cards)/cards/factions/clockwork/spark-engineer'
-import card230 from '@/app/(protected)/(cards)/cards/factions/clockwork/steam-blast'
-import card231 from '@/app/(protected)/(cards)/cards/factions/clockwork/steam-sentry'
-import card232 from '@/app/(protected)/(cards)/cards/factions/clockwork/steam-tank'
-import card233 from '@/app/(protected)/(cards)/cards/factions/clockwork/tesla-sentinel'
-import card234 from '@/app/(protected)/(cards)/cards/factions/clockwork/the-clockmaker'
-import card235 from '@/app/(protected)/(cards)/cards/factions/clockwork/the-grand-orrery'
-import card236 from '@/app/(protected)/(cards)/cards/factions/clockwork/time-lock'
-import card237 from '@/app/(protected)/(cards)/cards/factions/clockwork/tinker-gnome'
-import card238 from '@/app/(protected)/(cards)/cards/factions/clockwork/tripwire-turret'
-import card239 from '@/app/(protected)/(cards)/cards/factions/neon/adrenaline-shot'
-import card240 from '@/app/(protected)/(cards)/cards/factions/neon/aegis-android'
-import card241 from '@/app/(protected)/(cards)/cards/factions/neon/arc-trooper'
-import card242 from '@/app/(protected)/(cards)/cards/factions/neon/black-ice-hacker'
-import card243 from '@/app/(protected)/(cards)/cards/factions/neon/blackout-specialist'
-import card244 from '@/app/(protected)/(cards)/cards/factions/neon/chrome-medic'
-import card245 from '@/app/(protected)/(cards)/cards/factions/neon/cloaking-device'
-import card246 from '@/app/(protected)/(cards)/cards/factions/neon/cryo-turret'
-import card247 from '@/app/(protected)/(cards)/cards/factions/neon/cyber-samurai'
-import card248 from '@/app/(protected)/(cards)/cards/factions/neon/data-burst'
-import card249 from '@/app/(protected)/(cards)/cards/factions/neon/data-courier'
-import card250 from '@/app/(protected)/(cards)/cards/factions/neon/drone-swarm'
-import card251 from '@/app/(protected)/(cards)/cards/factions/neon/emp-mine'
-import card252 from '@/app/(protected)/(cards)/cards/factions/neon/firewall'
-import card253 from '@/app/(protected)/(cards)/cards/factions/neon/glitch-runner'
-import card254 from '@/app/(protected)/(cards)/cards/factions/neon/holo-decoy'
-import card255 from '@/app/(protected)/(cards)/cards/factions/neon/hover-biker'
-import card256 from '@/app/(protected)/(cards)/cards/factions/neon/information-broker'
-import card257 from '@/app/(protected)/(cards)/cards/factions/neon/jammer-unit'
-import card258 from '@/app/(protected)/(cards)/cards/factions/neon/laser-grid'
-import card259 from '@/app/(protected)/(cards)/cards/factions/neon/mech-trooper'
-import card260 from '@/app/(protected)/(cards)/cards/factions/neon/megacity-titan'
-import card261 from '@/app/(protected)/(cards)/cards/factions/neon/neon-battery'
-import card262 from '@/app/(protected)/(cards)/cards/factions/neon/neon-blade'
-import card263 from '@/app/(protected)/(cards)/cards/factions/neon/neon-dancer'
-import card264 from '@/app/(protected)/(cards)/cards/factions/neon/neon-district'
-import card265 from '@/app/(protected)/(cards)/cards/factions/neon/netrunner'
-import card266 from '@/app/(protected)/(cards)/cards/factions/neon/orbital-strike'
-import card267 from '@/app/(protected)/(cards)/cards/factions/neon/overdrive-mech'
-import card268 from '@/app/(protected)/(cards)/cards/factions/neon/phantom-assassin'
-import card269 from '@/app/(protected)/(cards)/cards/factions/neon/pulse-sniper'
-import card270 from '@/app/(protected)/(cards)/cards/factions/neon/quantum-chip'
-import card271 from '@/app/(protected)/(cards)/cards/factions/neon/quick-hack'
-import card272 from '@/app/(protected)/(cards)/cards/factions/neon/riot-enforcer'
-import card273 from '@/app/(protected)/(cards)/cards/factions/neon/security-drone'
-import card274 from '@/app/(protected)/(cards)/cards/factions/neon/server-farm'
-import card275 from '@/app/(protected)/(cards)/cards/factions/neon/stim-pack'
-import card276 from '@/app/(protected)/(cards)/cards/factions/neon/street-runner'
-import card277 from '@/app/(protected)/(cards)/cards/factions/neon/synth-brawler'
-import card278 from '@/app/(protected)/(cards)/cards/factions/neon/system-crash'
-import card279 from '@/app/(protected)/(cards)/cards/factions/neon/the-oracle-ai'
-import card280 from '@/app/(protected)/(cards)/cards/factions/neon/velocity-queen'
-import card281 from '@/app/(protected)/(cards)/cards/factions/neon/zero-the-ghost'
-import card282 from '@/app/(protected)/(cards)/cards/factions/primal/amber-totem'
-import card283 from '@/app/(protected)/(cards)/cards/factions/primal/ambush-of-raptors'
-import card284 from '@/app/(protected)/(cards)/cards/factions/primal/ancient-treant'
-import card285 from '@/app/(protected)/(cards)/cards/factions/primal/bone-carver'
-import card286 from '@/app/(protected)/(cards)/cards/factions/primal/call-of-the-wild'
-import card287 from '@/app/(protected)/(cards)/cards/factions/primal/cave-bear'
-import card288 from '@/app/(protected)/(cards)/cards/factions/primal/cave-scout'
-import card289 from '@/app/(protected)/(cards)/cards/factions/primal/dino-egg'
-import card290 from '@/app/(protected)/(cards)/cards/factions/primal/dino-hatchling'
-import card291 from '@/app/(protected)/(cards)/cards/factions/primal/elder-mammoth'
-import card292 from '@/app/(protected)/(cards)/cards/factions/primal/feral-growth'
-import card293 from '@/app/(protected)/(cards)/cards/factions/primal/healing-herbs'
-import card294 from '@/app/(protected)/(cards)/cards/factions/primal/herd-mother'
-import card295 from '@/app/(protected)/(cards)/cards/factions/primal/hunting-party'
-import card296 from '@/app/(protected)/(cards)/cards/factions/primal/jungle-druid'
-import card297 from '@/app/(protected)/(cards)/cards/factions/primal/mossback-tortoise'
-import card298 from '@/app/(protected)/(cards)/cards/factions/primal/mother-of-beasts'
-import card299 from '@/app/(protected)/(cards)/cards/factions/primal/nest-keeper'
-import card300 from '@/app/(protected)/(cards)/cards/factions/primal/pit-trap'
-import card301 from '@/app/(protected)/(cards)/cards/factions/primal/primal-grove'
-import card302 from '@/app/(protected)/(cards)/cards/factions/primal/primal-rage'
-import card303 from '@/app/(protected)/(cards)/cards/factions/primal/primeval-titan'
-import card304 from '@/app/(protected)/(cards)/cards/factions/primal/pterodactyl-rider'
-import card305 from '@/app/(protected)/(cards)/cards/factions/primal/raptor-alpha'
-import card306 from '@/app/(protected)/(cards)/cards/factions/primal/raptor-pack'
-import card307 from '@/app/(protected)/(cards)/cards/factions/primal/raptor-scout'
-import card308 from '@/app/(protected)/(cards)/cards/factions/primal/rex-the-unbroken'
-import card309 from '@/app/(protected)/(cards)/cards/factions/primal/sabertooth-stalker'
-import card310 from '@/app/(protected)/(cards)/cards/factions/primal/scent-of-prey'
-import card311 from '@/app/(protected)/(cards)/cards/factions/primal/shaman-of-the-tribe'
-import card312 from '@/app/(protected)/(cards)/cards/factions/primal/spinosaur-hunter'
-import card313 from '@/app/(protected)/(cards)/cards/factions/primal/spirit-caller'
-import card314 from '@/app/(protected)/(cards)/cards/factions/primal/stampede'
-import card315 from '@/app/(protected)/(cards)/cards/factions/primal/stone-thrower'
-import card316 from '@/app/(protected)/(cards)/cards/factions/primal/swamp-croc'
-import card317 from '@/app/(protected)/(cards)/cards/factions/primal/swamp-viper'
-import card318 from '@/app/(protected)/(cards)/cards/factions/primal/tar-pits'
-import card319 from '@/app/(protected)/(cards)/cards/factions/primal/the-world-serpent'
-import card320 from '@/app/(protected)/(cards)/cards/factions/primal/thornback-boar'
-import card321 from '@/app/(protected)/(cards)/cards/factions/primal/thunder-lizard'
-import card322 from '@/app/(protected)/(cards)/cards/factions/primal/tribal-warchief'
-import card323 from '@/app/(protected)/(cards)/cards/factions/primal/triceratops-matriarch'
-import card324 from '@/app/(protected)/(cards)/cards/factions/primal/tusked-hog'
-import card325 from '@/app/(protected)/(cards)/cards/factions/primal/venom-spitter'
-import card326 from '@/app/(protected)/(cards)/cards/factions/primal/woolly-rhino'
-import card327 from '@/app/(protected)/(cards)/cards/factions/primal/wrath-of-the-volcano'
-import card328 from '@/app/(protected)/(cards)/cards/factions/void/abyssal-hound'
-import card329 from '@/app/(protected)/(cards)/cards/factions/void/black-grimoire'
-import card330 from '@/app/(protected)/(cards)/cards/factions/void/bone-crawler'
-import card331 from '@/app/(protected)/(cards)/cards/factions/void/bone-dragon'
-import card332 from '@/app/(protected)/(cards)/cards/factions/void/boneyard'
-import card333 from '@/app/(protected)/(cards)/cards/factions/void/carrion-swarm'
-import card334 from '@/app/(protected)/(cards)/cards/factions/void/cursed-skull'
-import card335 from '@/app/(protected)/(cards)/cards/factions/void/dark-pact'
-import card336 from '@/app/(protected)/(cards)/cards/factions/void/death-mark'
-import card337 from '@/app/(protected)/(cards)/cards/factions/void/devourer-of-light'
-import card338 from '@/app/(protected)/(cards)/cards/factions/void/dread-knight'
-import card339 from '@/app/(protected)/(cards)/cards/factions/void/eater-of-worlds'
-import card340 from '@/app/(protected)/(cards)/cards/factions/void/entropy-mage'
-import card341 from '@/app/(protected)/(cards)/cards/factions/void/flesh-weaver'
-import card342 from '@/app/(protected)/(cards)/cards/factions/void/gate-of-oblivion'
-import card343 from '@/app/(protected)/(cards)/cards/factions/void/grasping-dead'
-import card344 from '@/app/(protected)/(cards)/cards/factions/void/grave-whisperer'
-import card345 from '@/app/(protected)/(cards)/cards/factions/void/gravebound-colossus'
-import card346 from '@/app/(protected)/(cards)/cards/factions/void/herald-of-the-end'
-import card347 from '@/app/(protected)/(cards)/cards/factions/void/hollow-cultist'
-import card348 from '@/app/(protected)/(cards)/cards/factions/void/lich-of-the-last-hour'
-import card349 from '@/app/(protected)/(cards)/cards/factions/void/mother-of-shadows'
-import card350 from '@/app/(protected)/(cards)/cards/factions/void/necro-scholar'
-import card351 from '@/app/(protected)/(cards)/cards/factions/void/nightmare-steed'
-import card352 from '@/app/(protected)/(cards)/cards/factions/void/oblivion'
-import card353 from '@/app/(protected)/(cards)/cards/factions/void/pact-keeper'
-import card354 from '@/app/(protected)/(cards)/cards/factions/void/pact-of-hunger'
-import card355 from '@/app/(protected)/(cards)/cards/factions/void/plague-brand'
-import card356 from '@/app/(protected)/(cards)/cards/factions/void/plague-vial'
-import card357 from '@/app/(protected)/(cards)/cards/factions/void/raise-the-dead'
-import card358 from '@/app/(protected)/(cards)/cards/factions/void/rotting-giant'
-import card359 from '@/app/(protected)/(cards)/cards/factions/void/shade-lurker'
-import card360 from '@/app/(protected)/(cards)/cards/factions/void/soul-drain'
-import card361 from '@/app/(protected)/(cards)/cards/factions/void/soul-harvester'
-import card362 from '@/app/(protected)/(cards)/cards/factions/void/soul-jar'
-import card363 from '@/app/(protected)/(cards)/cards/factions/void/soul-reaver'
-import card364 from '@/app/(protected)/(cards)/cards/factions/void/the-final-silence'
-import card365 from '@/app/(protected)/(cards)/cards/factions/void/the-last-king'
-import card366 from '@/app/(protected)/(cards)/cards/factions/void/tomb-listener'
-import card367 from '@/app/(protected)/(cards)/cards/factions/void/tomb-warden'
-import card368 from '@/app/(protected)/(cards)/cards/factions/void/void-collapse'
-import card369 from '@/app/(protected)/(cards)/cards/factions/void/void-leech'
-import card370 from '@/app/(protected)/(cards)/cards/factions/void/void-spawn'
-import card371 from '@/app/(protected)/(cards)/cards/factions/void/void-tendril'
-import card372 from '@/app/(protected)/(cards)/cards/factions/void/wailing-banshee'
-import card373 from '@/app/(protected)/(cards)/cards/heroes/ada-copperwick/ada-copperwick'
-import card374 from '@/app/(protected)/(cards)/cards/heroes/ada-copperwick/blueprint'
-import card375 from '@/app/(protected)/(cards)/cards/heroes/ada-copperwick/cogsworth-the-assistant'
-import card376 from '@/app/(protected)/(cards)/cards/heroes/ada-copperwick/galvanic-spark'
-import card377 from '@/app/(protected)/(cards)/cards/heroes/ada-copperwick/tesla-wand'
-import card378 from '@/app/(protected)/(cards)/cards/heroes/ada-copperwick/the-copperwick-engine'
-import card379 from '@/app/(protected)/(cards)/cards/heroes/aldric-dawnkeeper/aldric-dawnkeeper'
-import card380 from '@/app/(protected)/(cards)/cards/heroes/aldric-dawnkeeper/lantern-of-dawn'
-import card381 from '@/app/(protected)/(cards)/cards/heroes/aldric-dawnkeeper/morning-prayer'
-import card382 from '@/app/(protected)/(cards)/cards/heroes/aldric-dawnkeeper/sister-elowen'
-import card383 from '@/app/(protected)/(cards)/cards/heroes/aldric-dawnkeeper/sunrise'
-import card384 from '@/app/(protected)/(cards)/cards/heroes/aldric-dawnkeeper/the-dawn-angel'
-import card385 from '@/app/(protected)/(cards)/cards/heroes/caelus-the-usurper/caelus-the-usurper'
-import card386 from '@/app/(protected)/(cards)/cards/heroes/caelus-the-usurper/praetorian-guard'
-import card387 from '@/app/(protected)/(cards)/cards/heroes/caelus-the-usurper/usurpers-decree'
-import card388 from '@/app/(protected)/(cards)/cards/heroes/chancellor-brassmaw/brass-enforcer'
-import card389 from '@/app/(protected)/(cards)/cards/heroes/chancellor-brassmaw/chancellor-brassmaw'
-import card390 from '@/app/(protected)/(cards)/cards/heroes/chancellor-brassmaw/tax-automaton'
-import card391 from '@/app/(protected)/(cards)/cards/heroes/gideon-ironsteam/boiler-burst'
-import card392 from '@/app/(protected)/(cards)/cards/heroes/gideon-ironsteam/bolt-the-iron-bulldog'
-import card393 from '@/app/(protected)/(cards)/cards/heroes/gideon-ironsteam/gideon-ironsteam'
-import card394 from '@/app/(protected)/(cards)/cards/heroes/gideon-ironsteam/iron-resolve'
-import card395 from '@/app/(protected)/(cards)/cards/heroes/gideon-ironsteam/ironsteam-exosuit'
-import card396 from '@/app/(protected)/(cards)/cards/heroes/gideon-ironsteam/steam-hammer'
-import card397 from '@/app/(protected)/(cards)/cards/heroes/gorrak-tyrant-king/gorrak-tyrant-king'
-import card398 from '@/app/(protected)/(cards)/cards/heroes/gorrak-tyrant-king/primal-roar'
-import card399 from '@/app/(protected)/(cards)/cards/heroes/gorrak-tyrant-king/tyrant-hatchling'
-import card400 from '@/app/(protected)/(cards)/cards/heroes/hollow-astronomer/black-comet'
-import card401 from '@/app/(protected)/(cards)/cards/heroes/hollow-astronomer/hollow-astronomer'
-import card402 from '@/app/(protected)/(cards)/cards/heroes/hollow-astronomer/void-acolyte'
-import card403 from '@/app/(protected)/(cards)/cards/heroes/ilyra-starweaver/constellation-weave'
-import card404 from '@/app/(protected)/(cards)/cards/heroes/ilyra-starweaver/falling-star'
-import card405 from '@/app/(protected)/(cards)/cards/heroes/ilyra-starweaver/ilyra-starweaver'
-import card406 from '@/app/(protected)/(cards)/cards/heroes/ilyra-starweaver/lumen-the-star-owl'
-import card407 from '@/app/(protected)/(cards)/cards/heroes/ilyra-starweaver/staff-of-the-starweaver'
-import card408 from '@/app/(protected)/(cards)/cards/heroes/ilyra-starweaver/starweavers-astrolabe'
-import card409 from '@/app/(protected)/(cards)/cards/heroes/kazhul-mother-of-ash/ash-drake'
-import card410 from '@/app/(protected)/(cards)/cards/heroes/kazhul-mother-of-ash/eruption'
-import card411 from '@/app/(protected)/(cards)/cards/heroes/kazhul-mother-of-ash/kazhul-mother-of-ash'
-import card412 from '@/app/(protected)/(cards)/cards/heroes/kora-wildfang/bonefang-bow'
-import card413 from '@/app/(protected)/(cards)/cards/heroes/kora-wildfang/fang-the-sabertooth'
-import card414 from '@/app/(protected)/(cards)/cards/heroes/kora-wildfang/grawl-the-dire-wolf'
-import card415 from '@/app/(protected)/(cards)/cards/heroes/kora-wildfang/kora-wildfang'
-import card416 from '@/app/(protected)/(cards)/cards/heroes/kora-wildfang/pounce'
-import card417 from '@/app/(protected)/(cards)/cards/heroes/kora-wildfang/wild-hunt'
-import card418 from '@/app/(protected)/(cards)/cards/heroes/legate-varro/aquila-of-the-ninth'
-import card419 from '@/app/(protected)/(cards)/cards/heroes/legate-varro/gladius-of-the-legate'
-import card420 from '@/app/(protected)/(cards)/cards/heroes/legate-varro/legate-varro'
-import card421 from '@/app/(protected)/(cards)/cards/heroes/legate-varro/signifer-lucius'
-import card422 from '@/app/(protected)/(cards)/cards/heroes/legate-varro/the-ninths-stand'
-import card423 from '@/app/(protected)/(cards)/cards/heroes/legate-varro/varros-orders'
-import card424 from '@/app/(protected)/(cards)/cards/heroes/malachar-the-unmade/malachar-the-unmade'
-import card425 from '@/app/(protected)/(cards)/cards/heroes/malachar-the-unmade/scepter-of-unmaking'
-import card426 from '@/app/(protected)/(cards)/cards/heroes/malachar-the-unmade/the-hollow-crown'
-import card427 from '@/app/(protected)/(cards)/cards/heroes/malachar-the-unmade/tome-of-endings'
-import card428 from '@/app/(protected)/(cards)/cards/heroes/malachar-the-unmade/unravel'
-import card429 from '@/app/(protected)/(cards)/cards/heroes/malachar-the-unmade/void-rift'
-import card430 from '@/app/(protected)/(cards)/cards/heroes/morgrath-lich-abbot/dark-sermon'
-import card431 from '@/app/(protected)/(cards)/cards/heroes/morgrath-lich-abbot/morgrath-lich-abbot'
-import card432 from '@/app/(protected)/(cards)/cards/heroes/morgrath-lich-abbot/skeletal-monk'
-import card433 from '@/app/(protected)/(cards)/cards/heroes/nysa-goldbow/argos-the-silver-hound'
-import card434 from '@/app/(protected)/(cards)/cards/heroes/nysa-goldbow/arrow-of-the-sun'
-import card435 from '@/app/(protected)/(cards)/cards/heroes/nysa-goldbow/goldbow'
-import card436 from '@/app/(protected)/(cards)/cards/heroes/nysa-goldbow/hunt-of-the-goddess'
-import card437 from '@/app/(protected)/(cards)/cards/heroes/nysa-goldbow/nysa-goldbow'
-import card438 from '@/app/(protected)/(cards)/cards/heroes/nysa-goldbow/temple-of-the-huntress'
-import card439 from '@/app/(protected)/(cards)/cards/heroes/nyx-hollowsong/echo-the-spirit-crow'
-import card440 from '@/app/(protected)/(cards)/cards/heroes/nyx-hollowsong/hollow-harp'
-import card441 from '@/app/(protected)/(cards)/cards/heroes/nyx-hollowsong/lullaby-of-the-lost'
-import card442 from '@/app/(protected)/(cards)/cards/heroes/nyx-hollowsong/nyx-hollowsong'
-import card443 from '@/app/(protected)/(cards)/cards/heroes/nyx-hollowsong/requiem'
-import card444 from '@/app/(protected)/(cards)/cards/heroes/nyx-hollowsong/the-singing-graves'
-import card445 from '@/app/(protected)/(cards)/cards/heroes/omnigear-prime/core-meltdown'
-import card446 from '@/app/(protected)/(cards)/cards/heroes/omnigear-prime/omnigear-prime'
-import card447 from '@/app/(protected)/(cards)/cards/heroes/omnigear-prime/omnigear-sentinel'
-import card448 from '@/app/(protected)/(cards)/cards/heroes/ooma-bonewhisper/bone-reading'
-import card449 from '@/app/(protected)/(cards)/cards/heroes/ooma-bonewhisper/mammoth-skull-staff'
-import card450 from '@/app/(protected)/(cards)/cards/heroes/ooma-bonewhisper/old-tusk'
-import card451 from '@/app/(protected)/(cards)/cards/heroes/ooma-bonewhisper/ooma-bonewhisper'
-import card452 from '@/app/(protected)/(cards)/cards/heroes/ooma-bonewhisper/spirit-of-the-herd'
-import card453 from '@/app/(protected)/(cards)/cards/heroes/ooma-bonewhisper/the-ancestor-tree'
-import card454 from '@/app/(protected)/(cards)/cards/heroes/overseer-kade/overseer-kade'
-import card455 from '@/app/(protected)/(cards)/cards/heroes/overseer-kade/surveillance-net'
-import card456 from '@/app/(protected)/(cards)/cards/heroes/overseer-kade/syndicate-enforcer'
-import card457 from '@/app/(protected)/(cards)/cards/heroes/queen-static/queen-static'
-import card458 from '@/app/(protected)/(cards)/cards/heroes/queen-static/signal-storm'
-import card459 from '@/app/(protected)/(cards)/cards/heroes/queen-static/static-wraith'
-import card460 from '@/app/(protected)/(cards)/cards/heroes/ryn-voltblade/kaze-the-cyber-ronin'
-import card461 from '@/app/(protected)/(cards)/cards/heroes/ryn-voltblade/lightning-dash'
-import card462 from '@/app/(protected)/(cards)/cards/heroes/ryn-voltblade/ryn-voltblade'
-import card463 from '@/app/(protected)/(cards)/cards/heroes/ryn-voltblade/storm-plate'
-import card464 from '@/app/(protected)/(cards)/cards/heroes/ryn-voltblade/thunderclap'
-import card465 from '@/app/(protected)/(cards)/cards/heroes/ryn-voltblade/voltblade'
-import card466 from '@/app/(protected)/(cards)/cards/heroes/tauron-labyrinth-lord/dead-end'
-import card467 from '@/app/(protected)/(cards)/cards/heroes/tauron-labyrinth-lord/labyrinth-guardian'
-import card468 from '@/app/(protected)/(cards)/cards/heroes/tauron-labyrinth-lord/tauron-labyrinth-lord'
-import card469 from '@/app/(protected)/(cards)/cards/heroes/vex-nightwire/bounty-contract'
-import card470 from '@/app/(protected)/(cards)/cards/heroes/vex-nightwire/holo-crossbow'
-import card471 from '@/app/(protected)/(cards)/cards/heroes/vex-nightwire/nightwire-net'
-import card472 from '@/app/(protected)/(cards)/cards/heroes/vex-nightwire/pixel-the-drone-fox'
-import card473 from '@/app/(protected)/(cards)/cards/heroes/vex-nightwire/target-lock'
-import card474 from '@/app/(protected)/(cards)/cards/heroes/vex-nightwire/vex-nightwire'
-import card475 from '@/app/(protected)/(cards)/cards/heroes/vorhal-the-last-hour/final-toll'
-import card476 from '@/app/(protected)/(cards)/cards/heroes/vorhal-the-last-hour/hour-wraith'
-import card477 from '@/app/(protected)/(cards)/cards/heroes/vorhal-the-last-hour/vorhal-the-last-hour'
-import card478 from '@/app/(protected)/(cards)/cards/heroes/xulthar-the-devourer/endless-hunger'
-import card479 from '@/app/(protected)/(cards)/cards/heroes/xulthar-the-devourer/maw-of-xulthar'
-import card480 from '@/app/(protected)/(cards)/cards/heroes/xulthar-the-devourer/xulthar-the-devourer'
-import card481 from '@/app/(protected)/(cards)/cards/neutral/aegis-lantern'
-import card482 from '@/app/(protected)/(cards)/cards/neutral/aegis-of-eternity'
-import card483 from '@/app/(protected)/(cards)/cards/neutral/aeon-phoenix'
-import card484 from '@/app/(protected)/(cards)/cards/neutral/antidote'
-import card485 from '@/app/(protected)/(cards)/cards/neutral/banner-of-the-rift'
-import card486 from '@/app/(protected)/(cards)/cards/neutral/bannerman-sash'
-import card487 from '@/app/(protected)/(cards)/cards/neutral/battle-herald'
-import card488 from '@/app/(protected)/(cards)/cards/neutral/bazaar-of-ages'
-import card489 from '@/app/(protected)/(cards)/cards/neutral/berserker-pact'
-import card490 from '@/app/(protected)/(cards)/cards/neutral/blade-dancer'
-import card491 from '@/app/(protected)/(cards)/cards/neutral/blade-of-ages'
-import card492 from '@/app/(protected)/(cards)/cards/neutral/brittle-hex'
-import card493 from '@/app/(protected)/(cards)/cards/neutral/broken-clocktower'
-import card494 from '@/app/(protected)/(cards)/cards/neutral/bulwark-totem'
-import card495 from '@/app/(protected)/(cards)/cards/neutral/buried-capsule'
-import card496 from '@/app/(protected)/(cards)/cards/neutral/charged-shard'
-import card497 from '@/app/(protected)/(cards)/cards/neutral/chrono-acrobat'
-import card498 from '@/app/(protected)/(cards)/cards/neutral/chrono-anchor'
-import card499 from '@/app/(protected)/(cards)/cards/neutral/chrono-battery'
-import card500 from '@/app/(protected)/(cards)/cards/neutral/chrono-golem'
-import card501 from '@/app/(protected)/(cards)/cards/neutral/chronomancer-adept'
-import card502 from '@/app/(protected)/(cards)/cards/neutral/chronos-leviathan'
-import card503 from '@/app/(protected)/(cards)/cards/neutral/clockheart-engine'
-import card504 from '@/app/(protected)/(cards)/cards/neutral/counterspell-glyph'
-import card505 from '@/app/(protected)/(cards)/cards/neutral/cowards-brand'
-import card506 from '@/app/(protected)/(cards)/cards/neutral/cursed-crown'
-import card507 from '@/app/(protected)/(cards)/cards/neutral/cursed-idol'
-import card508 from '@/app/(protected)/(cards)/cards/neutral/drifting-merchant'
-import card509 from '@/app/(protected)/(cards)/cards/neutral/echoing-knight'
-import card510 from '@/app/(protected)/(cards)/cards/neutral/elixir-of-vigor'
-import card511 from '@/app/(protected)/(cards)/cards/neutral/end-of-days'
-import card512 from '@/app/(protected)/(cards)/cards/neutral/era-hopper'
-import card513 from '@/app/(protected)/(cards)/cards/neutral/eye-of-the-storm'
-import card514 from '@/app/(protected)/(cards)/cards/neutral/ferryman-of-hours'
-import card515 from '@/app/(protected)/(cards)/cards/neutral/fire-flask'
-import card516 from '@/app/(protected)/(cards)/cards/neutral/flash-powder'
-import card517 from '@/app/(protected)/(cards)/cards/neutral/frozen-shackles'
-import card518 from '@/app/(protected)/(cards)/cards/neutral/gag-of-silence'
-import card519 from '@/app/(protected)/(cards)/cards/neutral/garden-of-forever'
-import card520 from '@/app/(protected)/(cards)/cards/neutral/grail-of-ages'
-import card521 from '@/app/(protected)/(cards)/cards/neutral/grappling-hook'
-import card522 from '@/app/(protected)/(cards)/cards/neutral/gravekeeper-of-eras'
-import card523 from '@/app/(protected)/(cards)/cards/neutral/hall-of-echoes'
-import card524 from '@/app/(protected)/(cards)/cards/neutral/healing-draught'
-import card525 from '@/app/(protected)/(cards)/cards/neutral/healing-spring'
-import card526 from '@/app/(protected)/(cards)/cards/neutral/hourglass-dagger'
-import card527 from '@/app/(protected)/(cards)/cards/neutral/hourglass-plating'
-import card528 from '@/app/(protected)/(cards)/cards/neutral/hourglass-sentry'
-import card529 from '@/app/(protected)/(cards)/cards/neutral/hourglass-warden'
-import card530 from '@/app/(protected)/(cards)/cards/neutral/iron-buckler'
-import card531 from '@/app/(protected)/(cards)/cards/neutral/iron-manacles'
-import card532 from '@/app/(protected)/(cards)/cards/neutral/iron-rations'
-import card533 from '@/app/(protected)/(cards)/cards/neutral/keeper-of-moments'
-import card534 from '@/app/(protected)/(cards)/cards/neutral/last-oath'
-import card535 from '@/app/(protected)/(cards)/cards/neutral/leeching-mark'
-import card536 from '@/app/(protected)/(cards)/cards/neutral/lost-squire'
-import card537 from '@/app/(protected)/(cards)/cards/neutral/mend-the-timeline'
-import card538 from '@/app/(protected)/(cards)/cards/neutral/mirror-ward'
-import card539 from '@/app/(protected)/(cards)/cards/neutral/null-field'
-import card540 from '@/app/(protected)/(cards)/cards/neutral/open-market'
-import card541 from '@/app/(protected)/(cards)/cards/neutral/paradox-loop'
-import card542 from '@/app/(protected)/(cards)/cards/neutral/paradox-twin'
-import card543 from '@/app/(protected)/(cards)/cards/neutral/patched-leather'
-import card544 from '@/app/(protected)/(cards)/cards/neutral/patchwork-golem'
-import card545 from '@/app/(protected)/(cards)/cards/neutral/phase-cloak'
-import card546 from '@/app/(protected)/(cards)/cards/neutral/phase-stalker'
-import card547 from '@/app/(protected)/(cards)/cards/neutral/philosophers-hourglass'
-import card548 from '@/app/(protected)/(cards)/cards/neutral/phoenix-feather'
-import card549 from '@/app/(protected)/(cards)/cards/neutral/pitfall'
-import card550 from '@/app/(protected)/(cards)/cards/neutral/quicken'
-import card551 from '@/app/(protected)/(cards)/cards/neutral/recruiting-tent'
-import card552 from '@/app/(protected)/(cards)/cards/neutral/regrowth-moss'
-import card553 from '@/app/(protected)/(cards)/cards/neutral/repair-kit'
-import card554 from '@/app/(protected)/(cards)/cards/neutral/rewind'
-import card555 from '@/app/(protected)/(cards)/cards/neutral/rift-behemoth'
-import card556 from '@/app/(protected)/(cards)/cards/neutral/rift-bomb'
-import card557 from '@/app/(protected)/(cards)/cards/neutral/rift-collapse'
-import card558 from '@/app/(protected)/(cards)/cards/neutral/rift-dragonling'
-import card559 from '@/app/(protected)/(cards)/cards/neutral/rift-grenade'
-import card560 from '@/app/(protected)/(cards)/cards/neutral/rift-guardian'
-import card561 from '@/app/(protected)/(cards)/cards/neutral/rift-hound'
-import card562 from '@/app/(protected)/(cards)/cards/neutral/rift-leech'
-import card563 from '@/app/(protected)/(cards)/cards/neutral/rift-mail'
-import card564 from '@/app/(protected)/(cards)/cards/neutral/rift-market'
-import card565 from '@/app/(protected)/(cards)/cards/neutral/rift-medic'
-import card566 from '@/app/(protected)/(cards)/cards/neutral/rift-moth'
-import card567 from '@/app/(protected)/(cards)/cards/neutral/rift-scavenger'
-import card568 from '@/app/(protected)/(cards)/cards/neutral/rift-snare'
-import card569 from '@/app/(protected)/(cards)/cards/neutral/rusted-shackles'
-import card570 from '@/app/(protected)/(cards)/cards/neutral/rusty-sword'
-import card571 from '@/app/(protected)/(cards)/cards/neutral/sanctum-of-hours'
-import card572 from '@/app/(protected)/(cards)/cards/neutral/sand-wraith'
-import card573 from '@/app/(protected)/(cards)/cards/neutral/scholars-lens'
-import card574 from '@/app/(protected)/(cards)/cards/neutral/sharpening-stone'
-import card575 from '@/app/(protected)/(cards)/cards/neutral/shatter-time'
-import card576 from '@/app/(protected)/(cards)/cards/neutral/shieldbearer-of-ages'
-import card577 from '@/app/(protected)/(cards)/cards/neutral/shifting-sands'
-import card578 from '@/app/(protected)/(cards)/cards/neutral/siege-engine'
-import card579 from '@/app/(protected)/(cards)/cards/neutral/siphon-rune'
-import card580 from '@/app/(protected)/(cards)/cards/neutral/sky-courier'
-import card581 from '@/app/(protected)/(cards)/cards/neutral/skyship-gunner'
-import card582 from '@/app/(protected)/(cards)/cards/neutral/smoke-bomb'
-import card583 from '@/app/(protected)/(cards)/cards/neutral/spyglass'
-import card584 from '@/app/(protected)/(cards)/cards/neutral/stasis-bubble'
-import card585 from '@/app/(protected)/(cards)/cards/neutral/sundial-of-plenty'
-import card586 from '@/app/(protected)/(cards)/cards/neutral/tavern-brawler'
-import card587 from '@/app/(protected)/(cards)/cards/neutral/temporal-prison'
-import card588 from '@/app/(protected)/(cards)/cards/neutral/temporal-shock'
-import card589 from '@/app/(protected)/(cards)/cards/neutral/the-last-sentinel'
-import card590 from '@/app/(protected)/(cards)/cards/neutral/the-nexus'
-import card591 from '@/app/(protected)/(cards)/cards/neutral/thorn-collar'
-import card592 from '@/app/(protected)/(cards)/cards/neutral/thorned-colossus'
-import card593 from '@/app/(protected)/(cards)/cards/neutral/thorned-mail'
-import card594 from '@/app/(protected)/(cards)/cards/neutral/time-capsule'
-import card595 from '@/app/(protected)/(cards)/cards/neutral/time-thief'
-import card596 from '@/app/(protected)/(cards)/cards/neutral/time-wanderer'
-import card597 from '@/app/(protected)/(cards)/cards/neutral/timeguard-plate'
-import card598 from '@/app/(protected)/(cards)/cards/neutral/timeworn-champion'
-import card599 from '@/app/(protected)/(cards)/cards/neutral/titan-gauntlet'
-import card600 from '@/app/(protected)/(cards)/cards/neutral/training-grounds'
-import card601 from '@/app/(protected)/(cards)/cards/neutral/tripwire'
-import card602 from '@/app/(protected)/(cards)/cards/neutral/twin-blades'
-import card603 from '@/app/(protected)/(cards)/cards/neutral/vampire-fang'
-import card604 from '@/app/(protected)/(cards)/cards/neutral/venom-coating'
-import card605 from '@/app/(protected)/(cards)/cards/neutral/veteran-of-many-wars'
-import card606 from '@/app/(protected)/(cards)/cards/neutral/wanderers-camp'
-import card607 from '@/app/(protected)/(cards)/cards/neutral/wanderers-sling'
-import card608 from '@/app/(protected)/(cards)/cards/neutral/wandering-scribe'
-import card609 from '@/app/(protected)/(cards)/cards/neutral/wandering-sellsword'
-import card610 from '@/app/(protected)/(cards)/cards/neutral/war-drum'
-import card611 from '@/app/(protected)/(cards)/cards/neutral/wayfinder-scout'
-import card612 from '@/app/(protected)/(cards)/cards/neutral/whetted-edge'
-import card613 from '@/app/(protected)/(cards)/cards/neutral/winged-harness'
+import card24 from '@/app/(protected)/(cards)/cards/classes/hunter/trap-finder'
+import card25 from '@/app/(protected)/(cards)/cards/classes/hunter/twin-hunting-knives'
+import card26 from '@/app/(protected)/(cards)/cards/classes/hunter/volley'
+import card27 from '@/app/(protected)/(cards)/cards/classes/hunter/wolfhide-armor'
+import card28 from '@/app/(protected)/(cards)/cards/classes/mage/apprentice-wand'
+import card29 from '@/app/(protected)/(cards)/cards/classes/mage/arcane-intellect'
+import card30 from '@/app/(protected)/(cards)/cards/classes/mage/blizzard'
+import card31 from '@/app/(protected)/(cards)/cards/classes/mage/crown-of-the-arcanist'
+import card32 from '@/app/(protected)/(cards)/cards/classes/mage/fireball'
+import card33 from '@/app/(protected)/(cards)/cards/classes/mage/flame-wave'
+import card34 from '@/app/(protected)/(cards)/cards/classes/mage/frost-nova'
+import card35 from '@/app/(protected)/(cards)/cards/classes/mage/frost-spear'
+import card36 from '@/app/(protected)/(cards)/cards/classes/mage/frost-staff'
+import card37 from '@/app/(protected)/(cards)/cards/classes/mage/ice-lance'
+import card38 from '@/app/(protected)/(cards)/cards/classes/mage/lightning-bolt'
+import card39 from '@/app/(protected)/(cards)/cards/classes/mage/magic-bolt'
+import card40 from '@/app/(protected)/(cards)/cards/classes/mage/mana-potion'
+import card41 from '@/app/(protected)/(cards)/cards/classes/mage/mana-shield'
+import card42 from '@/app/(protected)/(cards)/cards/classes/mage/meteor'
+import card43 from '@/app/(protected)/(cards)/cards/classes/mage/mirror-mantle'
+import card44 from '@/app/(protected)/(cards)/cards/classes/mage/polymorph'
+import card45 from '@/app/(protected)/(cards)/cards/classes/mage/pyroblast'
+import card46 from '@/app/(protected)/(cards)/cards/classes/mage/robe-of-stars'
+import card47 from '@/app/(protected)/(cards)/cards/classes/mage/runeblade'
+import card48 from '@/app/(protected)/(cards)/cards/classes/mage/scepter-of-storms'
+import card49 from '@/app/(protected)/(cards)/cards/classes/mage/searing-brand'
+import card50 from '@/app/(protected)/(cards)/cards/classes/mage/silk-robe'
+import card51 from '@/app/(protected)/(cards)/cards/classes/mage/spellbook'
+import card52 from '@/app/(protected)/(cards)/cards/classes/mage/staff-of-embers'
+import card53 from '@/app/(protected)/(cards)/cards/classes/mage/staff-of-the-archmage'
+import card54 from '@/app/(protected)/(cards)/cards/classes/mage/time-warp'
+import card55 from '@/app/(protected)/(cards)/cards/classes/mystic/acolyte-vestments'
+import card56 from '@/app/(protected)/(cards)/cards/classes/mystic/aegis-of-faith'
+import card57 from '@/app/(protected)/(cards)/cards/classes/mystic/blessed-mail'
+import card58 from '@/app/(protected)/(cards)/cards/classes/mystic/blessing'
+import card59 from '@/app/(protected)/(cards)/cards/classes/mystic/censer-of-souls'
+import card60 from '@/app/(protected)/(cards)/cards/classes/mystic/divine-shield'
+import card61 from '@/app/(protected)/(cards)/cards/classes/mystic/halo-of-dawn'
+import card62 from '@/app/(protected)/(cards)/cards/classes/mystic/holy-smite'
+import card63 from '@/app/(protected)/(cards)/cards/classes/mystic/holy-water'
+import card64 from '@/app/(protected)/(cards)/cards/classes/mystic/inner-fire'
+import card65 from '@/app/(protected)/(cards)/cards/classes/mystic/lightbringer'
+import card66 from '@/app/(protected)/(cards)/cards/classes/mystic/mass-revival'
+import card67 from '@/app/(protected)/(cards)/cards/classes/mystic/mend'
+import card68 from '@/app/(protected)/(cards)/cards/classes/mystic/miracle'
+import card69 from '@/app/(protected)/(cards)/cards/classes/mystic/oak-scepter'
+import card70 from '@/app/(protected)/(cards)/cards/classes/mystic/prayer-of-healing'
+import card71 from '@/app/(protected)/(cards)/cards/classes/mystic/radiance'
+import card72 from '@/app/(protected)/(cards)/cards/classes/mystic/relic-of-the-saints'
+import card73 from '@/app/(protected)/(cards)/cards/classes/mystic/resurrection'
+import card74 from '@/app/(protected)/(cards)/cards/classes/mystic/spirit-guardian'
+import card75 from '@/app/(protected)/(cards)/cards/classes/mystic/spirit-link'
+import card76 from '@/app/(protected)/(cards)/cards/classes/mystic/spirit-ward'
+import card77 from '@/app/(protected)/(cards)/cards/classes/mystic/staff-of-eternity'
+import card78 from '@/app/(protected)/(cards)/cards/classes/mystic/staff-of-renewal'
+import card79 from '@/app/(protected)/(cards)/cards/classes/mystic/sun-mace'
+import card80 from '@/app/(protected)/(cards)/cards/classes/warrior/aegis-of-the-warlord'
+import card81 from '@/app/(protected)/(cards)/cards/classes/warrior/armor-breaker'
+import card82 from '@/app/(protected)/(cards)/cards/classes/warrior/battle-cry'
+import card83 from '@/app/(protected)/(cards)/cards/classes/warrior/bloodthirst-cleaver'
+import card84 from '@/app/(protected)/(cards)/cards/classes/warrior/brace'
+import card85 from '@/app/(protected)/(cards)/cards/classes/warrior/bronze-cuirass'
+import card86 from '@/app/(protected)/(cards)/cards/classes/warrior/chainmail'
+import card87 from '@/app/(protected)/(cards)/cards/classes/warrior/charge-in'
+import card88 from '@/app/(protected)/(cards)/cards/classes/warrior/cleaving-strike'
+import card89 from '@/app/(protected)/(cards)/cards/classes/warrior/execute'
+import card90 from '@/app/(protected)/(cards)/cards/classes/warrior/greatsword-of-dawn'
+import card91 from '@/app/(protected)/(cards)/cards/classes/warrior/hammer-of-the-ages'
+import card92 from '@/app/(protected)/(cards)/cards/classes/warrior/iron-gladius'
+import card93 from '@/app/(protected)/(cards)/cards/classes/warrior/iron-will'
+import card94 from '@/app/(protected)/(cards)/cards/classes/warrior/knights-plate'
+import card95 from '@/app/(protected)/(cards)/cards/classes/warrior/last-stand'
+import card96 from '@/app/(protected)/(cards)/cards/classes/warrior/mighty-blow'
+import card97 from '@/app/(protected)/(cards)/cards/classes/warrior/rampage'
+import card98 from '@/app/(protected)/(cards)/cards/classes/warrior/shield-bash'
+import card99 from '@/app/(protected)/(cards)/cards/classes/warrior/spiked-pauldrons'
+import card100 from '@/app/(protected)/(cards)/cards/classes/warrior/tower-mace'
+import card101 from '@/app/(protected)/(cards)/cards/classes/warrior/war-axe'
+import card102 from '@/app/(protected)/(cards)/cards/classes/warrior/war-banner'
+import card103 from '@/app/(protected)/(cards)/cards/classes/warrior/warlords-command'
+import card104 from '@/app/(protected)/(cards)/cards/classes/warrior/whetstone'
+import card105 from '@/app/(protected)/(cards)/cards/classes/warrior/whirlwind'
+import card106 from '@/app/(protected)/(cards)/cards/factions/arcane/apprentice-mage'
+import card107 from '@/app/(protected)/(cards)/cards/factions/arcane/arcane-backlash'
+import card108 from '@/app/(protected)/(cards)/cards/factions/arcane/arcane-explosion'
+import card109 from '@/app/(protected)/(cards)/cards/factions/arcane/arcane-familiar'
+import card110 from '@/app/(protected)/(cards)/cards/factions/arcane/arcane-missiles'
+import card111 from '@/app/(protected)/(cards)/cards/factions/arcane/archive-guardian'
+import card112 from '@/app/(protected)/(cards)/cards/factions/arcane/archmage-of-the-spire'
+import card113 from '@/app/(protected)/(cards)/cards/factions/arcane/archwizard-morvane'
+import card114 from '@/app/(protected)/(cards)/cards/factions/arcane/battlemage-squire'
+import card115 from '@/app/(protected)/(cards)/cards/factions/arcane/candle-keeper'
+import card116 from '@/app/(protected)/(cards)/cards/factions/arcane/celestial-phoenix'
+import card117 from '@/app/(protected)/(cards)/cards/factions/arcane/chain-lightning'
+import card118 from '@/app/(protected)/(cards)/cards/factions/arcane/counter-rune'
+import card119 from '@/app/(protected)/(cards)/cards/factions/arcane/court-illusionist'
+import card120 from '@/app/(protected)/(cards)/cards/factions/arcane/crystal-sentinel'
+import card121 from '@/app/(protected)/(cards)/cards/factions/arcane/dispel-wave'
+import card122 from '@/app/(protected)/(cards)/cards/factions/arcane/dragon-of-runes'
+import card123 from '@/app/(protected)/(cards)/cards/factions/arcane/frost-adept'
+import card124 from '@/app/(protected)/(cards)/cards/factions/arcane/frost-sigil'
+import card125 from '@/app/(protected)/(cards)/cards/factions/arcane/glacial-pulse'
+import card126 from '@/app/(protected)/(cards)/cards/factions/arcane/grand-conjurer'
+import card127 from '@/app/(protected)/(cards)/cards/factions/arcane/hall-of-mirrors'
+import card128 from '@/app/(protected)/(cards)/cards/factions/arcane/ley-line-conduit'
+import card129 from '@/app/(protected)/(cards)/cards/factions/arcane/mana-crystal'
+import card130 from '@/app/(protected)/(cards)/cards/factions/arcane/mind-freeze'
+import card131 from '@/app/(protected)/(cards)/cards/factions/arcane/mirror-mage'
+import card132 from '@/app/(protected)/(cards)/cards/factions/arcane/moonlight-enchantress'
+import card133 from '@/app/(protected)/(cards)/cards/factions/arcane/owl-messenger'
+import card134 from '@/app/(protected)/(cards)/cards/factions/arcane/pyromancer'
+import card135 from '@/app/(protected)/(cards)/cards/factions/arcane/rune-golem'
+import card136 from '@/app/(protected)/(cards)/cards/factions/arcane/rune-sprite'
+import card137 from '@/app/(protected)/(cards)/cards/factions/arcane/scroll-of-wisdom'
+import card138 from '@/app/(protected)/(cards)/cards/factions/arcane/scry-the-stars'
+import card139 from '@/app/(protected)/(cards)/cards/factions/arcane/spell-eater'
+import card140 from '@/app/(protected)/(cards)/cards/factions/arcane/spellbinder'
+import card141 from '@/app/(protected)/(cards)/cards/factions/arcane/spellward-knight'
+import card142 from '@/app/(protected)/(cards)/cards/factions/arcane/starlit-unicorn'
+import card143 from '@/app/(protected)/(cards)/cards/factions/arcane/storm-adept'
+import card144 from '@/app/(protected)/(cards)/cards/factions/arcane/storm-caller'
+import card145 from '@/app/(protected)/(cards)/cards/factions/arcane/the-first-wizard'
+import card146 from '@/app/(protected)/(cards)/cards/factions/arcane/the-starlight-oracle'
+import card147 from '@/app/(protected)/(cards)/cards/factions/arcane/tome-of-whispers'
+import card148 from '@/app/(protected)/(cards)/cards/factions/arcane/tower-novice'
+import card149 from '@/app/(protected)/(cards)/cards/factions/arcane/tower-of-stars'
+import card150 from '@/app/(protected)/(cards)/cards/factions/arcane/wand-duelist'
+import card151 from '@/app/(protected)/(cards)/cards/factions/arcane/wand-of-ruin'
+import card152 from '@/app/(protected)/(cards)/cards/factions/arcane/wildfire'
+import card153 from '@/app/(protected)/(cards)/cards/factions/bronze/aqueduct-engineer'
+import card154 from '@/app/(protected)/(cards)/cards/factions/bronze/arena-champion'
+import card155 from '@/app/(protected)/(cards)/cards/factions/bronze/ballista-crew'
+import card156 from '@/app/(protected)/(cards)/cards/factions/bronze/bronze-cohort'
+import card157 from '@/app/(protected)/(cards)/cards/factions/bronze/bronze-colossus-guard'
+import card158 from '@/app/(protected)/(cards)/cards/factions/bronze/bronze-legionary'
+import card159 from '@/app/(protected)/(cards)/cards/factions/bronze/centurion-drillmaster'
+import card160 from '@/app/(protected)/(cards)/cards/factions/bronze/centurion-maximus'
+import card161 from '@/app/(protected)/(cards)/cards/factions/bronze/chariot-racer'
+import card162 from '@/app/(protected)/(cards)/cards/factions/bronze/cohort-banner'
+import card163 from '@/app/(protected)/(cards)/cards/factions/bronze/colosseum'
+import card164 from '@/app/(protected)/(cards)/cards/factions/bronze/colossus-of-the-harbor'
+import card165 from '@/app/(protected)/(cards)/cards/factions/bronze/disarming-strike'
+import card166 from '@/app/(protected)/(cards)/cards/factions/bronze/eternal-emperor'
+import card167 from '@/app/(protected)/(cards)/cards/factions/bronze/flame-legionary'
+import card168 from '@/app/(protected)/(cards)/cards/factions/bronze/forced-march'
+import card169 from '@/app/(protected)/(cards)/cards/factions/bronze/forum-of-heroes'
+import card170 from '@/app/(protected)/(cards)/cards/factions/bronze/gladiator-twins'
+import card171 from '@/app/(protected)/(cards)/cards/factions/bronze/golden-laurel'
+import card172 from '@/app/(protected)/(cards)/cards/factions/bronze/grand-triumph'
+import card173 from '@/app/(protected)/(cards)/cards/factions/bronze/hold-the-line'
+import card174 from '@/app/(protected)/(cards)/cards/factions/bronze/hoplite-sentry'
+import card175 from '@/app/(protected)/(cards)/cards/factions/bronze/imperator-solis'
+import card176 from '@/app/(protected)/(cards)/cards/factions/bronze/legate-of-the-eagle'
+import card177 from '@/app/(protected)/(cards)/cards/factions/bronze/legion-quartermaster'
+import card178 from '@/app/(protected)/(cards)/cards/factions/bronze/legion-rations'
+import card179 from '@/app/(protected)/(cards)/cards/factions/bronze/legion-slinger'
+import card180 from '@/app/(protected)/(cards)/cards/factions/bronze/marching-legion'
+import card181 from '@/app/(protected)/(cards)/cards/factions/bronze/murmillo-champion'
+import card182 from '@/app/(protected)/(cards)/cards/factions/bronze/net-fighter'
+import card183 from '@/app/(protected)/(cards)/cards/factions/bronze/phalanx-general'
+import card184 from '@/app/(protected)/(cards)/cards/factions/bronze/phalanx-recruit'
+import card185 from '@/app/(protected)/(cards)/cards/factions/bronze/pila-volley'
+import card186 from '@/app/(protected)/(cards)/cards/factions/bronze/rally-the-cohort'
+import card187 from '@/app/(protected)/(cards)/cards/factions/bronze/senator-of-coin'
+import card188 from '@/app/(protected)/(cards)/cards/factions/bronze/shield-wall'
+import card189 from '@/app/(protected)/(cards)/cards/factions/bronze/shields-up'
+import card190 from '@/app/(protected)/(cards)/cards/factions/bronze/shieldwall-veteran'
+import card191 from '@/app/(protected)/(cards)/cards/factions/bronze/spoils-of-war'
+import card192 from '@/app/(protected)/(cards)/cards/factions/bronze/sun-chariot'
+import card193 from '@/app/(protected)/(cards)/cards/factions/bronze/temple-acolyte'
+import card194 from '@/app/(protected)/(cards)/cards/factions/bronze/temple-oracle'
+import card195 from '@/app/(protected)/(cards)/cards/factions/bronze/testudo-squad'
+import card196 from '@/app/(protected)/(cards)/cards/factions/bronze/tribune-of-the-legion'
+import card197 from '@/app/(protected)/(cards)/cards/factions/bronze/war-council'
+import card198 from '@/app/(protected)/(cards)/cards/factions/bronze/war-priestess'
+import card199 from '@/app/(protected)/(cards)/cards/factions/clockwork/airship-bombardier'
+import card200 from '@/app/(protected)/(cards)/cards/factions/clockwork/analytical-engine'
+import card201 from '@/app/(protected)/(cards)/cards/factions/clockwork/automaton-duelist'
+import card202 from '@/app/(protected)/(cards)/cards/factions/clockwork/bear-trap-gears'
+import card203 from '@/app/(protected)/(cards)/cards/factions/clockwork/blueprint-cache'
+import card204 from '@/app/(protected)/(cards)/cards/factions/clockwork/boiler-brute'
+import card205 from '@/app/(protected)/(cards)/cards/factions/clockwork/brass-behemoth'
+import card206 from '@/app/(protected)/(cards)/cards/factions/clockwork/brass-musketeer'
+import card207 from '@/app/(protected)/(cards)/cards/factions/clockwork/chief-engineer-vance'
+import card208 from '@/app/(protected)/(cards)/cards/factions/clockwork/chronometer-savant'
+import card209 from '@/app/(protected)/(cards)/cards/factions/clockwork/clocktower-watchman'
+import card210 from '@/app/(protected)/(cards)/cards/factions/clockwork/clockwork-dragon'
+import card211 from '@/app/(protected)/(cards)/cards/factions/clockwork/cog-apprentice'
+import card212 from '@/app/(protected)/(cards)/cards/factions/clockwork/cogwork-courier'
+import card213 from '@/app/(protected)/(cards)/cards/factions/clockwork/colossus-mark-ix'
+import card214 from '@/app/(protected)/(cards)/cards/factions/clockwork/dynamo-golem'
+import card215 from '@/app/(protected)/(cards)/cards/factions/clockwork/factory-foreman'
+import card216 from '@/app/(protected)/(cards)/cards/factions/clockwork/full-steam-ahead'
+import card217 from '@/app/(protected)/(cards)/cards/factions/clockwork/gear-drone'
+import card218 from '@/app/(protected)/(cards)/cards/factions/clockwork/gear-weaver'
+import card219 from '@/app/(protected)/(cards)/cards/factions/clockwork/gearworks-tower'
+import card220 from '@/app/(protected)/(cards)/cards/factions/clockwork/great-foundry'
+import card221 from '@/app/(protected)/(cards)/cards/factions/clockwork/inventor-of-hours'
+import card222 from '@/app/(protected)/(cards)/cards/factions/clockwork/iron-walker'
+import card223 from '@/app/(protected)/(cards)/cards/factions/clockwork/master-artificer'
+import card224 from '@/app/(protected)/(cards)/cards/factions/clockwork/mechanical-heart'
+import card225 from '@/app/(protected)/(cards)/cards/factions/clockwork/mechanical-knight'
+import card226 from '@/app/(protected)/(cards)/cards/factions/clockwork/overclock'
+import card227 from '@/app/(protected)/(cards)/cards/factions/clockwork/perpetual-engine'
+import card228 from '@/app/(protected)/(cards)/cards/factions/clockwork/piston-golem'
+import card229 from '@/app/(protected)/(cards)/cards/factions/clockwork/pocket-watch'
+import card230 from '@/app/(protected)/(cards)/cards/factions/clockwork/rewind-the-gears'
+import card231 from '@/app/(protected)/(cards)/cards/factions/clockwork/rivet-hound'
+import card232 from '@/app/(protected)/(cards)/cards/factions/clockwork/rust-swarm'
+import card233 from '@/app/(protected)/(cards)/cards/factions/clockwork/scrap-golem'
+import card234 from '@/app/(protected)/(cards)/cards/factions/clockwork/spare-parts'
+import card235 from '@/app/(protected)/(cards)/cards/factions/clockwork/spark-engineer'
+import card236 from '@/app/(protected)/(cards)/cards/factions/clockwork/steam-blast'
+import card237 from '@/app/(protected)/(cards)/cards/factions/clockwork/steam-sentry'
+import card238 from '@/app/(protected)/(cards)/cards/factions/clockwork/steam-tank'
+import card239 from '@/app/(protected)/(cards)/cards/factions/clockwork/tesla-sentinel'
+import card240 from '@/app/(protected)/(cards)/cards/factions/clockwork/the-clockmaker'
+import card241 from '@/app/(protected)/(cards)/cards/factions/clockwork/the-grand-orrery'
+import card242 from '@/app/(protected)/(cards)/cards/factions/clockwork/time-lock'
+import card243 from '@/app/(protected)/(cards)/cards/factions/clockwork/tinker-gnome'
+import card244 from '@/app/(protected)/(cards)/cards/factions/clockwork/tripwire-turret'
+import card245 from '@/app/(protected)/(cards)/cards/factions/neon/adrenaline-shot'
+import card246 from '@/app/(protected)/(cards)/cards/factions/neon/aegis-android'
+import card247 from '@/app/(protected)/(cards)/cards/factions/neon/arc-trooper'
+import card248 from '@/app/(protected)/(cards)/cards/factions/neon/black-ice-hacker'
+import card249 from '@/app/(protected)/(cards)/cards/factions/neon/blackout-specialist'
+import card250 from '@/app/(protected)/(cards)/cards/factions/neon/chrome-medic'
+import card251 from '@/app/(protected)/(cards)/cards/factions/neon/cloaking-device'
+import card252 from '@/app/(protected)/(cards)/cards/factions/neon/cryo-turret'
+import card253 from '@/app/(protected)/(cards)/cards/factions/neon/cyber-samurai'
+import card254 from '@/app/(protected)/(cards)/cards/factions/neon/data-burst'
+import card255 from '@/app/(protected)/(cards)/cards/factions/neon/data-courier'
+import card256 from '@/app/(protected)/(cards)/cards/factions/neon/drone-swarm'
+import card257 from '@/app/(protected)/(cards)/cards/factions/neon/emp-mine'
+import card258 from '@/app/(protected)/(cards)/cards/factions/neon/firewall'
+import card259 from '@/app/(protected)/(cards)/cards/factions/neon/glitch-runner'
+import card260 from '@/app/(protected)/(cards)/cards/factions/neon/holo-decoy'
+import card261 from '@/app/(protected)/(cards)/cards/factions/neon/hover-biker'
+import card262 from '@/app/(protected)/(cards)/cards/factions/neon/information-broker'
+import card263 from '@/app/(protected)/(cards)/cards/factions/neon/jammer-unit'
+import card264 from '@/app/(protected)/(cards)/cards/factions/neon/laser-grid'
+import card265 from '@/app/(protected)/(cards)/cards/factions/neon/mech-trooper'
+import card266 from '@/app/(protected)/(cards)/cards/factions/neon/megacity-titan'
+import card267 from '@/app/(protected)/(cards)/cards/factions/neon/neon-battery'
+import card268 from '@/app/(protected)/(cards)/cards/factions/neon/neon-blade'
+import card269 from '@/app/(protected)/(cards)/cards/factions/neon/neon-dancer'
+import card270 from '@/app/(protected)/(cards)/cards/factions/neon/neon-district'
+import card271 from '@/app/(protected)/(cards)/cards/factions/neon/netrunner'
+import card272 from '@/app/(protected)/(cards)/cards/factions/neon/orbital-strike'
+import card273 from '@/app/(protected)/(cards)/cards/factions/neon/overdrive-mech'
+import card274 from '@/app/(protected)/(cards)/cards/factions/neon/phantom-assassin'
+import card275 from '@/app/(protected)/(cards)/cards/factions/neon/pulse-sniper'
+import card276 from '@/app/(protected)/(cards)/cards/factions/neon/quantum-chip'
+import card277 from '@/app/(protected)/(cards)/cards/factions/neon/quick-hack'
+import card278 from '@/app/(protected)/(cards)/cards/factions/neon/riot-enforcer'
+import card279 from '@/app/(protected)/(cards)/cards/factions/neon/saboteur'
+import card280 from '@/app/(protected)/(cards)/cards/factions/neon/security-drone'
+import card281 from '@/app/(protected)/(cards)/cards/factions/neon/server-farm'
+import card282 from '@/app/(protected)/(cards)/cards/factions/neon/stim-pack'
+import card283 from '@/app/(protected)/(cards)/cards/factions/neon/street-runner'
+import card284 from '@/app/(protected)/(cards)/cards/factions/neon/synth-brawler'
+import card285 from '@/app/(protected)/(cards)/cards/factions/neon/system-crash'
+import card286 from '@/app/(protected)/(cards)/cards/factions/neon/the-oracle-ai'
+import card287 from '@/app/(protected)/(cards)/cards/factions/neon/velocity-queen'
+import card288 from '@/app/(protected)/(cards)/cards/factions/neon/zero-the-ghost'
+import card289 from '@/app/(protected)/(cards)/cards/factions/primal/amber-totem'
+import card290 from '@/app/(protected)/(cards)/cards/factions/primal/ambush-of-raptors'
+import card291 from '@/app/(protected)/(cards)/cards/factions/primal/ancient-treant'
+import card292 from '@/app/(protected)/(cards)/cards/factions/primal/bone-carver'
+import card293 from '@/app/(protected)/(cards)/cards/factions/primal/bone-crusher'
+import card294 from '@/app/(protected)/(cards)/cards/factions/primal/call-of-the-wild'
+import card295 from '@/app/(protected)/(cards)/cards/factions/primal/cave-bear'
+import card296 from '@/app/(protected)/(cards)/cards/factions/primal/cave-scout'
+import card297 from '@/app/(protected)/(cards)/cards/factions/primal/dino-egg'
+import card298 from '@/app/(protected)/(cards)/cards/factions/primal/dino-hatchling'
+import card299 from '@/app/(protected)/(cards)/cards/factions/primal/elder-mammoth'
+import card300 from '@/app/(protected)/(cards)/cards/factions/primal/feral-growth'
+import card301 from '@/app/(protected)/(cards)/cards/factions/primal/healing-herbs'
+import card302 from '@/app/(protected)/(cards)/cards/factions/primal/herd-mother'
+import card303 from '@/app/(protected)/(cards)/cards/factions/primal/hunting-party'
+import card304 from '@/app/(protected)/(cards)/cards/factions/primal/jungle-druid'
+import card305 from '@/app/(protected)/(cards)/cards/factions/primal/mossback-tortoise'
+import card306 from '@/app/(protected)/(cards)/cards/factions/primal/mother-of-beasts'
+import card307 from '@/app/(protected)/(cards)/cards/factions/primal/nest-keeper'
+import card308 from '@/app/(protected)/(cards)/cards/factions/primal/pit-trap'
+import card309 from '@/app/(protected)/(cards)/cards/factions/primal/primal-grove'
+import card310 from '@/app/(protected)/(cards)/cards/factions/primal/primal-rage'
+import card311 from '@/app/(protected)/(cards)/cards/factions/primal/primeval-titan'
+import card312 from '@/app/(protected)/(cards)/cards/factions/primal/pterodactyl-rider'
+import card313 from '@/app/(protected)/(cards)/cards/factions/primal/raptor-alpha'
+import card314 from '@/app/(protected)/(cards)/cards/factions/primal/raptor-pack'
+import card315 from '@/app/(protected)/(cards)/cards/factions/primal/raptor-scout'
+import card316 from '@/app/(protected)/(cards)/cards/factions/primal/rex-the-unbroken'
+import card317 from '@/app/(protected)/(cards)/cards/factions/primal/sabertooth-stalker'
+import card318 from '@/app/(protected)/(cards)/cards/factions/primal/scent-of-prey'
+import card319 from '@/app/(protected)/(cards)/cards/factions/primal/shaman-of-the-tribe'
+import card320 from '@/app/(protected)/(cards)/cards/factions/primal/spinosaur-hunter'
+import card321 from '@/app/(protected)/(cards)/cards/factions/primal/spirit-caller'
+import card322 from '@/app/(protected)/(cards)/cards/factions/primal/stampede'
+import card323 from '@/app/(protected)/(cards)/cards/factions/primal/stone-thrower'
+import card324 from '@/app/(protected)/(cards)/cards/factions/primal/swamp-croc'
+import card325 from '@/app/(protected)/(cards)/cards/factions/primal/swamp-viper'
+import card326 from '@/app/(protected)/(cards)/cards/factions/primal/tar-pits'
+import card327 from '@/app/(protected)/(cards)/cards/factions/primal/the-world-serpent'
+import card328 from '@/app/(protected)/(cards)/cards/factions/primal/thornback-boar'
+import card329 from '@/app/(protected)/(cards)/cards/factions/primal/thunder-lizard'
+import card330 from '@/app/(protected)/(cards)/cards/factions/primal/tribal-warchief'
+import card331 from '@/app/(protected)/(cards)/cards/factions/primal/triceratops-matriarch'
+import card332 from '@/app/(protected)/(cards)/cards/factions/primal/tusked-hog'
+import card333 from '@/app/(protected)/(cards)/cards/factions/primal/venom-spitter'
+import card334 from '@/app/(protected)/(cards)/cards/factions/primal/woolly-rhino'
+import card335 from '@/app/(protected)/(cards)/cards/factions/primal/wrath-of-the-volcano'
+import card336 from '@/app/(protected)/(cards)/cards/factions/void/abyssal-hound'
+import card337 from '@/app/(protected)/(cards)/cards/factions/void/black-grimoire'
+import card338 from '@/app/(protected)/(cards)/cards/factions/void/bone-crawler'
+import card339 from '@/app/(protected)/(cards)/cards/factions/void/bone-dragon'
+import card340 from '@/app/(protected)/(cards)/cards/factions/void/boneyard'
+import card341 from '@/app/(protected)/(cards)/cards/factions/void/carrion-swarm'
+import card342 from '@/app/(protected)/(cards)/cards/factions/void/corrosion-totem'
+import card343 from '@/app/(protected)/(cards)/cards/factions/void/cursed-skull'
+import card344 from '@/app/(protected)/(cards)/cards/factions/void/dark-pact'
+import card345 from '@/app/(protected)/(cards)/cards/factions/void/death-mark'
+import card346 from '@/app/(protected)/(cards)/cards/factions/void/devourer-of-light'
+import card347 from '@/app/(protected)/(cards)/cards/factions/void/dread-knight'
+import card348 from '@/app/(protected)/(cards)/cards/factions/void/eater-of-worlds'
+import card349 from '@/app/(protected)/(cards)/cards/factions/void/entropy-mage'
+import card350 from '@/app/(protected)/(cards)/cards/factions/void/flesh-weaver'
+import card351 from '@/app/(protected)/(cards)/cards/factions/void/gate-of-oblivion'
+import card352 from '@/app/(protected)/(cards)/cards/factions/void/grasping-dead'
+import card353 from '@/app/(protected)/(cards)/cards/factions/void/grave-whisperer'
+import card354 from '@/app/(protected)/(cards)/cards/factions/void/gravebound-colossus'
+import card355 from '@/app/(protected)/(cards)/cards/factions/void/herald-of-the-end'
+import card356 from '@/app/(protected)/(cards)/cards/factions/void/hollow-cultist'
+import card357 from '@/app/(protected)/(cards)/cards/factions/void/lich-of-the-last-hour'
+import card358 from '@/app/(protected)/(cards)/cards/factions/void/mother-of-shadows'
+import card359 from '@/app/(protected)/(cards)/cards/factions/void/necro-scholar'
+import card360 from '@/app/(protected)/(cards)/cards/factions/void/nightmare-steed'
+import card361 from '@/app/(protected)/(cards)/cards/factions/void/oblivion'
+import card362 from '@/app/(protected)/(cards)/cards/factions/void/pact-keeper'
+import card363 from '@/app/(protected)/(cards)/cards/factions/void/pact-of-hunger'
+import card364 from '@/app/(protected)/(cards)/cards/factions/void/plague-brand'
+import card365 from '@/app/(protected)/(cards)/cards/factions/void/plague-vial'
+import card366 from '@/app/(protected)/(cards)/cards/factions/void/raise-the-dead'
+import card367 from '@/app/(protected)/(cards)/cards/factions/void/rotting-giant'
+import card368 from '@/app/(protected)/(cards)/cards/factions/void/shade-lurker'
+import card369 from '@/app/(protected)/(cards)/cards/factions/void/soul-drain'
+import card370 from '@/app/(protected)/(cards)/cards/factions/void/soul-harvester'
+import card371 from '@/app/(protected)/(cards)/cards/factions/void/soul-jar'
+import card372 from '@/app/(protected)/(cards)/cards/factions/void/soul-reaver'
+import card373 from '@/app/(protected)/(cards)/cards/factions/void/the-final-silence'
+import card374 from '@/app/(protected)/(cards)/cards/factions/void/the-last-king'
+import card375 from '@/app/(protected)/(cards)/cards/factions/void/tomb-listener'
+import card376 from '@/app/(protected)/(cards)/cards/factions/void/tomb-warden'
+import card377 from '@/app/(protected)/(cards)/cards/factions/void/void-collapse'
+import card378 from '@/app/(protected)/(cards)/cards/factions/void/void-leech'
+import card379 from '@/app/(protected)/(cards)/cards/factions/void/void-spawn'
+import card380 from '@/app/(protected)/(cards)/cards/factions/void/void-tendril'
+import card381 from '@/app/(protected)/(cards)/cards/factions/void/wailing-banshee'
+import card382 from '@/app/(protected)/(cards)/cards/heroes/ada-copperwick/ada-copperwick'
+import card383 from '@/app/(protected)/(cards)/cards/heroes/ada-copperwick/blueprint'
+import card384 from '@/app/(protected)/(cards)/cards/heroes/ada-copperwick/cogsworth-the-assistant'
+import card385 from '@/app/(protected)/(cards)/cards/heroes/ada-copperwick/galvanic-spark'
+import card386 from '@/app/(protected)/(cards)/cards/heroes/ada-copperwick/tesla-wand'
+import card387 from '@/app/(protected)/(cards)/cards/heroes/ada-copperwick/the-copperwick-engine'
+import card388 from '@/app/(protected)/(cards)/cards/heroes/aldric-dawnkeeper/aldric-dawnkeeper'
+import card389 from '@/app/(protected)/(cards)/cards/heroes/aldric-dawnkeeper/lantern-of-dawn'
+import card390 from '@/app/(protected)/(cards)/cards/heroes/aldric-dawnkeeper/morning-prayer'
+import card391 from '@/app/(protected)/(cards)/cards/heroes/aldric-dawnkeeper/sister-elowen'
+import card392 from '@/app/(protected)/(cards)/cards/heroes/aldric-dawnkeeper/sunrise'
+import card393 from '@/app/(protected)/(cards)/cards/heroes/aldric-dawnkeeper/the-dawn-angel'
+import card394 from '@/app/(protected)/(cards)/cards/heroes/caelus-the-usurper/caelus-the-usurper'
+import card395 from '@/app/(protected)/(cards)/cards/heroes/caelus-the-usurper/praetorian-guard'
+import card396 from '@/app/(protected)/(cards)/cards/heroes/caelus-the-usurper/usurpers-decree'
+import card397 from '@/app/(protected)/(cards)/cards/heroes/chancellor-brassmaw/brass-enforcer'
+import card398 from '@/app/(protected)/(cards)/cards/heroes/chancellor-brassmaw/chancellor-brassmaw'
+import card399 from '@/app/(protected)/(cards)/cards/heroes/chancellor-brassmaw/tax-automaton'
+import card400 from '@/app/(protected)/(cards)/cards/heroes/gideon-ironsteam/boiler-burst'
+import card401 from '@/app/(protected)/(cards)/cards/heroes/gideon-ironsteam/bolt-the-iron-bulldog'
+import card402 from '@/app/(protected)/(cards)/cards/heroes/gideon-ironsteam/gideon-ironsteam'
+import card403 from '@/app/(protected)/(cards)/cards/heroes/gideon-ironsteam/iron-resolve'
+import card404 from '@/app/(protected)/(cards)/cards/heroes/gideon-ironsteam/ironsteam-exosuit'
+import card405 from '@/app/(protected)/(cards)/cards/heroes/gideon-ironsteam/steam-hammer'
+import card406 from '@/app/(protected)/(cards)/cards/heroes/gorrak-tyrant-king/gorrak-tyrant-king'
+import card407 from '@/app/(protected)/(cards)/cards/heroes/gorrak-tyrant-king/primal-roar'
+import card408 from '@/app/(protected)/(cards)/cards/heroes/gorrak-tyrant-king/tyrant-hatchling'
+import card409 from '@/app/(protected)/(cards)/cards/heroes/hollow-astronomer/black-comet'
+import card410 from '@/app/(protected)/(cards)/cards/heroes/hollow-astronomer/hollow-astronomer'
+import card411 from '@/app/(protected)/(cards)/cards/heroes/hollow-astronomer/void-acolyte'
+import card412 from '@/app/(protected)/(cards)/cards/heroes/ilyra-starweaver/constellation-weave'
+import card413 from '@/app/(protected)/(cards)/cards/heroes/ilyra-starweaver/falling-star'
+import card414 from '@/app/(protected)/(cards)/cards/heroes/ilyra-starweaver/ilyra-starweaver'
+import card415 from '@/app/(protected)/(cards)/cards/heroes/ilyra-starweaver/lumen-the-star-owl'
+import card416 from '@/app/(protected)/(cards)/cards/heroes/ilyra-starweaver/staff-of-the-starweaver'
+import card417 from '@/app/(protected)/(cards)/cards/heroes/ilyra-starweaver/starweavers-astrolabe'
+import card418 from '@/app/(protected)/(cards)/cards/heroes/kazhul-mother-of-ash/ash-drake'
+import card419 from '@/app/(protected)/(cards)/cards/heroes/kazhul-mother-of-ash/eruption'
+import card420 from '@/app/(protected)/(cards)/cards/heroes/kazhul-mother-of-ash/kazhul-mother-of-ash'
+import card421 from '@/app/(protected)/(cards)/cards/heroes/kora-wildfang/bonefang-bow'
+import card422 from '@/app/(protected)/(cards)/cards/heroes/kora-wildfang/fang-the-sabertooth'
+import card423 from '@/app/(protected)/(cards)/cards/heroes/kora-wildfang/grawl-the-dire-wolf'
+import card424 from '@/app/(protected)/(cards)/cards/heroes/kora-wildfang/kora-wildfang'
+import card425 from '@/app/(protected)/(cards)/cards/heroes/kora-wildfang/pounce'
+import card426 from '@/app/(protected)/(cards)/cards/heroes/kora-wildfang/wild-hunt'
+import card427 from '@/app/(protected)/(cards)/cards/heroes/legate-varro/aquila-of-the-ninth'
+import card428 from '@/app/(protected)/(cards)/cards/heroes/legate-varro/gladius-of-the-legate'
+import card429 from '@/app/(protected)/(cards)/cards/heroes/legate-varro/legate-varro'
+import card430 from '@/app/(protected)/(cards)/cards/heroes/legate-varro/signifer-lucius'
+import card431 from '@/app/(protected)/(cards)/cards/heroes/legate-varro/the-ninths-stand'
+import card432 from '@/app/(protected)/(cards)/cards/heroes/legate-varro/varros-orders'
+import card433 from '@/app/(protected)/(cards)/cards/heroes/malachar-the-unmade/malachar-the-unmade'
+import card434 from '@/app/(protected)/(cards)/cards/heroes/malachar-the-unmade/scepter-of-unmaking'
+import card435 from '@/app/(protected)/(cards)/cards/heroes/malachar-the-unmade/the-hollow-crown'
+import card436 from '@/app/(protected)/(cards)/cards/heroes/malachar-the-unmade/tome-of-endings'
+import card437 from '@/app/(protected)/(cards)/cards/heroes/malachar-the-unmade/unravel'
+import card438 from '@/app/(protected)/(cards)/cards/heroes/malachar-the-unmade/void-rift'
+import card439 from '@/app/(protected)/(cards)/cards/heroes/morgrath-lich-abbot/dark-sermon'
+import card440 from '@/app/(protected)/(cards)/cards/heroes/morgrath-lich-abbot/morgrath-lich-abbot'
+import card441 from '@/app/(protected)/(cards)/cards/heroes/morgrath-lich-abbot/skeletal-monk'
+import card442 from '@/app/(protected)/(cards)/cards/heroes/nysa-goldbow/argos-the-silver-hound'
+import card443 from '@/app/(protected)/(cards)/cards/heroes/nysa-goldbow/arrow-of-the-sun'
+import card444 from '@/app/(protected)/(cards)/cards/heroes/nysa-goldbow/goldbow'
+import card445 from '@/app/(protected)/(cards)/cards/heroes/nysa-goldbow/hunt-of-the-goddess'
+import card446 from '@/app/(protected)/(cards)/cards/heroes/nysa-goldbow/nysa-goldbow'
+import card447 from '@/app/(protected)/(cards)/cards/heroes/nysa-goldbow/temple-of-the-huntress'
+import card448 from '@/app/(protected)/(cards)/cards/heroes/nyx-hollowsong/echo-the-spirit-crow'
+import card449 from '@/app/(protected)/(cards)/cards/heroes/nyx-hollowsong/hollow-harp'
+import card450 from '@/app/(protected)/(cards)/cards/heroes/nyx-hollowsong/lullaby-of-the-lost'
+import card451 from '@/app/(protected)/(cards)/cards/heroes/nyx-hollowsong/nyx-hollowsong'
+import card452 from '@/app/(protected)/(cards)/cards/heroes/nyx-hollowsong/requiem'
+import card453 from '@/app/(protected)/(cards)/cards/heroes/nyx-hollowsong/the-singing-graves'
+import card454 from '@/app/(protected)/(cards)/cards/heroes/omnigear-prime/core-meltdown'
+import card455 from '@/app/(protected)/(cards)/cards/heroes/omnigear-prime/omnigear-prime'
+import card456 from '@/app/(protected)/(cards)/cards/heroes/omnigear-prime/omnigear-sentinel'
+import card457 from '@/app/(protected)/(cards)/cards/heroes/ooma-bonewhisper/bone-reading'
+import card458 from '@/app/(protected)/(cards)/cards/heroes/ooma-bonewhisper/mammoth-skull-staff'
+import card459 from '@/app/(protected)/(cards)/cards/heroes/ooma-bonewhisper/old-tusk'
+import card460 from '@/app/(protected)/(cards)/cards/heroes/ooma-bonewhisper/ooma-bonewhisper'
+import card461 from '@/app/(protected)/(cards)/cards/heroes/ooma-bonewhisper/spirit-of-the-herd'
+import card462 from '@/app/(protected)/(cards)/cards/heroes/ooma-bonewhisper/the-ancestor-tree'
+import card463 from '@/app/(protected)/(cards)/cards/heroes/overseer-kade/overseer-kade'
+import card464 from '@/app/(protected)/(cards)/cards/heroes/overseer-kade/surveillance-net'
+import card465 from '@/app/(protected)/(cards)/cards/heroes/overseer-kade/syndicate-enforcer'
+import card466 from '@/app/(protected)/(cards)/cards/heroes/queen-static/queen-static'
+import card467 from '@/app/(protected)/(cards)/cards/heroes/queen-static/signal-storm'
+import card468 from '@/app/(protected)/(cards)/cards/heroes/queen-static/static-wraith'
+import card469 from '@/app/(protected)/(cards)/cards/heroes/ryn-voltblade/kaze-the-cyber-ronin'
+import card470 from '@/app/(protected)/(cards)/cards/heroes/ryn-voltblade/lightning-dash'
+import card471 from '@/app/(protected)/(cards)/cards/heroes/ryn-voltblade/ryn-voltblade'
+import card472 from '@/app/(protected)/(cards)/cards/heroes/ryn-voltblade/storm-plate'
+import card473 from '@/app/(protected)/(cards)/cards/heroes/ryn-voltblade/thunderclap'
+import card474 from '@/app/(protected)/(cards)/cards/heroes/ryn-voltblade/voltblade'
+import card475 from '@/app/(protected)/(cards)/cards/heroes/tauron-labyrinth-lord/dead-end'
+import card476 from '@/app/(protected)/(cards)/cards/heroes/tauron-labyrinth-lord/labyrinth-guardian'
+import card477 from '@/app/(protected)/(cards)/cards/heroes/tauron-labyrinth-lord/tauron-labyrinth-lord'
+import card478 from '@/app/(protected)/(cards)/cards/heroes/vex-nightwire/bounty-contract'
+import card479 from '@/app/(protected)/(cards)/cards/heroes/vex-nightwire/holo-crossbow'
+import card480 from '@/app/(protected)/(cards)/cards/heroes/vex-nightwire/nightwire-net'
+import card481 from '@/app/(protected)/(cards)/cards/heroes/vex-nightwire/pixel-the-drone-fox'
+import card482 from '@/app/(protected)/(cards)/cards/heroes/vex-nightwire/target-lock'
+import card483 from '@/app/(protected)/(cards)/cards/heroes/vex-nightwire/vex-nightwire'
+import card484 from '@/app/(protected)/(cards)/cards/heroes/vorhal-the-last-hour/final-toll'
+import card485 from '@/app/(protected)/(cards)/cards/heroes/vorhal-the-last-hour/hour-wraith'
+import card486 from '@/app/(protected)/(cards)/cards/heroes/vorhal-the-last-hour/vorhal-the-last-hour'
+import card487 from '@/app/(protected)/(cards)/cards/heroes/xulthar-the-devourer/endless-hunger'
+import card488 from '@/app/(protected)/(cards)/cards/heroes/xulthar-the-devourer/maw-of-xulthar'
+import card489 from '@/app/(protected)/(cards)/cards/heroes/xulthar-the-devourer/xulthar-the-devourer'
+import card490 from '@/app/(protected)/(cards)/cards/neutral/acid-flask'
+import card491 from '@/app/(protected)/(cards)/cards/neutral/aegis-lantern'
+import card492 from '@/app/(protected)/(cards)/cards/neutral/aegis-of-eternity'
+import card493 from '@/app/(protected)/(cards)/cards/neutral/aeon-phoenix'
+import card494 from '@/app/(protected)/(cards)/cards/neutral/antidote'
+import card495 from '@/app/(protected)/(cards)/cards/neutral/banner-of-the-rift'
+import card496 from '@/app/(protected)/(cards)/cards/neutral/bannerman-sash'
+import card497 from '@/app/(protected)/(cards)/cards/neutral/battle-herald'
+import card498 from '@/app/(protected)/(cards)/cards/neutral/bazaar-of-ages'
+import card499 from '@/app/(protected)/(cards)/cards/neutral/berserker-pact'
+import card500 from '@/app/(protected)/(cards)/cards/neutral/blade-dancer'
+import card501 from '@/app/(protected)/(cards)/cards/neutral/blade-of-ages'
+import card502 from '@/app/(protected)/(cards)/cards/neutral/brittle-hex'
+import card503 from '@/app/(protected)/(cards)/cards/neutral/broken-clocktower'
+import card504 from '@/app/(protected)/(cards)/cards/neutral/bulwark-totem'
+import card505 from '@/app/(protected)/(cards)/cards/neutral/buried-capsule'
+import card506 from '@/app/(protected)/(cards)/cards/neutral/charged-shard'
+import card507 from '@/app/(protected)/(cards)/cards/neutral/chrono-acrobat'
+import card508 from '@/app/(protected)/(cards)/cards/neutral/chrono-anchor'
+import card509 from '@/app/(protected)/(cards)/cards/neutral/chrono-battery'
+import card510 from '@/app/(protected)/(cards)/cards/neutral/chrono-golem'
+import card511 from '@/app/(protected)/(cards)/cards/neutral/chronomancer-adept'
+import card512 from '@/app/(protected)/(cards)/cards/neutral/chronos-leviathan'
+import card513 from '@/app/(protected)/(cards)/cards/neutral/clockheart-engine'
+import card514 from '@/app/(protected)/(cards)/cards/neutral/counterspell-glyph'
+import card515 from '@/app/(protected)/(cards)/cards/neutral/cowards-brand'
+import card516 from '@/app/(protected)/(cards)/cards/neutral/cursed-crown'
+import card517 from '@/app/(protected)/(cards)/cards/neutral/cursed-idol'
+import card518 from '@/app/(protected)/(cards)/cards/neutral/drifting-merchant'
+import card519 from '@/app/(protected)/(cards)/cards/neutral/echoing-knight'
+import card520 from '@/app/(protected)/(cards)/cards/neutral/elixir-of-vigor'
+import card521 from '@/app/(protected)/(cards)/cards/neutral/end-of-days'
+import card522 from '@/app/(protected)/(cards)/cards/neutral/era-hopper'
+import card523 from '@/app/(protected)/(cards)/cards/neutral/eye-of-the-storm'
+import card524 from '@/app/(protected)/(cards)/cards/neutral/ferryman-of-hours'
+import card525 from '@/app/(protected)/(cards)/cards/neutral/fire-flask'
+import card526 from '@/app/(protected)/(cards)/cards/neutral/flash-powder'
+import card527 from '@/app/(protected)/(cards)/cards/neutral/frozen-shackles'
+import card528 from '@/app/(protected)/(cards)/cards/neutral/gag-of-silence'
+import card529 from '@/app/(protected)/(cards)/cards/neutral/garden-of-forever'
+import card530 from '@/app/(protected)/(cards)/cards/neutral/grail-of-ages'
+import card531 from '@/app/(protected)/(cards)/cards/neutral/grappling-hook'
+import card532 from '@/app/(protected)/(cards)/cards/neutral/gravekeeper-of-eras'
+import card533 from '@/app/(protected)/(cards)/cards/neutral/great-purge'
+import card534 from '@/app/(protected)/(cards)/cards/neutral/hall-of-echoes'
+import card535 from '@/app/(protected)/(cards)/cards/neutral/healing-draught'
+import card536 from '@/app/(protected)/(cards)/cards/neutral/healing-spring'
+import card537 from '@/app/(protected)/(cards)/cards/neutral/hourglass-dagger'
+import card538 from '@/app/(protected)/(cards)/cards/neutral/hourglass-plating'
+import card539 from '@/app/(protected)/(cards)/cards/neutral/hourglass-sentry'
+import card540 from '@/app/(protected)/(cards)/cards/neutral/hourglass-warden'
+import card541 from '@/app/(protected)/(cards)/cards/neutral/iron-buckler'
+import card542 from '@/app/(protected)/(cards)/cards/neutral/iron-manacles'
+import card543 from '@/app/(protected)/(cards)/cards/neutral/iron-rations'
+import card544 from '@/app/(protected)/(cards)/cards/neutral/keeper-of-moments'
+import card545 from '@/app/(protected)/(cards)/cards/neutral/last-oath'
+import card546 from '@/app/(protected)/(cards)/cards/neutral/leeching-mark'
+import card547 from '@/app/(protected)/(cards)/cards/neutral/lost-squire'
+import card548 from '@/app/(protected)/(cards)/cards/neutral/mend-the-timeline'
+import card549 from '@/app/(protected)/(cards)/cards/neutral/mirror-ward'
+import card550 from '@/app/(protected)/(cards)/cards/neutral/null-field'
+import card551 from '@/app/(protected)/(cards)/cards/neutral/open-market'
+import card552 from '@/app/(protected)/(cards)/cards/neutral/paradox-loop'
+import card553 from '@/app/(protected)/(cards)/cards/neutral/paradox-twin'
+import card554 from '@/app/(protected)/(cards)/cards/neutral/patched-leather'
+import card555 from '@/app/(protected)/(cards)/cards/neutral/patchwork-golem'
+import card556 from '@/app/(protected)/(cards)/cards/neutral/phase-cloak'
+import card557 from '@/app/(protected)/(cards)/cards/neutral/phase-stalker'
+import card558 from '@/app/(protected)/(cards)/cards/neutral/philosophers-hourglass'
+import card559 from '@/app/(protected)/(cards)/cards/neutral/phoenix-feather'
+import card560 from '@/app/(protected)/(cards)/cards/neutral/pitfall'
+import card561 from '@/app/(protected)/(cards)/cards/neutral/quicken'
+import card562 from '@/app/(protected)/(cards)/cards/neutral/recruiting-tent'
+import card563 from '@/app/(protected)/(cards)/cards/neutral/regrowth-moss'
+import card564 from '@/app/(protected)/(cards)/cards/neutral/repair-kit'
+import card565 from '@/app/(protected)/(cards)/cards/neutral/rewind'
+import card566 from '@/app/(protected)/(cards)/cards/neutral/rift-behemoth'
+import card567 from '@/app/(protected)/(cards)/cards/neutral/rift-bomb'
+import card568 from '@/app/(protected)/(cards)/cards/neutral/rift-collapse'
+import card569 from '@/app/(protected)/(cards)/cards/neutral/rift-dragonling'
+import card570 from '@/app/(protected)/(cards)/cards/neutral/rift-grenade'
+import card571 from '@/app/(protected)/(cards)/cards/neutral/rift-guardian'
+import card572 from '@/app/(protected)/(cards)/cards/neutral/rift-hound'
+import card573 from '@/app/(protected)/(cards)/cards/neutral/rift-leech'
+import card574 from '@/app/(protected)/(cards)/cards/neutral/rift-mail'
+import card575 from '@/app/(protected)/(cards)/cards/neutral/rift-market'
+import card576 from '@/app/(protected)/(cards)/cards/neutral/rift-medic'
+import card577 from '@/app/(protected)/(cards)/cards/neutral/rift-moth'
+import card578 from '@/app/(protected)/(cards)/cards/neutral/rift-scavenger'
+import card579 from '@/app/(protected)/(cards)/cards/neutral/rift-snare'
+import card580 from '@/app/(protected)/(cards)/cards/neutral/rusted-shackles'
+import card581 from '@/app/(protected)/(cards)/cards/neutral/rusty-sword'
+import card582 from '@/app/(protected)/(cards)/cards/neutral/sanctum-of-hours'
+import card583 from '@/app/(protected)/(cards)/cards/neutral/sand-wraith'
+import card584 from '@/app/(protected)/(cards)/cards/neutral/scholars-lens'
+import card585 from '@/app/(protected)/(cards)/cards/neutral/sharpening-stone'
+import card586 from '@/app/(protected)/(cards)/cards/neutral/shatter-time'
+import card587 from '@/app/(protected)/(cards)/cards/neutral/shieldbearer-of-ages'
+import card588 from '@/app/(protected)/(cards)/cards/neutral/shifting-sands'
+import card589 from '@/app/(protected)/(cards)/cards/neutral/siege-engine'
+import card590 from '@/app/(protected)/(cards)/cards/neutral/siphon-rune'
+import card591 from '@/app/(protected)/(cards)/cards/neutral/sky-courier'
+import card592 from '@/app/(protected)/(cards)/cards/neutral/skyship-gunner'
+import card593 from '@/app/(protected)/(cards)/cards/neutral/smoke-bomb'
+import card594 from '@/app/(protected)/(cards)/cards/neutral/spyglass'
+import card595 from '@/app/(protected)/(cards)/cards/neutral/stasis-bubble'
+import card596 from '@/app/(protected)/(cards)/cards/neutral/sunder'
+import card597 from '@/app/(protected)/(cards)/cards/neutral/sundial-of-plenty'
+import card598 from '@/app/(protected)/(cards)/cards/neutral/tavern-brawler'
+import card599 from '@/app/(protected)/(cards)/cards/neutral/temporal-prison'
+import card600 from '@/app/(protected)/(cards)/cards/neutral/temporal-shock'
+import card601 from '@/app/(protected)/(cards)/cards/neutral/the-last-sentinel'
+import card602 from '@/app/(protected)/(cards)/cards/neutral/the-nexus'
+import card603 from '@/app/(protected)/(cards)/cards/neutral/thorn-collar'
+import card604 from '@/app/(protected)/(cards)/cards/neutral/thorned-colossus'
+import card605 from '@/app/(protected)/(cards)/cards/neutral/thorned-mail'
+import card606 from '@/app/(protected)/(cards)/cards/neutral/time-capsule'
+import card607 from '@/app/(protected)/(cards)/cards/neutral/time-thief'
+import card608 from '@/app/(protected)/(cards)/cards/neutral/time-wanderer'
+import card609 from '@/app/(protected)/(cards)/cards/neutral/timeguard-plate'
+import card610 from '@/app/(protected)/(cards)/cards/neutral/timeworn-champion'
+import card611 from '@/app/(protected)/(cards)/cards/neutral/titan-gauntlet'
+import card612 from '@/app/(protected)/(cards)/cards/neutral/training-grounds'
+import card613 from '@/app/(protected)/(cards)/cards/neutral/tripwire'
+import card614 from '@/app/(protected)/(cards)/cards/neutral/twin-blades'
+import card615 from '@/app/(protected)/(cards)/cards/neutral/vampire-fang'
+import card616 from '@/app/(protected)/(cards)/cards/neutral/venom-coating'
+import card617 from '@/app/(protected)/(cards)/cards/neutral/veteran-of-many-wars'
+import card618 from '@/app/(protected)/(cards)/cards/neutral/wanderers-camp'
+import card619 from '@/app/(protected)/(cards)/cards/neutral/wanderers-sling'
+import card620 from '@/app/(protected)/(cards)/cards/neutral/wandering-scribe'
+import card621 from '@/app/(protected)/(cards)/cards/neutral/wandering-sellsword'
+import card622 from '@/app/(protected)/(cards)/cards/neutral/war-drum'
+import card623 from '@/app/(protected)/(cards)/cards/neutral/wayfinder-scout'
+import card624 from '@/app/(protected)/(cards)/cards/neutral/whetted-edge'
+import card625 from '@/app/(protected)/(cards)/cards/neutral/winged-harness'
 
 /** Every card of the game, with the path of its file (relative to this folder). */
 export const CARD_FILES: { file: string; card: CardDefinition }[] = [
@@ -642,594 +654,606 @@ export const CARD_FILES: { file: string; card: CardDefinition }[] = [
   { file: 'classes/hunter/starshot-bow', card: card21 },
   { file: 'classes/hunter/tame-beast', card: card22 },
   { file: 'classes/hunter/track', card: card23 },
-  { file: 'classes/hunter/twin-hunting-knives', card: card24 },
-  { file: 'classes/hunter/volley', card: card25 },
-  { file: 'classes/hunter/wolfhide-armor', card: card26 },
-  { file: 'classes/mage/apprentice-wand', card: card27 },
-  { file: 'classes/mage/arcane-intellect', card: card28 },
-  { file: 'classes/mage/blizzard', card: card29 },
-  { file: 'classes/mage/crown-of-the-arcanist', card: card30 },
-  { file: 'classes/mage/fireball', card: card31 },
-  { file: 'classes/mage/flame-wave', card: card32 },
-  { file: 'classes/mage/frost-nova', card: card33 },
-  { file: 'classes/mage/frost-spear', card: card34 },
-  { file: 'classes/mage/frost-staff', card: card35 },
-  { file: 'classes/mage/ice-lance', card: card36 },
-  { file: 'classes/mage/lightning-bolt', card: card37 },
-  { file: 'classes/mage/magic-bolt', card: card38 },
-  { file: 'classes/mage/mana-potion', card: card39 },
-  { file: 'classes/mage/mana-shield', card: card40 },
-  { file: 'classes/mage/meteor', card: card41 },
-  { file: 'classes/mage/mirror-mantle', card: card42 },
-  { file: 'classes/mage/polymorph', card: card43 },
-  { file: 'classes/mage/pyroblast', card: card44 },
-  { file: 'classes/mage/robe-of-stars', card: card45 },
-  { file: 'classes/mage/runeblade', card: card46 },
-  { file: 'classes/mage/scepter-of-storms', card: card47 },
-  { file: 'classes/mage/searing-brand', card: card48 },
-  { file: 'classes/mage/silk-robe', card: card49 },
-  { file: 'classes/mage/spellbook', card: card50 },
-  { file: 'classes/mage/staff-of-embers', card: card51 },
-  { file: 'classes/mage/staff-of-the-archmage', card: card52 },
-  { file: 'classes/mage/time-warp', card: card53 },
-  { file: 'classes/mystic/acolyte-vestments', card: card54 },
-  { file: 'classes/mystic/aegis-of-faith', card: card55 },
-  { file: 'classes/mystic/blessed-mail', card: card56 },
-  { file: 'classes/mystic/blessing', card: card57 },
-  { file: 'classes/mystic/censer-of-souls', card: card58 },
-  { file: 'classes/mystic/divine-shield', card: card59 },
-  { file: 'classes/mystic/halo-of-dawn', card: card60 },
-  { file: 'classes/mystic/holy-smite', card: card61 },
-  { file: 'classes/mystic/holy-water', card: card62 },
-  { file: 'classes/mystic/inner-fire', card: card63 },
-  { file: 'classes/mystic/lightbringer', card: card64 },
-  { file: 'classes/mystic/mass-revival', card: card65 },
-  { file: 'classes/mystic/mend', card: card66 },
-  { file: 'classes/mystic/miracle', card: card67 },
-  { file: 'classes/mystic/oak-scepter', card: card68 },
-  { file: 'classes/mystic/prayer-of-healing', card: card69 },
-  { file: 'classes/mystic/radiance', card: card70 },
-  { file: 'classes/mystic/relic-of-the-saints', card: card71 },
-  { file: 'classes/mystic/resurrection', card: card72 },
-  { file: 'classes/mystic/spirit-guardian', card: card73 },
-  { file: 'classes/mystic/spirit-link', card: card74 },
-  { file: 'classes/mystic/spirit-ward', card: card75 },
-  { file: 'classes/mystic/staff-of-eternity', card: card76 },
-  { file: 'classes/mystic/staff-of-renewal', card: card77 },
-  { file: 'classes/mystic/sun-mace', card: card78 },
-  { file: 'classes/warrior/aegis-of-the-warlord', card: card79 },
-  { file: 'classes/warrior/battle-cry', card: card80 },
-  { file: 'classes/warrior/bloodthirst-cleaver', card: card81 },
-  { file: 'classes/warrior/brace', card: card82 },
-  { file: 'classes/warrior/bronze-cuirass', card: card83 },
-  { file: 'classes/warrior/chainmail', card: card84 },
-  { file: 'classes/warrior/charge-in', card: card85 },
-  { file: 'classes/warrior/cleaving-strike', card: card86 },
-  { file: 'classes/warrior/execute', card: card87 },
-  { file: 'classes/warrior/greatsword-of-dawn', card: card88 },
-  { file: 'classes/warrior/hammer-of-the-ages', card: card89 },
-  { file: 'classes/warrior/iron-gladius', card: card90 },
-  { file: 'classes/warrior/iron-will', card: card91 },
-  { file: 'classes/warrior/knights-plate', card: card92 },
-  { file: 'classes/warrior/last-stand', card: card93 },
-  { file: 'classes/warrior/mighty-blow', card: card94 },
-  { file: 'classes/warrior/rampage', card: card95 },
-  { file: 'classes/warrior/shield-bash', card: card96 },
-  { file: 'classes/warrior/spiked-pauldrons', card: card97 },
-  { file: 'classes/warrior/tower-mace', card: card98 },
-  { file: 'classes/warrior/war-axe', card: card99 },
-  { file: 'classes/warrior/war-banner', card: card100 },
-  { file: 'classes/warrior/warlords-command', card: card101 },
-  { file: 'classes/warrior/whetstone', card: card102 },
-  { file: 'classes/warrior/whirlwind', card: card103 },
-  { file: 'factions/arcane/apprentice-mage', card: card104 },
-  { file: 'factions/arcane/arcane-backlash', card: card105 },
-  { file: 'factions/arcane/arcane-explosion', card: card106 },
-  { file: 'factions/arcane/arcane-familiar', card: card107 },
-  { file: 'factions/arcane/arcane-missiles', card: card108 },
-  { file: 'factions/arcane/archive-guardian', card: card109 },
-  { file: 'factions/arcane/archmage-of-the-spire', card: card110 },
-  { file: 'factions/arcane/archwizard-morvane', card: card111 },
-  { file: 'factions/arcane/battlemage-squire', card: card112 },
-  { file: 'factions/arcane/candle-keeper', card: card113 },
-  { file: 'factions/arcane/celestial-phoenix', card: card114 },
-  { file: 'factions/arcane/chain-lightning', card: card115 },
-  { file: 'factions/arcane/counter-rune', card: card116 },
-  { file: 'factions/arcane/court-illusionist', card: card117 },
-  { file: 'factions/arcane/crystal-sentinel', card: card118 },
-  { file: 'factions/arcane/dragon-of-runes', card: card119 },
-  { file: 'factions/arcane/frost-adept', card: card120 },
-  { file: 'factions/arcane/frost-sigil', card: card121 },
-  { file: 'factions/arcane/glacial-pulse', card: card122 },
-  { file: 'factions/arcane/grand-conjurer', card: card123 },
-  { file: 'factions/arcane/hall-of-mirrors', card: card124 },
-  { file: 'factions/arcane/ley-line-conduit', card: card125 },
-  { file: 'factions/arcane/mana-crystal', card: card126 },
-  { file: 'factions/arcane/mind-freeze', card: card127 },
-  { file: 'factions/arcane/mirror-mage', card: card128 },
-  { file: 'factions/arcane/moonlight-enchantress', card: card129 },
-  { file: 'factions/arcane/owl-messenger', card: card130 },
-  { file: 'factions/arcane/pyromancer', card: card131 },
-  { file: 'factions/arcane/rune-golem', card: card132 },
-  { file: 'factions/arcane/rune-sprite', card: card133 },
-  { file: 'factions/arcane/scroll-of-wisdom', card: card134 },
-  { file: 'factions/arcane/scry-the-stars', card: card135 },
-  { file: 'factions/arcane/spell-eater', card: card136 },
-  { file: 'factions/arcane/spellbinder', card: card137 },
-  { file: 'factions/arcane/spellward-knight', card: card138 },
-  { file: 'factions/arcane/starlit-unicorn', card: card139 },
-  { file: 'factions/arcane/storm-adept', card: card140 },
-  { file: 'factions/arcane/storm-caller', card: card141 },
-  { file: 'factions/arcane/the-first-wizard', card: card142 },
-  { file: 'factions/arcane/the-starlight-oracle', card: card143 },
-  { file: 'factions/arcane/tome-of-whispers', card: card144 },
-  { file: 'factions/arcane/tower-novice', card: card145 },
-  { file: 'factions/arcane/tower-of-stars', card: card146 },
-  { file: 'factions/arcane/wand-duelist', card: card147 },
-  { file: 'factions/arcane/wand-of-ruin', card: card148 },
-  { file: 'factions/arcane/wildfire', card: card149 },
-  { file: 'factions/bronze/aqueduct-engineer', card: card150 },
-  { file: 'factions/bronze/arena-champion', card: card151 },
-  { file: 'factions/bronze/ballista-crew', card: card152 },
-  { file: 'factions/bronze/bronze-cohort', card: card153 },
-  { file: 'factions/bronze/bronze-colossus-guard', card: card154 },
-  { file: 'factions/bronze/bronze-legionary', card: card155 },
-  { file: 'factions/bronze/centurion-drillmaster', card: card156 },
-  { file: 'factions/bronze/centurion-maximus', card: card157 },
-  { file: 'factions/bronze/chariot-racer', card: card158 },
-  { file: 'factions/bronze/cohort-banner', card: card159 },
-  { file: 'factions/bronze/colosseum', card: card160 },
-  { file: 'factions/bronze/colossus-of-the-harbor', card: card161 },
-  { file: 'factions/bronze/eternal-emperor', card: card162 },
-  { file: 'factions/bronze/flame-legionary', card: card163 },
-  { file: 'factions/bronze/forced-march', card: card164 },
-  { file: 'factions/bronze/forum-of-heroes', card: card165 },
-  { file: 'factions/bronze/gladiator-twins', card: card166 },
-  { file: 'factions/bronze/golden-laurel', card: card167 },
-  { file: 'factions/bronze/grand-triumph', card: card168 },
-  { file: 'factions/bronze/hold-the-line', card: card169 },
-  { file: 'factions/bronze/hoplite-sentry', card: card170 },
-  { file: 'factions/bronze/imperator-solis', card: card171 },
-  { file: 'factions/bronze/legate-of-the-eagle', card: card172 },
-  { file: 'factions/bronze/legion-quartermaster', card: card173 },
-  { file: 'factions/bronze/legion-rations', card: card174 },
-  { file: 'factions/bronze/legion-slinger', card: card175 },
-  { file: 'factions/bronze/marching-legion', card: card176 },
-  { file: 'factions/bronze/murmillo-champion', card: card177 },
-  { file: 'factions/bronze/net-fighter', card: card178 },
-  { file: 'factions/bronze/phalanx-general', card: card179 },
-  { file: 'factions/bronze/phalanx-recruit', card: card180 },
-  { file: 'factions/bronze/pila-volley', card: card181 },
-  { file: 'factions/bronze/rally-the-cohort', card: card182 },
-  { file: 'factions/bronze/senator-of-coin', card: card183 },
-  { file: 'factions/bronze/shield-wall', card: card184 },
-  { file: 'factions/bronze/shields-up', card: card185 },
-  { file: 'factions/bronze/shieldwall-veteran', card: card186 },
-  { file: 'factions/bronze/spoils-of-war', card: card187 },
-  { file: 'factions/bronze/sun-chariot', card: card188 },
-  { file: 'factions/bronze/temple-acolyte', card: card189 },
-  { file: 'factions/bronze/temple-oracle', card: card190 },
-  { file: 'factions/bronze/testudo-squad', card: card191 },
-  { file: 'factions/bronze/tribune-of-the-legion', card: card192 },
-  { file: 'factions/bronze/war-council', card: card193 },
-  { file: 'factions/bronze/war-priestess', card: card194 },
-  { file: 'factions/clockwork/airship-bombardier', card: card195 },
-  { file: 'factions/clockwork/analytical-engine', card: card196 },
-  { file: 'factions/clockwork/automaton-duelist', card: card197 },
-  { file: 'factions/clockwork/bear-trap-gears', card: card198 },
-  { file: 'factions/clockwork/blueprint-cache', card: card199 },
-  { file: 'factions/clockwork/boiler-brute', card: card200 },
-  { file: 'factions/clockwork/brass-behemoth', card: card201 },
-  { file: 'factions/clockwork/brass-musketeer', card: card202 },
-  { file: 'factions/clockwork/chief-engineer-vance', card: card203 },
-  { file: 'factions/clockwork/chronometer-savant', card: card204 },
-  { file: 'factions/clockwork/clocktower-watchman', card: card205 },
-  { file: 'factions/clockwork/clockwork-dragon', card: card206 },
-  { file: 'factions/clockwork/cog-apprentice', card: card207 },
-  { file: 'factions/clockwork/cogwork-courier', card: card208 },
-  { file: 'factions/clockwork/colossus-mark-ix', card: card209 },
-  { file: 'factions/clockwork/dynamo-golem', card: card210 },
-  { file: 'factions/clockwork/factory-foreman', card: card211 },
-  { file: 'factions/clockwork/full-steam-ahead', card: card212 },
-  { file: 'factions/clockwork/gear-drone', card: card213 },
-  { file: 'factions/clockwork/gear-weaver', card: card214 },
-  { file: 'factions/clockwork/gearworks-tower', card: card215 },
-  { file: 'factions/clockwork/great-foundry', card: card216 },
-  { file: 'factions/clockwork/inventor-of-hours', card: card217 },
-  { file: 'factions/clockwork/iron-walker', card: card218 },
-  { file: 'factions/clockwork/master-artificer', card: card219 },
-  { file: 'factions/clockwork/mechanical-heart', card: card220 },
-  { file: 'factions/clockwork/mechanical-knight', card: card221 },
-  { file: 'factions/clockwork/overclock', card: card222 },
-  { file: 'factions/clockwork/perpetual-engine', card: card223 },
-  { file: 'factions/clockwork/piston-golem', card: card224 },
-  { file: 'factions/clockwork/pocket-watch', card: card225 },
-  { file: 'factions/clockwork/rewind-the-gears', card: card226 },
-  { file: 'factions/clockwork/rivet-hound', card: card227 },
-  { file: 'factions/clockwork/spare-parts', card: card228 },
-  { file: 'factions/clockwork/spark-engineer', card: card229 },
-  { file: 'factions/clockwork/steam-blast', card: card230 },
-  { file: 'factions/clockwork/steam-sentry', card: card231 },
-  { file: 'factions/clockwork/steam-tank', card: card232 },
-  { file: 'factions/clockwork/tesla-sentinel', card: card233 },
-  { file: 'factions/clockwork/the-clockmaker', card: card234 },
-  { file: 'factions/clockwork/the-grand-orrery', card: card235 },
-  { file: 'factions/clockwork/time-lock', card: card236 },
-  { file: 'factions/clockwork/tinker-gnome', card: card237 },
-  { file: 'factions/clockwork/tripwire-turret', card: card238 },
-  { file: 'factions/neon/adrenaline-shot', card: card239 },
-  { file: 'factions/neon/aegis-android', card: card240 },
-  { file: 'factions/neon/arc-trooper', card: card241 },
-  { file: 'factions/neon/black-ice-hacker', card: card242 },
-  { file: 'factions/neon/blackout-specialist', card: card243 },
-  { file: 'factions/neon/chrome-medic', card: card244 },
-  { file: 'factions/neon/cloaking-device', card: card245 },
-  { file: 'factions/neon/cryo-turret', card: card246 },
-  { file: 'factions/neon/cyber-samurai', card: card247 },
-  { file: 'factions/neon/data-burst', card: card248 },
-  { file: 'factions/neon/data-courier', card: card249 },
-  { file: 'factions/neon/drone-swarm', card: card250 },
-  { file: 'factions/neon/emp-mine', card: card251 },
-  { file: 'factions/neon/firewall', card: card252 },
-  { file: 'factions/neon/glitch-runner', card: card253 },
-  { file: 'factions/neon/holo-decoy', card: card254 },
-  { file: 'factions/neon/hover-biker', card: card255 },
-  { file: 'factions/neon/information-broker', card: card256 },
-  { file: 'factions/neon/jammer-unit', card: card257 },
-  { file: 'factions/neon/laser-grid', card: card258 },
-  { file: 'factions/neon/mech-trooper', card: card259 },
-  { file: 'factions/neon/megacity-titan', card: card260 },
-  { file: 'factions/neon/neon-battery', card: card261 },
-  { file: 'factions/neon/neon-blade', card: card262 },
-  { file: 'factions/neon/neon-dancer', card: card263 },
-  { file: 'factions/neon/neon-district', card: card264 },
-  { file: 'factions/neon/netrunner', card: card265 },
-  { file: 'factions/neon/orbital-strike', card: card266 },
-  { file: 'factions/neon/overdrive-mech', card: card267 },
-  { file: 'factions/neon/phantom-assassin', card: card268 },
-  { file: 'factions/neon/pulse-sniper', card: card269 },
-  { file: 'factions/neon/quantum-chip', card: card270 },
-  { file: 'factions/neon/quick-hack', card: card271 },
-  { file: 'factions/neon/riot-enforcer', card: card272 },
-  { file: 'factions/neon/security-drone', card: card273 },
-  { file: 'factions/neon/server-farm', card: card274 },
-  { file: 'factions/neon/stim-pack', card: card275 },
-  { file: 'factions/neon/street-runner', card: card276 },
-  { file: 'factions/neon/synth-brawler', card: card277 },
-  { file: 'factions/neon/system-crash', card: card278 },
-  { file: 'factions/neon/the-oracle-ai', card: card279 },
-  { file: 'factions/neon/velocity-queen', card: card280 },
-  { file: 'factions/neon/zero-the-ghost', card: card281 },
-  { file: 'factions/primal/amber-totem', card: card282 },
-  { file: 'factions/primal/ambush-of-raptors', card: card283 },
-  { file: 'factions/primal/ancient-treant', card: card284 },
-  { file: 'factions/primal/bone-carver', card: card285 },
-  { file: 'factions/primal/call-of-the-wild', card: card286 },
-  { file: 'factions/primal/cave-bear', card: card287 },
-  { file: 'factions/primal/cave-scout', card: card288 },
-  { file: 'factions/primal/dino-egg', card: card289 },
-  { file: 'factions/primal/dino-hatchling', card: card290 },
-  { file: 'factions/primal/elder-mammoth', card: card291 },
-  { file: 'factions/primal/feral-growth', card: card292 },
-  { file: 'factions/primal/healing-herbs', card: card293 },
-  { file: 'factions/primal/herd-mother', card: card294 },
-  { file: 'factions/primal/hunting-party', card: card295 },
-  { file: 'factions/primal/jungle-druid', card: card296 },
-  { file: 'factions/primal/mossback-tortoise', card: card297 },
-  { file: 'factions/primal/mother-of-beasts', card: card298 },
-  { file: 'factions/primal/nest-keeper', card: card299 },
-  { file: 'factions/primal/pit-trap', card: card300 },
-  { file: 'factions/primal/primal-grove', card: card301 },
-  { file: 'factions/primal/primal-rage', card: card302 },
-  { file: 'factions/primal/primeval-titan', card: card303 },
-  { file: 'factions/primal/pterodactyl-rider', card: card304 },
-  { file: 'factions/primal/raptor-alpha', card: card305 },
-  { file: 'factions/primal/raptor-pack', card: card306 },
-  { file: 'factions/primal/raptor-scout', card: card307 },
-  { file: 'factions/primal/rex-the-unbroken', card: card308 },
-  { file: 'factions/primal/sabertooth-stalker', card: card309 },
-  { file: 'factions/primal/scent-of-prey', card: card310 },
-  { file: 'factions/primal/shaman-of-the-tribe', card: card311 },
-  { file: 'factions/primal/spinosaur-hunter', card: card312 },
-  { file: 'factions/primal/spirit-caller', card: card313 },
-  { file: 'factions/primal/stampede', card: card314 },
-  { file: 'factions/primal/stone-thrower', card: card315 },
-  { file: 'factions/primal/swamp-croc', card: card316 },
-  { file: 'factions/primal/swamp-viper', card: card317 },
-  { file: 'factions/primal/tar-pits', card: card318 },
-  { file: 'factions/primal/the-world-serpent', card: card319 },
-  { file: 'factions/primal/thornback-boar', card: card320 },
-  { file: 'factions/primal/thunder-lizard', card: card321 },
-  { file: 'factions/primal/tribal-warchief', card: card322 },
-  { file: 'factions/primal/triceratops-matriarch', card: card323 },
-  { file: 'factions/primal/tusked-hog', card: card324 },
-  { file: 'factions/primal/venom-spitter', card: card325 },
-  { file: 'factions/primal/woolly-rhino', card: card326 },
-  { file: 'factions/primal/wrath-of-the-volcano', card: card327 },
-  { file: 'factions/void/abyssal-hound', card: card328 },
-  { file: 'factions/void/black-grimoire', card: card329 },
-  { file: 'factions/void/bone-crawler', card: card330 },
-  { file: 'factions/void/bone-dragon', card: card331 },
-  { file: 'factions/void/boneyard', card: card332 },
-  { file: 'factions/void/carrion-swarm', card: card333 },
-  { file: 'factions/void/cursed-skull', card: card334 },
-  { file: 'factions/void/dark-pact', card: card335 },
-  { file: 'factions/void/death-mark', card: card336 },
-  { file: 'factions/void/devourer-of-light', card: card337 },
-  { file: 'factions/void/dread-knight', card: card338 },
-  { file: 'factions/void/eater-of-worlds', card: card339 },
-  { file: 'factions/void/entropy-mage', card: card340 },
-  { file: 'factions/void/flesh-weaver', card: card341 },
-  { file: 'factions/void/gate-of-oblivion', card: card342 },
-  { file: 'factions/void/grasping-dead', card: card343 },
-  { file: 'factions/void/grave-whisperer', card: card344 },
-  { file: 'factions/void/gravebound-colossus', card: card345 },
-  { file: 'factions/void/herald-of-the-end', card: card346 },
-  { file: 'factions/void/hollow-cultist', card: card347 },
-  { file: 'factions/void/lich-of-the-last-hour', card: card348 },
-  { file: 'factions/void/mother-of-shadows', card: card349 },
-  { file: 'factions/void/necro-scholar', card: card350 },
-  { file: 'factions/void/nightmare-steed', card: card351 },
-  { file: 'factions/void/oblivion', card: card352 },
-  { file: 'factions/void/pact-keeper', card: card353 },
-  { file: 'factions/void/pact-of-hunger', card: card354 },
-  { file: 'factions/void/plague-brand', card: card355 },
-  { file: 'factions/void/plague-vial', card: card356 },
-  { file: 'factions/void/raise-the-dead', card: card357 },
-  { file: 'factions/void/rotting-giant', card: card358 },
-  { file: 'factions/void/shade-lurker', card: card359 },
-  { file: 'factions/void/soul-drain', card: card360 },
-  { file: 'factions/void/soul-harvester', card: card361 },
-  { file: 'factions/void/soul-jar', card: card362 },
-  { file: 'factions/void/soul-reaver', card: card363 },
-  { file: 'factions/void/the-final-silence', card: card364 },
-  { file: 'factions/void/the-last-king', card: card365 },
-  { file: 'factions/void/tomb-listener', card: card366 },
-  { file: 'factions/void/tomb-warden', card: card367 },
-  { file: 'factions/void/void-collapse', card: card368 },
-  { file: 'factions/void/void-leech', card: card369 },
-  { file: 'factions/void/void-spawn', card: card370 },
-  { file: 'factions/void/void-tendril', card: card371 },
-  { file: 'factions/void/wailing-banshee', card: card372 },
-  { file: 'heroes/ada-copperwick/ada-copperwick', card: card373 },
-  { file: 'heroes/ada-copperwick/blueprint', card: card374 },
-  { file: 'heroes/ada-copperwick/cogsworth-the-assistant', card: card375 },
-  { file: 'heroes/ada-copperwick/galvanic-spark', card: card376 },
-  { file: 'heroes/ada-copperwick/tesla-wand', card: card377 },
-  { file: 'heroes/ada-copperwick/the-copperwick-engine', card: card378 },
-  { file: 'heroes/aldric-dawnkeeper/aldric-dawnkeeper', card: card379 },
-  { file: 'heroes/aldric-dawnkeeper/lantern-of-dawn', card: card380 },
-  { file: 'heroes/aldric-dawnkeeper/morning-prayer', card: card381 },
-  { file: 'heroes/aldric-dawnkeeper/sister-elowen', card: card382 },
-  { file: 'heroes/aldric-dawnkeeper/sunrise', card: card383 },
-  { file: 'heroes/aldric-dawnkeeper/the-dawn-angel', card: card384 },
-  { file: 'heroes/caelus-the-usurper/caelus-the-usurper', card: card385 },
-  { file: 'heroes/caelus-the-usurper/praetorian-guard', card: card386 },
-  { file: 'heroes/caelus-the-usurper/usurpers-decree', card: card387 },
-  { file: 'heroes/chancellor-brassmaw/brass-enforcer', card: card388 },
-  { file: 'heroes/chancellor-brassmaw/chancellor-brassmaw', card: card389 },
-  { file: 'heroes/chancellor-brassmaw/tax-automaton', card: card390 },
-  { file: 'heroes/gideon-ironsteam/boiler-burst', card: card391 },
-  { file: 'heroes/gideon-ironsteam/bolt-the-iron-bulldog', card: card392 },
-  { file: 'heroes/gideon-ironsteam/gideon-ironsteam', card: card393 },
-  { file: 'heroes/gideon-ironsteam/iron-resolve', card: card394 },
-  { file: 'heroes/gideon-ironsteam/ironsteam-exosuit', card: card395 },
-  { file: 'heroes/gideon-ironsteam/steam-hammer', card: card396 },
-  { file: 'heroes/gorrak-tyrant-king/gorrak-tyrant-king', card: card397 },
-  { file: 'heroes/gorrak-tyrant-king/primal-roar', card: card398 },
-  { file: 'heroes/gorrak-tyrant-king/tyrant-hatchling', card: card399 },
-  { file: 'heroes/hollow-astronomer/black-comet', card: card400 },
-  { file: 'heroes/hollow-astronomer/hollow-astronomer', card: card401 },
-  { file: 'heroes/hollow-astronomer/void-acolyte', card: card402 },
-  { file: 'heroes/ilyra-starweaver/constellation-weave', card: card403 },
-  { file: 'heroes/ilyra-starweaver/falling-star', card: card404 },
-  { file: 'heroes/ilyra-starweaver/ilyra-starweaver', card: card405 },
-  { file: 'heroes/ilyra-starweaver/lumen-the-star-owl', card: card406 },
-  { file: 'heroes/ilyra-starweaver/staff-of-the-starweaver', card: card407 },
-  { file: 'heroes/ilyra-starweaver/starweavers-astrolabe', card: card408 },
-  { file: 'heroes/kazhul-mother-of-ash/ash-drake', card: card409 },
-  { file: 'heroes/kazhul-mother-of-ash/eruption', card: card410 },
-  { file: 'heroes/kazhul-mother-of-ash/kazhul-mother-of-ash', card: card411 },
-  { file: 'heroes/kora-wildfang/bonefang-bow', card: card412 },
-  { file: 'heroes/kora-wildfang/fang-the-sabertooth', card: card413 },
-  { file: 'heroes/kora-wildfang/grawl-the-dire-wolf', card: card414 },
-  { file: 'heroes/kora-wildfang/kora-wildfang', card: card415 },
-  { file: 'heroes/kora-wildfang/pounce', card: card416 },
-  { file: 'heroes/kora-wildfang/wild-hunt', card: card417 },
-  { file: 'heroes/legate-varro/aquila-of-the-ninth', card: card418 },
-  { file: 'heroes/legate-varro/gladius-of-the-legate', card: card419 },
-  { file: 'heroes/legate-varro/legate-varro', card: card420 },
-  { file: 'heroes/legate-varro/signifer-lucius', card: card421 },
-  { file: 'heroes/legate-varro/the-ninths-stand', card: card422 },
-  { file: 'heroes/legate-varro/varros-orders', card: card423 },
-  { file: 'heroes/malachar-the-unmade/malachar-the-unmade', card: card424 },
-  { file: 'heroes/malachar-the-unmade/scepter-of-unmaking', card: card425 },
-  { file: 'heroes/malachar-the-unmade/the-hollow-crown', card: card426 },
-  { file: 'heroes/malachar-the-unmade/tome-of-endings', card: card427 },
-  { file: 'heroes/malachar-the-unmade/unravel', card: card428 },
-  { file: 'heroes/malachar-the-unmade/void-rift', card: card429 },
-  { file: 'heroes/morgrath-lich-abbot/dark-sermon', card: card430 },
-  { file: 'heroes/morgrath-lich-abbot/morgrath-lich-abbot', card: card431 },
-  { file: 'heroes/morgrath-lich-abbot/skeletal-monk', card: card432 },
-  { file: 'heroes/nysa-goldbow/argos-the-silver-hound', card: card433 },
-  { file: 'heroes/nysa-goldbow/arrow-of-the-sun', card: card434 },
-  { file: 'heroes/nysa-goldbow/goldbow', card: card435 },
-  { file: 'heroes/nysa-goldbow/hunt-of-the-goddess', card: card436 },
-  { file: 'heroes/nysa-goldbow/nysa-goldbow', card: card437 },
-  { file: 'heroes/nysa-goldbow/temple-of-the-huntress', card: card438 },
-  { file: 'heroes/nyx-hollowsong/echo-the-spirit-crow', card: card439 },
-  { file: 'heroes/nyx-hollowsong/hollow-harp', card: card440 },
-  { file: 'heroes/nyx-hollowsong/lullaby-of-the-lost', card: card441 },
-  { file: 'heroes/nyx-hollowsong/nyx-hollowsong', card: card442 },
-  { file: 'heroes/nyx-hollowsong/requiem', card: card443 },
-  { file: 'heroes/nyx-hollowsong/the-singing-graves', card: card444 },
-  { file: 'heroes/omnigear-prime/core-meltdown', card: card445 },
-  { file: 'heroes/omnigear-prime/omnigear-prime', card: card446 },
-  { file: 'heroes/omnigear-prime/omnigear-sentinel', card: card447 },
-  { file: 'heroes/ooma-bonewhisper/bone-reading', card: card448 },
-  { file: 'heroes/ooma-bonewhisper/mammoth-skull-staff', card: card449 },
-  { file: 'heroes/ooma-bonewhisper/old-tusk', card: card450 },
-  { file: 'heroes/ooma-bonewhisper/ooma-bonewhisper', card: card451 },
-  { file: 'heroes/ooma-bonewhisper/spirit-of-the-herd', card: card452 },
-  { file: 'heroes/ooma-bonewhisper/the-ancestor-tree', card: card453 },
-  { file: 'heroes/overseer-kade/overseer-kade', card: card454 },
-  { file: 'heroes/overseer-kade/surveillance-net', card: card455 },
-  { file: 'heroes/overseer-kade/syndicate-enforcer', card: card456 },
-  { file: 'heroes/queen-static/queen-static', card: card457 },
-  { file: 'heroes/queen-static/signal-storm', card: card458 },
-  { file: 'heroes/queen-static/static-wraith', card: card459 },
-  { file: 'heroes/ryn-voltblade/kaze-the-cyber-ronin', card: card460 },
-  { file: 'heroes/ryn-voltblade/lightning-dash', card: card461 },
-  { file: 'heroes/ryn-voltblade/ryn-voltblade', card: card462 },
-  { file: 'heroes/ryn-voltblade/storm-plate', card: card463 },
-  { file: 'heroes/ryn-voltblade/thunderclap', card: card464 },
-  { file: 'heroes/ryn-voltblade/voltblade', card: card465 },
-  { file: 'heroes/tauron-labyrinth-lord/dead-end', card: card466 },
-  { file: 'heroes/tauron-labyrinth-lord/labyrinth-guardian', card: card467 },
-  { file: 'heroes/tauron-labyrinth-lord/tauron-labyrinth-lord', card: card468 },
-  { file: 'heroes/vex-nightwire/bounty-contract', card: card469 },
-  { file: 'heroes/vex-nightwire/holo-crossbow', card: card470 },
-  { file: 'heroes/vex-nightwire/nightwire-net', card: card471 },
-  { file: 'heroes/vex-nightwire/pixel-the-drone-fox', card: card472 },
-  { file: 'heroes/vex-nightwire/target-lock', card: card473 },
-  { file: 'heroes/vex-nightwire/vex-nightwire', card: card474 },
-  { file: 'heroes/vorhal-the-last-hour/final-toll', card: card475 },
-  { file: 'heroes/vorhal-the-last-hour/hour-wraith', card: card476 },
-  { file: 'heroes/vorhal-the-last-hour/vorhal-the-last-hour', card: card477 },
-  { file: 'heroes/xulthar-the-devourer/endless-hunger', card: card478 },
-  { file: 'heroes/xulthar-the-devourer/maw-of-xulthar', card: card479 },
-  { file: 'heroes/xulthar-the-devourer/xulthar-the-devourer', card: card480 },
-  { file: 'neutral/aegis-lantern', card: card481 },
-  { file: 'neutral/aegis-of-eternity', card: card482 },
-  { file: 'neutral/aeon-phoenix', card: card483 },
-  { file: 'neutral/antidote', card: card484 },
-  { file: 'neutral/banner-of-the-rift', card: card485 },
-  { file: 'neutral/bannerman-sash', card: card486 },
-  { file: 'neutral/battle-herald', card: card487 },
-  { file: 'neutral/bazaar-of-ages', card: card488 },
-  { file: 'neutral/berserker-pact', card: card489 },
-  { file: 'neutral/blade-dancer', card: card490 },
-  { file: 'neutral/blade-of-ages', card: card491 },
-  { file: 'neutral/brittle-hex', card: card492 },
-  { file: 'neutral/broken-clocktower', card: card493 },
-  { file: 'neutral/bulwark-totem', card: card494 },
-  { file: 'neutral/buried-capsule', card: card495 },
-  { file: 'neutral/charged-shard', card: card496 },
-  { file: 'neutral/chrono-acrobat', card: card497 },
-  { file: 'neutral/chrono-anchor', card: card498 },
-  { file: 'neutral/chrono-battery', card: card499 },
-  { file: 'neutral/chrono-golem', card: card500 },
-  { file: 'neutral/chronomancer-adept', card: card501 },
-  { file: 'neutral/chronos-leviathan', card: card502 },
-  { file: 'neutral/clockheart-engine', card: card503 },
-  { file: 'neutral/counterspell-glyph', card: card504 },
-  { file: 'neutral/cowards-brand', card: card505 },
-  { file: 'neutral/cursed-crown', card: card506 },
-  { file: 'neutral/cursed-idol', card: card507 },
-  { file: 'neutral/drifting-merchant', card: card508 },
-  { file: 'neutral/echoing-knight', card: card509 },
-  { file: 'neutral/elixir-of-vigor', card: card510 },
-  { file: 'neutral/end-of-days', card: card511 },
-  { file: 'neutral/era-hopper', card: card512 },
-  { file: 'neutral/eye-of-the-storm', card: card513 },
-  { file: 'neutral/ferryman-of-hours', card: card514 },
-  { file: 'neutral/fire-flask', card: card515 },
-  { file: 'neutral/flash-powder', card: card516 },
-  { file: 'neutral/frozen-shackles', card: card517 },
-  { file: 'neutral/gag-of-silence', card: card518 },
-  { file: 'neutral/garden-of-forever', card: card519 },
-  { file: 'neutral/grail-of-ages', card: card520 },
-  { file: 'neutral/grappling-hook', card: card521 },
-  { file: 'neutral/gravekeeper-of-eras', card: card522 },
-  { file: 'neutral/hall-of-echoes', card: card523 },
-  { file: 'neutral/healing-draught', card: card524 },
-  { file: 'neutral/healing-spring', card: card525 },
-  { file: 'neutral/hourglass-dagger', card: card526 },
-  { file: 'neutral/hourglass-plating', card: card527 },
-  { file: 'neutral/hourglass-sentry', card: card528 },
-  { file: 'neutral/hourglass-warden', card: card529 },
-  { file: 'neutral/iron-buckler', card: card530 },
-  { file: 'neutral/iron-manacles', card: card531 },
-  { file: 'neutral/iron-rations', card: card532 },
-  { file: 'neutral/keeper-of-moments', card: card533 },
-  { file: 'neutral/last-oath', card: card534 },
-  { file: 'neutral/leeching-mark', card: card535 },
-  { file: 'neutral/lost-squire', card: card536 },
-  { file: 'neutral/mend-the-timeline', card: card537 },
-  { file: 'neutral/mirror-ward', card: card538 },
-  { file: 'neutral/null-field', card: card539 },
-  { file: 'neutral/open-market', card: card540 },
-  { file: 'neutral/paradox-loop', card: card541 },
-  { file: 'neutral/paradox-twin', card: card542 },
-  { file: 'neutral/patched-leather', card: card543 },
-  { file: 'neutral/patchwork-golem', card: card544 },
-  { file: 'neutral/phase-cloak', card: card545 },
-  { file: 'neutral/phase-stalker', card: card546 },
-  { file: 'neutral/philosophers-hourglass', card: card547 },
-  { file: 'neutral/phoenix-feather', card: card548 },
-  { file: 'neutral/pitfall', card: card549 },
-  { file: 'neutral/quicken', card: card550 },
-  { file: 'neutral/recruiting-tent', card: card551 },
-  { file: 'neutral/regrowth-moss', card: card552 },
-  { file: 'neutral/repair-kit', card: card553 },
-  { file: 'neutral/rewind', card: card554 },
-  { file: 'neutral/rift-behemoth', card: card555 },
-  { file: 'neutral/rift-bomb', card: card556 },
-  { file: 'neutral/rift-collapse', card: card557 },
-  { file: 'neutral/rift-dragonling', card: card558 },
-  { file: 'neutral/rift-grenade', card: card559 },
-  { file: 'neutral/rift-guardian', card: card560 },
-  { file: 'neutral/rift-hound', card: card561 },
-  { file: 'neutral/rift-leech', card: card562 },
-  { file: 'neutral/rift-mail', card: card563 },
-  { file: 'neutral/rift-market', card: card564 },
-  { file: 'neutral/rift-medic', card: card565 },
-  { file: 'neutral/rift-moth', card: card566 },
-  { file: 'neutral/rift-scavenger', card: card567 },
-  { file: 'neutral/rift-snare', card: card568 },
-  { file: 'neutral/rusted-shackles', card: card569 },
-  { file: 'neutral/rusty-sword', card: card570 },
-  { file: 'neutral/sanctum-of-hours', card: card571 },
-  { file: 'neutral/sand-wraith', card: card572 },
-  { file: 'neutral/scholars-lens', card: card573 },
-  { file: 'neutral/sharpening-stone', card: card574 },
-  { file: 'neutral/shatter-time', card: card575 },
-  { file: 'neutral/shieldbearer-of-ages', card: card576 },
-  { file: 'neutral/shifting-sands', card: card577 },
-  { file: 'neutral/siege-engine', card: card578 },
-  { file: 'neutral/siphon-rune', card: card579 },
-  { file: 'neutral/sky-courier', card: card580 },
-  { file: 'neutral/skyship-gunner', card: card581 },
-  { file: 'neutral/smoke-bomb', card: card582 },
-  { file: 'neutral/spyglass', card: card583 },
-  { file: 'neutral/stasis-bubble', card: card584 },
-  { file: 'neutral/sundial-of-plenty', card: card585 },
-  { file: 'neutral/tavern-brawler', card: card586 },
-  { file: 'neutral/temporal-prison', card: card587 },
-  { file: 'neutral/temporal-shock', card: card588 },
-  { file: 'neutral/the-last-sentinel', card: card589 },
-  { file: 'neutral/the-nexus', card: card590 },
-  { file: 'neutral/thorn-collar', card: card591 },
-  { file: 'neutral/thorned-colossus', card: card592 },
-  { file: 'neutral/thorned-mail', card: card593 },
-  { file: 'neutral/time-capsule', card: card594 },
-  { file: 'neutral/time-thief', card: card595 },
-  { file: 'neutral/time-wanderer', card: card596 },
-  { file: 'neutral/timeguard-plate', card: card597 },
-  { file: 'neutral/timeworn-champion', card: card598 },
-  { file: 'neutral/titan-gauntlet', card: card599 },
-  { file: 'neutral/training-grounds', card: card600 },
-  { file: 'neutral/tripwire', card: card601 },
-  { file: 'neutral/twin-blades', card: card602 },
-  { file: 'neutral/vampire-fang', card: card603 },
-  { file: 'neutral/venom-coating', card: card604 },
-  { file: 'neutral/veteran-of-many-wars', card: card605 },
-  { file: 'neutral/wanderers-camp', card: card606 },
-  { file: 'neutral/wanderers-sling', card: card607 },
-  { file: 'neutral/wandering-scribe', card: card608 },
-  { file: 'neutral/wandering-sellsword', card: card609 },
-  { file: 'neutral/war-drum', card: card610 },
-  { file: 'neutral/wayfinder-scout', card: card611 },
-  { file: 'neutral/whetted-edge', card: card612 },
-  { file: 'neutral/winged-harness', card: card613 }
+  { file: 'classes/hunter/trap-finder', card: card24 },
+  { file: 'classes/hunter/twin-hunting-knives', card: card25 },
+  { file: 'classes/hunter/volley', card: card26 },
+  { file: 'classes/hunter/wolfhide-armor', card: card27 },
+  { file: 'classes/mage/apprentice-wand', card: card28 },
+  { file: 'classes/mage/arcane-intellect', card: card29 },
+  { file: 'classes/mage/blizzard', card: card30 },
+  { file: 'classes/mage/crown-of-the-arcanist', card: card31 },
+  { file: 'classes/mage/fireball', card: card32 },
+  { file: 'classes/mage/flame-wave', card: card33 },
+  { file: 'classes/mage/frost-nova', card: card34 },
+  { file: 'classes/mage/frost-spear', card: card35 },
+  { file: 'classes/mage/frost-staff', card: card36 },
+  { file: 'classes/mage/ice-lance', card: card37 },
+  { file: 'classes/mage/lightning-bolt', card: card38 },
+  { file: 'classes/mage/magic-bolt', card: card39 },
+  { file: 'classes/mage/mana-potion', card: card40 },
+  { file: 'classes/mage/mana-shield', card: card41 },
+  { file: 'classes/mage/meteor', card: card42 },
+  { file: 'classes/mage/mirror-mantle', card: card43 },
+  { file: 'classes/mage/polymorph', card: card44 },
+  { file: 'classes/mage/pyroblast', card: card45 },
+  { file: 'classes/mage/robe-of-stars', card: card46 },
+  { file: 'classes/mage/runeblade', card: card47 },
+  { file: 'classes/mage/scepter-of-storms', card: card48 },
+  { file: 'classes/mage/searing-brand', card: card49 },
+  { file: 'classes/mage/silk-robe', card: card50 },
+  { file: 'classes/mage/spellbook', card: card51 },
+  { file: 'classes/mage/staff-of-embers', card: card52 },
+  { file: 'classes/mage/staff-of-the-archmage', card: card53 },
+  { file: 'classes/mage/time-warp', card: card54 },
+  { file: 'classes/mystic/acolyte-vestments', card: card55 },
+  { file: 'classes/mystic/aegis-of-faith', card: card56 },
+  { file: 'classes/mystic/blessed-mail', card: card57 },
+  { file: 'classes/mystic/blessing', card: card58 },
+  { file: 'classes/mystic/censer-of-souls', card: card59 },
+  { file: 'classes/mystic/divine-shield', card: card60 },
+  { file: 'classes/mystic/halo-of-dawn', card: card61 },
+  { file: 'classes/mystic/holy-smite', card: card62 },
+  { file: 'classes/mystic/holy-water', card: card63 },
+  { file: 'classes/mystic/inner-fire', card: card64 },
+  { file: 'classes/mystic/lightbringer', card: card65 },
+  { file: 'classes/mystic/mass-revival', card: card66 },
+  { file: 'classes/mystic/mend', card: card67 },
+  { file: 'classes/mystic/miracle', card: card68 },
+  { file: 'classes/mystic/oak-scepter', card: card69 },
+  { file: 'classes/mystic/prayer-of-healing', card: card70 },
+  { file: 'classes/mystic/radiance', card: card71 },
+  { file: 'classes/mystic/relic-of-the-saints', card: card72 },
+  { file: 'classes/mystic/resurrection', card: card73 },
+  { file: 'classes/mystic/spirit-guardian', card: card74 },
+  { file: 'classes/mystic/spirit-link', card: card75 },
+  { file: 'classes/mystic/spirit-ward', card: card76 },
+  { file: 'classes/mystic/staff-of-eternity', card: card77 },
+  { file: 'classes/mystic/staff-of-renewal', card: card78 },
+  { file: 'classes/mystic/sun-mace', card: card79 },
+  { file: 'classes/warrior/aegis-of-the-warlord', card: card80 },
+  { file: 'classes/warrior/armor-breaker', card: card81 },
+  { file: 'classes/warrior/battle-cry', card: card82 },
+  { file: 'classes/warrior/bloodthirst-cleaver', card: card83 },
+  { file: 'classes/warrior/brace', card: card84 },
+  { file: 'classes/warrior/bronze-cuirass', card: card85 },
+  { file: 'classes/warrior/chainmail', card: card86 },
+  { file: 'classes/warrior/charge-in', card: card87 },
+  { file: 'classes/warrior/cleaving-strike', card: card88 },
+  { file: 'classes/warrior/execute', card: card89 },
+  { file: 'classes/warrior/greatsword-of-dawn', card: card90 },
+  { file: 'classes/warrior/hammer-of-the-ages', card: card91 },
+  { file: 'classes/warrior/iron-gladius', card: card92 },
+  { file: 'classes/warrior/iron-will', card: card93 },
+  { file: 'classes/warrior/knights-plate', card: card94 },
+  { file: 'classes/warrior/last-stand', card: card95 },
+  { file: 'classes/warrior/mighty-blow', card: card96 },
+  { file: 'classes/warrior/rampage', card: card97 },
+  { file: 'classes/warrior/shield-bash', card: card98 },
+  { file: 'classes/warrior/spiked-pauldrons', card: card99 },
+  { file: 'classes/warrior/tower-mace', card: card100 },
+  { file: 'classes/warrior/war-axe', card: card101 },
+  { file: 'classes/warrior/war-banner', card: card102 },
+  { file: 'classes/warrior/warlords-command', card: card103 },
+  { file: 'classes/warrior/whetstone', card: card104 },
+  { file: 'classes/warrior/whirlwind', card: card105 },
+  { file: 'factions/arcane/apprentice-mage', card: card106 },
+  { file: 'factions/arcane/arcane-backlash', card: card107 },
+  { file: 'factions/arcane/arcane-explosion', card: card108 },
+  { file: 'factions/arcane/arcane-familiar', card: card109 },
+  { file: 'factions/arcane/arcane-missiles', card: card110 },
+  { file: 'factions/arcane/archive-guardian', card: card111 },
+  { file: 'factions/arcane/archmage-of-the-spire', card: card112 },
+  { file: 'factions/arcane/archwizard-morvane', card: card113 },
+  { file: 'factions/arcane/battlemage-squire', card: card114 },
+  { file: 'factions/arcane/candle-keeper', card: card115 },
+  { file: 'factions/arcane/celestial-phoenix', card: card116 },
+  { file: 'factions/arcane/chain-lightning', card: card117 },
+  { file: 'factions/arcane/counter-rune', card: card118 },
+  { file: 'factions/arcane/court-illusionist', card: card119 },
+  { file: 'factions/arcane/crystal-sentinel', card: card120 },
+  { file: 'factions/arcane/dispel-wave', card: card121 },
+  { file: 'factions/arcane/dragon-of-runes', card: card122 },
+  { file: 'factions/arcane/frost-adept', card: card123 },
+  { file: 'factions/arcane/frost-sigil', card: card124 },
+  { file: 'factions/arcane/glacial-pulse', card: card125 },
+  { file: 'factions/arcane/grand-conjurer', card: card126 },
+  { file: 'factions/arcane/hall-of-mirrors', card: card127 },
+  { file: 'factions/arcane/ley-line-conduit', card: card128 },
+  { file: 'factions/arcane/mana-crystal', card: card129 },
+  { file: 'factions/arcane/mind-freeze', card: card130 },
+  { file: 'factions/arcane/mirror-mage', card: card131 },
+  { file: 'factions/arcane/moonlight-enchantress', card: card132 },
+  { file: 'factions/arcane/owl-messenger', card: card133 },
+  { file: 'factions/arcane/pyromancer', card: card134 },
+  { file: 'factions/arcane/rune-golem', card: card135 },
+  { file: 'factions/arcane/rune-sprite', card: card136 },
+  { file: 'factions/arcane/scroll-of-wisdom', card: card137 },
+  { file: 'factions/arcane/scry-the-stars', card: card138 },
+  { file: 'factions/arcane/spell-eater', card: card139 },
+  { file: 'factions/arcane/spellbinder', card: card140 },
+  { file: 'factions/arcane/spellward-knight', card: card141 },
+  { file: 'factions/arcane/starlit-unicorn', card: card142 },
+  { file: 'factions/arcane/storm-adept', card: card143 },
+  { file: 'factions/arcane/storm-caller', card: card144 },
+  { file: 'factions/arcane/the-first-wizard', card: card145 },
+  { file: 'factions/arcane/the-starlight-oracle', card: card146 },
+  { file: 'factions/arcane/tome-of-whispers', card: card147 },
+  { file: 'factions/arcane/tower-novice', card: card148 },
+  { file: 'factions/arcane/tower-of-stars', card: card149 },
+  { file: 'factions/arcane/wand-duelist', card: card150 },
+  { file: 'factions/arcane/wand-of-ruin', card: card151 },
+  { file: 'factions/arcane/wildfire', card: card152 },
+  { file: 'factions/bronze/aqueduct-engineer', card: card153 },
+  { file: 'factions/bronze/arena-champion', card: card154 },
+  { file: 'factions/bronze/ballista-crew', card: card155 },
+  { file: 'factions/bronze/bronze-cohort', card: card156 },
+  { file: 'factions/bronze/bronze-colossus-guard', card: card157 },
+  { file: 'factions/bronze/bronze-legionary', card: card158 },
+  { file: 'factions/bronze/centurion-drillmaster', card: card159 },
+  { file: 'factions/bronze/centurion-maximus', card: card160 },
+  { file: 'factions/bronze/chariot-racer', card: card161 },
+  { file: 'factions/bronze/cohort-banner', card: card162 },
+  { file: 'factions/bronze/colosseum', card: card163 },
+  { file: 'factions/bronze/colossus-of-the-harbor', card: card164 },
+  { file: 'factions/bronze/disarming-strike', card: card165 },
+  { file: 'factions/bronze/eternal-emperor', card: card166 },
+  { file: 'factions/bronze/flame-legionary', card: card167 },
+  { file: 'factions/bronze/forced-march', card: card168 },
+  { file: 'factions/bronze/forum-of-heroes', card: card169 },
+  { file: 'factions/bronze/gladiator-twins', card: card170 },
+  { file: 'factions/bronze/golden-laurel', card: card171 },
+  { file: 'factions/bronze/grand-triumph', card: card172 },
+  { file: 'factions/bronze/hold-the-line', card: card173 },
+  { file: 'factions/bronze/hoplite-sentry', card: card174 },
+  { file: 'factions/bronze/imperator-solis', card: card175 },
+  { file: 'factions/bronze/legate-of-the-eagle', card: card176 },
+  { file: 'factions/bronze/legion-quartermaster', card: card177 },
+  { file: 'factions/bronze/legion-rations', card: card178 },
+  { file: 'factions/bronze/legion-slinger', card: card179 },
+  { file: 'factions/bronze/marching-legion', card: card180 },
+  { file: 'factions/bronze/murmillo-champion', card: card181 },
+  { file: 'factions/bronze/net-fighter', card: card182 },
+  { file: 'factions/bronze/phalanx-general', card: card183 },
+  { file: 'factions/bronze/phalanx-recruit', card: card184 },
+  { file: 'factions/bronze/pila-volley', card: card185 },
+  { file: 'factions/bronze/rally-the-cohort', card: card186 },
+  { file: 'factions/bronze/senator-of-coin', card: card187 },
+  { file: 'factions/bronze/shield-wall', card: card188 },
+  { file: 'factions/bronze/shields-up', card: card189 },
+  { file: 'factions/bronze/shieldwall-veteran', card: card190 },
+  { file: 'factions/bronze/spoils-of-war', card: card191 },
+  { file: 'factions/bronze/sun-chariot', card: card192 },
+  { file: 'factions/bronze/temple-acolyte', card: card193 },
+  { file: 'factions/bronze/temple-oracle', card: card194 },
+  { file: 'factions/bronze/testudo-squad', card: card195 },
+  { file: 'factions/bronze/tribune-of-the-legion', card: card196 },
+  { file: 'factions/bronze/war-council', card: card197 },
+  { file: 'factions/bronze/war-priestess', card: card198 },
+  { file: 'factions/clockwork/airship-bombardier', card: card199 },
+  { file: 'factions/clockwork/analytical-engine', card: card200 },
+  { file: 'factions/clockwork/automaton-duelist', card: card201 },
+  { file: 'factions/clockwork/bear-trap-gears', card: card202 },
+  { file: 'factions/clockwork/blueprint-cache', card: card203 },
+  { file: 'factions/clockwork/boiler-brute', card: card204 },
+  { file: 'factions/clockwork/brass-behemoth', card: card205 },
+  { file: 'factions/clockwork/brass-musketeer', card: card206 },
+  { file: 'factions/clockwork/chief-engineer-vance', card: card207 },
+  { file: 'factions/clockwork/chronometer-savant', card: card208 },
+  { file: 'factions/clockwork/clocktower-watchman', card: card209 },
+  { file: 'factions/clockwork/clockwork-dragon', card: card210 },
+  { file: 'factions/clockwork/cog-apprentice', card: card211 },
+  { file: 'factions/clockwork/cogwork-courier', card: card212 },
+  { file: 'factions/clockwork/colossus-mark-ix', card: card213 },
+  { file: 'factions/clockwork/dynamo-golem', card: card214 },
+  { file: 'factions/clockwork/factory-foreman', card: card215 },
+  { file: 'factions/clockwork/full-steam-ahead', card: card216 },
+  { file: 'factions/clockwork/gear-drone', card: card217 },
+  { file: 'factions/clockwork/gear-weaver', card: card218 },
+  { file: 'factions/clockwork/gearworks-tower', card: card219 },
+  { file: 'factions/clockwork/great-foundry', card: card220 },
+  { file: 'factions/clockwork/inventor-of-hours', card: card221 },
+  { file: 'factions/clockwork/iron-walker', card: card222 },
+  { file: 'factions/clockwork/master-artificer', card: card223 },
+  { file: 'factions/clockwork/mechanical-heart', card: card224 },
+  { file: 'factions/clockwork/mechanical-knight', card: card225 },
+  { file: 'factions/clockwork/overclock', card: card226 },
+  { file: 'factions/clockwork/perpetual-engine', card: card227 },
+  { file: 'factions/clockwork/piston-golem', card: card228 },
+  { file: 'factions/clockwork/pocket-watch', card: card229 },
+  { file: 'factions/clockwork/rewind-the-gears', card: card230 },
+  { file: 'factions/clockwork/rivet-hound', card: card231 },
+  { file: 'factions/clockwork/rust-swarm', card: card232 },
+  { file: 'factions/clockwork/scrap-golem', card: card233 },
+  { file: 'factions/clockwork/spare-parts', card: card234 },
+  { file: 'factions/clockwork/spark-engineer', card: card235 },
+  { file: 'factions/clockwork/steam-blast', card: card236 },
+  { file: 'factions/clockwork/steam-sentry', card: card237 },
+  { file: 'factions/clockwork/steam-tank', card: card238 },
+  { file: 'factions/clockwork/tesla-sentinel', card: card239 },
+  { file: 'factions/clockwork/the-clockmaker', card: card240 },
+  { file: 'factions/clockwork/the-grand-orrery', card: card241 },
+  { file: 'factions/clockwork/time-lock', card: card242 },
+  { file: 'factions/clockwork/tinker-gnome', card: card243 },
+  { file: 'factions/clockwork/tripwire-turret', card: card244 },
+  { file: 'factions/neon/adrenaline-shot', card: card245 },
+  { file: 'factions/neon/aegis-android', card: card246 },
+  { file: 'factions/neon/arc-trooper', card: card247 },
+  { file: 'factions/neon/black-ice-hacker', card: card248 },
+  { file: 'factions/neon/blackout-specialist', card: card249 },
+  { file: 'factions/neon/chrome-medic', card: card250 },
+  { file: 'factions/neon/cloaking-device', card: card251 },
+  { file: 'factions/neon/cryo-turret', card: card252 },
+  { file: 'factions/neon/cyber-samurai', card: card253 },
+  { file: 'factions/neon/data-burst', card: card254 },
+  { file: 'factions/neon/data-courier', card: card255 },
+  { file: 'factions/neon/drone-swarm', card: card256 },
+  { file: 'factions/neon/emp-mine', card: card257 },
+  { file: 'factions/neon/firewall', card: card258 },
+  { file: 'factions/neon/glitch-runner', card: card259 },
+  { file: 'factions/neon/holo-decoy', card: card260 },
+  { file: 'factions/neon/hover-biker', card: card261 },
+  { file: 'factions/neon/information-broker', card: card262 },
+  { file: 'factions/neon/jammer-unit', card: card263 },
+  { file: 'factions/neon/laser-grid', card: card264 },
+  { file: 'factions/neon/mech-trooper', card: card265 },
+  { file: 'factions/neon/megacity-titan', card: card266 },
+  { file: 'factions/neon/neon-battery', card: card267 },
+  { file: 'factions/neon/neon-blade', card: card268 },
+  { file: 'factions/neon/neon-dancer', card: card269 },
+  { file: 'factions/neon/neon-district', card: card270 },
+  { file: 'factions/neon/netrunner', card: card271 },
+  { file: 'factions/neon/orbital-strike', card: card272 },
+  { file: 'factions/neon/overdrive-mech', card: card273 },
+  { file: 'factions/neon/phantom-assassin', card: card274 },
+  { file: 'factions/neon/pulse-sniper', card: card275 },
+  { file: 'factions/neon/quantum-chip', card: card276 },
+  { file: 'factions/neon/quick-hack', card: card277 },
+  { file: 'factions/neon/riot-enforcer', card: card278 },
+  { file: 'factions/neon/saboteur', card: card279 },
+  { file: 'factions/neon/security-drone', card: card280 },
+  { file: 'factions/neon/server-farm', card: card281 },
+  { file: 'factions/neon/stim-pack', card: card282 },
+  { file: 'factions/neon/street-runner', card: card283 },
+  { file: 'factions/neon/synth-brawler', card: card284 },
+  { file: 'factions/neon/system-crash', card: card285 },
+  { file: 'factions/neon/the-oracle-ai', card: card286 },
+  { file: 'factions/neon/velocity-queen', card: card287 },
+  { file: 'factions/neon/zero-the-ghost', card: card288 },
+  { file: 'factions/primal/amber-totem', card: card289 },
+  { file: 'factions/primal/ambush-of-raptors', card: card290 },
+  { file: 'factions/primal/ancient-treant', card: card291 },
+  { file: 'factions/primal/bone-carver', card: card292 },
+  { file: 'factions/primal/bone-crusher', card: card293 },
+  { file: 'factions/primal/call-of-the-wild', card: card294 },
+  { file: 'factions/primal/cave-bear', card: card295 },
+  { file: 'factions/primal/cave-scout', card: card296 },
+  { file: 'factions/primal/dino-egg', card: card297 },
+  { file: 'factions/primal/dino-hatchling', card: card298 },
+  { file: 'factions/primal/elder-mammoth', card: card299 },
+  { file: 'factions/primal/feral-growth', card: card300 },
+  { file: 'factions/primal/healing-herbs', card: card301 },
+  { file: 'factions/primal/herd-mother', card: card302 },
+  { file: 'factions/primal/hunting-party', card: card303 },
+  { file: 'factions/primal/jungle-druid', card: card304 },
+  { file: 'factions/primal/mossback-tortoise', card: card305 },
+  { file: 'factions/primal/mother-of-beasts', card: card306 },
+  { file: 'factions/primal/nest-keeper', card: card307 },
+  { file: 'factions/primal/pit-trap', card: card308 },
+  { file: 'factions/primal/primal-grove', card: card309 },
+  { file: 'factions/primal/primal-rage', card: card310 },
+  { file: 'factions/primal/primeval-titan', card: card311 },
+  { file: 'factions/primal/pterodactyl-rider', card: card312 },
+  { file: 'factions/primal/raptor-alpha', card: card313 },
+  { file: 'factions/primal/raptor-pack', card: card314 },
+  { file: 'factions/primal/raptor-scout', card: card315 },
+  { file: 'factions/primal/rex-the-unbroken', card: card316 },
+  { file: 'factions/primal/sabertooth-stalker', card: card317 },
+  { file: 'factions/primal/scent-of-prey', card: card318 },
+  { file: 'factions/primal/shaman-of-the-tribe', card: card319 },
+  { file: 'factions/primal/spinosaur-hunter', card: card320 },
+  { file: 'factions/primal/spirit-caller', card: card321 },
+  { file: 'factions/primal/stampede', card: card322 },
+  { file: 'factions/primal/stone-thrower', card: card323 },
+  { file: 'factions/primal/swamp-croc', card: card324 },
+  { file: 'factions/primal/swamp-viper', card: card325 },
+  { file: 'factions/primal/tar-pits', card: card326 },
+  { file: 'factions/primal/the-world-serpent', card: card327 },
+  { file: 'factions/primal/thornback-boar', card: card328 },
+  { file: 'factions/primal/thunder-lizard', card: card329 },
+  { file: 'factions/primal/tribal-warchief', card: card330 },
+  { file: 'factions/primal/triceratops-matriarch', card: card331 },
+  { file: 'factions/primal/tusked-hog', card: card332 },
+  { file: 'factions/primal/venom-spitter', card: card333 },
+  { file: 'factions/primal/woolly-rhino', card: card334 },
+  { file: 'factions/primal/wrath-of-the-volcano', card: card335 },
+  { file: 'factions/void/abyssal-hound', card: card336 },
+  { file: 'factions/void/black-grimoire', card: card337 },
+  { file: 'factions/void/bone-crawler', card: card338 },
+  { file: 'factions/void/bone-dragon', card: card339 },
+  { file: 'factions/void/boneyard', card: card340 },
+  { file: 'factions/void/carrion-swarm', card: card341 },
+  { file: 'factions/void/corrosion-totem', card: card342 },
+  { file: 'factions/void/cursed-skull', card: card343 },
+  { file: 'factions/void/dark-pact', card: card344 },
+  { file: 'factions/void/death-mark', card: card345 },
+  { file: 'factions/void/devourer-of-light', card: card346 },
+  { file: 'factions/void/dread-knight', card: card347 },
+  { file: 'factions/void/eater-of-worlds', card: card348 },
+  { file: 'factions/void/entropy-mage', card: card349 },
+  { file: 'factions/void/flesh-weaver', card: card350 },
+  { file: 'factions/void/gate-of-oblivion', card: card351 },
+  { file: 'factions/void/grasping-dead', card: card352 },
+  { file: 'factions/void/grave-whisperer', card: card353 },
+  { file: 'factions/void/gravebound-colossus', card: card354 },
+  { file: 'factions/void/herald-of-the-end', card: card355 },
+  { file: 'factions/void/hollow-cultist', card: card356 },
+  { file: 'factions/void/lich-of-the-last-hour', card: card357 },
+  { file: 'factions/void/mother-of-shadows', card: card358 },
+  { file: 'factions/void/necro-scholar', card: card359 },
+  { file: 'factions/void/nightmare-steed', card: card360 },
+  { file: 'factions/void/oblivion', card: card361 },
+  { file: 'factions/void/pact-keeper', card: card362 },
+  { file: 'factions/void/pact-of-hunger', card: card363 },
+  { file: 'factions/void/plague-brand', card: card364 },
+  { file: 'factions/void/plague-vial', card: card365 },
+  { file: 'factions/void/raise-the-dead', card: card366 },
+  { file: 'factions/void/rotting-giant', card: card367 },
+  { file: 'factions/void/shade-lurker', card: card368 },
+  { file: 'factions/void/soul-drain', card: card369 },
+  { file: 'factions/void/soul-harvester', card: card370 },
+  { file: 'factions/void/soul-jar', card: card371 },
+  { file: 'factions/void/soul-reaver', card: card372 },
+  { file: 'factions/void/the-final-silence', card: card373 },
+  { file: 'factions/void/the-last-king', card: card374 },
+  { file: 'factions/void/tomb-listener', card: card375 },
+  { file: 'factions/void/tomb-warden', card: card376 },
+  { file: 'factions/void/void-collapse', card: card377 },
+  { file: 'factions/void/void-leech', card: card378 },
+  { file: 'factions/void/void-spawn', card: card379 },
+  { file: 'factions/void/void-tendril', card: card380 },
+  { file: 'factions/void/wailing-banshee', card: card381 },
+  { file: 'heroes/ada-copperwick/ada-copperwick', card: card382 },
+  { file: 'heroes/ada-copperwick/blueprint', card: card383 },
+  { file: 'heroes/ada-copperwick/cogsworth-the-assistant', card: card384 },
+  { file: 'heroes/ada-copperwick/galvanic-spark', card: card385 },
+  { file: 'heroes/ada-copperwick/tesla-wand', card: card386 },
+  { file: 'heroes/ada-copperwick/the-copperwick-engine', card: card387 },
+  { file: 'heroes/aldric-dawnkeeper/aldric-dawnkeeper', card: card388 },
+  { file: 'heroes/aldric-dawnkeeper/lantern-of-dawn', card: card389 },
+  { file: 'heroes/aldric-dawnkeeper/morning-prayer', card: card390 },
+  { file: 'heroes/aldric-dawnkeeper/sister-elowen', card: card391 },
+  { file: 'heroes/aldric-dawnkeeper/sunrise', card: card392 },
+  { file: 'heroes/aldric-dawnkeeper/the-dawn-angel', card: card393 },
+  { file: 'heroes/caelus-the-usurper/caelus-the-usurper', card: card394 },
+  { file: 'heroes/caelus-the-usurper/praetorian-guard', card: card395 },
+  { file: 'heroes/caelus-the-usurper/usurpers-decree', card: card396 },
+  { file: 'heroes/chancellor-brassmaw/brass-enforcer', card: card397 },
+  { file: 'heroes/chancellor-brassmaw/chancellor-brassmaw', card: card398 },
+  { file: 'heroes/chancellor-brassmaw/tax-automaton', card: card399 },
+  { file: 'heroes/gideon-ironsteam/boiler-burst', card: card400 },
+  { file: 'heroes/gideon-ironsteam/bolt-the-iron-bulldog', card: card401 },
+  { file: 'heroes/gideon-ironsteam/gideon-ironsteam', card: card402 },
+  { file: 'heroes/gideon-ironsteam/iron-resolve', card: card403 },
+  { file: 'heroes/gideon-ironsteam/ironsteam-exosuit', card: card404 },
+  { file: 'heroes/gideon-ironsteam/steam-hammer', card: card405 },
+  { file: 'heroes/gorrak-tyrant-king/gorrak-tyrant-king', card: card406 },
+  { file: 'heroes/gorrak-tyrant-king/primal-roar', card: card407 },
+  { file: 'heroes/gorrak-tyrant-king/tyrant-hatchling', card: card408 },
+  { file: 'heroes/hollow-astronomer/black-comet', card: card409 },
+  { file: 'heroes/hollow-astronomer/hollow-astronomer', card: card410 },
+  { file: 'heroes/hollow-astronomer/void-acolyte', card: card411 },
+  { file: 'heroes/ilyra-starweaver/constellation-weave', card: card412 },
+  { file: 'heroes/ilyra-starweaver/falling-star', card: card413 },
+  { file: 'heroes/ilyra-starweaver/ilyra-starweaver', card: card414 },
+  { file: 'heroes/ilyra-starweaver/lumen-the-star-owl', card: card415 },
+  { file: 'heroes/ilyra-starweaver/staff-of-the-starweaver', card: card416 },
+  { file: 'heroes/ilyra-starweaver/starweavers-astrolabe', card: card417 },
+  { file: 'heroes/kazhul-mother-of-ash/ash-drake', card: card418 },
+  { file: 'heroes/kazhul-mother-of-ash/eruption', card: card419 },
+  { file: 'heroes/kazhul-mother-of-ash/kazhul-mother-of-ash', card: card420 },
+  { file: 'heroes/kora-wildfang/bonefang-bow', card: card421 },
+  { file: 'heroes/kora-wildfang/fang-the-sabertooth', card: card422 },
+  { file: 'heroes/kora-wildfang/grawl-the-dire-wolf', card: card423 },
+  { file: 'heroes/kora-wildfang/kora-wildfang', card: card424 },
+  { file: 'heroes/kora-wildfang/pounce', card: card425 },
+  { file: 'heroes/kora-wildfang/wild-hunt', card: card426 },
+  { file: 'heroes/legate-varro/aquila-of-the-ninth', card: card427 },
+  { file: 'heroes/legate-varro/gladius-of-the-legate', card: card428 },
+  { file: 'heroes/legate-varro/legate-varro', card: card429 },
+  { file: 'heroes/legate-varro/signifer-lucius', card: card430 },
+  { file: 'heroes/legate-varro/the-ninths-stand', card: card431 },
+  { file: 'heroes/legate-varro/varros-orders', card: card432 },
+  { file: 'heroes/malachar-the-unmade/malachar-the-unmade', card: card433 },
+  { file: 'heroes/malachar-the-unmade/scepter-of-unmaking', card: card434 },
+  { file: 'heroes/malachar-the-unmade/the-hollow-crown', card: card435 },
+  { file: 'heroes/malachar-the-unmade/tome-of-endings', card: card436 },
+  { file: 'heroes/malachar-the-unmade/unravel', card: card437 },
+  { file: 'heroes/malachar-the-unmade/void-rift', card: card438 },
+  { file: 'heroes/morgrath-lich-abbot/dark-sermon', card: card439 },
+  { file: 'heroes/morgrath-lich-abbot/morgrath-lich-abbot', card: card440 },
+  { file: 'heroes/morgrath-lich-abbot/skeletal-monk', card: card441 },
+  { file: 'heroes/nysa-goldbow/argos-the-silver-hound', card: card442 },
+  { file: 'heroes/nysa-goldbow/arrow-of-the-sun', card: card443 },
+  { file: 'heroes/nysa-goldbow/goldbow', card: card444 },
+  { file: 'heroes/nysa-goldbow/hunt-of-the-goddess', card: card445 },
+  { file: 'heroes/nysa-goldbow/nysa-goldbow', card: card446 },
+  { file: 'heroes/nysa-goldbow/temple-of-the-huntress', card: card447 },
+  { file: 'heroes/nyx-hollowsong/echo-the-spirit-crow', card: card448 },
+  { file: 'heroes/nyx-hollowsong/hollow-harp', card: card449 },
+  { file: 'heroes/nyx-hollowsong/lullaby-of-the-lost', card: card450 },
+  { file: 'heroes/nyx-hollowsong/nyx-hollowsong', card: card451 },
+  { file: 'heroes/nyx-hollowsong/requiem', card: card452 },
+  { file: 'heroes/nyx-hollowsong/the-singing-graves', card: card453 },
+  { file: 'heroes/omnigear-prime/core-meltdown', card: card454 },
+  { file: 'heroes/omnigear-prime/omnigear-prime', card: card455 },
+  { file: 'heroes/omnigear-prime/omnigear-sentinel', card: card456 },
+  { file: 'heroes/ooma-bonewhisper/bone-reading', card: card457 },
+  { file: 'heroes/ooma-bonewhisper/mammoth-skull-staff', card: card458 },
+  { file: 'heroes/ooma-bonewhisper/old-tusk', card: card459 },
+  { file: 'heroes/ooma-bonewhisper/ooma-bonewhisper', card: card460 },
+  { file: 'heroes/ooma-bonewhisper/spirit-of-the-herd', card: card461 },
+  { file: 'heroes/ooma-bonewhisper/the-ancestor-tree', card: card462 },
+  { file: 'heroes/overseer-kade/overseer-kade', card: card463 },
+  { file: 'heroes/overseer-kade/surveillance-net', card: card464 },
+  { file: 'heroes/overseer-kade/syndicate-enforcer', card: card465 },
+  { file: 'heroes/queen-static/queen-static', card: card466 },
+  { file: 'heroes/queen-static/signal-storm', card: card467 },
+  { file: 'heroes/queen-static/static-wraith', card: card468 },
+  { file: 'heroes/ryn-voltblade/kaze-the-cyber-ronin', card: card469 },
+  { file: 'heroes/ryn-voltblade/lightning-dash', card: card470 },
+  { file: 'heroes/ryn-voltblade/ryn-voltblade', card: card471 },
+  { file: 'heroes/ryn-voltblade/storm-plate', card: card472 },
+  { file: 'heroes/ryn-voltblade/thunderclap', card: card473 },
+  { file: 'heroes/ryn-voltblade/voltblade', card: card474 },
+  { file: 'heroes/tauron-labyrinth-lord/dead-end', card: card475 },
+  { file: 'heroes/tauron-labyrinth-lord/labyrinth-guardian', card: card476 },
+  { file: 'heroes/tauron-labyrinth-lord/tauron-labyrinth-lord', card: card477 },
+  { file: 'heroes/vex-nightwire/bounty-contract', card: card478 },
+  { file: 'heroes/vex-nightwire/holo-crossbow', card: card479 },
+  { file: 'heroes/vex-nightwire/nightwire-net', card: card480 },
+  { file: 'heroes/vex-nightwire/pixel-the-drone-fox', card: card481 },
+  { file: 'heroes/vex-nightwire/target-lock', card: card482 },
+  { file: 'heroes/vex-nightwire/vex-nightwire', card: card483 },
+  { file: 'heroes/vorhal-the-last-hour/final-toll', card: card484 },
+  { file: 'heroes/vorhal-the-last-hour/hour-wraith', card: card485 },
+  { file: 'heroes/vorhal-the-last-hour/vorhal-the-last-hour', card: card486 },
+  { file: 'heroes/xulthar-the-devourer/endless-hunger', card: card487 },
+  { file: 'heroes/xulthar-the-devourer/maw-of-xulthar', card: card488 },
+  { file: 'heroes/xulthar-the-devourer/xulthar-the-devourer', card: card489 },
+  { file: 'neutral/acid-flask', card: card490 },
+  { file: 'neutral/aegis-lantern', card: card491 },
+  { file: 'neutral/aegis-of-eternity', card: card492 },
+  { file: 'neutral/aeon-phoenix', card: card493 },
+  { file: 'neutral/antidote', card: card494 },
+  { file: 'neutral/banner-of-the-rift', card: card495 },
+  { file: 'neutral/bannerman-sash', card: card496 },
+  { file: 'neutral/battle-herald', card: card497 },
+  { file: 'neutral/bazaar-of-ages', card: card498 },
+  { file: 'neutral/berserker-pact', card: card499 },
+  { file: 'neutral/blade-dancer', card: card500 },
+  { file: 'neutral/blade-of-ages', card: card501 },
+  { file: 'neutral/brittle-hex', card: card502 },
+  { file: 'neutral/broken-clocktower', card: card503 },
+  { file: 'neutral/bulwark-totem', card: card504 },
+  { file: 'neutral/buried-capsule', card: card505 },
+  { file: 'neutral/charged-shard', card: card506 },
+  { file: 'neutral/chrono-acrobat', card: card507 },
+  { file: 'neutral/chrono-anchor', card: card508 },
+  { file: 'neutral/chrono-battery', card: card509 },
+  { file: 'neutral/chrono-golem', card: card510 },
+  { file: 'neutral/chronomancer-adept', card: card511 },
+  { file: 'neutral/chronos-leviathan', card: card512 },
+  { file: 'neutral/clockheart-engine', card: card513 },
+  { file: 'neutral/counterspell-glyph', card: card514 },
+  { file: 'neutral/cowards-brand', card: card515 },
+  { file: 'neutral/cursed-crown', card: card516 },
+  { file: 'neutral/cursed-idol', card: card517 },
+  { file: 'neutral/drifting-merchant', card: card518 },
+  { file: 'neutral/echoing-knight', card: card519 },
+  { file: 'neutral/elixir-of-vigor', card: card520 },
+  { file: 'neutral/end-of-days', card: card521 },
+  { file: 'neutral/era-hopper', card: card522 },
+  { file: 'neutral/eye-of-the-storm', card: card523 },
+  { file: 'neutral/ferryman-of-hours', card: card524 },
+  { file: 'neutral/fire-flask', card: card525 },
+  { file: 'neutral/flash-powder', card: card526 },
+  { file: 'neutral/frozen-shackles', card: card527 },
+  { file: 'neutral/gag-of-silence', card: card528 },
+  { file: 'neutral/garden-of-forever', card: card529 },
+  { file: 'neutral/grail-of-ages', card: card530 },
+  { file: 'neutral/grappling-hook', card: card531 },
+  { file: 'neutral/gravekeeper-of-eras', card: card532 },
+  { file: 'neutral/great-purge', card: card533 },
+  { file: 'neutral/hall-of-echoes', card: card534 },
+  { file: 'neutral/healing-draught', card: card535 },
+  { file: 'neutral/healing-spring', card: card536 },
+  { file: 'neutral/hourglass-dagger', card: card537 },
+  { file: 'neutral/hourglass-plating', card: card538 },
+  { file: 'neutral/hourglass-sentry', card: card539 },
+  { file: 'neutral/hourglass-warden', card: card540 },
+  { file: 'neutral/iron-buckler', card: card541 },
+  { file: 'neutral/iron-manacles', card: card542 },
+  { file: 'neutral/iron-rations', card: card543 },
+  { file: 'neutral/keeper-of-moments', card: card544 },
+  { file: 'neutral/last-oath', card: card545 },
+  { file: 'neutral/leeching-mark', card: card546 },
+  { file: 'neutral/lost-squire', card: card547 },
+  { file: 'neutral/mend-the-timeline', card: card548 },
+  { file: 'neutral/mirror-ward', card: card549 },
+  { file: 'neutral/null-field', card: card550 },
+  { file: 'neutral/open-market', card: card551 },
+  { file: 'neutral/paradox-loop', card: card552 },
+  { file: 'neutral/paradox-twin', card: card553 },
+  { file: 'neutral/patched-leather', card: card554 },
+  { file: 'neutral/patchwork-golem', card: card555 },
+  { file: 'neutral/phase-cloak', card: card556 },
+  { file: 'neutral/phase-stalker', card: card557 },
+  { file: 'neutral/philosophers-hourglass', card: card558 },
+  { file: 'neutral/phoenix-feather', card: card559 },
+  { file: 'neutral/pitfall', card: card560 },
+  { file: 'neutral/quicken', card: card561 },
+  { file: 'neutral/recruiting-tent', card: card562 },
+  { file: 'neutral/regrowth-moss', card: card563 },
+  { file: 'neutral/repair-kit', card: card564 },
+  { file: 'neutral/rewind', card: card565 },
+  { file: 'neutral/rift-behemoth', card: card566 },
+  { file: 'neutral/rift-bomb', card: card567 },
+  { file: 'neutral/rift-collapse', card: card568 },
+  { file: 'neutral/rift-dragonling', card: card569 },
+  { file: 'neutral/rift-grenade', card: card570 },
+  { file: 'neutral/rift-guardian', card: card571 },
+  { file: 'neutral/rift-hound', card: card572 },
+  { file: 'neutral/rift-leech', card: card573 },
+  { file: 'neutral/rift-mail', card: card574 },
+  { file: 'neutral/rift-market', card: card575 },
+  { file: 'neutral/rift-medic', card: card576 },
+  { file: 'neutral/rift-moth', card: card577 },
+  { file: 'neutral/rift-scavenger', card: card578 },
+  { file: 'neutral/rift-snare', card: card579 },
+  { file: 'neutral/rusted-shackles', card: card580 },
+  { file: 'neutral/rusty-sword', card: card581 },
+  { file: 'neutral/sanctum-of-hours', card: card582 },
+  { file: 'neutral/sand-wraith', card: card583 },
+  { file: 'neutral/scholars-lens', card: card584 },
+  { file: 'neutral/sharpening-stone', card: card585 },
+  { file: 'neutral/shatter-time', card: card586 },
+  { file: 'neutral/shieldbearer-of-ages', card: card587 },
+  { file: 'neutral/shifting-sands', card: card588 },
+  { file: 'neutral/siege-engine', card: card589 },
+  { file: 'neutral/siphon-rune', card: card590 },
+  { file: 'neutral/sky-courier', card: card591 },
+  { file: 'neutral/skyship-gunner', card: card592 },
+  { file: 'neutral/smoke-bomb', card: card593 },
+  { file: 'neutral/spyglass', card: card594 },
+  { file: 'neutral/stasis-bubble', card: card595 },
+  { file: 'neutral/sunder', card: card596 },
+  { file: 'neutral/sundial-of-plenty', card: card597 },
+  { file: 'neutral/tavern-brawler', card: card598 },
+  { file: 'neutral/temporal-prison', card: card599 },
+  { file: 'neutral/temporal-shock', card: card600 },
+  { file: 'neutral/the-last-sentinel', card: card601 },
+  { file: 'neutral/the-nexus', card: card602 },
+  { file: 'neutral/thorn-collar', card: card603 },
+  { file: 'neutral/thorned-colossus', card: card604 },
+  { file: 'neutral/thorned-mail', card: card605 },
+  { file: 'neutral/time-capsule', card: card606 },
+  { file: 'neutral/time-thief', card: card607 },
+  { file: 'neutral/time-wanderer', card: card608 },
+  { file: 'neutral/timeguard-plate', card: card609 },
+  { file: 'neutral/timeworn-champion', card: card610 },
+  { file: 'neutral/titan-gauntlet', card: card611 },
+  { file: 'neutral/training-grounds', card: card612 },
+  { file: 'neutral/tripwire', card: card613 },
+  { file: 'neutral/twin-blades', card: card614 },
+  { file: 'neutral/vampire-fang', card: card615 },
+  { file: 'neutral/venom-coating', card: card616 },
+  { file: 'neutral/veteran-of-many-wars', card: card617 },
+  { file: 'neutral/wanderers-camp', card: card618 },
+  { file: 'neutral/wanderers-sling', card: card619 },
+  { file: 'neutral/wandering-scribe', card: card620 },
+  { file: 'neutral/wandering-sellsword', card: card621 },
+  { file: 'neutral/war-drum', card: card622 },
+  { file: 'neutral/wayfinder-scout', card: card623 },
+  { file: 'neutral/whetted-edge', card: card624 },
+  { file: 'neutral/winged-harness', card: card625 }
 ]

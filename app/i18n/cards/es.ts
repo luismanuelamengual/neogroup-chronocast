@@ -3,6 +3,11 @@ import { CardTranslation } from '@/app/i18n/cards'
 /** The Spanish texts of every card, by id (docs/PLAN.md, section 7.6). */
 export const CARDS_ES: Record<string, CardTranslation> = {
   'abyssal-hound': { name: 'Sabueso Abisal', flavor: 'Persigue el olor del miedo hasta el fin de los tiempos.' },
+  'acid-flask': {
+    name: 'Frasco de Ácido',
+    text: 'El arma enemiga pierde 1 de durabilidad y el héroe enemigo pierde 4 de armadura. Rápida.',
+    flavor: 'Se come el metal en el desayuno.'
+  },
   'acolyte-vestments': {
     name: 'Vestiduras de Acólito',
     text: 'Al jugarla: tu héroe se cura 4.',
@@ -104,7 +109,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'aquila-of-the-ninth': {
     name: 'Águila de la Novena',
-    text: 'Al empezar cada fase, tus aliados ganan +1 de ataque y +3 de vida.',
+    text: 'Artefacto. Al empezar cada fase, tus aliados ganan +1 de ataque y +3 de vida.',
     flavor: 'La legión perdida encontró el camino de vuelta, con un siglo de retraso.'
   },
   'arc-trooper': {
@@ -158,6 +163,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Argos, el Sabueso Plateado',
     text: 'Al entrar: hacé 4 de daño a un aliado enemigo al azar.',
     flavor: 'La esperó veinte años. Esperaría veinte más.'
+  },
+  'armor-breaker': {
+    name: 'Rompecorazas',
+    text: 'Al entrar: el héroe enemigo pierde toda su armadura.',
+    flavor: 'No golpea la puerta. Entra.'
   },
   'arrow-of-the-sun': {
     name: 'Flecha del Sol',
@@ -266,6 +276,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     flavor: 'No se desperdicia nada. Ni siquiera vos.'
   },
   'bone-crawler': { name: 'Reptador de Huesos', flavor: 'Matalo. Vuelve para el almuerzo.' },
+  'bone-crusher': {
+    name: 'Trituradora de Huesos',
+    text: 'Cuando ataca al héroe enemigo, el arma enemiga pierde 1 de durabilidad y el héroe pierde 4 de armadura.',
+    flavor: 'La armadura es solo un caparazón. Los caparazones se parten.'
+  },
   'bone-dragon': { name: 'Dragón de Hueso', flavor: 'Murió hace mil años. Se olvidó de parar.' },
   'bone-reading': {
     name: 'Lectura de Huesos',
@@ -275,7 +290,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'bonefang-bow': { name: 'Arco Colmillo de Hueso', flavor: 'Tallado del diente del primer tirano.' },
   boneyard: {
     name: 'El Osario',
-    text: 'Al empezar cada fase, si tu descarte tiene 5 cartas o más, tus aliados ganan +1 de ataque y +1 de vida.',
+    text: 'Artefacto. Al empezar cada fase, si tu descarte tiene 5 cartas o más, tus aliados ganan +1 de ataque y +1 de vida.',
     flavor: 'Cada hueso de acá fue un héroe alguna vez.'
   },
   'bounty-contract': {
@@ -298,7 +313,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'broken-clocktower': {
     name: 'Torre del Reloj Rota',
-    text: 'Tus aliados entran con +6 de vida.',
+    text: 'Artefacto. Tus aliados entran con +6 de vida.',
     flavor: 'Se detuvo en el momento justo.'
   },
   'bronze-cohort': {
@@ -482,7 +497,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   colosseum: {
     name: 'Coliseo',
-    text: 'Tus aliados entran con +4 de ataque.',
+    text: 'Artefacto. Tus aliados entran con +4 de ataque.',
     flavor: 'Cincuenta mil voces, un solo rugido.'
   },
   'colossus-mark-ix': {
@@ -504,6 +519,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Fusión del Núcleo',
     text: 'Hacé 10 de daño a cada aliado enemigo. Lenta.',
     flavor: 'Atención. Atención. Aten-'
+  },
+  'corrosion-totem': {
+    name: 'Tótem de Corrosión',
+    text: 'Artefacto. Al empezar cada fase, el arma enemiga pierde 1 de durabilidad y el héroe enemigo pierde 3 de armadura.',
+    flavor: 'Todo lo que toca envejece.'
   },
   'counter-rune': {
     name: 'Runa de Contrahechizo',
@@ -601,6 +621,16 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Al empezar cada fase, gana +1 de ataque y +1 de vida.',
     flavor: 'Come, crece, vuelve a comer.'
   },
+  'disarming-strike': {
+    name: 'Golpe Desarmador',
+    text: 'Hacé 3 de daño al héroe enemigo. Su arma pierde 2 de durabilidad.',
+    flavor: 'Un legionario apunta a la mano que sostiene la espada.'
+  },
+  'dispel-wave': {
+    name: 'Onda de Disipación',
+    text: 'Destruí el artefacto enemigo más caro.',
+    flavor: 'Todo encantamiento tiene un final. Es este.'
+  },
   'divine-shield': {
     name: 'Escudo Divino',
     text: 'Un aliado tuyo gana +14 de vida y tu héroe gana 6 de armadura. Instantánea.',
@@ -681,7 +711,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'eye-of-the-storm': {
     name: 'Ojo de la Tormenta',
-    text: 'Al empezar cada fase, hacé 5 de daño al héroe enemigo.',
+    text: 'Artefacto. Al empezar cada fase, hacé 5 de daño al héroe enemigo.',
     flavor: 'Calma en el centro. Ruina alrededor.'
   },
   'factory-foreman': {
@@ -755,7 +785,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'forum-of-heroes': {
     name: 'Foro de los Héroes',
-    text: 'Al empezar cada fase, tu héroe gana 4 de armadura y tus aliados se curan 2.',
+    text: 'Artefacto. Al empezar cada fase, tu héroe gana 4 de armadura y tus aliados se curan 2.',
     flavor: 'Cada estatua de acá fue un soldado con nombre.'
   },
   'freezing-trap': {
@@ -811,12 +841,12 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'garden-of-forever': {
     name: 'Jardín del Para Siempre',
-    text: 'Al empezar cada fase, tus aliados ganan +2 de ataque y +2 de vida, y tu héroe se cura 4.',
+    text: 'Artefacto. Al empezar cada fase, tus aliados ganan +2 de ataque y +2 de vida, y tu héroe se cura 4.',
     flavor: 'Acá nada se marchita. Nunca.'
   },
   'gate-of-oblivion': {
     name: 'Portal del Olvido',
-    text: 'Al empezar cada fase, hacé 5 de daño a un aliado enemigo al azar. Si tu descarte tiene 10 cartas o más, un aliado al azar de tu descarte vuelve al juego.',
+    text: 'Artefacto. Al empezar cada fase, hacé 5 de daño a un aliado enemigo al azar. Si tu descarte tiene 10 cartas o más, un aliado al azar de tu descarte vuelve al juego.',
     flavor: 'Lo que entra nunca vuelve. Casi nunca.'
   },
   'gear-drone': { name: 'Dron de Engranajes', flavor: 'Dale cuerda y soltalo. Sabe el camino.' },
@@ -827,7 +857,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'gearworks-tower': {
     name: 'Torre de los Engranajes',
-    text: 'Al empezar cada fase, ganá 1 de Cronos. Al final de cada fase, tu héroe gana 3 de armadura.',
+    text: 'Artefacto. Al empezar cada fase, ganá 1 de Cronos. Al final de cada fase, tu héroe gana 3 de armadura.',
     flavor: 'Sus campanas suenan cada hora de cada era.'
   },
   'ghillie-cloak': { name: 'Capa de Camuflaje', text: 'Al jugarla: robá una carta.', flavor: 'Ahora sos el bosque.' },
@@ -909,18 +939,23 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'great-foundry': {
     name: 'La Gran Fundición',
-    text: 'Al empezar cada fase, si tenés menos de 3 aliados, invocá un Dron de Engranajes.',
+    text: 'Artefacto. Al empezar cada fase, si tenés menos de 3 aliados, invocá un Dron de Engranajes.',
     flavor: 'Día y noche fabrica más de todo.'
+  },
+  'great-purge': {
+    name: 'Gran Purga',
+    text: 'Destruí todos los artefactos y las trampas boca abajo del rival.',
+    flavor: 'Borrón y cuenta nueva. Tablero limpio.'
   },
   'greatsword-of-dawn': { name: 'Mandoble del Alba', flavor: 'Brilla más con la primera luz de la batalla.' },
   'hall-of-echoes': {
     name: 'Salón de los Ecos',
-    text: 'Al final de cada fase, robá una carta si tenés 3 o menos en la mano.',
+    text: 'Artefacto. Al final de cada fase, robá una carta si tenés 3 o menos en la mano.',
     flavor: 'Cada palabra dicha alguna vez todavía resuena acá.'
   },
   'hall-of-mirrors': {
     name: 'Salón de los Espejos',
-    text: 'Al final de cada fase, hacé 3 de daño a un aliado enemigo al azar. Al empezar cada fase, tu héroe se cura 3.',
+    text: 'Artefacto. Al final de cada fase, hacé 3 de daño a un aliado enemigo al azar. Al empezar cada fase, tu héroe se cura 3.',
     flavor: 'Cada reflejo es un hechizo esperando su turno.'
   },
   'halo-of-dawn': {
@@ -1367,7 +1402,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'neon-dancer': { name: 'Bailarina de Neón', flavor: 'Esquiva balas al ritmo de la música.' },
   'neon-district': {
     name: 'Distrito Neón',
-    text: 'Al empezar cada fase, robá una carta. Al final de cada fase, hacé 2 de daño al héroe enemigo.',
+    text: 'Artefacto. Al empezar cada fase, robá una carta. Al final de cada fase, hacé 2 de daño al héroe enemigo.',
     flavor: 'Nunca duerme. Nunca olvida.'
   },
   'nest-keeper': {
@@ -1575,7 +1610,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'primal-grove': {
     name: 'Arboleda Primigenia',
-    text: 'Al empezar cada fase, tus aliados se curan 4.',
+    text: 'Artefacto. Al empezar cada fase, tus aliados se curan 4.',
     flavor: 'El bosque más viejo cura las heridas más viejas.'
   },
   'primal-rage': {
@@ -1729,7 +1764,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'rift-mail': { name: 'Malla de la Grieta', flavor: 'Los eslabones titilan entre el ahora y el antes.' },
   'rift-market': {
     name: 'Mercado de la Grieta',
-    text: 'Al empezar cada fase, ganás 1 de Cronos.',
+    text: 'Artefacto. Al empezar cada fase, ganás 1 de Cronos.',
     flavor: 'Todo está a la venta. Sobre todo el tiempo.'
   },
   'rift-medic': {
@@ -1763,6 +1798,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Al jugarla: robá una carta.',
     flavor: 'Mitad espada, mitad libro de hechizos.'
   },
+  'rust-swarm': {
+    name: 'Enjambre de Óxido',
+    text: 'El arma enemiga pierde 2 de durabilidad y el héroe enemigo pierde 6 de armadura.',
+    flavor: 'Escarabajos de bronce diminutos con gusto por el hierro.'
+  },
   'rusted-shackles': {
     name: 'Grilletes Oxidados',
     text: 'Adjuntalos a un aliado enemigo: tiene -6 de ataque.',
@@ -1776,9 +1816,14 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     ability: { name: 'Sobrecarga', text: 'Un aliado tuyo gana +8 de ataque esta fase.' }
   },
   'sabertooth-stalker': { name: 'Acechador Dientes de Sable', flavor: 'El pasto se mueve. Después ya es tarde.' },
+  saboteur: {
+    name: 'Saboteadora',
+    text: 'Al entrar: destruí una trampa enemiga boca abajo al azar. Si no había ninguna, destruí el artefacto enemigo más barato.',
+    flavor: 'Cables cortados, alarmas apagadas, nadie vio nada.'
+  },
   'sanctum-of-hours': {
     name: 'Santuario de las Horas',
-    text: 'Al empezar cada fase, tu héroe se cura 5 y tus aliados se curan 5.',
+    text: 'Artefacto. Al empezar cada fase, tu héroe se cura 5 y tus aliados se curan 5.',
     flavor: 'Acá cada herida tiene todo el tiempo del mundo para sanar.'
   },
   'sand-wraith': { name: 'Espectro de Arena', flavor: 'Nunca lo ves venir. Solo escuchás la arena.' },
@@ -1793,6 +1838,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Lente del Erudito',
     text: 'Artefacto con 3 usos. Al empezar cada fase, robás una carta.',
     flavor: 'Lee lo que todavía no se escribió.'
+  },
+  'scrap-golem': {
+    name: 'Gólem de Chatarra',
+    text: 'Al entrar: destruí el artefacto enemigo más caro.',
+    flavor: 'Se come las máquinas y crece con sus piezas.'
   },
   'scroll-of-wisdom': {
     name: 'Pergamino de Sabiduría',
@@ -1817,7 +1867,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'server-farm': {
     name: 'Granja de Servidores',
-    text: 'Al empezar cada fase, robá una carta y ganá 1 de Cronos.',
+    text: 'Artefacto. Al empezar cada fase, robá una carta y ganá 1 de Cronos.',
     flavor: 'Cada byte de cada era, guardado y zumbando.'
   },
   'shade-lurker': { name: 'Sombra Acechante', flavor: 'Cada sombra del vacío tiene a alguien adentro.' },
@@ -1862,7 +1912,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'shifting-sands': {
     name: 'Arenas Movedizas',
-    text: 'Al empezar cada fase, hacé 2 de daño a cada aliado enemigo.',
+    text: 'Artefacto. Al empezar cada fase, hacé 2 de daño a cada aliado enemigo.',
     flavor: 'El suelo mismo se olvida de dónde estaba.'
   },
   shortbow: { name: 'Arco Corto', flavor: 'Liviano, rápido y siempre a mano.' },
@@ -2077,6 +2127,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     flavor: 'Cruza el cielo todos los días. Hoy te cruza a vos.'
   },
   'sun-mace': { name: 'Maza Solar', flavor: 'Un poco de luz de sol, aplicada con firmeza.' },
+  sunder: {
+    name: 'Quebrar',
+    text: 'Destruí el arma enemiga.',
+    flavor: 'El acero se rompe. El orgullo, más fuerte.'
+  },
   sunrise: {
     name: 'Amanecer',
     text: 'Tus aliados se curan 10 y tus aliados ganan +2 de ataque y +2 de vida.',
@@ -2112,7 +2167,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'tar-pits': {
     name: 'Pozos de Brea',
-    text: 'Al empezar cada fase, hacé 4 de daño a un aliado enemigo al azar y tu héroe se cura 3.',
+    text: 'Artefacto. Al empezar cada fase, hacé 4 de daño a un aliado enemigo al azar y tu héroe se cura 3.',
     flavor: 'Entraron muchos. Salieron pocos.'
   },
   'target-lock': {
@@ -2139,7 +2194,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'temple-of-the-huntress': {
     name: 'Templo de la Cazadora',
-    text: 'Al empezar cada fase, hacé 4 de daño a un aliado enemigo al azar y tus aliados ganan +1 de ataque.',
+    text: 'Artefacto. Al empezar cada fase, hacé 4 de daño a un aliado enemigo al azar y tus aliados ganan +1 de ataque.',
     flavor: 'Cada flecha que sale de acá es una plegaria.'
   },
   'temple-oracle': {
@@ -2167,7 +2222,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'testudo-squad': { name: 'Escuadra Tortuga', flavor: 'Llueven flechas. La tortuga sigue caminando.' },
   'the-ancestor-tree': {
     name: 'El Árbol de los Ancestros',
-    text: 'Al empezar cada fase, tus aliados se curan 4 y tus aliados ganan +1 de ataque y +2 de vida.',
+    text: 'Artefacto. Al empezar cada fase, tus aliados se curan 4 y tus aliados ganan +1 de ataque y +2 de vida.',
     flavor: 'Cada hoja es un nombre. Cada raíz, una historia.'
   },
   'the-clockmaker': {
@@ -2216,7 +2271,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'the-nexus': {
     name: 'El Nexo',
-    text: 'Al empezar cada fase, ganás 1 de Cronos y robá una carta.',
+    text: 'Artefacto. Al empezar cada fase, ganás 1 de Cronos y robá una carta.',
     flavor: 'Donde se cruzan todas las eras y empiezan todos los caminos.'
   },
   'the-ninths-stand': {
@@ -2231,7 +2286,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'the-singing-graves': {
     name: 'Las Tumbas que Cantan',
-    text: 'Al empezar cada fase, un aliado al azar de tu descarte vuelve al juego y tu héroe se cura 3.',
+    text: 'Artefacto. Al empezar cada fase, un aliado al azar de tu descarte vuelve al juego y tu héroe se cura 3.',
     flavor: 'Escuchá bien. Están cantando tu nombre.'
   },
   'the-starlight-oracle': {
@@ -2327,7 +2382,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'tower-of-stars': {
     name: 'Torre de las Estrellas',
-    text: 'Al empezar cada fase, hacé 3 de daño al héroe enemigo.',
+    text: 'Artefacto. Al empezar cada fase, hacé 3 de daño al héroe enemigo.',
     flavor: 'Desde arriba, todas las eras se ven chiquitas.'
   },
   track: {
@@ -2337,8 +2392,13 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'training-grounds': {
     name: 'Campo de Entrenamiento',
-    text: 'Al empezar cada fase, un aliado tuyo al azar gana +2 de ataque.',
+    text: 'Artefacto. Al empezar cada fase, un aliado tuyo al azar gana +2 de ataque.',
     flavor: 'La práctica hace eterno.'
+  },
+  'trap-finder': {
+    name: 'Buscatrampas',
+    text: 'Al entrar: destruí una trampa enemiga boca abajo al azar.',
+    flavor: 'Pisó todas las trampas. Una vez.'
   },
   'tribal-warchief': {
     name: 'Jefe de Guerra Tribal',
@@ -2457,7 +2517,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'wanderers-camp': {
     name: 'Campamento Errante',
-    text: 'Al empezar cada fase, tu héroe se cura 3.',
+    text: 'Artefacto. Al empezar cada fase, tu héroe se cura 3.',
     flavor: 'Un fuego tibio, sea el siglo que sea.'
   },
   'wanderers-sling': {

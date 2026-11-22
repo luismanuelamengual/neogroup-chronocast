@@ -3,9 +3,9 @@ import { alliesOf, summonCard } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'great-foundry',
-  type: 'location',
+  type: 'artifact',
   name: 'The Great Foundry',
-  text: 'At the start of each phase, if you have fewer than 3 allies, summon a Gear Drone.',
+  text: 'Artifact. At the start of each phase, if you have fewer than 3 allies, summon a Gear Drone.',
   flavor: 'Day and night, it makes more of everything.',
   faction: 'clockwork',
   restriction: { kind: 'faction', faction: 'clockwork' },

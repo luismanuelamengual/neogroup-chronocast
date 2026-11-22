@@ -3,9 +3,9 @@ import { buff, randomAlly } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'training-grounds',
-  type: 'location',
+  type: 'artifact',
   name: 'Training Grounds',
-  text: 'At the start of each phase, a random ally of yours gains +2 attack.',
+  text: 'Artifact. At the start of each phase, a random ally of yours gains +2 attack.',
   flavor: 'Practice makes timeless.',
   faction: 'neutral',
   restriction: { kind: 'any' },

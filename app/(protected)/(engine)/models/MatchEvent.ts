@@ -30,6 +30,9 @@ export type FailReason =
   | 'silenced'
   | 'frozen'
 
+/** A card of the hero or of the support slots that can be broken. */
+export type GearKind = 'weapon' | 'armor' | 'artifact' | 'trap'
+
 /** A lasting status effect. */
 export type StatusKind = 'poison' | 'burn' | 'freeze'
 
@@ -51,6 +54,8 @@ export type MatchEvent =
   | { type: 'attach'; player: PlayerId; cardId: string; target?: SlotRef }
   | { type: 'artifact'; player: PlayerId; cardId: string }
   | { type: 'artifactSpent'; player: PlayerId; cardId: string }
+  | { type: 'gearDestroyed'; player: PlayerId; cardId: string; kind: GearKind }
+  | { type: 'gearWorn'; player: PlayerId; kind: 'weapon' | 'armor'; amount: number }
   | { type: 'location'; player: PlayerId; cardId: string }
   | { type: 'trapSet'; player: PlayerId }
   | { type: 'trapTriggered'; player: PlayerId; cardId: string }

@@ -3,9 +3,9 @@ import { damageAllAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'shifting-sands',
-  type: 'location',
+  type: 'artifact',
   name: 'Shifting Sands',
-  text: 'At the start of each phase, deal 2 damage to every enemy ally.',
+  text: 'Artifact. At the start of each phase, deal 2 damage to every enemy ally.',
   flavor: 'The ground itself forgets where it was.',
   faction: 'neutral',
   restriction: { kind: 'any' },

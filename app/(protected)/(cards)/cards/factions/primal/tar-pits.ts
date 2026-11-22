@@ -3,9 +3,9 @@ import { damageRandomAlly, heal } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'tar-pits',
-  type: 'location',
+  type: 'artifact',
   name: 'Tar Pits',
-  text: 'At the start of each phase, deal 4 damage to a random enemy ally and your hero heals 3.',
+  text: 'Artifact. At the start of each phase, deal 4 damage to a random enemy ally and your hero heals 3.',
   flavor: 'Many came in. Few climbed out.',
   faction: 'primal',
   restriction: { kind: 'faction', faction: 'primal' },
