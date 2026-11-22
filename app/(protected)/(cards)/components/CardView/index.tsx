@@ -111,7 +111,8 @@ export default function CardView({ card: original, art }: CardViewProps) {
         {card.ability && (
           <p className="card-view__ability">
             <strong>
-              {card.ability.name} ({card.ability.cost}):
+              {card.ability.name} ({card.type === 'hero' || card.ability.resource === 'energy' ? '⚡' : ''}
+              {card.ability.cost}):
             </strong>{' '}
             {card.ability.text}
           </p>

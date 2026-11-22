@@ -1,11 +1,11 @@
-import { DRAW_PER_PHASE } from '@/app/(protected)/(engine)/data/rules'
+import { DRAW_PER_PHASE, ENERGY_PER_PHASE } from '@/app/(protected)/(engine)/data/rules'
 import { PLAYER_IDS } from '@/app/(protected)/(engine)/models/PlayerId'
 import { MatchEngine } from '@/app/(protected)/(engine)/utils/engine'
 
 /**
  * Starts the next phase: draws (not in the first one), refills the Chronos,
- * readies the hero and the allies and runs the "at the start of the phase"
- * logic. The match may end here (fatigue, a location's damage).
+ * adds the energy, readies the hero and the allies, runs the "at the start of the phase"
+ * logic and the damage of poison and burns. The match may end here (fatigue, a location's damage).
  */
 export function startPhase(engine: MatchEngine): void {
   const state = engine.state
@@ -22,6 +22,7 @@ export function startPhase(engine: MatchEngine): void {
     }
 
     player.chronos = player.chronosCapacity
+    engine.gainEnergy(id, ENERGY_PER_PHASE, false)
     player.sacrificesThisPhase = 0
     player.hero.attackedThisPhase = false
     player.hero.abilityUsedThisPhase = false
@@ -37,6 +38,9 @@ export function startPhase(engine: MatchEngine): void {
     engine.dispatch(id, 'onPhaseStart')
   }
 
+  engine.flush()
+  // Poison and burns hurt after the "at the start of the phase" logic (a cure there saves from them).
+  engine.tickAfflictions()
   engine.flush()
 
   if (!engine.checkVictory()) {

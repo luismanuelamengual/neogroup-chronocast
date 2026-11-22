@@ -18,11 +18,16 @@ import { TargetKind } from '@/app/(protected)/(engine)/models/TargetKind'
 export interface ActiveAbility {
   name: string
   text: string
+  /** In Chronos, or in energy with `resource: 'energy'` (a hero's ability is always paid with energy). */
   cost: number
+  resource?: AbilityResource
   speed?: Speed
   targets?: TargetKind[]
   activate(ctx: EffectContext): void
 }
+
+/** What an ability is paid with. */
+export type AbilityResource = 'chronos' | 'energy'
 
 /** The ability of a hero (the same as an ally's). */
 export type HeroAbility = ActiveAbility
@@ -116,4 +121,10 @@ export interface CardDefinition {
   modifyDamage?(ctx: EffectContext, target: SlotRef, amount: number): number
   /** Attachments: when the ally it is attached to dies. */
   onHostDeath?(ctx: EffectContext, host: Unit): void
+  /** Attachments: each time the ally it is attached to attacks (before the hit). */
+  onHostAttack?(ctx: EffectContext, host: Unit): void
+  /** Attachments: the ally it is attached to can't attack. */
+  disarms?: boolean
+  /** Attachments: the ally it is attached to can't use its ability. */
+  silences?: boolean
 }

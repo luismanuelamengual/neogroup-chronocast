@@ -14,8 +14,19 @@ export interface CardInstance {
   charges?: number
 }
 
+/** Lasting status effects on a hero or an ally. */
+export interface Afflictions {
+  /** Poisoned: loses this much health at the start of each phase, and the poison drops by 1. */
+  poison?: number
+  /** Burning: loses this much health at the start of each phase, for `burnPhases` phases. */
+  burn?: number
+  burnPhases?: number
+  /** Frozen: it can't attack, move or use abilities while the phase is not past this one. */
+  frozenUntilPhase?: number
+}
+
 /** An ally on the board. */
-export interface Unit {
+export interface Unit extends Afflictions {
   uid: number
   cardId: string
   attack: number
@@ -41,7 +52,7 @@ export interface Unit {
   attachments?: CardInstance[]
 }
 
-export interface HeroState {
+export interface HeroState extends Afflictions {
   uid: number
   cardId: string
   health: number
@@ -74,6 +85,8 @@ export interface PlayerState {
   /** Chronos available this phase and capacity (refilled at the start of each phase). */
   chronos: number
   chronosCapacity: number
+  /** Energy stored by the hero: it grows each phase and pays the hero's ability (and some allies'). */
+  energy: number
   sacrificesThisPhase: number
   /** Draws from an empty deck so far. */
   fatigue: number

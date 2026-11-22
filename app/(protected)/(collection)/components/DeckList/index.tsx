@@ -2,12 +2,14 @@
 
 import './index.scss'
 import '@/app/(protected)/(cards)/utils/catalog'
+import DeleteIcon from '@mui/icons-material/Delete'
 import classNames from 'classnames'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { useMusic } from '@/app/(protected)/(art)/hooks/useMusic'
 import { initials } from '@/app/(protected)/(battle)/components/UnitToken'
+import { useCardArt } from '@/app/(protected)/(cards)/stores/cardArt'
 import { useCollection } from '@/app/(protected)/(collection)/hooks/useCollection'
 import { DeckSummary } from '@/app/(protected)/(collection)/models/DeckDto'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
@@ -19,15 +21,22 @@ import { useT } from '@/app/i18n/I18nProvider'
  * The decks of the player (/decks): play-ready or not, which one is active (the
  * one every game mode plays with), edit, delete, and a new one for any owned hero.
  */
-export default function DeckList({ decks: initialDecks, heroes }: { decks: DeckSummary[]; heroes: string[] }) {
+/** The hero's illustration behind a deck tile (nothing while it has none: the tile keeps its faction color). */
+function HeroBackdrop({ heroId }: { heroId: string }) {
+  const art = useCardArt(heroId)
+
+  // eslint-disable-next-line @next/next/no-img-element
+  return art ? <img className="deck-list__backdrop" src={art} alt="" aria-hidden="true" /> : null
+}
+
+export default function DeckList({ decks: initialDecks }: { decks: DeckSummary[] }) {
   useMusic('menu')
   const t = useT()
   const cardName = useCardName()
   const router = useRouter()
   const { deleteDeck, setActiveDeck } = useCollection()
   const [decks, setDecks] = useState(initialDecks)
-  const [choosingHero, setChoosingHero] = useState(false)
-  const [confirming, setConfirming] = useState<number | null>(null)
+  const [confirming, setConfirming] = useState<DeckSummary | null>(null)
 
   const remove = async (deck: DeckSummary) => {
     await deleteDeck(deck.id)
@@ -51,7 +60,7 @@ export default function DeckList({ decks: initialDecks, heroes }: { decks: DeckS
           ← {t('decks.back')}
         </GameButton>
         <h1>{t('decks.title')}</h1>
-        <GameButton color="gold" size="small" onClick={() => setChoosingHero(true)}>
+        <GameButton color="gold" size="small" href="/decks/new">
           + {t('decks.new')}
         </GameButton>
       </header>
@@ -67,10 +76,17 @@ export default function DeckList({ decks: initialDecks, heroes }: { decks: DeckS
           const hero = getCard(deck.heroId)
 
           return (
+            // The whole tile opens the editor; its buttons (activate, delete) stop the tap.
             <article
               key={deck.id}
+              role="link"
+              tabIndex={0}
+              aria-label={t('decks.edit')}
               className={classNames('deck-list__deck', `faction-${hero.faction}`, { active: deck.active })}
+              onClick={() => router.push(`/decks/${deck.id}`)}
+              onKeyDown={(event) => event.key === 'Enter' && router.push(`/decks/${deck.id}`)}
             >
+              <HeroBackdrop heroId={deck.heroId} />
               {deck.active && <span className="deck-list__active">★ {t('decks.active')}</span>}
               <span className="deck-list__hero">{initials(hero.name)}</span>
               <div className="deck-list__info">
@@ -82,52 +98,43 @@ export default function DeckList({ decks: initialDecks, heroes }: { decks: DeckS
                   {deck.playable ? `✔ ${t('decks.playable')}` : `⚠ ${t('decks.notPlayable')}`}
                 </span>
               </div>
-              <div className="deck-list__actions">
-                {confirming === deck.id ? (
-                  <>
-                    <p>{t('decks.deleteConfirm', { name: deck.name })}</p>
-                    <GameButton size="small" color="magenta" onClick={() => remove(deck)}>
-                      {t('decks.delete')}
-                    </GameButton>
-                    <GameButton size="small" color="ghost" onClick={() => setConfirming(null)}>
-                      {t('common.cancel')}
-                    </GameButton>
-                  </>
-                ) : (
-                  <>
-                    {!deck.active && deck.playable && (
-                      <GameButton size="small" color="gold" onClick={() => activate(deck)}>
-                        {t('decks.setActive')}
-                      </GameButton>
-                    )}
-                    <GameButton size="small" color="cyan" href={`/decks/${deck.id}`}>
-                      {t('decks.edit')}
-                    </GameButton>
-                    <GameButton size="small" color="ghost" onClick={() => setConfirming(deck.id)}>
-                      {t('decks.delete')}
-                    </GameButton>
-                  </>
-                )}
-              </div>
+              {!deck.active && deck.playable && (
+                <div className="deck-list__actions" onClick={(event) => event.stopPropagation()}>
+                  <GameButton size="small" color="gold" onClick={() => activate(deck)}>
+                    {t('decks.setActive')}
+                  </GameButton>
+                </div>
+              )}
+              <button
+                type="button"
+                className="deck-list__delete"
+                aria-label={t('decks.delete')}
+                title={t('decks.delete')}
+                onClick={(event) => {
+                  event.stopPropagation()
+                  setConfirming(deck)
+                }}
+              >
+                <DeleteIcon fontSize="small" />
+              </button>
             </article>
           )
         })}
       </div>
 
-      {choosingHero && (
-        <div className="deck-list__overlay" onClick={() => setChoosingHero(false)}>
-          <div className="deck-list__picker" onClick={(event) => event.stopPropagation()}>
-            <h2>{t('decks.chooseHero')}</h2>
+      {confirming && (
+        <div className="deck-list__overlay" role="dialog" aria-modal="true" onClick={() => setConfirming(null)}>
+          <div className="deck-list__confirm" onClick={(event) => event.stopPropagation()}>
+            <h2>{t('decks.deleteTitle')}</h2>
+            <p>{t('decks.deleteConfirm', { name: confirming.name })}</p>
             <div>
-              {heroes.map((heroId) => (
-                <GameButton key={heroId} color="violet" onClick={() => router.push(`/decks/new?hero=${heroId}`)}>
-                  {cardName(heroId)}
-                </GameButton>
-              ))}
+              <GameButton size="small" color="ghost" onClick={() => setConfirming(null)}>
+                {t('common.cancel')}
+              </GameButton>
+              <GameButton size="small" color="magenta" onClick={() => remove(confirming)}>
+                {t('decks.delete')}
+              </GameButton>
             </div>
-            <GameButton size="small" color="ghost" onClick={() => setChoosingHero(false)}>
-              {t('common.cancel')}
-            </GameButton>
           </div>
         </div>
       )}

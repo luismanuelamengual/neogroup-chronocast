@@ -125,6 +125,66 @@ export const TEST_CARDS: CardDefinition[] = [
   }),
   defineCard({
     ...base,
+    id: 'test-shaman',
+    type: 'hero',
+    name: 'Test Shaman',
+    cost: 0,
+    health: 50,
+    heroClass: 'mage',
+    restriction: { kind: 'hero', heroId: 'test-shaman' },
+    ability: {
+      name: 'Test Spark',
+      text: 'Deal 5 damage to an enemy slot.',
+      cost: 2,
+      targets: ['enemySlot'],
+      activate(ctx) {
+        damage(ctx, ctx.targets[0], 5)
+      }
+    }
+  }),
+  ally('test-channeler', 3, 20, [], {
+    ability: {
+      name: 'Test Surge',
+      text: 'Deal 4 damage to an enemy slot.',
+      cost: 2,
+      resource: 'energy',
+      targets: ['enemySlot'],
+      activate(ctx) {
+        damage(ctx, ctx.targets[0], 4)
+      }
+    }
+  }),
+  defineCard({
+    ...base,
+    id: 'test-shackle',
+    type: 'attachment',
+    name: 'Test Shackle',
+    cost: 1,
+    disarms: true,
+    targets: ['enemyAlly']
+  }),
+  defineCard({
+    ...base,
+    id: 'test-hush',
+    type: 'attachment',
+    name: 'Test Hush',
+    cost: 1,
+    silences: true,
+    targets: ['enemyAlly']
+  }),
+  defineCard({
+    ...base,
+    id: 'test-barbs',
+    type: 'attachment',
+    name: 'Test Barbs',
+    cost: 1,
+    targets: ['enemyAlly'],
+    onHostAttack(ctx, host) {
+      ctx.engine.damageUnit(host.uid, 3, { player: ctx.owner })
+    }
+  }),
+  defineCard({
+    ...base,
     id: 'test-idol',
     type: 'artifact',
     name: 'Test Idol',

@@ -12,6 +12,8 @@ export interface SideSetup {
   /** Allies already on the board, by card id (slot by slot from 0). */
   allies?: string[]
   chronosCapacity?: number
+  /** Energy the hero starts with. */
+  energy?: number
   extraHealth?: number
   location?: string
   weapon?: string
@@ -78,6 +80,7 @@ export function createMatch({ seed, decks, setup = {} }: MatchSetup): {
       artifacts: [],
       chronos: 0,
       chronosCapacity: side.chronosCapacity ?? 0,
+      energy: side.energy ?? 0,
       sacrificesThisPhase: 0,
       fatigue: 0,
       idlePhases: 0,

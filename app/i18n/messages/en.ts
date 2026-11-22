@@ -380,6 +380,7 @@ export const en: Messages = {
     notPlayable: 'Incomplete',
     edit: 'Edit',
     delete: 'Delete',
+    deleteTitle: 'Delete deck',
     deleteConfirm: 'Delete the deck "{name}"? This cannot be undone.',
     deleted: 'Deck deleted',
     active: 'Active',
@@ -396,13 +397,25 @@ export const en: Messages = {
       curve: 'Cost curve',
       pool: 'Your cards for {hero}',
       list: 'Cards in the deck',
-      available: '{left} left of {owned}',
       save: 'Save',
       saved: 'Deck saved',
       back: 'Back',
       ok: 'The deck follows every rule',
       unsaved: 'There are unsaved changes',
-      emptyDeck: 'Tap cards on the left to add them.'
+      emptyDeck: 'Tap the cards below to add them.',
+      clear: 'Clear',
+      clearConfirm: 'Clear all?',
+      removeHero: 'Remove hero (clears the deck)',
+      chooseThisHero: 'Choose this hero',
+      add: 'Add to deck',
+      remove: 'Remove from deck',
+      copies: 'In the deck: {inDeck} of {owned} owned',
+      noneLeft: 'You have no more copies',
+      maxCopies: 'At most {max} copies',
+      deckFull: 'The deck is full ({max})',
+      notInDeck: 'It is not in the deck',
+      heroFirst: 'First, a hero',
+      noHeroes: 'You have no heroes yet.'
     },
     problems: {
       unknownCard: '{card} does not exist',
@@ -466,6 +479,11 @@ export const en: Messages = {
     waitingRival: 'Waiting...',
     notReady: 'Just arrived: attacks from the next phase',
     stunned: 'Stunned',
+    frozen: 'Frozen',
+    statusNotes: {
+      poison: '☠️ Poisoned: loses {amount} when the phase starts',
+      burn: '🔥 Burning: loses {amount} a phase ({phases} more phases)'
+    },
     mulligan: {
       title: 'Your opening hand',
       text: 'Tap the cards you want to replace. They go back to the deck and you draw as many. Only once.',
@@ -485,6 +503,7 @@ export const en: Messages = {
       support: 'Support',
       deck: 'Deck',
       chronos: 'Chronos',
+      energy: 'Energy',
       graveyard: 'Graveyard'
     },
     actionsLeft: { one: '{count} action left', other: '{count} actions left' },
@@ -501,6 +520,7 @@ export const en: Messages = {
       play: 'Play',
       sacrifice: 'Generate Chronos',
       ability: 'Ability ({cost})',
+      abilityEnergy: 'Ability (⚡{cost})',
       cancel: 'Cancel'
     },
     actions: {
@@ -538,6 +558,10 @@ export const en: Messages = {
       heroFallen: 'The hero fell',
       supportFull: 'The 5 support slots are taken',
       cancelled: 'Cancelled by a trap',
+      notEnoughEnergy: 'Not enough energy',
+      cantAttack: 'An attachment keeps it from attacking',
+      silenced: 'An attachment keeps it from using its ability',
+      frozen: 'It is frozen',
       timelineFull: 'The timeline already has 6 actions'
     },
     floats: {
@@ -568,6 +592,14 @@ export const en: Messages = {
       heal: '{target} heals {amount}',
       buff: '{target} gets +{attack}/+{health}',
       stun: '{target} is stunned',
+      status_poison: '{target} is poisoned ({amount})',
+      status_burn: '{target} catches fire ({amount} a phase)',
+      status_freeze: '{target} is frozen',
+      cleanse: '{target} is freed from its status effects',
+      damage_poison: '{target} loses {amount} to poison',
+      damage_burn: '{target} loses {amount} to the flames',
+      energyGain: '{player} gains {amount} energy',
+      energyLoss: '{player} loses {amount} energy',
       move: '{player} moves an ally from slot {from} to {to}',
       death: '{card} dies',
       returnToHand: '{card} returns to the hand',

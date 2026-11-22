@@ -3,6 +3,7 @@ import { MatchEvent } from '@/app/(protected)/(engine)/models/MatchEvent'
 import { MatchState } from '@/app/(protected)/(engine)/models/MatchState'
 import { emptyTimeline, PlannedAction, Timeline } from '@/app/(protected)/(engine)/models/PlannedAction'
 import { createMatch, mulligan } from '@/app/(protected)/(engine)/utils/createMatch'
+import { MatchEngine } from '@/app/(protected)/(engine)/utils/engine'
 import { resolvePhase } from '@/app/(protected)/(engine)/utils/resolvePhase'
 import { give, place, testDeck, testMatch, timeline } from '@/tests/support/testCards'
 
@@ -674,12 +675,12 @@ describe('traps', () => {
 })
 
 describe('cards and fatigue', () => {
-  it('draws 2 per phase and burns what does not fit in a full hand', () => {
+  it('draws 1 per phase and burns what does not fit in a full hand', () => {
     const { state, events } = run(testMatch())
 
     expect(state.players.a.hand).toHaveLength(7)
-    expect(state.players.a.deck).toHaveLength(30)
-    expect(events.filter((event) => event.type === 'burn' && event.player === 'a')).toHaveLength(2)
+    expect(state.players.a.deck).toHaveLength(31)
+    expect(events.filter((event) => event.type === 'burn' && event.player === 'a')).toHaveLength(1)
   })
 
   it('drawing from an empty deck causes growing fatigue damage', () => {
@@ -689,8 +690,8 @@ describe('cards and fatigue', () => {
 
     const { state: next } = run(state)
 
-    expect(next.players.a.fatigue).toBe(2)
-    expect(next.players.a.hero.health).toBe(50 - 10 - 15)
+    expect(next.players.a.fatigue).toBe(1)
+    expect(next.players.a.hero.health).toBe(50 - 10)
   })
 })
 
@@ -773,5 +774,194 @@ describe('attachments and artifacts', () => {
     expect(current.players.a.hero.health).toBe(40)
     expect(current.players.a.artifacts).toHaveLength(0)
     expect(current.players.a.discard.some((card) => card.uid === idol.uid)).toBe(true)
+  })
+})
+
+describe('energy', () => {
+  it('grows by 1 each phase up to the maximum, and is kept from phase to phase', () => {
+    const state = testMatch()
+
+    expect(state.players.a.energy).toBe(1)
+
+    const { state: next } = run(state)
+
+    expect(next.players.a.energy).toBe(2)
+
+    next.players.a.energy = 10
+
+    expect(run(next).state.players.a.energy).toBe(10)
+  })
+
+  it("pays the hero's ability (not the Chronos), and fails without enough", () => {
+    const state = richMatch()
+
+    state.players.a.hero.cardId = 'test-shaman'
+    state.players.a.energy = 2
+
+    const { state: next, events } = run(
+      state,
+      timeline({ kind: 'heroAbility', targets: [{ player: 'b', slot: 'hero' }] })
+    )
+
+    expect(fails(events)).toEqual([])
+    expect(next.players.b.hero.health).toBe(45)
+    // 2 - 2 spent + 1 of the new phase; the Chronos were not touched.
+    expect(next.players.a.energy).toBe(1)
+
+    const poor = richMatch()
+
+    poor.players.a.hero.cardId = 'test-shaman'
+    poor.players.a.energy = 1
+
+    expect(
+      fails(run(poor, timeline({ kind: 'heroAbility', targets: [{ player: 'b', slot: 'hero' }] })).events)
+    ).toEqual(['a:0:notEnoughEnergy'])
+  })
+
+  it('pays the ability of an ally that uses energy', () => {
+    const state = richMatch()
+    const caster = place(state, 'a', 'test-channeler', 0)
+
+    state.players.a.energy = 3
+    state.players.a.chronos = 0
+
+    const { state: next, events } = run(
+      state,
+      timeline({ kind: 'allyAbility', allyUid: caster.uid, targets: [{ player: 'b', slot: 'hero' }] })
+    )
+
+    expect(fails(events)).toEqual([])
+    expect(next.players.b.hero.health).toBe(46)
+    expect(next.players.a.energy).toBe(2)
+  })
+})
+
+describe('status effects', () => {
+  it('poison hurts at the start of each phase and fades by 1, past shields and armor', () => {
+    const state = testMatch()
+    const shielded = place(state, 'b', 'test-shield', 0)
+    const engine = new MatchEngine(state)
+
+    engine.afflict({ player: 'b', slot: 0 }, 'poison', 3)
+    engine.afflict({ player: 'b', slot: 'hero' }, 'poison', 2)
+    state.players.b.hero.armor = 10
+
+    const first = run(state).state
+    const unit = first.players.b.allies[0]!
+
+    expect(unit.uid).toBe(shielded.uid)
+    expect(unit.health).toBe(7)
+    expect(unit.shield).toBe(true)
+    expect(unit.poison).toBe(2)
+    expect(first.players.b.hero.health).toBe(48)
+    expect(first.players.b.hero.armor).toBe(10)
+
+    expect(run(first).state.players.b.allies[0]!.health).toBe(5)
+  })
+
+  it('a burn hurts the same each phase until it runs out', () => {
+    const state = testMatch()
+
+    place(state, 'b', 'test-soldier', 0)
+    new MatchEngine(state).afflict({ player: 'b', slot: 0 }, 'burn', 4, 2)
+
+    const first = run(state).state
+    const second = run(first).state
+    const third = run(second).state
+
+    expect(first.players.b.allies[0]!.health).toBe(16)
+    expect(second.players.b.allies[0]!.health).toBe(12)
+    expect(third.players.b.allies[0]!.health).toBe(12)
+    expect(third.players.b.allies[0]!.burn).toBe(0)
+  })
+
+  it("a frozen ally can't attack or use its ability; a frozen hero can't use its ability", () => {
+    const state = richMatch()
+    const soldier = place(state, 'a', 'test-soldier', 0)
+    const caster = place(state, 'a', 'test-caster', 1)
+    const engine = new MatchEngine(state)
+
+    state.players.a.hero.cardId = 'test-shaman'
+    state.players.a.energy = 5
+    engine.afflict({ player: 'a', slot: 0 }, 'freeze', 0)
+    engine.afflict({ player: 'a', slot: 1 }, 'freeze', 0)
+    engine.afflict({ player: 'a', slot: 'hero' }, 'freeze', 0)
+
+    const { events, state: next } = run(
+      state,
+      timeline(
+        { kind: 'allyAttack', allyUid: soldier.uid, target: { player: 'b', slot: 'hero' } },
+        { kind: 'allyAbility', allyUid: caster.uid, targets: [{ player: 'b', slot: 'hero' }] },
+        { kind: 'heroAbility', targets: [{ player: 'b', slot: 'hero' }] }
+      )
+    )
+
+    expect(fails(events)).toEqual(['a:0:frozen', 'a:1:frozen', 'a:2:frozen'])
+    // Frozen for the rest of the phase only: it thaws in the next one.
+    expect(new MatchEngine(next).isFrozen(next.players.a.allies[0]!)).toBe(false)
+  })
+
+  it('cleanse removes every status effect', () => {
+    const state = testMatch()
+
+    place(state, 'b', 'test-soldier', 0)
+
+    const engine = new MatchEngine(state)
+
+    engine.afflict({ player: 'b', slot: 0 }, 'poison', 3)
+    engine.afflict({ player: 'b', slot: 0 }, 'burn', 3)
+    engine.cleanse({ player: 'b', slot: 0 })
+
+    expect(run(state).state.players.b.allies[0]!.health).toBe(20)
+  })
+})
+
+describe('curses on enemy allies', () => {
+  it('an attachment can keep the ally from attacking, or from using its ability', () => {
+    const state = richMatch()
+    const soldier = place(state, 'b', 'test-soldier', 0)
+    const caster = place(state, 'b', 'test-caster', 1)
+    const shackle = give(state, 'a', 'test-shackle')
+    const hush = give(state, 'a', 'test-hush')
+    const { state: cursed, events } = run(
+      state,
+      timeline(
+        { kind: 'play', cardUid: shackle.uid, targets: [{ player: 'b', slot: 0 }] },
+        { kind: 'play', cardUid: hush.uid, targets: [{ player: 'b', slot: 1 }] }
+      )
+    )
+
+    expect(fails(events)).toEqual([])
+
+    cursed.players.b.chronos = 10
+
+    const { events: next } = run(
+      cursed,
+      emptyTimeline(),
+      timeline(
+        { kind: 'allyAttack', allyUid: soldier.uid, target: { player: 'a', slot: 'hero' } },
+        { kind: 'allyAbility', allyUid: caster.uid, targets: [{ player: 'a', slot: 'hero' }] }
+      )
+    )
+
+    expect(fails(next)).toEqual(['b:0:cantAttack', 'b:1:silenced'])
+  })
+
+  it('an attachment can hurt the ally each time it attacks', () => {
+    const state = richMatch()
+    const soldier = place(state, 'b', 'test-soldier', 0)
+    const barbs = give(state, 'a', 'test-barbs')
+    const { state: cursed } = run(
+      state,
+      timeline({ kind: 'play', cardUid: barbs.uid, targets: [{ player: 'b', slot: 0 }] })
+    )
+    const { state: next } = run(
+      cursed,
+      emptyTimeline(),
+      timeline({ kind: 'allyAttack', allyUid: soldier.uid, target: { player: 'a', slot: 'hero' } })
+    )
+
+    expect(next.players.b.allies[0]!.health).toBe(17)
+    expect(next.players.a.hero.health).toBe(40)
   })
 })

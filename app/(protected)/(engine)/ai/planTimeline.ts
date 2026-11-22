@@ -89,19 +89,16 @@ export function planTimeline(state: MatchState, player: PlayerId, style: PlanSty
           ? a.definition.cost - b.definition.cost || value(b.definition) - value(a.definition)
           : value(b.definition) - value(a.definition) || b.definition.cost - a.definition.cost)
     )
-  // The hero ability is value every phase: its Chronos are kept for it when there is enough for a card too.
+  // The hero ability is paid with energy, so the Chronos all go to the cards.
   const heroAbility = getCard(side.hero.cardId).ability
-  const reserve =
-    style.ability && heroAbility && !side.hero.abilityUsedThisPhase && budget >= heroAbility.cost + 2
-      ? heroAbility.cost
-      : 0
+  let energy = side.energy ?? 0
   let freeSlots = side.allies.filter((unit) => !unit).length
   let hasWeapon = !!side.hero.weapon
   let hasArmor = side.hero.armor > 0
   let support = side.traps.length + (side.artifacts ?? []).length
 
   for (const { card, definition } of playable) {
-    if (definition.cost > budget - reserve || timeline.length >= ACTIONS_PER_PHASE - 1) {
+    if (definition.cost > budget || timeline.length >= ACTIONS_PER_PHASE - 1) {
       continue
     }
 
@@ -153,11 +150,11 @@ export function planTimeline(state: MatchState, player: PlayerId, style: PlanSty
   }
 
   // 3. Hero ability.
-  if (style.ability && heroAbility && heroAbility.cost <= budget && !side.hero.abilityUsedThisPhase) {
+  if (style.ability && heroAbility && heroAbility.cost <= energy && !side.hero.abilityUsedThisPhase) {
     const targets = chooseTargets(state, player, heroAbility.targets ?? [])
 
     if (targets && tryAdd({ kind: 'heroAbility', targets })) {
-      budget -= heroAbility.cost
+      energy -= heroAbility.cost
     }
   }
 
@@ -168,11 +165,12 @@ export function planTimeline(state: MatchState, player: PlayerId, style: PlanSty
   if (style.ability) {
     for (const unit of ready) {
       const ability = getCard(unit.cardId).ability
+      const paidWithEnergy = ability?.resource === 'energy'
 
       if (
         !ability ||
         unit.abilityUsedThisPhase ||
-        ability.cost > budget ||
+        ability.cost > (paidWithEnergy ? energy : budget) ||
         unit.attack + unit.tempAttack > abilityWorth(ability.cost)
       ) {
         continue
@@ -181,7 +179,12 @@ export function planTimeline(state: MatchState, player: PlayerId, style: PlanSty
       const targets = chooseTargets(state, player, ability.targets ?? [])
 
       if (targets && tryAdd({ kind: 'allyAbility', allyUid: unit.uid, targets })) {
-        budget -= ability.cost
+        if (paidWithEnergy) {
+          energy -= ability.cost
+        } else {
+          budget -= ability.cost
+        }
+
         acted.add(unit.uid)
       }
     }

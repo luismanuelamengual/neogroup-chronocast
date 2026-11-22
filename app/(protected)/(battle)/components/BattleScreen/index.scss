@@ -218,6 +218,12 @@
     }
   }
 
+  // The card in front of a stack of attached cards.
+  &__stack-front {
+    position: relative;
+    display: block;
+  }
+
   &__attached {
     position: absolute;
     left: 0;
@@ -353,6 +359,59 @@
     line-height: 14px;
   }
 
+  // Poison, burn and freeze on a hero or an ally.
+  &__afflictions {
+    position: absolute;
+    top: 28%;
+    left: 50%;
+    z-index: 3;
+    display: flex;
+    gap: 1px;
+    transform: translateX(-50%);
+    pointer-events: none;
+
+    > span {
+      padding: 0 3px;
+      border: 1.5px solid var(--color-outline);
+      border-radius: 999px;
+      color: white;
+      font-family: var(--font-display);
+      font-size: 9px;
+      line-height: 13px;
+      white-space: nowrap;
+    }
+
+    .poison {
+      background-color: #4caf3a;
+    }
+
+    .burn {
+      background-color: #f06a1d;
+    }
+
+    .freeze {
+      background-color: #5ab8f0;
+    }
+  }
+
+  // Frozen: the card (not its badges) turns pale under a layer of ice.
+  .mini-card.frozen {
+    .mini-card__zoom {
+      filter: saturate(0.45) brightness(1.08);
+    }
+
+    &::after {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      border-radius: 8px;
+      background: linear-gradient(160deg, rgba(170, 225, 255, 0.5), rgba(90, 170, 240, 0.25));
+      box-shadow: inset 0 0 0 2px rgba(120, 200, 255, 0.95);
+      content: '';
+      pointer-events: none;
+    }
+  }
+
   &__status {
     position: absolute;
     top: 30%;
@@ -425,6 +484,13 @@
       font-size: 12px;
       font-weight: normal;
     }
+  }
+
+  // The hero's energy, next to the Chronos.
+  &__chronos.energy {
+    border-color: #e0a100;
+    background: linear-gradient(180deg, #fff8dc, #ffe89a);
+    color: #a06a00;
   }
 
   &__chronos-glass {

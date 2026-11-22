@@ -384,6 +384,7 @@ export const es = {
     notPlayable: 'Incompleto',
     edit: 'Editar',
     delete: 'Borrar',
+    deleteTitle: 'Borrar mazo',
     deleteConfirm: '¿Borrar el mazo "{name}"? No se puede deshacer.',
     deleted: 'Mazo borrado',
     active: 'Activo',
@@ -400,13 +401,25 @@ export const es = {
       curve: 'Curva de costos',
       pool: 'Tus cartas para {hero}',
       list: 'Cartas del mazo',
-      available: '{left} libres de {owned}',
       save: 'Guardar',
       saved: 'Mazo guardado',
       back: 'Volver',
       ok: 'El mazo cumple todas las reglas',
       unsaved: 'Hay cambios sin guardar',
-      emptyDeck: 'Tocá cartas de la izquierda para agregarlas.'
+      emptyDeck: 'Tocá las cartas de abajo para agregarlas.',
+      clear: 'Vaciar',
+      clearConfirm: '¿Vaciar todo?',
+      removeHero: 'Quitar héroe (vacía el mazo)',
+      chooseThisHero: 'Elegir este héroe',
+      add: 'Agregar al mazo',
+      remove: 'Quitar del mazo',
+      copies: 'En el mazo: {inDeck} de {owned} que tenés',
+      noneLeft: 'No tenés más copias',
+      maxCopies: 'Máximo {max} copias',
+      deckFull: 'El mazo está lleno ({max})',
+      notInDeck: 'No está en el mazo',
+      heroFirst: 'Primero, un héroe',
+      noHeroes: 'Todavía no tenés héroes.'
     },
     problems: {
       unknownCard: '{card} no existe',
@@ -471,6 +484,11 @@ export const es = {
     waitingRival: 'Esperando...',
     notReady: 'Recién llegado: ataca desde la fase que viene',
     stunned: 'Aturdido',
+    frozen: 'Congelado',
+    statusNotes: {
+      poison: '☠️ Envenenado: pierde {amount} al empezar la fase',
+      burn: '🔥 Quemándose: pierde {amount} por fase ({phases} fases más)'
+    },
     mulligan: {
       title: 'Tu mano inicial',
       text: 'Tocá las cartas que quieras cambiar. Se devuelven al mazo y robás otras tantas. Solo una vez.',
@@ -490,6 +508,7 @@ export const es = {
       support: 'Soporte',
       deck: 'Mazo',
       chronos: 'Cronos',
+      energy: 'Energía',
       graveyard: 'Cementerio'
     },
     actionsLeft: { one: 'Queda {count} acción', other: 'Quedan {count} acciones' },
@@ -506,6 +525,7 @@ export const es = {
       play: 'Jugar',
       sacrifice: 'Generar Cronos',
       ability: 'Habilidad ({cost})',
+      abilityEnergy: 'Habilidad (⚡{cost})',
       cancel: 'Cancelar'
     },
     actions: {
@@ -543,6 +563,10 @@ export const es = {
       heroFallen: 'El héroe cayó',
       supportFull: 'Los 5 slots de soporte están ocupados',
       cancelled: 'Cancelada por una trampa',
+      notEnoughEnergy: 'No alcanza la energía',
+      cantAttack: 'Un adjunto no lo deja atacar',
+      silenced: 'Un adjunto no lo deja usar su habilidad',
+      frozen: 'Está congelado',
       timelineFull: 'La línea de tiempo ya tiene 6 acciones'
     },
     floats: {
@@ -573,6 +597,14 @@ export const es = {
       heal: '{target} se cura {amount}',
       buff: '{target} gana +{attack}/+{health}',
       stun: '{target} queda aturdido',
+      status_poison: '{target} queda envenenado ({amount})',
+      status_burn: '{target} se prende fuego ({amount} por fase)',
+      status_freeze: '{target} queda congelado',
+      cleanse: '{target} se libra de sus estados',
+      damage_poison: '{target} pierde {amount} por el veneno',
+      damage_burn: '{target} pierde {amount} por las llamas',
+      energyGain: '{player} gana {amount} de energía',
+      energyLoss: '{player} pierde {amount} de energía',
       move: '{player} mueve un aliado del slot {from} al {to}',
       death: 'Muere {card}',
       returnToHand: '{card} vuelve a la mano',

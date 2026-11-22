@@ -70,6 +70,13 @@ export function describeEvent(
     case 'miss':
       return t('battle.events.miss', { attacker: ref(event.attacker), target: ref(event.target) })
     case 'damage':
+      if (event.status) {
+        return t(`battle.events.damage_${event.status === 'burn' ? 'burn' : 'poison'}`, {
+          target: ref(event.target),
+          amount: event.amount
+        })
+      }
+
       return event.absorbed > 0
         ? t('battle.events.damageAbsorbed', {
             target: ref(event.target),
@@ -85,6 +92,14 @@ export function describeEvent(
       return t('battle.events.buff', { target: ref(event.target), attack: event.attack, health: event.health })
     case 'stun':
       return t('battle.events.stun', { target: ref(event.target) })
+    case 'status':
+      return t(`battle.events.status_${event.status}`, { target: ref(event.target), amount: event.amount })
+    case 'cleanse':
+      return t('battle.events.cleanse', { target: ref(event.target) })
+    case 'energy':
+      return event.amount > 0
+        ? t('battle.events.energyGain', { player: player(event.player), amount: event.amount })
+        : t('battle.events.energyLoss', { player: player(event.player), amount: -event.amount })
     case 'move':
       return t('battle.events.move', { player: player(event.player), from: event.from + 1, to: event.to + 1 })
     case 'death':

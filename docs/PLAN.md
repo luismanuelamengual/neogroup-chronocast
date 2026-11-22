@@ -17,7 +17,7 @@ Este documento es el plan completo. Todavía no hay código: cada sección dice 
 5. [Rarezas](#5-rarezas)
 6. [Reglas de mazo y starter pack](#6-reglas-de-mazo-y-starter-pack)
 7. [Una carta = un archivo `.ts`](#7-una-carta--un-archivo-ts)
-8. [El catálogo de 531 cartas](#8-el-catálogo-de-531-cartas)
+8. [El catálogo de 578 cartas](#8-el-catálogo-de-578-cartas)
 9. [Arte: archivo de prompts y `yarn art`](#9-arte-archivo-de-prompts-y-yarn-art)
 10. [Rating (el "ELO") y oro](#10-rating-el-elo-y-oro)
 11. [Tienda](#11-tienda)
@@ -66,13 +66,13 @@ Cada jugador tiene:
 
 ```
                          RIVAL
-          [Mazo] [Descarte]     [Soporte ×5]          
+          [Mazo] [Descarte]     [Soporte ×5]
                  [ H ] [Arma] [Armadura]         ← héroe rival (atrás)
          [ 1 ][ 2 ][ 3 ][ 4 ][ 5 ]               ← aliados rivales
   ─────────── línea de tiempo: ① ② ③ ④ ⑤   ⏱ 90 s   [Listo] ───────────
          [ 1 ][ 2 ][ 3 ][ 4 ][ 5 ]               ← tus aliados
                  [ H ] [Arma] [Armadura]         ← tu héroe (atrás)
-          [Mazo] [Descarte]     [Soporte ×5]          
+          [Mazo] [Descarte]     [Soporte ×5]
                           VOS          [ mano (máx. 7) ]
 ```
 
@@ -89,7 +89,7 @@ En pantallas anchas el héroe puede ir al costado de su fila de aliados en lugar
 
 Cada fase tiene tres momentos:
 
-1. **Inicio de fase**: cada jugador roba 2 cartas (en la fase 1 no se roba). Si la mano ya tiene 7, cada carta de más va directo a la pila de descarte. Los Cronos se recargan hasta la capacidad, los aliados y el héroe quedan listos para atacar otra vez y se disparan los efectos "al inicio de la fase".
+1. **Inicio de fase**: cada jugador roba **1 carta** (en la fase 1 no se roba); robar más depende de las cartas, y todas las facciones tienen formas de hacerlo. Si la mano ya tiene 7, cada carta de más va directo a la pila de descarte. Los Cronos se recargan hasta la capacidad, el héroe gana **1 de energía** (se acumula de fase en fase, hasta 10), los aliados y el héroe quedan listos para atacar otra vez y se disparan los efectos "al inicio de la fase". Después pegan el veneno y las quemaduras.
 2. **Programación** (simultánea, con reloj): cada jugador arma su **línea de tiempo** de 6 acciones. Nadie ve lo que programa el otro. Termina cuando los dos tocan **Listo** o cuando pasan los **90 segundos**. Al agotarse el tiempo, lo programado queda fijo y los pasos vacíos son "Esperar".
 3. **Resolución**: se ejecutan los 6 pasos en orden. En el paso _n_ se resuelven la acción _n_ del jugador A y la acción _n_ del jugador B (ver 2.5). Después de cada paso se revisa si cayó algún héroe.
 
@@ -99,16 +99,16 @@ Si después del paso 6 los dos héroes siguen en pie, empieza una nueva fase. Ga
 
 Cada una de las 6 acciones de la línea de tiempo es una de estas:
 
-| Acción                     | Qué hace                                                                                                                                   | Costo                     |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------- |
-| **Generar Cronos**         | Descarta una carta de la mano a la pila y suma **+1 de capacidad de Cronos para siempre**. Máximo 1 por fase (`MAX_SACRIFICES_PER_PHASE`). | —                         |
-| **Jugar una carta**        | Invoca un aliado en un slot, lanza una habilidad, adjunta un arma o armadura al héroe, usa un objeto, pone una ubicación o una trampa.     | Su costo en Cronos        |
-| **Atacar con un aliado**   | El aliado ataca a un slot rival (el del héroe o el de un aliado). Una vez por fase por aliado.                                             | —                         |
-| **Atacar con el héroe**    | Solo con un arma adjunta. Una vez por fase.                                                                                                | 1 de durabilidad del arma |
-| **Habilidad del héroe**    | La activa del héroe. Una vez por fase.                                                                                                     | Su costo en Cronos        |
-| **Habilidad de un aliado** | Los aliados que tienen una activa.                                                                                                         | La que diga la carta      |
-| **Mover un aliado**        | **Para todas las facciones.** A un slot vacío, o intercambio con un aliado vecino. Es la forma de esquivar ataques.                        | —                         |
-| **Esperar**                | Nada. Algunas cartas premian esperar.                                                                                                      | —                         |
+| Acción                     | Qué hace                                                                                                                                   | Costo                                      |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------ |
+| **Generar Cronos**         | Descarta una carta de la mano a la pila y suma **+1 de capacidad de Cronos para siempre**. Máximo 1 por fase (`MAX_SACRIFICES_PER_PHASE`). | —                                          |
+| **Jugar una carta**        | Invoca un aliado en un slot, lanza una habilidad, adjunta un arma o armadura al héroe, usa un objeto, pone una ubicación o una trampa.     | Su costo en Cronos                         |
+| **Atacar con un aliado**   | El aliado ataca a un slot rival (el del héroe o el de un aliado). Una vez por fase por aliado.                                             | —                                          |
+| **Atacar con el héroe**    | Solo con un arma adjunta. Una vez por fase.                                                                                                | 1 de durabilidad del arma                  |
+| **Habilidad del héroe**    | La activa del héroe. Una vez por fase.                                                                                                     | Su costo en **energía**                    |
+| **Habilidad de un aliado** | Los aliados que tienen una activa.                                                                                                         | Cronos, o energía si la carta lo dice (⚡) |
+| **Mover un aliado**        | **Para todas las facciones.** A un slot vacío, o intercambio con un aliado vecino. Es la forma de esquivar ataques.                        | —                                          |
+| **Esperar**                | Nada. Algunas cartas premian esperar.                                                                                                      | —                                          |
 
 Con la capacidad permanente y 1 descarte por fase, en la fase _n_ se tienen hasta _n_ Cronos: la partida tiene curva y las cartas caras llegan más tarde.
 
@@ -151,7 +151,7 @@ Cada acción tiene una **velocidad** (`instant`, `fast`, `normal`, `slow`). Dent
 - Gana quien derrota al héroe rival; empate si los dos caen en el mismo paso.
 - **Abandono**: en PvP, tocar "Rendirse", o 3 fases seguidas sin programar nada (el reloj las vence), cuenta como derrota.
 
-Todas las constantes de esta sección viven en `(engine)/data/rules.ts` (`STARTING_HAND = 7`, `MAX_HAND = 7`, `DRAW_PER_PHASE = 2`, `PLANNING_SECONDS = 90`, `ALLY_SLOTS = 5`, `MAX_SACRIFICES_PER_PHASE = 1`, `PHASE_LIMIT = 30`...).
+Todas las constantes de esta sección viven en `(engine)/data/rules.ts` (`STARTING_HAND = 7`, `MAX_HAND = 7`, `DRAW_PER_PHASE = 1`, `ENERGY_PER_PHASE = 1`, `MAX_ENERGY = 10`, `PLANNING_SECONDS = 90`, `ALLY_SLOTS = 5`, `MAX_SACRIFICES_PER_PHASE = 1`, `PHASE_LIMIT = 30`...).
 
 ---
 
@@ -159,18 +159,18 @@ Todas las constantes de esta sección viven en `(engine)/data/rules.ts` (`STARTI
 
 ### 3.1 Tipos
 
-| Tipo (id)  | Nombre en pantalla | Descripción                                                                                         |
-| ---------- | ------------------ | --------------------------------------------------------------------------------------------------- |
-| `hero`     | Héroe              | Vida (90–120), facción, clase, pasiva y activa. Define qué cartas puede llevar el mazo (sección 4). |
-| `ally`     | Aliado             | Costo, ataque, vida, velocidad, palabras clave, efectos (al entrar, al atacar, al morir...).        |
-| `ability`  | Habilidad          | Efecto de un solo uso (daño, curación, robo, control).                                              |
-| `weapon`   | Arma               | Se adjunta al héroe: ataque y durabilidad, a veces con efecto (veneno, robo de vida...).            |
-| `armor`    | Armadura           | Se adjunta al héroe: puntos de armadura y a veces un efecto (espinas, resistencia...).              |
-| `item`     | Objeto             | Consumible de un solo uso (poción, bomba).                                                          |
-| `attachment` | Adjunto          | Se adjunta a un aliado (propio o enemigo): suma ataque o vida, da palabras clave (Protector, Sigilo, Vuelo...), reduce o duplica el daño recibido. Se descarta cuando muere el aliado. |
-| `artifact` | Artefacto          | Queda en un slot de soporte con un efecto continuo o por fase; algunos tienen usos (`charges`) y se descartan al gastarlos. |
-| `location` | Ubicación          | Efecto continuo de campo. Una por jugador.                                                          |
-| `trap`     | Trampa             | Se juega boca abajo y se activa sola cuando se cumple su condición. Encaja con el juego simultáneo. |
+| Tipo (id)    | Nombre en pantalla | Descripción                                                                                                                                                                            |
+| ------------ | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `hero`       | Héroe              | Vida (90–120), facción, clase, pasiva y activa. Define qué cartas puede llevar el mazo (sección 4).                                                                                    |
+| `ally`       | Aliado             | Costo, ataque, vida, velocidad, palabras clave, efectos (al entrar, al atacar, al morir...).                                                                                           |
+| `ability`    | Habilidad          | Efecto de un solo uso (daño, curación, robo, control).                                                                                                                                 |
+| `weapon`     | Arma               | Se adjunta al héroe: ataque y durabilidad, a veces con efecto (veneno, robo de vida...).                                                                                               |
+| `armor`      | Armadura           | Se adjunta al héroe: puntos de armadura y a veces un efecto (espinas, resistencia...).                                                                                                 |
+| `item`       | Objeto             | Consumible de un solo uso (poción, bomba).                                                                                                                                             |
+| `attachment` | Adjunto            | Se adjunta a un aliado (propio o enemigo): suma ataque o vida, da palabras clave (Protector, Sigilo, Vuelo...), reduce o duplica el daño recibido. Se descarta cuando muere el aliado. |
+| `artifact`   | Artefacto          | Queda en un slot de soporte con un efecto continuo o por fase; algunos tienen usos (`charges`) y se descartan al gastarlos.                                                            |
+| `location`   | Ubicación          | Efecto continuo de campo. Una por jugador.                                                                                                                                             |
+| `trap`       | Trampa             | Se juega boca abajo y se activa sola cuando se cumple su condición. Encaja con el juego simultáneo.                                                                                    |
 
 ### 3.2 Palabras clave (primera versión)
 
@@ -192,6 +192,16 @@ Todas las constantes de esta sección viven en `(engine)/data/rules.ts` (`STARTI
 | `unique`    | Única              | Solo 1 copia por mazo                                                            |
 | `echo`      | Eco                | Al morir vuelve a la mano una vez                                                |
 | `resurge`   | Resurgir           | Se puede jugar desde la pila de descarte                                         |
+
+### 3.3 Estados
+
+| Estado         | Efecto                                                                                                                                           |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Envenenado (X) | Pierde X de vida al empezar cada fase y el veneno baja 1. Se suma si lo envenenan de nuevo. Pasa escudos y armadura.                             |
+| Quemándose (X) | Pierde X de vida al empezar cada fase durante las fases que diga la carta (3 por defecto). Pasa escudos y armadura.                              |
+| Congelado      | No puede atacar, moverse ni usar habilidades por el resto de la fase (y las que diga la carta). Un héroe congelado no ataca ni usa su habilidad. |
+
+El Antídoto y otras cartas limpian los estados. Los adjuntos sobre aliados enemigos pueden además impedir que ataquen (`disarms`), que usen su habilidad (`silences`), lastimarlos cada vez que atacan (`onHostAttack`) o aumentar el daño que reciben.
 
 Regla de invocación: un aliado que entra en el paso _n_ puede actuar desde la fase siguiente; con `charge`, desde el paso _n + 1_.
 
@@ -246,10 +256,10 @@ Cada carta declara para quién es (`restriction` en su archivo):
 
 | Rareza (id) | Nombre en pantalla | Color del marco                        | Cartas en el catálogo |
 | ----------- | ------------------ | -------------------------------------- | --------------------- |
-| `common`    | Común              | Gris piedra                            | 176                   |
-| `uncommon`  | Poco común         | Verde esmeralda                        | 131                   |
-| `rare`      | Rara               | Azul eléctrico                         | 98                    |
-| `epic`      | Épica              | Violeta                                | 59                    |
+| `common`    | Común              | Gris piedra                            | 195                   |
+| `uncommon`  | Poco común         | Verde esmeralda                        | 151                   |
+| `rare`      | Rara               | Azul eléctrico                         | 105                   |
+| `epic`      | Épica              | Violeta                                | 60                    |
 | `legendary` | Legendaria         | Dorado                                 | 37                    |
 | `exotic`    | Exótica            | Turquesa iridiscente                   | 18                    |
 | `mythic`    | Mítica             | Carmesí con brillo holográfico animado | 12                    |
@@ -379,21 +389,22 @@ Una carta sin traducción se muestra en inglés, así que **la traducción es op
 
 ---
 
-## 8. El catálogo de 531 cartas
+## 8. El catálogo de 578 cartas
 
 ### 8.1 Reparto por restricción
 
 **12 héroes** y **488 cartas**:
 
-| Grupo                       | Cartas por grupo | Grupos | Total   | Composición de cada grupo                                                              |
-| --------------------------- | ---------------- | ------ | ------- | -------------------------------------------------------------------------------------- |
-| `neutral` (cualquier héroe) | 88               | 1      | 88      | 40 aliados, 6 habilidades, 4 armas, 4 armaduras, 16 objetos, 10 ubicaciones, 8 trampas |
-| Por facción                 | 40               | 6      | 240     | 28 aliados, 4 habilidades, 3 objetos, 2 ubicaciones, 3 trampas                         |
-| Por clase                   | 25               | 4      | 100     | 12 habilidades, 6 armas, 5 armaduras, 2 objetos                                        |
-| Exclusivas de un héroe      | 5                | 12     | 60      | 2 habilidades, 1 arma, 1 aliado compañero y 1 carta de premio de su campaña            |
-| Héroes                      | —                | —      | 12      |                                                                                        |
-| Adjuntos y artefactos (`neutral`) | —          | —      | 31      | 19 adjuntos para aliados y 12 artefactos de soporte (ronda 4)                          |
-| **Total**                   |                  |        | **531** |                                                                                        |
+| Grupo                                | Cartas por grupo | Grupos | Total   | Composición de cada grupo                                                                                                                                  |
+| ------------------------------------ | ---------------- | ------ | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `neutral` (cualquier héroe)          | 88               | 1      | 88      | 40 aliados, 6 habilidades, 4 armas, 4 armaduras, 16 objetos, 10 ubicaciones, 8 trampas                                                                     |
+| Por facción                          | 40               | 6      | 240     | 28 aliados, 4 habilidades, 3 objetos, 2 ubicaciones, 3 trampas                                                                                             |
+| Por clase                            | 25               | 4      | 100     | 12 habilidades, 6 armas, 5 armaduras, 2 objetos                                                                                                            |
+| Exclusivas de un héroe               | 5                | 12     | 60      | 2 habilidades, 1 arma, 1 aliado compañero y 1 carta de premio de su campaña                                                                                |
+| Héroes                               | —                | —      | 12      |                                                                                                                                                            |
+| Adjuntos y artefactos (`neutral`)    | —                | —      | 31      | 19 adjuntos para aliados y 12 artefactos de soporte (ronda 4)                                                                                              |
+| Robo, energía, estados y maldiciones | —                | —      | 47      | Robo de cartas en todas las facciones (y el Bazar neutral para ambos), energía, veneno/quemadura/congelación y maldiciones para aliados enemigos (ronda 5) |
+| **Total**                            |                  |        | **578** |                                                                                                                                                            |
 
 Por tipo da aproximadamente: 220 aliados, 102 habilidades, 40 armas, 24 armaduras, 42 objetos, 22 ubicaciones, 26 trampas, 12 premios de campaña y 12 héroes.
 

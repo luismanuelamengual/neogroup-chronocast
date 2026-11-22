@@ -101,12 +101,12 @@ describe('the card catalog', () => {
     }
   })
 
-  it('the catalog has the 531 collectible cards of the plan, by rarity (docs/PLAN.md, sections 5 and 8.1)', () => {
+  it('the catalog has the 578 collectible cards of the plan, by rarity (docs/PLAN.md, sections 5 and 8.1)', () => {
     // The retired types (locations, for now) count: they are still part of the plan.
     const collectible = ALL_CARDS.filter((card) => !card.boss)
     const count = (rarity: string) => collectible.filter((card) => card.rarity === rarity).length
 
-    expect(collectible.length).toBe(531)
+    expect(collectible.length).toBe(578)
     expect(HEROES.length).toBe(12)
     expect([
       count('common'),
@@ -116,7 +116,7 @@ describe('the card catalog', () => {
       count('legendary'),
       count('exotic'),
       count('mythic')
-    ]).toEqual([176, 131, 98, 59, 37, 18, 12])
+    ]).toEqual([195, 151, 105, 60, 37, 18, 12])
   })
 
   it('leaves the retired types out of what players can own (the campaign rewards stay)', () => {
@@ -153,8 +153,8 @@ function sandbox(heroId = STARTER_HERO_IDS[0]): MatchState {
     seed: 11,
     decks: { a: { ...deck, heroId }, b: deck },
     setup: {
-      a: { allies: ['chrono-golem'], chronosCapacity: 20 },
-      b: { allies: ['chrono-golem'], chronosCapacity: 20 }
+      a: { allies: ['chrono-golem'], chronosCapacity: 20, energy: 10 },
+      b: { allies: ['chrono-golem'], chronosCapacity: 20, energy: 10 }
     }
   })
 

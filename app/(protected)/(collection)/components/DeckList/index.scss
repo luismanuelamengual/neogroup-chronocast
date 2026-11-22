@@ -42,18 +42,33 @@
   &__deck {
     --faction: var(--faction-neutral);
 
+    position: relative;
+    isolation: isolate;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 12px;
+    min-height: 116px;
     padding: 12px;
+    overflow: hidden;
     border: var(--frame-border);
     border-left: 8px solid var(--faction);
     border-radius: var(--frame-radius);
-    background: white;
+    // Without art yet: a dark wash of the faction color, so the white texts still read.
+    background: linear-gradient(120deg, color-mix(in srgb, var(--faction) 55%, #1b1440), #1b1440);
     box-shadow: var(--frame-shadow);
+    color: white;
 
-    position: relative;
+    // A scrim over the hero's illustration: dark behind the texts (left), the art clear on the right.
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(90deg, rgba(20, 14, 48, 0.92) 0%, rgba(20, 14, 48, 0.7) 45%, rgba(20, 14, 48, 0.1) 100%),
+        linear-gradient(0deg, color-mix(in srgb, var(--faction) 45%, transparent), transparent 60%);
+    }
 
     @each $faction in primal, bronze, arcane, clockwork, neon, void, neutral {
       &.faction-#{$faction} {
@@ -66,12 +81,50 @@
         0 0 0 3px var(--color-gold),
         var(--frame-shadow);
     }
+
+    cursor: pointer;
+    transition: transform 0.12s;
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+
+  // Delete: a small round icon in the bottom right corner of the tile.
+  &__delete {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    background: rgba(20, 14, 48, 0.55);
+    color: white;
+    cursor: pointer;
+
+    &:hover {
+      background: var(--color-magenta);
+    }
+  }
+
+  &__backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 22%;
   }
 
   &__active {
     position: absolute;
-    top: -10px;
-    right: 12px;
+    top: 8px;
+    right: 10px;
     padding: 1px 10px;
     border: 2px solid var(--color-outline);
     border-radius: 999px;
@@ -86,13 +139,14 @@
     place-items: center;
     width: 56px;
     height: 56px;
-    border: 3px solid var(--color-outline);
+    border: 3px solid white;
     border-radius: 50%;
     background: var(--faction);
     color: white;
     font-family: var(--font-display);
     font-size: 1.4rem;
     text-shadow: 0 2px 0 var(--color-outline);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
   }
 
   &__info {
@@ -104,6 +158,7 @@
     gap: 2px;
     font-size: 0.82rem;
     font-weight: 700;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
 
     h2 {
       margin: 0;
@@ -113,15 +168,15 @@
     }
 
     span {
-      color: var(--color-text-secondary);
+      color: rgba(255, 255, 255, 0.8);
     }
 
     .playable {
-      color: var(--color-lime-dark);
+      color: var(--color-lime);
     }
 
     .incomplete {
-      color: var(--color-ember);
+      color: #ffb36b;
     }
   }
 
@@ -136,6 +191,7 @@
       margin: 0;
       font-size: 0.8rem;
       font-weight: 700;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
     }
   }
 
@@ -145,30 +201,40 @@
     z-index: 40;
     display: grid;
     place-items: center;
-    background: rgba(43, 35, 80, 0.35);
+    padding: 16px;
+    background: rgba(27, 20, 64, 0.55);
   }
 
-  &__picker {
+  &__confirm {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    width: min(380px, 100%);
     padding: 16px 20px;
     border: var(--frame-border);
     border-radius: var(--frame-radius);
     background: white;
+    box-shadow: var(--frame-shadow);
+    text-align: center;
 
     h2 {
       margin: 0;
       font-family: var(--font-title);
+      font-size: 1.2rem;
       font-weight: 400;
+    }
+
+    p {
+      margin: 0;
+      color: var(--color-text-secondary);
+      font-size: 0.85rem;
+      font-weight: 700;
     }
 
     > div {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px;
+      gap: 10px;
     }
   }
 }

@@ -514,11 +514,15 @@ function allyAttack(engine: MatchEngine, player: PlayerId, uid: number, target: 
   const { unit, slot } = found
 
   if (engine.isStunned(unit)) {
-    return 'stunned'
+    return engine.isFrozen(unit) ? 'frozen' : 'stunned'
   }
 
   if (!isReady(engine, unit)) {
     return 'notReady'
+  }
+
+  if (engine.isRestrained(unit, 'disarms')) {
+    return 'cantAttack'
   }
 
   if (unit.abilityUsedThisPhase) {
@@ -545,6 +549,11 @@ function allyAttack(engine: MatchEngine, player: PlayerId, uid: number, target: 
   }
 
   unit.keywords = unit.keywords.filter((keyword) => keyword !== 'stealth')
+
+  for (const attachment of unit.attachments ?? []) {
+    getCard(attachment.cardId).onHostAttack?.(engine.context(attachment.owner ?? player, attachment), unit)
+  }
+
   getCard(unit.cardId).onAttack?.(engine.context(player, unit), target)
   strike(
     engine,
@@ -569,6 +578,10 @@ function heroAttack(engine: MatchEngine, player: PlayerId, target: SlotRef): Fai
 
   if (!hero.weapon) {
     return 'noWeapon'
+  }
+
+  if (engine.isFrozen(hero)) {
+    return 'frozen'
   }
 
   if (hero.attackedThisPhase) {
@@ -620,15 +633,20 @@ function heroAbility(engine: MatchEngine, player: PlayerId, targets: SlotRef[]):
     return 'abilityUsed'
   }
 
-  if (side.chronos < ability.cost) {
-    return 'notEnoughChronos'
+  if (engine.isFrozen(side.hero)) {
+    return 'frozen'
+  }
+
+  // A hero's ability is paid with energy.
+  if ((side.energy ?? 0) < ability.cost) {
+    return 'notEnoughEnergy'
   }
 
   if (!validTargets(engine, player, ability.targets ?? [], targets)) {
     return 'invalidTarget'
   }
 
-  side.chronos -= ability.cost
+  engine.gainEnergy(player, -ability.cost, false)
   side.hero.abilityUsedThisPhase = true
 
   if (engine.triggerTrap(opponentOf(player), 'enemyAbility')) {
@@ -656,11 +674,15 @@ function allyAbility(engine: MatchEngine, player: PlayerId, uid: number, targets
   }
 
   if (engine.isStunned(unit)) {
-    return 'stunned'
+    return engine.isFrozen(unit) ? 'frozen' : 'stunned'
   }
 
   if (!isReady(engine, unit)) {
     return 'notReady'
+  }
+
+  if (engine.isRestrained(unit, 'silences')) {
+    return 'silenced'
   }
 
   if (unit.abilityUsedThisPhase) {
@@ -671,15 +693,22 @@ function allyAbility(engine: MatchEngine, player: PlayerId, uid: number, targets
     return 'exhausted'
   }
 
-  if (side.chronos < ability.cost) {
-    return 'notEnoughChronos'
+  const energy = ability.resource === 'energy'
+
+  if (energy ? (side.energy ?? 0) < ability.cost : side.chronos < ability.cost) {
+    return energy ? 'notEnoughEnergy' : 'notEnoughChronos'
   }
 
   if (!validTargets(engine, player, ability.targets ?? [], targets)) {
     return 'invalidTarget'
   }
 
-  side.chronos -= ability.cost
+  if (energy) {
+    engine.gainEnergy(player, -ability.cost, false)
+  } else {
+    side.chronos -= ability.cost
+  }
+
   unit.abilityUsedThisPhase = true
 
   if (engine.triggerTrap(opponentOf(player), 'enemyAbility')) {

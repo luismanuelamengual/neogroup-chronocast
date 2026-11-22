@@ -1,6 +1,6 @@
 import '@/app/(protected)/(cards)/utils/catalog'
 import type { Metadata } from 'next'
-import { notFound, redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
 import { auth } from '@/app/(auth)/services/auth'
 import DeckEditor from '@/app/(protected)/(collection)/components/DeckEditor'
 import { DeckDto } from '@/app/(protected)/(collection)/models/DeckDto'
@@ -12,7 +12,10 @@ export async function generateMetadata(): Promise<Metadata> {
   return { title: (await getT())('metadata.decks') }
 }
 
-/** The deck editor: /decks/<id> edits a deck, /decks/new?hero=<hero-id> starts one for an owned hero. */
+/**
+ * The deck editor: /decks/<id> edits a deck, /decks/new starts one (its first
+ * card is the hero; ?hero=<hero-id> picks an owned one up front).
+ */
 export default async function DeckEditorPage({
   params,
   searchParams
@@ -32,9 +35,9 @@ export default async function DeckEditorPage({
     if (!deck) {
       notFound()
     }
-  } else if (!hero || !collection[hero]) {
-    redirect('/decks')
   }
 
-  return <DeckEditor deck={deck} heroId={deck?.heroId ?? hero!} collection={collection} />
+  const heroId = deck?.heroId ?? (hero && collection[hero] ? hero : null)
+
+  return <DeckEditor deck={deck} heroId={heroId} collection={collection} />
 }

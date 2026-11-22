@@ -23,6 +23,15 @@ export type FailReason =
   /** The support slots (traps and artifacts) are full. */
   | 'supportFull'
   | 'cancelled'
+  | 'notEnoughEnergy'
+  /** An attachment keeps the ally from attacking. */
+  | 'cantAttack'
+  /** An attachment keeps the ally from using its ability. */
+  | 'silenced'
+  | 'frozen'
+
+/** A lasting status effect. */
+export type StatusKind = 'poison' | 'burn' | 'freeze'
 
 /**
  * What happened while a phase started or resolved, in order: the battle screen
@@ -47,7 +56,10 @@ export type MatchEvent =
   | { type: 'trapTriggered'; player: PlayerId; cardId: string }
   | { type: 'attack'; attacker: SlotRef; target: SlotRef }
   | { type: 'miss'; attacker: SlotRef; target: SlotRef }
-  | { type: 'damage'; target: SlotRef; amount: number; absorbed: number }
+  | { type: 'damage'; target: SlotRef; amount: number; absorbed: number; status?: StatusKind }
+  | { type: 'status'; target: SlotRef; status: StatusKind; amount: number }
+  | { type: 'cleanse'; target: SlotRef }
+  | { type: 'energy'; player: PlayerId; amount: number }
   | { type: 'shieldBlock'; target: SlotRef }
   | { type: 'heal'; target: SlotRef; amount: number }
   | { type: 'buff'; target: SlotRef; attack: number; health: number }

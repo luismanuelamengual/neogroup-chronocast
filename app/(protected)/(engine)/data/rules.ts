@@ -16,8 +16,15 @@ export const ALLY_SLOTS = 5
 export const STARTING_HAND = 7
 export const MAX_HAND = 7
 
-/** Cards drawn at the start of every phase (except the first). */
-export const DRAW_PER_PHASE = 2
+/** Cards drawn at the start of every phase (except the first). Drawing more is up to the cards. */
+export const DRAW_PER_PHASE = 1
+
+/** Energy each hero gains at the start of every phase (it is kept from phase to phase), and the most it can store. */
+export const ENERGY_PER_PHASE = 1
+export const MAX_ENERGY = 10
+
+/** Default phases a burn lasts. */
+export const BURN_PHASES = 3
 
 /** "Generate Chronos" actions allowed per phase. Each one adds +1 to the Chronos capacity for good. */
 export const MAX_SACRIFICES_PER_PHASE = 1

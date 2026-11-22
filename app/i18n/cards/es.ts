@@ -76,10 +76,20 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Cuando el rival invoca un aliado: hacele 10 de daño y invocá una Manada de Raptores.',
     flavor: 'Chicas listas.'
   },
+  'analytical-engine': {
+    name: 'Máquina Analítica',
+    text: 'Artefacto con 3 usos. Al empezar cada fase, robá una carta.',
+    flavor: 'Piensa para que no tengas que hacerlo. Solo necesita más cartas.'
+  },
   'ancient-treant': {
     name: 'Ent Ancestral',
     text: 'Al empezar cada fase, gana +2 de ataque y +4 de vida y tu héroe se cura 4.',
     flavor: 'Era una semilla cuando el mundo era joven.'
+  },
+  antidote: {
+    name: 'Antídoto',
+    text: 'Tu héroe y tus aliados pierden todos sus estados (veneno, quemadura y congelación). Rápida.',
+    flavor: 'Sabe horrible. Funciona de maravilla.'
   },
   'apprentice-mage': {
     name: 'Aprendiz de Mago',
@@ -183,6 +193,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     flavor: 'Cuando sopla el cuerno, todas las eras responden.'
   },
   'battlemage-squire': { name: 'Escudero Hechicero', flavor: 'Mitad espada, mitad hechizo, todo entusiasmo.' },
+  'bazaar-of-ages': {
+    name: 'Bazar de las Eras',
+    text: 'Artefacto. Al empezar cada fase, cada jugador roba una carta.',
+    flavor: 'Todo está a la venta. Hasta el mañana.'
+  },
   'bear-trap': {
     name: 'Trampa para Osos',
     text: 'Cuando un aliado enemigo ataca: cancelá el ataque y aturdilo.',
@@ -229,6 +244,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'bloodthirst-cleaver': { name: 'Cuchilla Sedienta', flavor: 'Nunca está satisfecha.' },
   blueprint: { name: 'Plano', text: 'Robá 2 cartas.', flavor: 'Versión cuarenta y dos. Esta va a funcionar.' },
+  'blueprint-cache': {
+    name: 'Tubo de Planos',
+    text: 'Robá una carta y ganá 1 Cronos.',
+    flavor: 'Todo invento empieza con las notas de otro.'
+  },
   'boiler-brute': { name: 'Bruto de Caldera', flavor: 'Seguí echándole carbón. No preguntes qué pasa si parás.' },
   'boiler-burst': {
     name: 'Estallido de Caldera',
@@ -370,6 +390,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Un aliado tuyo gana +12 de ataque esta fase. Rápida.',
     flavor: 'Las preguntas, después.'
   },
+  'charged-shard': {
+    name: 'Esquirla Cargada',
+    text: 'Tu héroe gana 2 de energía.',
+    flavor: 'Una astilla de rayo, guardada en un frasco.'
+  },
   'chariot-racer': { name: 'Auriga', flavor: 'Siete vueltas. Sin frenos.' },
   'chief-engineer-vance': {
     name: 'Ingeniera Jefa Vance',
@@ -445,6 +470,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     flavor: 'Asistente de laboratorio, mayordomo y extintor ocasional.',
     ability: { name: 'Arreglo Rápido', text: 'Un aliado tuyo se cura 8.' }
   },
+  'cogwork-courier': {
+    name: 'Mensajero de Engranajes',
+    text: 'Al morir: robá 2 cartas.',
+    flavor: 'Entrega garantizada. El mensajero, no tanto.'
+  },
   'cohort-banner': {
     name: 'Estandarte de la Cohorte',
     text: 'Tus aliados ganan +1 de ataque y +4 de vida.',
@@ -490,12 +520,27 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Al entrar: robá una carta.',
     flavor: '¿Está realmente ahí? Preguntale. Esperá, ¿adónde se fue?'
   },
+  'cowards-brand': {
+    name: 'Marca del Cobarde',
+    text: 'Adjuntala a un aliado enemigo: pierde protector y tiene -2 de ataque.',
+    flavor: 'Nadie sigue a un cobarde a la batalla.'
+  },
   'crown-of-the-arcanist': {
     name: 'Corona del Arcanista',
     text: 'Al empezar cada fase, robá una carta.',
     flavor: 'Te susurra hechizos en los sueños.'
   },
+  'cryo-turret': {
+    name: 'Torreta Criogénica',
+    text: 'Cuando ataca, congela a su objetivo por el resto de la fase y la siguiente.',
+    flavor: 'Calmate. Es una orden.'
+  },
   'crystal-sentinel': { name: 'Centinela de Cristal', flavor: 'La luz lo atraviesa. Nada más.' },
+  'cursed-crown': {
+    name: 'Corona Maldita',
+    text: 'Adjuntala a un aliado enemigo: no puede atacar ni usar su habilidad, y cada daño que recibe es 2 mayor.',
+    flavor: 'Pesada es la cabeza. Más pesada, la maldición.'
+  },
   'cursed-idol': {
     name: 'Ídolo Maldito',
     text: 'Artefacto con 4 usos. Al empezar cada fase, le hace 3 de daño al héroe enemigo.',
@@ -520,6 +565,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Sermón Oscuro',
     text: 'Hacé 6 de daño a cada aliado enemigo. Lenta.',
     flavor: 'La congregación escucha. Para siempre.'
+  },
+  'data-burst': {
+    name: 'Ráfaga de Datos',
+    text: 'Robá 2 cartas. Rápida.',
+    flavor: 'Descargado en un parpadeo.'
   },
   'data-courier': {
     name: 'Mensajero de Datos',
@@ -572,6 +622,12 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     flavor: 'Pociones de mañana a precios de ayer.'
   },
   'drone-swarm': { name: 'Enjambre de Drones', flavor: 'Uno es un juguete. Mil son un fenómeno climático.' },
+  'dynamo-golem': {
+    name: 'Gólem Dínamo',
+    text: 'Su habilidad se paga con energía (⚡).',
+    flavor: 'Funciona con rayos guardados y terquedad.',
+    ability: { name: 'Descarga', text: 'Ganá 2 Cronos y robá una carta.' }
+  },
   'eater-of-worlds': {
     name: 'Devoradora de Mundos',
     text: 'Al entrar: destruí tu otro aliado más débil: si lo hacés, hacé 12 de daño a cada aliado enemigo y robá 2 cartas.',
@@ -672,6 +728,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Cuando el héroe enemigo usa su habilidad: cancelala y robá una carta.',
     flavor: 'Acceso denegado.'
   },
+  'flame-legionary': {
+    name: 'Legionario de las Llamas',
+    text: 'Cuando ataca, prende fuego a su objetivo (2 por fase durante 3 fases).',
+    flavor: 'La legión le trajo el fuego al mundo. Él te lo trae a vos.'
+  },
   'flame-wave': {
     name: 'Ola de Llamas',
     text: 'Hacé 6 de daño a cada aliado enemigo. Lenta.',
@@ -718,15 +779,30 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Cuando un aliado enemigo ataca: cancelá el ataque y aturdilo.',
     flavor: 'Un paso sobre el sello y el invierno viene por vos.'
   },
+  'frost-spear': {
+    name: 'Pica de Escarcha',
+    text: 'Hacé 4 de daño a un slot enemigo y congelalo por el resto de esta fase y la siguiente.',
+    flavor: 'Fría, filosa y al grano.'
+  },
   'frost-staff': {
     name: 'Bastón de Escarcha',
     text: 'Al jugarla: aturdí a un aliado enemigo al azar.',
     flavor: 'Agarralo con guantes.'
   },
+  'frozen-shackles': {
+    name: 'Grilletes Congelados',
+    text: 'Adjuntalos a un aliado enemigo: queda congelado mientras estén adjuntos.',
+    flavor: 'Hielo que nunca se derrite, para un preso que nunca sale.'
+  },
   'full-steam-ahead': {
     name: 'A Todo Vapor',
     text: 'Tus aliados ganan +3 de ataque y +3 de vida y ganá 1 de Cronos.',
     flavor: '¡Todos los motores, ya!'
+  },
+  'gag-of-silence': {
+    name: 'Mordaza del Silencio',
+    text: 'Adjuntala a un aliado enemigo: no puede usar su habilidad.',
+    flavor: 'Ni cantos, ni órdenes, ni hechizos.'
   },
   'galvanic-spark': {
     name: 'Chispa Galvánica',
@@ -760,6 +836,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Puño de Pistón (2): hacé 10 de daño a un slot enemigo y tu héroe gana 4 de armadura.',
     flavor: 'Mitad hombre, mitad motor, todo testarudez.',
     ability: { name: 'Puño de Pistón', text: 'Hacé 10 de daño a un slot enemigo y tu héroe gana 4 de armadura.' }
+  },
+  'glacial-pulse': {
+    name: 'Pulso Glacial',
+    text: 'Congelá a todos los aliados enemigos por el resto de esta fase y la siguiente.',
+    flavor: 'Todo se detiene. Hasta los gritos.'
   },
   'gladiator-twins': { name: 'Gladiadores Gemelos', flavor: 'Nadie recuerda cuál ganó. Ganaron los dos.' },
   'gladius-of-the-legate': {
@@ -943,6 +1024,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Tus aliados ganan +3 de ataque. Rápido.',
     flavor: 'Empieza la cacería.'
   },
+  'hunting-party': {
+    name: 'Partida de Caza',
+    text: 'Hacé 4 de daño a un aliado enemigo y robá una carta.',
+    flavor: 'Esta noche comen todos.'
+  },
   'ice-lance': {
     name: 'Lanza de Hielo',
     text: 'Hacé 8 de daño a un aliado enemigo y aturdilo.',
@@ -981,6 +1067,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     flavor: 'Chica, redonda y testaruda.'
   },
   'iron-gladius': { name: 'Gladius de Hierro', flavor: 'Corto, filoso y muy, muy confiable.' },
+  'iron-manacles': {
+    name: 'Esposas de Hierro',
+    text: 'Adjuntalas a un aliado enemigo: no puede atacar.',
+    flavor: 'Todavía te puede mirar feo.'
+  },
   'iron-rations': {
     name: 'Raciones de Hierro',
     text: 'Un aliado tuyo gana +10 de vida.',
@@ -1062,6 +1153,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     flavor: 'Hoy no.'
   },
   'leather-jerkin': { name: 'Jubón de Cuero', flavor: 'Silencioso, liviano y cómodo.' },
+  'leeching-mark': {
+    name: 'Marca Sanguijuela',
+    text: 'Adjuntala a un aliado enemigo: al empezar cada fase, pierde 3 de vida y tu héroe se cura 3.',
+    flavor: 'Su fuerza se vuelve tuya, gota a gota.'
+  },
   'legate-of-the-eagle': {
     name: 'Legado del Águila',
     text: 'Al entrar: tus otros aliados ganan +2 de ataque. Si tenés 3 aliados de Bronce o más, robá 2 cartas.',
@@ -1073,12 +1169,22 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     flavor: 'Aguantó la línea en más siglos de los que puede contar.',
     ability: { name: 'Fortificar', text: 'Tu héroe gana 10 de armadura.' }
   },
+  'legion-quartermaster': {
+    name: 'Intendente de la Legión',
+    text: 'Al entrar: robá una carta por cada otro aliado Bronce que tengas (hasta 2).',
+    flavor: 'Cada escudo contado, cada lanza en su lugar.'
+  },
   'legion-rations': {
     name: 'Raciones de la Legión',
     text: 'Tus aliados se curan 6.',
     flavor: 'Pan, queso y un trago de vino. Alcanza para conquistar la Galia.'
   },
   'legion-slinger': { name: 'Hondero de la Legión', flavor: 'Una piedra de lejos igual duele.' },
+  'ley-line-conduit': {
+    name: 'Conducto de Líneas Ley',
+    text: 'Artefacto. Al empezar cada fase, tu héroe gana 1 de energía más.',
+    flavor: 'Aprovechá el río de poder bajo el mundo.'
+  },
   'lich-of-the-last-hour': {
     name: 'Liche de la Última Hora',
     flavor: 'A la última hora, los muertos se levantan por él.',
@@ -1139,6 +1245,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     flavor: 'La presa siempre lo siente primero.'
   },
   'marching-legion': { name: 'Legión en Marcha', flavor: 'Los escuchás una hora antes de verlos.' },
+  'mark-of-the-hunted': {
+    name: 'Marca del Cazado',
+    text: 'Adjuntala a un aliado enemigo: cada daño que recibe es 3 mayor.',
+    flavor: 'Una vez marcado, no hay dónde esconderse.'
+  },
   'mass-revival': {
     name: 'Resurrección en Masa',
     text: 'Un aliado al azar de tu descarte vuelve al juego, un aliado al azar de tu descarte vuelve al juego y tus aliados se curan 6. Lenta.',
@@ -1247,12 +1358,22 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     flavor: 'La muerte es solo un capítulo. Él se lo saltea.',
     ability: { name: 'Alzar a los Muertos', text: 'Un aliado al azar de tu descarte vuelve al juego.' }
   },
+  'neon-battery': {
+    name: 'Batería de Neón',
+    text: 'Tu héroe gana 1 de energía. Instantánea.',
+    flavor: 'Carga completa en un latido.'
+  },
   'neon-blade': { name: 'Hoja de Neón', flavor: 'Cuanto más rápido el corte, más brilla.' },
   'neon-dancer': { name: 'Bailarina de Neón', flavor: 'Esquiva balas al ritmo de la música.' },
   'neon-district': {
     name: 'Distrito Neón',
     text: 'Al empezar cada fase, robá una carta. Al final de cada fase, hacé 2 de daño al héroe enemigo.',
     flavor: 'Nunca duerme. Nunca olvida.'
+  },
+  'nest-keeper': {
+    name: 'Guardiana del Nido',
+    text: 'Al empezar cada fase, si tenés 3 aliados o más, robá una carta.',
+    flavor: 'Un nido lleno es un nido feliz.'
   },
   'net-fighter': {
     name: 'Reciario',
@@ -1270,6 +1391,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Red Nightwire',
     text: 'Cuando un aliado enemigo ataca: cancelá el ataque, destruilo y robá una carta.',
     flavor: 'Invisible, irrompible, ineludible.'
+  },
+  'null-field': {
+    name: 'Campo Nulo',
+    text: 'Trampa: cuando el rival usa una habilidad, cancelala y el héroe enemigo pierde 2 de energía.',
+    flavor: 'Acá, la magia simplemente se detiene.'
   },
   'nysa-goldbow': {
     name: 'Nysa Goldbow',
@@ -1307,6 +1433,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     flavor: 'Los huesos de los ancestros hablan. Ella escucha.',
     ability: { name: 'Crecimiento Ancestral', text: 'Un aliado tuyo gana +2 de ataque y +3 de vida.' }
   },
+  'open-market': {
+    name: 'Mercado Abierto',
+    text: 'Cada jugador roba 2 cartas.',
+    flavor: 'Las puertas se abren para todos. Quién gana más depende de vos.'
+  },
   'orbital-strike': {
     name: 'Ataque Orbital',
     text: 'Hacé 24 de daño a un slot enemigo. Rápida.',
@@ -1333,6 +1464,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Guardián del Pacto',
     text: 'Al entrar: destruí tu otro aliado más débil: si lo hacés, robá 2 cartas.',
     flavor: 'Firmá acá. Y acá. Y acá.'
+  },
+  'pact-of-hunger': {
+    name: 'Pacto del Hambre',
+    text: 'Tu héroe pierde 4 de vida. Robá 2 cartas.',
+    flavor: 'El vacío te alimenta. Después se alimenta de vos.'
   },
   'paradox-loop': {
     name: 'Bucle Paradoja',
@@ -1404,7 +1540,22 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Al entrar: robá una carta.',
     flavor: 'Mitad zorro, mitad dron, todo problemas.'
   },
+  'plague-brand': {
+    name: 'Marca de la Peste',
+    text: 'Adjuntala a un aliado enemigo: al empezar cada fase, queda envenenado (2).',
+    flavor: 'La enfermedad se esparce desde adentro.'
+  },
+  'plague-vial': {
+    name: 'Frasco de Peste',
+    text: 'Envenená a todos los aliados enemigos (2).',
+    flavor: 'Rompelo y alejate. Rápido.'
+  },
   'pocket-watch': { name: 'Reloj de Bolsillo', text: 'Ganá 1 de Cronos.', flavor: 'No da la hora. La presta.' },
+  'poison-arrows': {
+    name: 'Flechas Envenenadas',
+    text: 'Hacé 2 de daño a un slot enemigo y envenenalo (3).',
+    flavor: 'La flecha es el mensaje. El veneno, el final.'
+  },
   'poisoned-crossbow': { name: 'Ballesta Envenenada', flavor: 'Alcanza con un rasguño.' },
   polymorph: {
     name: 'Polimorfia',
@@ -1509,6 +1660,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     flavor: 'Un llamado y viene corriendo toda la manada.'
   },
   'raptor-pack': { name: 'Manada de Raptores', flavor: 'Nunca ves uno solo.' },
+  'raptor-scout': {
+    name: 'Raptor Explorador',
+    text: 'Al morir: robá una carta.',
+    flavor: 'Siempre vuelve con noticias, aun cuando no vuelve.'
+  },
   'recruiting-tent': {
     name: 'Carpa de Reclutamiento',
     text: 'Artefacto. Cada aliado tuyo que entra tiene +4 de vida.',
@@ -1626,6 +1782,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     flavor: 'Acá cada herida tiene todo el tiempo del mundo para sanar.'
   },
   'sand-wraith': { name: 'Espectro de Arena', flavor: 'Nunca lo ves venir. Solo escuchás la arena.' },
+  'scent-of-prey': {
+    name: 'Olor a Presa',
+    text: 'Robá una carta. Si tenés un aliado Primal, robá 2.',
+    flavor: 'La manada siempre sabe adónde ir.'
+  },
   'scepter-of-storms': { name: 'Cetro de las Tormentas', flavor: 'Zumba antes del trueno.' },
   'scepter-of-unmaking': { name: 'Cetro del Deshacer', flavor: 'Termina lo que toca.' },
   'scholars-lens': {
@@ -1637,6 +1798,16 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Pergamino de Sabiduría',
     text: 'Robá 2 cartas.',
     flavor: 'Leelo dos veces. La segunda dice otra cosa.'
+  },
+  'scry-the-stars': {
+    name: 'Leer las Estrellas',
+    text: 'Robá una carta. Tu héroe gana 1 de energía.',
+    flavor: 'Las constelaciones nunca mienten. Solo hablan despacio.'
+  },
+  'searing-brand': {
+    name: 'Marca Abrasadora',
+    text: 'Prendé fuego un slot enemigo: pierde 3 de vida al empezar cada una de las próximas 3 fases.',
+    flavor: 'La marca se borra. El dolor, no tan pronto.'
   },
   'security-drone': { name: 'Dron de Seguridad', flavor: 'Por favor, quedate quieto mientras te escaneamos.' },
   'senator-of-coin': {
@@ -1715,6 +1886,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Al jugarla: robá una carta.',
     flavor: 'Bolsillos para cada pergamino.'
   },
+  'siphon-rune': {
+    name: 'Runa Sifón',
+    text: 'El héroe enemigo pierde 2 de energía. El tuyo gana 1.',
+    flavor: 'Lo suyo fluye, despacio, hacia vos.'
+  },
   'sister-elowen': {
     name: 'Hermana Elowen',
     text: 'Al final de cada fase, tus aliados se curan 3.',
@@ -1781,6 +1957,12 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     flavor: 'No se recomiendan los abrazos.'
   },
   'spinosaur-hunter': { name: 'Espinosaurio Cazador', flavor: 'El río es su coto de caza. Y su mesa.' },
+  'spirit-caller': {
+    name: 'Invocadora de Espíritus',
+    text: 'Su habilidad se paga con energía (⚡).',
+    flavor: 'Los viejos espíritus de la selva curan lo que desgarran las garras.',
+    ability: { name: 'Llamado de los Ancestros', text: 'Un aliado tuyo se cura 8 y gana +2 de ataque.' }
+  },
   'spirit-guardian': {
     name: 'Guardián Espiritual',
     text: 'Invocá un Guardián de la Grieta y tu héroe gana 6 de armadura.',
@@ -1802,6 +1984,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     flavor: 'Los ancestros se ponen entre vos y el golpe.'
   },
   spyglass: { name: 'Catalejo', text: 'Robá una carta.', flavor: 'Mirá lo que viene.' },
+  'spoils-of-war': {
+    name: 'Botín de Guerra',
+    text: 'Artefacto. Al empezar cada fase, si tenés más aliados que el rival, robá una carta.',
+    flavor: 'Al ganador, los cofres.'
+  },
   'staff-of-embers': { name: 'Bastón de Brasas', flavor: 'Siempre tibio, nunca se apaga.' },
   'staff-of-eternity': {
     name: 'Bastón de la Eternidad',
@@ -1867,6 +2054,12 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     flavor: 'Tiene gusto a pila.'
   },
   'stone-thrower': { name: 'Lanzapiedras', flavor: 'Tecnología: una piedra grande. Estrategia: tirarla.' },
+  'storm-adept': {
+    name: 'Adepta de la Tormenta',
+    text: 'Su habilidad se paga con energía (⚡).',
+    flavor: 'El rayo responde cuando lo llama, pero cobra.',
+    ability: { name: 'Trueno', text: 'Hacé 6 de daño a un slot enemigo.' }
+  },
   'storm-caller': {
     name: 'Invocador de Tormentas',
     flavor: 'Las nubes le contestan antes de que termine la palabra.',
@@ -1900,6 +2093,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     flavor: 'Sonreí. Te están filmando.'
   },
   'swamp-croc': { name: 'Cocodrilo del Pantano', flavor: 'Espera en este pantano desde antes de los dinosaurios.' },
+  'swamp-viper': {
+    name: 'Víbora del Pantano',
+    text: 'Cuando ataca, envenena a su objetivo (2).',
+    flavor: 'Su mordida es rápida. Lo demás, lento.'
+  },
   'syndicate-enforcer': { name: 'Ejecutor del Sindicato', flavor: 'Política de la empresa, entregada en mano.' },
   'synth-brawler': { name: 'Peleador Sintético', flavor: 'Puños mejorados. Actitud original.' },
   'system-crash': {
@@ -2046,6 +2244,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Al entrar: hacé 8 de daño a cada aliado enemigo.',
     flavor: 'Su cola está en el pasado. Su cabeza, en el futuro.'
   },
+  'thorn-collar': {
+    name: 'Collar de Espinas',
+    text: 'Adjuntalo a un aliado enemigo: cada vez que ataca, pierde 4 de vida.',
+    flavor: 'Cada golpe lo aprieta más.'
+  },
   'thornback-boar': { name: 'Jabalí Espinoso', flavor: 'No se recomienda acariciarlo.' },
   'thorned-colossus': { name: 'Coloso Espinoso', flavor: 'Abrazalo bajo tu propio riesgo.' },
   'thorned-mail': {
@@ -2096,6 +2299,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Adjuntalo a un aliado tuyo: tiene +8 de ataque, +8 de vida y barrido.',
     flavor: 'Forjado para una mano tres veces más grande. Igual te queda.'
   },
+  'tomb-listener': {
+    name: 'Oyente de Tumbas',
+    text: 'Al entrar: robá una carta por cada 5 cartas de tu pila de descarte (hasta 3).',
+    flavor: 'Los muertos hablan. Ella escucha.'
+  },
   'tomb-warden': {
     name: 'Guardián de la Cripta',
     text: 'Al morir: un aliado al azar de tu descarte vuelve al juego.',
@@ -2105,6 +2313,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Tomo de los Finales',
     text: 'Hacé 10 de daño a cada aliado enemigo, un aliado al azar de tu descarte vuelve al juego y robá 2 cartas.',
     flavor: 'Todas las historias terminan. Este libro sabe cómo.'
+  },
+  'tome-of-whispers': {
+    name: 'Tomo de los Susurros',
+    text: 'Artefacto. Al empezar cada fase, robá una carta y tu héroe pierde 2 de vida.',
+    flavor: 'Lo sabe todo. Pide un poco a cambio.'
   },
   'tower-mace': { name: 'Maza de Torre', text: 'Al jugarla: tu héroe gana 5 de armadura.', flavor: 'Toc, toc.' },
   'tower-novice': {
@@ -2204,6 +2417,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Cuando un aliado enemigo ataca: cancelá el ataque, destruilo y un aliado al azar de tu descarte vuelve al juego.',
     flavor: 'El vacío se lleva uno y devuelve otro.'
   },
+  'void-leech': {
+    name: 'Sanguijuela del Vacío',
+    text: 'Al entrar: el héroe enemigo pierde 2 de energía.',
+    flavor: 'Se bebe lo que hace héroes a los héroes.'
+  },
   'void-rift': {
     name: 'Grieta del Vacío',
     text: 'Hacé 6 de daño a cada aliado enemigo y un aliado al azar de tu descarte vuelve al juego. Lenta.',
@@ -2246,6 +2464,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Honda del Errante',
     flavor: 'Cualquier piedra es un arma si la tirás desde bastante lejos.'
   },
+  'wandering-scribe': {
+    name: 'Escriba Errante',
+    text: 'Al entrar: robá una carta.',
+    flavor: 'Anota cada camino, para que elijas el tuyo.'
+  },
   'wandering-sellsword': { name: 'Mercenario Errante', flavor: 'Cobra en cualquier moneda de cualquier siglo.' },
   'war-axe': { name: 'Hacha de Guerra', flavor: 'Pesada, simple, efectiva.' },
   'war-banner': {
@@ -2253,10 +2476,21 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Tus aliados ganan +1 de ataque y +3 de vida.',
     flavor: 'Seguí al rojo.'
   },
+  'war-council': {
+    name: 'Consejo de Guerra',
+    text: 'Robá 2 cartas.',
+    flavor: 'Los planes se hacen en la mesa y se ganan en el campo.'
+  },
   'war-drum': {
     name: 'Tambor de Guerra',
     text: 'Artefacto. Tus aliados tienen +2 de ataque, y también los que entren después.',
     flavor: 'Cada golpe, un paso adelante.'
+  },
+  'war-priestess': {
+    name: 'Sacerdotisa de Guerra',
+    text: 'Su habilidad se paga con energía (⚡).',
+    flavor: 'Su himno vuelve a soldados cansados un muro de bronce.',
+    ability: { name: 'Himno de Batalla', text: 'Tus aliados ganan +3 de ataque esta fase.' }
   },
   'warlords-command': {
     name: 'Orden del Señor de la Guerra',
@@ -2279,6 +2513,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Cacería Salvaje',
     text: 'Invocá una Manada de Raptores y tus aliados ganan +2 de ataque.',
     flavor: 'Cuando Kora aúlla, caza toda la jungla.'
+  },
+  wildfire: {
+    name: 'Fuego Salvaje',
+    text: 'Hacé 3 de daño a todos los aliados enemigos y prendelos fuego (2 por fase durante 2 fases).',
+    flavor: 'Una vez que empieza, nadie le puede decir dónde parar.'
   },
   'winged-harness': {
     name: 'Arnés Alado',

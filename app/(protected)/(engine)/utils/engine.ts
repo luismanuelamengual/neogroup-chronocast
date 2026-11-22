@@ -1,9 +1,17 @@
-import { ALLY_SLOTS, FATIGUE_START, FATIGUE_STEP, MAX_HAND, SUPPORT_SLOTS } from '@/app/(protected)/(engine)/data/rules'
+import {
+  ALLY_SLOTS,
+  BURN_PHASES,
+  FATIGUE_START,
+  FATIGUE_STEP,
+  MAX_ENERGY,
+  MAX_HAND,
+  SUPPORT_SLOTS
+} from '@/app/(protected)/(engine)/data/rules'
 import { CardDefinition, TrapEvent, TrapTrigger } from '@/app/(protected)/(engine)/models/CardDefinition'
 import { EffectContext } from '@/app/(protected)/(engine)/models/EffectContext'
 import { Keyword } from '@/app/(protected)/(engine)/models/Keyword'
-import { MatchEvent } from '@/app/(protected)/(engine)/models/MatchEvent'
-import { CardInstance, MatchState, PlayerState, Unit } from '@/app/(protected)/(engine)/models/MatchState'
+import { MatchEvent, StatusKind } from '@/app/(protected)/(engine)/models/MatchEvent'
+import { Afflictions, CardInstance, MatchState, PlayerState, Unit } from '@/app/(protected)/(engine)/models/MatchState'
 import { opponentOf, PLAYER_IDS, PlayerId } from '@/app/(protected)/(engine)/models/PlayerId'
 import { SlotRef } from '@/app/(protected)/(engine)/models/SlotRef'
 import { nextRandom } from '@/app/(protected)/(engine)/utils/random'
@@ -14,6 +22,8 @@ export interface DamageSource {
   player: PlayerId
   poison?: boolean
   lifesteal?: boolean
+  /** Damage of poison or a burn: it goes past shields and armor. */
+  status?: StatusKind
 }
 
 type PendingDamage =
@@ -110,8 +120,18 @@ export class MatchEngine {
     return Math.max(0, unit.attack + unit.tempAttack)
   }
 
+  /** Stunned or frozen: it can't act. */
   isStunned(unit: Unit): boolean {
-    return unit.stunnedUntilPhase >= this.state.phase
+    return unit.stunnedUntilPhase >= this.state.phase || this.isFrozen(unit)
+  }
+
+  isFrozen(subject: Afflictions): boolean {
+    return (subject.frozenUntilPhase ?? 0) >= this.state.phase
+  }
+
+  /** An attachment on the ally keeps it from attacking (`disarms`) or from using its ability (`silences`). */
+  isRestrained(unit: Unit, rule: 'disarms' | 'silences'): boolean {
+    return (unit.attachments ?? []).some((card) => getCard(card.cardId)[rule])
   }
 
   /** Freezes who is in each slot: within a speed bracket, attacks and effects aim at the board as it was when it started. */
@@ -208,7 +228,7 @@ export class MatchEngine {
             continue
           }
 
-          const dealt = this.applyHeroDamage(hit.player, amount)
+          const dealt = this.applyHeroDamage(hit.player, amount, hit.source?.status)
 
           this.applyLifesteal(hit.source, dealt)
         } else {
@@ -221,7 +241,7 @@ export class MatchEngine {
           const { unit, player, slot } = found
           const ref = { player, slot }
 
-          if (unit.shield) {
+          if (unit.shield && !hit.source?.status) {
             unit.shield = false
             this.emit({ type: 'shieldBlock', target: ref })
             continue
@@ -236,7 +256,7 @@ export class MatchEngine {
           }
 
           unit.health -= amount
-          this.emit({ type: 'damage', target: ref, amount, absorbed: 0 })
+          this.emit({ type: 'damage', target: ref, amount, absorbed: 0, status: hit.source?.status })
           this.applyLifesteal(hit.source, hit.amount)
           damaged.push({ uid: unit.uid, amount })
         }
@@ -271,14 +291,15 @@ export class MatchEngine {
     return Math.max(0, Math.round(result))
   }
 
-  private applyHeroDamage(player: PlayerId, amount: number): number {
+  private applyHeroDamage(player: PlayerId, amount: number, status?: StatusKind): number {
     const hero = this.player(player).hero
-    const absorbed = Math.min(hero.armor, amount)
+    // Poison and burns go past the armor.
+    const absorbed = status ? 0 : Math.min(hero.armor, amount)
     const rest = amount - absorbed
 
     hero.armor -= absorbed
     hero.health -= rest
-    this.emit({ type: 'damage', target: { player, slot: 'hero' }, amount: rest, absorbed })
+    this.emit({ type: 'damage', target: { player, slot: 'hero' }, amount: rest, absorbed, status })
 
     if (hero.armor <= 0 && hero.armorCard) {
       this.player(player).discard.push(hero.armorCard)
@@ -453,6 +474,111 @@ export class MatchEngine {
 
     if (found) {
       this.damageUnit(uid, found.unit.health + found.unit.maxHealth, { player: opponentOf(found.player), poison: true })
+    }
+  }
+
+  /** Adds (or, negative, takes away) energy, between 0 and MAX_ENERGY. */
+  gainEnergy(player: PlayerId, amount: number, announce = true): void {
+    const side = this.player(player)
+    const before = side.energy ?? 0
+
+    side.energy = Math.max(0, Math.min(MAX_ENERGY, before + amount))
+
+    if (announce && side.energy !== before) {
+      this.emit({ type: 'energy', player, amount: side.energy - before })
+    }
+  }
+
+  /** The hero or the ally a slot points to, to give it a status effect. */
+  private afflicted(target: SlotRef): Afflictions | null {
+    if (target.slot === 'hero') {
+      const hero = this.player(target.player).hero
+
+      return hero.health > 0 ? hero : null
+    }
+
+    const unit = this.targetUnit(target)
+
+    return unit && unit.health > 0 ? unit : null
+  }
+
+  /** The slot where a hero or an ally is now (allies may have moved since the target was chosen). */
+  private refOf(target: SlotRef, subject: Afflictions): SlotRef {
+    if (target.slot === 'hero') {
+      return target
+    }
+
+    const found = this.findUnit((subject as Unit).uid)
+
+    return found ? { player: found.player, slot: found.slot } : target
+  }
+
+  /**
+   * Gives a status effect: `poison` adds `amount` to the poison, `burn` burns
+   * for `amount` a phase during `phases` phases, `freeze` freezes for the rest
+   * of this phase and `amount` more.
+   */
+  afflict(target: SlotRef, status: StatusKind, amount: number, phases = BURN_PHASES): boolean {
+    const subject = this.afflicted(target)
+
+    if (!subject || amount < 0) {
+      return false
+    }
+
+    if (status === 'poison') {
+      subject.poison = (subject.poison ?? 0) + amount
+    } else if (status === 'burn') {
+      subject.burn = Math.max(subject.burn ?? 0, amount)
+      subject.burnPhases = Math.max(subject.burnPhases ?? 0, phases)
+    } else {
+      subject.frozenUntilPhase = Math.max(subject.frozenUntilPhase ?? 0, this.state.phase + amount)
+    }
+
+    this.emit({ type: 'status', target: this.refOf(target, subject), status, amount })
+
+    return true
+  }
+
+  /** Removes every status effect of a hero or an ally. */
+  cleanse(target: SlotRef): void {
+    const subject = this.afflicted(target)
+
+    if (subject && (subject.poison || subject.burn || this.isFrozen(subject))) {
+      subject.poison = 0
+      subject.burn = 0
+      subject.burnPhases = 0
+      subject.frozenUntilPhase = 0
+      this.emit({ type: 'cleanse', target: this.refOf(target, subject) })
+    }
+  }
+
+  /** Poison and burns hurt (at the start of each phase): the poison drops by 1, the burn has one phase less. */
+  tickAfflictions(): void {
+    for (const player of PLAYER_IDS) {
+      const side = this.player(player)
+      const subjects: { subject: Afflictions; hit: (amount: number, status: StatusKind) => void }[] = [
+        { subject: side.hero, hit: (amount, status) => this.damageHero(player, amount, { player, status }) }
+      ]
+
+      for (const unit of this.allies(player)) {
+        subjects.push({ subject: unit, hit: (amount, status) => this.damageUnit(unit.uid, amount, { player, status }) })
+      }
+
+      for (const { subject, hit } of subjects) {
+        if (subject.poison && subject.poison > 0) {
+          hit(subject.poison, 'poison')
+          subject.poison--
+        }
+
+        if (subject.burn && subject.burnPhases && subject.burnPhases > 0) {
+          hit(subject.burn, 'burn')
+          subject.burnPhases--
+
+          if (subject.burnPhases <= 0) {
+            subject.burn = 0
+          }
+        }
+      }
     }
   }
 

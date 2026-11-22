@@ -1,19 +1,30 @@
 import { MAX_HAND } from '@/app/(protected)/(engine)/data/rules'
-import { MatchState, PlayerState } from '@/app/(protected)/(engine)/models/MatchState'
+import { Afflictions, MatchState, PlayerState } from '@/app/(protected)/(engine)/models/MatchState'
 import { opponentOf, PlayerId } from '@/app/(protected)/(engine)/models/PlayerId'
 
 const WIN = 100000
 
-/** What a side has: its hero's life, its board, its hand and its Chronos. */
+/** Health a hero or an ally is still going to lose to its poison and burn. */
+function pendingLoss(subject: Afflictions): number {
+  const poison = subject.poison ?? 0
+
+  return (poison * (poison + 1)) / 2 + (subject.burn ?? 0) * (subject.burnPhases ?? 0)
+}
+
+/** What a side has: its hero's life, its board, its hand, its Chronos and energy. */
 function material(side: PlayerState): number {
-  const hero = side.hero.health + side.hero.armor * 0.6
+  const hero = side.hero.health + side.hero.armor * 0.6 - pendingLoss(side.hero)
   const weapon = side.hero.weapon ? side.hero.weapon.attack * Math.min(side.hero.weapon.durability, 3) * 0.4 : 0
   const board = side.allies.reduce(
-    (sum, unit) => sum + (unit ? unit.attack * 0.7 + unit.health * 0.35 + (unit.keywords.length > 0 ? 2 : 0) : 0),
+    (sum, unit) =>
+      sum +
+      (unit
+        ? unit.attack * 0.7 + Math.max(0, unit.health - pendingLoss(unit)) * 0.35 + (unit.keywords.length > 0 ? 2 : 0)
+        : 0),
     0
   )
   const hand = Math.min(side.hand.length, MAX_HAND) * 3
-  const chronos = Math.min(side.chronosCapacity, 8) * 4
+  const chronos = Math.min(side.chronosCapacity, 8) * 4 + (side.energy ?? 0) * 1.5
   const extras = (side.location ? 6 : 0) + side.traps.length * 4 + (side.artifacts ?? []).length * 5
 
   return hero + weapon + board + hand + chronos + extras

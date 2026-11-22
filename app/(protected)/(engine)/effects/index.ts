@@ -304,3 +304,66 @@ export function setHealth(ctx: EffectContext, unit: Unit, health: number): void 
   unit.maxHealth = health
   unit.health = Math.min(unit.health, health)
 }
+
+// ─── Energy ──────────────────────────────────────────────────────────────────
+
+/** Energy stored by a player's hero. */
+export function energyOf(ctx: EffectContext, player: PlayerId): number {
+  return ctx.engine.player(player).energy ?? 0
+}
+
+/** Adds energy to a player's hero (up to the maximum). */
+export function gainEnergy(ctx: EffectContext, player: PlayerId, amount: number): void {
+  ctx.engine.gainEnergy(player, amount)
+}
+
+/** Takes energy away from a player's hero (never below 0); returns how much it took. */
+export function drainEnergy(ctx: EffectContext, player: PlayerId, amount: number): number {
+  const before = energyOf(ctx, player)
+
+  ctx.engine.gainEnergy(player, -amount)
+
+  return before - energyOf(ctx, player)
+}
+
+// ─── Status effects ──────────────────────────────────────────────────────────
+
+/** Poisons a hero or an ally: it loses `amount` health at the start of each phase, 1 less each time. */
+export function poison(ctx: EffectContext, target: SlotRef, amount: number): void {
+  ctx.engine.afflict(target, 'poison', amount)
+}
+
+/** Sets a hero or an ally on fire: it loses `amount` health at the start of each of the next `phases` phases. */
+export function burn(ctx: EffectContext, target: SlotRef, amount: number, phases?: number): void {
+  ctx.engine.afflict(target, 'burn', amount, phases)
+}
+
+/** Freezes a hero or an ally: it can't attack, move or use abilities for the rest of this phase and `phases` more. */
+export function freeze(ctx: EffectContext, target: SlotRef, phases = 1): void {
+  ctx.engine.afflict(target, 'freeze', phases)
+}
+
+/** Removes every status effect of a hero or an ally. */
+export function cleanse(ctx: EffectContext, target: SlotRef): void {
+  ctx.engine.cleanse(target)
+}
+
+/** Whether the hero or ally of a slot has any status effect. */
+export function isAfflicted(ctx: EffectContext, target: SlotRef): boolean {
+  const subject = target.slot === 'hero' ? ctx.engine.player(target.player).hero : ctx.engine.targetUnit(target)
+
+  return !!subject && (!!subject.poison || !!subject.burn || ctx.engine.isFrozen(subject))
+}
+
+/** The slots of every ally of a side. */
+export function allyRefs(ctx: EffectContext, player: PlayerId): SlotRef[] {
+  const refs: SlotRef[] = []
+
+  ctx.engine.player(player).allies.forEach((unit, slot) => {
+    if (unit) {
+      refs.push({ player, slot })
+    }
+  })
+
+  return refs
+}

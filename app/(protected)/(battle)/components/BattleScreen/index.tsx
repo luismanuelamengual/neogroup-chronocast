@@ -33,7 +33,8 @@ import {
 } from '@/app/(protected)/(battle)/utils/targets'
 import CardSpotlight, { SpotlightAction, SpotlightCard } from '@/app/(protected)/(cards)/components/CardSpotlight'
 import { ACTIONS_PER_PHASE, ALLY_SLOTS, SUPPORT_SLOTS } from '@/app/(protected)/(engine)/data/rules'
-import { HeroState, MatchState, PlayerState, Unit } from '@/app/(protected)/(engine)/models/MatchState'
+import { ActiveAbility } from '@/app/(protected)/(engine)/models/CardDefinition'
+import { Afflictions, HeroState, MatchState, PlayerState, Unit } from '@/app/(protected)/(engine)/models/MatchState'
 import { PlannedAction } from '@/app/(protected)/(engine)/models/PlannedAction'
 import { PlayerId } from '@/app/(protected)/(engine)/models/PlayerId'
 import { SlotRef } from '@/app/(protected)/(engine)/models/SlotRef'
@@ -46,8 +47,10 @@ const SLOTS = Array.from({ length: ALLY_SLOTS }, (_, slot) => slot)
 const BANDS = { top: 0.075, side: 0.37 }
 /** Share of a side's height of its allies row (the supports take the rest). */
 const ALLIES_SHARE = 0.65
-/** Part of an attached card's height that shows behind the card it is attached to. */
-const PEEK = 0.15
+/** Part of a card's height kept free around it for the cards attached behind it. */
+const PEEK = 0.06
+/** How far each card of a stack is shifted from the one behind it (px): just enough to show there are more. */
+const STACK_OFFSET = 2
 /** Width of a side that isn't cards: paddings, gaps, the row labels (px). */
 const SIDE_ROOM = 96
 /** Width of the column on the right with the timelines (px). */
@@ -347,10 +350,35 @@ export default function BattleScreen({
 
   // ─── Tapping the board ────────────────────────────────────────────────────
 
+  /** The poison and burn of a hero or an ally, for the note under its big card. */
+  const statusNotes = (subject: Afflictions) => {
+    const notes: string[] = []
+
+    if (subject.poison) {
+      notes.push(t('battle.statusNotes.poison', { amount: subject.poison }))
+    }
+
+    if (subject.burn && subject.burnPhases) {
+      notes.push(t('battle.statusNotes.burn', { amount: subject.burn, phases: subject.burnPhases }))
+    }
+
+    return notes
+  }
+
+  /** The button of an ability, with its cost in Chronos or in energy (a hero's is always energy). */
+  const abilityLabel = (ability: ActiveAbility, hero: boolean) =>
+    hero || ability.resource === 'energy'
+      ? t('battle.buttons.abilityEnergy', { cost: ability.cost })
+      : t('battle.buttons.ability', { cost: ability.cost })
+
   const unitNote = (unit: Unit) => {
     const parts = [`⚔️ ${unit.attack + unit.tempAttack} · ❤️ ${unit.health}/${unit.maxHealth}`]
 
-    if (unit.stunnedUntilPhase >= board.phase) {
+    parts.push(...statusNotes(unit))
+
+    if ((unit.frozenUntilPhase ?? 0) >= board.phase) {
+      parts.push(t('battle.frozen'))
+    } else if (unit.stunnedUntilPhase >= board.phase) {
       parts.push(t('battle.stunned'))
     } else if (unit.enteredPhase === board.phase && !unit.keywords.includes('charge')) {
       parts.push(t('battle.notReady'))
@@ -488,7 +516,7 @@ export default function BattleScreen({
         const direct: PlannedAction = { kind: 'allyAbility', allyUid: unit.uid, targets: [] }
 
         spotActions.push({
-          label: t('battle.buttons.ability', { cost: ability.cost }),
+          label: abilityLabel(ability, false),
           color: 'violet',
           disabledReason: reason(
             ability.targets?.length
@@ -502,7 +530,11 @@ export default function BattleScreen({
   } else if (spot?.kind === 'hero') {
     const hero = board.players[spot.player].hero
 
-    spotNote = `❤️ ${Math.max(0, hero.health)}/${hero.maxHealth}${hero.armor > 0 ? ` · 🛡️ ${hero.armor}` : ''}`
+    spotNote = [
+      `❤️ ${Math.max(0, hero.health)}/${hero.maxHealth}${hero.armor > 0 ? ` · 🛡️ ${hero.armor}` : ''} · ⚡ ${board.players[spot.player].energy ?? 0}`,
+      ...statusNotes(hero),
+      ...((hero.frozenUntilPhase ?? 0) >= board.phase ? [t('battle.frozen')] : [])
+    ].join('\n')
 
     if (planning && spot.player === me) {
       const ability = heroCard(board, me).ability
@@ -524,7 +556,7 @@ export default function BattleScreen({
         const direct: PlannedAction = { kind: 'heroAbility', targets: [] }
 
         spotActions.push({
-          label: t('battle.buttons.ability', { cost: ability.cost }),
+          label: abilityLabel(ability, true),
           color: 'violet',
           disabledReason: reason(
             ability.targets?.length
@@ -615,8 +647,9 @@ export default function BattleScreen({
           >
             {unit && (
               <>
-                <Attached cards={allyAttachments(unit)} width={metrics.ally} down={player !== me} />
-                <UnitCard unit={unit} width={metrics.ally} phase={board.phase} />
+                <Stacked cards={allyAttachments(unit)} width={metrics.ally}>
+                  <UnitCard unit={unit} width={metrics.ally} phase={board.phase} />
+                </Stacked>
               </>
             )}
           </BoardSlot>
@@ -673,12 +706,18 @@ export default function BattleScreen({
         frameKey={frame.key}
         onClick={() => onSlotClick(ref)}
       >
-        <Attached cards={heroAttachments(hero)} width={metrics.hero} down={player !== me} />
-        <MiniCard cardId={hero.cardId} width={metrics.hero} className={classNames({ fallen: hero.fallen })}>
-          <span className="battle-screen__badge health big">{Math.max(0, hero.health)}</span>
-          {/* Armor from an ability, without an armor card attached. */}
-          {hero.armor > 0 && !hero.armorCard && <span className="battle-screen__badge armor big">{hero.armor}</span>}
-        </MiniCard>
+        <Stacked cards={heroAttachments(hero)} width={metrics.hero}>
+          <MiniCard
+            cardId={hero.cardId}
+            width={metrics.hero}
+            className={classNames({ fallen: hero.fallen, frozen: (hero.frozenUntilPhase ?? 0) >= board.phase })}
+          >
+            {hero.weapon && <span className="battle-screen__badge attack big">{hero.weapon.attack}</span>}
+            <span className="battle-screen__badge health big">{Math.max(0, hero.health)}</span>
+            {hero.armor > 0 && <span className="battle-screen__badge armor big">{hero.armor}</span>}
+            <StatusBadges subject={hero} phase={board.phase} />
+          </MiniCard>
+        </Stacked>
       </BoardSlot>
     )
   }
@@ -704,6 +743,13 @@ export default function BattleScreen({
             </strong>
           </span>
           <span className="battle-screen__zone-label">{t('battle.zones.chronos')}</span>
+        </div>
+        <div className="battle-screen__pile" title={t('battle.zones.energy')}>
+          <span className="battle-screen__chronos energy" style={{ width: metrics.pile, height: metrics.pile * 1.4 }}>
+            <span className="battle-screen__chronos-glass">⚡</span>
+            <strong>{side.energy ?? 0}</strong>
+          </span>
+          <span className="battle-screen__zone-label">{t('battle.zones.energy')}</span>
         </div>
         <button
           type="button"
@@ -926,11 +972,12 @@ export default function BattleScreen({
 function UnitCard({ unit, width, phase }: { unit: Unit; width: number; phase: number }) {
   const attack = unit.attack + unit.tempAttack
   const keywords = unit.keywords.filter((keyword) => KEYWORD_ICONS[keyword])
-  const stunned = unit.stunnedUntilPhase >= phase
+  const frozen = (unit.frozenUntilPhase ?? 0) >= phase
+  const stunned = unit.stunnedUntilPhase >= phase && !frozen
   const fresh = unit.enteredPhase === phase && !unit.keywords.includes('charge')
 
   return (
-    <MiniCard cardId={unit.cardId} width={width} className={classNames('unit-card', { stunned, fresh })}>
+    <MiniCard cardId={unit.cardId} width={width} className={classNames('unit-card', { stunned, frozen, fresh })}>
       {keywords.length > 0 && (
         <span className="battle-screen__keywords">
           {keywords.map((keyword) => (
@@ -942,16 +989,33 @@ function UnitCard({ unit, width, phase }: { unit: Unit; width: number; phase: nu
       <span className={classNames('battle-screen__badge health', { hurt: unit.health < unit.maxHealth })}>
         {unit.health}
       </span>
-      {(stunned || fresh) && <span className="battle-screen__status">{stunned ? '💫' : '💤'}</span>}
+      {(stunned || fresh) && !frozen && <span className="battle-screen__status">{stunned ? '💫' : '💤'}</span>}
+      <StatusBadges subject={unit} phase={phase} />
     </MiniCard>
   )
 }
 
-/** A card attached to another one on the board, with what to show on its edge. */
+/** Poison, burn and freeze on a hero or an ally, as small badges over its card. */
+function StatusBadges({ subject, phase }: { subject: Afflictions; phase: number }) {
+  const frozen = (subject.frozenUntilPhase ?? 0) >= phase
+  const burning = !!subject.burn && !!subject.burnPhases
+
+  if (!subject.poison && !burning && !frozen) {
+    return null
+  }
+
+  return (
+    <span className="battle-screen__afflictions">
+      {!!subject.poison && <span className="poison">☠️{subject.poison}</span>}
+      {burning && <span className="burn">🔥{subject.burn}</span>}
+      {frozen && <span className="freeze">❄️</span>}
+    </span>
+  )
+}
+
+/** A card attached to another one on the board. */
 interface AttachedCard {
   cardId: string
-  /** The value on the visible edge (the weapon's attack and uses, the armor's points). */
-  badge?: string
   kind: 'weapon' | 'armor' | 'ally'
 }
 
@@ -960,15 +1024,11 @@ function heroAttachments(hero: HeroState): AttachedCard[] {
   const cards: AttachedCard[] = []
 
   if (hero.weapon) {
-    cards.push({
-      cardId: hero.weapon.card.cardId,
-      badge: `🗡️${hero.weapon.attack}·${hero.weapon.durability}`,
-      kind: 'weapon'
-    })
+    cards.push({ cardId: hero.weapon.card.cardId, kind: 'weapon' })
   }
 
   if (hero.armorCard) {
-    cards.push({ cardId: hero.armorCard.cardId, badge: `🛡️${hero.armor}`, kind: 'armor' })
+    cards.push({ cardId: hero.armorCard.cardId, kind: 'armor' })
   }
 
   return cards
@@ -980,22 +1040,38 @@ function allyAttachments(unit: Unit): AttachedCard[] {
 }
 
 /**
- * The cards attached to a card on the board, behind it: each one shows an
- * edge toward the middle of the board (like a stack), with its value on a badge.
+ * A card on the board with the cards attached to it, as a stack: the card at
+ * the back stays in the slot's place and each one in front of it is shifted a
+ * little up and to the left, just enough to show there are more (tapping the
+ * card goes through them).
  */
-function Attached({ cards, width, down = false }: { cards: AttachedCard[]; width: number; down?: boolean }) {
-  // Toward the middle of the board: up on the player's side, down on the rival's.
-  const peek = width * 1.4 * PEEK * (down ? -1 : 1)
+function Stacked({ cards, width, children }: { cards: AttachedCard[]; width: number; children: ReactNode }) {
+  const shift = (depth: number) => -STACK_OFFSET * depth
 
-  return cards.map((card, index) => (
-    <span
-      key={`${card.cardId}-${index}`}
-      className={classNames('battle-screen__attached', card.kind)}
-      style={{ top: -peek * (index + 1), zIndex: -1 - index }}
-    >
-      <MiniCard cardId={card.cardId} width={width}>
-        {card.badge && <span className="battle-screen__attached-badge">{card.badge}</span>}
-      </MiniCard>
-    </span>
-  ))
+  return (
+    <>
+      {cards.map((card, index) => {
+        // The last attachment is the one at the back, in the original place.
+        const depth = cards.length - 1 - index
+
+        return (
+          <span
+            key={`${card.cardId}-${index}`}
+            className={classNames('battle-screen__attached', card.kind)}
+            style={{ top: shift(depth), left: shift(depth), zIndex: -1 - index, width }}
+          >
+            <MiniCard cardId={card.cardId} width={width} />
+          </span>
+        )
+      })}
+      <span
+        className="battle-screen__stack-front"
+        style={
+          cards.length > 0 ? { transform: `translate(${shift(cards.length)}px, ${shift(cards.length)}px)` } : undefined
+        }
+      >
+        {children}
+      </span>
+    </>
+  )
 }
