@@ -356,7 +356,7 @@ export const es = {
     },
     typeLine: {
       hero: '{type} · {faction} · {heroClass}',
-      class: '{type} · Clase {heroClass}',
+      class: '{type} · {heroClass}',
       signature: '{type} · Exclusiva',
       faction: '{type} · {faction}'
     },

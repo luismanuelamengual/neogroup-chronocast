@@ -352,7 +352,7 @@ export const en: Messages = {
     },
     typeLine: {
       hero: '{type} · {faction} {heroClass}',
-      class: '{type} · {heroClass} class',
+      class: '{type} · {heroClass}',
       signature: '{type} · Signature',
       faction: '{type} · {faction}'
     },
