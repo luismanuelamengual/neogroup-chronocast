@@ -2,6 +2,7 @@
 
 import './index.scss'
 import classNames from 'classnames'
+import { RefObject, useEffect, useLayoutEffect, useRef } from 'react'
 import { ELEMENT_ICONS } from '@/app/(protected)/(battle)/utils/icons'
 import { useCardArt } from '@/app/(protected)/(cards)/stores/cardArt'
 import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition'
@@ -79,8 +80,62 @@ interface CardViewProps {
  * Its texts in the player's language when the card has a translation
  * (app/i18n/cards), in English otherwise.
  */
-/** Above this many characters of rules (keywords, text and ability of an ally), the text is set smaller. */
-const DENSE_TEXT = 45
+/** Font sizes (px, at zoom 1) of the rules box and the name: they start at the largest and shrink until the text fits. */
+const TEXT_SIZE = { max: 12, min: 6.5 }
+const NAME_SIZE = { max: 17, min: 10 }
+const SIZE_STEP = 0.5
+/** Below this size (px) the flavor text is dropped to give the rules more room. */
+const FLAVOR_MIN_SIZE = 11
+const useIsomorphicLayoutEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect
+
+/**
+ * Shrinks the letters of an element of fixed size until its content fits:
+ * every card has its areas in the same place and of the same size, and a long
+ * text is set smaller instead of growing its box.
+ */
+function useFitText(ref: RefObject<HTMLElement | null>, size: { max: number; min: number }, key: string) {
+  useIsomorphicLayoutEffect(() => {
+    const element = ref.current
+
+    if (!element) {
+      return
+    }
+
+    const fit = () => {
+      const flavor = element.querySelector<HTMLElement>('.card-view__flavor')
+
+      const shrink = () => {
+        let current = size.max
+
+        element.style.fontSize = `${current}px`
+
+        while (
+          current > size.min &&
+          (element.scrollHeight > element.clientHeight + 1 || element.scrollWidth > element.clientWidth + 1)
+        ) {
+          current -= SIZE_STEP
+          element.style.fontSize = `${current}px`
+        }
+
+        return current
+      }
+
+      if (flavor) {
+        flavor.style.display = ''
+      }
+
+      // The flavor text is the first to go when the rules need the room.
+      if (shrink() < FLAVOR_MIN_SIZE && flavor) {
+        flavor.style.display = 'none'
+        shrink()
+      }
+    }
+
+    fit()
+    // The display font may arrive later and take more room.
+    document.fonts?.ready.then(fit)
+  }, [ref, size, key])
+}
 
 export default function CardView({ card: original, art }: CardViewProps) {
   const { t, locale } = useI18n()
@@ -91,15 +146,19 @@ export default function CardView({ card: original, art }: CardViewProps) {
   const image = art ?? ownArt
   // Abilities, items, locations and traps have no stats: without the row, the text keeps clear of the bottom edge.
   const hasStats = card.attack != null || card.armor != null || card.durability != null || card.health != null
-  // An ally with an ability has more to say: no flavor text, and smaller letters when it is long.
+  // An ally with an ability has more to say: no flavor text.
   const allyAbility = !!card.ability && card.type !== 'hero'
-  const dense =
-    allyAbility && (keywords?.length ?? 0) + (card.text?.length ?? 0) + card.ability!.text.length > DENSE_TEXT
+  const textRef = useRef<HTMLDivElement>(null)
+  const nameRef = useRef<HTMLHeadingElement>(null)
+
+  useFitText(textRef, TEXT_SIZE, `${locale}:${card.id}`)
+  useFitText(nameRef, NAME_SIZE, `${locale}:${card.id}`)
 
   return (
     <article
       className={classNames('card-view', `faction-${card.faction}`, `rarity-${card.rarity}`, `type-${card.type}`, {
-        'full-art': !!image
+        'full-art': !!image,
+        'with-stats': hasStats
       })}
     >
       <div className="card-view__art">
@@ -117,10 +176,12 @@ export default function CardView({ card: original, art }: CardViewProps) {
       <span className="card-view__gem" title={t(`game.rarities.${card.rarity}`)} />
       {speed && speed !== 'normal' && <span className="card-view__speed">{t(`game.speeds.${speed}`)}</span>}
 
-      <h3 className="card-view__name">{card.name}</h3>
+      <h3 className="card-view__name" ref={nameRef}>
+        {card.name}
+      </h3>
       <p className="card-view__type">{typeLine(card, t)}</p>
 
-      <div className={classNames('card-view__text', { dense, 'with-ability': allyAbility })}>
+      <div className="card-view__text" ref={textRef}>
         {keywords && <p className="card-view__keywords">{keywords}</p>}
         {/* A hero's text repeats its ability; an ally's text is apart from it. */}
         {card.text && (!card.ability || card.type !== 'hero') && <p>{card.text}</p>}

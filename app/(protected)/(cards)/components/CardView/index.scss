@@ -16,16 +16,22 @@
   // Its own stacking context: the z-index of the gem, art and texts stay
   // inside the card and never cover badges drawn over it (shop counters).
   isolation: isolate;
-  display: flex;
-  flex-direction: column;
+  // Fixed areas, the same on every card (in px of the card at zoom 1, inside the border):
+  // illustration, name bar, type line and rules box always in the same place and size.
+  --area-art: 142px;
+  --area-name-top: 150px;
+  --area-name-height: 26px;
+  --area-type-top: 179px;
+  --area-text-top: 195px;
+  --area-text-bottom: 12px;
+
+  display: block;
   width: 220px;
   aspect-ratio: 5 / 7;
   padding: 10px;
   border: 4px solid var(--color-outline);
   border-radius: 18px;
-  background:
-    radial-gradient(circle at 30% 0%, rgba(255, 255, 255, 0.45), transparent 55%),
-    var(--frame);
+  background: radial-gradient(circle at 30% 0%, rgba(255, 255, 255, 0.45), transparent 55%), var(--frame);
   background-size: 100% 100%;
   box-shadow:
     var(--glow),
@@ -69,7 +75,9 @@
       color-mix(in srgb, var(--rarity) 60%, #3a0614) 100%
     );
 
-    background-size: 100% 100%, 250% 250%;
+    background-size:
+      100% 100%,
+      250% 250%;
     animation: card-view-mythic 3.2s ease-in-out infinite;
   }
 
@@ -85,8 +93,11 @@
   }
 
   &__art {
-    position: relative;
-    flex: 0 0 42%;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    left: 6px;
+    height: var(--area-art);
     border: 3px solid var(--color-outline);
     border-radius: 12px;
     background:
@@ -113,6 +124,7 @@
     position: absolute;
     top: 4px;
     left: 4px;
+    z-index: 2;
     display: grid;
     place-items: center;
     width: 38px;
@@ -129,22 +141,21 @@
   // The rarity gem, at the bottom center of the frame.
   &__gem {
     position: absolute;
-    bottom: 3px;
-    left: calc(50% - 11px);
+    bottom: 2px;
+    left: calc(50% - 8px);
     z-index: 2;
-    width: 22px;
-    height: 22px;
+    width: 16px;
+    height: 16px;
     border: 3px solid var(--color-outline);
-    background:
-      radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.85), transparent 45%),
-      var(--rarity);
+    background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.85), transparent 45%), var(--rarity);
     transform: rotate(45deg);
   }
 
   &__speed {
     position: absolute;
-    top: calc(42% - 6px);
+    top: calc(var(--area-art) - 6px);
     right: 14px;
+    z-index: 2;
     padding: 1px 8px;
     border: 2px solid var(--color-outline);
     border-radius: 999px;
@@ -154,20 +165,41 @@
   }
 
   &__name {
-    margin: 8px 0 0;
-    padding: 3px 8px;
+    position: absolute;
+    top: var(--area-name-top);
+    right: 8px;
+    left: 8px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--area-name-height);
+    margin: 0;
+    padding: 0 8px;
+    overflow: hidden;
+    white-space: nowrap;
     border: 3px solid var(--color-outline);
     border-radius: 10px;
     background: white;
     font-family: var(--font-display);
-    font-size: 1.05rem;
+    font-size: 17px;
     font-weight: 400;
-    line-height: 1.15;
+    line-height: 1;
     text-align: center;
   }
 
   &__type {
-    margin: 3px 0 4px;
+    position: absolute;
+    top: var(--area-type-top);
+    right: 8px;
+    left: 8px;
+    z-index: 1;
+    height: 14px;
+    margin: 0;
+    overflow: hidden;
+    line-height: 14px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     color: white;
     font-size: 0.72rem;
     font-weight: 800;
@@ -176,28 +208,33 @@
   }
 
   &__text {
-    flex: 1;
-    padding: 6px 8px;
+    position: absolute;
+    top: var(--area-text-top);
+    right: 8px;
+    bottom: var(--area-text-bottom);
+    left: 8px;
+    z-index: 1;
+    padding: 6px 8px 14px;
     border: 2px solid var(--color-outline);
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.92);
-    font-size: 0.74rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: safe center;
+    font-size: 12px;
     line-height: 1.25;
     overflow: hidden;
 
     p {
+      flex: none;
       margin: 0 0 3px;
     }
+  }
 
-    // Keeps the last line clear of the attack and health circles.
-    &.with-ability {
-      padding-bottom: 12px;
-    }
-
-    &.dense {
-      font-size: 0.64rem;
-      line-height: 1.16;
-    }
+  // The attack and health circles sit on the lower corners of the rules box.
+  &.with-stats &__text {
+    padding-right: 14px;
+    padding-left: 14px;
   }
 
   &__keywords {
@@ -210,10 +247,13 @@
   }
 
   &__stats {
+    position: absolute;
+    right: 2px;
+    bottom: 0;
+    left: 2px;
+    z-index: 2;
     display: flex;
     gap: 4px;
-    margin-top: -14px;
-    padding: 0 2px;
     pointer-events: none;
   }
 
@@ -256,17 +296,19 @@
   // With its illustration the card is full art: the picture fills the whole
   // card (it is drawn 4:5, almost the card's shape, so little is lost) and the
   // name and the text sit over its lower part, on a dark veil.
+  // With its illustration the card is full art: the picture fills the whole
+  // card (it is drawn 4:5, almost the card's shape, so little is lost) and the
+  // name and the text sit over its lower part, on a dark veil. The areas stay
+  // where they are on every card.
   &.full-art {
-    > * {
-      position: relative;
-      z-index: 1;
-    }
-
     // A frame of the rarity's color stays around the picture.
     .card-view__art {
-      position: absolute;
-      inset: 9px;
+      top: 9px;
+      right: 9px;
+      bottom: 9px;
+      left: 9px;
       z-index: 0;
+      height: auto;
       border: 2px solid var(--color-outline);
       border-radius: 10px;
 
@@ -278,16 +320,9 @@
       &::after {
         position: absolute;
         inset: 0;
-        background: linear-gradient(to bottom, transparent 40%, rgba(27, 20, 64, 0.55) 62%, rgba(27, 20, 64, 0.85));
+        background: linear-gradient(to bottom, transparent 40%, rgba(27, 20, 64, 0.55) 55%, rgba(27, 20, 64, 0.85));
         content: '';
       }
-    }
-
-    .card-view__cost,
-    .card-view__gem,
-    .card-view__speed {
-      position: absolute;
-      z-index: 2;
     }
 
     .card-view__speed {
@@ -295,13 +330,7 @@
       right: 14px;
     }
 
-    .card-view__name {
-      margin-top: auto;
-    }
-
     .card-view__text {
-      flex: 0 0 auto;
-      max-height: 38%;
       background: rgba(255, 255, 255, 0.9);
     }
   }
@@ -310,14 +339,18 @@
 @keyframes card-view-mythic {
   0%,
   100% {
-    background-position: 0 0, 0% 50%;
+    background-position:
+      0 0,
+      0% 50%;
     box-shadow:
       0 0 10px 2px color-mix(in srgb, var(--rarity) 60%, transparent),
       0 10px 24px rgba(43, 35, 80, 0.3);
   }
 
   50% {
-    background-position: 0 0, 100% 50%;
+    background-position:
+      0 0,
+      100% 50%;
     box-shadow:
       0 0 20px 6px color-mix(in srgb, var(--rarity) 85%, transparent),
       0 10px 24px rgba(43, 35, 80, 0.3);
