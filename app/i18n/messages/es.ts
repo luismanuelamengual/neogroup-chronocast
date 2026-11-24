@@ -515,8 +515,8 @@ export const es = {
       text: 'Tu mazo activo contra un héroe y un mazo al azar de la CPU.',
       newRival: 'Nuevo rival',
       back: 'Volver',
-      play: 'Jugar',
-      dealing: 'Preparando la partida…',
+      retry: 'Reintentar',
+      dealFailed: 'No se pudo preparar la partida.',
       verifying: 'Verificando la partida para darte el oro…',
       verifyFailed: 'No se pudo verificar la partida: esta vez no hay oro.',
       capped: 'Ya ganaste el oro de las partidas rápidas de hoy. ¡Volvé mañana!'

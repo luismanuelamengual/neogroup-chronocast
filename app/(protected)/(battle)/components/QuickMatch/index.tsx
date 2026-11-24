@@ -15,6 +15,7 @@ import ActiveDeckChip, { canPlayWith } from '@/app/(protected)/(collection)/comp
 import { ActiveDeck } from '@/app/(protected)/(collection)/models/DeckDto'
 import { MatchState } from '@/app/(protected)/(engine)/models/MatchState'
 import GameButton from '@/app/components/GameButton'
+import Loading from '@/app/components/Loading'
 import { useT } from '@/app/i18n/I18nProvider'
 
 interface QuickMatchProps {
@@ -24,7 +25,9 @@ interface QuickMatchProps {
 
 /**
  * Quick match (/quick-match): the active deck against the computer, which
- * plays a random hero with a random deck, different every match. The server
+ * plays a random hero with a random deck, different every match. With a
+ * playable active deck there is no screen before the battle: a loading state
+ * while the server deals it, and the battle right after. The server
  * deals it (seed and decks) and, when it ends, replays it and pays its gold:
  * less than an online match and no Prestige (shop/data/gold.ts, QUICK_MATCH_GOLD).
  */
@@ -38,7 +41,10 @@ export default function QuickMatch({ deck: active }: QuickMatchProps) {
   const ready = canPlayWith(active)
   /** The match on screen, as the server dealt it. */
   const [ticket, setTicket] = useState<QuickMatchTicket | null>(null)
-  const [dealing, setDealing] = useState(false)
+  /** A match is being dealt (from the start: the page opens dealing one). */
+  const [dealing, setDealing] = useState(ready)
+  /** The last deal failed: the page offers to try again. */
+  const [failed, setFailed] = useState(false)
 
   useMusic(mode !== 'idle' ? null : 'menu')
 
@@ -46,6 +52,7 @@ export default function QuickMatch({ deck: active }: QuickMatchProps) {
   const deal = useCallback(
     async (rematchOf: number | null = null) => {
       setDealing(true)
+      setFailed(false)
 
       try {
         const dealt = await api.startMatch(rematchOf)
@@ -55,6 +62,7 @@ export default function QuickMatch({ deck: active }: QuickMatchProps) {
       } catch {
         // The error is already shown; the page offers to try again.
         leave()
+        setFailed(true)
       } finally {
         setDealing(false)
       }
@@ -92,21 +100,42 @@ export default function QuickMatch({ deck: active }: QuickMatchProps) {
     )
   }
 
+  // No playable active deck: what is missing, and the way to the decks.
+  if (!ready) {
+    return (
+      <div className="quick-match">
+        <header>
+          <h1>{t('battle.quick.title')}</h1>
+          <p>{t('battle.quick.text')}</p>
+        </header>
+        <ActiveDeckChip deck={active} />
+        <GameButton color="ghost" href="/play">
+          {t('battle.quick.back')}
+        </GameButton>
+      </div>
+    )
+  }
+
+  if (failed && !dealing) {
+    return (
+      <div className="quick-match">
+        <p className="quick-match__error">⚠️ {t('battle.quick.dealFailed')}</p>
+        <div className="quick-match__buttons">
+          <GameButton color="gold" onClick={() => void deal()}>
+            {t('battle.quick.retry')}
+          </GameButton>
+          <GameButton color="ghost" href="/play">
+            {t('battle.quick.back')}
+          </GameButton>
+        </div>
+      </div>
+    )
+  }
+
+  // Dealing the match, or leaving it: only a loading state, the battle starts as soon as the server answers.
   return (
     <div className="quick-match">
-      <header>
-        <h1>{t('battle.quick.title')}</h1>
-        <p>{t('battle.quick.text')}</p>
-      </header>
-      <ActiveDeckChip deck={active} />
-      {ready && (
-        <GameButton color="gold" disabled={dealing} onClick={() => void deal()}>
-          {dealing ? t('battle.quick.dealing') : t('battle.quick.play')}
-        </GameButton>
-      )}
-      <GameButton color="ghost" href="/play">
-        {t('battle.quick.back')}
-      </GameButton>
+      <Loading />
     </div>
   )
 }

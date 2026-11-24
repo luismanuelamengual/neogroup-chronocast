@@ -510,8 +510,8 @@ export const en: Messages = {
       text: 'Your active deck against a random CPU hero and deck.',
       newRival: 'New rival',
       back: 'Back',
-      play: 'Play',
-      dealing: 'Setting up the match…',
+      retry: 'Try again',
+      dealFailed: 'The match could not be set up.',
       verifying: 'Checking the match to pay your gold…',
       verifyFailed: 'The match could not be checked: no gold this time.',
       capped: "You already earned today's quick match gold. Come back tomorrow!"
