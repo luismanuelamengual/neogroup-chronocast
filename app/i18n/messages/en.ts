@@ -356,10 +356,6 @@ export const en: Messages = {
       normal: 'Normal',
       slow: 'Slow'
     },
-    gearRules: {
-      armor: '🛡️ Each hit on your hero: -{reduction} damage. Breaks after {durability} hits.',
-      weapon: 'Breaks after {durability} attacks.'
-    },
     typeLine: {
       hero: '{type} · {faction} {heroClass}',
       class: '{type} · {heroClass}',

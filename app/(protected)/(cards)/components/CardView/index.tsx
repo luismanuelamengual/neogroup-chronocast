@@ -146,13 +146,6 @@ export default function CardView({ card: original, art }: CardViewProps) {
   const image = art ?? ownArt
   // Abilities, items, locations and traps have no stats: without the row, the text keeps clear of the bottom edge.
   const hasStats = card.attack != null || card.armor != null || card.durability != null || card.health != null
-  // Armors and weapons spell out what their two numbers mean.
-  const gearRule =
-    card.type === 'armor'
-      ? t('game.gearRules.armor', { reduction: card.armor ?? 0, durability: card.durability ?? 1 })
-      : card.type === 'weapon'
-        ? t('game.gearRules.weapon', { durability: card.durability ?? 1 })
-        : null
   // An ally with an ability has more to say: no flavor text.
   const allyAbility = !!card.ability && card.type !== 'hero'
   const textRef = useRef<HTMLDivElement>(null)
@@ -191,7 +184,6 @@ export default function CardView({ card: original, art }: CardViewProps) {
       <div className="card-view__text" ref={textRef}>
         {keywords && <p className="card-view__keywords">{keywords}</p>}
         {/* A hero's text repeats its ability; an ally's text is apart from it. */}
-        {gearRule && <p className="card-view__rule">{gearRule}</p>}
         {card.text && (!card.ability || card.type !== 'hero') && <p>{card.text}</p>}
         {card.ability && (
           <p className="card-view__ability">

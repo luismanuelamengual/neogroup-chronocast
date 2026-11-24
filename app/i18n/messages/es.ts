@@ -360,10 +360,6 @@ export const es = {
       normal: 'Normal',
       slow: 'Lenta'
     },
-    gearRules: {
-      armor: '🛡️ Cada golpe a tu héroe: -{reduction} de daño. Se rompe tras {durability} golpes.',
-      weapon: 'Se rompe tras {durability} ataques.'
-    },
     typeLine: {
       hero: '{type} · {faction} · {heroClass}',
       class: '{type} · {heroClass}',
