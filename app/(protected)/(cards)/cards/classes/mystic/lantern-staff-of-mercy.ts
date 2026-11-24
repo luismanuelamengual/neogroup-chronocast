@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { gainArmor } from '@/app/(protected)/(engine)/effects'
+import { healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'lantern-staff-of-mercy',
   type: 'weapon',
   name: 'Lantern Staff of Mercy',
-  text: 'When it is equipped: your hero gains 5 armor.',
+  text: 'When it is equipped: your hero heals 5.',
   flavor: 'Its light finds the lost and the hurt.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
@@ -15,7 +15,7 @@ export default defineCard({
   attack: 4,
   durability: 4,
   onPlay(ctx) {
-    gainArmor(ctx, ctx.owner, 5)
+    healHero(ctx, 5)
   },
   ai: { value: 4 },
   art: {

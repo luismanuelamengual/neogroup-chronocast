@@ -16,7 +16,7 @@ export const ELEMENTS = [
   'light',
   /** Can't be healed back (the target loses max health); a hit of 3 or more makes a hero lose 1 Chronos. */
   'time',
-  /** Poisons the target 1; against a hero it breaks 1 more armor point. */
+  /** Poisons the target 1; against a hero its armor loses 1 more durability. */
   'acid',
   /** Can't be reduced: ignores resistances and damage reductions. */
   'arcane',

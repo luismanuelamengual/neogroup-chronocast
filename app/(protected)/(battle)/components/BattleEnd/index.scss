@@ -74,6 +74,10 @@
     }
   }
 
+  &__panel &__note {
+    font-size: 0.85rem;
+  }
+
   &__buttons {
     display: flex;
     flex-wrap: wrap;

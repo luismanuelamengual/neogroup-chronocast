@@ -12,7 +12,8 @@ export default defineCard({
   rarity: 'epic',
   price: 1880,
   cost: 4,
-  armor: 13,
+  armor: 3,
+  durability: 4,
   onPlay(ctx) {
     healAllAllies(ctx, ctx.owner, 2)
   },

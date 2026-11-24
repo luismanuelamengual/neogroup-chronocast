@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffAt, gainArmor } from '@/app/(protected)/(engine)/effects'
+import { buffAt, healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'prophet-of-the-labyrinth',
   type: 'ally',
   name: 'Prophet of the Labyrinth',
-  text: 'At the start of each phase: your hero gains 2 armor. Its ability is paid with energy (⚡).',
+  text: 'At the start of each phase: your hero heals 2. Its ability is paid with energy (⚡).',
   faction: 'bronze',
   restriction: { kind: 'faction', faction: 'bronze' },
   rarity: 'rare',
@@ -27,7 +27,7 @@ export default defineCard({
     }
   },
   onPhaseStart(ctx) {
-    gainArmor(ctx, ctx.owner, 2)
+    healHero(ctx, 2)
   },
   ai: { value: 5, tags: ['ability', 'defense', 'energy'] },
   art: {

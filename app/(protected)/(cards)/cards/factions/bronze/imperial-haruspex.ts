@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { gainArmor } from '@/app/(protected)/(engine)/effects'
+import { healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'imperial-haruspex',
   type: 'ally',
   name: 'Imperial Haruspex',
-  text: 'When it attacks: your hero gains 2 armor.',
+  text: 'When it attacks: your hero heals 2.',
   faction: 'bronze',
   restriction: { kind: 'faction', faction: 'bronze' },
   rarity: 'common',
@@ -16,7 +16,7 @@ export default defineCard({
   attack: 7,
   health: 9,
   onAttack(ctx) {
-    gainArmor(ctx, ctx.owner, 2)
+    healHero(ctx, 2)
   },
   ai: { value: 5, tags: ['defense'] },
   art: {

@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { gainArmor } from '@/app/(protected)/(engine)/effects'
+import { healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'omnigears-hammer',
   type: 'weapon',
   name: "Omnigear's Hammer",
-  text: 'When it is equipped: your hero gains 5 armor.',
+  text: 'When it is equipped: your hero heals 5.',
   flavor: 'Calibrated to the nanometer, swung with fury.',
   faction: 'clockwork',
   restriction: { kind: 'hero', heroId: 'omnigear-prime' },
@@ -16,7 +16,7 @@ export default defineCard({
   attack: 5,
   durability: 4,
   onPlay(ctx) {
-    gainArmor(ctx, ctx.owner, 5)
+    healHero(ctx, 5)
   },
   ai: { value: 5 },
   art: {

@@ -13,7 +13,8 @@ export default defineCard({
   element: 'lightning',
   cost: 4,
   keywords: ['unique'],
-  armor: 12,
+  armor: 3,
+  durability: 4,
   onPhaseStart(ctx) {
     damageRandomAlly(ctx, ctx.opponent, 2)
   },

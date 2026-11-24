@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { gainArmor } from '@/app/(protected)/(engine)/effects'
+import { healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'sandstorm-of-dawn',
   type: 'ally',
   name: 'Sandstorm of Dawn',
-  text: 'When it enters: your hero gains 7 armor.',
+  text: 'When it enters: your hero heals 7.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'rare',
@@ -18,7 +18,7 @@ export default defineCard({
   attack: 7,
   health: 9,
   onEnter(ctx) {
-    gainArmor(ctx, ctx.owner, 7)
+    healHero(ctx, 7)
   },
   ai: { value: 6, tags: ['defense'] },
   art: {

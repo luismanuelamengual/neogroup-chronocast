@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { gainArmor } from '@/app/(protected)/(engine)/effects'
+import { healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'pickaxe-of-lost-time',
   type: 'weapon',
   name: 'Pickaxe of Lost Time',
-  text: 'When it is equipped: your hero gains 6 armor.',
+  text: 'When it is equipped: your hero heals 6.',
   flavor: 'It mines the hours nobody uses.',
   faction: 'neutral',
   restriction: { kind: 'any' },
@@ -16,7 +16,7 @@ export default defineCard({
   attack: 5,
   durability: 4,
   onPlay(ctx) {
-    gainArmor(ctx, ctx.owner, 6)
+    healHero(ctx, 6)
   },
   ai: { value: 7 },
   art: {

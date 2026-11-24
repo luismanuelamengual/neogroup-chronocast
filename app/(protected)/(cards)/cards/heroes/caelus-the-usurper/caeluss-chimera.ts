@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buff, gainArmor, isTribe } from '@/app/(protected)/(engine)/effects'
+import { buff, healHero, isTribe } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'caeluss-chimera',
   type: 'ally',
   name: "Caelus's Chimera",
-  text: 'When another Colossus of yours enters: it gains +2 attack and +2 health. When it attacks: your hero gains 2 armor.',
+  text: 'When another Colossus of yours enters: it gains +2 attack and +2 health. When it attacks: your hero heals 2.',
   faction: 'bronze',
   restriction: { kind: 'hero', heroId: 'caelus-the-usurper' },
   rarity: 'legendary',
@@ -23,7 +23,7 @@ export default defineCard({
     }
   },
   onAttack(ctx) {
-    gainArmor(ctx, ctx.owner, 2)
+    healHero(ctx, 2)
   },
   ai: { value: 7, tags: ['buff', 'defense', 'tribe'] },
   art: {

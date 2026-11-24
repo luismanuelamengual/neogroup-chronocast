@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { gainArmor } from '@/app/(protected)/(engine)/effects'
+import { healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'serene-stance',
   type: 'ability',
   name: 'Serene Stance',
-  text: 'Your hero gains 6 armor. Instant.',
+  text: 'Your hero heals 6. Instant.',
   flavor: 'Still as a mountain, soft as a breeze.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
@@ -14,7 +14,7 @@ export default defineCard({
   cost: 1,
   speed: 'instant',
   onPlay(ctx) {
-    gainArmor(ctx, ctx.owner, 6)
+    healHero(ctx, 6)
   },
   ai: { value: 1, tags: ['defense'] },
   art: {

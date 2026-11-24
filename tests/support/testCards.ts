@@ -71,7 +71,7 @@ export const TEST_CARDS: CardDefinition[] = [
     }
   }),
   defineCard({ ...base, id: 'test-sword', type: 'weapon', name: 'Test Sword', cost: 1, attack: 10, durability: 2 }),
-  defineCard({ ...base, id: 'test-plate', type: 'armor', name: 'Test Plate', cost: 1, armor: 20 }),
+  defineCard({ ...base, id: 'test-plate', type: 'armor', name: 'Test Plate', cost: 1, armor: 3, durability: 2 }),
   defineCard({
     ...base,
     id: 'test-zap',
@@ -138,7 +138,7 @@ export const TEST_CARDS: CardDefinition[] = [
     ability: {
       name: 'Test Spark',
       text: 'Deal 5 damage to an enemy slot.',
-      cost: 2,
+      cost: 3,
       targets: ['enemySlot'],
       activate(ctx) {
         damage(ctx, ctx.targets[0], 5)

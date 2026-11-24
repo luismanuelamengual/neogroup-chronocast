@@ -23,6 +23,9 @@ export const DRAW_PER_PHASE = 1
 export const ENERGY_PER_PHASE = 1
 export const MAX_ENERGY = 10
 
+/** The cheapest a hero's ability can be, in energy: it can't be used every phase, so it hits hard (the more it costs, the stronger). */
+export const HERO_ABILITY_MIN_COST = 3
+
 /** Default phases a burn lasts. */
 export const BURN_PHASES = 3
 

@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damage, gainArmor } from '@/app/(protected)/(engine)/effects'
+import { damage, healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'gideon-ironsteam',
   type: 'hero',
   name: 'Gideon Ironsteam',
-  text: 'Piston Punch (2): deal 5 fire damage to an enemy slot and your hero gains 2 armor.',
+  text: 'Piston Punch (3): deal 9 fire damage to an enemy slot and your hero heals 4.',
   flavor: 'Half man, half engine, all stubbornness.',
   faction: 'clockwork',
   heroClass: 'warrior',
@@ -16,12 +16,12 @@ export default defineCard({
   health: 63,
   ability: {
     name: 'Piston Punch',
-    text: 'Deal 5 fire damage to an enemy slot and your hero gains 2 armor.',
-    cost: 2,
+    text: 'Deal 9 fire damage to an enemy slot and your hero heals 4.',
+    cost: 3,
     targets: ['enemySlot'],
     activate(ctx) {
-      damage(ctx, ctx.targets[0], 5)
-      gainArmor(ctx, ctx.owner, 2)
+      damage(ctx, ctx.targets[0], 9)
+      healHero(ctx, 4)
     }
   },
   ai: { value: 0 },

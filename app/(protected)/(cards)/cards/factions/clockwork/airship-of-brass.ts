@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw, gainArmor, tribeAllies } from '@/app/(protected)/(engine)/effects'
+import { draw, healHero, tribeAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'airship-of-brass',
   type: 'ally',
   name: 'Airship of Brass',
-  text: 'When it enters: if you have another Skyship, draw a card. At the start of each phase: your hero gains 2 armor.',
+  text: 'When it enters: if you have another Skyship, draw a card. At the start of each phase: your hero heals 2.',
   faction: 'clockwork',
   restriction: { kind: 'faction', faction: 'clockwork' },
   rarity: 'exotic',
@@ -22,7 +22,7 @@ export default defineCard({
     }
   },
   onPhaseStart(ctx) {
-    gainArmor(ctx, ctx.owner, 2)
+    healHero(ctx, 2)
   },
   ai: { value: 5, tags: ['defense', 'draw', 'tribe'] },
   art: {

@@ -5,13 +5,13 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'acolyte-of-spirits': { name: 'Acólito de los Espíritus', text: 'Al entrar: tus otros aliados ganan +2 de vida.' },
   'acolyte-of-the-senate': {
     name: 'Acólito del Senado',
-    text: 'Al entrar: gana +1 de ataque y +1 de vida por cada otro Oráculo tuyo. Al empezar cada fase: tu héroe gana 2 de armadura.'
+    text: 'Al entrar: gana +1 de ataque y +1 de vida por cada otro Oráculo tuyo. Al empezar cada fase: tu héroe se cura 2.'
   },
   'ada-copperwick': {
     name: 'Ada Copperwick',
-    text: 'Inventar (2): un aliado tuyo gana +2 de ataque y +2 de vida. Cuando entra otro aliado tuyo, gana +1 de ataque.',
+    text: 'Inventar (3): un aliado tuyo gana +3 de ataque y +4 de vida. Cuando entra otro aliado tuyo, gana +1 de ataque.',
     flavor: 'La magia es ingeniería que nadie explicó todavía.',
-    ability: { name: 'Inventar', text: 'Un aliado tuyo gana +2 de ataque y +2 de vida.' }
+    ability: { name: 'Inventar', text: 'Un aliado tuyo gana +3 de ataque y +4 de vida.' }
   },
   'adas-strike': {
     name: 'Golpe de Ada',
@@ -20,17 +20,17 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'aegis-of-rage': {
     name: 'Égida de la Ira',
-    text: 'Tu héroe gana 9 de armadura. Instantánea.',
+    text: 'Tu héroe se cura 9. Instantánea.',
     flavor: 'Cuanto más furioso el golpe, más fuerte el escudo.'
   },
   'aegis-of-the-first-fire': {
     name: 'Égida del Primer Fuego',
-    text: 'Tu héroe gana 12 de armadura y robá una carta.',
+    text: 'Tu arma gana +3 de durabilidad. Robá una carta.',
     flavor: 'El primer fuego todavía protege a sus hijos.'
   },
   'airship-of-brass': {
     name: 'Dirigible de Latón',
-    text: 'Al entrar: si tenés otra Aeronave, robá una carta. Al empezar cada fase: tu héroe gana 2 de armadura.'
+    text: 'Al entrar: si tenés otra Aeronave, robá una carta. Al empezar cada fase: tu héroe se cura 2.'
   },
   'alchemist-of-the-clocktower': {
     name: 'Alquimista de la Torre del Reloj',
@@ -38,9 +38,9 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'aldric-dawnkeeper': {
     name: 'Aldric Dawnkeeper',
-    text: 'Luz del Alba (2): tu héroe se cura 5 y tus aliados se curan 3. Al final de cada fase, tu héroe gana 2 de armadura.',
+    text: 'Luz del Alba (4): tu héroe se cura 12 y tus aliados se curan 6. Al final de cada fase, tu héroe se cura 2.',
     flavor: 'Todas las noches terminan. Él se ocupa de eso.',
-    ability: { name: 'Luz del Alba', text: 'Tu héroe se cura 5 y tus aliados se curan 3.' }
+    ability: { name: 'Luz del Alba', text: 'Tu héroe se cura 12 y tus aliados se curan 6.' }
   },
   'aldrics-beacon': {
     name: 'Faro de Aldric',
@@ -106,7 +106,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'armored-mace': { name: 'Maza Acorazada', flavor: 'Sutil, no es.' },
   'armored-sabotage': {
     name: 'Sabotaje Acorazado',
-    text: 'Destruí el arma enemiga. Rápida.',
+    text: 'Destruí la armadura enemiga. Rápida.',
     flavor: 'Toda armadura tiene una correa floja.'
   },
   'armored-tower-shield': {
@@ -140,7 +140,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'astral-robe': { name: 'Túnica Astral', flavor: 'Tejida con el cielo nocturno, cosida con estrellas.' },
   'augmented-thug': { name: 'Matón Aumentado', text: 'Al entrar: robá una carta.', flavor: 'Más cromo que cerebro.' },
-  'augur-of-the-laurel': { name: 'Augur del Laurel', text: 'Al empezar cada fase: tu héroe gana 2 de armadura.' },
+  'augur-of-the-laurel': { name: 'Augur del Laurel', text: 'Al empezar cada fase: tu héroe se cura 2.' },
   'axe-of-the-vanguard': { name: 'Hacha de la Vanguardia', flavor: 'La primera en golpear, la última en mellarse.' },
   'balloon-scout-of-pistons': {
     name: 'Globo Explorador de Pistones',
@@ -149,7 +149,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'balloon-scout-of-the-foundry': {
     name: 'Globo Explorador de la Fundición',
-    text: 'Al entrar: tu héroe gana 7 de armadura. Su habilidad se paga con energía (⚡).',
+    text: 'Al entrar: tu héroe se cura 7. Su habilidad se paga con energía (⚡).',
     ability: { name: 'Golpe', text: 'Hacé 8 de daño a un slot enemigo.' }
   },
   'banshee-of-grace': { name: 'Banshee de la Gracia', text: 'Al empezar cada fase: tu héroe se cura 2.' },
@@ -187,7 +187,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'battle-scarred-disarm': {
     name: 'Desarme Curtido',
-    text: 'El arma enemiga pierde 2 de durabilidad y el héroe enemigo pierde 6 de armadura. Rápida.'
+    text: 'El arma y la armadura enemigas pierden 2 de durabilidad cada una. Rápida.'
   },
   'battle-scarred-helm': { name: 'Yelmo Curtido', flavor: 'Cada abolladura es una historia que sobrevivió.' },
   'battle-scarred-sentinel': { name: 'Centinela Curtido', text: 'Cuando recibe daño: gana +2 de ataque.' },
@@ -296,7 +296,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'bloodied-hitman': {
     name: 'Asesino a Sueldo Ensangrentado',
-    text: 'Al entrar: tu héroe gana 7 de armadura.',
+    text: 'Al entrar: tu héroe se cura 7.',
     flavor: 'Cobra por cicatriz.'
   },
   'bodyguard-of-the-vanguard': {
@@ -306,7 +306,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'boilerguard-of-gears': {
     name: 'Guardacalderas de Engranajes',
-    text: 'Al empezar cada fase: tu héroe gana 2 de armadura. Su habilidad se paga con energía (⚡).',
+    text: 'Al empezar cada fase: tu héroe se cura 2. Su habilidad se paga con energía (⚡).',
     ability: { name: 'Aturdir', text: 'Aturdí a un aliado enemigo.' }
   },
   'bold-blessing': {
@@ -317,7 +317,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'bold-gust': { name: 'Ráfaga Audaz', text: 'Al entrar: destruí el artefacto enemigo más caro.' },
   'bold-rust': {
     name: 'Herrumbre Audaz',
-    text: 'El arma enemiga pierde 1 de durabilidad y el héroe enemigo pierde 3 de armadura. Rápida.'
+    text: 'El arma y la armadura enemigas pierden 1 de durabilidad cada una. Rápida.'
   },
   'bold-traveler-cloak': {
     name: 'Capa de Viajero Audaz',
@@ -354,7 +354,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'bounty-hunter-of-the-rift': {
     name: 'Cazarrecompensas de la Grieta',
-    text: 'Al entrar: tu héroe gana 5 de armadura. Su habilidad se paga con energía (⚡).',
+    text: 'Al entrar: tu héroe se cura 5. Su habilidad se paga con energía (⚡).',
     ability: { name: 'Golpe', text: 'Hacé 5 de daño de tiempo a un slot enemigo.' }
   },
   'bounty-hunter-of-the-silent-trail': {
@@ -411,18 +411,18 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'breastplate-of-rage': { name: 'Peto de la Ira', flavor: 'Forjado al rojo, llevado más al rojo todavía.' },
   'caelus-the-usurper': {
     name: 'Caelus el Usurpador',
-    text: 'Diezmar (4): hacé 2 de daño de luz a cada aliado enemigo. Al empezar cada fase, tus aliados ganan +1 de ataque.',
+    text: 'Diezmar (4): hacé 3 de daño de luz a cada aliado enemigo. Al empezar cada fase, tus aliados ganan +1 de ataque.',
     flavor: 'Robó una corona de una Roma que nunca existió, y quiere la verdadera.',
-    ability: { name: 'Diezmar', text: 'Hacé 2 de daño de luz a cada aliado enemigo.' }
+    ability: { name: 'Diezmar', text: 'Hacé 3 de daño de luz a cada aliado enemigo.' }
   },
   'caeluss-axe': {
     name: 'Hacha de Caelus',
-    text: 'Al equiparla: tu héroe gana 5 de armadura.',
+    text: 'Al equiparla: tu héroe se cura 5.',
     flavor: 'Arrebatada a un rey. Conservada por un usurpador.'
   },
   'caeluss-chimera': {
     name: 'Quimera de Caelus',
-    text: 'Cuando entra otro Coloso tuyo: gana +2 de ataque y +2 de vida. Al atacar: tu héroe gana 2 de armadura.'
+    text: 'Cuando entra otro Coloso tuyo: gana +2 de ataque y +2 de vida. Al atacar: tu héroe se cura 2.'
   },
   'camouflaged-brontosaur': { name: 'Brontosaurio Camuflado', text: 'Al atacar: hacé 3 de daño al héroe enemigo.' },
   'cave-bear-of-the-hunt-moon': {
@@ -436,18 +436,18 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'chancellor-brassmaw': {
     name: 'Canciller Bocabronce',
-    text: 'Decreto de Hierro (3): aturdí a un aliado enemigo y hacele 3 de daño de sónico. Al final de cada fase, tu héroe gana 3 de armadura.',
+    text: 'Decreto de Hierro (4): aturdí a un aliado enemigo y hacele 8 de daño de sónico. Al final de cada fase, tu héroe se cura 3.',
     flavor: 'Es dueño de las fábricas, de la ciudad y de casi todos los relojes.',
-    ability: { name: 'Decreto de Hierro', text: 'Aturdí a un aliado enemigo y hacele 3 de daño de sónico.' }
+    ability: { name: 'Decreto de Hierro', text: 'Aturdí a un aliado enemigo y hacele 8 de daño de sónico.' }
   },
   'charm-of-the-vanguard': {
     name: 'Dije de la Vanguardia',
     text: 'Adjuntala a un aliado tuyo: gana +1 de ataque y +4 de vida.'
   },
-  'chimera-of-the-shieldwall': { name: 'Quimera del Muro de Escudos', text: 'Al morir: tu héroe gana 8 de armadura.' },
+  'chimera-of-the-shieldwall': { name: 'Quimera del Muro de Escudos', text: 'Al morir: tu héroe se cura 8.' },
   'chimera-of-the-sun-temple': {
     name: 'Quimera del Templo del Sol',
-    text: 'Al morir: tus otros aliados ganan +1 de ataque. Al empezar cada fase: tu héroe gana 2 de armadura.'
+    text: 'Al morir: tus otros aliados ganan +1 de ataque. Al empezar cada fase: tu héroe se cura 2.'
   },
   'circlet-of-flame': { name: 'Diadema de Llamas', flavor: 'Bajo ella, las ideas arden más fuerte.' },
   'circlet-of-mana': { name: 'Diadema de Maná', flavor: 'Zumba cuando hay hechizos cerca.' },
@@ -475,10 +475,10 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'cloak-of-the-quarry': { name: 'Capa de la Presa', flavor: 'La presa nunca la ve venir.' },
   'clock-of-dusk': { name: 'Reloj del Ocaso', text: 'Al empezar cada fase: tu héroe gana 1 de energía. (3 usos)' },
-  'clock-of-embers': { name: 'Reloj de Brasas', text: 'Al empezar cada fase: tu héroe gana 3 de armadura. (3 usos)' },
+  'clock-of-embers': { name: 'Reloj de Brasas', text: 'Al empezar cada fase: tu héroe se cura 3. (3 usos)' },
   'clockwork-hound-of-coal': {
     name: 'Sabueso Mecánico del Carbón',
-    text: 'Al empezar cada fase: tu héroe gana 2 de armadura.'
+    text: 'Al empezar cada fase: tu héroe se cura 2.'
   },
   'codebreaker-of-neon': {
     name: 'Descifradora de Neón',
@@ -596,7 +596,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'drake-of-the-tower': { name: 'Draco de la Torre', flavor: 'Custodia la torre y se come a las visitas.' },
   'dreadnought-of-the-workshop': {
     name: 'Acorazado Volador del Taller',
-    text: 'Al empezar cada fase: tu héroe gana 2 de armadura.'
+    text: 'Al empezar cada fase: tu héroe se cura 2.'
   },
   'dreaming-fury': {
     name: 'Furia Soñadora',
@@ -794,7 +794,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'flickering-stance': {
     name: 'Postura Titilante',
-    text: 'Tu héroe gana 15 de armadura y robá una carta.',
+    text: 'Tu armadura gana +2 de durabilidad. Robá una carta.',
     flavor: 'Acá, allá, en ninguna parte.'
   },
   'flickering-ward': { name: 'Guarda Titilante', flavor: 'Parpadea justo antes de que llegue el golpe.' },
@@ -852,7 +852,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'furious-chrononaut': {
     name: 'Crononauta Furioso',
-    text: 'Al morir: tu héroe gana 3 de armadura.',
+    text: 'Al morir: tu héroe se cura 3.',
     flavor: 'Está enojado desde la Edad del Bronce.'
   },
   'furious-sabotage': {
@@ -862,7 +862,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'gadgeteer-of-steam': {
     name: 'Artilugista de Vapor',
-    text: 'Al entrar: tu héroe gana 6 de armadura. Al morir: invocá un Dron de Engranajes.'
+    text: 'Al entrar: tu héroe se cura 6. Al morir: invocá un Dron de Engranajes.'
   },
   'gathering-of-flame': {
     name: 'Reunión de Llamas',
@@ -898,16 +898,13 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'ghoul-of-mercy': { name: 'Necrófago de la Misericordia', flavor: 'Solo come lo que ya está perdido.' },
   'gideon-ironsteam': {
     name: 'Gideon Ironsteam',
-    text: 'Puño de Pistón (2): hacé 5 de daño de fuego a un slot enemigo y tu héroe gana 2 de armadura.',
+    text: 'Puño de Pistón (3): hacé 9 de daño de fuego a un slot enemigo y tu héroe se cura 4.',
     flavor: 'Mitad hombre, mitad motor, todo testarudez.',
-    ability: {
-      name: 'Puño de Pistón',
-      text: 'Hacé 5 de daño de fuego a un slot enemigo y tu héroe gana 2 de armadura.'
-    }
+    ability: { name: 'Puño de Pistón', text: 'Hacé 9 de daño de fuego a un slot enemigo y tu héroe se cura 4.' }
   },
   'gideons-hammer': {
     name: 'Martillo de Gideon',
-    text: 'Al equiparla: tu héroe gana 5 de armadura.',
+    text: 'Al equiparla: tu héroe se cura 5.',
     flavor: 'A vapor y con opiniones propias.'
   },
   'gleaming-wyvern': {
@@ -927,9 +924,9 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'gorrak-tyrant-king': {
     name: 'Gorrak, Rey Tirano',
-    text: 'Devorar (2): hacé 4 de daño de tierra a un slot enemigo y tu héroe se cura 4. Al empezar cada fase, tu héroe se cura 3.',
+    text: 'Devorar (4): hacé 10 de daño de tierra a un slot enemigo y tu héroe se cura 6. Al empezar cada fase, tu héroe se cura 3.',
     flavor: 'La jungla tiene un solo rey. Se come a los demás.',
-    ability: { name: 'Devorar', text: 'Hacé 4 de daño de tierra a un slot enemigo y tu héroe se cura 4.' }
+    ability: { name: 'Devorar', text: 'Hacé 10 de daño de tierra a un slot enemigo y tu héroe se cura 6.' }
   },
   'gorraks-cave-bear': {
     name: 'Oso Cavernario de Gorrak',
@@ -955,12 +952,12 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'guard-of-the-ancestors': {
     name: 'Guardia de los Ancestros',
-    text: 'Tu héroe gana 13 de armadura y robá una carta.',
+    text: 'Tu armadura gana +4 de durabilidad y tu héroe se cura 8. Robá una carta.',
     flavor: 'Los muertos montan guardia por los vivos.'
   },
   'guard-of-the-warlord': {
     name: 'Guardia del Caudillo',
-    text: 'Tu héroe gana 12 de armadura y robá una carta.',
+    text: 'Tu arma y tu armadura ganan +2 de durabilidad cada una. Robá una carta.',
     flavor: 'Nadie toca a la gente del señor de la guerra.'
   },
   'guardian-spirit': { name: 'Espíritu Guardián', flavor: 'Protege a quienes no pueden protegerse.' },
@@ -1040,9 +1037,9 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'hollow-astronomer': {
     name: 'El Astrónomo Hueco',
-    text: 'Colapsar Estrella (3): hacé 5 de daño de arcano a un slot enemigo. Al empezar cada fase, hacé 2 de daño de arcano al héroe enemigo.',
+    text: 'Colapsar Estrella (6): hacé 16 de daño de arcano a un slot enemigo. Al empezar cada fase, hacé 2 de daño de arcano al héroe enemigo.',
     flavor: 'Trazó el mapa de cada estrella, y después empezó a apagarlas.',
-    ability: { name: 'Colapsar Estrella', text: 'Hacé 5 de daño de arcano a un slot enemigo.' }
+    ability: { name: 'Colapsar Estrella', text: 'Hacé 16 de daño de arcano a un slot enemigo.' }
   },
   'hollow-vision': { name: 'Visión Hueca', text: 'Robá 2 cartas.', flavor: 'Muestra lo que falta.' },
   'hollow-void-spawn': {
@@ -1085,19 +1082,19 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Pintora de Cuevas Hambrienta',
     text: 'Cuando entra otro Cavernario tuyo: gana +1 de ataque y +1 de vida.'
   },
-  'hydra-of-the-senate': { name: 'Hidra del Senado', text: 'Al entrar: tu héroe gana 5 de armadura.' },
+  'hydra-of-the-senate': { name: 'Hidra del Senado', text: 'Al entrar: tu héroe se cura 5.' },
   'ilyra-starweaver': {
     name: 'Ilyra Starweaver',
-    text: 'Rayo Arcano (2): hacé 6 de daño de arcano a un slot enemigo.',
+    text: 'Rayo Arcano (3): hacé 10 de daño de arcano a un slot enemigo.',
     flavor: 'Lee el futuro en las constelaciones, y después lo reescribe.',
-    ability: { name: 'Rayo Arcano', text: 'Hacé 6 de daño de arcano a un slot enemigo.' }
+    ability: { name: 'Rayo Arcano', text: 'Hacé 10 de daño de arcano a un slot enemigo.' }
   },
   'ilyras-slash': { name: 'Tajo de Ilyra', text: 'Hacé 10 de daño de arcano a un slot enemigo y robá una carta.' },
   'imperial-charioteer': {
     name: 'Auriga Imperial',
     text: 'Al morir: tus Legionarios ganan +1 de ataque y +1 de vida.'
   },
-  'imperial-haruspex': { name: 'Arúspice Imperial', text: 'Al atacar: tu héroe gana 2 de armadura.' },
+  'imperial-haruspex': { name: 'Arúspice Imperial', text: 'Al atacar: tu héroe se cura 2.' },
   'imperial-horn': {
     name: 'Cuerno Imperial',
     text: 'Invocá un Conscripto Hoplita.',
@@ -1161,7 +1158,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'kades-cleaver': {
     name: 'Cuchilla de Kade',
-    text: 'Al equiparla: tu héroe gana 5 de armadura.',
+    text: 'Al equiparla: tu héroe se cura 5.',
     flavor: 'El orden, de un corte por vez.'
   },
   'kades-courier': {
@@ -1170,9 +1167,9 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'kazhul-mother-of-ash': {
     name: 'Kazhul, Madre de la Ceniza',
-    text: 'Aliento de Ceniza (2): hacé 3 de daño de fuego a cada aliado enemigo. Al empezar cada fase, tu héroe se cura 3.',
+    text: 'Aliento de Ceniza (5): hacé 5 de daño de fuego a cada aliado enemigo y al héroe enemigo. Al empezar cada fase, tu héroe se cura 3.',
     flavor: 'Duerme bajo el volcán. Nadie la quiere despierta.',
-    ability: { name: 'Aliento de Ceniza', text: 'Hacé 3 de daño de fuego a cada aliado enemigo.' }
+    ability: { name: 'Aliento de Ceniza', text: 'Hacé 5 de daño de fuego a cada aliado enemigo y al héroe enemigo.' }
   },
   'kazhuls-brontosaur': {
     name: 'Brontosaurio de Kazhul',
@@ -1206,9 +1203,9 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'kite-shield-of-rage': { name: 'Escudo Cometa de la Ira', flavor: 'Golpealo y te devuelve el golpe más fuerte.' },
   'kora-wildfang': {
     name: 'Kora Wildfang',
-    text: 'Disparo Rápido (1): hacé 3 de daño de viento a un slot enemigo. Rápida.',
+    text: 'Disparo Rápido (3): hacé 9 de daño de viento a un slot enemigo. Rápida.',
     flavor: 'La jungla le enseñó una regla: disparar primero.',
-    ability: { name: 'Disparo Rápido', text: 'Hacé 3 de daño de viento a un slot enemigo.' }
+    ability: { name: 'Disparo Rápido', text: 'Hacé 9 de daño de viento a un slot enemigo.' }
   },
   'koras-blowgun': {
     name: 'Cerbatana de Kora',
@@ -1252,15 +1249,15 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'lantern-of-the-foundry': {
     name: 'Farol de la Fundición',
-    text: 'Al empezar cada fase: tu héroe gana 3 de armadura. (3 usos)'
+    text: 'Al empezar cada fase: tu héroe se cura 3. (3 usos)'
   },
   'lantern-of-the-wanderer': {
     name: 'Farol del Errante',
-    text: 'Al empezar cada fase: tu héroe gana 3 de armadura. (3 usos)'
+    text: 'Al empezar cada fase: tu héroe se cura 3. (3 usos)'
   },
   'lantern-staff-of-mercy': {
     name: 'Bastón Farol de la Misericordia',
-    text: 'Al equiparla: tu héroe gana 5 de armadura.',
+    text: 'Al equiparla: tu héroe se cura 5.',
     flavor: 'Su luz encuentra a los perdidos y a los heridos.'
   },
   'lantern-staff-of-renewal': { name: 'Bastón Farol de la Renovación', flavor: 'Su luz recuerda cómo eran las cosas.' },
@@ -1302,9 +1299,9 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'legate-varro': {
     name: 'Legado Varro',
-    text: 'Fortificar (1): tu héroe gana 5 de armadura. Instantánea.',
+    text: 'Fortificar (3): tu héroe se cura 18. Instantánea.',
     flavor: 'Aguantó la línea en más siglos de los que puede contar.',
-    ability: { name: 'Fortificar', text: 'Tu héroe gana 5 de armadura.' }
+    ability: { name: 'Fortificar', text: 'Tu héroe se cura 18.' }
   },
   'longbow-of-the-hawk': { name: 'Arco Largo del Halcón', flavor: 'Ve más lejos que su arquero.' },
   'longbow-of-the-silent-trail': {
@@ -1314,7 +1311,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'lost-chrononaut': { name: 'Crononauta Perdido', flavor: 'Partió en el año 3000. Todavía no lo encuentra.' },
   'lost-stance': {
     name: 'Postura Perdida',
-    text: 'Tu héroe gana 13 de armadura y robá una carta.',
+    text: 'Tu arma y tu armadura ganan +3 de durabilidad cada una. Robá una carta.',
     flavor: 'Fuera del tiempo, nunca fuera de equilibrio.'
   },
   'lost-vision': { name: 'Visión Perdida', text: 'Robá 2 cartas.', flavor: 'Un vistazo a un siglo que nadie vivió.' },
@@ -1357,11 +1354,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'malachar-the-unmade': {
     name: 'Malachar el Deshecho',
-    text: 'Deshacer (2): hacé 5 de daño de sombra a un slot enemigo. Si tu descarte tiene 6 cartas o más, tu héroe se cura 2. Al empezar cada fase, si tu descarte tiene 8 cartas o más, hacé 2 de daño de sombra al héroe enemigo.',
+    text: 'Deshacer (4): hacé 11 de daño de sombra a un slot enemigo. Si tu descarte tiene 6 cartas o más, tu héroe se cura 5. Al empezar cada fase, si tu descarte tiene 8 cartas o más, hacé 2 de daño de sombra al héroe enemigo.',
     flavor: 'Se deshizo a sí mismo para ver qué hay más allá del tiempo.',
     ability: {
       name: 'Deshacer',
-      text: 'Hacé 5 de daño de sombra a un slot enemigo. Si tu descarte tiene 6 cartas o más, tu héroe se cura 2.'
+      text: 'Hacé 11 de daño de sombra a un slot enemigo. Si tu descarte tiene 6 cartas o más, tu héroe se cura 5.'
     }
   },
   'malachars-blast': {
@@ -1422,7 +1419,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'mercenary-of-the-wanderer': {
     name: 'Mercenario del Errante',
-    text: 'Al entrar: tu héroe gana 5 de armadura. Al empezar cada fase: tu héroe se cura 2.'
+    text: 'Al entrar: tu héroe se cura 5. Al empezar cada fase: tu héroe se cura 2.'
   },
   'midnight-chrome-brawler': {
     name: 'Peleador Cromado de Medianoche',
@@ -1493,9 +1490,9 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'moonlit-wisp': { name: 'Fuego Fatuo Lunar', text: 'Al entrar: robá una carta.' },
   'morgrath-lich-abbot': {
     name: 'Morgrath, el Abad Liche',
-    text: 'Rayo Impío (3): hacé 6 de daño de sombra a un slot enemigo y tu héroe se cura 3. Al empezar cada fase, hacé 3 de daño de sombra a un aliado enemigo al azar.',
+    text: 'Rayo Impío (5): hacé 12 de daño de sombra a un slot enemigo y tu héroe se cura 6. Al empezar cada fase, hacé 3 de daño de sombra a un aliado enemigo al azar.',
     flavor: 'Rezó por la vida eterna. Algo le contestó.',
-    ability: { name: 'Rayo Impío', text: 'Hacé 6 de daño de sombra a un slot enemigo y tu héroe se cura 3.' }
+    ability: { name: 'Rayo Impío', text: 'Hacé 12 de daño de sombra a un slot enemigo y tu héroe se cura 6.' }
   },
   'morgraths-blast': {
     name: 'Estallido de Morgrath',
@@ -1571,21 +1568,21 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'nymph-of-the-tower': { name: 'Ninfa de la Torre', flavor: 'Le canta al musgo de las piedras viejas.' },
   'nysa-goldbow': {
     name: 'Nysa Goldbow',
-    text: 'Flecha Dorada (2): hacé 4 de daño de viento a un slot enemigo. Cuando entra otro aliado tuyo, gana +1 de ataque.',
+    text: 'Flecha Dorada (3): hacé 8 de daño de viento a un slot enemigo. Cuando entra otro aliado tuyo, gana +1 de ataque.',
     flavor: 'Una vez cazó con los dioses. Ahora caza para ella.',
-    ability: { name: 'Flecha Dorada', text: 'Hacé 4 de daño de viento a un slot enemigo.' }
+    ability: { name: 'Flecha Dorada', text: 'Hacé 8 de daño de viento a un slot enemigo.' }
   },
   'nysas-bow': { name: 'Arco de Nysa', text: 'Al equiparla: hacé 4 de daño de viento a un aliado enemigo al azar.' },
   'nyx-hollowsong': {
     name: 'Nyx Hollowsong',
-    text: 'Llamar a los Caídos (2): un aliado al azar de tu descarte vuelve al juego. Al final de cada fase, tu héroe se cura 2.',
+    text: 'Llamar a los Caídos (4): dos aliados al azar de tu descarte vuelven al juego. Al final de cada fase, tu héroe se cura 2.',
     flavor: 'Su canto llega a los muertos. Siempre vuelven a escuchar.',
-    ability: { name: 'Llamar a los Caídos', text: 'Un aliado al azar de tu descarte vuelve al juego.' }
+    ability: { name: 'Llamar a los Caídos', text: 'Dos aliados al azar de tu descarte vuelven al juego.' }
   },
   'nyxs-idol': { name: 'Ídolo de Nyx', text: 'Al empezar cada fase: tu héroe se cura 3 y tus aliados se curan 2.' },
   'obelisk-of-dusk': {
     name: 'Obelisco del Ocaso',
-    text: 'Al empezar cada fase: tu héroe gana 3 de armadura. (3 usos)'
+    text: 'Al empezar cada fase: tu héroe se cura 3. (3 usos)'
   },
   'obelisk-of-flame': {
     name: 'Obelisco de Llamas',
@@ -1593,7 +1590,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'obelisk-of-the-grave': {
     name: 'Obelisco de la Tumba',
-    text: 'Al empezar cada fase: tu héroe gana 3 de armadura. (4 usos)'
+    text: 'Al empezar cada fase: tu héroe se cura 3. (4 usos)'
   },
   'oiled-clockmaker': { name: 'Relojero Aceitado', text: 'Cuando entra otro Inventor tuyo: tu héroe se cura 2.' },
   'oiled-monolith': {
@@ -1627,24 +1624,24 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'omnigear-prime': {
     name: 'Omnigear Prime',
-    text: 'Línea de Montaje (3): tus aliados ganan +2 de ataque y +2 de vida. Al empezar cada fase, tu héroe gana 2 de armadura.',
+    text: 'Línea de Montaje (4): tus aliados ganan +3 de ataque y +3 de vida. Al empezar cada fase, tu héroe se cura 2.',
     flavor: 'La máquina que construye máquinas decidió que ya no necesita constructores.',
-    ability: { name: 'Línea de Montaje', text: 'Tus aliados ganan +2 de ataque y +2 de vida.' }
+    ability: { name: 'Línea de Montaje', text: 'Tus aliados ganan +3 de ataque y +3 de vida.' }
   },
   'omnigears-gyrocopter': {
     name: 'Girocóptero de Omnigear',
-    text: 'Al entrar: tus otras Aeronaves ganan +2 de ataque y +2 de vida. Al empezar cada fase: tu héroe gana 2 de armadura.'
+    text: 'Al entrar: tus otras Aeronaves ganan +2 de ataque y +2 de vida. Al empezar cada fase: tu héroe se cura 2.'
   },
   'omnigears-hammer': {
     name: 'Martillo de Omnigear',
-    text: 'Al equiparla: tu héroe gana 5 de armadura.',
+    text: 'Al equiparla: tu héroe se cura 5.',
     flavor: 'Calibrado al nanómetro, empuñado con furia.'
   },
   'ooma-bonewhisper': {
     name: 'Ooma Bonewhisper',
-    text: 'Crecimiento Ancestral (2): un aliado tuyo gana +2 de ataque y +3 de vida. Al empezar cada fase, tus aliados se curan 2.',
+    text: 'Crecimiento Ancestral (4): un aliado tuyo gana +5 de ataque y +6 de vida. Al empezar cada fase, tus aliados se curan 2.',
     flavor: 'Los huesos de los ancestros hablan. Ella escucha.',
-    ability: { name: 'Crecimiento Ancestral', text: 'Un aliado tuyo gana +2 de ataque y +3 de vida.' }
+    ability: { name: 'Crecimiento Ancestral', text: 'Un aliado tuyo gana +5 de ataque y +6 de vida.' }
   },
   'oomas-banner': {
     name: 'Estandarte de Ooma',
@@ -1662,7 +1659,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'overclocked-piston-titan': {
     name: 'Titán de Pistones Acelerado',
-    text: 'Al empezar cada fase: tu héroe gana 2 de armadura.'
+    text: 'Al empezar cada fase: tu héroe se cura 2.'
   },
   'overdriven-sentry-bot': {
     name: 'Robot Centinela Sobrecargado',
@@ -1670,9 +1667,9 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'overseer-kade': {
     name: 'Supervisor Kade',
-    text: 'Bloqueo Total (4): aturdí a un aliado enemigo por dos fases. Al empezar cada fase, tu héroe gana 2 de armadura.',
+    text: 'Bloqueo Total (5): aturdí a cada aliado enemigo. Al empezar cada fase, tu héroe se cura 2.',
     flavor: 'Ve todas las cámaras de la megaciudad. Todas a la vez.',
-    ability: { name: 'Bloqueo Total', text: 'Aturdí a un aliado enemigo por dos fases.' }
+    ability: { name: 'Bloqueo Total', text: 'Aturdí a cada aliado enemigo.' }
   },
   'pale-voidcaller': { name: 'Invocadora del Vacío Pálida', flavor: 'Cuando habla, la oscuridad responde.' },
   'pale-zealot': {
@@ -1705,7 +1702,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'patient-sabotage': {
     name: 'Sabotaje Paciente',
-    text: 'El arma enemiga pierde 2 de durabilidad y el héroe enemigo pierde 6 de armadura. Rápida.'
+    text: 'El arma y la armadura enemigas pierden 2 de durabilidad cada una. Rápida.'
   },
   'patient-vest': { name: 'Chaleco Paciente', flavor: 'Espera, igual que quien lo lleva.' },
   'pegasus-of-still-waters': {
@@ -1717,7 +1714,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'phalanx-of-steel': { name: 'Falange de Acero', text: 'Al entrar: si tenés otro Legionario, robá una carta.' },
   'phalanx-of-the-legion': {
     name: 'Falange de la Legión',
-    text: 'Al entrar: tu héroe gana 9 de armadura.',
+    text: 'Al entrar: tu héroe se cura 9.',
     flavor: 'La columna de la legión, el muro del enemigo.'
   },
   'phalanx-of-the-warlord': {
@@ -1732,7 +1729,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'pickaxe-of-lost-time': {
     name: 'Pico del Tiempo Perdido',
-    text: 'Al equiparla: tu héroe gana 6 de armadura.',
+    text: 'Al equiparla: tu héroe se cura 6.',
     flavor: 'Extrae las horas que nadie usa.'
   },
   'pilgrim-of-dawn': { name: 'Peregrina del Alba', text: 'Al entrar: destruí el artefacto enemigo más caro.' },
@@ -1783,18 +1780,18 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'prophet-of-the-labyrinth': {
     name: 'Profeta del Laberinto',
-    text: 'Al empezar cada fase: tu héroe gana 2 de armadura. Su habilidad se paga con energía (⚡).',
+    text: 'Al empezar cada fase: tu héroe se cura 2. Su habilidad se paga con energía (⚡).',
     ability: { name: 'Inspirar', text: 'Un aliado tuyo gana +1 de ataque y +2 de vida.' }
   },
   'proud-gorgon': {
     name: 'Gorgona Orgullosa',
-    text: 'Al entrar: invocá un Conscripto Hoplita. Al atacar: tu héroe gana 2 de armadura.'
+    text: 'Al entrar: invocá un Conscripto Hoplita. Al atacar: tu héroe se cura 2.'
   },
   'queen-static': {
     name: 'Reina Estática',
-    text: 'Retroalimentación (2): hacé 4 de daño de rayo a un slot enemigo. Rápida. Al final de cada fase, hacé 2 de daño de rayo al héroe enemigo.',
+    text: 'Retroalimentación (3): hacé 8 de daño de rayo a un slot enemigo. Rápida. Al final de cada fase, hacé 2 de daño de rayo al héroe enemigo.',
     flavor: 'Vive en el ruido entre los canales.',
-    ability: { name: 'Retroalimentación', text: 'Hacé 4 de daño de rayo a un slot enemigo.' }
+    ability: { name: 'Retroalimentación', text: 'Hacé 8 de daño de rayo a un slot enemigo.' }
   },
   'queen-statics-blowgun': {
     name: 'Cerbatana de la Reina Estática',
@@ -1817,7 +1814,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'radiant-stance': {
     name: 'Postura Radiante',
-    text: 'Tu héroe gana 12 de armadura y robá una carta.',
+    text: 'Tu armadura gana +3 de durabilidad y tu héroe se cura 5.',
     flavor: 'Quedate en la luz y no te muevas.'
   },
   'radiant-zombie': { name: 'Zombi Radiante', flavor: 'Bendecido por error.' },
@@ -1951,7 +1948,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'rod-of-ruin': {
     name: 'Vara de la Ruina',
-    text: 'Al equiparla: tu héroe gana 7 de armadura.',
+    text: 'Al equiparla: tu héroe se cura 7.',
     flavor: 'Todo lo que toca envejece.'
   },
   'rotting-eye-of-nothing': {
@@ -1975,18 +1972,18 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'rusty-sabotage': {
     name: 'Sabotaje Oxidado',
-    text: 'Destruí el arma enemiga. Rápida.',
+    text: 'La armadura enemiga pierde 3 de durabilidad. Rápida.',
     flavor: 'Un poco de agua en los engranajes rinde mucho.'
   },
   'ryn-voltblade': {
     name: 'Ryn Voltblade',
-    text: 'Sobrecarga (1): un aliado tuyo gana +4 de ataque esta fase. Instantánea. Al empezar cada fase, tu héroe gana 2 de armadura.',
+    text: 'Sobrecarga (3): tus aliados ganan +4 de ataque esta fase. Instantánea. Al empezar cada fase, tu héroe se cura 2.',
     flavor: 'La hoja más rápida de la megaciudad.',
-    ability: { name: 'Sobrecarga', text: 'Un aliado tuyo gana +4 de ataque esta fase.' }
+    ability: { name: 'Sobrecarga', text: 'Tus aliados ganan +4 de ataque esta fase.' }
   },
   'ryns-mace': {
     name: 'Maza de Ryn',
-    text: 'Al equiparla: tu héroe gana 5 de armadura.',
+    text: 'Al equiparla: tu héroe se cura 5.',
     flavor: 'Chisporrotea con cada golpe.'
   },
   'sabertooth-cub': { name: 'Cachorro de Dientes de Sable', flavor: 'Colmillos chicos, planes grandes.' },
@@ -1995,7 +1992,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Tu héroe se cura 6.',
     flavor: 'Huele a cinco siglos de hierbas.'
   },
-  'sandstorm-of-dawn': { name: 'Tormenta de Arena del Alba', text: 'Al entrar: tu héroe gana 7 de armadura.' },
+  'sandstorm-of-dawn': { name: 'Tormenta de Arena del Alba', text: 'Al entrar: tu héroe se cura 7.' },
   'satyr-of-embers': { name: 'Sátiro de Brasas', text: 'Al entrar: tus otras Hadas ganan +2 de ataque y +2 de vida.' },
   'satyr-of-renewal': { name: 'Sátiro de la Renovación', text: 'Al empezar cada fase: tu héroe se cura 2.' },
   'scarred-cave-painter': {
@@ -2043,7 +2040,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'scholarly-rust': {
     name: 'Herrumbre Docta',
-    text: 'El arma enemiga pierde 2 de durabilidad y el héroe enemigo pierde 6 de armadura. Rápida.'
+    text: 'El arma y la armadura enemigas pierden 2 de durabilidad cada una. Rápida.'
   },
   'scholarly-stasis': {
     name: 'Estasis Docta',
@@ -2069,7 +2066,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'serene-stance': {
     name: 'Postura Serena',
-    text: 'Tu héroe gana 6 de armadura. Instantánea.',
+    text: 'Tu héroe se cura 6. Instantánea.',
     flavor: 'Quieta como una montaña, suave como la brisa.'
   },
   'shackle-of-dawn': {
@@ -2101,7 +2098,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'sharp-raptor': { name: 'Raptor Afilado', text: 'Al morir: tus Saurios ganan +1 de ataque y +1 de vida.' },
   'shatter-of-the-long-road': {
     name: 'Quiebre del Largo Camino',
-    text: 'El arma enemiga pierde 2 de durabilidad y el héroe enemigo pierde 6 de armadura. Rápida.'
+    text: 'El arma y la armadura enemigas pierden 2 de durabilidad cada una. Rápida.'
   },
   'signifer-lucius': { name: 'Signífero Lucio', text: 'Al entrar: tus otros aliados ganan +1 de ataque y +2 de vida.' },
   'silent-monolith': {
@@ -2240,7 +2237,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'spirit-bound-disarm': {
     name: 'Desarme Ligado a los Espíritus',
-    text: 'El arma enemiga pierde 2 de durabilidad y el héroe enemigo pierde 6 de armadura. Rápida.'
+    text: 'El arma y la armadura enemigas pierden 2 de durabilidad cada una. Rápida.'
   },
   'spirit-bound-shroud': {
     name: 'Sudario Ligado a los Espíritus',
@@ -2263,7 +2260,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'stalwart-saddle': { name: 'Montura Firme', text: 'Adjuntala a un aliado tuyo: gana +2 de ataque y +5 de vida.' },
   'stalwart-street-samurai': {
     name: 'Samurái Callejero Firme',
-    text: 'Al entrar: tu héroe gana 8 de armadura.',
+    text: 'Al entrar: tu héroe se cura 8.',
     flavor: 'Espada de neón, código antiguo.'
   },
   'standard-bearer-of-the-last-stand': {
@@ -2273,7 +2270,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'standard-bearer-of-the-laurel': {
     name: 'Abanderado del Laurel',
-    text: 'Al entrar: tu héroe gana 7 de armadura. Al empezar cada fase: tu héroe gana 2 de armadura.'
+    text: 'Al entrar: tu héroe se cura 7. Al empezar cada fase: tu héroe se cura 2.'
   },
   'starlit-dragon': { name: 'Dragón Estelar', text: 'Al entrar: aturdí a un aliado enemigo al azar.' },
   'starweavers-astrolabe': {
@@ -2384,13 +2381,13 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'tauron-labyrinth-lord': {
     name: 'Tauron, Señor del Laberinto',
-    text: 'Cornada (3): hacé 6 de daño de tierra a un slot enemigo. Al empezar cada fase, tu héroe gana 2 de armadura.',
+    text: 'Cornada (4): hacé 12 de daño de tierra a un slot enemigo. Al empezar cada fase, tu héroe se cura 2.',
     flavor: 'Nadie que entró a su laberinto encontró la salida.',
-    ability: { name: 'Cornada', text: 'Hacé 6 de daño de tierra a un slot enemigo.' }
+    ability: { name: 'Cornada', text: 'Hacé 12 de daño de tierra a un slot enemigo.' }
   },
   'taurons-halberd': {
     name: 'Alabarda de Tauron',
-    text: 'Al equiparla: tu héroe gana 5 de armadura.',
+    text: 'Al equiparla: tu héroe se cura 5.',
     flavor: 'Forjada en el corazón del laberinto.'
   },
   'taurons-prophet': {
@@ -2556,7 +2553,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'varros-glaive': {
     name: 'Guja de Varro',
-    text: 'Al equiparla: tu héroe gana 5 de armadura.',
+    text: 'Al equiparla: tu héroe se cura 5.',
     flavor: 'La palabra del legado, hecha acero.'
   },
   'venom-of-the-hunt': {
@@ -2591,12 +2588,12 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'vex-nightwire': {
     name: 'Vex Nightwire',
-    text: 'Disparo Hackeado (1): hacé 3 de daño de sombra a un slot enemigo. Instantánea. Al final de cada fase, hacé 1 de daño de sombra al héroe enemigo.',
+    text: 'Disparo Hackeado (3): hacé 7 de daño de sombra a un slot enemigo. Instantánea. Al final de cada fase, hacé 1 de daño de sombra al héroe enemigo.',
     flavor: 'Caza blancos que nadie más puede encontrar.',
-    ability: { name: 'Disparo Hackeado', text: 'Hacé 3 de daño de sombra a un slot enemigo.' }
+    ability: { name: 'Disparo Hackeado', text: 'Hacé 7 de daño de sombra a un slot enemigo.' }
   },
   'vexs-sling': { name: 'Honda de Vex', text: 'Al equiparla: hacé 4 de daño de sombra a un aliado enemigo al azar.' },
-  'victorious-bronze-giant': { name: 'Gigante de Bronce Victorioso', text: 'Al entrar: tu héroe gana 8 de armadura.' },
+  'victorious-bronze-giant': { name: 'Gigante de Bronce Victorioso', text: 'Al entrar: tu héroe se cura 8.' },
   'victorious-minotaur': {
     name: 'Minotauro Victorioso',
     flavor: 'Encontró la salida del laberinto. Y volvió a entrar.'
@@ -2647,9 +2644,12 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'volatile-runecarver': { name: 'Tallarrunas Volátil', text: 'Al entrar: si tenés otro Hechicero, robá una carta.' },
   'vorhal-the-last-hour': {
     name: 'Vorhal, la Última Hora',
-    text: 'Campanada Final (3): hacé 2 de daño de tiempo a cada aliado enemigo. Al empezar cada fase, hacé 1 de daño de tiempo al héroe enemigo.',
+    text: 'Campanada Final (6): hacé 6 de daño de tiempo a cada aliado enemigo y el héroe enemigo pierde 2 de energía. Al empezar cada fase, hacé 1 de daño de tiempo al héroe enemigo.',
     flavor: 'Cuando se detiene el último reloj, queda él.',
-    ability: { name: 'Campanada Final', text: 'Hacé 2 de daño de tiempo a cada aliado enemigo.' }
+    ability: {
+      name: 'Campanada Final',
+      text: 'Hacé 6 de daño de tiempo a cada aliado enemigo y el héroe enemigo pierde 2 de energía.'
+    }
   },
   'vorhals-flagellant': {
     name: 'Flagelante de Vorhal',
@@ -2668,7 +2668,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'wandering-monolith': {
     name: 'Monolito Errante',
-    text: 'Al empezar cada fase: tu héroe gana 3 de armadura. (3 usos)'
+    text: 'Al empezar cada fase: tu héroe se cura 3. (3 usos)'
   },
   'wandering-plan': { name: 'Plan Errante', text: 'Robá 2 cartas.', flavor: 'El plan cambia en cada era.' },
   'wandering-rune': { name: 'Runa Errante', text: 'Adjuntala a un aliado tuyo: gana +1 de ataque y +4 de vida.' },
@@ -2727,7 +2727,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'wind-up-mechanic': { name: 'Mecánica a Cuerda', flavor: 'Girá la llave y alejate.' },
   'wind-up-soldier-of-pistons': {
     name: 'Soldado de Cuerda de Pistones',
-    text: 'Al entrar: tu héroe gana 4 de armadura.'
+    text: 'Al entrar: tu héroe se cura 4.'
   },
   'wind-up-tin-sentry': {
     name: 'Centinela de Hojalata a Cuerda',
@@ -2745,9 +2745,9 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'xulthar-the-devourer': {
     name: "Xul'thar el Devorador",
-    text: 'Consumir (3): hacé 5 de daño de ácido a un slot enemigo y tu héroe se cura 4. Al empezar cada fase, si tu descarte tiene 10 cartas o más, un aliado al azar de tu descarte vuelve al juego.',
+    text: 'Consumir (6): destruí a un aliado enemigo y tu héroe se cura 10. Al empezar cada fase, si tu descarte tiene 10 cartas o más, un aliado al azar de tu descarte vuelve al juego.',
     flavor: 'Se comió la última estrella. Todavía tiene hambre.',
-    ability: { name: 'Consumir', text: 'Hacé 5 de daño de ácido a un slot enemigo y tu héroe se cura 4.' }
+    ability: { name: 'Consumir', text: 'Destruí a un aliado enemigo y tu héroe se cura 10.' }
   },
   'xulthars-crystal': {
     name: 'Cristal de Xulthar',

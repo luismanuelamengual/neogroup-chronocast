@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { gainArmor } from '@/app/(protected)/(engine)/effects'
+import { healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'standard-bearer-of-the-laurel',
   type: 'ally',
   name: 'Standard-Bearer of the Laurel',
-  text: 'When it enters: your hero gains 7 armor. At the start of each phase: your hero gains 2 armor.',
+  text: 'When it enters: your hero heals 7. At the start of each phase: your hero heals 2.',
   faction: 'bronze',
   restriction: { kind: 'faction', faction: 'bronze' },
   rarity: 'epic',
@@ -16,10 +16,10 @@ export default defineCard({
   attack: 6,
   health: 10,
   onEnter(ctx) {
-    gainArmor(ctx, ctx.owner, 7)
+    healHero(ctx, 7)
   },
   onPhaseStart(ctx) {
-    gainArmor(ctx, ctx.owner, 2)
+    healHero(ctx, 2)
   },
   ai: { value: 6, tags: ['defense'] },
   art: {

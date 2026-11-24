@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damage, gainArmor, stunAt } from '@/app/(protected)/(engine)/effects'
+import { damage, healHero, stunAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'chancellor-brassmaw',
   type: 'hero',
   name: 'Chancellor Brassmaw',
-  text: 'Iron Decree (3): stun an enemy ally and deal 3 sonic damage to it. At the end of each phase, your hero gains 3 armor.',
+  text: 'Iron Decree (4): stun an enemy ally and deal 8 sonic damage to it. At the end of each phase, your hero heals 3.',
   flavor: 'He owns the factories, the city and most of the clocks.',
   faction: 'clockwork',
   heroClass: 'mage',
@@ -16,16 +16,16 @@ export default defineCard({
   health: 65,
   ability: {
     name: 'Iron Decree',
-    text: 'Stun an enemy ally and deal 3 sonic damage to it.',
-    cost: 3,
+    text: 'Stun an enemy ally and deal 8 sonic damage to it.',
+    cost: 4,
     targets: ['enemyAlly'],
     activate(ctx) {
       stunAt(ctx, ctx.targets[0])
-      damage(ctx, ctx.targets[0], 3)
+      damage(ctx, ctx.targets[0], 8)
     }
   },
   onPhaseEnd(ctx) {
-    gainArmor(ctx, ctx.owner, 3)
+    healHero(ctx, 3)
   },
   ai: { value: 0 },
   art: {

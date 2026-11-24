@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { gainArmor, stunAt } from '@/app/(protected)/(engine)/effects'
+import { healHero, stunAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'boilerguard-of-gears',
   type: 'ally',
   name: 'Boilerguard of Gears',
-  text: 'At the start of each phase: your hero gains 2 armor. Its ability is paid with energy (⚡).',
+  text: 'At the start of each phase: your hero heals 2. Its ability is paid with energy (⚡).',
   faction: 'clockwork',
   restriction: { kind: 'faction', faction: 'clockwork' },
   rarity: 'rare',
@@ -28,7 +28,7 @@ export default defineCard({
     }
   },
   onPhaseStart(ctx) {
-    gainArmor(ctx, ctx.owner, 2)
+    healHero(ctx, 2)
   },
   ai: { value: 7, tags: ['ability', 'defense', 'energy'] },
   art: {

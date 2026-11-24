@@ -63,8 +63,7 @@ export function createMatch({ seed, decks, setup = {} }: MatchSetup): {
         cardId: hero.id,
         health,
         maxHealth: health,
-        armor: 0,
-        armorCard: null,
+        armor: null,
         weapon: null,
         attackedThisPhase: false,
         abilityUsedThisPhase: false,
@@ -111,8 +110,13 @@ export function createMatch({ seed, decks, setup = {} }: MatchSetup): {
     }
 
     if (side.armor) {
-      player.hero.armorCard = engine.newCard(side.armor)
-      player.hero.armor = getCard(side.armor).armor ?? 0
+      const armor = getCard(side.armor)
+
+      player.hero.armor = {
+        card: engine.newCard(side.armor),
+        reduction: armor.armor ?? 0,
+        durability: armor.durability ?? 1
+      }
     }
 
     engine.draw(id, Math.min(side.handSize ?? STARTING_HAND, player.deck.length))

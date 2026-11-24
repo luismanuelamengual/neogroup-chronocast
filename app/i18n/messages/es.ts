@@ -35,6 +35,7 @@ export const es = {
     privacy: 'Política de privacidad',
     deleteAccount: 'Eliminar cuenta',
     practice: 'Práctica',
+    quickMatch: 'Partida rápida',
     welcome: 'Tu héroe',
     collection: 'Colección',
     decks: 'Mazos',
@@ -241,6 +242,10 @@ export const es = {
       online: {
         title: 'Partida online',
         text: 'Contra otro jugador: partida rápida, salas públicas o privadas. Suma Prestigio.'
+      },
+      quick: {
+        title: 'Partida rápida',
+        text: 'Contra la CPU con un héroe y un mazo al azar: cada partida es distinta. Da algo de oro, menos que online.'
       }
     }
   },
@@ -353,6 +358,10 @@ export const es = {
       fast: 'Rápida',
       normal: 'Normal',
       slow: 'Lenta'
+    },
+    gearRules: {
+      armor: '🛡️ Cada golpe a tu héroe: -{reduction} de daño. Se rompe tras {durability} golpes.',
+      weapon: 'Se rompe tras {durability} ataques.'
     },
     typeLine: {
       hero: '{type} · {faction} · {heroClass}',
@@ -500,6 +509,17 @@ export const es = {
       start: 'Empezar',
       back: 'Volver'
     },
+    quick: {
+      title: 'Partida rápida',
+      text: 'Tu mazo activo contra un héroe y un mazo al azar de la CPU.',
+      newRival: 'Nuevo rival',
+      back: 'Volver',
+      play: 'Jugar',
+      dealing: 'Preparando la partida…',
+      verifying: 'Verificando la partida para darte el oro…',
+      verifyFailed: 'No se pudo verificar la partida: esta vez no hay oro.',
+      capped: 'Ya ganaste el oro de las partidas rápidas de hoy. ¡Volvé mañana!'
+    },
     cpu: 'CPU',
     phase: 'Fase {phase}',
     chronos: 'Cronos',
@@ -536,7 +556,7 @@ export const es = {
     },
     attached: {
       weapon: 'Arma del héroe\n🗡️ {attack} de ataque · {durability} usos',
-      armor: 'Armadura del héroe\n🛡️ {armor} puntos',
+      armor: 'Armadura del héroe\n🛡️ -{reduction} de daño por golpe · {durability} golpes',
       ally: 'Adjunta al aliado'
     },
     rivalHand: 'Mano del rival',
@@ -641,7 +661,9 @@ export const es = {
       gearDestroyed_artifact: 'Se destruye el artefacto {card} de {player}',
       gearDestroyed_trap: 'Se destruye una trampa de {player}: {card}',
       weaponWorn: 'El arma de {player} pierde {amount} de durabilidad',
-      armorWorn: '{player} pierde {amount} de armadura',
+      armorWorn: 'La armadura de {player} pierde {amount} de durabilidad',
+      weaponRepaired: 'El arma de {player} gana {amount} de durabilidad',
+      armorRepaired: 'La armadura de {player} gana {amount} de durabilidad',
       status_poison: '{target} queda envenenado ({amount})',
       status_burn: '{target} se prende fuego ({amount} por fase)',
       status_freeze: '{target} queda congelado',

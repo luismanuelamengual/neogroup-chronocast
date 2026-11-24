@@ -5,7 +5,7 @@ export default defineCard({
   id: 'bold-rust',
   type: 'ability',
   name: 'Bold Rust',
-  text: 'The enemy weapon loses 1 durability and the enemy hero loses 3 armor. Fast.',
+  text: 'The enemy weapon and armor lose 1 durability each. Fast.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'uncommon',
@@ -14,7 +14,7 @@ export default defineCard({
   speed: 'fast',
   onPlay(ctx) {
     wearWeapon(ctx, ctx.opponent, 1)
-    wearArmor(ctx, ctx.opponent, 3)
+    wearArmor(ctx, ctx.opponent, 1)
   },
   ai: { value: 1, tags: ['antiGear'] },
   art: {

@@ -63,6 +63,10 @@ export function describeEvent(
       return event.kind === 'weapon'
         ? t('battle.events.weaponWorn', { player: player(event.player), amount: event.amount })
         : t('battle.events.armorWorn', { player: player(event.player), amount: event.amount })
+    case 'gearRepaired':
+      return event.kind === 'weapon'
+        ? t('battle.events.weaponRepaired', { player: player(event.player), amount: event.amount })
+        : t('battle.events.armorRepaired', { player: player(event.player), amount: event.amount })
     case 'artifactSpent':
       return t('battle.events.artifactSpent', { card: card(event.cardId) })
     case 'location':

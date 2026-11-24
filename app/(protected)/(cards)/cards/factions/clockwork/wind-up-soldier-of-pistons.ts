@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { gainArmor } from '@/app/(protected)/(engine)/effects'
+import { healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'wind-up-soldier-of-pistons',
   type: 'ally',
   name: 'Wind-Up Soldier of Pistons',
-  text: 'When it enters: your hero gains 4 armor.',
+  text: 'When it enters: your hero heals 4.',
   faction: 'clockwork',
   restriction: { kind: 'faction', faction: 'clockwork' },
   rarity: 'common',
@@ -19,7 +19,7 @@ export default defineCard({
   attack: 4,
   health: 6,
   onEnter(ctx) {
-    gainArmor(ctx, ctx.owner, 4)
+    healHero(ctx, 4)
   },
   ai: { value: 3, tags: ['defense'] },
   art: {

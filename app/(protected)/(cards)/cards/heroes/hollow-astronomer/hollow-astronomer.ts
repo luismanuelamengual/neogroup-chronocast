@@ -5,7 +5,7 @@ export default defineCard({
   id: 'hollow-astronomer',
   type: 'hero',
   name: 'The Hollow Astronomer',
-  text: 'Collapse Star (3): deal 5 arcane damage to an enemy slot. At the start of each phase, deal 2 arcane damage to the enemy hero.',
+  text: 'Collapse Star (6): deal 16 arcane damage to an enemy slot. At the start of each phase, deal 2 arcane damage to the enemy hero.',
   flavor: 'He mapped every star, then started putting them out.',
   faction: 'arcane',
   heroClass: 'mage',
@@ -16,11 +16,11 @@ export default defineCard({
   health: 60,
   ability: {
     name: 'Collapse Star',
-    text: 'Deal 5 arcane damage to an enemy slot.',
-    cost: 3,
+    text: 'Deal 16 arcane damage to an enemy slot.',
+    cost: 6,
     targets: ['enemySlot'],
     activate(ctx) {
-      damage(ctx, ctx.targets[0], 5)
+      damage(ctx, ctx.targets[0], 16)
     }
   },
   onPhaseStart(ctx) {

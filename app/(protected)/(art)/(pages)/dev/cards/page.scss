@@ -1,11 +1,59 @@
 .dev-cards {
-  padding: 24px 16px 48px;
+  padding: 0 16px 48px;
   color: var(--color-text);
 
   h1,
   h2 {
     font-family: var(--font-title);
     font-weight: 400;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 1.3rem;
+    white-space: nowrap;
+  }
+
+  // The filters stay at the top while scrolling the catalog (a phone in landscape has little height).
+  &__toolbar {
+    position: sticky;
+    z-index: 10;
+    top: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    margin: 0 -16px;
+    padding: 8px 16px;
+    border-bottom: 2px solid var(--color-panel-border);
+    background-color: var(--color-panel, white);
+
+    .card-filters {
+      display: contents;
+    }
+  }
+
+  &__kind,
+  &__clear {
+    height: 30px;
+    padding: 0 10px;
+    border: 2px solid var(--color-panel-border);
+    border-radius: 999px;
+    background-color: white;
+    color: var(--color-text);
+    font: inherit;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  &__clear {
+    cursor: pointer;
+  }
+
+  &__empty {
+    margin-top: 24px;
+    color: var(--color-text-secondary);
+    text-align: center;
   }
 
   &__grid {
@@ -22,6 +70,30 @@
       color: var(--color-text-secondary);
       font-size: 0.72rem;
       text-align: center;
+    }
+  }
+
+  // Phone in landscape: a tighter bar and grid.
+  @media (max-height: 500px) {
+    padding: 0 10px 32px;
+
+    h1 {
+      font-size: 1.05rem;
+    }
+
+    h2 {
+      margin: 12px 0 8px;
+      font-size: 1.05rem;
+    }
+
+    &__toolbar {
+      margin: 0 -10px;
+      padding: 6px 10px;
+      gap: 4px 6px;
+    }
+
+    &__grid {
+      gap: 12px;
     }
   }
 }

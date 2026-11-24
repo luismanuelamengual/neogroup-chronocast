@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { gainArmor } from '@/app/(protected)/(engine)/effects'
+import { healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'taurons-halberd',
   type: 'weapon',
   name: "Tauron's Halberd",
-  text: 'When it is equipped: your hero gains 5 armor.',
+  text: 'When it is equipped: your hero heals 5.',
   flavor: 'Forged in the heart of the labyrinth.',
   faction: 'bronze',
   restriction: { kind: 'hero', heroId: 'tauron-labyrinth-lord' },
@@ -16,7 +16,7 @@ export default defineCard({
   attack: 5,
   durability: 4,
   onPlay(ctx) {
-    gainArmor(ctx, ctx.owner, 5)
+    healHero(ctx, 5)
   },
   ai: { value: 5 },
   art: {

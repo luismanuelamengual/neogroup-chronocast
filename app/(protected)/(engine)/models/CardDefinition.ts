@@ -25,6 +25,8 @@ export interface ActiveAbility {
   resource?: AbilityResource
   speed?: Speed
   targets?: TargetKind[]
+  /** Hints for the AI, like the ones of a card (`heal`, `removal`, `revive`, `buffAll`...): when using it is worth it. */
+  ai?: { tags?: string[] }
   activate(ctx: EffectContext): void
 }
 
@@ -88,9 +90,9 @@ export interface CardDefinition {
   attack?: number
   /** Allies and heroes; attachments: the health they add to their ally (negative takes it away). */
   health?: number
-  /** Weapons: attacks before it breaks. */
+  /** Weapons: attacks before it breaks. Armors: hits it takes before it breaks. */
   durability?: number
-  /** Armors: armor points. */
+  /** Armors: damage it takes away from each hit on the hero. */
   armor?: number
   /** Heroes. */
   heroClass?: HeroClass

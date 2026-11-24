@@ -12,7 +12,8 @@ export default defineCard({
   rarity: 'uncommon',
   price: 155,
   cost: 2,
-  armor: 6,
+  armor: 2,
+  durability: 3,
   onPlay(ctx) {
     healHero(ctx, 4)
   },

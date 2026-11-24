@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { gainArmor } from '@/app/(protected)/(engine)/effects'
+import { healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'stalwart-street-samurai',
   type: 'ally',
   name: 'Stalwart Street Samurai',
-  text: 'When it enters: your hero gains 8 armor.',
+  text: 'When it enters: your hero heals 8.',
   flavor: 'Neon blade, old code.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
@@ -16,7 +16,7 @@ export default defineCard({
   attack: 9,
   health: 11,
   onEnter(ctx) {
-    gainArmor(ctx, ctx.owner, 8)
+    healHero(ctx, 8)
   },
   ai: { value: 7, tags: ['defense'] },
   art: {

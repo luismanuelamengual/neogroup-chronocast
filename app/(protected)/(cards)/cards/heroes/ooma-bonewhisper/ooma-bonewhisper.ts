@@ -5,7 +5,7 @@ export default defineCard({
   id: 'ooma-bonewhisper',
   type: 'hero',
   name: 'Ooma Bonewhisper',
-  text: 'Ancestral Growth (2): an ally of yours gains +2 attack and +3 health. At the start of each phase, your allies heal 2.',
+  text: 'Ancestral Growth (4): an ally of yours gains +5 attack and +6 health. At the start of each phase, your allies heal 2.',
   flavor: 'The bones of the ancestors speak. She listens.',
   faction: 'primal',
   heroClass: 'mystic',
@@ -15,11 +15,11 @@ export default defineCard({
   health: 53,
   ability: {
     name: 'Ancestral Growth',
-    text: 'An ally of yours gains +2 attack and +3 health.',
-    cost: 2,
+    text: 'An ally of yours gains +5 attack and +6 health.',
+    cost: 4,
     targets: ['friendlyAlly'],
     activate(ctx) {
-      buffAt(ctx, ctx.targets[0], 2, 3)
+      buffAt(ctx, ctx.targets[0], 5, 6)
     }
   },
   onPhaseStart(ctx) {

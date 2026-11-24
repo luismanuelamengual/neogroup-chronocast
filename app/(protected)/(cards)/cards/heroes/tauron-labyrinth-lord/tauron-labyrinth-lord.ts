@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damage, gainArmor } from '@/app/(protected)/(engine)/effects'
+import { damage, healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'tauron-labyrinth-lord',
   type: 'hero',
   name: 'Tauron, Lord of the Labyrinth',
-  text: 'Gore (3): deal 6 earth damage to an enemy slot. At the start of each phase, your hero gains 2 armor.',
+  text: 'Gore (4): deal 12 earth damage to an enemy slot. At the start of each phase, your hero heals 2.',
   flavor: 'Nobody who enters his maze has found the way out.',
   faction: 'bronze',
   heroClass: 'warrior',
@@ -16,15 +16,15 @@ export default defineCard({
   health: 61,
   ability: {
     name: 'Gore',
-    text: 'Deal 6 earth damage to an enemy slot.',
-    cost: 3,
+    text: 'Deal 12 earth damage to an enemy slot.',
+    cost: 4,
     targets: ['enemySlot'],
     activate(ctx) {
-      damage(ctx, ctx.targets[0], 6)
+      damage(ctx, ctx.targets[0], 12)
     }
   },
   onPhaseStart(ctx) {
-    gainArmor(ctx, ctx.owner, 2)
+    healHero(ctx, 2)
   },
   ai: { value: 0 },
   art: {

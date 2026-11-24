@@ -18,3 +18,16 @@ export const GOLD_REWARDS = {
   privateFactor: 0.5,
   privatePrizesPerRival: 3
 }
+
+/**
+ * Gold of a quick match against the CPU (/quick-match): about half of a
+ * public match, without the win bonus, the first win of the day or Prestige.
+ * The server pays it only after replaying the match (battle/services/quickMatches.ts),
+ * and only for the first `prizesPerDay` quick matches of the (UTC) day.
+ */
+export const QUICK_MATCH_GOLD = {
+  win: 20,
+  draw: 8,
+  loss: 3,
+  prizesPerDay: 10
+}

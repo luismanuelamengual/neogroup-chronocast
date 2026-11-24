@@ -345,12 +345,11 @@ function play(
     case 'armor': {
       pay()
 
-      if (side.hero.armorCard) {
-        side.discard.push(side.hero.armorCard)
+      if (side.hero.armor) {
+        side.discard.push(side.hero.armor.card)
       }
 
-      side.hero.armorCard = card
-      side.hero.armor = definition.armor ?? 0
+      side.hero.armor = { card, reduction: definition.armor ?? 0, durability: definition.durability ?? 1 }
       engine.emit({ type: 'attach', player, cardId: definition.id })
       definition.onPlay?.(engine.context(player, card, targets))
 

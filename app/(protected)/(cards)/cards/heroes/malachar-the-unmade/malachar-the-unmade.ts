@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damage, discardSize, heal } from '@/app/(protected)/(engine)/effects'
+import { damage, discardSize, healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'malachar-the-unmade',
   type: 'hero',
   name: 'Malachar the Unmade',
-  text: 'Unmake (2): deal 5 shadow damage to an enemy slot. If your discard pile has 6 or more cards, your hero heals 2. At the start of each phase, if your discard pile has 8 or more cards, deal 2 shadow damage to the enemy hero.',
+  text: 'Unmake (4): deal 11 shadow damage to an enemy slot. If your discard pile has 6 or more cards, your hero heals 5. At the start of each phase, if your discard pile has 8 or more cards, deal 2 shadow damage to the enemy hero.',
   flavor: 'He unmade himself to see what lies beyond time.',
   faction: 'void',
   heroClass: 'mage',
@@ -16,14 +16,14 @@ export default defineCard({
   health: 55,
   ability: {
     name: 'Unmake',
-    text: 'Deal 5 shadow damage to an enemy slot. If your discard pile has 6 or more cards, your hero heals 2.',
-    cost: 2,
+    text: 'Deal 11 shadow damage to an enemy slot. If your discard pile has 6 or more cards, your hero heals 5.',
+    cost: 4,
     targets: ['enemySlot'],
     activate(ctx) {
-      damage(ctx, ctx.targets[0], 5)
+      damage(ctx, ctx.targets[0], 11)
 
       if (discardSize(ctx, ctx.owner) >= 6) {
-        heal(ctx, { player: ctx.owner, slot: 'hero' }, 2)
+        healHero(ctx, 5)
       }
     }
   },

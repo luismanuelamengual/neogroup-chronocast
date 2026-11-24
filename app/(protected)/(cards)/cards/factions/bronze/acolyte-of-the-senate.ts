@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffSelf, gainArmor, tribeAllies } from '@/app/(protected)/(engine)/effects'
+import { buffSelf, healHero, tribeAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'acolyte-of-the-senate',
   type: 'ally',
   name: 'Acolyte of the Senate',
-  text: 'When it enters: it gains +1 attack and +1 health for each other Oracle of yours. At the start of each phase: your hero gains 2 armor.',
+  text: 'When it enters: it gains +1 attack and +1 health for each other Oracle of yours. At the start of each phase: your hero heals 2.',
   faction: 'bronze',
   restriction: { kind: 'faction', faction: 'bronze' },
   rarity: 'legendary',
@@ -22,7 +22,7 @@ export default defineCard({
     buffSelf(ctx, 1 * count, 1 * count)
   },
   onPhaseStart(ctx) {
-    gainArmor(ctx, ctx.owner, 2)
+    healHero(ctx, 2)
   },
   ai: { value: 4, tags: ['buff', 'defense', 'tribe'] },
   art: {

@@ -5,7 +5,7 @@ export default defineCard({
   id: 'shatter-of-the-long-road',
   type: 'ability',
   name: 'Shatter of the Long Road',
-  text: 'The enemy weapon loses 2 durability and the enemy hero loses 6 armor. Fast.',
+  text: 'The enemy weapon and armor lose 2 durability each. Fast.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'uncommon',
@@ -14,7 +14,7 @@ export default defineCard({
   speed: 'fast',
   onPlay(ctx) {
     wearWeapon(ctx, ctx.opponent, 2)
-    wearArmor(ctx, ctx.opponent, 6)
+    wearArmor(ctx, ctx.opponent, 2)
   },
   ai: { value: 2, tags: ['antiGear'] },
   art: {

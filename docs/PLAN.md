@@ -105,7 +105,7 @@ Cada una de las 6 acciones de la línea de tiempo es una de estas:
 | **Jugar una carta**        | Invoca un aliado en un slot, lanza una habilidad, adjunta un arma o armadura al héroe, usa un objeto, pone una ubicación o una trampa.     | Su costo en Cronos                         |
 | **Atacar con un aliado**   | El aliado ataca a un slot rival (el del héroe o el de un aliado). Una vez por fase por aliado.                                             | —                                          |
 | **Atacar con el héroe**    | Solo con un arma adjunta. Una vez por fase.                                                                                                | 1 de durabilidad del arma                  |
-| **Habilidad del héroe**    | La activa del héroe. Una vez por fase.                                                                                                     | Su costo en **energía**                    |
+| **Habilidad del héroe**    | La activa del héroe. Una vez por fase, pero cuesta **3 de energía o más** (`HERO_ABILITY_MIN_COST`): no se usa en cada fase y es fuerte.   | Su costo en **energía**                    |
 | **Habilidad de un aliado** | Los aliados que tienen una activa.                                                                                                         | Cronos, o energía si la carta lo dice (⚡) |
 | **Mover un aliado**        | **Para todas las facciones.** A un slot vacío, o intercambio con un aliado vecino. Es la forma de esquivar ataques.                        | —                                          |
 | **Esperar**                | Nada. Algunas cartas premian esperar.                                                                                                      | —                                          |
@@ -139,7 +139,8 @@ Cada acción tiene una **velocidad** (`instant`, `fast`, `normal`, `slow`). Dent
 
 - **Escala de números**: la del catálogo de Shadow Era (`docs/data.json`) multiplicada por 2. Con héroes de 50 a 65 de vida, los aliados pegan entre 0 y 18 y tienen entre 3 y 18 de vida (un aliado de costo 4 ronda 5/10); una habilidad de costo 2 hace unos 6 de daño. Las partidas simuladas duran de 10 a 14 fases.
 - **Ataque de un aliado**: hace su ataque como daño al objetivo. Si el objetivo es un aliado y el atacante no tiene _A distancia_, el defensor **contraataca** con su ataque (como en Shadow Era).
-- **Armadura** (carta adjunta): resta daño de cada golpe al héroe y tiene puntos que se gastan; al llegar a 0 se descarta.
+- **Armadura** (carta adjunta), con dos números como en Shadow Era: **reducción** (el escudo, abajo a la izquierda) y **durabilidad** (el cuadrado, abajo a la derecha). Cada golpe al héroe pierde tanto daño como la reducción (armadura 3 y golpe de 7: el héroe recibe 4) y le quita 1 de durabilidad a la armadura, aunque el golpe sea menor que la reducción. Al llegar a 0 de durabilidad se descarta. El veneno, las quemaduras y la sombra la ignoran y no la gastan; el ácido le quita 1 de durabilidad más.
+- Hay cartas que **gastan** la durabilidad del arma o la armadura rival (o las destruyen) y cartas que **reparan** las propias (+durabilidad).
 - **Arma** (carta adjunta): da el ataque del héroe y tiene durabilidad; al llegar a 0 se descarta. Sin arma, el héroe no ataca.
 - Una arma o armadura nueva reemplaza a la que estaba (la vieja va a la pila).
 - **Protector**: los ataques de aliados y del héroe dirigidos al slot del héroe van al Protector (si hay varios, al de menor número de slot). Las habilidades y el daño directo no se desvían, salvo que la carta lo diga.
@@ -165,7 +166,7 @@ Todas las constantes de esta sección viven en `(engine)/data/rules.ts` (`STARTI
 | `ally`       | Aliado             | Costo, ataque, vida, velocidad, palabras clave, efectos (al entrar, al atacar, al morir...).                                                                                           |
 | `ability`    | Habilidad          | Efecto de un solo uso (daño, curación, robo, control).                                                                                                                                 |
 | `weapon`     | Arma               | Se adjunta al héroe: ataque y durabilidad, a veces con efecto (veneno, robo de vida...).                                                                                               |
-| `armor`      | Armadura           | Se adjunta al héroe: puntos de armadura y a veces un efecto (espinas, resistencia...).                                                                                                 |
+| `armor`      | Armadura           | Se adjunta al héroe: reducción de daño por golpe y durabilidad en golpes, y a veces un efecto (espinas, resistencia...).                                                               |
 | `item`       | Objeto             | Consumible de un solo uso (poción, bomba).                                                                                                                                             |
 | `attachment` | Adjunto            | Se adjunta a un aliado (propio o enemigo): suma ataque o vida, da palabras clave (Protector, Sigilo, Vuelo...), reduce o duplica el daño recibido. Se descarta cuando muere el aliado. |
 | `artifact`   | Artefacto          | Queda en un slot de soporte con un efecto continuo o por fase; algunos tienen usos (`charges`) y se descartan al gastarlos.                                                            |
@@ -235,7 +236,7 @@ Todo daño tiene un **elemento** (`element` en el archivo de la carta, `(engine)
 | Sombra   | Pasa escudos y armadura.                                                                         | Vacío              |
 | Luz      | Cura a tu héroe la mitad del daño hecho; el doble contra No-muertos y Horrores.                  | Bronce, Mística    |
 | Tiempo   | El objetivo pierde también vida máxima (no se cura). Un golpe de 3+ al héroe le quita 1 Chronos. | Errantes, Vorhal   |
-| Ácido    | Envenena 1; contra un héroe rompe 1 punto más de armadura.                                       | Primal, Neón       |
+| Ácido    | Envenena 1; contra un héroe le quita 1 de durabilidad más a su armadura.                         | Primal, Neón       |
 | Arcano   | No se reduce: ignora resistencias y reducciones de daño.                                         | Arcana, Maga       |
 | Tierra   | Aturde a un aliado de 3 de ataque o menos; los voladores son inmunes.                            | Primal, Relojería  |
 | Sónico   | El objetivo pierde Sigilo.                                                                       | Neón               |
@@ -524,6 +525,7 @@ delta    = round(30 × (score − expected))       score: 1 gana, 0.5 empate, 0 
 | Primera victoria del día | +100                                             |
 
 - Partidas privadas: la mitad, y como máximo 3 con premio por día contra el mismo rival (evita que dos amigos se regalen oro).
+- Partida rápida contra la CPU: 20 por victoria, 8 por empate y 3 por derrota (sin Prestigio ni bonus del día), como máximo 10 partidas con oro por día. El servidor reparte la semilla y el mazo de la CPU y repite la partida antes de pagar (como en la campaña).
 - Campaña: oro la primera vez que se gana cada combate (de 50 a 300 según la dificultad) y 10 % de eso si se repite.
 - Todo cambio de oro pasa por el servidor, dentro de una transacción.
 

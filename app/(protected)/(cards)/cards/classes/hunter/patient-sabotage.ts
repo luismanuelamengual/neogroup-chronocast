@@ -5,7 +5,7 @@ export default defineCard({
   id: 'patient-sabotage',
   type: 'ability',
   name: 'Patient Sabotage',
-  text: 'The enemy weapon loses 2 durability and the enemy hero loses 6 armor. Fast.',
+  text: 'The enemy weapon and armor lose 2 durability each. Fast.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'common',
@@ -14,7 +14,7 @@ export default defineCard({
   speed: 'fast',
   onPlay(ctx) {
     wearWeapon(ctx, ctx.opponent, 2)
-    wearArmor(ctx, ctx.opponent, 6)
+    wearArmor(ctx, ctx.opponent, 2)
   },
   ai: { value: 2, tags: ['antiGear'] },
   art: {

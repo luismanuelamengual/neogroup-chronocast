@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damage, gainArmor } from '@/app/(protected)/(engine)/effects'
+import { damage, healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'bounty-hunter-of-the-rift',
   type: 'ally',
   name: 'Bounty Hunter of the Rift',
-  text: 'When it enters: your hero gains 5 armor. Its ability is paid with energy (⚡).',
+  text: 'When it enters: your hero heals 5. Its ability is paid with energy (⚡).',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'uncommon',
@@ -26,7 +26,7 @@ export default defineCard({
     }
   },
   onEnter(ctx) {
-    gainArmor(ctx, ctx.owner, 5)
+    healHero(ctx, 5)
   },
   ai: { value: 3, tags: ['ability', 'defense', 'energy'] },
   art: {

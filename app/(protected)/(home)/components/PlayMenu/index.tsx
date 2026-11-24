@@ -10,13 +10,15 @@ import { useT } from '@/app/i18n/I18nProvider'
 /** The game modes, each one illustrated with the art of a card that fits it. */
 const MODES = [
   { key: 'campaign', icon: '🗺️', color: 'lime', href: '/campaign', art: 'aldric-dawnkeeper-portrait' },
+  { key: 'quick', icon: '🤖', color: 'cyan', href: '/quick-match', art: 'omnigear-prime-portrait' },
   { key: 'online', icon: '⚔️', color: 'magenta', href: '/lobby', art: 'arena-champion' }
 ] as const
 
 /**
  * Play (/play): where the "Play" of the main menu leads, to choose the game
- * mode: the hero's campaign or an online match against another player. Every
- * mode plays with the active deck.
+ * mode: the hero's campaign, a quick match against the CPU (a random rival
+ * each time) or an online match against another player. Every mode plays
+ * with the active deck.
  */
 export default function PlayMenu() {
   useMusic('menu')

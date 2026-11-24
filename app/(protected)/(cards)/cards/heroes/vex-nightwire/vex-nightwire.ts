@@ -5,7 +5,7 @@ export default defineCard({
   id: 'vex-nightwire',
   type: 'hero',
   name: 'Vex Nightwire',
-  text: 'Hack Shot (1): deal 3 shadow damage to an enemy slot. Instant. At the end of each phase, deal 1 shadow damage to the enemy hero.',
+  text: 'Hack Shot (3): deal 7 shadow damage to an enemy slot. Instant. At the end of each phase, deal 1 shadow damage to the enemy hero.',
   flavor: 'She hunts targets nobody else can find.',
   faction: 'neon',
   heroClass: 'hunter',
@@ -16,12 +16,12 @@ export default defineCard({
   health: 63,
   ability: {
     name: 'Hack Shot',
-    text: 'Deal 3 shadow damage to an enemy slot.',
-    cost: 1,
+    text: 'Deal 7 shadow damage to an enemy slot.',
+    cost: 3,
     speed: 'instant',
     targets: ['enemySlot'],
     activate(ctx) {
-      damage(ctx, ctx.targets[0], 3)
+      damage(ctx, ctx.targets[0], 7)
     }
   },
   onPhaseEnd(ctx) {

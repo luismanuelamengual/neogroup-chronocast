@@ -11,7 +11,8 @@ export default defineCard({
   rarity: 'exotic',
   price: 11600,
   cost: 3,
-  armor: 12,
+  armor: 3,
+  durability: 4,
   ai: { value: 5 },
   art: {
     subject:

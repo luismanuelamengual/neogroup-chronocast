@@ -5,7 +5,7 @@ export default defineCard({
   id: 'kora-wildfang',
   type: 'hero',
   name: 'Kora Wildfang',
-  text: 'Quick Shot (1): deal 3 wind damage to an enemy slot. Fast.',
+  text: 'Quick Shot (3): deal 9 wind damage to an enemy slot. Fast.',
   flavor: 'The jungle taught her one rule: shoot first.',
   faction: 'primal',
   heroClass: 'hunter',
@@ -16,12 +16,12 @@ export default defineCard({
   health: 60,
   ability: {
     name: 'Quick Shot',
-    text: 'Deal 3 wind damage to an enemy slot.',
-    cost: 1,
+    text: 'Deal 9 wind damage to an enemy slot.',
+    cost: 3,
     speed: 'fast',
     targets: ['enemySlot'],
     activate(ctx) {
-      damage(ctx, ctx.targets[0], 3)
+      damage(ctx, ctx.targets[0], 9)
     }
   },
   ai: { value: 0 },

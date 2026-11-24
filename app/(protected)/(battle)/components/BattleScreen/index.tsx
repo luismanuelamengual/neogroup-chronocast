@@ -531,7 +531,7 @@ export default function BattleScreen({
     const hero = board.players[spot.player].hero
 
     spotNote = [
-      `❤️ ${Math.max(0, hero.health)}/${hero.maxHealth}${hero.armor > 0 ? ` · 🛡️ ${hero.armor}` : ''} · ⚡ ${board.players[spot.player].energy ?? 0}`,
+      `❤️ ${Math.max(0, hero.health)}/${hero.maxHealth}${hero.armor ? ` · 🛡️ -${hero.armor.reduction}` : ''} · ⚡ ${board.players[spot.player].energy ?? 0}`,
       ...statusNotes(hero),
       ...((hero.frozenUntilPhase ?? 0) >= board.phase ? [t('battle.frozen')] : [])
     ].join('\n')
@@ -585,7 +585,10 @@ export default function BattleScreen({
         note: note(
           card.kind === 'weapon' && hero.weapon
             ? t('battle.attached.weapon', { attack: hero.weapon.attack, durability: hero.weapon.durability })
-            : t('battle.attached.armor', { armor: hero.armor })
+            : t('battle.attached.armor', {
+                reduction: hero.armor?.reduction ?? 0,
+                durability: hero.armor?.durability ?? 0
+              })
         )
       }))
     ]
@@ -712,9 +715,19 @@ export default function BattleScreen({
             width={metrics.hero}
             className={classNames({ fallen: hero.fallen, frozen: (hero.frozenUntilPhase ?? 0) >= board.phase })}
           >
-            {hero.weapon && <span className="battle-screen__badge attack big">{hero.weapon.attack}</span>}
+            {hero.weapon && (
+              <>
+                <span className="battle-screen__badge attack big">{hero.weapon.attack}</span>
+                <span className="battle-screen__badge durability weapon">{hero.weapon.durability}</span>
+              </>
+            )}
             <span className="battle-screen__badge health big">{Math.max(0, hero.health)}</span>
-            {hero.armor > 0 && <span className="battle-screen__badge armor big">{hero.armor}</span>}
+            {hero.armor && (
+              <>
+                <span className="battle-screen__badge armor big">-{hero.armor.reduction}</span>
+                <span className="battle-screen__badge durability armor-durability">{hero.armor.durability}</span>
+              </>
+            )}
             <StatusBadges subject={hero} phase={board.phase} />
           </MiniCard>
         </Stacked>
@@ -1027,8 +1040,8 @@ function heroAttachments(hero: HeroState): AttachedCard[] {
     cards.push({ cardId: hero.weapon.card.cardId, kind: 'weapon' })
   }
 
-  if (hero.armorCard) {
-    cards.push({ cardId: hero.armorCard.cardId, kind: 'armor' })
+  if (hero.armor) {
+    cards.push({ cardId: hero.armor.card.cardId, kind: 'armor' })
   }
 
   return cards

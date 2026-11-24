@@ -1,5 +1,5 @@
 import { PRICE_RANGES } from '@/app/(protected)/(cards)/data/rarities'
-import { HERO_MAX_HEALTH, HERO_MIN_HEALTH } from '@/app/(protected)/(engine)/data/rules'
+import { HERO_ABILITY_MIN_COST, HERO_MAX_HEALTH, HERO_MIN_HEALTH } from '@/app/(protected)/(engine)/data/rules'
 import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition'
 
 /**
@@ -62,6 +62,10 @@ export function cardProblems(card: CardDefinition): string[] {
 
       if (card.restriction.kind !== 'hero' || card.restriction.heroId !== card.id) {
         problems.push('a hero is restricted to itself')
+      }
+
+      if (card.ability && card.ability.cost < HERO_ABILITY_MIN_COST) {
+        problems.push(`a hero's ability costs at least ${HERO_ABILITY_MIN_COST} energy`)
       }
 
       break

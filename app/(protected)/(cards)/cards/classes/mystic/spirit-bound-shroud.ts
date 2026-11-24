@@ -11,7 +11,8 @@ export default defineCard({
   rarity: 'common',
   price: 55,
   cost: 3,
-  armor: 9,
+  armor: 2,
+  durability: 5,
   ai: { value: 3 },
   art: {
     subject:

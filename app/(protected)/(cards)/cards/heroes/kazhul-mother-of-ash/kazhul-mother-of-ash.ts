@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageAllAllies, heal } from '@/app/(protected)/(engine)/effects'
+import { damageAllAllies, damageEnemyHero, heal } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'kazhul-mother-of-ash',
   type: 'hero',
   name: 'Kazhul, Mother of Ash',
-  text: 'Ash Breath (2): deal 3 fire damage to every enemy ally. At the start of each phase, your hero heals 3.',
+  text: 'Ash Breath (5): deal 5 fire damage to every enemy ally and to the enemy hero. At the start of each phase, your hero heals 3.',
   flavor: 'She sleeps under the volcano. Nobody wants her awake.',
   faction: 'primal',
   heroClass: 'hunter',
@@ -16,10 +16,11 @@ export default defineCard({
   health: 64,
   ability: {
     name: 'Ash Breath',
-    text: 'Deal 3 fire damage to every enemy ally.',
-    cost: 2,
+    text: 'Deal 5 fire damage to every enemy ally and to the enemy hero.',
+    cost: 5,
     activate(ctx) {
-      damageAllAllies(ctx, ctx.opponent, 3)
+      damageAllAllies(ctx, ctx.opponent, 5)
+      damageEnemyHero(ctx, 5)
     }
   },
   onPhaseStart(ctx) {

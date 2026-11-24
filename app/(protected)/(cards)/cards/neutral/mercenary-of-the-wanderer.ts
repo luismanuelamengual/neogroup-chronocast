@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { gainArmor, healHero } from '@/app/(protected)/(engine)/effects'
+import { healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'mercenary-of-the-wanderer',
   type: 'ally',
   name: 'Mercenary of the Wanderer',
-  text: 'When it enters: your hero gains 5 armor. At the start of each phase: your hero heals 2.',
+  text: 'When it enters: your hero heals 5. At the start of each phase: your hero heals 2.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'epic',
@@ -16,7 +16,7 @@ export default defineCard({
   attack: 3,
   health: 10,
   onEnter(ctx) {
-    gainArmor(ctx, ctx.owner, 5)
+    healHero(ctx, 5)
   },
   onPhaseStart(ctx) {
     healHero(ctx, 2)

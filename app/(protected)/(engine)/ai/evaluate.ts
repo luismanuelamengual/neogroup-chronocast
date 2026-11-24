@@ -13,7 +13,8 @@ function pendingLoss(subject: Afflictions): number {
 
 /** What a side has: its hero's life, its board, its hand, its Chronos and energy. */
 function material(side: PlayerState): number {
-  const hero = side.hero.health + side.hero.armor * 0.6 - pendingLoss(side.hero)
+  const armor = side.hero.armor ? side.hero.armor.reduction * Math.min(side.hero.armor.durability, 4) * 0.6 : 0
+  const hero = side.hero.health + armor - pendingLoss(side.hero)
   const weapon = side.hero.weapon ? side.hero.weapon.attack * Math.min(side.hero.weapon.durability, 3) * 0.4 : 0
   const board = side.allies.reduce(
     (sum, unit) =>

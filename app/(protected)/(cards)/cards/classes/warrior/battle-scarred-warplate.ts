@@ -12,7 +12,8 @@ export default defineCard({
   rarity: 'mythic',
   price: 31000,
   cost: 4,
-  armor: 15,
+  armor: 4,
+  durability: 4,
   onPlay(ctx) {
     healAllAllies(ctx, ctx.owner, 2)
   },

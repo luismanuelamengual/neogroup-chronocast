@@ -57,10 +57,11 @@ export interface HeroState extends Afflictions {
   cardId: string
   health: number
   maxHealth: number
-  /** Armor points: they take the damage before the health. */
-  armor: number
-  /** The armor card attached (it is discarded when the armor runs out). */
-  armorCard: CardInstance | null
+  /**
+   * The armor equipped: each hit on the hero loses `reduction` damage and
+   * takes 1 durability away (it is discarded at 0).
+   */
+  armor: { card: CardInstance; reduction: number; durability: number } | null
   weapon: { card: CardInstance; attack: number; durability: number } | null
   attackedThisPhase: boolean
   abilityUsedThisPhase: boolean

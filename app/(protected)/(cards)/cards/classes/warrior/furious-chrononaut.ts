@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { gainArmor } from '@/app/(protected)/(engine)/effects'
+import { healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'furious-chrononaut',
   type: 'ally',
   name: 'Furious Chrononaut',
-  text: 'When it dies: your hero gains 3 armor.',
+  text: 'When it dies: your hero heals 3.',
   flavor: 'He has been angry since the Bronze Age.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
@@ -16,7 +16,7 @@ export default defineCard({
   attack: 2,
   health: 8,
   onDeath(ctx) {
-    gainArmor(ctx, ctx.owner, 3)
+    healHero(ctx, 3)
   },
   ai: { value: 2, tags: ['defense'] },
   art: {

@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damage, heal } from '@/app/(protected)/(engine)/effects'
+import { damage, heal, healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'gorrak-tyrant-king',
   type: 'hero',
   name: 'Gorrak, Tyrant King',
-  text: 'Devour (2): deal 4 earth damage to an enemy slot and your hero heals 4. At the start of each phase, your hero heals 3.',
+  text: 'Devour (4): deal 10 earth damage to an enemy slot and your hero heals 6. At the start of each phase, your hero heals 3.',
   flavor: 'The jungle has one king. He eats the others.',
   faction: 'primal',
   heroClass: 'hunter',
@@ -16,12 +16,12 @@ export default defineCard({
   health: 65,
   ability: {
     name: 'Devour',
-    text: 'Deal 4 earth damage to an enemy slot and your hero heals 4.',
-    cost: 2,
+    text: 'Deal 10 earth damage to an enemy slot and your hero heals 6.',
+    cost: 4,
     targets: ['enemySlot'],
     activate(ctx) {
-      damage(ctx, ctx.targets[0], 4)
-      heal(ctx, { player: ctx.owner, slot: 'hero' }, 4)
+      damage(ctx, ctx.targets[0], 10)
+      healHero(ctx, 6)
     }
   },
   onPhaseStart(ctx) {

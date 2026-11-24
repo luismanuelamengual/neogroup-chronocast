@@ -51,6 +51,7 @@ export function eventSound(event: MatchEvent): SfxId | null {
       return 'shield'
     case 'gearDestroyed':
     case 'gearWorn':
+    case 'gearRepaired':
       return 'armor'
     case 'heal':
       return 'heal'

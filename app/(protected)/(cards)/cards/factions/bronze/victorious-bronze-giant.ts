@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { gainArmor } from '@/app/(protected)/(engine)/effects'
+import { healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'victorious-bronze-giant',
   type: 'ally',
   name: 'Victorious Bronze Giant',
-  text: 'When it enters: your hero gains 8 armor.',
+  text: 'When it enters: your hero heals 8.',
   faction: 'bronze',
   restriction: { kind: 'faction', faction: 'bronze' },
   rarity: 'rare',
@@ -18,7 +18,7 @@ export default defineCard({
   attack: 7,
   health: 14,
   onEnter(ctx) {
-    gainArmor(ctx, ctx.owner, 8)
+    healHero(ctx, 8)
   },
   ai: { value: 7, tags: ['defense'] },
   art: {

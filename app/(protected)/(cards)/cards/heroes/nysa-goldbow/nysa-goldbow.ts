@@ -5,7 +5,7 @@ export default defineCard({
   id: 'nysa-goldbow',
   type: 'hero',
   name: 'Nysa Goldbow',
-  text: 'Golden Arrow (2): deal 4 wind damage to an enemy slot. When another ally of yours enters, it gains +1 attack.',
+  text: 'Golden Arrow (3): deal 8 wind damage to an enemy slot. When another ally of yours enters, it gains +1 attack.',
   flavor: 'She hunted with the gods once. Now she hunts for herself.',
   faction: 'bronze',
   heroClass: 'hunter',
@@ -16,11 +16,11 @@ export default defineCard({
   health: 50,
   ability: {
     name: 'Golden Arrow',
-    text: 'Deal 4 wind damage to an enemy slot.',
-    cost: 2,
+    text: 'Deal 8 wind damage to an enemy slot.',
+    cost: 3,
     targets: ['enemySlot'],
     activate(ctx) {
-      damage(ctx, ctx.targets[0], 4)
+      damage(ctx, ctx.targets[0], 8)
     }
   },
   onAllyEnter(ctx, ally) {

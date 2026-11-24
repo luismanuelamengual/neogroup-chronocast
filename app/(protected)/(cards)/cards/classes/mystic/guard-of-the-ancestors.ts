@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw, gainArmor } from '@/app/(protected)/(engine)/effects'
+import { draw, healHero, repairArmor } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'guard-of-the-ancestors',
   type: 'ability',
   name: 'Guard of the Ancestors',
-  text: 'Your hero gains 13 armor and draw a card.',
+  text: 'Your armor gains +4 durability and your hero heals 8. Draw a card.',
   flavor: 'The dead stand guard for the living.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
@@ -13,10 +13,11 @@ export default defineCard({
   price: 11600,
   cost: 3,
   onPlay(ctx) {
-    gainArmor(ctx, ctx.owner, 13)
+    repairArmor(ctx, ctx.owner, 4)
+    healHero(ctx, 8)
     draw(ctx, ctx.owner, 1)
   },
-  ai: { value: 5, tags: ['defense', 'draw'] },
+  ai: { value: 5, tags: ['repair', 'defense', 'draw'] },
   art: {
     subject:
       'Guard of the Ancestors: a towering tower shield standing alone, against a starry sky, swirling around the center, lime green accents, mystic healer style'

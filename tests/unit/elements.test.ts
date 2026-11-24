@@ -88,14 +88,14 @@ describe('elements of damage', () => {
     const state = testMatch()
 
     place(state, 'b', 'test-shield', 0)
-    state.players.b.hero.armor = 10
+    state.players.b.hero.armor = { card: { uid: 901, cardId: 'test-plate' }, reduction: 3, durability: 2 }
     hit(state, { player: 'b', slot: 0 }, 4, 'shadow')
     hit(state, HERO_B, 6, 'shadow')
 
     expect(state.players.b.allies[0]!.health).toBe(6)
     expect(state.players.b.allies[0]!.shield).toBe(true)
     expect(state.players.b.hero.health).toBe(44)
-    expect(state.players.b.hero.armor).toBe(10)
+    expect(state.players.b.hero.armor?.durability).toBe(2)
   })
 
   it('light heals the dealer and doubles against undead', () => {
@@ -124,13 +124,14 @@ describe('elements of damage', () => {
     expect(state.players.b.chronos).toBe(1)
   })
 
-  it('acid poisons and breaks one more armor point', () => {
+  it('acid poisons and takes one more durability from the armor', () => {
     const state = testMatch()
 
-    state.players.b.hero.armor = 10
+    state.players.b.hero.armor = { card: { uid: 901, cardId: 'test-plate' }, reduction: 3, durability: 3 }
     hit(state, HERO_B, 4, 'acid')
 
-    expect(state.players.b.hero.armor).toBe(5)
+    expect(state.players.b.hero.health).toBe(49)
+    expect(state.players.b.hero.armor?.durability).toBe(1)
     expect(state.players.b.hero.poison).toBe(1)
   })
 

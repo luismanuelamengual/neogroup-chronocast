@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffTribe, gainArmor } from '@/app/(protected)/(engine)/effects'
+import { buffTribe, healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'omnigears-gyrocopter',
   type: 'ally',
   name: "Omnigear's Gyrocopter",
-  text: 'When it enters: your other Skyships gain +2 attack and +2 health. At the start of each phase: your hero gains 2 armor.',
+  text: 'When it enters: your other Skyships gain +2 attack and +2 health. At the start of each phase: your hero heals 2.',
   faction: 'clockwork',
   restriction: { kind: 'hero', heroId: 'omnigear-prime' },
   rarity: 'legendary',
@@ -20,7 +20,7 @@ export default defineCard({
     buffTribe(ctx, ctx.owner, 'skyship', 2, 2, true)
   },
   onPhaseStart(ctx) {
-    gainArmor(ctx, ctx.owner, 2)
+    healHero(ctx, 2)
   },
   ai: { value: 7, tags: ['buff', 'defense', 'tribe'] },
   art: {

@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { gainArmor } from '@/app/(protected)/(engine)/effects'
+import { healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'augur-of-the-laurel',
   type: 'ally',
   name: 'Augur of the Laurel',
-  text: 'At the start of each phase: your hero gains 2 armor.',
+  text: 'At the start of each phase: your hero heals 2.',
   faction: 'bronze',
   restriction: { kind: 'faction', faction: 'bronze' },
   rarity: 'common',
@@ -17,7 +17,7 @@ export default defineCard({
   attack: 1,
   health: 7,
   onPhaseStart(ctx) {
-    gainArmor(ctx, ctx.owner, 2)
+    healHero(ctx, 2)
   },
   ai: { value: 2, tags: ['defense'] },
   art: {

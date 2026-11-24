@@ -57,10 +57,6 @@ export function buffThisPhase(ctx: EffectContext, unit: Unit, attack: number): v
   ctx.engine.tempBuff(unit.uid, attack)
 }
 
-export function gainArmor(ctx: EffectContext, player: PlayerId, amount: number): void {
-  ctx.engine.player(player).hero.armor += amount
-}
-
 export function gainChronos(ctx: EffectContext, player: PlayerId, amount: number): void {
   ctx.engine.gainChronos(player, amount)
 }
@@ -387,7 +383,7 @@ export function destroyWeapon(ctx: EffectContext, player: PlayerId): boolean {
   return ctx.engine.destroyWeapon(player)
 }
 
-/** Takes away all the armor of a player's hero. False when it has none. */
+/** Destroys the armor of a player's hero. False when it has none. */
 export function destroyArmor(ctx: EffectContext, player: PlayerId): boolean {
   return ctx.engine.destroyArmor(player)
 }
@@ -397,9 +393,19 @@ export function wearWeapon(ctx: EffectContext, player: PlayerId, amount: number)
   ctx.engine.wearWeapon(player, amount)
 }
 
-/** A player's hero loses armor points (its armor card breaks at 0). */
+/** A player's armor loses durability (it breaks at 0). */
 export function wearArmor(ctx: EffectContext, player: PlayerId, amount: number): void {
   ctx.engine.wearArmor(player, amount)
+}
+
+/** A player's weapon gains durability. False when it has none. */
+export function repairWeapon(ctx: EffectContext, player: PlayerId, amount: number): boolean {
+  return ctx.engine.repairGear(player, 'weapon', amount)
+}
+
+/** A player's armor gains durability. False when it has none. */
+export function repairArmor(ctx: EffectContext, player: PlayerId, amount: number): boolean {
+  return ctx.engine.repairGear(player, 'armor', amount)
 }
 
 /** Destroys an artifact of a player (the most expensive by default). False when it has none. */

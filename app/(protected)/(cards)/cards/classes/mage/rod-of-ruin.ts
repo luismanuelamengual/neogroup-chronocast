@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { gainArmor } from '@/app/(protected)/(engine)/effects'
+import { healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'rod-of-ruin',
   type: 'weapon',
   name: 'Rod of Ruin',
-  text: 'When it is equipped: your hero gains 7 armor.',
+  text: 'When it is equipped: your hero heals 7.',
   flavor: 'Everything it touches gets older.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
@@ -15,7 +15,7 @@ export default defineCard({
   attack: 6,
   durability: 4,
   onPlay(ctx) {
-    gainArmor(ctx, ctx.owner, 7)
+    healHero(ctx, 7)
   },
   ai: { value: 5 },
   art: {

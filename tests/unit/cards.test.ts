@@ -7,6 +7,7 @@ import { PRICE_RANGES } from '@/app/(protected)/(cards)/data/rarities'
 import { STARTER_HERO_IDS, starterDeck } from '@/app/(protected)/(cards)/data/starters'
 import { ALL_CARDS, CARDS, HEROES } from '@/app/(protected)/(cards)/utils/catalog'
 import { cardProblems } from '@/app/(protected)/(cards)/utils/defineCard'
+import { HERO_ABILITY_MIN_COST } from '@/app/(protected)/(engine)/data/rules'
 import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition'
 import { MatchState } from '@/app/(protected)/(engine)/models/MatchState'
 import { emptyTimeline, PlannedAction, Timeline } from '@/app/(protected)/(engine)/models/PlannedAction'
@@ -64,6 +65,13 @@ describe('the card catalog', () => {
     }
   })
 
+  it("every hero's ability costs at least 3 energy, so it can't be used every phase", () => {
+    for (const hero of ALL_CARDS.filter((card) => card.type === 'hero')) {
+      expect(hero.ability, hero.id).toBeDefined()
+      expect(hero.ability!.cost, hero.id).toBeGreaterThanOrEqual(HERO_ABILITY_MIN_COST)
+    }
+  })
+
   it('every card that can be bought has a price within its rarity range', () => {
     for (const card of CARDS.filter((candidate) => candidate.type !== 'hero' && !candidate.reward)) {
       const { min, max } = PRICE_RANGES[card.rarity]
@@ -96,7 +104,9 @@ describe('the card catalog', () => {
       } else if (card.type === 'weapon') {
         expect(card.attack! * card.durability!, card.id).toBeLessThanOrEqual(14 * Math.max(card.cost, 1) + 2)
       } else if (card.type === 'armor') {
-        expect(card.armor, card.id).toBeLessThanOrEqual(9 * Math.max(card.cost, 1))
+        expect(card.armor, card.id).toBeLessThanOrEqual(4)
+        expect(card.durability, card.id).toBeGreaterThanOrEqual(2)
+        expect(card.armor! * card.durability!, card.id).toBeLessThanOrEqual(9 * Math.max(card.cost, 1) + 2)
       }
     }
   })

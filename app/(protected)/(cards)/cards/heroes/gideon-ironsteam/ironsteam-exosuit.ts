@@ -12,7 +12,8 @@ export default defineCard({
   rarity: 'legendary',
   cost: 5,
   keywords: ['unique'],
-  armor: 16,
+  armor: 4,
+  durability: 4,
   onPhaseStart(ctx) {
     gainChronos(ctx, ctx.owner, 1)
   },

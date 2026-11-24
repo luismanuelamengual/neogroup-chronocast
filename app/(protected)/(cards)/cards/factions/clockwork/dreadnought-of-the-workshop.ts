@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { gainArmor } from '@/app/(protected)/(engine)/effects'
+import { healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'dreadnought-of-the-workshop',
   type: 'ally',
   name: 'Dreadnought of the Workshop',
-  text: 'At the start of each phase: your hero gains 2 armor.',
+  text: 'At the start of each phase: your hero heals 2.',
   faction: 'clockwork',
   restriction: { kind: 'faction', faction: 'clockwork' },
   rarity: 'uncommon',
@@ -16,7 +16,7 @@ export default defineCard({
   attack: 6,
   health: 11,
   onPhaseStart(ctx) {
-    gainArmor(ctx, ctx.owner, 2)
+    healHero(ctx, 2)
   },
   ai: { value: 5, tags: ['defense'] },
   art: {

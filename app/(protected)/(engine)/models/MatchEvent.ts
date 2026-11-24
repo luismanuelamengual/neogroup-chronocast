@@ -57,6 +57,7 @@ export type MatchEvent =
   | { type: 'artifactSpent'; player: PlayerId; cardId: string }
   | { type: 'gearDestroyed'; player: PlayerId; cardId: string; kind: GearKind }
   | { type: 'gearWorn'; player: PlayerId; kind: 'weapon' | 'armor'; amount: number }
+  | { type: 'gearRepaired'; player: PlayerId; kind: 'weapon' | 'armor'; amount: number }
   | { type: 'location'; player: PlayerId; cardId: string }
   | { type: 'trapSet'; player: PlayerId }
   | { type: 'trapTriggered'; player: PlayerId; cardId: string }

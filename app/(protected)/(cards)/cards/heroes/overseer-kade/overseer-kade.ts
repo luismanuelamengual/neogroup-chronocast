@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { gainArmor, stunAt } from '@/app/(protected)/(engine)/effects'
+import { alliesOf, healHero, stun } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'overseer-kade',
   type: 'hero',
   name: 'Overseer Kade',
-  text: 'Lockdown (4): stun an enemy ally for two phases. At the start of each phase, your hero gains 2 armor.',
+  text: 'Lockdown (5): stun every enemy ally. At the start of each phase, your hero heals 2.',
   flavor: 'He sees every camera in the megacity. All at once.',
   faction: 'neon',
   heroClass: 'warrior',
@@ -15,15 +15,17 @@ export default defineCard({
   health: 63,
   ability: {
     name: 'Lockdown',
-    text: 'Stun an enemy ally for two phases.',
-    cost: 4,
-    targets: ['enemyAlly'],
+    text: 'Stun every enemy ally.',
+    cost: 5,
+    ai: { tags: ['removal'] },
     activate(ctx) {
-      stunAt(ctx, ctx.targets[0], 1)
+      for (const unit of alliesOf(ctx, ctx.opponent)) {
+        stun(ctx, unit)
+      }
     }
   },
   onPhaseStart(ctx) {
-    gainArmor(ctx, ctx.owner, 2)
+    healHero(ctx, 2)
   },
   ai: { value: 0 },
   art: {

@@ -94,7 +94,7 @@ export function planTimeline(state: MatchState, player: PlayerId, style: PlanSty
   let energy = side.energy ?? 0
   let freeSlots = side.allies.filter((unit) => !unit).length
   let hasWeapon = !!side.hero.weapon
-  let hasArmor = side.hero.armor > 0
+  let hasArmor = !!side.hero.armor
   let support = side.traps.length + (side.artifacts ?? []).length
 
   for (const { card, definition } of playable) {
@@ -150,7 +150,13 @@ export function planTimeline(state: MatchState, player: PlayerId, style: PlanSty
   }
 
   // 3. Hero ability.
-  if (style.ability && heroAbility && heroAbility.cost <= energy && !side.hero.abilityUsedThisPhase) {
+  if (
+    style.ability &&
+    heroAbility &&
+    heroAbility.cost <= energy &&
+    !side.hero.abilityUsedThisPhase &&
+    worthCasting(state, player, heroAbility)
+  ) {
     const targets = chooseTargets(state, player, heroAbility.targets ?? [])
 
     if (targets && tryAdd({ kind: 'heroAbility', targets })) {
@@ -266,7 +272,12 @@ function pickSacrifice(hand: CardInstance[], capacity: number): CardInstance | n
 }
 
 /** Whether an ability or item would do something useful now. */
-function worthCasting(state: MatchState, player: PlayerId, card: CardDefinition): boolean {
+/** Whether a card or an ability is worth it now (its `ai.tags` tell what it needs to not be wasted). */
+function worthCasting(
+  state: MatchState,
+  player: PlayerId,
+  card: { targets?: TargetKind[]; ai?: { tags?: string[] } }
+): boolean {
   const side = state.players[player]
   const enemyAllies = state.players[opponentOf(player)].allies.filter(Boolean).length
   const tags = card.ai?.tags ?? []
@@ -275,10 +286,28 @@ function worthCasting(state: MatchState, player: PlayerId, card: CardDefinition)
     return side.hero.maxHealth - side.hero.health >= 15
   }
 
+  if (tags.includes('repair')) {
+    return !!side.hero.weapon || !!side.hero.armor
+  }
+
+  if (tags.includes('antiArmor')) {
+    return !!state.players[opponentOf(player)].hero.armor
+  }
+
   if (tags.includes('antiGear')) {
     const rival = state.players[opponentOf(player)]
 
-    return !!rival.hero.weapon || rival.hero.armor > 0 || (rival.artifacts ?? []).length > 0
+    return !!rival.hero.weapon || !!rival.hero.armor || (rival.artifacts ?? []).length > 0
+  }
+
+  if (tags.includes('revive')) {
+    const hasAlly = side.discard.some((candidate) => getCard(candidate.cardId).type === 'ally')
+
+    return hasAlly && side.allies.some((unit) => !unit)
+  }
+
+  if (tags.includes('buffAll')) {
+    return side.allies.filter(Boolean).length >= 2
   }
 
   if (!card.targets?.length && tags.includes('removal')) {

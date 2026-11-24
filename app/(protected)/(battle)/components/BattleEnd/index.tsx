@@ -16,6 +16,10 @@ interface BattleEndProps {
   reward?: PlayerReward | null
   onRematch: () => void
   onChangeHeroes: () => void
+  /** The text of the second button against the computer (default: change heroes). */
+  changeLabel?: string
+  /** A line under the rewards (a quick match: verifying, or no more gold today). */
+  rewardNote?: string | null
   onShowLog: () => void
 }
 
@@ -27,6 +31,8 @@ export default function BattleEnd({
   reward = null,
   onRematch,
   onChangeHeroes,
+  changeLabel,
+  rewardNote = null,
   onShowLog
 }: BattleEndProps) {
   const { t, locale } = useI18n()
@@ -52,6 +58,7 @@ export default function BattleEnd({
             {reward.firstWin && <span className="first">{t('battle.end.firstWin')}</span>}
           </div>
         )}
+        {rewardNote && <p className="battle-end__note">{rewardNote}</p>}
         <div className="battle-end__buttons">
           {online ? (
             <GameButton color="gold" onClick={onChangeHeroes}>
@@ -63,7 +70,7 @@ export default function BattleEnd({
                 {t('battle.end.rematch')}
               </GameButton>
               <GameButton color="cyan" onClick={onChangeHeroes}>
-                {t('battle.end.changeHeroes')}
+                {changeLabel ?? t('battle.end.changeHeroes')}
               </GameButton>
             </>
           )}

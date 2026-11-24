@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { gainArmor, heal, healAllAllies } from '@/app/(protected)/(engine)/effects'
+import { healAllAllies, healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'aldric-dawnkeeper',
   type: 'hero',
   name: 'Aldric Dawnkeeper',
-  text: 'Dawnlight (2): your hero heals 5 and your allies heal 3. At the end of each phase, your hero gains 2 armor.',
+  text: 'Dawnlight (4): your hero heals 12 and your allies heal 6. At the end of each phase, your hero heals 2.',
   flavor: 'Every night ends. He makes sure of it.',
   faction: 'arcane',
   heroClass: 'mystic',
@@ -15,15 +15,16 @@ export default defineCard({
   health: 60,
   ability: {
     name: 'Dawnlight',
-    text: 'Your hero heals 5 and your allies heal 3.',
-    cost: 2,
+    text: 'Your hero heals 12 and your allies heal 6.',
+    cost: 4,
+    ai: { tags: ['heal'] },
     activate(ctx) {
-      heal(ctx, { player: ctx.owner, slot: 'hero' }, 5)
-      healAllAllies(ctx, ctx.owner, 3)
+      healHero(ctx, 12)
+      healAllAllies(ctx, ctx.owner, 6)
     }
   },
   onPhaseEnd(ctx) {
-    gainArmor(ctx, ctx.owner, 2)
+    healHero(ctx, 2)
   },
   ai: { value: 0 },
   art: {

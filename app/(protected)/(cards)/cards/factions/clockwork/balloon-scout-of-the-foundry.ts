@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damage, gainArmor } from '@/app/(protected)/(engine)/effects'
+import { damage, healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'balloon-scout-of-the-foundry',
   type: 'ally',
   name: 'Balloon Scout of the Foundry',
-  text: 'When it enters: your hero gains 7 armor. Its ability is paid with energy (⚡).',
+  text: 'When it enters: your hero heals 7. Its ability is paid with energy (⚡).',
   faction: 'clockwork',
   restriction: { kind: 'faction', faction: 'clockwork' },
   rarity: 'rare',
@@ -27,7 +27,7 @@ export default defineCard({
     }
   },
   onEnter(ctx) {
-    gainArmor(ctx, ctx.owner, 7)
+    healHero(ctx, 7)
   },
   ai: { value: 7, tags: ['ability', 'defense', 'energy'] },
   art: {

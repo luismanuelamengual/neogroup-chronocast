@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { gainArmor } from '@/app/(protected)/(engine)/effects'
+import { healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'legate-varro',
   type: 'hero',
   name: 'Legate Varro',
-  text: 'Fortify (1): your hero gains 5 armor. Instant.',
+  text: 'Fortify (3): your hero heals 18. Instant.',
   flavor: 'He has held the line in more centuries than he can count.',
   faction: 'bronze',
   heroClass: 'warrior',
@@ -15,11 +15,12 @@ export default defineCard({
   health: 65,
   ability: {
     name: 'Fortify',
-    text: 'Your hero gains 5 armor.',
-    cost: 1,
+    text: 'Your hero heals 18.',
+    cost: 3,
     speed: 'instant',
+    ai: { tags: ['heal'] },
     activate(ctx) {
-      gainArmor(ctx, ctx.owner, 5)
+      healHero(ctx, 18)
     }
   },
   ai: { value: 0 },

@@ -5,7 +5,7 @@ export default defineCard({
   id: 'nyx-hollowsong',
   type: 'hero',
   name: 'Nyx Hollowsong',
-  text: 'Call the Fallen (2): a random ally of your discard pile returns to play. At the end of each phase, your hero heals 2.',
+  text: 'Call the Fallen (4): two random allies of your discard pile return to play. At the end of each phase, your hero heals 2.',
   flavor: 'Her song reaches the dead. They always come back to listen.',
   faction: 'void',
   heroClass: 'mystic',
@@ -15,9 +15,11 @@ export default defineCard({
   health: 55,
   ability: {
     name: 'Call the Fallen',
-    text: 'A random ally of your discard pile returns to play.',
-    cost: 2,
+    text: 'Two random allies of your discard pile return to play.',
+    cost: 4,
+    ai: { tags: ['revive'] },
     activate(ctx) {
+      reviveFromDiscard(ctx, ctx.owner)
       reviveFromDiscard(ctx, ctx.owner)
     }
   },

@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { gainArmor, summonCard } from '@/app/(protected)/(engine)/effects'
+import { healHero, summonCard } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'proud-gorgon',
   type: 'ally',
   name: 'Proud Gorgon',
-  text: 'When it enters: summon a Hoplite Conscript. When it attacks: your hero gains 2 armor.',
+  text: 'When it enters: summon a Hoplite Conscript. When it attacks: your hero heals 2.',
   faction: 'bronze',
   restriction: { kind: 'faction', faction: 'bronze' },
   rarity: 'exotic',
@@ -21,7 +21,7 @@ export default defineCard({
     summonCard(ctx, ctx.owner, 'hoplite-conscript')
   },
   onAttack(ctx) {
-    gainArmor(ctx, ctx.owner, 2)
+    healHero(ctx, 2)
   },
   ai: { value: 7, tags: ['defense', 'summon'] },
   art: {

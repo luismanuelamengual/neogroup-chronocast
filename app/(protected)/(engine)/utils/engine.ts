@@ -432,23 +432,21 @@ export class MatchEngine {
     const hero = this.player(player).hero
     const status = source?.status
     const element = source?.element
-    // Poison, burns and shadow damage go past the armor.
-    const absorbed = status || element === 'shadow' ? 0 : Math.min(hero.armor, amount)
+    // Poison, burns and shadow damage go past the armor (and don't wear it).
+    const armor = status || element === 'shadow' || amount <= 0 ? null : hero.armor
+    const absorbed = armor ? Math.min(armor.reduction, amount) : 0
     const rest = amount - absorbed
-
-    hero.armor -= absorbed
-
-    // Acid breaks one more armor point.
-    if (element === 'acid' && !status && hero.armor > 0) {
-      hero.armor--
-    }
 
     hero.health -= rest
     this.emit({ type: 'damage', target: { player, slot: 'hero' }, amount: rest, absorbed, status, element })
 
-    if (hero.armor <= 0 && hero.armorCard) {
-      this.player(player).discard.push(hero.armorCard)
-      hero.armorCard = null
+    if (armor) {
+      // Each hit takes 1 durability away; acid, 1 more.
+      armor.durability -= element === 'acid' ? 2 : 1
+
+      if (armor.durability <= 0) {
+        this.destroyArmor(player)
+      }
     }
 
     if (hero.health <= 0 && !hero.fallen) {
@@ -557,28 +555,18 @@ export class MatchEngine {
     return true
   }
 
-  /** Takes away all the hero's armor (its armor card goes to the discard pile). False when it has none. */
+  /** Destroys the hero's armor (to its discard pile). False when it has none. */
   destroyArmor(player: PlayerId): boolean {
-    const hero = this.player(player).hero
+    const side = this.player(player)
+    const armor = side.hero.armor
 
-    if (hero.armor <= 0 && !hero.armorCard) {
+    if (!armor) {
       return false
     }
 
-    const cardId = hero.armorCard?.cardId
-
-    hero.armor = 0
-
-    if (hero.armorCard) {
-      this.player(player).discard.push(hero.armorCard)
-      hero.armorCard = null
-    }
-
-    this.emit(
-      cardId
-        ? { type: 'gearDestroyed', player, cardId, kind: 'armor' }
-        : { type: 'gearWorn', player, kind: 'armor', amount: 0 }
-    )
+    side.hero.armor = null
+    side.discard.push(armor.card)
+    this.emit({ type: 'gearDestroyed', player, cardId: armor.card.cardId, kind: 'armor' })
 
     return true
   }
@@ -599,21 +587,34 @@ export class MatchEngine {
     }
   }
 
-  /** The hero loses armor points (its armor card breaks at 0). */
+  /** The hero's armor loses durability (it breaks at 0). */
   wearArmor(player: PlayerId, amount: number): void {
-    const hero = this.player(player).hero
-    const lost = Math.min(hero.armor, amount)
+    const armor = this.player(player).hero.armor
 
-    if (lost <= 0) {
+    if (!armor || amount <= 0) {
       return
     }
 
-    hero.armor -= lost
-    this.emit({ type: 'gearWorn', player, kind: 'armor', amount: lost })
+    armor.durability -= amount
+    this.emit({ type: 'gearWorn', player, kind: 'armor', amount })
 
-    if (hero.armor <= 0) {
+    if (armor.durability <= 0) {
       this.destroyArmor(player)
     }
+  }
+
+  /** The hero's weapon or armor gains durability. False when it has none. */
+  repairGear(player: PlayerId, kind: 'weapon' | 'armor', amount: number): boolean {
+    const gear = this.player(player).hero[kind]
+
+    if (!gear || amount <= 0) {
+      return false
+    }
+
+    gear.durability += amount
+    this.emit({ type: 'gearRepaired', player, kind, amount })
+
+    return true
   }
 
   /** Destroys an artifact of a player: the most expensive one, the cheapest or a random one. */
@@ -1010,8 +1011,8 @@ export class MatchEngine {
       cards.push(state.hero.weapon.card)
     }
 
-    if (state.hero.armorCard) {
-      cards.push(state.hero.armorCard)
+    if (state.hero.armor) {
+      cards.push(state.hero.armor.card)
     }
 
     if (state.location) {

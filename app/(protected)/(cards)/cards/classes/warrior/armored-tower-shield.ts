@@ -12,7 +12,8 @@ export default defineCard({
   rarity: 'legendary',
   price: 4400,
   cost: 2,
-  armor: 9,
+  armor: 2,
+  durability: 5,
   onPlay(ctx) {
     healAllAllies(ctx, ctx.owner, 2)
   },

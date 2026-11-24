@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damage, damageRandomAlly, heal } from '@/app/(protected)/(engine)/effects'
+import { damage, damageRandomAlly, healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'morgrath-lich-abbot',
   type: 'hero',
   name: 'Morgrath, the Lich Abbot',
-  text: 'Unholy Bolt (3): deal 6 shadow damage to an enemy slot and your hero heals 3. At the start of each phase, deal 3 shadow damage to a random enemy ally.',
+  text: 'Unholy Bolt (5): deal 12 shadow damage to an enemy slot and your hero heals 6. At the start of each phase, deal 3 shadow damage to a random enemy ally.',
   flavor: 'He prayed for eternal life. Something answered.',
   faction: 'arcane',
   heroClass: 'mage',
@@ -16,12 +16,12 @@ export default defineCard({
   health: 65,
   ability: {
     name: 'Unholy Bolt',
-    text: 'Deal 6 shadow damage to an enemy slot and your hero heals 3.',
-    cost: 3,
+    text: 'Deal 12 shadow damage to an enemy slot and your hero heals 6.',
+    cost: 5,
     targets: ['enemySlot'],
     activate(ctx) {
-      damage(ctx, ctx.targets[0], 6)
-      heal(ctx, { player: ctx.owner, slot: 'hero' }, 3)
+      damage(ctx, ctx.targets[0], 12)
+      healHero(ctx, 6)
     }
   },
   onPhaseStart(ctx) {

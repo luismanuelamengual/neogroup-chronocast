@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { gainArmor } from '@/app/(protected)/(engine)/effects'
+import { healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'aegis-of-rage',
   type: 'ability',
   name: 'Aegis of Rage',
-  text: 'Your hero gains 9 armor. Instant.',
+  text: 'Your hero heals 9. Instant.',
   flavor: 'The angrier the blow, the stronger the shield.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
@@ -14,7 +14,7 @@ export default defineCard({
   cost: 2,
   speed: 'instant',
   onPlay(ctx) {
-    gainArmor(ctx, ctx.owner, 9)
+    healHero(ctx, 9)
   },
   ai: { value: 2, tags: ['defense'] },
   art: {

@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { gainArmor } from '@/app/(protected)/(engine)/effects'
+import { healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'overclocked-piston-titan',
   type: 'ally',
   name: 'Overclocked Piston Titan',
-  text: 'At the start of each phase: your hero gains 2 armor.',
+  text: 'At the start of each phase: your hero heals 2.',
   faction: 'clockwork',
   restriction: { kind: 'faction', faction: 'clockwork' },
   rarity: 'common',
@@ -18,7 +18,7 @@ export default defineCard({
   attack: 4,
   health: 9,
   onPhaseStart(ctx) {
-    gainArmor(ctx, ctx.owner, 2)
+    healHero(ctx, 2)
   },
   ai: { value: 4, tags: ['defense'] },
   art: {

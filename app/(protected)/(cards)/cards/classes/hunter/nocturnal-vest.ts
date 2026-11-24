@@ -12,7 +12,8 @@ export default defineCard({
   rarity: 'rare',
   price: 510,
   cost: 2,
-  armor: 7,
+  armor: 2,
+  durability: 4,
   onPlay(ctx) {
     draw(ctx, ctx.owner, 1)
   },

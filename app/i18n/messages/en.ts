@@ -32,6 +32,7 @@ export const en: Messages = {
     privacy: 'Privacy policy',
     deleteAccount: 'Delete account',
     practice: 'Practice',
+    quickMatch: 'Quick match',
     welcome: 'Your hero',
     collection: 'Collection',
     decks: 'Decks',
@@ -237,6 +238,10 @@ export const en: Messages = {
       online: {
         title: 'Online match',
         text: 'Against another player: quick match, public or private rooms. It counts for Prestige.'
+      },
+      quick: {
+        title: 'Quick match',
+        text: 'Against the CPU with a random hero and deck: every match is different. Pays some gold, less than online.'
       }
     }
   },
@@ -349,6 +354,10 @@ export const en: Messages = {
       fast: 'Fast',
       normal: 'Normal',
       slow: 'Slow'
+    },
+    gearRules: {
+      armor: '🛡️ Each hit on your hero: -{reduction} damage. Breaks after {durability} hits.',
+      weapon: 'Breaks after {durability} attacks.'
     },
     typeLine: {
       hero: '{type} · {faction} {heroClass}',
@@ -495,6 +504,17 @@ export const en: Messages = {
       start: 'Start',
       back: 'Back'
     },
+    quick: {
+      title: 'Quick match',
+      text: 'Your active deck against a random CPU hero and deck.',
+      newRival: 'New rival',
+      back: 'Back',
+      play: 'Play',
+      dealing: 'Setting up the match…',
+      verifying: 'Checking the match to pay your gold…',
+      verifyFailed: 'The match could not be checked: no gold this time.',
+      capped: "You already earned today's quick match gold. Come back tomorrow!"
+    },
     cpu: 'CPU',
     phase: 'Phase {phase}',
     chronos: 'Chronos',
@@ -531,7 +551,7 @@ export const en: Messages = {
     },
     attached: {
       weapon: "Hero's weapon\n🗡️ {attack} attack · {durability} uses",
-      armor: "Hero's armor\n🛡️ {armor} points",
+      armor: "Hero's armor\n🛡️ -{reduction} damage per hit · {durability} hits",
       ally: 'Attached to the ally'
     },
     rivalHand: 'Rival hand',
@@ -636,7 +656,9 @@ export const en: Messages = {
       gearDestroyed_artifact: 'The artifact {card} of {player} is destroyed',
       gearDestroyed_trap: 'A trap of {player} is destroyed: {card}',
       weaponWorn: 'The weapon of {player} loses {amount} durability',
-      armorWorn: '{player} loses {amount} armor',
+      armorWorn: 'The armor of {player} loses {amount} durability',
+      weaponRepaired: 'The weapon of {player} gains {amount} durability',
+      armorRepaired: 'The armor of {player} gains {amount} durability',
       status_poison: '{target} is poisoned ({amount})',
       status_burn: '{target} catches fire ({amount} a phase)',
       status_freeze: '{target} is frozen',

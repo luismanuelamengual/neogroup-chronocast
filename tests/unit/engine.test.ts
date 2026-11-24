@@ -38,7 +38,7 @@ describe('createMatch', () => {
     for (const side of [state.players.a, state.players.b]) {
       expect(side.hero.health).toBe(50)
       expect(side.hero.weapon).toBeNull()
-      expect(side.hero.armor).toBe(0)
+      expect(side.hero.armor).toBeNull()
       expect(side.hand).toHaveLength(7)
       expect(side.deck).toHaveLength(32)
       expect(side.allies.every((ally) => ally === null)).toBe(true)
@@ -603,22 +603,23 @@ describe('the hero', () => {
     expect(fails(events)).toEqual(['a:0:noWeapon'])
   })
 
-  it('armor absorbs damage before health and is discarded when used up', () => {
+  it('armor takes its reduction away from each hit and breaks after its durability in hits', () => {
     const state = richMatch()
-    const plate = give(state, 'a', 'test-plate')
+    const plate = give(state, 'a', 'test-plate') // -3 per hit, 2 hits
     const soldier = place(state, 'b', 'test-cleaver', 0) // attack 10
     const strike = { kind: 'allyAttack', allyUid: soldier.uid, target: HERO_A } as const
     let next = run(state, timeline({ kind: 'play', cardUid: plate.uid }), timeline({ kind: 'wait' }, strike)).state
 
-    expect(next.players.a.hero.armor).toBe(10)
-    expect(next.players.a.hero.health).toBe(50)
+    expect(next.players.a.hero.armor?.durability).toBe(1)
+    expect(next.players.a.hero.health).toBe(43)
 
-    next.players.b.allies[0]!.attack = 15
+    next.players.b.allies[0]!.attack = 2
     next = run(next, emptyTimeline(), timeline(strike)).state
 
-    expect(next.players.a.hero.armor).toBe(0)
-    expect(next.players.a.hero.armorCard).toBeNull()
-    expect(next.players.a.hero.health).toBe(45)
+    // A hit smaller than the reduction does nothing, but it still wears the armor.
+    expect(next.players.a.hero.armor).toBeNull()
+    expect(next.players.a.discard.map((card) => card.cardId)).toContain('test-plate')
+    expect(next.players.a.hero.health).toBe(43)
   })
 
   it('abilities check their targets when they resolve', () => {
@@ -796,7 +797,7 @@ describe('energy', () => {
     const state = richMatch()
 
     state.players.a.hero.cardId = 'test-shaman'
-    state.players.a.energy = 2
+    state.players.a.energy = 3
 
     const { state: next, events } = run(
       state,
@@ -805,13 +806,13 @@ describe('energy', () => {
 
     expect(fails(events)).toEqual([])
     expect(next.players.b.hero.health).toBe(45)
-    // 2 - 2 spent + 1 of the new phase; the Chronos were not touched.
+    // 3 - 3 spent + 1 of the new phase; the Chronos were not touched.
     expect(next.players.a.energy).toBe(1)
 
     const poor = richMatch()
 
     poor.players.a.hero.cardId = 'test-shaman'
-    poor.players.a.energy = 1
+    poor.players.a.energy = 2
 
     expect(
       fails(run(poor, timeline({ kind: 'heroAbility', targets: [{ player: 'b', slot: 'hero' }] })).events)
@@ -844,7 +845,7 @@ describe('status effects', () => {
 
     engine.afflict({ player: 'b', slot: 0 }, 'poison', 3)
     engine.afflict({ player: 'b', slot: 'hero' }, 'poison', 2)
-    state.players.b.hero.armor = 10
+    state.players.b.hero.armor = { card: { uid: 901, cardId: 'test-plate' }, reduction: 3, durability: 2 }
 
     const first = run(state).state
     const unit = first.players.b.allies[0]!
@@ -854,7 +855,7 @@ describe('status effects', () => {
     expect(unit.shield).toBe(true)
     expect(unit.poison).toBe(2)
     expect(first.players.b.hero.health).toBe(48)
-    expect(first.players.b.hero.armor).toBe(10)
+    expect(first.players.b.hero.armor?.durability).toBe(2)
 
     expect(run(first).state.players.b.allies[0]!.health).toBe(5)
   })
@@ -973,22 +974,36 @@ describe("breaking the rival's gear", () => {
     const hero = state.players.b.hero
 
     hero.weapon = { card: { uid: 900, cardId: 'test-sword' }, attack: 10, durability: 3 }
-    hero.armor = 20
-    hero.armorCard = { uid: 901, cardId: 'test-plate' }
+    hero.armor = { card: { uid: 901, cardId: 'test-plate' }, reduction: 3, durability: 4 }
 
     engine.wearWeapon('b', 2)
-    engine.wearArmor('b', 15)
+    engine.wearArmor('b', 3)
 
     expect(hero.weapon?.durability).toBe(1)
-    expect(hero.armor).toBe(5)
+    expect(hero.armor?.durability).toBe(1)
 
     engine.wearWeapon('b', 1)
-    engine.wearArmor('b', 9)
+    engine.wearArmor('b', 1)
 
     expect(hero.weapon).toBeNull()
-    expect(hero.armor).toBe(0)
-    expect(hero.armorCard).toBeNull()
+    expect(hero.armor).toBeNull()
     expect(state.players.b.discard.map((card) => card.cardId)).toEqual(['test-sword', 'test-plate'])
+  })
+
+  it('repairs weapons and armor (nothing without them)', () => {
+    const state = testMatch()
+    const engine = new MatchEngine(state)
+    const hero = state.players.b.hero
+
+    expect(engine.repairGear('b', 'armor', 2)).toBe(false)
+
+    hero.weapon = { card: { uid: 900, cardId: 'test-sword' }, attack: 10, durability: 1 }
+    hero.armor = { card: { uid: 901, cardId: 'test-plate' }, reduction: 3, durability: 1 }
+
+    expect(engine.repairGear('b', 'weapon', 2)).toBe(true)
+    expect(engine.repairGear('b', 'armor', 3)).toBe(true)
+    expect(hero.weapon?.durability).toBe(3)
+    expect(hero.armor?.durability).toBe(4)
   })
 
   it('destroys the most expensive artifact and a random trap', () => {

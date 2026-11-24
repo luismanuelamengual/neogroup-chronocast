@@ -1,4 +1,4 @@
-// Play: the game modes as two big illustrated cards, side by side (phones in landscape first).
+// Play: the game modes as three big illustrated cards, side by side (phones in landscape first).
 .play-menu {
   position: relative;
   display: flex;
@@ -29,9 +29,9 @@
   &__modes {
     display: grid;
     flex: 1;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 18px;
-    width: min(100%, 860px);
+    width: min(100%, 1080px);
     max-height: 440px;
     margin: auto;
   }
@@ -53,7 +53,7 @@
     }
 
     &__mode.menu-section.menu-section .banner {
-      font-size: 1.35rem;
+      font-size: 1.2rem;
     }
   }
 
