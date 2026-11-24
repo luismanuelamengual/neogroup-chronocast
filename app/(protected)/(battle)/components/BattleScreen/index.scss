@@ -279,65 +279,84 @@
 
   // ─── Badges over the cards ──────────────────────────────────────────────
 
+  // The live attack and health sit right over the card's own circles, centered on them and at
+  // least as big, so they hide them: the circles of a CardView 220px wide are 34px, their
+  // centers (as shares of the card's width and height) are below. --mini-w is the card's width.
   &__badge {
+    --size: max(17px, calc(var(--mini-w) * 34 / 220));
+    --cx: 0.1045;
+    --cy: 0.0682;
+
     position: absolute;
-    bottom: -3px;
+    bottom: calc(var(--mini-w) * 1.4 * var(--cy) - var(--size) / 2);
+    left: calc(var(--mini-w) * var(--cx) - var(--size) / 2);
     z-index: 2;
     display: grid;
     place-items: center;
-    min-width: 17px;
-    height: 17px;
-    padding: 0 3px;
+    width: var(--size);
+    height: var(--size);
+    padding: 0;
     border: 2px solid var(--color-outline);
     border-radius: 999px;
     color: white;
     font-family: var(--font-display);
     font-size: 10px;
     line-height: 1;
+    white-space: nowrap;
 
     &.attack {
-      left: -3px;
       background-color: #f0a020;
     }
 
     &.health {
-      right: -3px;
+      --cx: 0.8955;
+
       background-color: #e53950;
     }
 
+    &.big {
+      --size: max(24px, calc(var(--mini-w) * 34 / 220));
+      --cy: 0.0714;
+
+      font-size: 14px;
+
+      &.health {
+        --cx: 0.8906;
+      }
+    }
+
+    // The hero's armor, on its top right corner.
     &.armor {
       top: -3px;
       right: -3px;
       bottom: auto;
+      left: auto;
+      width: auto;
+      min-width: var(--size);
+      padding: 0 3px;
       border-radius: 8px 8px 50% 50%;
       background-color: #7a8699;
     }
 
     // Hits (armor) or attacks (weapon) left before the gear breaks: a small square
-    // next to its main number.
+    // next to its main number (above the weapon's attack, under the armor).
     &.durability {
-      min-width: 16px;
-      height: 16px;
+      --size: 16px;
+
       border-radius: 5px;
       background-color: #5d5878;
       font-size: 10px;
 
       &.weapon {
-        bottom: 22px;
-        left: -3px;
+        bottom: calc(var(--mini-w) * 1.4 * 0.0714 + max(24px, calc(var(--mini-w) * 34 / 220)) / 2 + 2px);
       }
 
       &.armor-durability {
         top: 22px;
         right: -3px;
         bottom: auto;
+        left: auto;
       }
-    }
-
-    &.big {
-      min-width: 24px;
-      height: 24px;
-      font-size: 14px;
     }
 
     &.boosted {

@@ -2,7 +2,7 @@
 
 import './index.scss'
 import classNames from 'classnames'
-import { ReactNode } from 'react'
+import { CSSProperties, ReactNode } from 'react'
 import CardView from '@/app/(protected)/(cards)/components/CardView'
 import { CardBack } from '@/app/(protected)/(cards)/components/FlipCard'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
@@ -26,7 +26,10 @@ interface MiniCardProps {
  */
 export default function MiniCard({ cardId, width, className, children }: MiniCardProps) {
   return (
-    <span className={classNames('mini-card', className)} style={{ width, height: width * 1.4 }}>
+    <span
+      className={classNames('mini-card', className)}
+      style={{ width, height: width * 1.4, '--mini-w': `${width}px` } as CSSProperties}
+    >
       {cardId ? (
         <span className="mini-card__zoom" style={{ zoom: width / CARD_WIDTH }}>
           <CardView card={getCard(cardId)} />

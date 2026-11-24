@@ -40,6 +40,7 @@ import { PlannedAction } from '@/app/(protected)/(engine)/models/PlannedAction'
 import { PlayerId } from '@/app/(protected)/(engine)/models/PlayerId'
 import { SlotRef } from '@/app/(protected)/(engine)/models/SlotRef'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
+import { useCardName } from '@/app/i18n/cards/useCardName'
 import { useT } from '@/app/i18n/I18nProvider'
 import type { MessageKey } from '@/app/i18n/messages'
 
@@ -140,6 +141,7 @@ export default function BattleScreen({
   renderEnd?: (state: MatchState) => ReactNode
 }) {
   const t = useT()
+  const cardName = useCardName()
   const store = useBattleStore()
   const { state, view, timeline, selection, mode, frame, failures, log, fast, deck, rivalHeroId, me, rival } = store
   const online = !!store.online
@@ -353,8 +355,15 @@ export default function BattleScreen({
 
   // ─── Tapping the board ────────────────────────────────────────────────────
 
-  /** The poison and burn of a hero or an ally, for the note under its big card. */
-  const statusNotes = (subject: Afflictions) => {
+  /** The location in play on a side: its effects reach the cards of that side. */
+  const locationNote = (player: PlayerId) => {
+    const location = board.players[player].location
+
+    return location ? [t('battle.statusNotes.location', { card: cardName(location.cardId) })] : []
+  }
+
+  /** Poison, burn and freeze, on a hero or an ally. */
+  const afflictionNotes = (subject: Afflictions) => {
     const notes: string[] = []
 
     if (subject.poison) {
@@ -365,7 +374,152 @@ export default function BattleScreen({
       notes.push(t('battle.statusNotes.burn', { amount: subject.burn, phases: subject.burnPhases }))
     }
 
+    if ((subject.frozenUntilPhase ?? 0) >= board.phase) {
+      notes.push(t('battle.statusNotes.frozen', { until: until(subject.frozenUntilPhase!) }))
+    }
+
     return notes
+  }
+
+  /** Until when a status lasts, from the last phase it is on. */
+  const until = (lastPhase: number) =>
+    lastPhase > board.phase
+      ? t('battle.statusNotes.untilPhase', { phase: lastPhase })
+      : t('battle.statusNotes.untilEnd')
+
+  /** Everything going on with an ally: its stats, what it suffers, and why it can't act. */
+  const unitNote = (unit: Unit, player: PlayerId) => {
+    const definition = getCard(unit.cardId)
+    const frozen = (unit.frozenUntilPhase ?? 0) >= board.phase
+    const charge = unit.keywords.includes('charge')
+    const restrainer = (rule: 'disarms' | 'silences') =>
+      (unit.attachments ?? []).find((card) => getCard(card.cardId)[rule])
+    const disarmer = restrainer('disarms')
+    const silencer = restrainer('silences')
+    const notes = [
+      `⚔️ ${unit.attack + unit.tempAttack} · ❤️ ${unit.health}/${unit.maxHealth}`,
+      ...afflictionNotes(unit)
+    ]
+
+    if (unit.stunnedUntilPhase >= board.phase && !frozen) {
+      notes.push(t('battle.statusNotes.stunned', { until: until(unit.stunnedUntilPhase) }))
+    }
+
+    if (unit.enteredPhase === board.phase && !charge) {
+      notes.push(t('battle.statusNotes.notReady'))
+    }
+
+    if (disarmer) {
+      notes.push(t('battle.statusNotes.disarmed', { card: cardName(disarmer.cardId) }))
+    }
+
+    if (silencer) {
+      notes.push(t('battle.statusNotes.silenced', { card: cardName(silencer.cardId) }))
+    }
+
+    if (unit.abilityUsedThisPhase) {
+      notes.push(t('battle.statusNotes.abilityUsed'))
+    } else if (unit.attacksThisPhase >= (unit.keywords.includes('frenzy') ? 2 : 1)) {
+      notes.push(t('battle.statusNotes.attacked'))
+    }
+
+    if (unit.tempAttack) {
+      notes.push(t('battle.statusNotes.tempAttack', { amount: signed(unit.tempAttack) }))
+    }
+
+    if (definition.attack != null && unit.attack !== definition.attack) {
+      notes.push(
+        t('battle.statusNotes.attackChange', {
+          amount: signed(unit.attack - definition.attack),
+          base: definition.attack
+        })
+      )
+    }
+
+    if (definition.health != null && unit.maxHealth !== definition.health) {
+      notes.push(
+        t('battle.statusNotes.healthChange', {
+          amount: signed(unit.maxHealth - definition.health),
+          base: definition.health
+        })
+      )
+    }
+
+    const gained = unit.keywords.filter((keyword) => !(definition.keywords ?? []).includes(keyword))
+    const lost = (definition.keywords ?? []).filter((keyword) => !unit.keywords.includes(keyword))
+
+    if ((definition.thorns ?? 0) !== unit.thorns && unit.keywords.includes('thorns')) {
+      notes.push(t('battle.statusNotes.thornsChange', { amount: unit.thorns, base: definition.thorns ?? 0 }))
+    }
+
+    if (gained.length > 0) {
+      notes.push(
+        t('battle.statusNotes.gained', { keywords: gained.map((keyword) => t(`game.keywords.${keyword}`)).join(', ') })
+      )
+    }
+
+    if (lost.length > 0) {
+      notes.push(
+        t('battle.statusNotes.lost', { keywords: lost.map((keyword) => t(`game.keywords.${keyword}`)).join(', ') })
+      )
+    }
+
+    if (unit.attachments?.length) {
+      notes.push(
+        t('battle.statusNotes.attachments', {
+          cards: unit.attachments.map((card) => cardName(card.cardId)).join(', ')
+        })
+      )
+    }
+
+    notes.push(...locationNote(player))
+
+    return notes.join('\n')
+  }
+
+  /** Everything going on with a hero: health, gear, energy, what it suffers and what it already did. */
+  const heroNote = (player: PlayerId) => {
+    const hero = board.players[player].hero
+    const notes = [
+      `❤️ ${Math.max(0, hero.health)}/${hero.maxHealth} · ⚡ ${board.players[player].energy ?? 0}`,
+      ...afflictionNotes(hero)
+    ]
+
+    if (hero.weapon) {
+      notes.push(
+        t('battle.statusNotes.weapon', {
+          card: cardName(hero.weapon.card.cardId),
+          attack: hero.weapon.attack,
+          durability: hero.weapon.durability
+        })
+      )
+    }
+
+    if (hero.armor) {
+      notes.push(
+        t('battle.statusNotes.armor', {
+          card: cardName(hero.armor.card.cardId),
+          reduction: hero.armor.reduction,
+          durability: hero.armor.durability
+        })
+      )
+    }
+
+    if (hero.attackedThisPhase) {
+      notes.push(t('battle.statusNotes.heroAttacked'))
+    }
+
+    if (hero.abilityUsedThisPhase) {
+      notes.push(t('battle.statusNotes.heroAbilityUsed'))
+    }
+
+    if (hero.fallen) {
+      notes.push(t('battle.statusNotes.fallen'))
+    }
+
+    notes.push(...locationNote(player))
+
+    return notes.join('\n')
   }
 
   /** The button of an ability, with its cost in Chronos or in energy (a hero's is always energy). */
@@ -373,22 +527,6 @@ export default function BattleScreen({
     hero || ability.resource === 'energy'
       ? t('battle.buttons.abilityEnergy', { cost: ability.cost })
       : t('battle.buttons.ability', { cost: ability.cost })
-
-  const unitNote = (unit: Unit) => {
-    const parts = [`⚔️ ${unit.attack + unit.tempAttack} · ❤️ ${unit.health}/${unit.maxHealth}`]
-
-    parts.push(...statusNotes(unit))
-
-    if ((unit.frozenUntilPhase ?? 0) >= board.phase) {
-      parts.push(t('battle.frozen'))
-    } else if (unit.stunnedUntilPhase >= board.phase) {
-      parts.push(t('battle.stunned'))
-    } else if (unit.enteredPhase === board.phase && !unit.keywords.includes('charge')) {
-      parts.push(t('battle.notReady'))
-    }
-
-    return parts.join('\n')
-  }
 
   const onSlotClick = (ref: SlotRef) => {
     const highlight = highlightOf(ref)
@@ -492,7 +630,7 @@ export default function BattleScreen({
   } else if (spot?.kind === 'ally') {
     const unit = board.players[spot.player].allies.find((candidate) => candidate?.uid === spot.uid)
 
-    spotNote = unit ? unitNote(unit) : undefined
+    spotNote = unit ? unitNote(unit, spot.player) : undefined
 
     if (planning && unit && spot.player === me) {
       const ability = allyAbility(board, me, unit.uid)
@@ -533,11 +671,7 @@ export default function BattleScreen({
   } else if (spot?.kind === 'hero') {
     const hero = board.players[spot.player].hero
 
-    spotNote = [
-      `❤️ ${Math.max(0, hero.health)}/${hero.maxHealth}${hero.armor ? ` · 🛡️ -${hero.armor.reduction}` : ''} · ⚡ ${board.players[spot.player].energy ?? 0}`,
-      ...statusNotes(hero),
-      ...((hero.frozenUntilPhase ?? 0) >= board.phase ? [t('battle.frozen')] : [])
-    ].join('\n')
+    spotNote = heroNote(spot.player)
 
     if (planning && spot.player === me) {
       const ability = heroCard(board, me).ability
@@ -1102,4 +1236,9 @@ function allyAttachments(unit: Unit): AttachedCard[] {
 /** The cards attached to a card, as the cards under it in its stack: the first attached at the bottom. */
 function stackOf(cards: AttachedCard[]): StackCard[] {
   return cards.map((card) => ({ cardId: card.cardId, className: card.kind })).reverse()
+}
+
+/** A change in a number, with its sign (+2, -1). */
+function signed(amount: number): string {
+  return amount > 0 ? `+${amount}` : `${amount}`
 }

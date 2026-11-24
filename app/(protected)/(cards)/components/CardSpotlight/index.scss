@@ -31,10 +31,20 @@
     flex-direction: column;
     gap: 10px;
     width: 200px;
+    // A long note (every status of a card on the board) scrolls; the buttons stay in view.
+    max-height: calc(100dvh - 24px);
     cursor: default;
+
+    > * {
+      flex: none;
+    }
   }
 
   &__note {
+    flex: 0 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
     padding: 8px 10px;
     border: 2px solid rgba(255, 255, 255, 0.35);
     border-radius: 12px;
@@ -123,5 +133,17 @@
   to {
     opacity: 1;
     transform: none;
+  }
+}
+
+// Phones in landscape: the note gets more width and a smaller type, to fit beside the card.
+@media (max-height: 560px) {
+  .card-spotlight__actions:has(.card-spotlight__note) {
+    width: 250px;
+  }
+
+  .card-spotlight__note {
+    font-size: 0.72rem;
+    line-height: 1.3;
   }
 }
