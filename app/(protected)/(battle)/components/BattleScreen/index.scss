@@ -114,7 +114,7 @@
     &.theirs {
       grid-area: theirs;
       grid-template-areas:
-        'hero support piles'
+        'hero support counters'
         'hero allies piles';
       grid-template-rows: 35% 65%;
       margin-bottom: 2px;
@@ -125,7 +125,7 @@
       grid-area: mine;
       grid-template-areas:
         'hero allies piles'
-        'hero support piles';
+        'hero support counters';
       grid-template-rows: 65% 35%;
       margin-top: 2px;
       background-color: rgba(232, 244, 255, 0.55);
@@ -218,23 +218,6 @@
     }
   }
 
-  // The card in front of a stack of attached cards.
-  &__stack-front {
-    position: relative;
-    display: block;
-  }
-
-  &__attached {
-    position: absolute;
-    left: 0;
-    pointer-events: none;
-
-    .mini-card {
-      filter: brightness(0.92);
-      box-shadow: 0 1px 4px rgba(43, 35, 80, 0.35);
-    }
-  }
-
   &__attached-badge {
     position: absolute;
     top: 1px;
@@ -293,7 +276,6 @@
       cursor: default;
     }
   }
-
 
   // ─── Badges over the cards ──────────────────────────────────────────────
 
@@ -443,18 +425,20 @@
     transform: translateX(-50%);
   }
 
+  // The deck and the graveyard, at the end of the allies row and as big as an ally.
   &__piles {
     grid-area: piles;
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     gap: 6px;
-    height: 100%;
+    min-height: 0;
   }
 
   &__pile {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     padding: 0;
     border: 0;
     background: none;
@@ -467,8 +451,49 @@
     }
   }
 
+  // The name of the pile, along the bottom of its front card.
+  &__pile-label {
+    position: absolute;
+    right: 2px;
+    bottom: 2px;
+    left: 2px;
+    z-index: 2;
+    overflow: hidden;
+    padding: 1px 0;
+    border-radius: 4px;
+    background-color: rgba(43, 35, 80, 0.75);
+    color: white;
+    font-size: 6px;
+    font-weight: 800;
+    line-height: 1.2;
+    text-align: center;
+    text-overflow: clip;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  // A pile of cards: the bottom one in the original place, the rest going up and to the left.
+  // Room is kept above and to the left for it to grow, and the card is centered like an ally's
+  // (whose margin, toward the middle of the board, is the peek of what is attached to it).
+  &__pile-stack {
+    margin-top: var(--pile-depth);
+    margin-left: var(--pile-depth);
+  }
+
+  &__side.mine &__pile-stack {
+    margin-bottom: calc(var(--pile-depth) - var(--pile-w) * 1.4 * var(--peek));
+  }
+
+  &__side.theirs &__pile-stack {
+    margin-bottom: calc(var(--pile-depth) + var(--pile-w) * 1.4 * var(--peek));
+  }
+
   &__pile-empty {
+    position: relative;
+    box-sizing: border-box;
     display: block;
+    width: var(--pile-w);
+    height: calc(var(--pile-w) * 1.4);
     border: 2px dashed rgba(43, 35, 80, 0.18);
     border-radius: 8px;
     background-color: rgba(255, 255, 255, 0.4);
@@ -490,34 +515,108 @@
     transform: translate(-50%, -50%);
   }
 
-  &__chronos {
+  // The Chronos and the energy: two gauges at the end of the supports row, on the right.
+  &__counters {
+    grid-area: counters;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 2px;
-    border: 2px solid var(--color-chronos);
-    border-radius: 8px;
-    background: linear-gradient(180deg, #f3edff, #e2d6ff);
-    color: var(--color-chronos);
+    justify-content: flex-end;
+    gap: 6px;
+    min-height: 0;
+  }
 
-    strong {
-      font-family: var(--font-display);
-      font-size: 12px;
-      font-weight: normal;
+  &__counter {
+    --tone: var(--color-chronos);
+    --tone-soft: #efe7ff;
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: min(34px, calc(var(--support-w) * 1.1));
+    padding-left: calc(min(34px, calc(var(--support-w) * 1.1)) * 0.5);
+    margin-left: calc(min(34px, calc(var(--support-w) * 1.1)) * 0.5);
+
+    &.energy {
+      --tone: #e09600;
+      --tone-soft: #fff4cf;
     }
   }
 
-  // The hero's energy, next to the Chronos.
-  &__chronos.energy {
-    border-color: #e0a100;
-    background: linear-gradient(180deg, #fff8dc, #ffe89a);
-    color: #a06a00;
+  // The round icon, half over the left end of the gauge.
+  &__counter-icon {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: min(34px, calc(var(--support-w) * 1.1));
+    aspect-ratio: 1;
+    border: 2px solid white;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, color-mix(in srgb, var(--tone) 45%, white), var(--tone));
+    box-shadow:
+      0 0 0 1.5px var(--tone),
+      0 2px 6px color-mix(in srgb, var(--tone) 45%, transparent);
+    font-size: 14px;
+    line-height: 1;
+    transform: translate(-50%, -50%);
   }
 
-  &__chronos-glass {
-    font-size: 16px;
+  &__counter-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+    height: 100%;
+    min-width: 44px;
+    padding: 0 9px 0 calc(min(34px, calc(var(--support-w) * 1.1)) * 0.5 + 3px);
+    margin-left: calc(min(34px, calc(var(--support-w) * 1.1)) * -0.5);
+    border: 2px solid var(--tone);
+    border-radius: 999px 10px 10px 999px;
+    background: linear-gradient(180deg, white, var(--tone-soft));
+    box-shadow: inset 0 -2px 0 color-mix(in srgb, var(--tone) 18%, transparent);
+  }
+
+  &__counter-value {
+    color: var(--tone);
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: normal;
     line-height: 1;
+
+    small {
+      font-size: 10px;
+      opacity: 0.7;
+    }
+  }
+
+  &__counter-name {
+    color: color-mix(in srgb, var(--tone) 80%, black);
+    font-size: 7px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  // One pip for each Chronos of the phase, lit while it is left.
+  &__counter-pips {
+    display: flex;
+    gap: 2px;
+
+    i {
+      width: 5px;
+      height: 5px;
+      border: 1px solid var(--tone);
+      border-radius: 50%;
+      background-color: white;
+      transition: background-color 0.2s;
+
+      &.on {
+        background-color: var(--tone);
+      }
+    }
   }
 
   // ─── The timelines, on the right ────────────────────────────────────────
@@ -649,7 +748,9 @@
 
     &.aiming {
       z-index: 20 !important;
-      box-shadow: 0 0 0 3px white, 0 0 0 6px var(--color-violet);
+      box-shadow:
+        0 0 0 3px white,
+        0 0 0 6px var(--color-violet);
       transform: translateY(-10px);
     }
   }

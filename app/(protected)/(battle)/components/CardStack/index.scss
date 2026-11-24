@@ -1,0 +1,22 @@
+.card-stack {
+  position: relative;
+  display: block;
+  flex: none;
+  isolation: isolate;
+
+  // The cards under the front one: a bit darker, each with its edge showing.
+  &__under {
+    position: absolute;
+    pointer-events: none;
+
+    .mini-card {
+      filter: brightness(0.92);
+      box-shadow: 0 1px 3px rgba(43, 35, 80, 0.35);
+    }
+  }
+
+  &__front {
+    position: relative;
+    display: block;
+  }
+}

@@ -11,6 +11,7 @@ import AttackArrows from '@/app/(protected)/(battle)/components/AttackArrows'
 import BattleEnd from '@/app/(protected)/(battle)/components/BattleEnd'
 import BattleLog from '@/app/(protected)/(battle)/components/BattleLog'
 import BoardSlot, { SlotHighlight } from '@/app/(protected)/(battle)/components/BoardSlot'
+import CardStack, { STACK_DEPTH, type StackCard } from '@/app/(protected)/(battle)/components/CardStack'
 import MiniCard from '@/app/(protected)/(battle)/components/MiniCard'
 import MulliganOverlay from '@/app/(protected)/(battle)/components/MulliganOverlay'
 import TimelineBar from '@/app/(protected)/(battle)/components/TimelineBar'
@@ -49,8 +50,8 @@ const BANDS = { top: 0.075, side: 0.37 }
 const ALLIES_SHARE = 0.65
 /** Part of a card's height kept free around it for the cards attached behind it. */
 const PEEK = 0.06
-/** How far each card of a stack is shifted from the one behind it (px): just enough to show there are more. */
-const STACK_OFFSET = 2
+/** The most Chronos drawn as pips under the counter. */
+const MAX_PIPS = 10
 /** Width of a side that isn't cards: paddings, gaps, the row labels (px). */
 const SIDE_ROOM = 96
 /** Width of the column on the right with the timelines (px). */
@@ -91,13 +92,15 @@ function useMetrics() {
     const width = size.width - TIMELINE_WIDTH - 20
     const side = height * BANDS.side - 12
     // Room is kept above the allies for one attached card, and above the hero for two.
-    const allyFit = Math.max(20, (side * ALLIES_SHARE - 4) / (1.4 * (1 + PEEK)))
+    // The deck and the graveyard sit in that row too, at the same size, with their pile behind them.
+    const allyFit = Math.max(
+      20,
+      Math.min((side * ALLIES_SHARE - 4) / (1.4 * (1 + PEEK)), (side * ALLIES_SHARE - 4 - STACK_DEPTH) / 1.4)
+    )
     const heroFit = Math.max(30, (side - 4) / (1.4 * (1 + 2 * PEEK)))
-    // A side must fit its width: hero + 5 allies + 3 piles (a pile is about 0.735 of an ally).
-    const byWidth =
-      heroFit <= 1.7 * ((width - SIDE_ROOM - heroFit) / 7.2)
-        ? (width - SIDE_ROOM - heroFit) / 7.2
-        : (width - SIDE_ROOM) / 8.9
+    // A side must fit its width: hero + 5 allies + deck and graveyard (as big as an ally, with their piles).
+    const room = width - SIDE_ROOM - 2 * STACK_DEPTH
+    const byWidth = heroFit <= 1.7 * ((room - heroFit) / 7.5) ? (room - heroFit) / 7.5 : room / 9.2
     const ally = Math.min(allyFit, byWidth)
     const support = Math.min((side * (1 - ALLIES_SHARE) - 4) / 1.4, ally * 0.7)
 
@@ -105,7 +108,7 @@ function useMetrics() {
       ally,
       support,
       hero: Math.min(heroFit, ally * 1.7),
-      pile: support * 1.05,
+      pile: ally,
       hand: Math.min((height * 0.33) / 1.4, width / 7),
       rivalHand: Math.max(14, (height * BANDS.top - 6) / 1.4)
     }
@@ -649,11 +652,9 @@ export default function BattleScreen({
             onClick={() => onSlotClick(ref)}
           >
             {unit && (
-              <>
-                <Stacked cards={allyAttachments(unit)} width={metrics.ally}>
-                  <UnitCard unit={unit} width={metrics.ally} phase={board.phase} />
-                </Stacked>
-              </>
+              <CardStack under={stackOf(allyAttachments(unit))} width={metrics.ally}>
+                <UnitCard unit={unit} width={metrics.ally} phase={board.phase} />
+              </CardStack>
             )}
           </BoardSlot>
         )
@@ -683,7 +684,11 @@ export default function BattleScreen({
               disabled={!entry || entry.faceDown}
               onClick={() => entry && !entry.faceDown && inspect(entry.card.cardId)}
             >
-              {entry && <MiniCard cardId={entry.faceDown ? null : entry.card.cardId} width={metrics.support} />}
+              {entry && (
+                <CardStack width={metrics.support}>
+                  <MiniCard cardId={entry.faceDown ? null : entry.card.cardId} width={metrics.support} />
+                </CardStack>
+              )}
               {entry?.card.charges !== undefined && (
                 <span className="battle-screen__attached-badge">⏳{entry.card.charges}</span>
               )}
@@ -709,7 +714,7 @@ export default function BattleScreen({
         frameKey={frame.key}
         onClick={() => onSlotClick(ref)}
       >
-        <Stacked cards={heroAttachments(hero)} width={metrics.hero}>
+        <CardStack under={stackOf(heroAttachments(hero))} width={metrics.hero}>
           <MiniCard
             cardId={hero.cardId}
             width={metrics.hero}
@@ -730,39 +735,38 @@ export default function BattleScreen({
             )}
             <StatusBadges subject={hero} phase={board.phase} />
           </MiniCard>
-        </Stacked>
+        </CardStack>
       </BoardSlot>
     )
   }
 
+  /** The deck and the graveyard, in the allies row: as big as an ally, with their pile behind them. */
   const piles = (player: PlayerId) => {
     const side: PlayerState = board.players[player]
     const top = side.discard.at(-1)
-    const chronos = player === me ? (chronosLeft ?? 0) : side.chronos
+    const label = (zone: 'deck' | 'graveyard', count: number) => (
+      <>
+        <span className="battle-screen__count">{count}</span>
+        <span className="battle-screen__pile-label">{t(`battle.zones.${zone}`)}</span>
+      </>
+    )
 
     return (
       <div className="battle-screen__piles">
         <div className="battle-screen__pile" title={t('battle.zones.deck')}>
-          <MiniCard cardId={null} width={metrics.pile}>
-            <span className="battle-screen__count">{side.deck.length}</span>
-          </MiniCard>
-          <span className="battle-screen__zone-label">{t('battle.zones.deck')}</span>
-        </div>
-        <div className="battle-screen__pile" title={t('battle.zones.chronos')}>
-          <span className="battle-screen__chronos" style={{ width: metrics.pile, height: metrics.pile * 1.4 }}>
-            <span className="battle-screen__chronos-glass">⌛</span>
-            <strong>
-              {chronos}/{side.chronosCapacity}
-            </strong>
-          </span>
-          <span className="battle-screen__zone-label">{t('battle.zones.chronos')}</span>
-        </div>
-        <div className="battle-screen__pile" title={t('battle.zones.energy')}>
-          <span className="battle-screen__chronos energy" style={{ width: metrics.pile, height: metrics.pile * 1.4 }}>
-            <span className="battle-screen__chronos-glass">⚡</span>
-            <strong>{side.energy ?? 0}</strong>
-          </span>
-          <span className="battle-screen__zone-label">{t('battle.zones.energy')}</span>
+          <CardStack
+            className="battle-screen__pile-stack"
+            under={side.deck.slice(1).map(() => ({ cardId: null }))}
+            width={metrics.pile}
+          >
+            {side.deck.length > 0 ? (
+              <MiniCard cardId={null} width={metrics.pile}>
+                {label('deck', side.deck.length)}
+              </MiniCard>
+            ) : (
+              <span className="battle-screen__pile-empty">{label('deck', 0)}</span>
+            )}
+          </CardStack>
         </div>
         <button
           type="button"
@@ -771,15 +775,57 @@ export default function BattleScreen({
           title={t('battle.zones.graveyard')}
           onClick={() => top && inspect(top.cardId)}
         >
-          {top ? (
-            <MiniCard cardId={top.cardId} width={metrics.pile}>
-              <span className="battle-screen__count">{side.discard.length}</span>
-            </MiniCard>
-          ) : (
-            <span className="battle-screen__pile-empty" style={{ width: metrics.pile, height: metrics.pile * 1.4 }} />
-          )}
-          <span className="battle-screen__zone-label">{t('battle.zones.graveyard')}</span>
+          <CardStack
+            className="battle-screen__pile-stack"
+            under={side.discard.slice(0, -1).map((card) => ({ cardId: card.cardId }))}
+            width={metrics.pile}
+          >
+            {top ? (
+              <MiniCard cardId={top.cardId} width={metrics.pile}>
+                {label('graveyard', side.discard.length)}
+              </MiniCard>
+            ) : (
+              <span className="battle-screen__pile-empty">{label('graveyard', 0)}</span>
+            )}
+          </CardStack>
         </button>
+      </div>
+    )
+  }
+
+  /** The Chronos and the energy, in the supports row, on the right. */
+  const counters = (player: PlayerId) => {
+    const side: PlayerState = board.players[player]
+    const chronos = player === me ? (chronosLeft ?? 0) : side.chronos
+    const capacity = side.chronosCapacity
+
+    return (
+      <div className="battle-screen__counters">
+        <div className="battle-screen__counter chronos" title={t('battle.zones.chronos')}>
+          <span className="battle-screen__counter-icon" aria-hidden="true">
+            ⌛
+          </span>
+          <span className="battle-screen__counter-body">
+            <strong className="battle-screen__counter-value">
+              {chronos}
+              <small>/{capacity}</small>
+            </strong>
+            <span className="battle-screen__counter-pips" aria-hidden="true">
+              {Array.from({ length: Math.min(capacity, MAX_PIPS) }, (_, index) => (
+                <i key={index} className={classNames({ on: index < chronos })} />
+              ))}
+            </span>
+          </span>
+        </div>
+        <div className="battle-screen__counter energy" title={t('battle.zones.energy')}>
+          <span className="battle-screen__counter-icon" aria-hidden="true">
+            ⚡
+          </span>
+          <span className="battle-screen__counter-body">
+            <strong className="battle-screen__counter-value">{side.energy ?? 0}</strong>
+            <span className="battle-screen__counter-name">{t('battle.zones.energy')}</span>
+          </span>
+        </div>
       </div>
     )
   }
@@ -790,6 +836,7 @@ export default function BattleScreen({
       {supportRow(player)}
       {allyRow(player)}
       {piles(player)}
+      {counters(player)}
     </div>
   )
   const left = ACTIONS_PER_PHASE - timeline.length
@@ -798,6 +845,7 @@ export default function BattleScreen({
     '--support-w': `${metrics.support}px`,
     '--hero-w': `${metrics.hero}px`,
     '--pile-w': `${metrics.pile}px`,
+    '--pile-depth': `${STACK_DEPTH}px`,
     '--hand-w': `${metrics.hand}px`,
     '--peek': PEEK,
     '--slot': `${metrics.ally}px`,
@@ -1052,39 +1100,7 @@ function allyAttachments(unit: Unit): AttachedCard[] {
   return (unit.attachments ?? []).map((card) => ({ cardId: card.cardId, kind: 'ally' }))
 }
 
-/**
- * A card on the board with the cards attached to it, as a stack: the card at
- * the back stays in the slot's place and each one in front of it is shifted a
- * little up and to the left, just enough to show there are more (tapping the
- * card goes through them).
- */
-function Stacked({ cards, width, children }: { cards: AttachedCard[]; width: number; children: ReactNode }) {
-  const shift = (depth: number) => -STACK_OFFSET * depth
-
-  return (
-    <>
-      {cards.map((card, index) => {
-        // The last attachment is the one at the back, in the original place.
-        const depth = cards.length - 1 - index
-
-        return (
-          <span
-            key={`${card.cardId}-${index}`}
-            className={classNames('battle-screen__attached', card.kind)}
-            style={{ top: shift(depth), left: shift(depth), zIndex: -1 - index, width }}
-          >
-            <MiniCard cardId={card.cardId} width={width} />
-          </span>
-        )
-      })}
-      <span
-        className="battle-screen__stack-front"
-        style={
-          cards.length > 0 ? { transform: `translate(${shift(cards.length)}px, ${shift(cards.length)}px)` } : undefined
-        }
-      >
-        {children}
-      </span>
-    </>
-  )
+/** The cards attached to a card, as the cards under it in its stack: the first attached at the bottom. */
+function stackOf(cards: AttachedCard[]): StackCard[] {
+  return cards.map((card) => ({ cardId: card.cardId, className: card.kind })).reverse()
 }
