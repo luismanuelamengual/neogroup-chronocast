@@ -45,6 +45,7 @@ export const TEST_CARDS: CardDefinition[] = [
   ally('test-guard', 2, 30, ['guardian']),
   ally('test-archer', 5, 10, ['ranged']),
   ally('test-thorns', 1, 30, ['thorns'], { thorns: 5 }),
+  ally('test-retaliator', 10, 20, ['retaliate']),
   ally('test-shield', 5, 10, ['shield']),
   ally('test-charger', 8, 8, ['charge'], { cost: 0 }),
   ally('test-bird', 5, 10, ['flying']),

@@ -17,6 +17,7 @@ export const KEYWORD_ICONS: Partial<Record<Keyword, string>> = {
   lifesteal: '🩸',
   shield: '🔰',
   thorns: '🌵',
+  retaliate: '↩️',
   cleave: '🪓',
   echo: '🔁',
   resurge: '♻️'

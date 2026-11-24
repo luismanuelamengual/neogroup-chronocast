@@ -257,7 +257,7 @@ describe('speed and simultaneity', () => {
 
     expect(fails(events)).toEqual(['b:0:noUnit'])
     expect(next.players.a.hero.health).toBe(50)
-    expect(next.players.a.allies[0]?.health).toBe(5) // the archer's counterattack
+    expect(next.players.a.allies[0]?.health).toBe(10) // the archer has no retaliate: no counterattack
   })
 
   it('a move is instant and beats any attack of the same step', () => {
@@ -345,15 +345,42 @@ describe('keywords', () => {
 
     expect(next.players.b.hero.health).toBe(50)
     expect(next.players.b.allies[3]?.health).toBe(20)
-    expect(next.players.a.allies[0]?.health).toBe(18) // counterattack
+    expect(next.players.a.allies[0]?.health).toBe(20) // the guardian has no retaliate
   })
 
-  it('melee takes a counterattack, ranged does not', () => {
+  it('ranged attacks fly over guardians and hit the hero', () => {
+    const state = richMatch()
+    const archer = place(state, 'a', 'test-archer', 0)
+
+    place(state, 'b', 'test-guard', 3)
+
+    const { state: next } = run(state, timeline({ kind: 'allyAttack', allyUid: archer.uid, target: HERO_B }))
+
+    expect(next.players.b.hero.health).toBe(45)
+    expect(next.players.b.allies[3]?.health).toBe(30)
+  })
+
+  it('allies without retaliate do not strike back', () => {
+    const state = richMatch()
+    const soldier = place(state, 'a', 'test-soldier', 0)
+
+    place(state, 'b', 'test-soldier', 0)
+
+    const { state: next } = run(
+      state,
+      timeline({ kind: 'allyAttack', allyUid: soldier.uid, target: { player: 'b', slot: 0 } })
+    )
+
+    expect(next.players.a.allies[0]?.health).toBe(20)
+    expect(next.players.b.allies[0]?.health).toBe(10)
+  })
+
+  it('retaliate strikes back at melee attackers, not at ranged ones', () => {
     const state = richMatch()
     const soldier = place(state, 'a', 'test-soldier', 0)
     const archer = place(state, 'a', 'test-archer', 1)
 
-    place(state, 'b', 'test-soldier', 0)
+    place(state, 'b', 'test-retaliator', 0)
 
     const { state: next } = run(
       state,
@@ -366,6 +393,18 @@ describe('keywords', () => {
     expect(next.players.a.allies[0]?.health).toBe(10)
     expect(next.players.a.allies[1]?.health).toBe(10)
     expect(next.players.b.allies[0]?.health).toBe(5)
+  })
+
+  it('retaliate also strikes back at a hero attacking with its weapon', () => {
+    const state = richMatch()
+
+    state.players.a.hero.weapon = { card: { uid: 900, cardId: 'test-sword' }, attack: 10, durability: 3 }
+    place(state, 'b', 'test-retaliator', 0)
+
+    const { state: next } = run(state, timeline({ kind: 'heroAttack', target: { player: 'b', slot: 0 } }))
+
+    expect(next.players.b.allies[0]?.health).toBe(10)
+    expect(next.players.a.hero.health).toBe(state.players.a.hero.health - 10)
   })
 
   it('thorns hurt even ranged attackers', () => {

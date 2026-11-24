@@ -348,6 +348,7 @@ export const es = {
       lifesteal: 'Robo de vida',
       shield: 'Escudo',
       thorns: 'Espinas',
+      retaliate: 'Represalia',
       cleave: 'Barrido',
       unique: 'Única',
       echo: 'Eco',

@@ -13,7 +13,7 @@ export default defineCard({
   price: 510,
   cost: 2,
   tribe: 'beast',
-  keywords: ['thorns'],
+  keywords: ['thorns', 'retaliate'],
   thorns: 3,
   attack: 3,
   health: 3,

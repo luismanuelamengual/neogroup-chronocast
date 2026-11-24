@@ -446,12 +446,13 @@ interface Striker {
 
 /**
  * An attack against a slot of the rival. Aimed at the hero, a guardian takes
- * it. An empty slot (the ally moved away or died) is a miss. A melee attack on
- * an ally takes its counterattack; thorns hurt the attacker either way.
+ * it (not a ranged attack, which flies over it). An empty slot (the ally moved away or died) is a miss. Allies don't
+ * strike back, except those with `retaliate` against a melee attack; thorns
+ * hurt the attacker either way.
  */
 function strike(engine: MatchEngine, striker: Striker, target: SlotRef): void {
   const enemy = target.player
-  const guardian = target.slot === 'hero' ? engine.guardianOf(enemy) : null
+  const guardian = target.slot === 'hero' && !striker.ranged ? engine.guardianOf(enemy) : null
   const aimed: SlotRef = guardian == null ? target : { player: enemy, slot: guardian }
   const source = {
     player: striker.ref.player,
@@ -486,7 +487,7 @@ function strike(engine: MatchEngine, striker: Striker, target: SlotRef): void {
   engine.emit({ type: 'attack', attacker: striker.ref, target: aimed })
   engine.damageUnit(unit.uid, striker.amount, source)
 
-  if (!striker.ranged) {
+  if (!striker.ranged && engine.hasKeyword(unit, 'retaliate')) {
     hitAttacker(engine.attackOf(unit), getCard(unit.cardId).element)
   }
 

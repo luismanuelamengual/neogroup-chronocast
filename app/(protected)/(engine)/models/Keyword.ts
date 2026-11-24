@@ -1,12 +1,12 @@
 /** Keywords: rules shared by many cards (docs/PLAN.md, section 3.2). */
 export const KEYWORDS = [
-  /** Attacks aimed at the hero hit it instead. */
+  /** Attacks aimed at the hero hit it instead (except ranged ones). */
   'guardian',
   /** Its attacks are fast. */
   'quick',
   /** Can attack from the step after it enters, without waiting for the next phase. */
   'charge',
-  /** Takes no counterattack. */
+  /** Its attacks fly over guardians and take no counterattack from allies with `retaliate`. */
   'ranged',
   /** Can swap places with any ally, not only a neighbor. */
   'agile',
@@ -24,6 +24,8 @@ export const KEYWORDS = [
   'shield',
   /** Whoever attacks it takes `thorns` damage. */
   'thorns',
+  /** Strikes back with its attack when a melee attack hits it. */
+  'retaliate',
   /** Its attack also hits the neighboring slots. */
   'cleave',
   /** Only 1 copy per deck. */

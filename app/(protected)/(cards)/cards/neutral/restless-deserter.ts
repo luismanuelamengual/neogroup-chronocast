@@ -12,7 +12,7 @@ export default defineCard({
   rarity: 'rare',
   price: 570,
   cost: 3,
-  keywords: ['guardian'],
+  keywords: ['guardian', 'retaliate'],
   attack: 3,
   health: 10,
   onEnter(ctx) {

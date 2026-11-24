@@ -13,7 +13,7 @@ export default defineCard({
   price: 80,
   cost: 7,
   tribe: 'legionnaire',
-  keywords: ['guardian'],
+  keywords: ['guardian', 'retaliate'],
   attack: 6,
   health: 14,
   onEnter(ctx) {

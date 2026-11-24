@@ -12,7 +12,7 @@ export default defineCard({
   price: 50,
   cost: 2,
   tribe: 'legionnaire',
-  keywords: ['guardian'],
+  keywords: ['guardian', 'retaliate'],
   attack: 2,
   health: 8,
   ai: { value: 2 },

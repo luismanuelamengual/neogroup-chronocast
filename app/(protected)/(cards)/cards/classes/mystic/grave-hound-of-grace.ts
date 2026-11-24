@@ -14,6 +14,7 @@ export default defineCard({
   price: 65,
   cost: 4,
   tribe: 'undead',
+  keywords: ['retaliate'],
   attack: 4,
   health: 13,
   ai: { value: 4 },

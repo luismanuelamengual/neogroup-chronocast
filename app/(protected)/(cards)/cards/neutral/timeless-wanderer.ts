@@ -13,7 +13,7 @@ export default defineCard({
   price: 190,
   cost: 4,
   tribe: 'drifter',
-  keywords: ['guardian'],
+  keywords: ['guardian', 'retaliate'],
   attack: 4,
   health: 11,
   ability: {

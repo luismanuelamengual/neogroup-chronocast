@@ -14,6 +14,7 @@ export default defineCard({
   price: 190,
   cost: 4,
   tribe: 'undead',
+  keywords: ['retaliate'],
   attack: 6,
   health: 8,
   onAllyEnter(ctx, ally) {

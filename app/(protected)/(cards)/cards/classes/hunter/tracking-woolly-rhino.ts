@@ -13,6 +13,7 @@ export default defineCard({
   price: 190,
   cost: 4,
   tribe: 'beast',
+  keywords: ['retaliate'],
   attack: 5,
   health: 10,
   onAllyEnter(ctx, ally) {

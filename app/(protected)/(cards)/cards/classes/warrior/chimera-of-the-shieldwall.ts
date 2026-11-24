@@ -14,7 +14,7 @@ export default defineCard({
   price: 220,
   cost: 7,
   tribe: 'colossus',
-  keywords: ['guardian'],
+  keywords: ['guardian', 'retaliate'],
   attack: 6,
   health: 15,
   onDeath(ctx) {

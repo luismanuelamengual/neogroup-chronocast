@@ -13,7 +13,7 @@ export default defineCard({
   price: 220,
   cost: 6,
   tribe: 'caveborn',
-  keywords: ['guardian'],
+  keywords: ['guardian', 'retaliate'],
   attack: 6,
   health: 14,
   onDamaged(ctx) {

@@ -344,6 +344,7 @@ export const en: Messages = {
       lifesteal: 'Lifesteal',
       shield: 'Shield',
       thorns: 'Thorns',
+      retaliate: 'Retaliate',
       cleave: 'Cleave',
       unique: 'Unique',
       echo: 'Echo',

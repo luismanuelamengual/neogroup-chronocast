@@ -138,12 +138,12 @@ Cada acción tiene una **velocidad** (`instant`, `fast`, `normal`, `slow`). Dent
 ### 2.6 Combate
 
 - **Escala de números**: la del catálogo de Shadow Era (`docs/data.json`) multiplicada por 2. Con héroes de 50 a 65 de vida, los aliados pegan entre 0 y 18 y tienen entre 3 y 18 de vida (un aliado de costo 4 ronda 5/10); una habilidad de costo 2 hace unos 6 de daño. Las partidas simuladas duran de 10 a 14 fases.
-- **Ataque de un aliado**: hace su ataque como daño al objetivo. Si el objetivo es un aliado y el atacante no tiene _A distancia_, el defensor **contraataca** con su ataque (como en Shadow Era).
+- **Ataque de un aliado**: hace su ataque como daño al objetivo. Los aliados atacados **no contraatacan**, salvo los que tienen _Represalia_: si los golpea un ataque cuerpo a cuerpo (de un aliado sin _A distancia_ o del arma del héroe), devuelven el golpe con su ataque. Al héroe se lo ataca sin respuesta.
 - **Armadura** (carta adjunta), con dos números como en Shadow Era: **reducción** (el escudo, abajo a la izquierda) y **durabilidad** (el cuadrado, abajo a la derecha). Cada golpe al héroe pierde tanto daño como la reducción (armadura 3 y golpe de 7: el héroe recibe 4) y le quita 1 de durabilidad a la armadura, aunque el golpe sea menor que la reducción. Al llegar a 0 de durabilidad se descarta. El veneno, las quemaduras y la sombra la ignoran y no la gastan; el ácido le quita 1 de durabilidad más.
 - Hay cartas que **gastan** la durabilidad del arma o la armadura rival (o las destruyen) y cartas que **reparan** las propias (+durabilidad).
 - **Arma** (carta adjunta): da el ataque del héroe y tiene durabilidad; al llegar a 0 se descarta. Sin arma, el héroe no ataca.
 - Una arma o armadura nueva reemplaza a la que estaba (la vieja va a la pila).
-- **Protector**: los ataques de aliados y del héroe dirigidos al slot del héroe van al Protector (si hay varios, al de menor número de slot). Las habilidades y el daño directo no se desvían, salvo que la carta lo diga.
+- **Protector**: los ataques de aliados y del héroe dirigidos al slot del héroe van al Protector (si hay varios, al de menor número de slot), salvo los ataques _A distancia_, que pasan por encima y le pegan al héroe. Las habilidades y el daño directo no se desvían, salvo que la carta lo diga.
 - **Fatiga**: robar con el mazo vacío hace 10 de daño al héroe, y aumenta 5 cada vez.
 - **Límite de fases**: si llega a la fase 30, gana el héroe con más vida (y empate si tienen la misma). Evita partidas infinitas.
 
@@ -177,10 +177,10 @@ Todas las constantes de esta sección viven en `(engine)/data/rules.ts` (`STARTI
 
 | Id          | Nombre en pantalla | Efecto                                                                           |
 | ----------- | ------------------ | -------------------------------------------------------------------------------- |
-| `guardian`  | Protector          | Desvía hacia él los ataques al héroe (ver 2.6)                                   |
+| `guardian`  | Protector          | Desvía hacia él los ataques al héroe, salvo los A distancia (ver 2.6)            |
 | `quick`     | Rápido             | Sus ataques tienen velocidad Rápida                                              |
 | `charge`    | Embestida          | Puede atacar desde el paso siguiente al que entra, sin esperar a la próxima fase |
-| `ranged`    | A distancia        | No recibe contraataque                                                           |
+| `ranged`    | A distancia        | Sus ataques ignoran a los Protectores y no reciben el contraataque de Represalia |
 | `agile`     | Ágil               | Al moverse puede cambiar de lugar con cualquier aliado, no solo con un vecino    |
 | `flying`    | Vuelo              | Solo lo pueden atacar aliados con Vuelo o A distancia                            |
 | `stealth`   | Sigilo             | No se lo puede elegir como objetivo hasta que ataque                             |
@@ -189,6 +189,7 @@ Todas las constantes de esta sección viven en `(engine)/data/rules.ts` (`STARTI
 | `lifesteal` | Robo de vida       | Cura al héroe tanto como el daño que hace                                        |
 | `shield`    | Escudo             | Ignora el primer daño que recibe                                                 |
 | `thorns`    | Espinas X          | Quien lo ataca recibe X de daño                                                  |
+| `retaliate` | Represalia         | Cuando lo golpea un ataque cuerpo a cuerpo, contraataca con su ataque            |
 | `cleave`    | Barrido            | Su ataque también pega en los slots vecinos                                      |
 | `unique`    | Única              | Solo 1 copia por mazo                                                            |
 | `echo`      | Eco                | Al morir vuelve a la mano una vez                                                |
@@ -226,7 +227,7 @@ Cada palabra clave es un módulo de `(engine)/keywords/` con sus tests. El texto
 
 ### 3.5 Elementos de daño
 
-Todo daño tiene un **elemento** (`element` en el archivo de la carta, `(engine)/models/Element.ts`). Si la carta no tiene, el daño es **físico**. El elemento se aplica a todo el daño que hace la carta: sus efectos y, si es un aliado o un arma, también sus ataques (y el contraataque del aliado). Un héroe con elemento lo usa en su habilidad y su pasiva. El veneno y la quemadura no tienen elemento.
+Todo daño tiene un **elemento** (`element` en el archivo de la carta, `(engine)/models/Element.ts`). Si la carta no tiene, el daño es **físico**. El elemento se aplica a todo el daño que hace la carta: sus efectos y, si es un aliado o un arma, también sus ataques (y el contraataque de un aliado con Represalia). Un héroe con elemento lo usa en su habilidad y su pasiva. El veneno y la quemadura no tienen elemento.
 
 | Elemento | Regla al pegar                                                                                   | Facción típica     |
 | -------- | ------------------------------------------------------------------------------------------------ | ------------------ |

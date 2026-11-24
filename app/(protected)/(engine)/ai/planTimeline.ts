@@ -204,7 +204,13 @@ export function planTimeline(state: MatchState, player: PlayerId, style: PlanSty
       const target =
         style.attack === 'face'
           ? enemyHero
-          : chooseAttackTarget(state, player, unit.attack + unit.tempAttack, unit.health)
+          : chooseAttackTarget(
+              state,
+              player,
+              unit.attack + unit.tempAttack,
+              unit.health,
+              unit.keywords.includes('ranged')
+            )
 
       tryAdd({ kind: 'allyAttack', allyUid: unit.uid, target })
     }
@@ -215,7 +221,13 @@ export function planTimeline(state: MatchState, player: PlayerId, style: PlanSty
         target:
           style.attack === 'face'
             ? enemyHero
-            : chooseAttackTarget(state, player, side.hero.weapon.attack, side.hero.health)
+            : chooseAttackTarget(
+                state,
+                player,
+                side.hero.weapon.attack,
+                side.hero.health,
+                (getCard(side.hero.weapon.card.cardId).keywords ?? []).includes('ranged')
+              )
       })
     }
   }
@@ -357,12 +369,22 @@ function chooseTargets(state: MatchState, player: PlayerId, kinds: TargetKind[])
   return targets
 }
 
-/** Kill an enemy ally that would not kill the attacker back; otherwise go for the hero. */
-function chooseAttackTarget(state: MatchState, player: PlayerId, attack: number, health: number): SlotRef {
+/**
+ * Kill an enemy ally that would not kill the attacker back (only allies with
+ * retaliate strike back, and not at ranged attackers); otherwise go for the hero.
+ */
+function chooseAttackTarget(
+  state: MatchState,
+  player: PlayerId,
+  attack: number,
+  health: number,
+  ranged: boolean
+): SlotRef {
   const enemy = opponentOf(player)
+  const strikesBack = (unit: Unit) => !ranged && unit.keywords.includes('retaliate')
   const kills = allyRefs(state, enemy)
     .filter(({ unit }) => !unit.keywords.includes('stealth') && !unit.keywords.includes('flying'))
-    .filter(({ unit }) => unit.health <= attack && !unit.shield && unit.attack < health)
+    .filter(({ unit }) => unit.health <= attack && !unit.shield && (!strikesBack(unit) || unit.attack < health))
     .sort((a, b) => b.unit.attack - a.unit.attack)
 
   return kills[0]?.ref ?? { player: enemy, slot: 'hero' }
