@@ -6,6 +6,7 @@ export default defineCard({
   type: 'armor',
   name: 'Battle-Scarred Warplate',
   text: 'When it is equipped: your allies heal 2.',
+  flavor: 'It remembers every blade that failed.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'mythic',

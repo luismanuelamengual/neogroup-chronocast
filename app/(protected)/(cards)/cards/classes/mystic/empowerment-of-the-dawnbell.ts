@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Empowerment of the Dawnbell',
   text: 'An ally of yours gains +4 attack and +5 health.',
+  flavor: 'The bell rings and strength returns.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'uncommon',

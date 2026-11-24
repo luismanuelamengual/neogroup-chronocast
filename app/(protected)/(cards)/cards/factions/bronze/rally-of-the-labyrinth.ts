@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Rally of the Labyrinth',
   text: 'An ally of yours gains +4 attack this phase. Instant.',
+  flavor: 'Lost in the maze, found in the fight.',
   faction: 'bronze',
   restriction: { kind: 'faction', faction: 'bronze' },
   rarity: 'uncommon',

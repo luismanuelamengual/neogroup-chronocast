@@ -5,6 +5,7 @@ export default defineCard({
   type: 'armor',
   name: 'Patient Vest',
   text: '',
+  flavor: 'It waits, like the one who wears it.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'rare',

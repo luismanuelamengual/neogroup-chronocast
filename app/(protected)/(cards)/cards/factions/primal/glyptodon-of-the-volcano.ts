@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Glyptodon of the Volcano',
   text: 'When it enters: summon a Sabertooth Cub.',
+  flavor: 'A walking fortress with a warm heart.',
   faction: 'primal',
   restriction: { kind: 'faction', faction: 'primal' },
   rarity: 'rare',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'artifact',
   name: 'Altar of the Hawk',
   text: 'At the start of each phase: your hero gains 1 energy.',
+  flavor: 'Feathers left here are never wasted.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'legendary',

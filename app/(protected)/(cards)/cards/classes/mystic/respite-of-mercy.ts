@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Respite of Mercy',
   text: 'Your hero heals 9.',
+  flavor: 'A breath between battles is a gift.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'common',

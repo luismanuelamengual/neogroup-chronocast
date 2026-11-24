@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Serene Stance',
   text: 'Your hero gains 6 armor. Instant.',
+  flavor: 'Still as a mountain, soft as a breeze.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'common',

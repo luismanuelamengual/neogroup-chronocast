@@ -6,6 +6,7 @@ export default defineCard({
   type: 'item',
   name: 'Map of the Wanderer',
   text: 'An ally of yours gains +8 attack this phase. Instant.',
+  flavor: 'It always points to where you are not.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'common',

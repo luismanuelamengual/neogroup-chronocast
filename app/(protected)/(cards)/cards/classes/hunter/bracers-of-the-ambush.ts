@@ -5,6 +5,7 @@ export default defineCard({
   type: 'armor',
   name: 'Bracers of the Ambush',
   text: '',
+  flavor: 'Quiet on the wrist, loud on the hunt.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'common',

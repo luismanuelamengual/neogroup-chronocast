@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Unbroken Plan',
   text: 'Draw the first Drifter of your deck and your hero heals 3.',
+  flavor: 'The plan survived contact with the enemy.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'common',

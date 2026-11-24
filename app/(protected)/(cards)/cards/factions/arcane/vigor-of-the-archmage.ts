@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Vigor of the Archmage',
   text: 'An ally of yours gains +4 attack and +5 health.',
+  flavor: 'The archmage shares a spark of his endless energy.',
   faction: 'arcane',
   restriction: { kind: 'faction', faction: 'arcane' },
   rarity: 'uncommon',

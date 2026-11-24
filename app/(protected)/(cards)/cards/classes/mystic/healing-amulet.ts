@@ -5,6 +5,7 @@ export default defineCard({
   type: 'armor',
   name: 'Healing Amulet',
   text: '',
+  flavor: 'Warm to the touch, even in winter.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'common',

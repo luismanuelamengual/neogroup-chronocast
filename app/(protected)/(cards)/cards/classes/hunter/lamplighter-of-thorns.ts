@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Lamplighter of Thorns',
   text: 'When it dies: deal 5 damage to a random enemy ally.',
+  flavor: 'Her lamps burn in the darkest thickets.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'rare',

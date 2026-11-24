@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Unbroken Hitman',
   text: 'When it attacks: it gains +1 attack.',
+  flavor: 'Shot twice. Still working.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'rare',

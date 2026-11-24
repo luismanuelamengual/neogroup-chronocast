@@ -6,6 +6,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Bloodied Glaive',
   text: 'When it is equipped: your hero heals 4.',
+  flavor: 'Cleaned once. Never again.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'uncommon',

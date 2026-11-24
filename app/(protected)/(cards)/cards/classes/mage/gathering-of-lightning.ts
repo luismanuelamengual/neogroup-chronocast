@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Gathering of Lightning',
   text: 'Summon an Arcane Familiar.',
+  flavor: 'Every storm starts with a single spark.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'mythic',

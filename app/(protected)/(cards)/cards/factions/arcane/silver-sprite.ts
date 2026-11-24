@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Silver Sprite',
   text: '',
+  flavor: 'Quick as moonlight, twice as nosy.',
   faction: 'arcane',
   restriction: { kind: 'faction', faction: 'arcane' },
   rarity: 'common',

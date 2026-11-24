@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Solar Muster',
   text: 'Summon 2 Hoplite Conscripts.',
+  flavor: 'They rise with the sun and fight until it sets.',
   faction: 'bronze',
   restriction: { kind: 'faction', faction: 'bronze' },
   rarity: 'uncommon',

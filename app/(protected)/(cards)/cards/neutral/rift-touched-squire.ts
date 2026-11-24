@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Rift-Touched Squire',
   text: 'When it dies: draw a card.',
+  flavor: 'He serves a knight from another century.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'common',

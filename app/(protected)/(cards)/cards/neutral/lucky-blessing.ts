@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Lucky Blessing',
   text: 'Your hero heals 12.',
+  flavor: 'Luck is a skill, if you ask the lucky.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'common',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Rally of the Volcano',
   text: 'An ally of yours gains +4 attack this phase. Instant.',
+  flavor: 'The mountain roars and the tribe answers.',
   faction: 'primal',
   restriction: { kind: 'faction', faction: 'primal' },
   rarity: 'epic',

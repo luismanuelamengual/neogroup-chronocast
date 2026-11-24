@@ -5,6 +5,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Armored Mace',
   text: '',
+  flavor: 'Subtle it is not.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'common',

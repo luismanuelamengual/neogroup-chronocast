@@ -5,6 +5,7 @@ export default defineCard({
   type: 'armor',
   name: 'Kite Shield of Rage',
   text: '',
+  flavor: 'Strike it, and it strikes back harder.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'common',

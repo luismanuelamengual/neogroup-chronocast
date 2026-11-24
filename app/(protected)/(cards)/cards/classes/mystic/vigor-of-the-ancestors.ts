@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Vigor of the Ancestors',
   text: 'An ally of yours gains +8 attack this phase. Instant.',
+  flavor: 'The old blood still runs strong.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'uncommon',

@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Faithful Wanderer',
   text: '',
+  flavor: 'Lost in time, never in purpose.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'common',

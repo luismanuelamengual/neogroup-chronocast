@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Mercenary of the Crossroads',
   text: 'When it enters: the enemy weapon loses 1 durability.',
+  flavor: 'Loyal to whoever pays, in whatever century.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'uncommon',

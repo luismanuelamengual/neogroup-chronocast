@@ -6,6 +6,7 @@ export default defineCard({
   type: 'armor',
   name: 'Silk Wrap of Ruin',
   text: 'When it is equipped: your allies heal 2.',
+  flavor: 'Soft as silk, cold as an ending.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'uncommon',

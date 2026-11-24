@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Stegosaur of the Hunt',
   text: 'When it enters: summon a Sabertooth Cub.',
+  flavor: 'Plates on its back, a club on its tail.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'common',

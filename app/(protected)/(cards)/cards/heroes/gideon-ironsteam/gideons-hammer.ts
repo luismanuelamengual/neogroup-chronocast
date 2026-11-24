@@ -6,6 +6,7 @@ export default defineCard({
   type: 'weapon',
   name: "Gideon's Hammer",
   text: 'When it is equipped: your hero gains 5 armor.',
+  flavor: 'Steam-powered and opinionated.',
   faction: 'clockwork',
   restriction: { kind: 'hero', heroId: 'gideon-ironsteam' },
   rarity: 'epic',

@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Gentle Bard',
   text: '',
+  flavor: 'His songs mend what swords cannot.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'common',

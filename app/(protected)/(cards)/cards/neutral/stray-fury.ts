@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Stray Fury',
   text: 'An ally of yours gains +3 attack and +4 health. Instant.',
+  flavor: 'A rage that wandered in from another era.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'rare',

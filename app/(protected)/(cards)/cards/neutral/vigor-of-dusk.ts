@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Vigor of Dusk',
   text: 'An ally of yours gains +12 attack this phase. Instant.',
+  flavor: 'Evening brings a second wind.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'uncommon',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Tar-Soaked Sabertooth',
   text: 'When it attacks: your hero heals 3.',
+  flavor: 'Climbed out of the tar pits, angrier than ever.',
   faction: 'primal',
   restriction: { kind: 'faction', faction: 'primal' },
   rarity: 'uncommon',

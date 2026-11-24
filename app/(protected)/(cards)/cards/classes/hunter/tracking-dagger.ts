@@ -6,6 +6,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Tracking Dagger',
   text: 'When it is equipped: deal 4 damage to a random enemy ally.',
+  flavor: 'It points toward its last victim.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'epic',

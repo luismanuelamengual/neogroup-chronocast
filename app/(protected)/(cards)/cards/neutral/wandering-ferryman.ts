@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Wandering Ferryman',
   text: 'When it dies: draw a card.',
+  flavor: 'He rows across rivers of time.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'common',

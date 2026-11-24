@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Faithful Moment',
   text: 'You gain 4 Chronos this phase. Instant.',
+  flavor: 'One second, kept forever.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'uncommon',

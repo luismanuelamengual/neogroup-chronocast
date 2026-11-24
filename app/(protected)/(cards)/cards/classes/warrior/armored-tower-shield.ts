@@ -6,6 +6,7 @@ export default defineCard({
   type: 'armor',
   name: 'Armored Tower Shield',
   text: 'When it is equipped: your allies heal 2.',
+  flavor: 'A wall you can carry.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'legendary',

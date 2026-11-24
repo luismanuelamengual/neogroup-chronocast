@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Might of Light',
   text: 'Your Fae gain +2 attack and +3 health.',
+  flavor: 'Even shadows step aside.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'rare',

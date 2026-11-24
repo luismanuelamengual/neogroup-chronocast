@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Copper Gyrocopter',
   text: '',
+  flavor: 'Mostly flies. Occasionally lands on purpose.',
   faction: 'clockwork',
   restriction: { kind: 'faction', faction: 'clockwork' },
   rarity: 'common',

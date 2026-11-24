@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Ghost of the Mainframe',
   text: 'When it enters: draw a card.',
+  flavor: 'It lives where the code forgot to look.',
   faction: 'neon',
   restriction: { kind: 'faction', faction: 'neon' },
   rarity: 'common',

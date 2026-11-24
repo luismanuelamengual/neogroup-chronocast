@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Blazing Fireball',
   text: 'Burn an enemy slot (4).',
+  flavor: 'Subtlety was never the point.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'uncommon',

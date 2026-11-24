@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Tracking Horn',
   text: 'Summon a Sabertooth Cub.',
+  flavor: 'One blast and the pack knows the way.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'uncommon',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Venom of the Hunt',
   text: 'Poison an enemy ally (3).',
+  flavor: 'One drop for the prey, two for the proud.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'common',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Wandering Stasis',
   text: "Return an enemy ally to its owner's hand. Fast.",
+  flavor: 'Time pauses to look around.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'rare',

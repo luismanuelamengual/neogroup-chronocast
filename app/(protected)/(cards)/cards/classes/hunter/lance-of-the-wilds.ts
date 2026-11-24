@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Lance of the Wilds',
   text: 'Deal 11 damage to an enemy slot.',
+  flavor: 'Carved from a tree that was struck by lightning.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'common',

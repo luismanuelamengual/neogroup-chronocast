@@ -7,6 +7,7 @@ export default defineCard({
   reward: true,
   name: 'Old Tusk',
   text: 'When it enters: your allies heal 3.',
+  flavor: "Ooma's oldest companion, and her heaviest.",
   faction: 'primal',
   restriction: { kind: 'hero', heroId: 'ooma-bonewhisper' },
   rarity: 'rare',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Venomous Data Thief',
   text: 'When it enters: summon a Sabertooth Cub.',
+  flavor: 'Steals your secrets and leaves a bite.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'uncommon',

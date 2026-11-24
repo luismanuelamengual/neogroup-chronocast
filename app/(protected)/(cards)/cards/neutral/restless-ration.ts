@@ -6,6 +6,7 @@ export default defineCard({
   type: 'item',
   name: 'Restless Ration',
   text: 'An ally of yours gains +6 attack this phase. Instant.',
+  flavor: 'Food from the future. Tastes like the past.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'uncommon',

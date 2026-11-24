@@ -6,6 +6,7 @@ export default defineCard({
   type: 'artifact',
   name: 'Blessed Idol',
   text: 'At the start of each phase: your hero heals 3. (3 uses)',
+  flavor: 'Touched by a thousand pilgrims.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'uncommon',

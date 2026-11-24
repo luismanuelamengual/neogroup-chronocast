@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Faithful Cartographer',
   text: '',
+  flavor: 'She maps the roads that do not exist yet.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'common',

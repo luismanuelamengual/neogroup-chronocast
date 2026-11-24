@@ -6,6 +6,7 @@ export default defineCard({
   type: 'attachment',
   name: 'Leech of Mercy',
   text: 'Attach to an enemy ally: every damage it takes is 3 higher.',
+  flavor: 'It takes the pain away. And a little more.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'mythic',

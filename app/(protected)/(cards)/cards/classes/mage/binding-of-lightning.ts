@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Binding of Lightning',
   text: 'Stun an enemy ally for two phases and draw a card. Fast.',
+  flavor: 'Chains that spark and sting.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'rare',

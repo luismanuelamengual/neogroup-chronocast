@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Shade of Dying Stars',
   text: '',
+  flavor: 'It wears the light of stars already gone.',
   faction: 'void',
   restriction: { kind: 'faction', faction: 'void' },
   rarity: 'common',

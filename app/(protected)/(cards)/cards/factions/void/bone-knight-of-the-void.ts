@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Bone Knight of the Void',
   text: '',
+  flavor: 'Sworn to a kingdom that no longer exists.',
   faction: 'void',
   restriction: { kind: 'faction', faction: 'void' },
   rarity: 'common',

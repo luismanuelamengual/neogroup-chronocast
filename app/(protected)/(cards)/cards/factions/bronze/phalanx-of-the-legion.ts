@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Phalanx of the Legion',
   text: 'When it enters: your hero gains 9 armor.',
+  flavor: "The legion's spine, the enemy's wall.",
   faction: 'bronze',
   restriction: { kind: 'faction', faction: 'bronze' },
   rarity: 'common',

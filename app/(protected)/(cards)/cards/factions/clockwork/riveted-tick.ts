@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Riveted Tick',
   text: 'You gain 4 Chronos this phase. Instant.',
+  flavor: 'Every rivet, a second saved.',
   faction: 'clockwork',
   restriction: { kind: 'faction', faction: 'clockwork' },
   rarity: 'epic',

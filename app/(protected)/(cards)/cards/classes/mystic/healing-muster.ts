@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Healing Muster',
   text: 'Summon a Guardian Spirit.',
+  flavor: 'Gather the wounded. Send back soldiers.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'rare',

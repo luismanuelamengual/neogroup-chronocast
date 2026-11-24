@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Blessed Secret',
   text: 'Draw a card and your hero heals 3.',
+  flavor: 'The gods keep secrets too.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'uncommon',

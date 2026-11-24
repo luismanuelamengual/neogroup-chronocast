@@ -6,6 +6,7 @@ export default defineCard({
   token: true,
   name: 'Hoplite Conscript',
   text: '',
+  flavor: 'Yesterday a farmer. Today, a wall.',
   faction: 'bronze',
   restriction: { kind: 'faction', faction: 'bronze' },
   rarity: 'common',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Spike of the Hawk',
   text: 'Deal 9 wind damage to an enemy slot.',
+  flavor: 'Swift as the hawk that guides it.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'epic',

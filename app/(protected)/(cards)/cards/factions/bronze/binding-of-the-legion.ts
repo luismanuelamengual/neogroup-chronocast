@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Binding of the Legion',
   text: 'Stun an enemy ally for two phases and draw a card. Fast.',
+  flavor: 'Shields close in. No way out.',
   faction: 'bronze',
   restriction: { kind: 'faction', faction: 'bronze' },
   rarity: 'rare',

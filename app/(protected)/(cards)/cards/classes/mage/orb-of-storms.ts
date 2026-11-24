@@ -6,6 +6,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Orb of Storms',
   text: 'When it is equipped: draw a card.',
+  flavor: 'A storm in a jar, minus the jar.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'uncommon',

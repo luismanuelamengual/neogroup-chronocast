@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Old Cartographer',
   text: 'When it dies: summon a Rift Spark.',
+  flavor: 'He drew the Rift before it opened.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'rare',

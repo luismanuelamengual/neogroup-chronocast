@@ -5,6 +5,7 @@ export default defineCard({
   type: 'armor',
   name: 'Scrap Plate of the Rift',
   text: '',
+  flavor: 'Pieces of twelve centuries, held together by hope.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'epic',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'armor',
   name: 'Blessed Halo',
   text: 'When it is equipped: your hero heals 4.',
+  flavor: 'Heavier than it looks, lighter than it feels.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'uncommon',

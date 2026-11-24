@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Lance of Runes',
   text: 'Deal 9 arcane damage to an enemy ally.',
+  flavor: 'Each rune adds a reason to hurt.',
   faction: 'arcane',
   restriction: { kind: 'faction', faction: 'arcane' },
   rarity: 'rare',

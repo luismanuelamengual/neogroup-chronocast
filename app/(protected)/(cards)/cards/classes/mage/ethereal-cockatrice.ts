@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Ethereal Cockatrice',
   text: '',
+  flavor: 'Half there, fully dangerous.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'common',

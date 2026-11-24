@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Slash of Rot',
   text: 'Deal 15 shadow damage to an enemy ally.',
+  flavor: 'Even the wound decays.',
   faction: 'void',
   restriction: { kind: 'faction', faction: 'void' },
   rarity: 'rare',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Scavenger of the Ambush',
   text: 'When it attacks: deal 2 damage to the enemy hero.',
+  flavor: 'Nothing on the battlefield goes to waste.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'common',

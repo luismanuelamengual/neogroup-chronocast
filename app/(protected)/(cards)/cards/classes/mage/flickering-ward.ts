@@ -5,6 +5,7 @@ export default defineCard({
   type: 'armor',
   name: 'Flickering Ward',
   text: '',
+  flavor: 'It blinks just before the blow lands.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'common',

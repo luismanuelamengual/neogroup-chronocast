@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Study of Flame',
   text: 'Draw 2 cards.',
+  flavor: 'Page one: do not touch. Page two: too late.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'rare',

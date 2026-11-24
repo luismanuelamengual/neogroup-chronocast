@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Frost of Ruin',
   text: 'Stun an enemy ally for two phases and draw a card. Fast.',
+  flavor: 'The cold that comes after the end.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'uncommon',

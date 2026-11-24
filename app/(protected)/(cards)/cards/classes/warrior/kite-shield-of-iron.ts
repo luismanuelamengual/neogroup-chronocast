@@ -5,6 +5,7 @@ export default defineCard({
   type: 'armor',
   name: 'Kite Shield of Iron',
   text: '',
+  flavor: 'Plain iron. Plainly unbreakable.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'common',

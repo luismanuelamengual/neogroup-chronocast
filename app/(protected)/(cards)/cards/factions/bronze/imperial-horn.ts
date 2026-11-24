@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Imperial Horn',
   text: 'Summon a Hoplite Conscript.',
+  flavor: 'When it sounds, the empire marches.',
   faction: 'bronze',
   restriction: { kind: 'faction', faction: 'bronze' },
   rarity: 'common',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Keen-Eyed Blight',
   text: 'Poison an enemy ally (3).',
+  flavor: 'Rot finds the weak spot first.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'uncommon',

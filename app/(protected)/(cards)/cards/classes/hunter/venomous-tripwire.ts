@@ -6,6 +6,7 @@ export default defineCard({
   type: 'trap',
   name: 'Venomous Tripwire',
   text: 'When an enemy ally is summoned: deal 7 acid damage to it.',
+  flavor: 'Snap, sting, sleep.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'common',

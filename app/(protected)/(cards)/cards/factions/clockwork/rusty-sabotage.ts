@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Rusty Sabotage',
   text: 'Destroy the enemy weapon. Fast.',
+  flavor: 'A little water in the gears goes a long way.',
   faction: 'clockwork',
   restriction: { kind: 'faction', faction: 'clockwork' },
   rarity: 'uncommon',

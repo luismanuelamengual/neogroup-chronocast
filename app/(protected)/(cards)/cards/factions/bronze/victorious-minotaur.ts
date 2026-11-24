@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Victorious Minotaur',
   text: '',
+  flavor: 'It found the way out of the labyrinth. Then went back in.',
   faction: 'bronze',
   restriction: { kind: 'faction', faction: 'bronze' },
   rarity: 'common',

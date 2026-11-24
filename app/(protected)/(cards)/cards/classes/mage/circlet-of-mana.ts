@@ -5,6 +5,7 @@ export default defineCard({
   type: 'armor',
   name: 'Circlet of Mana',
   text: '',
+  flavor: 'It hums when spells are near.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'common',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Rally of Light',
   text: 'An ally of yours gains +10 attack this phase. Instant.',
+  flavor: 'Gather, children of the dawn.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'uncommon',

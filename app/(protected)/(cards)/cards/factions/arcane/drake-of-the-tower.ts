@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Drake of the Tower',
   text: '',
+  flavor: 'It guards the tower and eats the visitors.',
   faction: 'arcane',
   restriction: { kind: 'faction', faction: 'arcane' },
   rarity: 'common',

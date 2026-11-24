@@ -6,6 +6,7 @@ export default defineCard({
   type: 'armor',
   name: 'Bloodied Helm',
   text: 'When it is equipped: your allies heal 2.',
+  flavor: "Not all of the blood is the wearer's.",
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'epic',

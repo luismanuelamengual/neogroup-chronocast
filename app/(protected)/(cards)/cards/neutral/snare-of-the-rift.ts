@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Snare of the Rift',
   text: 'Stun an enemy ally for two phases and draw a card. Fast.',
+  flavor: 'A trap set in one century, sprung in another.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'uncommon',

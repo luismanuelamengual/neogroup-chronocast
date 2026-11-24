@@ -6,6 +6,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Javelin of the Wilds',
   text: 'When it is equipped: your hero heals 4.',
+  flavor: 'Thrown by the jungle, caught by nobody.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'uncommon',

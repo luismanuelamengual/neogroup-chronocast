@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Dire Wolf of Amber',
   text: 'When it dies: your Beasts gain +1 attack and +1 health.',
+  flavor: 'Its fur glows like resin in the sun.',
   faction: 'primal',
   restriction: { kind: 'faction', faction: 'primal' },
   rarity: 'rare',

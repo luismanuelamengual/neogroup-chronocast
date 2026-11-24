@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Precise Clockmaker',
   text: 'When it enters: you gain 1 Chronos this phase.',
+  flavor: 'She is never late. She does not allow it.',
   faction: 'clockwork',
   restriction: { kind: 'faction', faction: 'clockwork' },
   rarity: 'rare',

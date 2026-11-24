@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Marble Fury',
   text: 'An ally of yours gains +6 attack this phase. Instant.',
+  flavor: 'Cold as marble, hard as an emperor.',
   faction: 'bronze',
   restriction: { kind: 'faction', faction: 'bronze' },
   rarity: 'common',

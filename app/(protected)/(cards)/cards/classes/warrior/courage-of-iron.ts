@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Courage of Iron',
   text: 'An ally of yours gains +3 attack and +4 health.',
+  flavor: 'Iron does not bend. Neither will you.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'uncommon',

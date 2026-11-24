@@ -6,6 +6,7 @@ export default defineCard({
   type: 'trap',
   name: 'Net of the Pack',
   text: 'When an enemy ally is summoned: deal 11 damage to it.',
+  flavor: 'The pack drives, the net catches.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'common',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Tracking Woolly Rhino',
   text: 'When another Beast of yours enters: your hero heals 2.',
+  flavor: 'It follows a trail by smell, and ends it by charging.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'uncommon',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Unbound Ruin',
   text: 'Destroy an enemy ally. Slow.',
+  flavor: 'Nothing holds it back anymore.',
   faction: 'void',
   restriction: { kind: 'faction', faction: 'void' },
   rarity: 'uncommon',

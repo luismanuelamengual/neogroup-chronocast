@@ -6,6 +6,7 @@ export default defineCard({
   type: 'attachment',
   name: 'Hex of the Oracle',
   text: 'Attach to an enemy ally: every damage it takes is 3 higher.',
+  flavor: 'She saw your weakness long ago.',
   faction: 'bronze',
   restriction: { kind: 'faction', faction: 'bronze' },
   rarity: 'rare',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Lance of Mana',
   text: 'Deal 9 arcane damage to an enemy slot.',
+  flavor: 'Raw magic, thrown like a spear.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'rare',

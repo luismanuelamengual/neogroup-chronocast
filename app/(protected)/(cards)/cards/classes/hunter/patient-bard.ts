@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Patient Bard',
   text: 'When it enters: draw the first trap of your deck.',
+  flavor: 'He waits for the perfect moment to sing.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'uncommon',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'weapon',
   name: "Ryn's Mace",
   text: 'When it is equipped: your hero gains 5 armor.',
+  flavor: 'It crackles with every swing.',
   faction: 'neon',
   restriction: { kind: 'hero', heroId: 'ryn-voltblade' },
   rarity: 'epic',

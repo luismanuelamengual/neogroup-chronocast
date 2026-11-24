@@ -5,6 +5,7 @@ export default defineCard({
   type: 'attachment',
   name: 'Virus of Dusk',
   text: 'Attach to an enemy ally: it has -5 attack.',
+  flavor: 'It spreads when the lights go down.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'rare',

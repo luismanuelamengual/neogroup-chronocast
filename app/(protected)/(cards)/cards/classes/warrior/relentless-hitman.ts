@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Relentless Hitman',
   text: '',
+  flavor: 'He never misses a deadline.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'common',

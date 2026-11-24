@@ -5,6 +5,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Warpick of Rage',
   text: '',
+  flavor: 'It punches through armor and patience alike.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'common',

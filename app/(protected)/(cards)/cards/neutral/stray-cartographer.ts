@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Stray Cartographer',
   text: 'When it enters: you gain 1 Chronos this phase.',
+  flavor: 'Her maps are wrong, but they are wrong beautifully.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'rare',

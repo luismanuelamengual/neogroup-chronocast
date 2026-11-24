@@ -6,6 +6,7 @@ export default defineCard({
   type: 'artifact',
   name: 'Brazier of the Ancestors',
   text: 'At the start of each phase: your hero heals 3. (3 uses)',
+  flavor: 'Its flames hold the faces of the elders.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'common',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'trap',
   name: 'Wired Tripwire',
   text: 'When an enemy ally is summoned: freeze it.',
+  flavor: 'One wire, one hundred volts.',
   faction: 'neon',
   restriction: { kind: 'faction', faction: 'neon' },
   rarity: 'common',

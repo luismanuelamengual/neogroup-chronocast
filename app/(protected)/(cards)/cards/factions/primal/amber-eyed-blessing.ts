@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Amber-Eyed Blessing',
   text: 'Your hero heals 15.',
+  flavor: 'The old spirits watch through amber eyes.',
   faction: 'primal',
   restriction: { kind: 'faction', faction: 'primal' },
   rarity: 'common',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'artifact',
   name: 'Rift-Touched Idol',
   text: 'At the start of each phase: your hero heals 4. (3 uses)',
+  flavor: 'Worshipped in seven eras at once.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'common',

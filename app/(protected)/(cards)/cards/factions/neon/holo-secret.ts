@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Holo Secret',
   text: 'Draw 2 cards.',
+  flavor: 'Encrypted twice, whispered once.',
   faction: 'neon',
   restriction: { kind: 'faction', faction: 'neon' },
   rarity: 'common',

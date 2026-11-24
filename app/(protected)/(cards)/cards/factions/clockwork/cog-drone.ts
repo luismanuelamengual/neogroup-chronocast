@@ -6,6 +6,7 @@ export default defineCard({
   token: true,
   name: 'Cog Drone',
   text: '',
+  flavor: 'Small, loyal, and slightly smoking.',
   faction: 'clockwork',
   restriction: { kind: 'faction', faction: 'clockwork' },
   rarity: 'common',

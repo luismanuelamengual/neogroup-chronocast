@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Silver Wisp',
   text: '',
+  flavor: 'Follow it, and you may never come back.',
   faction: 'arcane',
   restriction: { kind: 'faction', faction: 'arcane' },
   rarity: 'common',

@@ -6,6 +6,7 @@ export default defineCard({
   token: true,
   name: 'Rift Spark',
   text: '',
+  flavor: 'A tiny piece of the Rift, very much alive.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'common',

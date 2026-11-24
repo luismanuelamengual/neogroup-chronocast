@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Old Blessing',
   text: 'Your hero heals 13 and draw a card.',
+  flavor: 'Older than the gods who gave it.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'epic',

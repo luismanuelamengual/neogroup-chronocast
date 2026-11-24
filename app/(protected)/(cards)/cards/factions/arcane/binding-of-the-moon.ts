@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Binding of the Moon',
   text: 'Stun an enemy ally. Fast.',
+  flavor: 'Moonlight is softer than chains, and stronger.',
   faction: 'arcane',
   restriction: { kind: 'faction', faction: 'arcane' },
   rarity: 'rare',

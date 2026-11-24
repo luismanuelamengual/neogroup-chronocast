@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Furious Sabotage',
   text: 'Destroy the enemy weapon. Fast.',
+  flavor: 'Break it before it breaks you.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'common',

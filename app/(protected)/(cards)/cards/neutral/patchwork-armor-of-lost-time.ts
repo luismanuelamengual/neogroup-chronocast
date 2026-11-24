@@ -6,6 +6,7 @@ export default defineCard({
   type: 'armor',
   name: 'Patchwork Armor of Lost Time',
   text: 'When it is equipped: draw a card.',
+  flavor: 'A Roman plate, a samurai sleeve, a future buckle.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'legendary',

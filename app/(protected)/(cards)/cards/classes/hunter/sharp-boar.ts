@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Sharp Boar',
   text: 'When it enters: deal 3 damage to a random enemy ally.',
+  flavor: 'Its tusks are its only argument.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'common',

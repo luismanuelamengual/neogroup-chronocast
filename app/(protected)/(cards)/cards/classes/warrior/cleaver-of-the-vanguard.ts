@@ -6,6 +6,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Cleaver of the Vanguard',
   text: 'When it is equipped: your hero heals 5.',
+  flavor: 'First into the fray, first out of it with trophies.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'exotic',

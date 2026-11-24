@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Grim Skeleton',
   text: 'When it attacks: your hero heals 3.',
+  flavor: 'It does not smile. It just looks like it.',
   faction: 'void',
   restriction: { kind: 'faction', faction: 'void' },
   rarity: 'rare',

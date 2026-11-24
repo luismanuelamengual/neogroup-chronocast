@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Elk of the Wilds',
   text: 'When it dies: deal 7 damage to a random enemy ally.',
+  flavor: 'King of the forest, crowned in antlers.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'common',

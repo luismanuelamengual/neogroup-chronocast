@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Hourglass of Ice',
   text: 'You gain 4 Chronos this phase. Instant.',
+  flavor: 'Time freezes, one grain at a time.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'common',

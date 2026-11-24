@@ -6,6 +6,7 @@ export default defineCard({
   type: 'armor',
   name: 'Bold Traveler Cloak',
   text: 'When it is equipped: your hero heals 6.',
+  flavor: 'It has seen every era and complained in each one.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'rare',

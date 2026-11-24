@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Flickering Bolt',
   text: 'Deal 4 arcane damage to an enemy slot. Fast.',
+  flavor: 'It blinks out and in, then through.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'common',

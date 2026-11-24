@@ -5,6 +5,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Longbow of the Silent Trail',
   text: '',
+  flavor: 'The arrow arrives before the sound.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'common',

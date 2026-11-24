@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Cyber Hound of the Grid',
   text: '',
+  flavor: 'It sniffs out data like blood.',
   faction: 'neon',
   restriction: { kind: 'faction', faction: 'neon' },
   rarity: 'common',

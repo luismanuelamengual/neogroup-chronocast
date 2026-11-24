@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Unbroken Merchant',
   text: 'When it attacks: it gains +1 attack.',
+  flavor: 'Robbed nine times. Still open for business.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'common',

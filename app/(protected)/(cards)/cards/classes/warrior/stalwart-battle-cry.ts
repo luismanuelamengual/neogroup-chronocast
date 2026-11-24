@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Stalwart Battle Cry',
   text: 'An ally of yours gains +8 attack this phase. Instant.',
+  flavor: 'A shout that steadies a hundred hands.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'uncommon',

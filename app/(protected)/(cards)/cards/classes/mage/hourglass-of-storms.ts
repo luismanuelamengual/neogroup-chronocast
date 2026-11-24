@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Hourglass of Storms',
   text: 'Your hero gains 1 energy. Instant.',
+  flavor: 'Its sand is made of lightning.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'common',

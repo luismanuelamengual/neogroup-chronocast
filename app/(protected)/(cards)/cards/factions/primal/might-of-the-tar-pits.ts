@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Might of the Tar Pits',
   text: 'An ally of yours gains +3 attack and +4 health.',
+  flavor: 'Strength from the deep black earth.',
   faction: 'primal',
   restriction: { kind: 'faction', faction: 'primal' },
   rarity: 'common',

@@ -5,6 +5,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Cleaver of Valor',
   text: '',
+  flavor: 'Courage, sharpened to an edge.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'common',

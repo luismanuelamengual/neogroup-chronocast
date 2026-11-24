@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Swift Pterodon',
   text: '',
+  flavor: 'The sky belonged to it first.',
   faction: 'primal',
   restriction: { kind: 'faction', faction: 'primal' },
   rarity: 'common',

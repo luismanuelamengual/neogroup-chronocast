@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Aegis of Rage',
   text: 'Your hero gains 9 armor. Instant.',
+  flavor: 'The angrier the blow, the stronger the shield.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'common',

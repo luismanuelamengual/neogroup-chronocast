@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Might of the Vanguard',
   text: 'An ally of yours gains +6 attack this phase. Instant.',
+  flavor: 'The front line is where legends start.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'common',

@@ -5,6 +5,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Focus of Lightning',
   text: '',
+  flavor: 'Hold it tight and hope.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'common',

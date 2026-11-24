@@ -6,6 +6,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Pickaxe of Lost Time',
   text: 'When it is equipped: your hero gains 6 armor.',
+  flavor: 'It mines the hours nobody uses.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'mythic',

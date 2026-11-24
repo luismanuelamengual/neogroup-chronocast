@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Frost of Grace',
   text: 'Freeze an enemy ally.',
+  flavor: 'A gentle cold that stops the fever of war.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'rare',

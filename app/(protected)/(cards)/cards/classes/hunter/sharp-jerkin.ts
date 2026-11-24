@@ -6,6 +6,7 @@ export default defineCard({
   type: 'armor',
   name: 'Sharp Jerkin',
   text: 'When it is equipped: draw a card.',
+  flavor: 'Hug at your own risk.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'rare',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Enchantress of the Tower',
   text: 'When it enters: draw a card.',
+  flavor: 'Her songs bind stone and starlight.',
   faction: 'arcane',
   restriction: { kind: 'faction', faction: 'arcane' },
   rarity: 'common',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Glitched Plan',
   text: 'Draw a card and your hero heals 3.',
+  flavor: 'It worked in the simulation.',
   faction: 'neon',
   restriction: { kind: 'faction', faction: 'neon' },
   rarity: 'common',

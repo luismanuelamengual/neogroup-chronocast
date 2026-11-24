@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Brave Fortune Teller',
   text: 'After it takes damage: it gains +2 attack.',
+  flavor: 'She read her own death and laughed at it.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'rare',

@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Ethereal Basilisk',
   text: '',
+  flavor: 'Its gaze passes through walls.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'common',

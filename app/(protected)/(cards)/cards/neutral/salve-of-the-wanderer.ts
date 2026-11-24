@@ -6,6 +6,7 @@ export default defineCard({
   type: 'item',
   name: 'Salve of the Wanderer',
   text: 'Your hero heals 6.',
+  flavor: 'Smells like five centuries of herbs.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'common',

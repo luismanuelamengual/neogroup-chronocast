@@ -6,6 +6,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Pickaxe of Borrowed Hours',
   text: 'When it is equipped: your hero heals 4.',
+  flavor: 'It digs through time instead of stone.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'exotic',

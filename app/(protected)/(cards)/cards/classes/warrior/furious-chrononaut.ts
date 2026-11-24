@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Furious Chrononaut',
   text: 'When it dies: your hero gains 3 armor.',
+  flavor: 'He has been angry since the Bronze Age.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'uncommon',

@@ -5,6 +5,7 @@ export default defineCard({
   type: 'armor',
   name: 'Plate of Rage',
   text: '',
+  flavor: 'Anger is the best rivet.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'rare',

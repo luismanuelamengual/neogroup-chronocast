@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Encrypted Street Samurai',
   text: 'When it dies: draw a card.',
+  flavor: 'His honor has a password.',
   faction: 'neon',
   restriction: { kind: 'faction', faction: 'neon' },
   rarity: 'common',

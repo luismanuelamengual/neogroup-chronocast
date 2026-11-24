@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Slash of the Last Stand',
   text: 'Deal 6 damage to an enemy slot.',
+  flavor: 'One more swing. Always one more.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'common',

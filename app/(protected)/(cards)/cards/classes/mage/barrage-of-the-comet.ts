@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Barrage of the Comet',
   text: 'Deal 8 arcane damage to an enemy slot.',
+  flavor: 'Wishes on falling stars rarely end like this.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'common',

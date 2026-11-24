@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Toxin of Midnight',
   text: 'Poison an enemy ally (3).',
+  flavor: 'Brewed in neon, served cold.',
   faction: 'neon',
   restriction: { kind: 'faction', faction: 'neon' },
   rarity: 'common',

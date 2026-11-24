@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Might of the Warlord',
   text: 'An ally of yours gains +4 attack this phase. Instant.',
+  flavor: 'His strength flows into every soldier.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'common',

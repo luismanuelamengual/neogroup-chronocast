@@ -5,6 +5,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Longbow of the Hawk',
   text: '',
+  flavor: 'It sees farther than its archer.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'uncommon',

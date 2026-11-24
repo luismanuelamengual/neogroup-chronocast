@@ -5,6 +5,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Sling of Thorns',
   text: '',
+  flavor: 'Every stone grows teeth.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'rare',

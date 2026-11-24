@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Ghoul of Mercy',
   text: '',
+  flavor: 'It eats only what is already lost.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'common',

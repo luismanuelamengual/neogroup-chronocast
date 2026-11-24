@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Keen-Eyed Secret',
   text: 'Draw a card.',
+  flavor: 'The best hunters say nothing.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'rare',

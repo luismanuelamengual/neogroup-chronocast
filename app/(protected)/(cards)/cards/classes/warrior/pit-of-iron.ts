@@ -6,6 +6,7 @@ export default defineCard({
   type: 'trap',
   name: 'Pit of Iron',
   text: 'When an enemy ally is summoned: freeze it.',
+  flavor: 'The bottom is further than it looks.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'rare',

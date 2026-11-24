@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Thundering Sabertooth',
   text: 'When it enters: summon a Sabertooth Cub.',
+  flavor: 'You hear it before the end.',
   faction: 'primal',
   restriction: { kind: 'faction', faction: 'primal' },
   rarity: 'uncommon',

@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Timeless Tide',
   text: '',
+  flavor: 'It rises in every century at once.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'common',

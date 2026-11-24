@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Phalanx of Bronze',
   text: '',
+  flavor: 'One shield is a wall. Twelve are an empire.',
   faction: 'bronze',
   restriction: { kind: 'faction', faction: 'bronze' },
   rarity: 'common',

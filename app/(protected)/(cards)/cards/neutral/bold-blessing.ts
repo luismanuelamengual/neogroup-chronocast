@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Bold Blessing',
   text: 'Your hero heals 16 and draw a card.',
+  flavor: 'Fortune favors the loud.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'legendary',

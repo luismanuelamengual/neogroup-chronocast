@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Brave Squire',
   text: 'When it enters: draw the first weapon of your deck.',
+  flavor: 'Too young to know fear, old enough to fight it.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'common',

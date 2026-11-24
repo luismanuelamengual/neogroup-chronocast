@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Courage of the Ancestors',
   text: 'An ally of yours gains +3 attack and +4 health.',
+  flavor: 'They were brave. So are you.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'common',

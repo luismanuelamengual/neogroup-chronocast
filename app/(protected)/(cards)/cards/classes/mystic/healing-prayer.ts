@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Healing Prayer',
   text: 'Your hero heals 10 and draw a card.',
+  flavor: 'Spoken softly, heard everywhere.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'rare',

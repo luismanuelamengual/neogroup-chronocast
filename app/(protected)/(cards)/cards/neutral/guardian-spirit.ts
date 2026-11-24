@@ -6,6 +6,7 @@ export default defineCard({
   token: true,
   name: 'Guardian Spirit',
   text: '',
+  flavor: 'It guards those who cannot guard themselves.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'common',

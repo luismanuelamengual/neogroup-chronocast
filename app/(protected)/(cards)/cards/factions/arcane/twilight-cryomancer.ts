@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Twilight Cryomancer',
   text: '',
+  flavor: 'She freezes the dusk to keep it longer.',
   faction: 'arcane',
   restriction: { kind: 'faction', faction: 'arcane' },
   rarity: 'common',

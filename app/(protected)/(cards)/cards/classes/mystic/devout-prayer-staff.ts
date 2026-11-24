@@ -6,6 +6,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Devout Prayer Staff',
   text: 'When it is equipped: your hero heals 7.',
+  flavor: 'Faith with a heavy end.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'rare',

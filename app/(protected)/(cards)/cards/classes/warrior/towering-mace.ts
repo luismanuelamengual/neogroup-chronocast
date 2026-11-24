@@ -5,6 +5,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Towering Mace',
   text: '',
+  flavor: 'Built for giants. Swung by the stubborn.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'common',

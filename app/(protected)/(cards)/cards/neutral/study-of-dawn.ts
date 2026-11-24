@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Study of Dawn',
   text: 'Draw a card and your hero heals 3.',
+  flavor: 'Learn from the light before it rises.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'common',

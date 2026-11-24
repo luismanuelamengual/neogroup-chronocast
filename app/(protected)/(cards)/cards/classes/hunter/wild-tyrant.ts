@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Wild Tyrant',
   text: 'When it enters: summon a Sabertooth Cub.',
+  flavor: 'The jungle trembles when it wakes.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'common',

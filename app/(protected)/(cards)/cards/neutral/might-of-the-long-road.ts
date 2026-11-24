@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Might of the Long Road',
   text: 'An ally of yours gains +3 attack and +4 health. Instant.',
+  flavor: 'Every mile walked makes the arm stronger.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'epic',

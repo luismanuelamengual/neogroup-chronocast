@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Bloodied Hitman',
   text: 'When it enters: your hero gains 7 armor.',
+  flavor: 'He prices by the scar.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'rare',

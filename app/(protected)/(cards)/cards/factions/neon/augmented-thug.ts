@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Augmented Thug',
   text: 'When it enters: draw a card.',
+  flavor: 'More chrome than brains.',
   faction: 'neon',
   restriction: { kind: 'faction', faction: 'neon' },
   rarity: 'common',

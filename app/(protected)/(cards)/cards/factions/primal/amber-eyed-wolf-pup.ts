@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Amber-Eyed Wolf Pup',
   text: 'When it enters: it gains +1 attack and +2 health.',
+  flavor: 'Its eyes glow before its teeth do.',
   faction: 'primal',
   restriction: { kind: 'faction', faction: 'primal' },
   rarity: 'common',

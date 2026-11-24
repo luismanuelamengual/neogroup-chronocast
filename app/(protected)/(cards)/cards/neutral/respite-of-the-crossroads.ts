@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Respite of the Crossroads',
   text: 'Your hero heals 6.',
+  flavor: 'Every road ends at a campfire.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'common',

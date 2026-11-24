@@ -6,6 +6,7 @@ export default defineCard({
   token: true,
   name: 'Holo Decoy',
   text: '',
+  flavor: 'Shoot it. It does not mind.',
   faction: 'neon',
   restriction: { kind: 'faction', faction: 'neon' },
   rarity: 'common',

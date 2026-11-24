@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Standard-Bearer of the Last Stand',
   text: 'When it attacks: it gains +1 attack.',
+  flavor: 'As long as the banner stands, so do we.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'uncommon',

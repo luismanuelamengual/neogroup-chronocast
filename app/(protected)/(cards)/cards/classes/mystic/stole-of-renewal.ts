@@ -5,6 +5,7 @@ export default defineCard({
   type: 'armor',
   name: 'Stole of Renewal',
   text: '',
+  flavor: 'Each wound it touches forgets itself.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'rare',

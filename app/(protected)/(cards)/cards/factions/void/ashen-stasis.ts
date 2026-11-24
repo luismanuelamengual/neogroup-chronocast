@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Ashen Stasis',
   text: "Return an enemy ally to its owner's hand. Fast.",
+  flavor: 'Frozen in ash, like the cities of old.',
   faction: 'void',
   restriction: { kind: 'faction', faction: 'void' },
   rarity: 'common',

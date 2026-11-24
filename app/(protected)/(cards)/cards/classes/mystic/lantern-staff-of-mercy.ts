@@ -6,6 +6,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Lantern Staff of Mercy',
   text: 'When it is equipped: your hero gains 5 armor.',
+  flavor: 'Its light finds the lost and the hurt.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'rare',

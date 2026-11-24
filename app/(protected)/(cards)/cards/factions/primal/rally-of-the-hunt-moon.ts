@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Rally of the Hunt Moon',
   text: 'An ally of yours gains +3 attack and +4 health. Instant.',
+  flavor: 'Under the hunting moon, the tribe is one.',
   faction: 'primal',
   restriction: { kind: 'faction', faction: 'primal' },
   rarity: 'rare',

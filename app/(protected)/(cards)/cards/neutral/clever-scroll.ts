@@ -6,6 +6,7 @@ export default defineCard({
   type: 'item',
   name: 'Clever Scroll',
   text: 'Destroy the enemy weapon. Fast.',
+  flavor: 'Read it backwards for the real spell.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'uncommon',

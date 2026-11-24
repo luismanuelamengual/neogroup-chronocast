@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Forsaken Zombie',
   text: '',
+  flavor: 'Nobody came back for him, so he came back for them.',
   faction: 'void',
   restriction: { kind: 'faction', faction: 'void' },
   rarity: 'common',

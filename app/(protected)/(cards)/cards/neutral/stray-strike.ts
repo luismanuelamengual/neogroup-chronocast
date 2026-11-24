@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Stray Strike',
   text: 'Deal 8 damage to an enemy ally.',
+  flavor: 'Aimed at nobody. Hit somebody.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'common',

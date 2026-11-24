@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Stalking Blight',
   text: 'Poison an enemy ally (2).',
+  flavor: 'It follows you home.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'uncommon',

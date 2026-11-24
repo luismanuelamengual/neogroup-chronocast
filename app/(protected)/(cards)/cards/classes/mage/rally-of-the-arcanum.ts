@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Rally of the Arcanum',
   text: 'An ally of yours gains +6 attack this phase. Instant.',
+  flavor: 'Mages to the tower! Bring your books!',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'epic',

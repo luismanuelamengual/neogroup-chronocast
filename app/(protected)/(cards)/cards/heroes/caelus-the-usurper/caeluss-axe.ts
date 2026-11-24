@@ -6,6 +6,7 @@ export default defineCard({
   type: 'weapon',
   name: "Caelus's Axe",
   text: 'When it is equipped: your hero gains 5 armor.',
+  flavor: 'Taken from a king. Kept by a usurper.',
   faction: 'bronze',
   restriction: { kind: 'hero', heroId: 'caelus-the-usurper' },
   rarity: 'epic',

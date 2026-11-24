@@ -6,6 +6,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Keen-Eyed Crossbow',
   text: 'When it is equipped: your hero heals 4.',
+  flavor: 'It sees the gap in every armor.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'uncommon',

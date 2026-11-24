@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Brave Secret',
   text: 'Draw 2 cards.',
+  flavor: 'Courage is easier when nobody knows.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'legendary',

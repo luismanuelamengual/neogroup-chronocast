@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Rally of Valor',
   text: 'An ally of yours gains +1 attack and +1 health.',
+  flavor: 'Valor is contagious.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'uncommon',

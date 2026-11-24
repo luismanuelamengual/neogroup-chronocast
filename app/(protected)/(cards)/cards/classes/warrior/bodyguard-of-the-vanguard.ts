@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Bodyguard of the Vanguard',
   text: 'When another Enforcer of yours enters: your hero heals 2.',
+  flavor: 'Every blow aimed at you hits him first.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'rare',

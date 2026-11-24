@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Lamplighter of the Dawnbell',
   text: '',
+  flavor: 'Every dawn starts with her small flame.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'common',

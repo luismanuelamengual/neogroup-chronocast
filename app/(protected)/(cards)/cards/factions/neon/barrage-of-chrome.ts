@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Barrage of Chrome',
   text: 'Deal 8 lightning damage to an enemy slot.',
+  flavor: 'Bullets cost money. Chrome costs more.',
   faction: 'neon',
   restriction: { kind: 'faction', faction: 'neon' },
   rarity: 'common',

@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Wind-Up Mechanic',
   text: '',
+  flavor: 'Turn the key and step back.',
   faction: 'clockwork',
   restriction: { kind: 'faction', faction: 'clockwork' },
   rarity: 'common',

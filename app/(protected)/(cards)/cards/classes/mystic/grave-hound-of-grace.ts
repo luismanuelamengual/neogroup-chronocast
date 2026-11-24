@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Grave Hound of Grace',
   text: '',
+  flavor: 'It guards the dead so they may rest.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'common',

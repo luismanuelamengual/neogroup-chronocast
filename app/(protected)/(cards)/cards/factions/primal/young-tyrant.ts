@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Young Tyrant',
   text: 'When it attacks: your hero heals 2.',
+  flavor: 'A king in the making, a tyrant already.',
   faction: 'primal',
   restriction: { kind: 'faction', faction: 'primal' },
   rarity: 'common',

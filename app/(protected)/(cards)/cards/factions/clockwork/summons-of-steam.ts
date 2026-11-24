@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Summons of Steam',
   text: 'Summon a Cog Drone.',
+  flavor: 'The whistle blows. Something answers.',
   faction: 'clockwork',
   restriction: { kind: 'faction', faction: 'clockwork' },
   rarity: 'common',

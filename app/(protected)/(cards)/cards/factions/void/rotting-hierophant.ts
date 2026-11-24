@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Rotting Hierophant',
   text: 'When it dies: summon a Risen Skeleton.',
+  flavor: 'He preaches the gospel of decay.',
   faction: 'void',
   restriction: { kind: 'faction', faction: 'void' },
   rarity: 'common',

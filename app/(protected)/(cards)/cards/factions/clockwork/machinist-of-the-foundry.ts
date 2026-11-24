@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Machinist of the Foundry',
   text: '',
+  flavor: 'If it ticks, she can fix it.',
   faction: 'clockwork',
   restriction: { kind: 'faction', faction: 'clockwork' },
   rarity: 'common',

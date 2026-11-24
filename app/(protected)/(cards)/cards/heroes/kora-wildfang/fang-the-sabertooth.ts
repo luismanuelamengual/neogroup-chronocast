@@ -6,6 +6,7 @@ export default defineCard({
   reward: true,
   name: 'Fang, the Sabertooth',
   text: '',
+  flavor: "Kora's oldest friend, and her sharpest.",
   faction: 'primal',
   restriction: { kind: 'hero', heroId: 'kora-wildfang' },
   rarity: 'legendary',

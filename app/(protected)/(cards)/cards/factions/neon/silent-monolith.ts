@@ -6,6 +6,7 @@ export default defineCard({
   type: 'artifact',
   name: 'Silent Monolith',
   text: 'Every damage your allies take is 1 lower.',
+  flavor: 'It broadcasts nothing. Loudly.',
   faction: 'neon',
   restriction: { kind: 'faction', faction: 'neon' },
   rarity: 'epic',

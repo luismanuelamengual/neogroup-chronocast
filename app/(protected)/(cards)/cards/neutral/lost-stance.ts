@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Lost Stance',
   text: 'Your hero gains 13 armor and draw a card.',
+  flavor: 'Out of time, never out of balance.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'legendary',

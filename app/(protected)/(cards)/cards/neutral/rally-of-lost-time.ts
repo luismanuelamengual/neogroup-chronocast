@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Rally of Lost Time',
   text: 'An ally of yours gains +4 attack this phase. Instant.',
+  flavor: 'Soldiers from every era answer the call.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'uncommon',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Wild Shot',
   text: 'Deal 7 damage to an enemy ally. Fast.',
+  flavor: 'Aimed? Not really. Lethal? Very.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'epic',

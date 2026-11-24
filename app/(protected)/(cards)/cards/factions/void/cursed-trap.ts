@@ -6,6 +6,7 @@ export default defineCard({
   type: 'trap',
   name: 'Cursed Trap',
   text: 'When an enemy ally is summoned: freeze it.',
+  flavor: 'Whoever set it did not survive it either.',
   faction: 'void',
   restriction: { kind: 'faction', faction: 'void' },
   rarity: 'uncommon',

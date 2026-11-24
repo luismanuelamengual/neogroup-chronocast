@@ -6,6 +6,7 @@ export default defineCard({
   type: 'item',
   name: 'Hourglass Shard of Borrowed Hours',
   text: 'You gain 4 Chronos this phase. Instant.',
+  flavor: 'A splinter of time, sharp at both ends.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'common',

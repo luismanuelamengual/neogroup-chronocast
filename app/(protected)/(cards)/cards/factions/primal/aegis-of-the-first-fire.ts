@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Aegis of the First Fire',
   text: 'Your hero gains 12 armor and draw a card.',
+  flavor: 'The first fire still protects its children.',
   faction: 'primal',
   restriction: { kind: 'faction', faction: 'primal' },
   rarity: 'uncommon',

@@ -5,6 +5,7 @@ export default defineCard({
   type: 'armor',
   name: 'Flickering Mantle',
   text: '',
+  flavor: 'Now you see it, now you miss.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'common',

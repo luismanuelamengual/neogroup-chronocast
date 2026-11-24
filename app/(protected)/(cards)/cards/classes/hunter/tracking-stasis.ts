@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Tracking Stasis',
   text: 'Freeze an enemy ally.',
+  flavor: 'Stop right there. The hunt is over.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'common',

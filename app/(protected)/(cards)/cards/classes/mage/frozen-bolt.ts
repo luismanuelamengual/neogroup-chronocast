@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Frozen Bolt',
   text: 'Deal 11 ice damage to an enemy slot.',
+  flavor: 'It stops the target, then the heart.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'common',

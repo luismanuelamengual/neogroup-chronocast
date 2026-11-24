@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Might of Valor',
   text: 'An ally of yours gains +4 attack this phase. Instant.',
+  flavor: 'Brave hearts swing harder.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'epic',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: "Ada's Strike",
   text: 'Deal 10 damage to an enemy slot and draw a card.',
+  flavor: 'Measured twice, struck once.',
   faction: 'clockwork',
   restriction: { kind: 'hero', heroId: 'ada-copperwick' },
   rarity: 'epic',

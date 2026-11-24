@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Veteran of the Shieldwall',
   text: 'When it attacks: it gains +1 attack.',
+  flavor: 'He has held the line since before you were born.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'common',

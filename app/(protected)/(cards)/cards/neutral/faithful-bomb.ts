@@ -6,6 +6,7 @@ export default defineCard({
   type: 'item',
   name: 'Faithful Bomb',
   text: 'Deal 4 damage to an enemy slot.',
+  flavor: 'It has never let its owner down. Yet.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'uncommon',

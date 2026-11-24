@@ -5,6 +5,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Hatchet of Dawn',
   text: '',
+  flavor: 'It chops through the last shadows of night.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'common',

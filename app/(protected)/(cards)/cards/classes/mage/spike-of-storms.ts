@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Spike of Storms',
   text: 'Deal 11 lightning damage to an enemy ally.',
+  flavor: 'Lightning that decided to stay.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'common',

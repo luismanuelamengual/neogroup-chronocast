@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Tempest of the Arcanum',
   text: 'Deal 6 wind damage to every enemy ally. Slow.',
+  flavor: 'Spellbooks fly open when it blows.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'rare',

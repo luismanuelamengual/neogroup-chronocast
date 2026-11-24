@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Radiant Fury',
   text: 'An ally of yours gains +4 attack this phase. Instant.',
+  flavor: 'Holy wrath shines bright.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'uncommon',

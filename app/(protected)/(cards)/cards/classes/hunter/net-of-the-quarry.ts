@@ -6,6 +6,7 @@ export default defineCard({
   type: 'trap',
   name: 'Net of the Quarry',
   text: 'When an enemy ally is summoned: deal 5 damage to it.',
+  flavor: 'What falls in, stays in.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'epic',

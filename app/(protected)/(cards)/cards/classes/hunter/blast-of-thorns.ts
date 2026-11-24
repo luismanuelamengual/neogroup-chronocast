@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Blast of Thorns',
   text: 'Deal 8 damage to an enemy slot.',
+  flavor: 'The forest throws back.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'uncommon',

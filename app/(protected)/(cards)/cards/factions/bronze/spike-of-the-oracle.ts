@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Spike of the Oracle',
   text: 'Deal 8 light damage to an enemy slot.',
+  flavor: 'She foresaw where to strike.',
   faction: 'bronze',
   restriction: { kind: 'faction', faction: 'bronze' },
   rarity: 'common',

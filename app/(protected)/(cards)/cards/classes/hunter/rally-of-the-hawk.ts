@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Rally of the Hawk',
   text: 'An ally of yours gains +4 attack and +5 health. Instant.',
+  flavor: 'The hawk circles. The hunters gather.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'common',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'artifact',
   name: 'Totem of the Herd',
   text: 'At the start of each phase: your hero heals 3.',
+  flavor: 'The herd remembers where it stands.',
   faction: 'primal',
   restriction: { kind: 'faction', faction: 'primal' },
   rarity: 'epic',

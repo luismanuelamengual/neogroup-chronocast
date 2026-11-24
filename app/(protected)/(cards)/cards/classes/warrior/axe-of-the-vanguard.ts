@@ -5,6 +5,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Axe of the Vanguard',
   text: '',
+  flavor: 'The first to swing, the last to dull.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'common',

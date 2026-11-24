@@ -5,6 +5,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Frozen Wand',
   text: '',
+  flavor: 'Point it at summer and watch it end.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'uncommon',

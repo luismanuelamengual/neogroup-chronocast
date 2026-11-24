@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Wild Boar',
   text: 'When it attacks: deal 2 damage to the enemy hero.',
+  flavor: 'Charges first, thinks never.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'common',

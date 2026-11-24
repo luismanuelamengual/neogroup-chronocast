@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Shackle of Dawn',
   text: 'Stun an enemy ally. Fast.',
+  flavor: 'Even the sunrise can take prisoners.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'rare',

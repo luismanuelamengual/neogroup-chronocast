@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Armored Sabotage',
   text: 'Destroy the enemy weapon. Fast.',
+  flavor: 'Every armor has a loose strap.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'rare',

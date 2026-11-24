@@ -5,6 +5,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Harpoon of the Ambush',
   text: '',
+  flavor: 'Thrown from the reeds, felt in the bones.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'common',

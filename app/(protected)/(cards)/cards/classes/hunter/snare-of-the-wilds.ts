@@ -6,6 +6,7 @@ export default defineCard({
   type: 'trap',
   name: 'Snare of the Wilds',
   text: 'When an enemy ally attacks: cancel the attack and stun it.',
+  flavor: 'The jungle sets its own traps.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'rare',

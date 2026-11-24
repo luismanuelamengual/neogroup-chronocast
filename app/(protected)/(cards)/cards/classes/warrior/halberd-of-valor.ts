@@ -6,6 +6,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Halberd of Valor',
   text: 'When it is equipped: draw a card.',
+  flavor: 'Long reach, longer legend.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'uncommon',

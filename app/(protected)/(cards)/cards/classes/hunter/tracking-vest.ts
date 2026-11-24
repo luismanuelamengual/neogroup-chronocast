@@ -5,6 +5,7 @@ export default defineCard({
   type: 'armor',
   name: 'Tracking Vest',
   text: '',
+  flavor: 'Pockets for every trail.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'common',

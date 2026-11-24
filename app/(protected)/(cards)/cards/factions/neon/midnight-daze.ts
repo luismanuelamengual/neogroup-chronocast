@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Midnight Daze',
   text: 'Stun an enemy ally. Fast.',
+  flavor: 'Too many lights, too little time.',
   faction: 'neon',
   restriction: { kind: 'faction', faction: 'neon' },
   rarity: 'rare',

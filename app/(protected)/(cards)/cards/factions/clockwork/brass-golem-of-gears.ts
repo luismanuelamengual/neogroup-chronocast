@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Brass Golem of Gears',
   text: '',
+  flavor: 'Ten thousand gears, one purpose.',
   faction: 'clockwork',
   restriction: { kind: 'faction', faction: 'clockwork' },
   rarity: 'common',

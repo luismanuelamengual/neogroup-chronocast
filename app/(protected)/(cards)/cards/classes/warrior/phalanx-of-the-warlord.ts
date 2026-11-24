@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Phalanx of the Warlord',
   text: 'When it attacks: it gains +1 attack.',
+  flavor: 'They move as one, and fall as none.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'rare',

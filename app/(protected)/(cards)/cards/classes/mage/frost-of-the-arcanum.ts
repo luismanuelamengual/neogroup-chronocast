@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Frost of the Arcanum',
   text: 'Freeze an enemy ally.',
+  flavor: 'Ice written in the language of magic.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'common',

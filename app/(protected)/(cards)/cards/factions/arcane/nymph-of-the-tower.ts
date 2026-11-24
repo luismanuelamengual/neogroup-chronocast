@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Nymph of the Tower',
   text: '',
+  flavor: 'She sings to the moss on the old stones.',
   faction: 'arcane',
   restriction: { kind: 'faction', faction: 'arcane' },
   rarity: 'common',

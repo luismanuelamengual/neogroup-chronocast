@@ -6,6 +6,7 @@ export default defineCard({
   type: 'armor',
   name: 'Vestments of Renewal',
   text: 'When it is equipped: your allies heal 2.',
+  flavor: 'Worn by healers who never sleep.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'epic',

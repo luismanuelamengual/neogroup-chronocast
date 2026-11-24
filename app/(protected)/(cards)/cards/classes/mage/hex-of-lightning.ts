@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Hex of Lightning',
   text: 'Stun an enemy ally. Fast.',
+  flavor: 'Curse the sky, and it curses back.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'common',

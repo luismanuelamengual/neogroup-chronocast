@@ -5,6 +5,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Lantern Staff of Renewal',
   text: '',
+  flavor: 'Its light remembers how things used to be.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'uncommon',

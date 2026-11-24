@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Clever Merchant',
   text: 'When it enters: destroy the priciest enemy artifact.',
+  flavor: 'Everything has a price. Even time.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'rare',

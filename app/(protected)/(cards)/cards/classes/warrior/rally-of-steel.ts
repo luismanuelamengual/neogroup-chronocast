@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Rally of Steel',
   text: 'Your Colossi gain +1 attack and +2 health.',
+  flavor: 'Raise your blades. Raise your voices.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'uncommon',

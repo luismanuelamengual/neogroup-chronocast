@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Guard of the Ancestors',
   text: 'Your hero gains 13 armor and draw a card.',
+  flavor: 'The dead stand guard for the living.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'exotic',

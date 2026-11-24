@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Blazing Daze',
   text: 'Stun an enemy ally for two phases and draw a card. Fast.',
+  flavor: 'Too bright to think.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'uncommon',

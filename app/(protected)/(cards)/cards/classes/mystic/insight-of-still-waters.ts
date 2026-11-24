@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Insight of Still Waters',
   text: 'Draw a card.',
+  flavor: 'Calm water shows the clearest future.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'common',

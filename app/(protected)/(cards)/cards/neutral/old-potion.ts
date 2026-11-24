@@ -6,6 +6,7 @@ export default defineCard({
   type: 'item',
   name: 'Old Potion',
   text: 'Stun an enemy ally. Fast.',
+  flavor: 'The label faded centuries ago.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'common',

@@ -5,6 +5,7 @@ export default defineCard({
   type: 'attachment',
   name: 'Iron Mark',
   text: 'Attach to an enemy ally: it has -2 attack.',
+  flavor: 'Branded once, hunted forever.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'uncommon',

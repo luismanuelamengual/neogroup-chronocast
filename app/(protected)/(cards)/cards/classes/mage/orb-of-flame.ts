@@ -6,6 +6,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Orb of Flame',
   text: 'When it is equipped: draw a card.',
+  flavor: 'A small sun that obeys.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'uncommon',

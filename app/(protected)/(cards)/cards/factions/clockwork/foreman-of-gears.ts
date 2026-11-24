@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Foreman of Gears',
   text: 'When it enters: the enemy weapon loses 1 durability.',
+  flavor: 'The machines work harder when he shouts.',
   faction: 'clockwork',
   restriction: { kind: 'faction', faction: 'clockwork' },
   rarity: 'uncommon',

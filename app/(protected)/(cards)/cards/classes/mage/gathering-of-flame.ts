@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Gathering of Flame',
   text: 'Summon a Rift Spark.',
+  flavor: 'Small sparks, one great fire.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'legendary',

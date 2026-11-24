@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Nocturnal Call',
   text: 'Summon a Sabertooth Cub.',
+  flavor: 'The night has ears, and it listens.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'common',

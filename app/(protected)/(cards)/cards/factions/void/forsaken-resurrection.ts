@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Forsaken Resurrection',
   text: 'A random ally of your discard pile returns to play. Slow.',
+  flavor: 'Back from the dead, and not happy about it.',
   faction: 'void',
   restriction: { kind: 'faction', faction: 'void' },
   rarity: 'uncommon',

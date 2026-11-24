@@ -5,6 +5,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Sharp Crossbow',
   text: '',
+  flavor: 'One bolt, one lesson.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'common',

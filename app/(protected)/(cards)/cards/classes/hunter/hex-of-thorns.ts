@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Hex of Thorns',
   text: 'Freeze an enemy ally.',
+  flavor: 'Every step costs a little blood.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'common',

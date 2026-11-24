@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Sting of the Silent Trail',
   text: 'Poison an enemy ally (3).',
+  flavor: 'You will not hear it. You will feel it.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'mythic',

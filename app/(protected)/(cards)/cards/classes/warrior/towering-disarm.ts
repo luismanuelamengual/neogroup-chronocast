@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Towering Disarm',
   text: 'Destroy the enemy weapon. Fast.',
+  flavor: 'Drop it. Now.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'uncommon',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Guard of the Warlord',
   text: 'Your hero gains 12 armor and draw a card.',
+  flavor: "No one touches the warlord's people.",
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'common',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Empowerment of the Warlord',
   text: 'An ally of yours gains +2 attack and +2 health.',
+  flavor: 'His shout is worth a hundred swords.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'rare',

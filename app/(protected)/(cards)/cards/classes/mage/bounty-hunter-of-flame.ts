@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Bounty Hunter of Flame',
   text: '',
+  flavor: 'Wanted: anyone flammable.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'common',

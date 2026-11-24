@@ -6,6 +6,7 @@ export default defineCard({
   type: 'weapon',
   name: "Tauron's Halberd",
   text: 'When it is equipped: your hero gains 5 armor.',
+  flavor: 'Forged in the heart of the labyrinth.',
   faction: 'bronze',
   restriction: { kind: 'hero', heroId: 'tauron-labyrinth-lord' },
   rarity: 'epic',

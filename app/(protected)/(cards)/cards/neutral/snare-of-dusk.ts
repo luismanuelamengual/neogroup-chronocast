@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Snare of Dusk',
   text: "Return an enemy ally to its owner's hand. Fast.",
+  flavor: 'Set at sunset, sprung by moonrise.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'common',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'artifact',
   name: 'Sundial of the Last Hour',
   text: 'At the start of each phase: your hero heals 3. (3 uses)',
+  flavor: 'Its shadow points to the end.',
   faction: 'void',
   restriction: { kind: 'faction', faction: 'void' },
   rarity: 'common',

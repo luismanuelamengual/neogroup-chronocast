@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Ash-Covered Stonethrower',
   text: '',
+  flavor: 'The volcano taught him to throw.',
   faction: 'primal',
   restriction: { kind: 'faction', faction: 'primal' },
   rarity: 'common',

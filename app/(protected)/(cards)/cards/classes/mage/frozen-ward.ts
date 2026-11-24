@@ -5,6 +5,7 @@ export default defineCard({
   type: 'armor',
   name: 'Frozen Ward',
   text: '',
+  flavor: 'Cold enough to stop a sword mid-swing.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'uncommon',

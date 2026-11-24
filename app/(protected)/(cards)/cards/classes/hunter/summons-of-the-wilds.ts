@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Summons of the Wilds',
   text: 'Summon a Sabertooth Cub.',
+  flavor: 'The forest answers its own.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'rare',

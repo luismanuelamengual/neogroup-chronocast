@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Borrowed Hour of Lost Time',
   text: 'Your hero gains 3 energy. Instant.',
+  flavor: 'Borrowed from a day that never came.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'uncommon',

@@ -5,6 +5,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Spirit-Bound Bell',
   text: '',
+  flavor: 'Its toll calls the dead to their posts.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'common',

@@ -5,6 +5,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Wild Crossbow',
   text: '',
+  flavor: 'Strung with jungle vine and bad temper.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'common',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Hex of the Enchanted Wood',
   text: "Return an enemy ally to its owner's hand. Fast.",
+  flavor: 'The trees remember who cut them.',
   faction: 'arcane',
   restriction: { kind: 'faction', faction: 'arcane' },
   rarity: 'uncommon',

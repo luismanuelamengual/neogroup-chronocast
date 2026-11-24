@@ -7,6 +7,7 @@ export default defineCard({
   reward: true,
   name: "Starweaver's Astrolabe",
   text: 'Draw 2 cards and you gain 2 Chronos this phase.',
+  flavor: 'Ilyra charts the stars that charted her.',
   faction: 'arcane',
   restriction: { kind: 'hero', heroId: 'ilyra-starweaver' },
   rarity: 'legendary',

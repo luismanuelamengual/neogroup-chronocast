@@ -6,6 +6,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Rod of Ruin',
   text: 'When it is equipped: your hero gains 7 armor.',
+  flavor: 'Everything it touches gets older.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'uncommon',

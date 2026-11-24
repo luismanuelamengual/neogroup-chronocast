@@ -6,6 +6,7 @@ export default defineCard({
   type: 'trap',
   name: 'Net of Ice',
   text: 'When an enemy ally is summoned: freeze it.',
+  flavor: 'It catches and keeps.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'legendary',

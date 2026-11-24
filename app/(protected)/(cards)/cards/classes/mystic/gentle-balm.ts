@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Gentle Balm',
   text: 'Your hero heals 16 and draw a card.',
+  flavor: 'For scraped knees and broken hearts.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'epic',

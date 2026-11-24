@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Neon Thug',
   text: '',
+  flavor: 'Rent is due. So are your teeth.',
   faction: 'neon',
   restriction: { kind: 'faction', faction: 'neon' },
   rarity: 'common',

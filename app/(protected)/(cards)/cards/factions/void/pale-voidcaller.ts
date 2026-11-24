@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Pale Voidcaller',
   text: '',
+  flavor: 'When she speaks, the dark answers.',
   faction: 'void',
   restriction: { kind: 'faction', faction: 'void' },
   rarity: 'common',

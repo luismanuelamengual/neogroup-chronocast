@@ -6,6 +6,7 @@ export default defineCard({
   type: 'attachment',
   name: 'Leech of Runes',
   text: 'Attach to an enemy ally: every damage it takes is 3 higher.',
+  flavor: 'It feeds on magic, one rune at a time.',
   faction: 'arcane',
   restriction: { kind: 'faction', faction: 'arcane' },
   rarity: 'uncommon',

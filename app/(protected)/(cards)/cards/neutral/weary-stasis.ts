@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Weary Stasis',
   text: 'Freeze an enemy ally.',
+  flavor: 'Even time needs to rest.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'uncommon',

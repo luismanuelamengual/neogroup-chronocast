@@ -5,6 +5,7 @@ export default defineCard({
   type: 'armor',
   name: 'Radiant Halo',
   text: '',
+  flavor: 'Light that refuses to go out.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'epic',

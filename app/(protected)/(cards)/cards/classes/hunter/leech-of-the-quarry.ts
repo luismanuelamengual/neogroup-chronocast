@@ -5,6 +5,7 @@ export default defineCard({
   type: 'attachment',
   name: 'Leech of the Quarry',
   text: "Attach to an enemy ally: it can't attack.",
+  flavor: 'It drinks while you run.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'rare',

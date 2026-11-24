@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Barrage of the Hawk',
   text: 'Deal 6 wind damage to an enemy ally. Fast.',
+  flavor: 'The hawk calls, and the arrows follow.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'common',

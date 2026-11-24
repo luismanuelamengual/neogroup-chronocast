@@ -6,6 +6,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Devout Bell',
   text: 'When it is equipped: your hero heals 4.',
+  flavor: 'Each toll is a vow kept.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'rare',

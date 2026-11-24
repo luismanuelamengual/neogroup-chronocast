@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Scarred Raptor',
   text: '',
+  flavor: 'Every scar taught it a new trick.',
   faction: 'primal',
   restriction: { kind: 'faction', faction: 'primal' },
   rarity: 'common',

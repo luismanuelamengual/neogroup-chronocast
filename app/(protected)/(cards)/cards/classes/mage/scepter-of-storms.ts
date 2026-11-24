@@ -5,6 +5,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Scepter of Storms',
   text: '',
+  flavor: 'The sky obeys it, mostly.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'uncommon',

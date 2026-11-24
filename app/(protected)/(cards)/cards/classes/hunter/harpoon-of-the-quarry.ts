@@ -6,6 +6,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Harpoon of the Quarry',
   text: 'When it is equipped: deal 4 damage to a random enemy ally.',
+  flavor: 'Barbed for the biggest prey.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'epic',

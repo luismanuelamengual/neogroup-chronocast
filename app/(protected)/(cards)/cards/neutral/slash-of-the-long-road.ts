@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Slash of the Long Road',
   text: 'Deal 11 damage to an enemy slot.',
+  flavor: 'A cut that crosses three centuries.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'common',

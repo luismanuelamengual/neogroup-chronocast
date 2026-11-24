@@ -6,6 +6,7 @@ export default defineCard({
   type: 'armor',
   name: 'Nocturnal Vest',
   text: 'When it is equipped: draw a card.',
+  flavor: 'Darker than the night it hides in.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'rare',

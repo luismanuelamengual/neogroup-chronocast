@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Thundering Raptor',
   text: 'When it dies: summon a Raptor Hatchling.',
+  flavor: 'Its footsteps sound like a storm.',
   faction: 'primal',
   restriction: { kind: 'faction', faction: 'primal' },
   rarity: 'common',

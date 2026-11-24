@@ -6,6 +6,7 @@ export default defineCard({
   token: true,
   name: 'Risen Skeleton',
   text: '',
+  flavor: 'Death was just a long nap.',
   faction: 'void',
   restriction: { kind: 'faction', faction: 'void' },
   rarity: 'common',

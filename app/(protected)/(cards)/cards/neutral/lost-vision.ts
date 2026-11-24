@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Lost Vision',
   text: 'Draw 2 cards.',
+  flavor: 'A glimpse of a century nobody lived.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'common',

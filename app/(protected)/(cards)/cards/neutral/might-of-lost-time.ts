@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Might of Lost Time',
   text: 'An ally of yours gains +12 attack this phase. Instant.',
+  flavor: 'Power borrowed from forgotten heroes.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'common',

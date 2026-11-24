@@ -5,6 +5,7 @@ export default defineCard({
   type: 'armor',
   name: 'Stray Leather Coat',
   text: '',
+  flavor: 'Found in one century, lost in three more.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'uncommon',

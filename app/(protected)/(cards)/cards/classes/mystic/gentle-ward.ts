@@ -6,6 +6,7 @@ export default defineCard({
   type: 'trap',
   name: 'Gentle Ward',
   text: 'When an enemy ally attacks: deal 7 light damage to it.',
+  flavor: 'It softens every blow.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'uncommon',

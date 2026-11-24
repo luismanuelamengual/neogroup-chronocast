@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Respite of Renewal',
   text: 'Your hero heals 9.',
+  flavor: 'Rest now. The war will wait.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'uncommon',

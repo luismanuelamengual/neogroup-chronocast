@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Flickering Stance',
   text: 'Your hero gains 15 armor and draw a card.',
+  flavor: 'Here, there, nowhere.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'common',

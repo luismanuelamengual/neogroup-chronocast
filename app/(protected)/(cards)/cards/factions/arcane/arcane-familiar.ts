@@ -6,6 +6,7 @@ export default defineCard({
   token: true,
   name: 'Arcane Familiar',
   text: '',
+  flavor: 'A friend made of pure starlight.',
   faction: 'arcane',
   restriction: { kind: 'faction', faction: 'arcane' },
   rarity: 'common',

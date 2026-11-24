@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Spark of the Crossroads',
   text: '',
+  flavor: 'Born where all roads meet.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'common',

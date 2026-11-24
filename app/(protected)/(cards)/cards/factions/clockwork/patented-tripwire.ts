@@ -6,6 +6,7 @@ export default defineCard({
   type: 'trap',
   name: 'Patented Tripwire',
   text: 'When an enemy ally is summoned: deal 7 damage to it.',
+  flavor: 'Model 7. Models 1 to 6 caught their inventors.',
   faction: 'clockwork',
   restriction: { kind: 'faction', faction: 'clockwork' },
   rarity: 'common',

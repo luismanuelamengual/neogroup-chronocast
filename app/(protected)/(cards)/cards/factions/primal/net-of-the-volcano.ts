@@ -6,6 +6,7 @@ export default defineCard({
   type: 'trap',
   name: 'Net of the Volcano',
   text: 'When an enemy ally is summoned: freeze it.',
+  flavor: 'Woven with lava and patience.',
   faction: 'primal',
   restriction: { kind: 'faction', faction: 'primal' },
   rarity: 'exotic',

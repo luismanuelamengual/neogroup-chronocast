@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Blazing Strike',
   text: 'Deal 9 fire damage to an enemy slot.',
+  flavor: 'Heat first, questions never.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'rare',

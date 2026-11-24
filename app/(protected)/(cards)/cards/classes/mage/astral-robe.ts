@@ -5,6 +5,7 @@ export default defineCard({
   type: 'armor',
   name: 'Astral Robe',
   text: '',
+  flavor: 'Woven from the night sky, stitched with stars.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'exotic',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Radiant Stance',
   text: 'Your hero gains 12 armor and draw a card.',
+  flavor: 'Stand in the light and do not move.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'common',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Stalwart Street Samurai',
   text: 'When it enters: your hero gains 8 armor.',
+  flavor: 'Neon blade, old code.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'rare',

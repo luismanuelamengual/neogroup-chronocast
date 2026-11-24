@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Dreaming Pyre',
   text: 'Burn an enemy slot (3).',
+  flavor: 'It burns with the colors of dreams.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'legendary',

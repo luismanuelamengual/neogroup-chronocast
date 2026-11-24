@@ -6,6 +6,7 @@ export default defineCard({
   type: 'artifact',
   name: 'Altar of Pistons',
   text: 'At the start of each phase: your hero gains 1 energy.',
+  flavor: 'Offerings of oil to the god of machines.',
   faction: 'clockwork',
   restriction: { kind: 'faction', faction: 'clockwork' },
   rarity: 'epic',

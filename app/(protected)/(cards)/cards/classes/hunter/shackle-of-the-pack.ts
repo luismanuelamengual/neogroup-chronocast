@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Shackle of the Pack',
   text: 'Stun an enemy ally for two phases and draw a card. Fast.',
+  flavor: 'The pack never lets go.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'uncommon',

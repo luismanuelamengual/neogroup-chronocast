@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Spike of the Comet',
   text: 'Deal 9 arcane damage to an enemy slot.',
+  flavor: 'Fallen from the sky, still burning.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'epic',

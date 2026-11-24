@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Armored Fortune Teller',
   text: 'After it takes damage: it gains +2 attack.',
+  flavor: 'She read the future and bought armor.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'uncommon',

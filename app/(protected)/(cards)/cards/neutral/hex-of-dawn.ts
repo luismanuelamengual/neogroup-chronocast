@@ -5,6 +5,7 @@ export default defineCard({
   type: 'attachment',
   name: 'Hex of Dawn',
   text: 'Attach to an enemy ally: it has -3 attack.',
+  flavor: 'A curse that only works in daylight.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'common',

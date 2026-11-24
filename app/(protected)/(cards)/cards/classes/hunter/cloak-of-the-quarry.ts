@@ -5,6 +5,7 @@ export default defineCard({
   type: 'armor',
   name: 'Cloak of the Quarry',
   text: '',
+  flavor: 'The prey never sees it coming.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'common',

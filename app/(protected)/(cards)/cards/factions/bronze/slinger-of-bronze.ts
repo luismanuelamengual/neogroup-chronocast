@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Slinger of Bronze',
   text: 'When it dies: your other allies gain +1 attack.',
+  flavor: 'A bronze stone, a perfect arc.',
   faction: 'bronze',
   restriction: { kind: 'faction', faction: 'bronze' },
   rarity: 'uncommon',

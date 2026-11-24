@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Blast of the Arcanum',
   text: 'Deal 9 arcane damage to an enemy slot.',
+  flavor: 'The library had a strict silence policy.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'rare',

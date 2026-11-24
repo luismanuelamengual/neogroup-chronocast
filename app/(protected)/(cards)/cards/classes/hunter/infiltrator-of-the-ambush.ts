@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Infiltrator of the Ambush',
   text: 'When it enters: summon a Sabertooth Cub.',
+  flavor: 'By the time you see her, it is over.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'uncommon',

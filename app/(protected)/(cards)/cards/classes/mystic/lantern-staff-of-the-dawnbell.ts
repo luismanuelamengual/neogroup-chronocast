@@ -6,6 +6,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Lantern Staff of the Dawnbell',
   text: 'When it is equipped: your hero heals 6.',
+  flavor: 'It lights the path to morning.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'uncommon',

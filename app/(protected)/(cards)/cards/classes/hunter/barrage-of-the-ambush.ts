@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Barrage of the Ambush',
   text: 'Deal 12 damage to an enemy slot.',
+  flavor: 'The trees themselves let fly.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'legendary',

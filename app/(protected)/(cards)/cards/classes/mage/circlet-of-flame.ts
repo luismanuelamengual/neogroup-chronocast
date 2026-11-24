@@ -5,6 +5,7 @@ export default defineCard({
   type: 'armor',
   name: 'Circlet of Flame',
   text: '',
+  flavor: 'Thoughts burn brighter under it.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'common',

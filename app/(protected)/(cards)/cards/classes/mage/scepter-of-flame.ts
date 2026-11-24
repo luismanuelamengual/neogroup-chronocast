@@ -6,6 +6,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Scepter of Flame',
   text: 'When it is equipped: draw a card.',
+  flavor: 'Wave it, and the world gets warmer.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'uncommon',

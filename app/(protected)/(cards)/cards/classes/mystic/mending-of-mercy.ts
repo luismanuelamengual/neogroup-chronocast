@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Mending of Mercy',
   text: 'Your hero heals 12.',
+  flavor: 'Mercy heals the giver too.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'common',

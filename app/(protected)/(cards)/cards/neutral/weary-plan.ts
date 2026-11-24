@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Weary Plan',
   text: 'Draw 2 cards.',
+  flavor: 'Not elegant, but it works.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'rare',

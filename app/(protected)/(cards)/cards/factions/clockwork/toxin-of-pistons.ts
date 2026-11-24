@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Toxin of Pistons',
   text: 'Poison an enemy ally (2).',
+  flavor: 'Machine oil was never meant to be drunk.',
   faction: 'clockwork',
   restriction: { kind: 'faction', faction: 'clockwork' },
   rarity: 'uncommon',

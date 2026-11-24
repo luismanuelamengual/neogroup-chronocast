@@ -5,6 +5,7 @@ export default defineCard({
   type: 'armor',
   name: 'Breastplate of Rage',
   text: '',
+  flavor: 'Forged hot, worn hotter.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'common',

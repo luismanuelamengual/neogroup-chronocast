@@ -6,6 +6,7 @@ export default defineCard({
   type: 'artifact',
   name: 'Ethereal Terminal',
   text: 'At the start of each phase: your hero heals 3. (3 uses)',
+  flavor: 'It connects to libraries that no longer exist.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'common',

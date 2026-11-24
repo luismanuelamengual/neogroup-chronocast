@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Binding of Flame',
   text: 'Freeze an enemy ally.',
+  flavor: 'Chains that burn as they hold.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'common',

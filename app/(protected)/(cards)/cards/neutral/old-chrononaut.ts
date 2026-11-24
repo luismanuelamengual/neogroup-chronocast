@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Old Chrononaut',
   text: 'When it enters: draw a card.',
+  flavor: 'He remembers tomorrow better than yesterday.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'uncommon',

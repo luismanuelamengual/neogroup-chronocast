@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Wise Stasis',
   text: 'Freeze an enemy ally.',
+  flavor: 'The wise know when to stop the clock.',
   faction: 'arcane',
   restriction: { kind: 'faction', faction: 'arcane' },
   rarity: 'common',

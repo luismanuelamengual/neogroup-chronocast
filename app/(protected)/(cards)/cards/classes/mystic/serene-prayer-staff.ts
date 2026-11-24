@@ -6,6 +6,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Serene Prayer Staff',
   text: 'When it is equipped: draw a card.',
+  flavor: 'Each knot holds a quiet prayer.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'uncommon',

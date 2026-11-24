@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Spike of the Hunt',
   text: 'Deal 4 damage to an enemy ally. Fast.',
+  flavor: 'The ground itself joins the hunt.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'common',

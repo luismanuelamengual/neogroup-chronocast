@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Wandering Plan',
   text: 'Draw 2 cards.',
+  flavor: 'The plan changes every era.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'common',

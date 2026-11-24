@@ -6,6 +6,7 @@ export default defineCard({
   type: 'armor',
   name: 'Plate of the Last Stand',
   text: 'When it is equipped: draw a card.',
+  flavor: 'Worn by those who will not take a step back.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'rare',

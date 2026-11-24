@@ -6,6 +6,7 @@ export default defineCard({
   token: true,
   name: 'Sabertooth Cub',
   text: '',
+  flavor: 'Small fangs, big plans.',
   faction: 'primal',
   restriction: { kind: 'faction', faction: 'primal' },
   rarity: 'common',

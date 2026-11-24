@@ -6,6 +6,7 @@ export default defineCard({
   type: 'weapon',
   name: "Varro's Glaive",
   text: 'When it is equipped: your hero gains 5 armor.',
+  flavor: "The legate's word, made steel.",
   faction: 'bronze',
   restriction: { kind: 'hero', heroId: 'legate-varro' },
   rarity: 'epic',

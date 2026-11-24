@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Enchanted Shot',
   text: 'Deal 12 arcane damage to an enemy ally.',
+  flavor: 'The arrow knows the way.',
   faction: 'arcane',
   restriction: { kind: 'faction', faction: 'arcane' },
   rarity: 'rare',

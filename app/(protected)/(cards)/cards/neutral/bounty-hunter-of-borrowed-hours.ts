@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Bounty Hunter of Borrowed Hours',
   text: 'When it enters: draw a card.',
+  flavor: 'She collects debts in minutes and seconds.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'uncommon',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Patented Tick',
   text: 'Your hero gains 3 energy. Instant.',
+  flavor: 'Patent pending since 1887.',
   faction: 'clockwork',
   restriction: { kind: 'faction', faction: 'clockwork' },
   rarity: 'uncommon',

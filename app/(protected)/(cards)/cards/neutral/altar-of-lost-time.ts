@@ -6,6 +6,7 @@ export default defineCard({
   type: 'artifact',
   name: 'Altar of Lost Time',
   text: 'Every damage your allies take is 1 lower.',
+  flavor: 'Offerings to hours that never happened.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'common',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Infiltrator of the Silent Trail',
   text: 'When it dies: deal 3 damage to a random enemy ally.',
+  flavor: 'Not a leaf moves when she passes.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'uncommon',

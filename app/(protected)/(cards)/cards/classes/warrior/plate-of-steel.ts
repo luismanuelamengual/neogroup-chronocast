@@ -5,6 +5,7 @@ export default defineCard({
   type: 'armor',
   name: 'Plate of Steel',
   text: '',
+  flavor: 'Old steel, older promises.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'uncommon',

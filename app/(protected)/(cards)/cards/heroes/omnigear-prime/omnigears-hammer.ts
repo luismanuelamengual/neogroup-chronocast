@@ -6,6 +6,7 @@ export default defineCard({
   type: 'weapon',
   name: "Omnigear's Hammer",
   text: 'When it is equipped: your hero gains 5 armor.',
+  flavor: 'Calibrated to the nanometer, swung with fury.',
   faction: 'clockwork',
   restriction: { kind: 'hero', heroId: 'omnigear-prime' },
   rarity: 'epic',

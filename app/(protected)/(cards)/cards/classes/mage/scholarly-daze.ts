@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Scholarly Daze',
   text: 'Stun an enemy ally. Fast.',
+  flavor: 'A lecture so dense it stuns.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'uncommon',

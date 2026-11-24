@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Laureled Dream Reader',
   text: 'When it enters: draw a card.',
+  flavor: "She reads the empire's dreams and edits the bad ones.",
   faction: 'bronze',
   restriction: { kind: 'faction', faction: 'bronze' },
   rarity: 'common',

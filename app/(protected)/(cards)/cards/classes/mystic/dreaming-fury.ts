@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Dreaming Fury',
   text: 'An ally of yours gains +5 attack and +7 health.',
+  flavor: 'A rage born in a nightmare.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'common',

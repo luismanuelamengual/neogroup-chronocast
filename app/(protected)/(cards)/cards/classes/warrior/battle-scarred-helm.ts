@@ -5,6 +5,7 @@ export default defineCard({
   type: 'armor',
   name: 'Battle-Scarred Helm',
   text: '',
+  flavor: 'Every dent is a story it survived.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'common',

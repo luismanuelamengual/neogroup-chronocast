@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Wandering Wanderer',
   text: '',
+  flavor: 'Even he does not know where he is going.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'common',

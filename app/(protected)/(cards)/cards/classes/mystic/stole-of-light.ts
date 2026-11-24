@@ -5,6 +5,7 @@ export default defineCard({
   type: 'armor',
   name: 'Stole of Light',
   text: '',
+  flavor: 'A thread of sunrise across the shoulders.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'rare',

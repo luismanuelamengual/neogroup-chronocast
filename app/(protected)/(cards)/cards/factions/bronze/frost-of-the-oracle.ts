@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Frost of the Oracle',
   text: 'Stun an enemy ally for two phases. Fast.',
+  flavor: 'She saw the winter coming and sent it ahead.',
   faction: 'bronze',
   restriction: { kind: 'faction', faction: 'bronze' },
   rarity: 'common',

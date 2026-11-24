@@ -5,6 +5,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Flail of the Vanguard',
   text: '',
+  flavor: 'Chains, spikes and good intentions.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'common',

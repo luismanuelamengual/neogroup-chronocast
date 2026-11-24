@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Mending of Light',
   text: 'Your hero heals 9.',
+  flavor: 'Light fills the cracks first.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'common',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Timeless Tick',
   text: 'You gain 3 Chronos this phase. Instant.',
+  flavor: 'The clock that ticks for no one.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'uncommon',

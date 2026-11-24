@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Clever Fortune Teller',
   text: '',
+  flavor: 'She saw you coming. She charged extra.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'common',

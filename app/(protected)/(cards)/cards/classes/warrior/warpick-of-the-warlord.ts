@@ -6,6 +6,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Warpick of the Warlord',
   text: 'When it is equipped: your hero heals 3.',
+  flavor: 'It has broken crowns.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'uncommon',

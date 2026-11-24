@@ -5,6 +5,7 @@ export default defineCard({
   type: 'armor',
   name: 'Spirit-Bound Shroud',
   text: '',
+  flavor: 'The ancestors keep watch from its folds.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'common',

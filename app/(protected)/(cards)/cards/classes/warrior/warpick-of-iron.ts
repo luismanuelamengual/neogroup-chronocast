@@ -6,6 +6,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Warpick of Iron',
   text: 'When it is equipped: draw a card.',
+  flavor: 'Made to open helmets like nutshells.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'epic',

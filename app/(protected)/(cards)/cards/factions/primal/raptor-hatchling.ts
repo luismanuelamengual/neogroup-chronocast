@@ -6,6 +6,7 @@ export default defineCard({
   token: true,
   name: 'Raptor Hatchling',
   text: '',
+  flavor: 'Born hungry.',
   faction: 'primal',
   restriction: { kind: 'faction', faction: 'primal' },
   rarity: 'common',

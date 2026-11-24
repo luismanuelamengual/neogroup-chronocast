@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Vigor of the Shieldwall',
   text: 'An ally of yours gains +5 attack and +7 health.',
+  flavor: 'Lock shields, breathe together, stand together.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'uncommon',

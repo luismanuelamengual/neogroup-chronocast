@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Flickering Muster',
   text: 'Summon an Arcane Familiar.',
+  flavor: 'Half of them are here. Half are almost here.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'common',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Might of Iron',
   text: 'An ally of yours gains +8 attack this phase. Instant.',
+  flavor: 'Strength forged, not born.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'common',

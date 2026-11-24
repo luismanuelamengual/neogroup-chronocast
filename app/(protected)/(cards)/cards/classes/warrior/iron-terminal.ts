@@ -6,6 +6,7 @@ export default defineCard({
   type: 'artifact',
   name: 'Iron Terminal',
   text: 'At the start of each phase: your hero heals 3. (4 uses)',
+  flavor: 'Old hardware, still dangerous.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'rare',

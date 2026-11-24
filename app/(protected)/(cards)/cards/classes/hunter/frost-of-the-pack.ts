@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Frost of the Pack',
   text: 'Stun an enemy ally for two phases and draw a card. Fast.',
+  flavor: 'Wolves run faster on frozen ground.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'rare',

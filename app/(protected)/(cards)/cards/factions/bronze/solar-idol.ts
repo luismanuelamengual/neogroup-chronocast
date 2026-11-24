@@ -6,6 +6,7 @@ export default defineCard({
   type: 'artifact',
   name: 'Solar Idol',
   text: 'At the start of each phase: draw a card. (3 uses)',
+  flavor: 'It drinks the sun and gives back courage.',
   faction: 'bronze',
   restriction: { kind: 'faction', faction: 'bronze' },
   rarity: 'uncommon',

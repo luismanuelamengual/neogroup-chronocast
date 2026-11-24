@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Pegasus of Still Waters',
   text: '',
+  flavor: 'It drinks only from lakes that reflect the stars.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'common',

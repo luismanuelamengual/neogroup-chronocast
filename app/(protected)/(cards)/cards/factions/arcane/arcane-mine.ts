@@ -6,6 +6,7 @@ export default defineCard({
   type: 'trap',
   name: 'Arcane Mine',
   text: 'When an enemy ally is summoned: freeze it.',
+  flavor: 'Step lightly. Read the runes. Too late.',
   faction: 'arcane',
   restriction: { kind: 'faction', faction: 'arcane' },
   rarity: 'uncommon',

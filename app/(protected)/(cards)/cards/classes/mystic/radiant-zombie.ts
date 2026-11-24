@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Radiant Zombie',
   text: '',
+  flavor: 'Blessed by mistake.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'common',

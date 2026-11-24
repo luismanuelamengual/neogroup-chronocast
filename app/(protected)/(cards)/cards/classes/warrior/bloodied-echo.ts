@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Bloodied Echo',
   text: 'A random ally of your discard pile returns to play. Slow.',
+  flavor: 'The battle echoes long after it ends.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'common',

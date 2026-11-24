@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Weary Merchant',
   text: 'When it dies: draw a card.',
+  flavor: 'He has sold everything except his rest.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'uncommon',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Restless Deserter',
   text: 'When it enters: draw a card.',
+  flavor: 'He left the war. The war did not leave him.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'rare',

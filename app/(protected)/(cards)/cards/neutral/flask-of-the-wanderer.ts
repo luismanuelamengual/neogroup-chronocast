@@ -6,6 +6,7 @@ export default defineCard({
   type: 'item',
   name: 'Flask of the Wanderer',
   text: 'Your hero heals 13 and draw a card.',
+  flavor: 'Never empty, never the same drink twice.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'rare',

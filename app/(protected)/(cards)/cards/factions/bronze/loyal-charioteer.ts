@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Loyal Charioteer',
   text: '',
+  flavor: 'The horses trust him. So does the legion.',
   faction: 'bronze',
   restriction: { kind: 'faction', faction: 'bronze' },
   rarity: 'common',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Rally of Grace',
   text: 'An ally of yours gains +4 attack and +5 health.',
+  flavor: 'Gather in the light.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'uncommon',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Hallowed Battle Cry',
   text: 'An ally of yours gains +4 attack and +5 health.',
+  flavor: 'Heard by the living and the dead.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'common',

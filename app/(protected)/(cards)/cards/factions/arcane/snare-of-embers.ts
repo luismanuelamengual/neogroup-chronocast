@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Snare of Embers',
   text: "Return an enemy ally to its owner's hand. Fast.",
+  flavor: 'Hot coals hide under the leaves.',
   faction: 'arcane',
   restriction: { kind: 'faction', faction: 'arcane' },
   rarity: 'common',

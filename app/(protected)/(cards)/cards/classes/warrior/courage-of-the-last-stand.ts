@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Courage of the Last Stand',
   text: 'An ally of yours gains +8 attack this phase. Instant.',
+  flavor: 'There is nowhere left to go but forward.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'common',

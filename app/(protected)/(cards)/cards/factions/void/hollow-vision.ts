@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Hollow Vision',
   text: 'Draw 2 cards.',
+  flavor: 'It shows what is missing.',
   faction: 'void',
   restriction: { kind: 'faction', faction: 'void' },
   rarity: 'uncommon',

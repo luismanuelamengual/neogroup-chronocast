@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Flickering Frost Wyrm',
   text: '',
+  flavor: 'It blinks between winters.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'common',

@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Armored Fury',
   text: 'An ally of yours gains +3 attack and +4 health. Instant.',
+  flavor: 'Rage, now with plating.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'uncommon',

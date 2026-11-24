@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Temple Keeper of the Sun Temple',
   text: '',
+  flavor: 'The sun rises when she says so.',
   faction: 'bronze',
   restriction: { kind: 'faction', faction: 'bronze' },
   rarity: 'common',

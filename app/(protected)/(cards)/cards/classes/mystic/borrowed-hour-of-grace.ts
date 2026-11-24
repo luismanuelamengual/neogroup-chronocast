@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Borrowed Hour of Grace',
   text: 'Your hero gains 3 energy. Instant.',
+  flavor: 'An hour you did not have, given freely.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'rare',

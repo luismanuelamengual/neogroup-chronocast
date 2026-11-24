@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Endless Plan',
   text: 'Draw a card.',
+  flavor: 'Step one: wait. Step two: wait longer.',
   faction: 'void',
   restriction: { kind: 'faction', faction: 'void' },
   rarity: 'uncommon',

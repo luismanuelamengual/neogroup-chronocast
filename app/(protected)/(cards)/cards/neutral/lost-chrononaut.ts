@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Lost Chrononaut',
   text: '',
+  flavor: 'He left in the year 3000. He has not found it since.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'common',

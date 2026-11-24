@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Cave Bear of the Hunt Moon',
   text: 'When it enters: your allies heal 3.',
+  flavor: 'It wakes only under the hunting moon.',
   faction: 'primal',
   restriction: { kind: 'faction', faction: 'primal' },
   rarity: 'rare',

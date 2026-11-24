@@ -6,6 +6,7 @@ export default defineCard({
   type: 'armor',
   name: 'Venomous Jerkin',
   text: 'When it is equipped: draw a card.',
+  flavor: 'Lined with the skins of things that bite.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'rare',

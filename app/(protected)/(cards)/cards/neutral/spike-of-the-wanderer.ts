@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Spike of the Wanderer',
   text: 'Deal 11 damage to an enemy slot.',
+  flavor: 'The Rift grows thorns of its own.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'common',

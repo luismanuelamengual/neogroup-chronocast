@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Courage of Spirits',
   text: 'An ally of yours gains +8 attack this phase. Instant.',
+  flavor: 'The spirits whisper: do not run.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'common',

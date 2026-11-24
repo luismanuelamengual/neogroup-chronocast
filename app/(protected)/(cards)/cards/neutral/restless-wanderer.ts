@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Restless Wanderer',
   text: 'At the start of each phase: your hero heals 2.',
+  flavor: 'Sleeping is for people with only one century.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'rare',

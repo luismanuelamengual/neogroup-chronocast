@@ -5,6 +5,7 @@ export default defineCard({
   type: 'armor',
   name: 'Keen-Eyed Hide',
   text: '',
+  flavor: 'Tanned by a hunter who never missed.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'common',

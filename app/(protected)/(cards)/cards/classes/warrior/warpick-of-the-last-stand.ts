@@ -5,6 +5,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Warpick of the Last Stand',
   text: '',
+  flavor: 'Carried by those who refuse to fall back.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'warrior' },
   rarity: 'common',

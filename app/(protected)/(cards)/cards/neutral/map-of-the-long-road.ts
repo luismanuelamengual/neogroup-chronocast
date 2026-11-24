@@ -6,6 +6,7 @@ export default defineCard({
   type: 'item',
   name: 'Map of the Long Road',
   text: 'Destroy the enemy weapon. Fast.',
+  flavor: 'The roads move. The map moves with them.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'common',

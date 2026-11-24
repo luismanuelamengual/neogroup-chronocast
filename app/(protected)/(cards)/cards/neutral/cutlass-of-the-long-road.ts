@@ -5,6 +5,7 @@ export default defineCard({
   type: 'weapon',
   name: 'Cutlass of the Long Road',
   text: '',
+  flavor: 'It has crossed more borders than maps.',
   faction: 'neutral',
   restriction: { kind: 'any' },
   rarity: 'rare',

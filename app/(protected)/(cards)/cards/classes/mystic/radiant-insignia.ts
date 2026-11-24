@@ -5,6 +5,7 @@ export default defineCard({
   type: 'attachment',
   name: 'Radiant Insignia',
   text: 'Attach to an ally of yours: it gains +2 health.',
+  flavor: 'Worn with pride, shining with purpose.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mystic' },
   rarity: 'common',

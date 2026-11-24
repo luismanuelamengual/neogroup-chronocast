@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Blast of Lightning',
   text: 'Deal 4 lightning damage to an enemy ally. Fast.',
+  flavor: 'Thunder arrives a little late.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'common',

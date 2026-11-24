@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ally',
   name: 'Slinger of the Sun Temple',
   text: 'When it enters: summon a Hoplite Conscript.',
+  flavor: 'She never misses under the sun.',
   faction: 'bronze',
   restriction: { kind: 'faction', faction: 'bronze' },
   rarity: 'common',

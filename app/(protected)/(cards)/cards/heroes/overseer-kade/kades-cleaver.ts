@@ -6,6 +6,7 @@ export default defineCard({
   type: 'weapon',
   name: "Kade's Cleaver",
   text: 'When it is equipped: your hero gains 5 armor.',
+  flavor: 'Order, one cut at a time.',
   faction: 'neon',
   restriction: { kind: 'hero', heroId: 'overseer-kade' },
   rarity: 'epic',

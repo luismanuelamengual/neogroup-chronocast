@@ -5,6 +5,7 @@ export default defineCard({
   type: 'ally',
   name: 'Netrunner of the Pack',
   text: '',
+  flavor: 'She hunts in packets, not packs.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'hunter' },
   rarity: 'common',

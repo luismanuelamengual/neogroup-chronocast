@@ -6,6 +6,7 @@ export default defineCard({
   type: 'ability',
   name: 'Binding of Ruin',
   text: "Return an enemy ally to its owner's hand. Fast.",
+  flavor: 'Chains forged from broken things.',
   faction: 'neutral',
   restriction: { kind: 'class', heroClass: 'mage' },
   rarity: 'epic',
