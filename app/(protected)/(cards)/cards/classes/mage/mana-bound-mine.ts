@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['trap'] },
   art: {
-    subject: 'Mana-Bound Mine: a hidden mine about to spring, mage style'
+    subject:
+      'Mana-Bound Mine: a buried rune mine glowing faintly under the dirt, circled by glowing violet runes, seen from above, indigo accents, mage style'
   }
 })

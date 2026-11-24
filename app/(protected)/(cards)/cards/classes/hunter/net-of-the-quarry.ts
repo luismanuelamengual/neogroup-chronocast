@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['trap'] },
   art: {
-    subject: 'Net of the Quarry: a hidden quarry about to spring, hunter style'
+    subject:
+      'Net of the Quarry: a weighted rope net hidden under leaves, about to spring, framed by drifting embers, tangerine accents, hunter style'
   }
 })

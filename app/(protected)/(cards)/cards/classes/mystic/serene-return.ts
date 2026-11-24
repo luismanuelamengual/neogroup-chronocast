@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 6, tags: ['heal', 'revive'] },
   art: {
-    subject: 'Serene Return: a ghostly figure rising from a grave in green light, mystic healer style'
+    subject:
+      'Serene Return: a swirling vortex pulling objects backward in time, in a ruined temple, seen from above, emerald accents, mystic healer style'
   }
 })

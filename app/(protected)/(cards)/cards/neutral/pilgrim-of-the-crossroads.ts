@@ -33,6 +33,7 @@ export default defineCard({
   },
   ai: { value: 6, tags: ['ability', 'energy', 'ramp', 'summon'] },
   art: {
-    subject: 'a time-traveling wanderer, the pilgrim of the crossroads, roaring, time rift wanderer style'
+    subject:
+      'Pilgrim of the Crossroads: a hunched adult owlfolk man with honey blond feathers, a thin mustache and a monocle, wearing a deep hood, dressed in a medieval tabard over a space suit liner, holding prayer beads and a staff, with a fierce scowl, crimson accents, time rift wanderer style'
   }
 })

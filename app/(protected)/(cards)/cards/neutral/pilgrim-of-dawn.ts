@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['antiGear'] },
   art: {
-    subject: 'a time-traveling adventurer, the pilgrim of dawn, glaring at the viewer, time rift wanderer style'
+    subject:
+      'Pilgrim of Dawn: a willowy middle-aged orc man with jet black hair in short curls and an eyepatch, wearing a bowler hat, dressed in a poncho woven with hourglass patterns, holding prayer beads and a staff, with a haunted stare, lime green accents, time rift wanderer style'
   }
 })

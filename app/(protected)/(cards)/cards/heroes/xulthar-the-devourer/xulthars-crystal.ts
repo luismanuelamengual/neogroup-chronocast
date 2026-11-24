@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 5 },
   art: {
-    subject: "Xulthar's Crystal: a sacred relic of the hero glowing on an altar, dark end-of-time void style"
+    subject:
+      "Xulthar's Crystal: an ancient crystal made of pale ash wood wrapped in red cloth, standing in a torchlit hall, framed by drifting embers, lime green accents, dark end-of-time void style"
   }
 })

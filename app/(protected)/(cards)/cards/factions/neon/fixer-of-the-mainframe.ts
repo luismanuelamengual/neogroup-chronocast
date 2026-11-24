@@ -23,6 +23,6 @@ export default defineCard({
   ai: { value: 6, tags: ['buff', 'draw', 'tribe'] },
   art: {
     subject:
-      'a cyberpunk street criminal, the fixer of the mainframe, crouching, ready to strike, neon cyberpunk future style'
+      'Fixer of the Mainframe: a stocky adult android woman with a smooth metal scalp and a gap-toothed grin, wearing a fedora, dressed in a long armored trench coat, holding a lantern, leaning forward eagerly, with grim determination, violet accents, neon cyberpunk future style'
   }
 })

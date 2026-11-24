@@ -20,6 +20,6 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['trap'] },
   art: {
-    subject: 'Pit of Iron: a hidden iron about to spring, warrior style'
+    subject: 'Pit of Iron: a camouflaged pit with sharpened stakes, seen from above, emerald accents, warrior style'
   }
 })

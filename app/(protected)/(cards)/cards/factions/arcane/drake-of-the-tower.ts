@@ -17,6 +17,7 @@ export default defineCard({
   health: 14,
   ai: { value: 6 },
   art: {
-    subject: 'a dragon-kin creature, the drake of the tower, standing guard, medieval magic order style'
+    subject:
+      'Drake of the Tower: a drake with pearl-white scales and runes glowing on its scales, standing proud on a rock, emerald accents, medieval magic order style'
   }
 })

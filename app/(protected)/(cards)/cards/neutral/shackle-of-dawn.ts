@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['removal'] },
   art: {
-    subject: 'Shackle of Dawn: glowing chains binding a struggling creature, time rift wanderer style'
+    subject:
+      'Shackle of Dawn: heavy iron shackles snapping closed, in a misty valley, seen from above, ivory accents, time rift wanderer style'
   }
 })

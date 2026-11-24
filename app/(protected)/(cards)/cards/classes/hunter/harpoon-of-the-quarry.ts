@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 4 },
   art: {
-    subject: 'Harpoon of the Quarry: a single harpoon weapon floating in dramatic light, hunter style'
+    subject:
+      'Harpoon of the Quarry: a single harpoon made of pale ash wood wrapped in red cloth, on a worn wooden table, close-up filling the frame, cobalt blue accents, hunter style'
   }
 })

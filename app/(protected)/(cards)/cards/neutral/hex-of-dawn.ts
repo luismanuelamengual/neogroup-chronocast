@@ -14,6 +14,7 @@ export default defineCard({
   targets: ['enemyAlly'],
   ai: { value: 2, tags: ['removal'] },
   art: {
-    subject: 'Hex of Dawn: a glowing magical hex charm, time rift wanderer style'
+    subject:
+      'Hex of Dawn: an enchanted hex made of rough stone and sinew, half buried in snow, seen from above, magenta accents, time rift wanderer style'
   }
 })

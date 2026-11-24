@@ -14,6 +14,7 @@ export default defineCard({
   durability: 2,
   ai: { value: 2 },
   art: {
-    subject: 'Warpick of the Last Stand: a single warpick weapon floating in dramatic light, warrior style'
+    subject:
+      'Warpick of the Last Stand: a single warpick made of blackened iron with gold inlay, stuck in the sand, seen from above, amber accents, warrior style'
   }
 })

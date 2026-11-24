@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['energy'] },
   art: {
-    subject: 'Borrowed Hour of Grace: a giant hourglass with sand flowing upward, mystic healer style'
+    subject:
+      'Borrowed Hour of Grace: a great bell tower clock face glowing at midnight, over a stormy battlefield, centered and seen from slightly below, cobalt blue accents, mystic healer style'
   }
 })

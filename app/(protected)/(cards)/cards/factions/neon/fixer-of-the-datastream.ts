@@ -21,6 +21,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['aggro'] },
   art: {
-    subject: 'a cyberpunk street criminal, the fixer of the datastream, lunging forward, neon cyberpunk future style'
+    subject:
+      'Fixer of the Datastream: a muscular elderly man with freckled fair skin, snow-white hair in a single long braid, a thin mustache and sharp cheekbones, wearing a street hood, dressed in a leather duster with LED fringe, holding a strange relic, standing tall with arms crossed, with a sly grin, emerald accents, neon cyberpunk future style'
   }
 })

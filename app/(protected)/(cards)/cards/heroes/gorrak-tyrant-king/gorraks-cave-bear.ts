@@ -25,6 +25,7 @@ export default defineCard({
   },
   ai: { value: 7, tags: ['buff', 'heal'] },
   art: {
-    subject: "an ice-age beast, the gorrak's cave bear, roaring, prehistoric jungle era style"
+    subject:
+      "Gorrak's Cave Bear: a bear with striped ginger fur and a broad antler rack, circling warily, turquoise accents, prehistoric jungle era style"
   }
 })

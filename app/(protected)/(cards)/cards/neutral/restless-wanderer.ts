@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['heal'] },
   art: {
-    subject: 'a time-traveling adventurer, the restless wanderer, crouching, ready to strike, time rift wanderer style'
+    subject:
+      'Restless Wanderer: a barrel-chested middle-aged man with freckled fair skin, auburn hair in an afro, a pointed goatee and round spectacles, wearing a straw hat, dressed in desert robes with an aviator scarf, leaning on a carved walking staff, with a haunted stare, emerald accents, time rift wanderer style'
   }
 })

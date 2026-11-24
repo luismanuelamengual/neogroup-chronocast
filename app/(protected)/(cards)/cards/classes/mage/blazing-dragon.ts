@@ -26,6 +26,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['aggro', 'removal', 'tribe'] },
   art: {
-    subject: 'a dragon-kin creature, the blazing dragon, roaring, mage style'
+    subject:
+      'Blazing Dragon: a dragon with sapphire scales and a petrifying glare, rearing up, teal accents, mage style'
   }
 })

@@ -16,6 +16,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['summon'] },
   art: {
-    subject: 'Healing Muster: a glowing portal with a creature stepping through, mystic healer style'
+    subject:
+      'Healing Muster: a row of empty helmets and spears lit by dawn light, over a desert of red dunes, seen from above, turquoise accents, mystic healer style'
   }
 })

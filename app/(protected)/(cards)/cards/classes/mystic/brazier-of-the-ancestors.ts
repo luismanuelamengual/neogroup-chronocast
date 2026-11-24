@@ -19,6 +19,6 @@ export default defineCard({
   ai: { value: 3, tags: ['heal'] },
   art: {
     subject:
-      'Brazier of the Ancestors: a single mysterious ancestors artifact glowing on a pedestal, mystic healer style'
+      'Brazier of the Ancestors: an ancient brazier made of polished bronze with engraved spirals, standing in a ruined temple, diagonal dynamic composition, amber accents, mystic healer style'
   }
 })

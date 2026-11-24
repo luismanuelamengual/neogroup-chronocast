@@ -16,6 +16,7 @@ export default defineCard({
   targets: ['friendlyAlly'],
   ai: { value: 2, tags: ['buff'] },
   art: {
-    subject: 'Midnight Insignia: a glowing magical midnight charm, neon cyberpunk future style'
+    subject:
+      'Midnight Insignia: an enchanted insignia made of carved obsidian, on cracked stone tiles, framed by drifting embers, emerald accents, neon cyberpunk future style'
   }
 })

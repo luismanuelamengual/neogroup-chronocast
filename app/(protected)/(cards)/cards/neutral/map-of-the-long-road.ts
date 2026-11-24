@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['antiGear'] },
   art: {
-    subject: 'Map of the Long Road: a single map of the long road item lying on a stone, time rift wanderer style'
+    subject:
+      'Map of the Long Road: a small map made of polished bronze with engraved spirals, half buried in snow, bursting toward the viewer, indigo accents, time rift wanderer style'
   }
 })

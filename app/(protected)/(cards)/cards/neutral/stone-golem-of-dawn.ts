@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['ramp'] },
   art: {
-    subject: 'an elemental spirit, the stone golem of dawn, lunging forward, time rift wanderer style'
+    subject:
+      'Stone Golem of Dawn: an elemental golem with a hulking humanoid shape made of silver wind streams, charging head-on, time rift wanderer style'
   }
 })

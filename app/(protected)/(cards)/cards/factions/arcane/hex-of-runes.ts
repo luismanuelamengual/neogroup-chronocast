@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 6, tags: ['draw', 'removal'] },
   art: {
-    subject: 'Hex of Runes: glowing chains binding a struggling creature, medieval magic order style'
+    subject:
+      'Hex of Runes: a glowing hex sigil burning in the air, in a dark forest clearing, bursting toward the viewer, indigo accents, medieval magic order style'
   }
 })

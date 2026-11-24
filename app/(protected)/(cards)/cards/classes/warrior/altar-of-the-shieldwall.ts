@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['aggro'] },
   art: {
-    subject: 'Altar of the Shieldwall: a single mysterious shieldwall artifact glowing on a pedestal, warrior style'
+    subject:
+      'Altar of the Shieldwall: an ancient altar made of polished bronze with engraved spirals, standing in shallow water, dramatic backlight, saffron yellow accents, warrior style'
   }
 })

@@ -16,6 +16,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['energy'] },
   art: {
-    subject: 'Altar of the Hawk: a single mysterious hawk artifact glowing on a pedestal, hunter style'
+    subject:
+      'Altar of the Hawk: an ancient altar made of carved obsidian, standing in a torchlit hall, bursting toward the viewer, tangerine accents, hunter style'
   }
 })

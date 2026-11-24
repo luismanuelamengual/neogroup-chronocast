@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['buff'] },
   art: {
-    subject: 'Flask of Dusk: a single flask of dusk item lying on a stone, time rift wanderer style'
+    subject:
+      'Flask of Dusk: a small flask made of blackened iron with gold inlay, stuck in the sand, framed by drifting embers, turquoise accents, time rift wanderer style'
   }
 })

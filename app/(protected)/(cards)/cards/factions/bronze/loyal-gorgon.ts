@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['aggro', 'tribe'] },
   art: {
-    subject: 'a mythic ancient creature, the loyal gorgon, mid-leap, ancient bronze-age empire style'
+    subject:
+      'Loyal Gorgon: a gorgon with grey stone-like skin and a cracked marble crown, circling warily, scarlet accents, ancient bronze-age empire style'
   }
 })

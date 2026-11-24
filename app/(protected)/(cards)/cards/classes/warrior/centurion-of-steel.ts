@@ -25,6 +25,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['buff', 'tribe'] },
   art: {
-    subject: 'an ancient bronze-armored soldier, the centurion of steel, glaring at the viewer, warrior style'
+    subject:
+      'Centurion of Steel: a barrel-chested young man with dark ebony skin, ash brown hair cropped short, mutton chops and a beauty mark, wearing a plain bronze helm, dressed in a Greek hoplite panoply with a horsehair crest, pointing a gladius forward, with grim determination, lime green accents, warrior style'
   }
 })

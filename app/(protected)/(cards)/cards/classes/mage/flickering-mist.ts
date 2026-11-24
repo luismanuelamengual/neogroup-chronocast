@@ -25,6 +25,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['buff', 'tribe'] },
   art: {
-    subject: 'an elemental spirit, the flickering mist, lunging forward, mage style'
+    subject:
+      'Flickering Mist: an elemental mist with a hunched beast shape made of silver wind streams, baring its teeth, mage style'
   }
 })

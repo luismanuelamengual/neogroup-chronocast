@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 3 },
   art: {
-    subject: 'Orb of Flame: a single orb weapon floating in dramatic light, mage style'
+    subject:
+      'Orb of Flame: a single orb made of polished bronze with engraved spirals, wreathed in roaring flames, resting on a velvet cloth, bursting toward the viewer, teal accents, mage style'
   }
 })

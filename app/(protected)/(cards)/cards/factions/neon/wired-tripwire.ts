@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['trap'] },
   art: {
-    subject: 'Wired Tripwire: a hidden tripwire about to spring, neon cyberpunk future style'
+    subject:
+      'Wired Tripwire: a thin glinting tripwire stretched low between rocks, bursting toward the viewer, indigo accents, neon cyberpunk future style'
   }
 })

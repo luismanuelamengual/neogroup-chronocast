@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['removal'] },
   art: {
-    subject: 'Slash of the Long Road: a crackling bolt of energy striking a lone target, time rift wanderer style'
+    subject:
+      'Slash of the Long Road: a glowing crescent slash cutting through the air, over a stormy battlefield, framed by drifting embers, turquoise accents, time rift wanderer style'
   }
 })

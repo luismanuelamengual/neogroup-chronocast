@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['defense', 'draw'] },
   art: {
-    subject: 'Guard of the Ancestors: a huge shimmering shield of force, mystic healer style'
+    subject:
+      'Guard of the Ancestors: a towering tower shield standing alone, against a starry sky, swirling around the center, lime green accents, mystic healer style'
   }
 })

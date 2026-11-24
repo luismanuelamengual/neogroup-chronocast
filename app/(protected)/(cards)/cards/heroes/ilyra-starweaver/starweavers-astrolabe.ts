@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['draw', 'ramp'] },
   art: {
-    subject: 'an ornate silver astrolabe floating in the air, its rings spinning around a tiny shining star'
+    subject:
+      "Starweaver's Astrolabe: a small astrolabe made of ivory and jade, on a pile of old coins, swirling around the center, ivory accents"
   }
 })

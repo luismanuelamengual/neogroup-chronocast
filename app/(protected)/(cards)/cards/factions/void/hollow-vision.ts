@@ -16,6 +16,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['draw'] },
   art: {
-    subject: 'Hollow Vision: glowing cards and runes swirling out of an open book, dark end-of-time void style'
+    subject:
+      'Hollow Vision: a crystal ball showing swirling images, in a dark forest clearing, bursting toward the viewer, gold accents, dark end-of-time void style'
   }
 })

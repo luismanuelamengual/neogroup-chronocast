@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 1, tags: ['buff'] },
   art: {
-    subject: 'Rally of Valor: a warrior surrounded by a surging aura of power, warrior style'
+    subject:
+      'Rally of Valor: a tattered war banner planted in the ground, glowing with rallying light, against a starry sky, close-up filling the frame, cobalt blue accents, warrior style'
   }
 })

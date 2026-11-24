@@ -24,6 +24,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['aggro'] },
   art: {
-    subject: 'a hooded doomsday cultist, the unbound hierophant, mid-leap, dark end-of-time void style'
+    subject:
+      'Unbound Hierophant: a stocky adult grey-skinned woman with auburn hair in a single long braid and a tattooed neck, wearing a deep hood, dressed in a mud-caked burial wrap, raising a rotted staff, with grim determination, amber accents, dark end-of-time void style'
   }
 })

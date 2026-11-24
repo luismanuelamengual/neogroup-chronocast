@@ -23,6 +23,6 @@ export default defineCard({
   ai: { value: 3, tags: ['defense'] },
   art: {
     subject:
-      'a mythic ancient creature, the hydra of the senate, crouching, ready to strike, ancient bronze-age empire style'
+      'Hydra of the Senate: a hydra with red clay skin and glowing golden eyes, turning its head toward the viewer, cobalt blue accents, ancient bronze-age empire style'
   }
 })

@@ -22,6 +22,6 @@ export default defineCard({
   ai: { value: 7, tags: ['aggro'] },
   art: {
     subject:
-      'a cyberpunk hacker with holographic screens, the electric glitch, glaring at the viewer, neon cyberpunk future style'
+      'Electric Glitch: a willowy adult woman with sun-weathered bronze skin, ultraviolet hair in an undercut and a beauty mark, wearing chunky headphones, dressed in a tracksuit with a neural crown, gripping a well-worn weapon, kneeling on one knee, with a booming laugh, tangerine accents, neon cyberpunk future style'
   }
 })

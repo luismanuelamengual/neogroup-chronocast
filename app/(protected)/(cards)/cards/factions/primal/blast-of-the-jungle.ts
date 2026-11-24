@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['removal', 'tribe'] },
   art: {
-    subject: 'Blast of the Jungle: a crackling bolt of energy striking a lone target, prehistoric jungle era style'
+    subject:
+      'Blast of the Jungle: a violent explosion of energy, bursting with jagged rocks and dust, in a sunlit meadow, bursting toward the viewer, turquoise accents, prehistoric jungle era style'
   }
 })

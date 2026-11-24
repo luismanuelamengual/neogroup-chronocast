@@ -23,6 +23,6 @@ export default defineCard({
   ai: { value: 5, tags: ['aggro'] },
   art: {
     subject:
-      'a futuristic cyborg with glowing implants, the holo mech, charging into battle, neon cyberpunk future style'
+      'Holo Mech: a mech built of polished brass with ruby lenses, with a spinning propeller, banking through the air, neon cyberpunk future style'
   }
 })

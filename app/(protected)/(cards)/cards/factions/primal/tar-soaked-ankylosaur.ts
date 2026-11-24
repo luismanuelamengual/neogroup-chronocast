@@ -21,6 +21,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['buff'] },
   art: {
-    subject: 'a dinosaur, the tar-soaked ankylosaur, charging into battle, prehistoric jungle era style'
+    subject:
+      'Tar-Soaked Ankylosaur: an ankylosaur with a rust-red hide with black spots and moss growing on its back, circling warily, teal accents, prehistoric jungle era style'
   }
 })

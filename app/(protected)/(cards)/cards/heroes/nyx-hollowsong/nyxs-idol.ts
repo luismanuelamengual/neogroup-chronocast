@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 5 },
   art: {
-    subject: "Nyx's Idol: a sacred relic of the hero glowing on an altar, dark end-of-time void style"
+    subject:
+      "Nyx's Idol: an ancient idol made of gilded marble, standing in a misty clearing, close-up filling the frame, tangerine accents, dark end-of-time void style"
   }
 })

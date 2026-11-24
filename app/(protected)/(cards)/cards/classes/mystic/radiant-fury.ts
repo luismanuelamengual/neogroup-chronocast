@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 1, tags: ['buff'] },
   art: {
-    subject: 'Radiant Fury: a warrior surrounded by a surging aura of power, mystic healer style'
+    subject:
+      'Radiant Fury: a roaring red storm of rage swirling around a cracked war axe, against a starry sky, dramatic backlight, amber accents, mystic healer style'
   }
 })

@@ -24,6 +24,6 @@ export default defineCard({
   ai: { value: 6, tags: ['defense'] },
   art: {
     subject:
-      'an ancient bronze-armored soldier, the standard-bearer of the laurel, glaring at the viewer, ancient bronze-age empire style'
+      'Standard-Bearer of the Laurel: a broad-shouldered adult man with sun-weathered bronze skin, ash brown hair in a wild mane, a full beard and an eyepatch, wearing a plain bronze helm, dressed in light skirmisher leathers with bronze bracers, raising an eagle standard, with wide-eyed wonder, turquoise accents, ancient bronze-age empire style'
   }
 })

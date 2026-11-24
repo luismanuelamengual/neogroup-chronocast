@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['draw'] },
   art: {
-    subject: 'Solar Idol: a single mysterious idol artifact glowing on a pedestal, ancient bronze-age empire style'
+    subject:
+      'Solar Idol: an ancient idol made of blue steel with silver runes, standing in a misty clearing, bursting toward the viewer, magenta accents, ancient bronze-age empire style'
   }
 })

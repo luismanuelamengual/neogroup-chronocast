@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['buff'] },
   art: {
-    subject: 'an ancient bronze-armored soldier, the phalanx of the warlord, lunging forward, warrior style'
+    subject:
+      'Phalanx of the Warlord: a petite young woman with sun-weathered bronze skin, auburn hair in an afro and a tattooed neck, wearing a plumed Greek helmet, dressed in light skirmisher leathers with bronze bracers, locking a tall round shield, with a fierce scowl, rose pink accents, warrior style'
   }
 })

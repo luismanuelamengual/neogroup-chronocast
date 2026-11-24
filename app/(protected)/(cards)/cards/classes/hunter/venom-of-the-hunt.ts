@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['removal'] },
   art: {
-    subject: 'Venom of the Hunt: a dripping vial of green venom, hunter style'
+    subject:
+      'Venom of the Hunt: fangs dripping thick glowing venom, over burning grassland, dramatic backlight, violet accents, hunter style'
   }
 })

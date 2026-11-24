@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 5 },
   art: {
-    subject: "Gorrak's Recurve Bow: the legendary signature weapon of the hero, glowing, prehistoric jungle era style"
+    subject:
+      "Gorrak's Recurve Bow: a single bow made of blue steel with silver runes, bursting with jagged rocks and dust, half buried in snow, diagonal dynamic composition, scarlet accents, prehistoric jungle era style"
   }
 })

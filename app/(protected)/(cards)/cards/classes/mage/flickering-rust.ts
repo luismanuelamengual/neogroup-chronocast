@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['removal'] },
   art: {
-    subject: 'Flickering Rust: a glowing magical flickering charm, mage style'
+    subject:
+      'Flickering Rust: an enchanted rust made of carved obsidian, dripping bubbling green acid, on cracked stone tiles, bursting toward the viewer, indigo accents, mage style'
   }
 })

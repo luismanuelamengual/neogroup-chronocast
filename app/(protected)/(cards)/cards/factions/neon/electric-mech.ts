@@ -22,6 +22,6 @@ export default defineCard({
   ai: { value: 4, tags: ['buff', 'tribe'] },
   art: {
     subject:
-      'a futuristic cyborg with glowing implants, the electric mech, crouching, ready to strike, neon cyberpunk future style'
+      'Electric Mech: a mech built of bronze with steam vents, with a cockpit with a tiny pilot, raising a mechanical arm, neon cyberpunk future style'
   }
 })

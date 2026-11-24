@@ -28,6 +28,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['buff', 'removal', 'tribe'] },
   art: {
-    subject: 'a dragon-kin creature, the gleaming wyvern, charging into battle, medieval magic order style'
+    subject:
+      'Gleaming Wyvern: a wyvern with frost-blue scales and a frilled neck, leaping forward, magenta accents, medieval magic order style'
   }
 })

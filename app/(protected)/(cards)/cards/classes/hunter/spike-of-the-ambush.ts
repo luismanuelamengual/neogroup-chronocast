@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['removal', 'tribe'] },
   art: {
-    subject: 'Spike of the Ambush: a crackling bolt of energy striking a lone target, hunter style'
+    subject:
+      'Spike of the Ambush: a giant jagged spike bursting up from cracked ground, over a desert of red dunes, diagonal dynamic composition, tangerine accents, hunter style'
   }
 })

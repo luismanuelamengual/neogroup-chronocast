@@ -24,6 +24,7 @@ export default defineCard({
   },
   ai: { value: 7, tags: ['buff', 'tribe'] },
   art: {
-    subject: "a dinosaur, the kazhul's brontosaur, mid-leap, prehistoric jungle era style"
+    subject:
+      "Kazhul's Brontosaur: a brontosaur with a charcoal hide with glowing orange cracks and moss growing on its back, prowling low, crimson accents, prehistoric jungle era style"
   }
 })

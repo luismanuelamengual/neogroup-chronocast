@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['aggro'] },
   art: {
-    subject: 'an eldritch horror from the end of time, the nightmare of the abyss, roaring, dark end-of-time void style'
+    subject:
+      'Nightmare of the Abyss: a nightmare with bone-white chitin and a mouth full of tentacles, roaring with jaws wide open, saffron yellow accents, dark end-of-time void style'
   }
 })

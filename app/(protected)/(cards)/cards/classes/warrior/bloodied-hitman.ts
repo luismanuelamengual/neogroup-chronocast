@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 6, tags: ['defense'] },
   art: {
-    subject: 'a cyberpunk street criminal, the bloodied hitman, mid-leap, warrior style'
+    subject:
+      'Bloodied Hitman: a hunched elderly man with light brown skin, a shaved head and a crooked broken nose, wearing a street hood, dressed in a leather duster with LED fringe, holding a silenced pistol, with a sly grin, saffron yellow accents, warrior style'
   }
 })

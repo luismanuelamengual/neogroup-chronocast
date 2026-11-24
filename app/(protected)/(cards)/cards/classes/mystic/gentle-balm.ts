@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['draw', 'heal'] },
   art: {
-    subject: 'Gentle Balm: warm golden light healing a wounded figure, mystic healer style'
+    subject:
+      'Gentle Balm: a small jar of glowing healing balm, over burning grassland, diagonal dynamic composition, ivory accents, mystic healer style'
   }
 })

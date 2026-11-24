@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 6, tags: ['ramp'] },
   art: {
-    subject: 'a steampunk inventor with goggles, the precise clockmaker, standing guard, steampunk steam era style'
+    subject:
+      'Precise Clockmaker: a barrel-chested middle-aged man with tan skin, sandy hair in a tall mohawk, a forked beard and an eyepatch, wearing a magnifying loupe over one eye, dressed in a padded flight jacket, clutching a rolled scroll, mid-swing, with grim determination, cobalt blue accents, steampunk steam era style'
   }
 })

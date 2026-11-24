@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['draw', 'removal'] },
   art: {
-    subject: 'Keen-Eyed Daze: glowing chains binding a struggling creature, hunter style'
+    subject:
+      'Keen-Eyed Daze: spinning stars and swirls circling a dented helmet, in a misty valley, bursting toward the viewer, scarlet accents, hunter style'
   }
 })

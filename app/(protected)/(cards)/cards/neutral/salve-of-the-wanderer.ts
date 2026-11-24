@@ -16,6 +16,7 @@ export default defineCard({
   },
   ai: { value: 1, tags: ['heal'] },
   art: {
-    subject: 'Salve of the Wanderer: a single salve of the wanderer item lying on a stone, time rift wanderer style'
+    subject:
+      'Salve of the Wanderer: a small salve made of pale ash wood wrapped in red cloth, floating above a marble pedestal, close-up filling the frame, cobalt blue accents, time rift wanderer style'
   }
 })

@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['antiGear'] },
   art: {
-    subject: 'Battle-Scarred Disarm: a sword and shield cracking and rusting apart, warrior style'
+    subject:
+      'Battle-Scarred Disarm: a sword flying out of reach, spinning through the air, in a dark forest clearing, framed by drifting embers, lime green accents, warrior style'
   }
 })

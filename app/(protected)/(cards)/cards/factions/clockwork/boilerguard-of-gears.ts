@@ -32,6 +32,7 @@ export default defineCard({
   },
   ai: { value: 7, tags: ['ability', 'defense', 'energy'] },
   art: {
-    subject: 'a steampunk brass automaton, the boilerguard of gears, charging into battle, steampunk steam era style'
+    subject:
+      'Boilerguard of Gears: a boilerguard built of matte olive with yellow eyes, with a glowing furnace heart, skidding into position, steampunk steam era style'
   }
 })

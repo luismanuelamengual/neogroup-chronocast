@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['buff'] },
   art: {
-    subject: 'Stray Fury: a warrior surrounded by a surging aura of power, time rift wanderer style'
+    subject:
+      'Stray Fury: a roaring red storm of rage swirling around a cracked war axe, over burning grassland, diagonal dynamic composition, crimson accents, time rift wanderer style'
   }
 })

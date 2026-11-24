@@ -27,6 +27,6 @@ export default defineCard({
   ai: { value: 5, tags: ['buff', 'defense'] },
   art: {
     subject:
-      'a mythic ancient creature, the chimera of the sun temple, lunging forward, ancient bronze-age empire style'
+      'Chimera of the Sun Temple: a chimera with a storm-grey hide and old battle scars, baring its teeth, tangerine accents, ancient bronze-age empire style'
   }
 })

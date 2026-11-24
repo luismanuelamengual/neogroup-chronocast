@@ -17,6 +17,7 @@ export default defineCard({
   health: 9,
   ai: { value: 4 },
   art: {
-    subject: 'a fairy-tale fae creature, the pegasus of still waters, lunging forward, mystic healer style'
+    subject:
+      'Pegasus of Still Waters: a pegasus with moss-green skin and flower hair and dragonfly wings, mid-stride, indigo accents, mystic healer style'
   }
 })

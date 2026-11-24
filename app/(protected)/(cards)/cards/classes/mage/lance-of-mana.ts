@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['removal'] },
   art: {
-    subject: 'Lance of Mana: a crackling bolt of energy striking a lone target, mage style'
+    subject:
+      'Lance of Mana: a long lance of pure energy piercing the air, circled by glowing violet runes, over a desert of red dunes, bursting toward the viewer, cobalt blue accents, mage style'
   }
 })

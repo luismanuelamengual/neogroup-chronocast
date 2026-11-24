@@ -22,6 +22,6 @@ export default defineCard({
   ai: { value: 5, tags: ['aggro'] },
   art: {
     subject:
-      'a cyberpunk hacker with holographic screens, the infiltrator of static, roaring, neon cyberpunk future style'
+      'Infiltrator of Static: a barrel-chested young man with tan skin, chestnut hair long and straight, mutton chops and a dusting of freckles, wearing chunky headphones, dressed in a poncho of fiber-optic threads, slipping through a glowing doorway, with a haunted stare, lime green accents, neon cyberpunk future style'
   }
 })

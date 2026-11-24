@@ -13,6 +13,7 @@ export default defineCard({
   armor: 12,
   ai: { value: 4 },
   art: {
-    subject: 'Circlet of Flame: a single piece of armor on a stand, mage style'
+    subject:
+      'Circlet of Flame: a single circlet made of polished bronze with engraved spirals, on a mossy rock, seen from above, lime green accents, mage style'
   }
 })

@@ -16,6 +16,7 @@ export default defineCard({
   health: 9,
   ai: { value: 3 },
   art: {
-    subject: 'a time-traveling wanderer, the faithful wanderer, standing guard, time rift wanderer style'
+    subject:
+      'Faithful Wanderer: a stocky elderly owlfolk woman with snow-white feathers and a bandaged forehead, wearing a tricorn hat, dressed in a kimono with brass shoulder plates, leaning on a carved walking staff, with a serene smile, gold accents, time rift wanderer style'
   }
 })

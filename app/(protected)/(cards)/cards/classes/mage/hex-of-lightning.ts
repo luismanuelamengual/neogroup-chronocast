@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 1, tags: ['removal'] },
   art: {
-    subject: 'Hex of Lightning: glowing chains binding a struggling creature, mage style'
+    subject:
+      'Hex of Lightning: a glowing hex sigil burning in the air, over a desert of red dunes, centered and seen from slightly below, tangerine accents, mage style'
   }
 })

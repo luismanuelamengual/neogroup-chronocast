@@ -23,6 +23,6 @@ export default defineCard({
   ai: { value: 5, tags: ['draw', 'tribe'] },
   art: {
     subject:
-      'an ancient temple seer in white robes, the temple keeper of the laurel, charging into battle, ancient bronze-age empire style'
+      'Temple Keeper of the Laurel: a petite elderly woman with freckled fair skin, snow-white hair in a single long braid and a monocle, dressed in a saffron chiton with gold arm bands, holding a ring of iron keys, with a mischievous wink, amber accents, ancient bronze-age empire style'
   }
 })

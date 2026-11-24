@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 5 },
   art: {
-    subject: "Ryn's Mace: the legendary signature weapon of the hero, glowing, neon cyberpunk future style"
+    subject:
+      "Ryn's Mace: a single mace made of copper with green patina, floating above a marble pedestal, seen from above, rose pink accents, neon cyberpunk future style"
   }
 })

@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['trap'] },
   art: {
-    subject: 'Cursed Trap: a hidden trap about to spring, dark end-of-time void style'
+    subject:
+      'Cursed Trap: a rusty iron jaw trap half buried in sand, swirling around the center, cobalt blue accents, dark end-of-time void style'
   }
 })

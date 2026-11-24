@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['ramp'] },
   art: {
-    subject: 'Faithful Moment: a giant hourglass with sand flowing upward, time rift wanderer style'
+    subject:
+      'Faithful Moment: a single drop of water frozen in mid-air with time ripples, against a starry sky, bursting toward the viewer, ivory accents, time rift wanderer style'
   }
 })

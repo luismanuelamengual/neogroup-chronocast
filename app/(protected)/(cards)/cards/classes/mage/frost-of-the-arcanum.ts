@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 1, tags: ['removal'] },
   art: {
-    subject: 'Frost of the Arcanum: glowing chains binding a struggling creature, mage style'
+    subject:
+      'Frost of the Arcanum: a spiral of razor-sharp frost shards, over rooftops at night, diagonal dynamic composition, turquoise accents, mage style'
   }
 })

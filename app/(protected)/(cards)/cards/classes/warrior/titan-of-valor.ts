@@ -21,6 +21,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['aggro', 'buff'] },
   art: {
-    subject: 'a mythic ancient creature, the titan of valor, lunging forward, warrior style'
+    subject:
+      'Titan of Valor: a titan with marble-white skin and a bronze shield strapped to it, prowling low, cobalt blue accents, warrior style'
   }
 })

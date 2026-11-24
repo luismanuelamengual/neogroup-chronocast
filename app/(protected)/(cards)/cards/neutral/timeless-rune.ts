@@ -16,6 +16,7 @@ export default defineCard({
   targets: ['friendlyAlly'],
   ai: { value: 3, tags: ['buff'] },
   art: {
-    subject: 'Timeless Rune: a glowing magical timeless charm, time rift wanderer style'
+    subject:
+      'Timeless Rune: an enchanted rune made of rough stone and sinew, leaning against a ruined wall, centered and seen from slightly below, gold accents, time rift wanderer style'
   }
 })

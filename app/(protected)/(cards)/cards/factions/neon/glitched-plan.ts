@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['draw', 'heal'] },
   art: {
-    subject: 'Glitched Plan: glowing cards and runes swirling out of an open book, neon cyberpunk future style'
+    subject:
+      'Glitched Plan: a battle map table with glowing pieces and arrows, over a stormy battlefield, centered and seen from slightly below, ivory accents, neon cyberpunk future style'
   }
 })

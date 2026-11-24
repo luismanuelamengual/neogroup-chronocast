@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['removal'] },
   art: {
-    subject: 'Ethereal Beacon: a single mysterious beacon artifact glowing on a pedestal, mage style'
+    subject:
+      'Ethereal Beacon: an ancient beacon made of chrome with neon light strips, circled by glowing violet runes, standing on a hilltop at dusk, framed by drifting embers, teal accents, mage style'
   }
 })

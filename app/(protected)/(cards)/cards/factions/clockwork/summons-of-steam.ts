@@ -16,6 +16,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['summon'] },
   art: {
-    subject: 'Summons of Steam: a glowing portal with a creature stepping through, steampunk steam era style'
+    subject:
+      'Summons of Steam: a glowing summoning circle opening a portal, in a misty valley, centered and seen from slightly below, gold accents, steampunk steam era style'
   }
 })

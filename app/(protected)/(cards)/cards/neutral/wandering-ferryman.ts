@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['draw'] },
   art: {
-    subject: 'a time-traveling wanderer, the wandering ferryman, roaring, time rift wanderer style'
+    subject:
+      'Wandering Ferryman: a willowy elderly goblin woman with charcoal grey hair long and straight and an eyepatch, wearing a bowler hat, dressed in a 1920s pinstripe suit with a tattered cape, pushing a long oar trailing light, with a fierce scowl, cobalt blue accents, time rift wanderer style'
   }
 })

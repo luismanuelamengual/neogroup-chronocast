@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['antiGear'] },
   art: {
-    subject: 'Clever Scroll: a single clever scroll item lying on a stone, time rift wanderer style'
+    subject:
+      'Clever Scroll: a small scroll made of copper with green patina, on a worn wooden table, framed by drifting embers, cobalt blue accents, time rift wanderer style'
   }
 })

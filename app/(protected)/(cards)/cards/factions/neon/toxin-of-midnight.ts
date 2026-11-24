@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['removal'] },
   art: {
-    subject: 'Toxin of Midnight: a dripping vial of green venom, neon cyberpunk future style'
+    subject:
+      'Toxin of Midnight: a cracked vial leaking glowing poison, above a calm lake at dusk, swirling around the center, lime green accents, neon cyberpunk future style'
   }
 })

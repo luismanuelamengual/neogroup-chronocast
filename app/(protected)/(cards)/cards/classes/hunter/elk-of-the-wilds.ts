@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 6, tags: ['removal'] },
   art: {
-    subject: 'an ice-age beast, the elk of the wilds, mid-leap, hunter style'
+    subject:
+      'Elk of the Wilds: an elk with sandy fur with dark mane and a broad antler rack, sniffing the air, rose pink accents, hunter style'
   }
 })

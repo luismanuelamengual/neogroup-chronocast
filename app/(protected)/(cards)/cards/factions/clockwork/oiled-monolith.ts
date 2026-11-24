@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['buff', 'tribe'] },
   art: {
-    subject: 'Oiled Monolith: a single mysterious monolith artifact glowing on a pedestal, steampunk steam era style'
+    subject:
+      'Oiled Monolith: an ancient monolith made of pale ash wood wrapped in red cloth, standing among ancient trees, dramatic backlight, tangerine accents, steampunk steam era style'
   }
 })

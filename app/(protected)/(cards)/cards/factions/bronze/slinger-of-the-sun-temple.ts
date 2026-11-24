@@ -21,6 +21,6 @@ export default defineCard({
   ai: { value: 3, tags: ['summon'] },
   art: {
     subject:
-      'an ancient bronze-armored soldier, the slinger of the sun temple, crouching, ready to strike, ancient bronze-age empire style'
+      'Slinger of the Sun Temple: a muscular young man with tan skin, platinum blond hair in long braids and heavy golden earrings, wearing a crested helmet, dressed in chain mail with a lion pelt, whirling a leather sling, with grim determination, crimson accents, ancient bronze-age empire style'
   }
 })

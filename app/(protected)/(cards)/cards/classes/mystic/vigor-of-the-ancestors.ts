@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['buff'] },
   art: {
-    subject: 'Vigor of the Ancestors: a warrior surrounded by a surging aura of power, mystic healer style'
+    subject:
+      'Vigor of the Ancestors: a glowing heart of green life energy pulsing with veins of light, in a sunlit meadow, diagonal dynamic composition, rose pink accents, mystic healer style'
   }
 })

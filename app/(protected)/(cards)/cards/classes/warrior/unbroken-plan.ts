@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['draw', 'heal', 'tribe'] },
   art: {
-    subject: 'Unbroken Plan: glowing cards and runes swirling out of an open book, warrior style'
+    subject:
+      'Unbroken Plan: a battle map table with glowing pieces and arrows, in a dark forest clearing, close-up filling the frame, indigo accents, warrior style'
   }
 })

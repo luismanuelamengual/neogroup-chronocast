@@ -23,6 +23,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['antiGear'] },
   art: {
-    subject: 'an elemental spirit, the restless icicle, raising its weapon, time rift wanderer style'
+    subject:
+      'Restless Icicle: an elemental icicle with a towering pillar shape made of storm purple with yellow lightning, rearing up, time rift wanderer style'
   }
 })

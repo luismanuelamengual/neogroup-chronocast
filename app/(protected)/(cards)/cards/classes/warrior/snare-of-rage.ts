@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['trap'] },
   art: {
-    subject: 'Snare of Rage: a hidden rage about to spring, warrior style'
+    subject:
+      'Snare of Rage: a looped snare hidden in tall grass, diagonal dynamic composition, teal accents, warrior style'
   }
 })

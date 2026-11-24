@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['summon'] },
   art: {
-    subject: 'a dinosaur, the thundering raptor, crouching, ready to strike, prehistoric jungle era style'
+    subject:
+      'Thundering Raptor: a raptor with an olive hide with a crimson crest and a scarred snout, baring its teeth, lime green accents, prehistoric jungle era style'
   }
 })

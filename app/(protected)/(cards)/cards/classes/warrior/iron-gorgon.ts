@@ -31,6 +31,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['ability', 'draw', 'energy'] },
   art: {
-    subject: 'a mythic ancient creature, the iron gorgon, lunging forward, warrior style'
+    subject:
+      'Iron Gorgon: a gorgon with bronze-tinted skin and a cracked marble crown, charging head-on, indigo accents, warrior style'
   }
 })

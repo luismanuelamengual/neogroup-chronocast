@@ -15,6 +15,7 @@ export default defineCard({
   durability: 4,
   ai: { value: 5 },
   art: {
-    subject: 'Sling of Thorns: a single sling weapon floating in dramatic light, hunter style'
+    subject:
+      'Sling of Thorns: a single sling made of gilded marble, resting on a velvet cloth, framed by drifting embers, teal accents, hunter style'
   }
 })

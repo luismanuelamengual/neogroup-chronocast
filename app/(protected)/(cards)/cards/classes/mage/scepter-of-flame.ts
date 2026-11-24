@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 1 },
   art: {
-    subject: 'Scepter of Flame: a single scepter weapon floating in dramatic light, mage style'
+    subject:
+      'Scepter of Flame: a single scepter made of gilded marble, wreathed in roaring flames, leaning against a ruined wall, dramatic backlight, lime green accents, mage style'
   }
 })

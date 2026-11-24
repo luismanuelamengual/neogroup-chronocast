@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 6, tags: ['heal'] },
   art: {
-    subject: 'an undead creature, the grim skeleton, charging into battle, dark end-of-time void style'
+    subject:
+      'Grim Skeleton: a skeleton with bleached bones and grave dirt falling off it, pawing the ground, violet accents, dark end-of-time void style'
   }
 })

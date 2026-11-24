@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 2 },
   art: {
-    subject: 'Keen-Eyed Crossbow: a single crossbow weapon floating in dramatic light, hunter style'
+    subject:
+      'Keen-Eyed Crossbow: a single crossbow made of white bone and leather wraps, on cracked stone tiles, diagonal dynamic composition, indigo accents, hunter style'
   }
 })

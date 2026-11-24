@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['draw', 'removal'] },
   art: {
-    subject: 'Blazing Daze: glowing chains binding a struggling creature, mage style'
+    subject:
+      'Blazing Daze: spinning stars and swirls circling a dented helmet, above a calm lake at dusk, swirling around the center, violet accents, mage style'
   }
 })

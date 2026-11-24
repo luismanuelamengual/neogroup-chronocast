@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 1, tags: ['removal'] },
   art: {
-    subject: 'Stalking Blight: a dripping vial of green venom, hunter style'
+    subject:
+      'Stalking Blight: withered black thorns spreading over dead leaves, over a stormy battlefield, close-up filling the frame, scarlet accents, hunter style'
   }
 })

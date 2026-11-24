@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 5 },
   art: {
-    subject: "Nysa's Bow: the legendary signature weapon of the hero, glowing, ancient bronze-age empire style"
+    subject:
+      "Nysa's Bow: a single bow made of blackened iron with gold inlay, swept by a spiraling gust with leaves, on a workbench with tools, dramatic backlight, magenta accents, ancient bronze-age empire style"
   }
 })

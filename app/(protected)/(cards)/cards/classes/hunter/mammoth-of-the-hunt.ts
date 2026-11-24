@@ -31,6 +31,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['ability', 'buff', 'energy', 'tribe'] },
   art: {
-    subject: 'an ice-age beast, the mammoth of the hunt, glaring at the viewer, hunter style'
+    subject:
+      'Mammoth of the Hunt: a mammoth with dark chocolate fur and a chipped tusk, prowling low, cobalt blue accents, hunter style'
   }
 })

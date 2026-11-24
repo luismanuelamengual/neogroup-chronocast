@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['draw'] },
   art: {
-    subject: 'a medieval spellcaster, the mana-bound pyromancer, charging into battle, mage style'
+    subject:
+      'Mana-Bound Pyromancer: a plump elderly half-orc woman with umber skin, charcoal grey hair slicked back and a beauty mark, wearing a deep hood, dressed in layered emerald robes with a book chained to the belt, conjuring a spiral of flame, with calm focus, lime green accents, mage style'
   }
 })

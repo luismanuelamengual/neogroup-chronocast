@@ -26,6 +26,7 @@ export default defineCard({
   },
   ai: { value: 6, tags: ['aggro', 'draw'] },
   art: {
-    subject: 'a dragon-kin creature, the crystal cockatrice, crouching, ready to strike, medieval magic order style'
+    subject:
+      'Crystal Cockatrice: a cockatrice with crimson scales and a forked tail, roaring with jaws wide open, amber accents, medieval magic order style'
   }
 })

@@ -15,6 +15,7 @@ export default defineCard({
   durability: 3,
   ai: { value: 4 },
   art: {
-    subject: 'Frozen Wand: a single wand weapon floating in dramatic light, mage style'
+    subject:
+      'Frozen Wand: a single wand made of gilded marble, covered in frost and ice crystals, on a pile of old coins, dramatic backlight, teal accents, mage style'
   }
 })

@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['removal'] },
   art: {
-    subject: 'a dinosaur, the dilophosaur of the silent trail, lunging forward, hunter style'
+    subject:
+      'Dilophosaur of the Silent Trail: a dilophosaur with an ochre hide with zigzag patterns and a long whip tail, mid-stride, gold accents, hunter style'
   }
 })

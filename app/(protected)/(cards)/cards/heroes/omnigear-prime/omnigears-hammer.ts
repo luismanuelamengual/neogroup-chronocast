@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 5 },
   art: {
-    subject: "Omnigear's Hammer: the legendary signature weapon of the hero, glowing, steampunk steam era style"
+    subject:
+      "Omnigear's Hammer: a single hammer made of rusted iron and chains, stuck in the sand, framed by drifting embers, crimson accents, steampunk steam era style"
   }
 })

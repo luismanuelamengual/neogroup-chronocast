@@ -23,6 +23,6 @@ export default defineCard({
   ai: { value: 7, tags: ['aggro'] },
   art: {
     subject:
-      'a futuristic cyborg with glowing implants, the overdriven sentry bot, standing guard, neon cyberpunk future style'
+      'Overdriven Sentry Bot: a bot built of riveted copper with green patina, with segmented spider legs, skidding into position, neon cyberpunk future style'
   }
 })

@@ -25,6 +25,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['buff', 'tribe'] },
   art: {
-    subject: 'a dragon-kin creature, the firedrake of the moon, mid-leap, medieval magic order style'
+    subject:
+      'Firedrake of the Moon: a firedrake with violet scales and crystal spines along its back, baring its teeth, indigo accents, medieval magic order style'
   }
 })

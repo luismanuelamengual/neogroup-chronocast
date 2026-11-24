@@ -13,6 +13,7 @@ export default defineCard({
   armor: 6,
   ai: { value: 2 },
   art: {
-    subject: 'Flickering Ward: a single piece of armor on a stand, mage style'
+    subject:
+      'Flickering Ward: a single ward made of rough stone and sinew, floating above a marble pedestal, framed by drifting embers, ivory accents, mage style'
   }
 })

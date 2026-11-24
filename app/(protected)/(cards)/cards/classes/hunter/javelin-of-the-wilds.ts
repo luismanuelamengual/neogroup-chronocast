@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 2 },
   art: {
-    subject: 'Javelin of the Wilds: a single javelin weapon floating in dramatic light, hunter style'
+    subject:
+      'Javelin of the Wilds: a single javelin made of blue steel with silver runes, on a fur rug, diagonal dynamic composition, amber accents, hunter style'
   }
 })

@@ -26,6 +26,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['removal'] },
   art: {
-    subject: 'a medieval spellcaster, the ethereal apprentice, mid-leap, mage style'
+    subject:
+      'Ethereal Apprentice: an athletic middle-aged tiefling man with ruddy skin, jet black hair in a wild mane, a full beard and a burn scar on the jaw, wearing a pointed hat, dressed in frost-white robes with icicle trim, juggling floating books, with a serene smile, magenta accents, mage style'
   }
 })

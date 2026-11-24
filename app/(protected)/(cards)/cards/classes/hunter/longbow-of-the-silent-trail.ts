@@ -15,6 +15,7 @@ export default defineCard({
   durability: 2,
   ai: { value: 1 },
   art: {
-    subject: 'Longbow of the Silent Trail: a single longbow weapon floating in dramatic light, hunter style'
+    subject:
+      'Longbow of the Silent Trail: a single longbow made of polished bronze with engraved spirals, on a mossy rock, swirling around the center, cobalt blue accents, hunter style'
   }
 })

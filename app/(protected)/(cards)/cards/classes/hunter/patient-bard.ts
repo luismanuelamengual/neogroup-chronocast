@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['draw'] },
   art: {
-    subject: 'a time-traveling adventurer, the patient bard, standing guard, hunter style'
+    subject:
+      'Patient Bard: a barrel-chested young goblin woman with platinum blond hair in a high ponytail and bushy eyebrows, wearing a feathered cap, dressed in viking furs over a modern raincoat, playing a strange lute, with a sly grin, indigo accents, hunter style'
   }
 })

@@ -23,6 +23,6 @@ export default defineCard({
   ai: { value: 3, tags: ['buff', 'tribe'] },
   art: {
     subject:
-      'an eldritch horror from the end of time, the rotting eye of nothing, raising its weapon, dark end-of-time void style'
+      'Rotting Eye of Nothing: an eye with sickly green glowing slime and crystalline shards growing from it, roaring with jaws wide open, turquoise accents, dark end-of-time void style'
   }
 })

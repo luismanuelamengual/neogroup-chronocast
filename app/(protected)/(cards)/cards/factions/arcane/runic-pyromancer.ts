@@ -31,6 +31,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['ability', 'aggro', 'draw', 'energy', 'tribe'] },
   art: {
-    subject: 'a medieval spellcaster, the runic pyromancer, roaring, medieval magic order style'
+    subject:
+      'Runic Pyromancer: a petite adult elf woman with golden skin, auburn hair in thick dreadlocks and a bandaged forehead, wearing a thin silver circlet, dressed in a high-collared sorcerer coat, conjuring a spiral of flame, with a booming laugh, ivory accents, medieval magic order style'
   }
 })

@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['buff'] },
   art: {
-    subject: 'Serene Saddle: a glowing magical serene charm, mystic healer style'
+    subject:
+      'Serene Saddle: an enchanted saddle made of polished bronze with engraved spirals, half buried in snow, centered and seen from slightly below, crimson accents, mystic healer style'
   }
 })

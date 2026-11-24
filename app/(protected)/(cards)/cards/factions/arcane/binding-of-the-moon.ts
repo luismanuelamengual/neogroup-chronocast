@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['removal'] },
   art: {
-    subject: 'Binding of the Moon: glowing chains binding a struggling creature, medieval magic order style'
+    subject:
+      'Binding of the Moon: glowing chains coiling tightly around nothing, locking shut, over a desert of red dunes, dramatic backlight, magenta accents, medieval magic order style'
   }
 })

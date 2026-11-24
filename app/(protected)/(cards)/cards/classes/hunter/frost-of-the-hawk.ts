@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['aggro', 'removal'] },
   art: {
-    subject: 'Frost of the Hawk: glowing chains binding a struggling creature, hunter style'
+    subject:
+      'Frost of the Hawk: a spiral of razor-sharp frost shards, covered in frost and ice crystals, in a dark forest clearing, centered and seen from slightly below, emerald accents, hunter style'
   }
 })

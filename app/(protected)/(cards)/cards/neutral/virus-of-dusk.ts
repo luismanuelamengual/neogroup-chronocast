@@ -14,6 +14,7 @@ export default defineCard({
   targets: ['enemyAlly'],
   ai: { value: 5, tags: ['removal'] },
   art: {
-    subject: 'Virus of Dusk: a glowing magical virus charm, time rift wanderer style'
+    subject:
+      'Virus of Dusk: an enchanted virus made of ivory and jade, stuck in the sand, bursting toward the viewer, magenta accents, time rift wanderer style'
   }
 })

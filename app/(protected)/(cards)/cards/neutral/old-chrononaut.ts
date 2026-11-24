@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['draw'] },
   art: {
-    subject: 'a time-traveling adventurer, the old chrononaut, charging into battle, time rift wanderer style'
+    subject:
+      'Old Chrononaut: a stocky young elf woman with deep brown skin, ash brown hair in thick dreadlocks and a dusting of freckles, wearing a beaded headband, dressed in a pirate greatcoat with clock-face buttons, adjusting a brass time compass on the wrist, with a serene smile, amber accents, time rift wanderer style'
   }
 })

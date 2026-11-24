@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['draw'] },
   art: {
-    subject: 'a cyberpunk street criminal, the augmented thug, crouching, ready to strike, neon cyberpunk future style'
+    subject:
+      'Augmented Thug: a lanky middle-aged man with dark ebony skin, electric teal hair in cornrows, a pointed goatee and a monocle, wearing a fedora, dressed in a sharp black suit with neon tie, cracking brass knuckles, with a confident smirk, cobalt blue accents, neon cyberpunk future style'
   }
 })

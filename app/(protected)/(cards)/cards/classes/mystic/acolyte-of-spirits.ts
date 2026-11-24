@@ -21,6 +21,7 @@ export default defineCard({
   },
   ai: { value: 7, tags: ['buff'] },
   art: {
-    subject: 'an ancient temple seer in white robes, the acolyte of spirits, charging into battle, mystic healer style'
+    subject:
+      'Acolyte of Spirits: a towering adult man with deep brown skin, chestnut hair in a messy bun, a forked beard and war paint stripes, wearing a sheer veil, dressed in a sky-blue peplos with a veil, carrying a smoking censer, with a sly grin, saffron yellow accents, mystic healer style'
   }
 })

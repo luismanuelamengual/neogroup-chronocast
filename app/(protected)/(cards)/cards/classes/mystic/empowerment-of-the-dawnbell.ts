@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['buff'] },
   art: {
-    subject: 'Empowerment of the Dawnbell: a warrior surrounded by a surging aura of power, mystic healer style'
+    subject:
+      'Empowerment of the Dawnbell: a floating gem overflowing with radiant energy, over a stormy battlefield, framed by drifting embers, violet accents, mystic healer style'
   }
 })

@@ -24,6 +24,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['buff'] },
   art: {
-    subject: 'an undead creature, the banshee of the last hour, mid-leap, dark end-of-time void style'
+    subject:
+      'Banshee of the Last Hour: a banshee with a black tattered shroud and candles stuck in its shoulders, sniffing the air, crimson accents, dark end-of-time void style'
   }
 })

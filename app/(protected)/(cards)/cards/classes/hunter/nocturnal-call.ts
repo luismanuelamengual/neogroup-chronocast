@@ -16,6 +16,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['summon'] },
   art: {
-    subject: 'Nocturnal Call: a glowing portal with a creature stepping through, hunter style'
+    subject:
+      'Nocturnal Call: a carved bone whistle glowing with a call of light, over a stormy battlefield, dramatic backlight, crimson accents, hunter style'
   }
 })

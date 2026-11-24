@@ -24,6 +24,6 @@ export default defineCard({
   ai: { value: 2, tags: ['buff', 'tribe'] },
   art: {
     subject:
-      'a prehistoric tribe warrior in furs and bone ornaments, the hungry cave painter, charging into battle, prehistoric jungle era style'
+      'Hungry Cave Painter: a wiry adult woman with dark ebony skin, sandy hair in an afro and a burn scar on the jaw, wearing a bone headdress, dressed in a bear-skull headdress and furs, painting glowing handprints on rock, with a confident smirk, emerald accents, prehistoric jungle era style'
   }
 })

@@ -19,6 +19,7 @@ export default defineCard({
   health: 8,
   ai: { value: 2 },
   art: {
-    subject: 'an elemental spirit, the spark of the crossroads, roaring, time rift wanderer style'
+    subject:
+      'Spark of the Crossroads: an elemental spark with a flickering winged shape made of swirling sand gold, standing proud on a rock, time rift wanderer style'
   }
 })

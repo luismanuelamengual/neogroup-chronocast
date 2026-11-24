@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['buff'] },
   art: {
-    subject: 'Vigor of Dusk: a warrior surrounded by a surging aura of power, time rift wanderer style'
+    subject:
+      'Vigor of Dusk: a glowing heart of green life energy pulsing with veins of light, above a calm lake at dusk, seen from above, scarlet accents, time rift wanderer style'
   }
 })

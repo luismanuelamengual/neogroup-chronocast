@@ -22,6 +22,6 @@ export default defineCard({
   ai: { value: 3, tags: ['heal'] },
   art: {
     subject:
-      'a prehistoric tribe warrior in furs and bone ornaments, the feral healer, standing guard, prehistoric jungle era style'
+      'Feral Healer: a broad-shouldered middle-aged neanderthal woman with olive skin, auburn hair in twin buns and sharp cheekbones, dressed in a leopard-skin wrap with bone beads, grinding herbs in a stone bowl, with a serene smile, lime green accents, prehistoric jungle era style'
   }
 })

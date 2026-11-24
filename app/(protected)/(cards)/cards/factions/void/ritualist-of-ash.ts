@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 7, tags: ['draw', 'sacrifice'] },
   art: {
-    subject: 'a hooded doomsday cultist, the ritualist of ash, lunging forward, dark end-of-time void style'
+    subject:
+      'Ritualist of Ash: a towering middle-aged pale ghoul-like woman with blue-black hair long and straight and a beauty mark, wearing a bone mask, dressed in ash-grey vestments with a rusted censer, drawing a circle in ash, with a fierce scowl, emerald accents, dark end-of-time void style'
   }
 })

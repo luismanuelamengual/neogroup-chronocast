@@ -16,6 +16,7 @@ export default defineCard({
   targets: ['friendlyAlly'],
   ai: { value: 4, tags: ['buff'] },
   art: {
-    subject: 'Implant of Spirits: a glowing magical implant charm, mystic healer style'
+    subject:
+      'Implant of Spirits: an enchanted implant made of white bone and leather wraps, stuck in the sand, close-up filling the frame, crimson accents, mystic healer style'
   }
 })

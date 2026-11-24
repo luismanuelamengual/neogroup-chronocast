@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 4 },
   art: {
-    subject: 'Tracking Dagger: a single dagger weapon floating in dramatic light, hunter style'
+    subject:
+      'Tracking Dagger: a single dagger made of rough stone and sinew, in a beam of light from above, seen from above, emerald accents, hunter style'
   }
 })

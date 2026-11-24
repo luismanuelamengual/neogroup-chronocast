@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 5 },
   art: {
-    subject: "Gideon's Hammer: the legendary signature weapon of the hero, glowing, steampunk steam era style"
+    subject:
+      "Gideon's Hammer: a single hammer made of pale ash wood wrapped in red cloth, resting on a velvet cloth, dramatic backlight, ivory accents, steampunk steam era style"
   }
 })

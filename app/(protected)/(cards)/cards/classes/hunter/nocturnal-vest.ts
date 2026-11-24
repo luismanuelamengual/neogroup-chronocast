@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 3 },
   art: {
-    subject: 'Nocturnal Vest: a single piece of armor on a stand, hunter style'
+    subject:
+      'Nocturnal Vest: a single vest made of copper with green patina, stuck in the sand, centered and seen from slightly below, teal accents, hunter style'
   }
 })

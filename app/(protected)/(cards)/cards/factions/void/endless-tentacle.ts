@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 8, tags: ['aggro'] },
   art: {
-    subject: 'an eldritch horror from the end of time, the endless tentacle, mid-leap, dark end-of-time void style'
+    subject:
+      'Endless Tentacle: a tentacle with starry void-black skin and a hollow glowing core, standing proud on a rock, lime green accents, dark end-of-time void style'
   }
 })

@@ -20,6 +20,6 @@ export default defineCard({
   ai: { value: 4, tags: ['antiGear'] },
   art: {
     subject:
-      'a time-traveling adventurer, the bounty hunter of the long road, crouching, ready to strike, time rift wanderer style'
+      'Bounty Hunter of the Long Road: a muscular elderly foxfolk woman with silver hair with a side-swept fringe and a beaded chin piercing, wearing a wide-brimmed hat, dressed in a Victorian waistcoat with a samurai sash, holding a wanted poster and a coiled lasso, with a haunted stare, indigo accents, time rift wanderer style'
   }
 })

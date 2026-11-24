@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['removal'] },
   art: {
-    subject: 'Blazing Fireball: a roaring ball of fire, mage style'
+    subject:
+      'Blazing Fireball: a huge blazing fireball roaring forward, in a ruined temple, diagonal dynamic composition, emerald accents, mage style'
   }
 })

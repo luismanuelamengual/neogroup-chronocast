@@ -14,6 +14,7 @@ export default defineCard({
   durability: 2,
   ai: { value: 2 },
   art: {
-    subject: 'Flail of the Vanguard: a single flail weapon floating in dramatic light, warrior style'
+    subject:
+      'Flail of the Vanguard: a single flail made of ivory and jade, floating above a marble pedestal, seen from above, rose pink accents, warrior style'
   }
 })

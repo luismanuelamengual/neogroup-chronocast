@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['buff'] },
   art: {
-    subject: 'an undead creature, the cursed lich, lunging forward, dark end-of-time void style'
+    subject:
+      'Cursed Lich: a lich with pale glowing white spirit-light and a wailing open mouth, leaping forward, scarlet accents, dark end-of-time void style'
   }
 })

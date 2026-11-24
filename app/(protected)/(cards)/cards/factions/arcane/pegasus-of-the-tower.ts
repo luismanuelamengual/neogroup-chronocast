@@ -21,6 +21,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['draw', 'tribe'] },
   art: {
-    subject: 'a fairy-tale fae creature, the pegasus of the tower, lunging forward, medieval magic order style'
+    subject:
+      'Pegasus of the Tower: a pegasus with pale blue skin and starry hair and a trail of glowing pollen, circling warily, rose pink accents, medieval magic order style'
   }
 })

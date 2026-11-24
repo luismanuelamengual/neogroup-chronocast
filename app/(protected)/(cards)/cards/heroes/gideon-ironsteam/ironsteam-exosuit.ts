@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 7, tags: ['ramp'] },
   art: {
-    subject: 'a massive steam-powered brass exosuit armor with pipes, gauges and a glowing furnace in its chest'
+    subject:
+      'Ironsteam Exosuit: a single exosuit made of carved obsidian, on a mossy rock, framed by drifting embers, saffron yellow accents'
   }
 })

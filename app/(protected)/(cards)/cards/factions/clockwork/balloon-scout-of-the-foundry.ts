@@ -31,6 +31,7 @@ export default defineCard({
   },
   ai: { value: 7, tags: ['ability', 'defense', 'energy'] },
   art: {
-    subject: 'a steampunk flying machine, the balloon scout of the foundry, lunging forward, steampunk steam era style'
+    subject:
+      'Balloon Scout of the Foundry: a scout built of black iron with glowing coals, with a cockpit with a tiny pilot, hovering above the ground, steampunk steam era style'
   }
 })

@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['buff'] },
   art: {
-    subject: 'Vigor of the Archmage: a warrior surrounded by a surging aura of power, medieval magic order style'
+    subject:
+      'Vigor of the Archmage: a glowing heart of green life energy pulsing with veins of light, inside a cave of crystals, dramatic backlight, scarlet accents, medieval magic order style'
   }
 })

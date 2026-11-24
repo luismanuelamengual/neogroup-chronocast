@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['removal'] },
   art: {
-    subject: 'a medieval spellcaster, the scholarly pyromancer, charging into battle, mage style'
+    subject:
+      'Scholarly Pyromancer: a lanky young gnome man with golden skin, salt-and-pepper hair in an undercut, a pointed goatee and war paint stripes, dressed in a crimson mantle with ember-edged sleeves, conjuring a spiral of flame, with a haunted stare, gold accents, mage style'
   }
 })

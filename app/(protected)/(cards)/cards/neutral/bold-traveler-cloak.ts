@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 5 },
   art: {
-    subject: 'Bold Traveler Cloak: a single piece of armor on a stand, time rift wanderer style'
+    subject:
+      'Bold Traveler Cloak: a single cloak made of chrome with neon light strips, resting on a velvet cloth, bursting toward the viewer, scarlet accents, time rift wanderer style'
   }
 })

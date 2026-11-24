@@ -25,6 +25,7 @@ export default defineCard({
   },
   ai: { value: 9, tags: ['summon'] },
   art: {
-    subject: 'a steampunk flying machine, the copper glider, mid-leap, steampunk steam era style'
+    subject:
+      'Copper Glider: a glider built of carbon black with violet circuits, with piston legs, banking through the air, steampunk steam era style'
   }
 })

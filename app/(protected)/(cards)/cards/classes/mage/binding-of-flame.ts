@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 1, tags: ['removal'] },
   art: {
-    subject: 'Binding of Flame: glowing chains binding a struggling creature, mage style'
+    subject:
+      'Binding of Flame: glowing chains coiling tightly around nothing, locking shut, over rooftops at night, swirling around the center, saffron yellow accents, mage style'
   }
 })

@@ -26,6 +26,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['draw', 'heal'] },
   art: {
-    subject: 'an elemental spirit, the wandering gust, mid-leap, time rift wanderer style'
+    subject:
+      'Wandering Gust: an elemental gust with a crouching wolf shape made of mossy green and grey stone, prowling low, time rift wanderer style'
   }
 })

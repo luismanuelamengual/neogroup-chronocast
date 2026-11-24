@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['removal'] },
   art: {
-    subject: 'a time-traveling adventurer, the lamplighter of thorns, raising its weapon, hunter style'
+    subject:
+      'Lamplighter of Thorns: a muscular middle-aged man with golden skin, ash brown hair long and straight, a thin mustache and a tattooed neck, wearing a turban, dressed in a wool shawl hung with tiny bells, raising a lantern on a long pole, with calm focus, lime green accents, hunter style'
   }
 })

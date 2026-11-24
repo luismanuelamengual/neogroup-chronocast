@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 5 },
   art: {
-    subject: 'Bloodied Helm: a single piece of armor on a stand, warrior style'
+    subject:
+      'Bloodied Helm: a single helm made of pale ash wood wrapped in red cloth, on a fur rug, centered and seen from slightly below, emerald accents, warrior style'
   }
 })

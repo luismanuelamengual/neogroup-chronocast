@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['draw', 'heal'] },
   art: {
-    subject: 'Study of Dawn: glowing cards and runes swirling out of an open book, time rift wanderer style'
+    subject:
+      'Study of Dawn: an open book with glowing pages flipping by themselves, over a desert of red dunes, close-up filling the frame, emerald accents, time rift wanderer style'
   }
 })

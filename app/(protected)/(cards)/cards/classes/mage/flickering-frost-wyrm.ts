@@ -19,6 +19,7 @@ export default defineCard({
   health: 9,
   ai: { value: 5 },
   art: {
-    subject: 'a dragon-kin creature, the flickering frost wyrm, lunging forward, mage style'
+    subject:
+      'Flickering Frost Wyrm: a wyrm with obsidian scales with ember cracks and smoke curling from its nostrils, pawing the ground, indigo accents, mage style'
   }
 })

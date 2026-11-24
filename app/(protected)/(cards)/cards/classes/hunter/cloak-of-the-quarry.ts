@@ -13,6 +13,7 @@ export default defineCard({
   armor: 6,
   ai: { value: 2 },
   art: {
-    subject: 'Cloak of the Quarry: a single piece of armor on a stand, hunter style'
+    subject:
+      'Cloak of the Quarry: a single cloak made of dark yew wood and brass fittings, floating above a marble pedestal, swirling around the center, lime green accents, hunter style'
   }
 })

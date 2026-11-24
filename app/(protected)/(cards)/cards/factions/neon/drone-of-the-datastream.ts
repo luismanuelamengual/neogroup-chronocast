@@ -26,6 +26,6 @@ export default defineCard({
   ai: { value: 3, tags: ['aggro', 'buff', 'tribe'] },
   art: {
     subject:
-      'a futuristic cyborg with glowing implants, the drone of the datastream, glaring at the viewer, neon cyberpunk future style'
+      'Drone of the Datastream: a drone built of matte olive with yellow eyes, with piston legs, turning its lens toward the viewer, neon cyberpunk future style'
   }
 })

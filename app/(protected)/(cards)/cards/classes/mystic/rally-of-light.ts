@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['buff'] },
   art: {
-    subject: 'Rally of Light: a warrior surrounded by a surging aura of power, mystic healer style'
+    subject:
+      'Rally of Light: a tattered war banner planted in the ground, glowing with rallying light, over a stormy battlefield, dramatic backlight, rose pink accents, mystic healer style'
   }
 })

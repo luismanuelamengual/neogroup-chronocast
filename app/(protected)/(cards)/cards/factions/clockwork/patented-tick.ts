@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['energy'] },
   art: {
-    subject: 'Patented Tick: a giant hourglass with sand flowing upward, steampunk steam era style'
+    subject:
+      'Patented Tick: a pocket watch mid-tick with glowing gears exploding outward, in a snowy pass, centered and seen from slightly below, ivory accents, steampunk steam era style'
   }
 })

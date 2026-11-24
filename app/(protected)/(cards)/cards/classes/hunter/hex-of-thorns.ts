@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 1, tags: ['removal'] },
   art: {
-    subject: 'Hex of Thorns: glowing chains binding a struggling creature, hunter style'
+    subject:
+      'Hex of Thorns: a glowing hex sigil burning in the air, against a starry sky, dramatic backlight, rose pink accents, hunter style'
   }
 })

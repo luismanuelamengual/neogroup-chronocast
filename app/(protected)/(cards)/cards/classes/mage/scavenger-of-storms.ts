@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['removal'] },
   art: {
-    subject: 'a time-traveling adventurer, the scavenger of storms, charging into battle, mage style'
+    subject:
+      'Scavenger of Storms: a hunched middle-aged foxfolk woman with blue-black hair cropped short and sharp cheekbones, wearing a wide-brimmed hat, dressed in a pirate greatcoat with clock-face buttons, carrying a sack bursting with salvaged relics, with a confident smirk, crimson accents, mage style'
   }
 })

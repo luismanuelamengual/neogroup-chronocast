@@ -13,6 +13,7 @@ export default defineCard({
   armor: 4,
   ai: { value: 2 },
   art: {
-    subject: 'Plate of Rage: a single piece of armor on a stand, warrior style'
+    subject:
+      'Plate of Rage: a single plate made of rough stone and sinew, stuck in the sand, diagonal dynamic composition, lime green accents, warrior style'
   }
 })

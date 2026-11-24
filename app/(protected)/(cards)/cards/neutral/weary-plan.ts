@@ -16,6 +16,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['draw'] },
   art: {
-    subject: 'Weary Plan: glowing cards and runes swirling out of an open book, time rift wanderer style'
+    subject:
+      'Weary Plan: a battle map table with glowing pieces and arrows, inside a cave of crystals, swirling around the center, turquoise accents, time rift wanderer style'
   }
 })

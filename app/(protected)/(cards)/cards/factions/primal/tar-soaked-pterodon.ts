@@ -26,6 +26,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['heal'] },
   art: {
-    subject: 'a dinosaur, the tar-soaked pterodon, roaring, prehistoric jungle era style'
+    subject:
+      'Tar-Soaked Pterodon: a pterodon with a snow-white hide with grey dapples and a horned nose, mid-stride, tangerine accents, prehistoric jungle era style'
   }
 })

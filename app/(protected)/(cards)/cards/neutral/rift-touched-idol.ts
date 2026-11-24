@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['heal'] },
   art: {
-    subject: 'Rift-Touched Idol: a single mysterious idol artifact glowing on a pedestal, time rift wanderer style'
+    subject:
+      'Rift-Touched Idol: an ancient idol made of blue steel with silver runes, standing on a floating rock, dramatic backlight, magenta accents, time rift wanderer style'
   }
 })

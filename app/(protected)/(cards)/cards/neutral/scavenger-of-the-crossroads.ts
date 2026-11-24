@@ -24,6 +24,6 @@ export default defineCard({
   ai: { value: 5, tags: ['draw', 'ramp'] },
   art: {
     subject:
-      'a time-traveling wanderer, the scavenger of the crossroads, charging into battle, time rift wanderer style'
+      'Scavenger of the Crossroads: a barrel-chested middle-aged elf man with olive skin, sandy hair in short curls, a forked beard and a scar across one eye, wearing a tricorn hat, dressed in a Victorian waistcoat with a samurai sash, carrying a sack bursting with salvaged relics, with a booming laugh, amber accents, time rift wanderer style'
   }
 })

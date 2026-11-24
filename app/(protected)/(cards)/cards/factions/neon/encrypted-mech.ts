@@ -21,6 +21,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['control'] },
   art: {
-    subject: 'a futuristic cyborg with glowing implants, the encrypted mech, mid-leap, neon cyberpunk future style'
+    subject:
+      'Encrypted Mech: a mech built of chrome with cyan light strips, with a glowing furnace heart, standing guard, neon cyberpunk future style'
   }
 })

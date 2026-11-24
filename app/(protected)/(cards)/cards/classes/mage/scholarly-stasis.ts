@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['aggro', 'removal'] },
   art: {
-    subject: 'Scholarly Stasis: glowing chains binding a struggling creature, mage style'
+    subject:
+      'Scholarly Stasis: a clock frozen inside a floating crystal, its hands stopped, surrounded by floating clock hands and glowing sand, in a dark forest clearing, swirling around the center, scarlet accents, mage style'
   }
 })

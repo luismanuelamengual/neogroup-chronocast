@@ -27,6 +27,6 @@ export default defineCard({
   ai: { value: 4, tags: ['aggro', 'summon', 'tribe'] },
   art: {
     subject:
-      'an eldritch horror from the end of time, the whispering void spawn, crouching, ready to strike, dark end-of-time void style'
+      'Whispering Void Spawn: a spawn with pallid flesh with green veins and floating rings of teeth, baring its teeth, teal accents, dark end-of-time void style'
   }
 })

@@ -30,6 +30,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['ability', 'defense', 'energy'] },
   art: {
-    subject: 'a time-traveling adventurer, the bounty hunter of the rift, mid-leap, time rift wanderer style'
+    subject:
+      'Bounty Hunter of the Rift: a hunched young orc man with ash brown hair in twin buns, a pointed goatee and glowing tattoos on the cheeks, wearing a beaded headband, dressed in a poncho woven with hourglass patterns, holding a wanted poster and a coiled lasso, with a confident smirk, rose pink accents, time rift wanderer style'
   }
 })

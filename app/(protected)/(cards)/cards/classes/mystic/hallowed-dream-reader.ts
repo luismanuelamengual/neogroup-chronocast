@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['heal'] },
   art: {
-    subject: 'an ancient temple seer in white robes, the hallowed dream reader, lunging forward, mystic healer style'
+    subject:
+      'Hallowed Dream Reader: a petite adult woman with umber skin, charcoal grey hair in an undercut and a tattooed neck, dressed in a saffron chiton with gold arm bands, holding a sleeping lantern of dreams, with a mischievous wink, amber accents, mystic healer style'
   }
 })

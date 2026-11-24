@@ -21,6 +21,6 @@ export default defineCard({
   ai: { value: 4, tags: ['draw'] },
   art: {
     subject:
-      'a cyberpunk hacker with holographic screens, the ghost of the mainframe, crouching, ready to strike, neon cyberpunk future style'
+      'Ghost of the Mainframe: a plump elderly woman with warm beige skin, ultraviolet hair in thick dreadlocks and heavy golden earrings, dressed in an oversized hoodie with cables spilling out, holding a small caged light, leaping through the air, with a fierce scowl, turquoise accents, neon cyberpunk future style'
   }
 })

@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 1, tags: ['defense'] },
   art: {
-    subject: 'Serene Stance: a huge shimmering shield of force, mystic healer style'
+    subject:
+      'Serene Stance: a round shield and crossed spear planted firmly on stone, in a ruined temple, bursting toward the viewer, turquoise accents, mystic healer style'
   }
 })

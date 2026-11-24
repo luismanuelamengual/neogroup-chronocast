@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 1, tags: ['aggro', 'heal'] },
   art: {
-    subject: 'a dinosaur, the young tyrant, roaring, prehistoric jungle era style'
+    subject:
+      'Young Tyrant: a tyrant with a sandy gold hide with brown speckles and glowing amber eyes, leaping forward, scarlet accents, prehistoric jungle era style'
   }
 })

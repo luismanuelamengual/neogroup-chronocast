@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 6, tags: ['removal'] },
   art: {
-    subject: 'a sleek black and blue armor with lightning arcs running across its plates'
+    subject:
+      'Storm Plate: a single plate made of chrome with neon light strips, crackling with forked lightning, in a beam of light from above, bursting toward the viewer, cobalt blue accents'
   }
 })

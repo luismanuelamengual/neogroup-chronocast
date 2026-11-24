@@ -21,6 +21,7 @@ export default defineCard({
   },
   ai: { value: 6, tags: ['aggro'] },
   art: {
-    subject: 'a dinosaur, the camouflaged brontosaur, standing guard, hunter style'
+    subject:
+      'Camouflaged Brontosaur: a brontosaur with a teal hide with a pearly belly and glowing amber eyes, rearing up, scarlet accents, hunter style'
   }
 })

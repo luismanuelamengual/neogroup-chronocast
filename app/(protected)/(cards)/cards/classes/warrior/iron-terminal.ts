@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['heal'] },
   art: {
-    subject: 'Iron Terminal: a single mysterious terminal artifact glowing on a pedestal, warrior style'
+    subject:
+      'Iron Terminal: an ancient terminal made of copper with green patina, standing on a floating rock, framed by drifting embers, turquoise accents, warrior style'
   }
 })

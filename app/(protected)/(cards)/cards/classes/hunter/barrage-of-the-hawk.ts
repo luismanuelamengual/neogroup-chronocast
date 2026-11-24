@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['removal'] },
   art: {
-    subject: 'Barrage of the Hawk: a crackling bolt of energy striking a lone target, hunter style'
+    subject:
+      'Barrage of the Hawk: a dense volley of projectiles raining down, swept by a spiraling gust with leaves, over rooftops at night, seen from above, violet accents, hunter style'
   }
 })

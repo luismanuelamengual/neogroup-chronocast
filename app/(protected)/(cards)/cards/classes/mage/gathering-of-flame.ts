@@ -16,6 +16,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['summon'] },
   art: {
-    subject: 'Gathering of Flame: a glowing portal with a creature stepping through, mage style'
+    subject:
+      'Gathering of Flame: many small lights converging into one bright orb, in a snowy pass, bursting toward the viewer, amber accents, mage style'
   }
 })

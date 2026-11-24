@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['aggro', 'tribe'] },
   art: {
-    subject: 'a steampunk brass automaton, the spider engine of the foundry, mid-leap, steampunk steam era style'
+    subject:
+      'Spider Engine of the Foundry: an engine built of chrome with cyan light strips, with segmented spider legs, skidding into position, steampunk steam era style'
   }
 })

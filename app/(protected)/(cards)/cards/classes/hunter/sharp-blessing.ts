@@ -16,6 +16,7 @@ export default defineCard({
   targets: ['friendlyAlly'],
   ai: { value: 3, tags: ['buff'] },
   art: {
-    subject: 'Sharp Blessing: a glowing magical sharp charm, hunter style'
+    subject:
+      'Sharp Blessing: an enchanted blessing made of crystal and silver filigree, on a fur rug, centered and seen from slightly below, emerald accents, hunter style'
   }
 })

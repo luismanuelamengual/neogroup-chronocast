@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['antiGear'] },
   art: {
-    subject: 'Rusty Sabotage: a sword and shield cracking and rusting apart, steampunk steam era style'
+    subject:
+      'Rusty Sabotage: a sword and a shield cracking and rusting apart, over burning grassland, close-up filling the frame, turquoise accents, steampunk steam era style'
   }
 })

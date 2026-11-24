@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['buff'] },
   art: {
-    subject: 'Courage of the Last Stand: a warrior surrounded by a surging aura of power, warrior style'
+    subject:
+      'Courage of the Last Stand: a lion-head emblem blazing with golden light, against a starry sky, dramatic backlight, gold accents, warrior style'
   }
 })

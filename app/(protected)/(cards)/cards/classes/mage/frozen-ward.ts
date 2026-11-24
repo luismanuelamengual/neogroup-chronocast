@@ -13,6 +13,7 @@ export default defineCard({
   armor: 3,
   ai: { value: 1 },
   art: {
-    subject: 'Frozen Ward: a single piece of armor on a stand, mage style'
+    subject:
+      'Frozen Ward: a single ward made of copper with green patina, stuck in the sand, swirling around the center, magenta accents, mage style'
   }
 })

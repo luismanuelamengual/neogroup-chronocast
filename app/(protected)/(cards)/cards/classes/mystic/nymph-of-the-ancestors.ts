@@ -21,6 +21,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['summon'] },
   art: {
-    subject: 'a fairy-tale fae creature, the nymph of the ancestors, mid-leap, mystic healer style'
+    subject:
+      'Nymph of the Ancestors: a nymph with golden skin and white hair and butterfly wings, prowling low, turquoise accents, mystic healer style'
   }
 })

@@ -13,6 +13,7 @@ export default defineCard({
   armor: 12,
   ai: { value: 5 },
   art: {
-    subject: 'Astral Robe: a single piece of armor on a stand, mage style'
+    subject:
+      'Astral Robe: a single robe made of blue steel with silver runes, on cracked stone tiles, diagonal dynamic composition, tangerine accents, mage style'
   }
 })

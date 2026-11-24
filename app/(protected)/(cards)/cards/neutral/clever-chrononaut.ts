@@ -30,6 +30,7 @@ export default defineCard({
   },
   ai: { value: 6, tags: ['ability', 'energy', 'heal'] },
   art: {
-    subject: 'a time-traveling wanderer, the clever chrononaut, raising its weapon, time rift wanderer style'
+    subject:
+      'Clever Chrononaut: a towering adult halfling woman with umber skin, sandy hair in cornrows and a burn scar on the jaw, dressed in a patchwork coat stitched from fabrics of many centuries, adjusting a brass time compass on the wrist, with a booming laugh, ivory accents, time rift wanderer style'
   }
 })

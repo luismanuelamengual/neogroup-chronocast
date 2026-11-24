@@ -15,6 +15,7 @@ export default defineCard({
   targets: ['friendlyAlly'],
   ai: { value: 1, tags: ['buff'] },
   art: {
-    subject: 'Radiant Insignia: a glowing magical radiant charm, mystic healer style'
+    subject:
+      'Radiant Insignia: an enchanted insignia made of dark yew wood and brass fittings, on a workbench with tools, framed by drifting embers, turquoise accents, mystic healer style'
   }
 })

@@ -21,6 +21,6 @@ export default defineCard({
   ai: { value: 5 },
   art: {
     subject:
-      "Vorhal's Spike: the signature spell of the hero, a devastating blast of void energy, dark end-of-time void style"
+      "Vorhal's Spike: a giant jagged spike bursting up from cracked ground, surrounded by floating clock hands and glowing sand, against a starry sky, centered and seen from slightly below, amber accents, dark end-of-time void style"
   }
 })

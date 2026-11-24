@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['removal'] },
   art: {
-    subject: 'Hex of the Enchanted Wood: glowing chains binding a struggling creature, medieval magic order style'
+    subject:
+      'Hex of the Enchanted Wood: a glowing hex sigil burning in the air, above a calm lake at dusk, diagonal dynamic composition, saffron yellow accents, medieval magic order style'
   }
 })

@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['buff'] },
   art: {
-    subject: 'Might of the Tar Pits: a warrior surrounded by a surging aura of power, prehistoric jungle era style'
+    subject:
+      'Might of the Tar Pits: a huge glowing fist-shaped aura of raw power, against a starry sky, dramatic backlight, emerald accents, prehistoric jungle era style'
   }
 })

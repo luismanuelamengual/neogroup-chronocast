@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 7, tags: ['defense'] },
   art: {
-    subject: 'a mythic ancient creature, the chimera of the shieldwall, raising its weapon, warrior style'
+    subject:
+      'Chimera of the Shieldwall: a chimera with a golden hide and laurel leaves tangled in it, pawing the ground, magenta accents, warrior style'
   }
 })

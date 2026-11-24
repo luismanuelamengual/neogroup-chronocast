@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['draw', 'tribe'] },
   art: {
-    subject: 'a medieval spellcaster, the volatile runecarver, lunging forward, mage style'
+    subject:
+      'Volatile Runecarver: a broad-shouldered middle-aged dwarf woman with dark ebony skin, platinum blond hair with a side-swept fringe and a golden nose ring, wearing a thin silver circlet, dressed in a high-collared sorcerer coat, carving a glowing rune into stone, with calm focus, ivory accents, mage style'
   }
 })

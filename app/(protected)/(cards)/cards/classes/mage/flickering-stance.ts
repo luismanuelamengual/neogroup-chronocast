@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['defense', 'draw'] },
   art: {
-    subject: 'Flickering Stance: a huge shimmering shield of force, mage style'
+    subject:
+      'Flickering Stance: a round shield and crossed spear planted firmly on stone, over burning grassland, close-up filling the frame, tangerine accents, mage style'
   }
 })

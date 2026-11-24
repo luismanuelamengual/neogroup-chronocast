@@ -24,6 +24,6 @@ export default defineCard({
   ai: { value: 1, tags: ['aggro', 'heal'] },
   art: {
     subject:
-      'a cyberpunk hacker with holographic screens, the virus of the silent trail, glaring at the viewer, hunter style'
+      'Virus of the Silent Trail: a lanky young android man with a smooth metal scalp, a braided beard and a dusting of freckles, wearing a glowing hood, dressed in a poncho of fiber-optic threads, spreading glitching green code, with a mischievous wink, lime green accents, hunter style'
   }
 })

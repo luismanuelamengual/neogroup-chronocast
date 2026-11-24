@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 2 },
   art: {
-    subject: 'Serene Prayer Staff: a single staff weapon floating in dramatic light, mystic healer style'
+    subject:
+      'Serene Prayer Staff: a single staff made of rusted iron and chains, stuck in the sand, centered and seen from slightly below, scarlet accents, mystic healer style'
   }
 })

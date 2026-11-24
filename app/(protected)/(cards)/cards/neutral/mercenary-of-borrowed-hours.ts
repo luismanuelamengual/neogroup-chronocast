@@ -31,6 +31,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['ability', 'draw', 'energy'] },
   art: {
-    subject: 'a time-traveling wanderer, the mercenary of borrowed hours, raising its weapon, time rift wanderer style'
+    subject:
+      'Mercenary of Borrowed Hours: a broad-shouldered adult halfling woman with pale skin, honey blond hair in a wild mane and round spectacles, wearing a fur hat, dressed in desert robes with an aviator scarf, resting a notched greatsword on the shoulder, with calm focus, teal accents, time rift wanderer style'
   }
 })

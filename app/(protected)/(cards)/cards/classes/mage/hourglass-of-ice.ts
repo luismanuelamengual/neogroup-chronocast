@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['ramp'] },
   art: {
-    subject: 'Hourglass of Ice: a giant hourglass with sand flowing upward, mage style'
+    subject:
+      'Hourglass of Ice: a giant ornate hourglass with glowing falling sand, in a ruined temple, dramatic backlight, gold accents, mage style'
   }
 })

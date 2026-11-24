@@ -28,6 +28,7 @@ export default defineCard({
   },
   ai: { value: 7, tags: ['buff', 'removal', 'tribe'] },
   art: {
-    subject: "a fairy-tale fae creature, the morgrath's satyr, charging into battle, medieval magic order style"
+    subject:
+      "Morgrath's Satyr: a satyr with bark-brown skin with leafy hair and moth wings, rearing up, magenta accents, medieval magic order style"
   }
 })

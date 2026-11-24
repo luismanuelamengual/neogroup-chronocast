@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['draw'] },
   art: {
-    subject: 'an ancient bronze-armored soldier, the recruit of the warlord, crouching, ready to strike, warrior style'
+    subject:
+      'Recruit of the Warlord: a plump elderly man with freckled fair skin, charcoal grey hair in a single long braid, a full beard and a burn scar on the jaw, wearing a crested helmet, dressed in segmented lorica armor with a crested helmet, gripping a spear nervously, with a mischievous wink, ivory accents, warrior style'
   }
 })

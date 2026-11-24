@@ -15,6 +15,7 @@ export default defineCard({
   silences: true,
   ai: { value: 3, tags: ['removal'] },
   art: {
-    subject: 'Brand of the Comet: a glowing magical brand charm, mage style'
+    subject:
+      'Brand of the Comet: an enchanted brand made of rusted iron and chains, on a pile of old coins, dramatic backlight, rose pink accents, mage style'
   }
 })

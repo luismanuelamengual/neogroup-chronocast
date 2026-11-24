@@ -27,6 +27,6 @@ export default defineCard({
   ai: { value: 7, tags: ['aggro', 'buff', 'tribe'] },
   art: {
     subject:
-      "a fairy-tale fae creature, the the astronomer's dryad, crouching, ready to strike, medieval magic order style"
+      "The Astronomer's Dryad: a dryad with dappled grey coat and gold mane and feathered wings, standing proud on a rock, cobalt blue accents, medieval magic order style"
   }
 })

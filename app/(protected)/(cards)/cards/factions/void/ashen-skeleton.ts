@@ -33,6 +33,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['ability', 'buff', 'energy', 'tribe'] },
   art: {
-    subject: 'an undead creature, the ashen skeleton, glaring at the viewer, dark end-of-time void style'
+    subject:
+      'Ashen Skeleton: a skeleton with bleached bones and glowing eye sockets, prowling low, indigo accents, dark end-of-time void style'
   }
 })

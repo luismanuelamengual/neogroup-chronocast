@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['removal'] },
   art: {
-    subject: 'Spike of the Oracle: a crackling bolt of energy striking a lone target, ancient bronze-age empire style'
+    subject:
+      'Spike of the Oracle: a giant jagged spike bursting up from cracked ground, radiating golden holy light, in a snowy pass, close-up filling the frame, rose pink accents, ancient bronze-age empire style'
   }
 })

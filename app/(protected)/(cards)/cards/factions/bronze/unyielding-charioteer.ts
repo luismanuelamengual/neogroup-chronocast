@@ -21,6 +21,6 @@ export default defineCard({
   ai: { value: 3, tags: ['draw', 'tribe'] },
   art: {
     subject:
-      'an ancient bronze-armored soldier, the unyielding charioteer, standing guard, ancient bronze-age empire style'
+      'Unyielding Charioteer: a towering adult woman with light brown skin, sandy hair long and straight and a tattooed neck, wearing a crested helmet, dressed in a Greek hoplite panoply with a horsehair crest, cracking a whip from a bronze chariot, with a fierce scowl, gold accents, ancient bronze-age empire style'
   }
 })

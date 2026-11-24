@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 5 },
   art: {
-    subject: "Aldric's Beacon: a sacred relic of the hero glowing on an altar, medieval magic order style"
+    subject:
+      "Aldric's Beacon: an ancient beacon made of gilded marble, standing in shallow water, seen from above, lime green accents, medieval magic order style"
   }
 })

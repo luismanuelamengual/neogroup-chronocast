@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['buff'] },
   art: {
-    subject: 'Dreaming Fury: a warrior surrounded by a surging aura of power, mystic healer style'
+    subject:
+      'Dreaming Fury: a roaring red storm of rage swirling around a cracked war axe, over rooftops at night, close-up filling the frame, teal accents, mystic healer style'
   }
 })

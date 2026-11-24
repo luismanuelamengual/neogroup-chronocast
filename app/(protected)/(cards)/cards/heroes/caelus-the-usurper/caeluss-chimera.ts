@@ -27,6 +27,7 @@ export default defineCard({
   },
   ai: { value: 7, tags: ['buff', 'defense', 'tribe'] },
   art: {
-    subject: "a mythic ancient creature, the caelus's chimera, raising its weapon, ancient bronze-age empire style"
+    subject:
+      "Caelus's Chimera: a chimera with a storm-grey hide and old battle scars, turning its head toward the viewer, saffron yellow accents, ancient bronze-age empire style"
   }
 })

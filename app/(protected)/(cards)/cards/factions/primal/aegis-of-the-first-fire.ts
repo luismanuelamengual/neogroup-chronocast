@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['defense', 'draw'] },
   art: {
-    subject: 'Aegis of the First Fire: a huge shimmering shield of force, prehistoric jungle era style'
+    subject:
+      'Aegis of the First Fire: a radiant dome-shaped magical barrier, in a dark forest clearing, diagonal dynamic composition, indigo accents, prehistoric jungle era style'
   }
 })

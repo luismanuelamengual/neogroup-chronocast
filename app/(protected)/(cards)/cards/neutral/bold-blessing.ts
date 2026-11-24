@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 6, tags: ['draw', 'heal'] },
   art: {
-    subject: 'Bold Blessing: warm golden light healing a wounded figure, time rift wanderer style'
+    subject:
+      'Bold Blessing: a halo of soft light over an empty altar, above a calm lake at dusk, diagonal dynamic composition, crimson accents, time rift wanderer style'
   }
 })

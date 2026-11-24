@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['buff'] },
   art: {
-    subject: 'Courage of Spirits: a warrior surrounded by a surging aura of power, mystic healer style'
+    subject:
+      'Courage of Spirits: a lion-head emblem blazing with golden light, in a sunlit meadow, swirling around the center, rose pink accents, mystic healer style'
   }
 })

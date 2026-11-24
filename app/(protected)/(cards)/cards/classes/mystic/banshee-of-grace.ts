@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 7, tags: ['heal'] },
   art: {
-    subject: 'an undead creature, the banshee of grace, crouching, ready to strike, mystic healer style'
+    subject:
+      'Banshee of Grace: a banshee with ash-grey skin and a wailing open mouth, turning its head toward the viewer, indigo accents, mystic healer style'
   }
 })

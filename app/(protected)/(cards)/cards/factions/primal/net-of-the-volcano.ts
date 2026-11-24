@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['trap'] },
   art: {
-    subject: 'Net of the Volcano: a hidden volcano about to spring, prehistoric jungle era style'
+    subject:
+      'Net of the Volcano: a weighted rope net hidden under leaves, about to spring, swirling around the center, teal accents, prehistoric jungle era style'
   }
 })

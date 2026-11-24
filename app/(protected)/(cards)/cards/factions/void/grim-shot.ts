@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['removal', 'tribe'] },
   art: {
-    subject: 'Grim Shot: a crackling bolt of energy striking a lone target, dark end-of-time void style'
+    subject:
+      'Grim Shot: a single arrow in flight trailing a streak of light, wrapped in swirling black smoke, above a calm lake at dusk, dramatic backlight, saffron yellow accents, dark end-of-time void style'
   }
 })

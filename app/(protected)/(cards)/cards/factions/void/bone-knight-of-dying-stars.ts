@@ -23,6 +23,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['heal'] },
   art: {
-    subject: 'an undead creature, the bone knight of dying stars, lunging forward, dark end-of-time void style'
+    subject:
+      'Bone Knight of Dying Stars: a knight with ash-grey skin and exposed ribs, charging head-on, turquoise accents, dark end-of-time void style'
   }
 })

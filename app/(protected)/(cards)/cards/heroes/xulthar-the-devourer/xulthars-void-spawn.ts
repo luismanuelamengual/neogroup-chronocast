@@ -29,6 +29,6 @@ export default defineCard({
   ai: { value: 7, tags: ['aggro', 'heal'] },
   art: {
     subject:
-      "an eldritch horror from the end of time, the xulthar's void spawn, standing guard, dark end-of-time void style"
+      "Xulthar's Void Spawn: a spawn with oily black flesh with ultraviolet eyes and a mouth full of tentacles, leaping forward, ivory accents, dark end-of-time void style"
   }
 })

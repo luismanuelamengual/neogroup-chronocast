@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 1, tags: ['removal'] },
   art: {
-    subject: 'Blast of Lightning: a crackling bolt of energy striking a lone target, mage style'
+    subject:
+      'Blast of Lightning: a violent explosion of energy, crackling with forked lightning, over rooftops at night, framed by drifting embers, magenta accents, mage style'
   }
 })

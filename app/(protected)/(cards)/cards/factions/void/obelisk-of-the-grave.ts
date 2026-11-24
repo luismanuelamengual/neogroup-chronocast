@@ -19,6 +19,6 @@ export default defineCard({
   ai: { value: 3, tags: ['defense'] },
   art: {
     subject:
-      'Obelisk of the Grave: a single mysterious grave artifact glowing on a pedestal, dark end-of-time void style'
+      'Obelisk of the Grave: an ancient obelisk made of polished bronze with engraved spirals, standing among ancient trees, diagonal dynamic composition, indigo accents, dark end-of-time void style'
   }
 })

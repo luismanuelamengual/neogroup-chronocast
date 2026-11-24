@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['removal'] },
   art: {
-    subject: 'Midnight Daze: glowing chains binding a struggling creature, neon cyberpunk future style'
+    subject:
+      'Midnight Daze: spinning stars and swirls circling a dented helmet, over burning grassland, dramatic backlight, tangerine accents, neon cyberpunk future style'
   }
 })

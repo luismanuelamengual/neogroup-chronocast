@@ -20,6 +20,6 @@ export default defineCard({
   ai: { value: 3, tags: ['aggro'] },
   art: {
     subject:
-      'Encrypted Monolith: a single mysterious monolith artifact glowing on a pedestal, neon cyberpunk future style'
+      'Encrypted Monolith: an ancient monolith made of crystal and silver filigree, bursting with jagged rocks and dust, standing on a floating rock, swirling around the center, violet accents, neon cyberpunk future style'
   }
 })

@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['buff', 'tribe'] },
   art: {
-    subject: 'an eldritch horror from the end of time, the nightmare of the void, roaring, dark end-of-time void style'
+    subject:
+      'Nightmare of the Void: a nightmare with translucent purple membranes and dozens of blinking eyes, prowling low, teal accents, dark end-of-time void style'
   }
 })

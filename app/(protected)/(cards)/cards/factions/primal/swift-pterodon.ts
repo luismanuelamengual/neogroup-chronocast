@@ -17,6 +17,7 @@ export default defineCard({
   health: 10,
   ai: { value: 4 },
   art: {
-    subject: 'a dinosaur, the swift pterodon, roaring, prehistoric jungle era style'
+    subject:
+      'Swift Pterodon: a pterodon with a moss-green hide with yellow stripes and tribal paint, rearing up, cobalt blue accents, prehistoric jungle era style'
   }
 })

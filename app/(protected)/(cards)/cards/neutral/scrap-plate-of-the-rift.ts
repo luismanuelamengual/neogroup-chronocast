@@ -13,6 +13,7 @@ export default defineCard({
   armor: 4,
   ai: { value: 2 },
   art: {
-    subject: 'Scrap Plate of the Rift: a single piece of armor on a stand, time rift wanderer style'
+    subject:
+      'Scrap Plate of the Rift: a single plate made of dark yew wood and brass fittings, on cracked stone tiles, bursting toward the viewer, indigo accents, time rift wanderer style'
   }
 })

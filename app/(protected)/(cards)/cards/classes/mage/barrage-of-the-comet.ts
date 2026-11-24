@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['removal'] },
   art: {
-    subject: 'Barrage of the Comet: a crackling bolt of energy striking a lone target, mage style'
+    subject:
+      'Barrage of the Comet: a dense volley of projectiles raining down, circled by glowing violet runes, in a misty valley, dramatic backlight, indigo accents, mage style'
   }
 })

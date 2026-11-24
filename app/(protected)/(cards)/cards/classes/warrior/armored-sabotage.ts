@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 6, tags: ['antiGear'] },
   art: {
-    subject: 'Armored Sabotage: a sword and shield cracking and rusting apart, warrior style'
+    subject:
+      'Armored Sabotage: a sword and a shield cracking and rusting apart, above a calm lake at dusk, bursting toward the viewer, gold accents, warrior style'
   }
 })

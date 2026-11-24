@@ -13,6 +13,7 @@ export default defineCard({
   armor: 6,
   ai: { value: 2 },
   art: {
-    subject: 'Breastplate of Rage: a single piece of armor on a stand, warrior style'
+    subject:
+      'Breastplate of Rage: a single breastplate made of crystal and silver filigree, on a pile of old coins, diagonal dynamic composition, tangerine accents, warrior style'
   }
 })

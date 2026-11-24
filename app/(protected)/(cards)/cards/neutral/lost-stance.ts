@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['defense', 'draw'] },
   art: {
-    subject: 'Lost Stance: a huge shimmering shield of force, time rift wanderer style'
+    subject:
+      'Lost Stance: a round shield and crossed spear planted firmly on stone, over a desert of red dunes, dramatic backlight, violet accents, time rift wanderer style'
   }
 })

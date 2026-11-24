@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['removal'] },
   art: {
-    subject: 'Wild Shot: a crackling bolt of energy striking a lone target, hunter style'
+    subject:
+      'Wild Shot: a single arrow in flight trailing a streak of light, in a misty valley, framed by drifting embers, teal accents, hunter style'
   }
 })

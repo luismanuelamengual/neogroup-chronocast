@@ -16,6 +16,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['heal'] },
   art: {
-    subject: 'Respite of Renewal: warm golden light healing a wounded figure, mystic healer style'
+    subject:
+      'Respite of Renewal: a quiet campfire with a steaming kettle and bedroll, inside a cave of crystals, close-up filling the frame, ivory accents, mystic healer style'
   }
 })

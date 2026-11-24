@@ -25,6 +25,6 @@ export default defineCard({
   ai: { value: 7, tags: ['aggro', 'buff', 'tribe'] },
   art: {
     subject:
-      "a cyberpunk street criminal, the queen static's gunslinger, raising its weapon, neon cyberpunk future style"
+      "Queen Static's Gunslinger: a wiry young android man with a smooth metal scalp, mutton chops and heterochromatic eyes, wearing a street hood, dressed in a long armored trench coat, holding a small caged light, walking calmly, with a mischievous wink, emerald accents, neon cyberpunk future style"
   }
 })

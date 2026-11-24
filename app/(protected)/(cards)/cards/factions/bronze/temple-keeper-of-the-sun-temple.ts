@@ -19,6 +19,6 @@ export default defineCard({
   ai: { value: 6 },
   art: {
     subject:
-      'an ancient temple seer in white robes, the temple keeper of the sun temple, crouching, ready to strike, ancient bronze-age empire style'
+      'Temple Keeper of the Sun Temple: a lanky young man with olive skin, chestnut hair slicked back, a braided beard and war paint stripes, wearing a laurel wreath, dressed in a sea-green himation with pearl strands, holding a ring of iron keys, with a sly grin, scarlet accents, ancient bronze-age empire style'
   }
 })

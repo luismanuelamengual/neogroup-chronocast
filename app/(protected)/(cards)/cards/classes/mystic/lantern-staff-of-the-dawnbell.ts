@@ -20,6 +20,6 @@ export default defineCard({
   ai: { value: 4 },
   art: {
     subject:
-      'Lantern Staff of the Dawnbell: a single lantern staff weapon floating in dramatic light, mystic healer style'
+      'Lantern Staff of the Dawnbell: a single staff made of copper with green patina, on a pile of old coins, dramatic backlight, rose pink accents, mystic healer style'
   }
 })

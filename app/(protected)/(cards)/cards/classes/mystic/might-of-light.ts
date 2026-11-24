@@ -16,6 +16,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['buff', 'tribe'] },
   art: {
-    subject: 'Might of Light: a warrior surrounded by a surging aura of power, mystic healer style'
+    subject:
+      'Might of Light: a huge glowing fist-shaped aura of raw power, over rooftops at night, bursting toward the viewer, gold accents, mystic healer style'
   }
 })

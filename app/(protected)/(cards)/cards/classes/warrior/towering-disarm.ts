@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['antiGear'] },
   art: {
-    subject: 'Towering Disarm: a sword and shield cracking and rusting apart, warrior style'
+    subject:
+      'Towering Disarm: a sword flying out of reach, spinning through the air, above a calm lake at dusk, dramatic backlight, magenta accents, warrior style'
   }
 })

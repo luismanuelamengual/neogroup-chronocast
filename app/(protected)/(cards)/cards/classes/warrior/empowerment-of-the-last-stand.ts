@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['buff'] },
   art: {
-    subject: 'Empowerment of the Last Stand: a warrior surrounded by a surging aura of power, warrior style'
+    subject:
+      'Empowerment of the Last Stand: a floating gem overflowing with radiant energy, over a desert of red dunes, bursting toward the viewer, saffron yellow accents, warrior style'
   }
 })

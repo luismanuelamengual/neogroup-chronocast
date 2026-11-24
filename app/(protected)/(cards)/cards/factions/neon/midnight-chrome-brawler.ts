@@ -22,6 +22,6 @@ export default defineCard({
   ai: { value: 3, tags: ['control'] },
   art: {
     subject:
-      'a futuristic cyborg with glowing implants, the midnight chrome brawler, crouching, ready to strike, neon cyberpunk future style'
+      'Midnight Chrome Brawler: a muscular elderly woman with warm beige skin, salt-and-pepper hair in a topknot and a burn scar on the jaw, wearing a chrome visor, dressed in a matte-black exoskeleton, raising chrome fists, with a serene smile, crimson accents, neon cyberpunk future style'
   }
 })

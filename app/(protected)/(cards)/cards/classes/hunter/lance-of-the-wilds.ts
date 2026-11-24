@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['removal'] },
   art: {
-    subject: 'Lance of the Wilds: a crackling bolt of energy striking a lone target, hunter style'
+    subject:
+      'Lance of the Wilds: a long lance of pure energy piercing the air, in a dark forest clearing, close-up filling the frame, amber accents, hunter style'
   }
 })

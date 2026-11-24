@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['buff'] },
   art: {
-    subject: 'Rally of the Hunt Moon: a warrior surrounded by a surging aura of power, prehistoric jungle era style'
+    subject:
+      'Rally of the Hunt Moon: a tattered war banner planted in the ground, glowing with rallying light, in a dark forest clearing, close-up filling the frame, gold accents, prehistoric jungle era style'
   }
 })

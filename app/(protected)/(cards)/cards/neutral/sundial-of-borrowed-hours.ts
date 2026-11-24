@@ -19,6 +19,6 @@ export default defineCard({
   ai: { value: 4, tags: ['energy'] },
   art: {
     subject:
-      'Sundial of Borrowed Hours: a single mysterious hours artifact glowing on a pedestal, time rift wanderer style'
+      'Sundial of Borrowed Hours: an ancient sundial made of gilded marble, standing on a hilltop at dusk, framed by drifting embers, ivory accents, time rift wanderer style'
   }
 })

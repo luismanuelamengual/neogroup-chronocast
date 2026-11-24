@@ -15,6 +15,7 @@ export default defineCard({
   silences: true,
   ai: { value: 1, tags: ['removal'] },
   art: {
-    subject: 'Leech of Lost Time: a glowing magical leech charm, time rift wanderer style'
+    subject:
+      'Leech of Lost Time: an enchanted leech made of carved obsidian, on a pile of old coins, close-up filling the frame, gold accents, time rift wanderer style'
   }
 })

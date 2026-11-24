@@ -24,6 +24,7 @@ export default defineCard({
   },
   ai: { value: 7, tags: ['buff', 'defense', 'tribe'] },
   art: {
-    subject: "a steampunk flying machine, the omnigear's gyrocopter, standing guard, steampunk steam era style"
+    subject:
+      "Omnigear's Gyrocopter: a gyrocopter built of matte olive with yellow eyes, with a spinning propeller, hovering above the ground, steampunk steam era style"
   }
 })

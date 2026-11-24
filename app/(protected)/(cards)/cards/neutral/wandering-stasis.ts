@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['removal'] },
   art: {
-    subject: 'Wandering Stasis: glowing chains binding a struggling creature, time rift wanderer style'
+    subject:
+      'Wandering Stasis: a clock frozen inside a floating crystal, its hands stopped, over rooftops at night, framed by drifting embers, amber accents, time rift wanderer style'
   }
 })

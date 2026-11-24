@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['heal', 'revive'] },
   art: {
-    subject: 'Gentle Return: a ghostly figure rising from a grave in green light, mystic healer style'
+    subject:
+      'Gentle Return: a swirling vortex pulling objects backward in time, over a stormy battlefield, close-up filling the frame, scarlet accents, mystic healer style'
   }
 })

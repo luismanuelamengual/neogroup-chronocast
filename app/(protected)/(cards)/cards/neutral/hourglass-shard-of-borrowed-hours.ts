@@ -18,6 +18,6 @@ export default defineCard({
   ai: { value: 2, tags: ['ramp'] },
   art: {
     subject:
-      'Hourglass Shard of Borrowed Hours: a single hourglass shard of borrowed hours item lying on a stone, time rift wanderer style'
+      'Hourglass Shard of Borrowed Hours: a small shard made of pale ash wood wrapped in red cloth, leaning against a ruined wall, diagonal dynamic composition, ivory accents, time rift wanderer style'
   }
 })

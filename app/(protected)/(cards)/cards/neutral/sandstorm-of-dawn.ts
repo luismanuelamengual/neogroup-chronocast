@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 6, tags: ['defense'] },
   art: {
-    subject: 'an elemental spirit, the sandstorm of dawn, roaring, time rift wanderer style'
+    subject:
+      'Sandstorm of Dawn: an elemental sandstorm with a hunched beast shape made of deep teal water, prowling low, time rift wanderer style'
   }
 })

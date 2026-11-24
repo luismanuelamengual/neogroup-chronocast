@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['removal'] },
   art: {
-    subject: 'Blast of the Arcanum: a crackling bolt of energy striking a lone target, mage style'
+    subject:
+      'Blast of the Arcanum: a violent explosion of energy, circled by glowing violet runes, over a desert of red dunes, bursting toward the viewer, ivory accents, mage style'
   }
 })

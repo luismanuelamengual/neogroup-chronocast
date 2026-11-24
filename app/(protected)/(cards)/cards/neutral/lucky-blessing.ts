@@ -16,6 +16,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['heal'] },
   art: {
-    subject: 'Lucky Blessing: warm golden light healing a wounded figure, time rift wanderer style'
+    subject:
+      'Lucky Blessing: a halo of soft light over an empty altar, over a desert of red dunes, centered and seen from slightly below, cobalt blue accents, time rift wanderer style'
   }
 })

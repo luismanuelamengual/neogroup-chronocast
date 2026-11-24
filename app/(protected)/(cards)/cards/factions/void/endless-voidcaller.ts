@@ -21,6 +21,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['buff', 'tribe'] },
   art: {
-    subject: 'a hooded doomsday cultist, the endless voidcaller, standing guard, dark end-of-time void style'
+    subject:
+      'Endless Voidcaller: a plump elderly pale ghoul-like woman with charcoal grey hair in a topknot and an eyepatch, wearing a bone mask, dressed in tattered black robes with sigils, holding a strange relic, bracing for impact, with a haunted stare, magenta accents, dark end-of-time void style'
   }
 })

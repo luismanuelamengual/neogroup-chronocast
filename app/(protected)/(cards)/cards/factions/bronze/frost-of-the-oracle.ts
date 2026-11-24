@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['removal'] },
   art: {
-    subject: 'Frost of the Oracle: glowing chains binding a struggling creature, ancient bronze-age empire style'
+    subject:
+      'Frost of the Oracle: a spiral of razor-sharp frost shards, in a ruined temple, dramatic backlight, turquoise accents, ancient bronze-age empire style'
   }
 })

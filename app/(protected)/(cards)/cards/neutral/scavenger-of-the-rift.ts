@@ -33,6 +33,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['ability', 'buff', 'energy', 'tribe'] },
   art: {
-    subject: 'a time-traveling wanderer, the scavenger of the rift, glaring at the viewer, time rift wanderer style'
+    subject:
+      'Scavenger of the Rift: a stocky young orc woman with ash brown hair in a single long braid and a beauty mark, dressed in a sailor uniform with bronze greaves, carrying a sack bursting with salvaged relics, with a confident smirk, saffron yellow accents, time rift wanderer style'
   }
 })

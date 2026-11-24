@@ -16,6 +16,7 @@ export default defineCard({
   health: 12,
   ai: { value: 6 },
   art: {
-    subject: 'an undead creature, the ghoul of mercy, crouching, ready to strike, mystic healer style'
+    subject:
+      'Ghoul of Mercy: a ghoul with rotting green flesh and a cracked halo, roaring with jaws wide open, violet accents, mystic healer style'
   }
 })

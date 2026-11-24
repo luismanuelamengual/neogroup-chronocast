@@ -22,6 +22,6 @@ export default defineCard({
   ai: { value: 6, tags: ['buff'] },
   art: {
     subject:
-      'a prehistoric tribe warrior in furs and bone ornaments, the scarred spearman, mid-leap, prehistoric jungle era style'
+      'Scarred Spearman: a lanky young man with light brown skin, blue-black hair with a side-swept fringe, a full beard and bushy eyebrows, dressed in ochre body paint and a reed skirt, thrusting a flint spear, with calm focus, gold accents, prehistoric jungle era style'
   }
 })

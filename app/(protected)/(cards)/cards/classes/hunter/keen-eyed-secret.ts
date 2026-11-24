@@ -16,6 +16,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['draw'] },
   art: {
-    subject: 'Keen-Eyed Secret: glowing cards and runes swirling out of an open book, hunter style'
+    subject:
+      'Keen-Eyed Secret: a sealed envelope with a glowing wax seal, half hidden in shadow, in a dark forest clearing, seen from above, rose pink accents, hunter style'
   }
 })

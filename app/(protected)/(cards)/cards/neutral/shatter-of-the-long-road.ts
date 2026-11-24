@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['antiGear'] },
   art: {
-    subject: 'Shatter of the Long Road: a sword and shield cracking and rusting apart, time rift wanderer style'
+    subject:
+      'Shatter of the Long Road: a crystal exploding into hundreds of shards, over burning grassland, diagonal dynamic composition, saffron yellow accents, time rift wanderer style'
   }
 })

@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['buff'] },
   art: {
-    subject: 'Relentless Fury: a warrior surrounded by a surging aura of power, warrior style'
+    subject:
+      'Relentless Fury: a roaring red storm of rage swirling around a cracked war axe, in a sunlit meadow, bursting toward the viewer, rose pink accents, warrior style'
   }
 })

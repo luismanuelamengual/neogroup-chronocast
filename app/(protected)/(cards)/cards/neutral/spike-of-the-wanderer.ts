@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['removal'] },
   art: {
-    subject: 'Spike of the Wanderer: a crackling bolt of energy striking a lone target, time rift wanderer style'
+    subject:
+      'Spike of the Wanderer: a giant jagged spike bursting up from cracked ground, over a stormy battlefield, centered and seen from slightly below, amber accents, time rift wanderer style'
   }
 })

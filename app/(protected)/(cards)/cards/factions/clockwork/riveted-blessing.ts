@@ -17,6 +17,7 @@ export default defineCard({
   targets: ['friendlyAlly'],
   ai: { value: 2, tags: ['buff'] },
   art: {
-    subject: 'Riveted Blessing: a glowing magical riveted charm, steampunk steam era style'
+    subject:
+      'Riveted Blessing: an enchanted blessing made of gilded marble, stuck in the sand, bursting toward the viewer, violet accents, steampunk steam era style'
   }
 })

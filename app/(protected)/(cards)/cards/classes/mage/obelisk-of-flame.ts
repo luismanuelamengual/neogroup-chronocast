@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['aggro'] },
   art: {
-    subject: 'Obelisk of Flame: a single mysterious flame artifact glowing on a pedestal, mage style'
+    subject:
+      'Obelisk of Flame: an ancient obelisk made of white bone and leather wraps, wreathed in roaring flames, standing in a misty clearing, framed by drifting embers, violet accents, mage style'
   }
 })

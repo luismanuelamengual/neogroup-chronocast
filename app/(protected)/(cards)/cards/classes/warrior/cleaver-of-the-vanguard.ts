@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 5 },
   art: {
-    subject: 'Cleaver of the Vanguard: a single cleaver weapon floating in dramatic light, warrior style'
+    subject:
+      'Cleaver of the Vanguard: a single cleaver made of chrome with neon light strips, resting on a velvet cloth, swirling around the center, magenta accents, warrior style'
   }
 })

@@ -31,6 +31,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['ability', 'aggro', 'energy', 'tribe'] },
   art: {
-    subject: 'an undead creature, the rotting zombie, charging into battle, dark end-of-time void style'
+    subject:
+      'Rotting Zombie: a zombie with ash-grey skin and a broken crown, charging head-on, gold accents, dark end-of-time void style'
   }
 })

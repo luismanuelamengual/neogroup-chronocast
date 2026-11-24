@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['aggro'] },
   art: {
-    subject: 'a time-traveling adventurer, the scavenger of the ambush, roaring, hunter style'
+    subject:
+      'Scavenger of the Ambush: a petite adult dwarf man with dark ebony skin, blue-black hair in long braids and an eyepatch, wearing a deep hood, dressed in a Renaissance doublet with mismatched armor pieces, carrying a sack bursting with salvaged relics, with grim determination, violet accents, hunter style'
   }
 })

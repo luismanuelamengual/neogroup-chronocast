@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['heal'] },
   art: {
-    subject: 'a time-traveling adventurer, the blessed deserter, crouching, ready to strike, mystic healer style'
+    subject:
+      'Blessed Deserter: a willowy elderly woman with light brown skin, salt-and-pepper hair slicked back and an eyepatch, wearing a tricorn hat, dressed in a sailor uniform with bronze greaves, dragging a broken standard, with a booming laugh, magenta accents, mystic healer style'
   }
 })

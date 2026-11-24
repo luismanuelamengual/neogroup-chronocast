@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['buff'] },
   art: {
-    subject: 'an ice-age beast, the amber-eyed wolf pup, raising its weapon, prehistoric jungle era style'
+    subject:
+      'Amber-Eyed Wolf Pup: a pup with blue-grey fur and a notched ear, roaring with jaws wide open, violet accents, prehistoric jungle era style'
   }
 })

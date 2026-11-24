@@ -24,6 +24,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['aggro', 'buff', 'tribe'] },
   art: {
-    subject: 'a hooded doomsday cultist, the ashen hierophant, raising its weapon, dark end-of-time void style'
+    subject:
+      'Ashen Hierophant: a petite young grey-skinned man with chestnut hair in thick dreadlocks, mutton chops and a monocle, wearing a crown of thorns, dressed in a violet cowl with eye embroidery, raising a rotted staff, with wide-eyed wonder, emerald accents, dark end-of-time void style'
   }
 })

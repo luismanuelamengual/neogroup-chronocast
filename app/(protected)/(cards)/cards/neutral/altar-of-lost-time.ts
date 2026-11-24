@@ -16,6 +16,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['defense'] },
   art: {
-    subject: 'Altar of Lost Time: a single mysterious time artifact glowing on a pedestal, time rift wanderer style'
+    subject:
+      'Altar of Lost Time: an ancient altar made of polished bronze with engraved spirals, standing on a hilltop at dusk, close-up filling the frame, rose pink accents, time rift wanderer style'
   }
 })

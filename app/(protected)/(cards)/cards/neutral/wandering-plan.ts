@@ -16,6 +16,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['draw'] },
   art: {
-    subject: 'Wandering Plan: glowing cards and runes swirling out of an open book, time rift wanderer style'
+    subject:
+      'Wandering Plan: a battle map table with glowing pieces and arrows, in a snowy pass, diagonal dynamic composition, cobalt blue accents, time rift wanderer style'
   }
 })

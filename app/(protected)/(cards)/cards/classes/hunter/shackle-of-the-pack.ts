@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['draw', 'removal'] },
   art: {
-    subject: 'Shackle of the Pack: glowing chains binding a struggling creature, hunter style'
+    subject:
+      'Shackle of the Pack: heavy iron shackles snapping closed, in a snowy pass, swirling around the center, lime green accents, hunter style'
   }
 })

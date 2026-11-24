@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['draw'] },
   art: {
-    subject: 'a fairy-tale fae creature, the moonlit wisp, standing guard, medieval magic order style'
+    subject:
+      'Moonlit Wisp: a wisp with rose skin and ivy hair and feathered wings, pawing the ground, turquoise accents, medieval magic order style'
   }
 })

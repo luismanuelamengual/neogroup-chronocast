@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['trap'] },
   art: {
-    subject: 'Net of the Pack: a hidden pack about to spring, hunter style'
+    subject:
+      'Net of the Pack: a weighted rope net hidden under leaves, about to spring, swirling around the center, ivory accents, hunter style'
   }
 })

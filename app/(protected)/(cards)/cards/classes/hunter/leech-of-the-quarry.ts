@@ -14,6 +14,7 @@ export default defineCard({
   disarms: true,
   ai: { value: 4, tags: ['removal'] },
   art: {
-    subject: 'Leech of the Quarry: a glowing magical leech charm, hunter style'
+    subject:
+      'Leech of the Quarry: an enchanted leech made of copper with green patina, on a worn wooden table, framed by drifting embers, saffron yellow accents, hunter style'
   }
 })

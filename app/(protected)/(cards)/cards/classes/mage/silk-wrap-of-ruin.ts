@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 2 },
   art: {
-    subject: 'Silk Wrap of Ruin: a single piece of armor on a stand, mage style'
+    subject:
+      'Silk Wrap of Ruin: a single wrap made of blackened iron with gold inlay, leaning against a ruined wall, bursting toward the viewer, gold accents, mage style'
   }
 })

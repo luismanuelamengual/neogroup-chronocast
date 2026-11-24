@@ -13,6 +13,7 @@ export default defineCard({
   armor: 6,
   ai: { value: 2 },
   art: {
-    subject: 'Kite Shield of Iron: a single piece of armor on a stand, warrior style'
+    subject:
+      'Kite Shield of Iron: a single shield made of polished bronze with engraved spirals, on a workbench with tools, diagonal dynamic composition, ivory accents, warrior style'
   }
 })

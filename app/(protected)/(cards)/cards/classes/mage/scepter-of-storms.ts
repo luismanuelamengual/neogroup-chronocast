@@ -16,6 +16,7 @@ export default defineCard({
   durability: 2,
   ai: { value: 2 },
   art: {
-    subject: 'Scepter of Storms: a single scepter weapon floating in dramatic light, mage style'
+    subject:
+      'Scepter of Storms: a single scepter made of chrome with neon light strips, crackling with forked lightning, on a fur rug, seen from above, ivory accents, mage style'
   }
 })

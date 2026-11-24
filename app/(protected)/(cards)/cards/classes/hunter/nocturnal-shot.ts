@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['removal', 'tribe'] },
   art: {
-    subject: 'Nocturnal Shot: a crackling bolt of energy striking a lone target, hunter style'
+    subject:
+      'Nocturnal Shot: a single arrow in flight trailing a streak of light, wrapped in swirling black smoke, over rooftops at night, close-up filling the frame, violet accents, hunter style'
   }
 })

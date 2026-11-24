@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['buff', 'tribe'] },
   art: {
-    subject: 'Gentle Banner: a single mysterious banner artifact glowing on a pedestal, mystic healer style'
+    subject:
+      'Gentle Banner: an ancient banner made of ivory and jade, standing on a windy cliff, dramatic backlight, gold accents, mystic healer style'
   }
 })

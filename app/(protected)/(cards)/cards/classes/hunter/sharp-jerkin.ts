@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 6 },
   art: {
-    subject: 'Sharp Jerkin: a single piece of armor on a stand, hunter style'
+    subject:
+      'Sharp Jerkin: a single jerkin made of pale ash wood wrapped in red cloth, resting on a velvet cloth, close-up filling the frame, amber accents, hunter style'
   }
 })

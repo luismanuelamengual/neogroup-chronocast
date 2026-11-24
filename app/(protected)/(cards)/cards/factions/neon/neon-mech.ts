@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['aggro'] },
   art: {
-    subject: 'a futuristic cyborg with glowing implants, the neon mech, roaring, neon cyberpunk future style'
+    subject:
+      'Neon Mech: a mech built of gold filigree with blue dials, with a ticking clock face on its chest, firing steam, neon cyberpunk future style'
   }
 })

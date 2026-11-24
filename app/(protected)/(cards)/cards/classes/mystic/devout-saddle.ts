@@ -16,6 +16,7 @@ export default defineCard({
   targets: ['friendlyAlly'],
   ai: { value: 3, tags: ['buff'] },
   art: {
-    subject: 'Devout Saddle: a glowing magical devout charm, mystic healer style'
+    subject:
+      'Devout Saddle: an enchanted saddle made of dark yew wood and brass fittings, in a beam of light from above, centered and seen from slightly below, ivory accents, mystic healer style'
   }
 })

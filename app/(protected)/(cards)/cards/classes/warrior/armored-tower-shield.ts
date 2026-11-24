@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 4 },
   art: {
-    subject: 'Armored Tower Shield: a single piece of armor on a stand, warrior style'
+    subject:
+      'Armored Tower Shield: a single shield made of dark yew wood and brass fittings, half buried in snow, seen from above, ivory accents, warrior style'
   }
 })

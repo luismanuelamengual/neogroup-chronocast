@@ -21,6 +21,6 @@ export default defineCard({
   ai: { value: 3, tags: ['buff', 'tribe'] },
   art: {
     subject:
-      'a cyberpunk hacker with holographic screens, the netrunner of the grid, raising its weapon, neon cyberpunk future style'
+      'Netrunner of the Grid: a towering adult woman with freckled fair skin, auburn hair cropped short and a crooked broken nose, dressed in an oversized hoodie with cables spilling out, typing on a floating keyboard, with calm focus, gold accents, neon cyberpunk future style'
   }
 })

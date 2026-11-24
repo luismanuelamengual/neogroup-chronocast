@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['removal'] },
   art: {
-    subject: 'Astral Bolt: a crackling bolt of energy striking a lone target, mage style'
+    subject:
+      'Astral Bolt: a crackling bolt of energy streaking forward, circled by glowing violet runes, against a starry sky, close-up filling the frame, cobalt blue accents, mage style'
   }
 })

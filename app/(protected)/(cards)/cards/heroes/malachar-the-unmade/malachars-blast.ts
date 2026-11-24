@@ -21,6 +21,6 @@ export default defineCard({
   ai: { value: 5 },
   art: {
     subject:
-      "Malachar's Blast: the signature spell of the hero, a devastating blast of void energy, dark end-of-time void style"
+      "Malachar's Blast: a violent explosion of energy, wrapped in swirling black smoke, in a snowy pass, seen from above, scarlet accents, dark end-of-time void style"
   }
 })

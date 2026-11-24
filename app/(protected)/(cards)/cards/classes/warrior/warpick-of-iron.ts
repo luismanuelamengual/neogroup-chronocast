@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 5 },
   art: {
-    subject: 'Warpick of Iron: a single warpick weapon floating in dramatic light, warrior style'
+    subject:
+      'Warpick of Iron: a single warpick made of gilded marble, on a fur rug, diagonal dynamic composition, cobalt blue accents, warrior style'
   }
 })

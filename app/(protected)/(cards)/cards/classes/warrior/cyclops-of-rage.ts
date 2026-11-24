@@ -21,6 +21,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['aggro', 'tribe'] },
   art: {
-    subject: 'a mythic ancient creature, the cyclops of rage, mid-leap, warrior style'
+    subject:
+      'Cyclops of Rage: a cyclops with a jet black hide and broken chains on its limbs, leaping forward, emerald accents, warrior style'
   }
 })

@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 1, tags: ['removal'] },
   art: {
-    subject: 'Flickering Bolt: a crackling bolt of energy striking a lone target, mage style'
+    subject:
+      'Flickering Bolt: a crackling bolt of energy streaking forward, circled by glowing violet runes, in a snowy pass, dramatic backlight, saffron yellow accents, mage style'
   }
 })

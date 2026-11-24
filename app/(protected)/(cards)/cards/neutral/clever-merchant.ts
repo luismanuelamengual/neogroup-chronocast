@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['antiGear'] },
   art: {
-    subject: 'a time-traveling wanderer, the clever merchant, roaring, time rift wanderer style'
+    subject:
+      'Clever Merchant: a plump adult elf woman with ruddy skin, charcoal grey hair in an afro and war paint stripes, wearing a straw hat, dressed in a wool shawl hung with tiny bells, balancing a scale heaped with glowing trinkets, with calm focus, cobalt blue accents, time rift wanderer style'
   }
 })

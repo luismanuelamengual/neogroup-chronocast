@@ -30,6 +30,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['aggro', 'removal'] },
   art: {
-    subject: 'a medieval spellcaster, the enchantress of runes, crouching, ready to strike, medieval magic order style'
+    subject:
+      'Enchantress of Runes: a towering middle-aged elf woman with pale skin, ash brown hair in a topknot and glowing tattoos on the cheeks, dressed in a hooded traveling cloak with silver clasps, weaving threads of light between the fingers, with a sly grin, lime green accents, medieval magic order style'
   }
 })

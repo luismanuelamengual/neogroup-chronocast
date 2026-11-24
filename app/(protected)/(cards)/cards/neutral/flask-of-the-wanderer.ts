@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['draw', 'heal'] },
   art: {
-    subject: 'Flask of the Wanderer: a single flask of the wanderer item lying on a stone, time rift wanderer style'
+    subject:
+      'Flask of the Wanderer: a small flask made of rusted iron and chains, in a beam of light from above, dramatic backlight, teal accents, time rift wanderer style'
   }
 })

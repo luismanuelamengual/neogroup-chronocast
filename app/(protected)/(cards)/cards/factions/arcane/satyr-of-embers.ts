@@ -23,6 +23,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['buff', 'tribe'] },
   art: {
-    subject: 'a fairy-tale fae creature, the satyr of embers, lunging forward, medieval magic order style'
+    subject:
+      'Satyr of Embers: a satyr with moss-green skin and flower hair and small curled horns, mid-stride, teal accents, medieval magic order style'
   }
 })

@@ -27,6 +27,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['removal'] },
   art: {
-    subject: 'a time-traveling adventurer, the volatile fortune teller, roaring, mage style'
+    subject:
+      'Volatile Fortune Teller: a muscular young catfolk man with honey blond hair in cornrows, a braided beard and bushy eyebrows, wearing a knotted bandana, dressed in a poncho woven with hourglass patterns, holding a crystal ball swirling with images, with a mischievous wink, emerald accents, mage style'
   }
 })

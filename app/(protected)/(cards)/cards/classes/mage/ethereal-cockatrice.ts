@@ -18,6 +18,7 @@ export default defineCard({
   health: 10,
   ai: { value: 5 },
   art: {
-    subject: 'a dragon-kin creature, the ethereal cockatrice, standing guard, mage style'
+    subject:
+      'Ethereal Cockatrice: a cockatrice with emerald scales and a rooster crest, mid-stride, tangerine accents, mage style'
   }
 })

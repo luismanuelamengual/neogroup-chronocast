@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 2 },
   art: {
-    subject: 'Blessed Halo: a single piece of armor on a stand, mystic healer style'
+    subject:
+      'Blessed Halo: a single halo made of crystal and silver filigree, on a workbench with tools, dramatic backlight, indigo accents, mystic healer style'
   }
 })

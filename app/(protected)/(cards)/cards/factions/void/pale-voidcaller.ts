@@ -16,6 +16,7 @@ export default defineCard({
   health: 13,
   ai: { value: 6 },
   art: {
-    subject: 'a hooded doomsday cultist, the pale voidcaller, charging into battle, dark end-of-time void style'
+    subject:
+      'Pale Voidcaller: an athletic adult man with light brown skin, jet black hair in a sharp bob, a pointed goatee and a beaded chin piercing, dressed in a bone-white mask and grey shroud, holding a lantern, turning to look over the shoulder, with a confident smirk, indigo accents, dark end-of-time void style'
   }
 })

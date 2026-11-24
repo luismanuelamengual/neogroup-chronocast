@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 7, tags: ['removal'] },
   art: {
-    subject: 'an elemental spirit, the stone golem of lightning, lunging forward, mage style'
+    subject:
+      'Stone Golem of Lightning: an elemental golem with a flickering winged shape made of deep teal water, sniffing the air, mage style'
   }
 })

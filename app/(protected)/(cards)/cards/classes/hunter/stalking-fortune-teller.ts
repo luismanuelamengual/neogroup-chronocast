@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['aggro', 'removal'] },
   art: {
-    subject: 'a time-traveling adventurer, the stalking fortune teller, standing guard, hunter style'
+    subject:
+      'Stalking Fortune Teller: a stocky middle-aged lizardfolk woman with pale scales and a bandaged forehead, wearing a fur hat, dressed in a patchwork coat stitched from fabrics of many centuries, holding a crystal ball swirling with images, with a fierce scowl, scarlet accents, hunter style'
   }
 })

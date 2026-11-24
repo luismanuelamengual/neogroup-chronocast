@@ -21,6 +21,6 @@ export default defineCard({
   ai: { value: 5 },
   art: {
     subject:
-      "The Astronomer's Lance: the signature spell of the hero, a devastating blast of arcane energy, medieval magic order style"
+      "The Astronomer's Lance: a long lance of pure energy piercing the air, circled by glowing violet runes, in a snowy pass, centered and seen from slightly below, rose pink accents, medieval magic order style"
   }
 })

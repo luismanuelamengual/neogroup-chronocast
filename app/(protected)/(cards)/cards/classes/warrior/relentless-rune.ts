@@ -16,6 +16,7 @@ export default defineCard({
   targets: ['friendlyAlly'],
   ai: { value: 2, tags: ['buff'] },
   art: {
-    subject: 'Relentless Rune: a glowing magical relentless charm, warrior style'
+    subject:
+      'Relentless Rune: an enchanted rune made of crystal and silver filigree, in a beam of light from above, dramatic backlight, ivory accents, warrior style'
   }
 })

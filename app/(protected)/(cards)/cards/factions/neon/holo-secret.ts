@@ -16,6 +16,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['draw'] },
   art: {
-    subject: 'Holo Secret: glowing cards and runes swirling out of an open book, neon cyberpunk future style'
+    subject:
+      'Holo Secret: a sealed envelope with a glowing wax seal, half hidden in shadow, over a desert of red dunes, seen from above, teal accents, neon cyberpunk future style'
   }
 })

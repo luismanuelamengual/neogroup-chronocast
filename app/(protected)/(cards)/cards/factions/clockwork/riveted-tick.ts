@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['ramp'] },
   art: {
-    subject: 'Riveted Tick: a giant hourglass with sand flowing upward, steampunk steam era style'
+    subject:
+      'Riveted Tick: a pocket watch mid-tick with glowing gears exploding outward, inside a cave of crystals, framed by drifting embers, amber accents, steampunk steam era style'
   }
 })

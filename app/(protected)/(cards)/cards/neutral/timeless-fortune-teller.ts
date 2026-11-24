@@ -21,6 +21,7 @@ export default defineCard({
   },
   ai: { value: 1, tags: ['aggro', 'ramp'] },
   art: {
-    subject: 'a time-traveling wanderer, the timeless fortune teller, standing guard, time rift wanderer style'
+    subject:
+      'Timeless Fortune Teller: a muscular adult owlfolk woman with platinum blond feathers and a burn scar on the jaw, wearing a turban, dressed in viking furs over a modern raincoat, holding a crystal ball swirling with images, with wide-eyed wonder, rose pink accents, time rift wanderer style'
   }
 })

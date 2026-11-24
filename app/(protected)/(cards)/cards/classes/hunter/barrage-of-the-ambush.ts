@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 6, tags: ['removal'] },
   art: {
-    subject: 'Barrage of the Ambush: a crackling bolt of energy striking a lone target, hunter style'
+    subject:
+      'Barrage of the Ambush: a dense volley of projectiles raining down, inside a cave of crystals, framed by drifting embers, scarlet accents, hunter style'
   }
 })

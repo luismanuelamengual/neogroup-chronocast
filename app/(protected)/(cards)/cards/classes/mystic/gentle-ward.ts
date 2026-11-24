@@ -21,6 +21,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['trap'] },
   art: {
-    subject: 'Gentle Ward: a hidden ward about to spring, mystic healer style'
+    subject:
+      'Gentle Ward: a faint glowing ward circle on the floor, radiating golden holy light, bursting toward the viewer, teal accents, mystic healer style'
   }
 })

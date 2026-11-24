@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['buff'] },
   art: {
-    subject: 'Vigor of the Jungle: a warrior surrounded by a surging aura of power, prehistoric jungle era style'
+    subject:
+      'Vigor of the Jungle: a glowing heart of green life energy pulsing with veins of light, over a desert of red dunes, seen from above, rose pink accents, prehistoric jungle era style'
   }
 })

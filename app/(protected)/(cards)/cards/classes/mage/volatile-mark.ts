@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 1, tags: ['removal'] },
   art: {
-    subject: 'Volatile Mark: a glowing magical volatile charm, mage style'
+    subject:
+      'Volatile Mark: an enchanted mark made of copper with green patina, covered in frost and ice crystals, half buried in snow, seen from above, emerald accents, mage style'
   }
 })

@@ -21,6 +21,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['heal'] },
   art: {
-    subject: 'an ancient temple seer in white robes, the devout pythia, raising its weapon, mystic healer style'
+    subject:
+      'Devout Pythia: a lanky young man with golden skin, ash brown hair in a wild mane, a full beard and glowing tattoos on the cheeks, wearing a laurel wreath, dressed in a bronze-trimmed priestly stole, breathing glowing vapors, with a serene smile, turquoise accents, mystic healer style'
   }
 })

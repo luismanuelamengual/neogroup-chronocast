@@ -13,6 +13,7 @@ export default defineCard({
   armor: 10,
   ai: { value: 4 },
   art: {
-    subject: 'Stole of Light: a single piece of armor on a stand, mystic healer style'
+    subject:
+      'Stole of Light: a single stole made of crystal and silver filigree, on a pile of old coins, diagonal dynamic composition, cobalt blue accents, mystic healer style'
   }
 })

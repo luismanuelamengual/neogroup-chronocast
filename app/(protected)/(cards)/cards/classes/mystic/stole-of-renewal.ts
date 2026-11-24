@@ -13,6 +13,7 @@ export default defineCard({
   armor: 13,
   ai: { value: 5 },
   art: {
-    subject: 'Stole of Renewal: a single piece of armor on a stand, mystic healer style'
+    subject:
+      'Stole of Renewal: a single stole made of pale ash wood wrapped in red cloth, resting on a velvet cloth, seen from above, lime green accents, mystic healer style'
   }
 })

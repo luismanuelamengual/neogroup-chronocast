@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 5 },
   art: {
-    subject: "Kazhul's Longbow: the legendary signature weapon of the hero, glowing, prehistoric jungle era style"
+    subject:
+      "Kazhul's Longbow: a single longbow made of rough stone and sinew, wreathed in roaring flames, on a fur rug, diagonal dynamic composition, lime green accents, prehistoric jungle era style"
   }
 })

@@ -18,6 +18,6 @@ export default defineCard({
   ai: { value: 2 },
   art: {
     subject:
-      'a futuristic cyborg with glowing implants, the cyber hound of the grid, raising its weapon, neon cyberpunk future style'
+      'Cyber Hound of the Grid: a hound built of black iron with glowing coals, with bolted armor plates, hovering above the ground, neon cyberpunk future style'
   }
 })

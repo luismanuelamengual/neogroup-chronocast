@@ -16,6 +16,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['draw'] },
   art: {
-    subject: 'Lost Vision: glowing cards and runes swirling out of an open book, time rift wanderer style'
+    subject:
+      'Lost Vision: a crystal ball showing swirling images, above a calm lake at dusk, framed by drifting embers, rose pink accents, time rift wanderer style'
   }
 })

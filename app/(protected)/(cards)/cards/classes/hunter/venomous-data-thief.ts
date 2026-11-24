@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['summon'] },
   art: {
-    subject: 'a cyberpunk hacker with holographic screens, the venomous data thief, lunging forward, hunter style'
+    subject:
+      'Venomous Data Thief: a hunched adult man with freckled fair skin, a shaved head, heavy stubble and a golden nose ring, dressed in a cropped jacket with holo patches, pocketing a glowing data chip, with a booming laugh, amber accents, hunter style'
   }
 })

@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['removal'] },
   art: {
-    subject: 'Ashen Stasis: glowing chains binding a struggling creature, dark end-of-time void style'
+    subject:
+      'Ashen Stasis: a clock frozen inside a floating crystal, its hands stopped, against a starry sky, close-up filling the frame, scarlet accents, dark end-of-time void style'
   }
 })

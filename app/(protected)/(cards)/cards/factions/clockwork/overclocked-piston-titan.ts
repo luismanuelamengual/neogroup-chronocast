@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['defense'] },
   art: {
-    subject: 'a steampunk brass automaton, the overclocked piston titan, roaring, steampunk steam era style'
+    subject:
+      'Overclocked Piston Titan: a titan built of riveted copper with green patina, with a single giant lens, standing guard, steampunk steam era style'
   }
 })

@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 1, tags: ['removal'] },
   art: {
-    subject: 'Wise Stasis: glowing chains binding a struggling creature, medieval magic order style'
+    subject:
+      'Wise Stasis: a clock frozen inside a floating crystal, its hands stopped, in a snowy pass, close-up filling the frame, crimson accents, medieval magic order style'
   }
 })

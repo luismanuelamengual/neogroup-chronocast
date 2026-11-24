@@ -13,6 +13,7 @@ export default defineCard({
   armor: 15,
   ai: { value: 5 },
   art: {
-    subject: 'Circlet of Mana: a single piece of armor on a stand, mage style'
+    subject:
+      'Circlet of Mana: a single circlet made of dark yew wood and brass fittings, on a workbench with tools, close-up filling the frame, amber accents, mage style'
   }
 })

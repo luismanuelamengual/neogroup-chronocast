@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 7 },
   art: {
-    subject: 'Battle-Scarred Warplate: a single piece of armor on a stand, warrior style'
+    subject:
+      'Battle-Scarred Warplate: a single warplate made of rough stone and sinew, floating above a marble pedestal, swirling around the center, rose pink accents, warrior style'
   }
 })

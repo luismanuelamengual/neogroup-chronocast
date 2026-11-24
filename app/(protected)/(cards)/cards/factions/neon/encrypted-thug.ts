@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['aggro', 'heal'] },
   art: {
-    subject: 'a cyberpunk street criminal, the encrypted thug, lunging forward, neon cyberpunk future style'
+    subject:
+      'Encrypted Thug: an athletic young android woman with a smooth metal scalp and war paint stripes, wearing a tinted visor, dressed in a samurai-styled carbon armor, cracking brass knuckles, with wide-eyed wonder, rose pink accents, neon cyberpunk future style'
   }
 })

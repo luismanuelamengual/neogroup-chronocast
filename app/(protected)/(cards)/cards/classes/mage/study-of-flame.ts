@@ -16,6 +16,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['draw'] },
   art: {
-    subject: 'Study of Flame: glowing cards and runes swirling out of an open book, mage style'
+    subject:
+      'Study of Flame: an open book with glowing pages flipping by themselves, in a ruined temple, diagonal dynamic composition, saffron yellow accents, mage style'
   }
 })

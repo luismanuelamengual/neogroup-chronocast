@@ -18,6 +18,7 @@ export default defineCard({
   health: 11,
   ai: { value: 5 },
   art: {
-    subject: 'a fairy-tale fae creature, the silver wisp, crouching, ready to strike, medieval magic order style'
+    subject:
+      'Silver Wisp: a wisp with golden skin and white hair and butterfly wings, sniffing the air, saffron yellow accents, medieval magic order style'
   }
 })

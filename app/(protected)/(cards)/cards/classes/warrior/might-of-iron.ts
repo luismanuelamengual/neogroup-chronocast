@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['buff'] },
   art: {
-    subject: 'Might of Iron: a warrior surrounded by a surging aura of power, warrior style'
+    subject:
+      'Might of Iron: a huge glowing fist-shaped aura of raw power, above a calm lake at dusk, swirling around the center, magenta accents, warrior style'
   }
 })

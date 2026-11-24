@@ -19,6 +19,6 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['trap'] },
   art: {
-    subject: 'Snare of the Wilds: a hidden wilds about to spring, hunter style'
+    subject: 'Snare of the Wilds: a looped snare hidden in tall grass, seen from above, indigo accents, hunter style'
   }
 })

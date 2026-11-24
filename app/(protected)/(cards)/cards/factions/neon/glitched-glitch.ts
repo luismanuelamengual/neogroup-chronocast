@@ -22,6 +22,6 @@ export default defineCard({
   ai: { value: 4, tags: ['aggro'] },
   art: {
     subject:
-      'a cyberpunk hacker with holographic screens, the glitched glitch, charging into battle, neon cyberpunk future style'
+      'Glitched Glitch: a hunched young android man with a smooth metal scalp, a full beard and bushy eyebrows, wearing a glowing hood, dressed in a sleek bodysuit traced with light lines, clutching a rolled scroll, striding forward, with a confident smirk, saffron yellow accents, neon cyberpunk future style'
   }
 })

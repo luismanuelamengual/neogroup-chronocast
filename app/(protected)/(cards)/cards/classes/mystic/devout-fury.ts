@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 1, tags: ['buff'] },
   art: {
-    subject: 'Devout Fury: a warrior surrounded by a surging aura of power, mystic healer style'
+    subject:
+      'Devout Fury: a roaring red storm of rage swirling around a cracked war axe, in a dark forest clearing, dramatic backlight, crimson accents, mystic healer style'
   }
 })

@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 7, tags: ['summon'] },
   art: {
-    subject: 'an ice-age beast, the glyptodon of the volcano, glaring at the viewer, prehistoric jungle era style'
+    subject:
+      'Glyptodon of the Volcano: a glyptodon with shaggy russet fur and a bone collar, turning its head toward the viewer, ivory accents, prehistoric jungle era style'
   }
 })

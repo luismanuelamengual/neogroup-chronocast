@@ -19,6 +19,7 @@ export default defineCard({
   health: 9,
   ai: { value: 5 },
   art: {
-    subject: 'an elemental spirit, the timeless tide, mid-leap, time rift wanderer style'
+    subject:
+      'Timeless Tide: an elemental tide with a flickering winged shape made of icy blue and white crystal, mid-stride, time rift wanderer style'
   }
 })

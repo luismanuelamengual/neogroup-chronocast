@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 3 },
   art: {
-    subject: 'Devout Bell: a single bell weapon floating in dramatic light, mystic healer style'
+    subject:
+      'Devout Bell: a single bell made of blue steel with silver runes, surrounded by rippling sound waves, floating above a marble pedestal, swirling around the center, scarlet accents, mystic healer style'
   }
 })

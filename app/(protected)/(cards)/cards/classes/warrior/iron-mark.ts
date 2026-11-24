@@ -14,6 +14,7 @@ export default defineCard({
   targets: ['enemyAlly'],
   ai: { value: 1, tags: ['removal'] },
   art: {
-    subject: 'Iron Mark: a glowing magical iron charm, warrior style'
+    subject:
+      'Iron Mark: an enchanted mark made of white bone and leather wraps, resting on a velvet cloth, seen from above, emerald accents, warrior style'
   }
 })

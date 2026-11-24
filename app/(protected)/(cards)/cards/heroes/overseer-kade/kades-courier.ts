@@ -23,6 +23,7 @@ export default defineCard({
   },
   ai: { value: 7, tags: ['aggro', 'tribe'] },
   art: {
-    subject: "a cyberpunk street criminal, the kade's courier, roaring, neon cyberpunk future style"
+    subject:
+      "Kade's Courier: a broad-shouldered young woman with ruddy skin, electric teal hair in an undercut and a scar across one eye, wearing a fedora, dressed in a sleeveless kevlar vest with chrome pauldrons, clutching a sealed glowing letter, with wide-eyed wonder, violet accents, neon cyberpunk future style"
   }
 })

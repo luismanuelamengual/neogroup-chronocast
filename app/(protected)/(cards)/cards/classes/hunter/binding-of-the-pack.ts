@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['aggro', 'removal'] },
   art: {
-    subject: 'Binding of the Pack: glowing chains binding a struggling creature, hunter style'
+    subject:
+      'Binding of the Pack: glowing chains coiling tightly around nothing, locking shut, covered in frost and ice crystals, in a snowy pass, close-up filling the frame, saffron yellow accents, hunter style'
   }
 })

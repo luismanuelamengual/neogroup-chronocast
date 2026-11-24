@@ -23,6 +23,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['buff', 'tribe'] },
   art: {
-    subject: 'an elemental spirit, the magma brute of the long road, raising its weapon, time rift wanderer style'
+    subject:
+      'Magma Brute of the Long Road: an elemental brute with a crouching wolf shape made of icy blue and white crystal, leaping forward, time rift wanderer style'
   }
 })

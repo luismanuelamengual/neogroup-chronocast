@@ -17,6 +17,7 @@ export default defineCard({
   health: 15,
   ai: { value: 7 },
   art: {
-    subject: 'a fairy-tale fae creature, the nymph of the tower, lunging forward, medieval magic order style'
+    subject:
+      'Nymph of the Tower: a nymph with snowy coat and silver mane and dragonfly wings, charging head-on, gold accents, medieval magic order style'
   }
 })

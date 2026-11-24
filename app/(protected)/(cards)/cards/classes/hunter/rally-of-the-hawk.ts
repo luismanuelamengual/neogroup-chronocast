@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['buff'] },
   art: {
-    subject: 'Rally of the Hawk: a warrior surrounded by a surging aura of power, hunter style'
+    subject:
+      'Rally of the Hawk: a tattered war banner planted in the ground, glowing with rallying light, in a misty valley, diagonal dynamic composition, crimson accents, hunter style'
   }
 })

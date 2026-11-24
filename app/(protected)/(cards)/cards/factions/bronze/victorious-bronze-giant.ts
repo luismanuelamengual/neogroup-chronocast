@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 7, tags: ['defense'] },
   art: {
-    subject: 'a mythic ancient creature, the victorious bronze giant, roaring, ancient bronze-age empire style'
+    subject:
+      'Victorious Bronze Giant: a giant with a golden hide and gilded armor plates, rearing up, rose pink accents, ancient bronze-age empire style'
   }
 })

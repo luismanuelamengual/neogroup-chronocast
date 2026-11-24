@@ -15,6 +15,7 @@ export default defineCard({
   health: 12,
   ai: { value: 5 },
   art: {
-    subject: 'a time-traveling adventurer, the bounty hunter of flame, glaring at the viewer, mage style'
+    subject:
+      'Bounty Hunter of Flame: a willowy elderly halfling woman with deep brown skin, silver hair in twin buns and heterochromatic eyes, wearing a bowler hat, dressed in a kimono with brass shoulder plates, holding a wanted poster and a coiled lasso, with wide-eyed wonder, turquoise accents, mage style'
   }
 })

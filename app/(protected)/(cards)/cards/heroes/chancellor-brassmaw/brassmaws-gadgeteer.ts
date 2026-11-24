@@ -26,6 +26,6 @@ export default defineCard({
   ai: { value: 7, tags: ['heal', 'summon'] },
   art: {
     subject:
-      "a steampunk inventor with goggles, the brassmaw's gadgeteer, glaring at the viewer, steampunk steam era style"
+      "Brassmaw's Gadgeteer: a lanky middle-aged gnome man with sun-weathered bronze skin, honey blond hair in cornrows, a full beard and glowing tattoos on the cheeks, dressed in grease-stained overalls, tinkering with a buzzing gadget, with a sly grin, scarlet accents, steampunk steam era style"
   }
 })

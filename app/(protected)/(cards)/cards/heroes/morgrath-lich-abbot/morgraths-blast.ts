@@ -21,6 +21,6 @@ export default defineCard({
   ai: { value: 5 },
   art: {
     subject:
-      "Morgrath's Blast: the signature spell of the hero, a devastating blast of arcane energy, medieval magic order style"
+      "Morgrath's Blast: a violent explosion of energy, wrapped in swirling black smoke, in a misty valley, framed by drifting embers, violet accents, medieval magic order style"
   }
 })

@@ -13,6 +13,7 @@ export default defineCard({
   armor: 9,
   ai: { value: 3 },
   art: {
-    subject: 'Flickering Mantle: a single piece of armor on a stand, mage style'
+    subject:
+      'Flickering Mantle: a single mantle made of pale ash wood wrapped in red cloth, half buried in snow, diagonal dynamic composition, scarlet accents, mage style'
   }
 })

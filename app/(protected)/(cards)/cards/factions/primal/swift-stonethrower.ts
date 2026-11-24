@@ -21,6 +21,6 @@ export default defineCard({
   ai: { value: 7, tags: ['buff'] },
   art: {
     subject:
-      'a prehistoric tribe warrior in furs and bone ornaments, the swift stonethrower, glaring at the viewer, prehistoric jungle era style'
+      'Swift Stonethrower: a plump middle-aged neanderthal woman with umber skin, platinum blond hair in a high ponytail and a crooked broken nose, wearing a bone headdress, dressed in a mammoth-fur cloak, winding up a sling, with a booming laugh, amber accents, prehistoric jungle era style'
   }
 })

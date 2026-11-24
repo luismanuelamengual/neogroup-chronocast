@@ -33,6 +33,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['ability', 'buff', 'energy', 'tribe'] },
   art: {
-    subject: 'a steampunk flying machine, the balloon scout of pistons, charging into battle, steampunk steam era style'
+    subject:
+      'Balloon Scout of Pistons: a scout built of chrome with cyan light strips, with bolted armor plates, marching forward, steampunk steam era style'
   }
 })

@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['draw', 'heal'] },
   art: {
-    subject: 'Blessed Secret: glowing cards and runes swirling out of an open book, mystic healer style'
+    subject:
+      'Blessed Secret: a sealed envelope with a glowing wax seal, half hidden in shadow, over rooftops at night, bursting toward the viewer, gold accents, mystic healer style'
   }
 })

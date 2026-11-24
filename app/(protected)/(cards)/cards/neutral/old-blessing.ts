@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['draw', 'heal'] },
   art: {
-    subject: 'Old Blessing: warm golden light healing a wounded figure, time rift wanderer style'
+    subject:
+      'Old Blessing: a halo of soft light over an empty altar, inside a cave of crystals, swirling around the center, turquoise accents, time rift wanderer style'
   }
 })

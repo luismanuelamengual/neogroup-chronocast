@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['draw', 'removal'] },
   art: {
-    subject: 'Lucky Stasis: glowing chains binding a struggling creature, time rift wanderer style'
+    subject:
+      'Lucky Stasis: a clock frozen inside a floating crystal, its hands stopped, in a ruined temple, seen from above, crimson accents, time rift wanderer style'
   }
 })

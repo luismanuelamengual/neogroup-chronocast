@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['defense', 'draw'] },
   art: {
-    subject: 'Radiant Stance: a huge shimmering shield of force, mystic healer style'
+    subject:
+      'Radiant Stance: a round shield and crossed spear planted firmly on stone, in a dark forest clearing, seen from above, crimson accents, mystic healer style'
   }
 })

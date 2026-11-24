@@ -13,6 +13,7 @@ export default defineCard({
   armor: 15,
   ai: { value: 5 },
   art: {
-    subject: 'Healing Amulet: a single piece of armor on a stand, mystic healer style'
+    subject:
+      'Healing Amulet: a single amulet made of rusted iron and chains, on a fur rug, framed by drifting embers, indigo accents, mystic healer style'
   }
 })

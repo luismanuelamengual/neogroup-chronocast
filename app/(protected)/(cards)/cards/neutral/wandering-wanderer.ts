@@ -15,6 +15,7 @@ export default defineCard({
   health: 10,
   ai: { value: 4 },
   art: {
-    subject: 'a time-traveling adventurer, the wandering wanderer, raising its weapon, time rift wanderer style'
+    subject:
+      'Wandering Wanderer: a petite young foxfolk man with honey blond hair cropped short, a braided beard and sharp cheekbones, wearing a knotted bandana, dressed in a Renaissance doublet with mismatched armor pieces, leaning on a carved walking staff, with a confident smirk, turquoise accents, time rift wanderer style'
   }
 })

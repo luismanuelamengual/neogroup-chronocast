@@ -15,6 +15,7 @@ export default defineCard({
   targets: ['friendlyAlly'],
   ai: { value: 2, tags: ['buff'] },
   art: {
-    subject: 'Faithful Amulet: a glowing magical faithful charm, time rift wanderer style'
+    subject:
+      'Faithful Amulet: an enchanted amulet made of ivory and jade, on a mossy rock, close-up filling the frame, violet accents, time rift wanderer style'
   }
 })

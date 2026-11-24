@@ -26,6 +26,7 @@ export default defineCard({
   },
   ai: { value: 8, tags: ['antiGear', 'draw'] },
   art: {
-    subject: 'an elemental spirit, the timeless icicle, lunging forward, time rift wanderer style'
+    subject:
+      'Timeless Icicle: an elemental icicle with a towering pillar shape made of pale turquoise rift light, sniffing the air, time rift wanderer style'
   }
 })

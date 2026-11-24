@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 1, tags: ['buff'] },
   art: {
-    subject: 'Rally of Lost Time: a warrior surrounded by a surging aura of power, time rift wanderer style'
+    subject:
+      'Rally of Lost Time: a tattered war banner planted in the ground, glowing with rallying light, above a calm lake at dusk, seen from above, rose pink accents, time rift wanderer style'
   }
 })

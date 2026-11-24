@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 6, tags: ['draw', 'removal'] },
   art: {
-    subject: 'Binding of the Legion: glowing chains binding a struggling creature, ancient bronze-age empire style'
+    subject:
+      'Binding of the Legion: glowing chains coiling tightly around nothing, locking shut, in a ruined temple, centered and seen from slightly below, teal accents, ancient bronze-age empire style'
   }
 })

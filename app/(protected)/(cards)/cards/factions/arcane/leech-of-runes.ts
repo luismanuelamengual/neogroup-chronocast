@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['removal'] },
   art: {
-    subject: 'Leech of Runes: a glowing magical leech charm, medieval magic order style'
+    subject:
+      'Leech of Runes: an enchanted leech made of copper with green patina, on a pile of old coins, framed by drifting embers, gold accents, medieval magic order style'
   }
 })

@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 7, tags: ['defense'] },
   art: {
-    subject: 'a cyberpunk street criminal, the stalwart street samurai, mid-leap, warrior style'
+    subject:
+      'Stalwart Street Samurai: a broad-shouldered middle-aged android man with a smooth metal scalp, a thin mustache and war paint stripes, wearing a fedora, dressed in a bulky riot exosuit, drawing a glowing katana, with wide-eyed wonder, teal accents, warrior style'
   }
 })

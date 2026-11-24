@@ -18,6 +18,7 @@ export default defineCard({
   health: 8,
   ai: { value: 2 },
   art: {
-    subject: 'a mythic ancient creature, the victorious minotaur, mid-leap, ancient bronze-age empire style'
+    subject:
+      'Victorious Minotaur: a minotaur with a jet black hide and broken chains on its limbs, standing proud on a rock, ivory accents, ancient bronze-age empire style'
   }
 })

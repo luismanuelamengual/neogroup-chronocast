@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['removal'] },
   art: {
-    subject: 'Scholarly Daze: glowing chains binding a struggling creature, mage style'
+    subject:
+      'Scholarly Daze: spinning stars and swirls circling a dented helmet, in a snowy pass, framed by drifting embers, turquoise accents, mage style'
   }
 })

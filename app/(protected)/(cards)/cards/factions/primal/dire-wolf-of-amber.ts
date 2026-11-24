@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['buff', 'tribe'] },
   art: {
-    subject: 'an ice-age beast, the dire wolf of amber, roaring, prehistoric jungle era style'
+    subject:
+      'Dire Wolf of Amber: a wolf with snow-white fur and tribal paint, baring its teeth, magenta accents, prehistoric jungle era style'
   }
 })

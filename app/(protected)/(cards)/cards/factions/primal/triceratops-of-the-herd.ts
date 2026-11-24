@@ -23,6 +23,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['buff', 'tribe'] },
   art: {
-    subject: 'a dinosaur, the triceratops of the herd, standing guard, prehistoric jungle era style'
+    subject:
+      'Triceratops of the Herd: a triceratops with a scarlet hide with black tiger stripes and thick plated armor, roaring with jaws wide open, violet accents, prehistoric jungle era style'
   }
 })

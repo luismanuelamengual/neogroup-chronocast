@@ -16,6 +16,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['summon'] },
   art: {
-    subject: 'Flickering Muster: a glowing portal with a creature stepping through, mage style'
+    subject:
+      'Flickering Muster: a row of empty helmets and spears lit by dawn light, over a stormy battlefield, seen from above, cobalt blue accents, mage style'
   }
 })

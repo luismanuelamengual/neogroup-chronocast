@@ -16,6 +16,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['buff', 'tribe'] },
   art: {
-    subject: 'Rally of Steel: a warrior surrounded by a surging aura of power, warrior style'
+    subject:
+      'Rally of Steel: a tattered war banner planted in the ground, glowing with rallying light, inside a cave of crystals, centered and seen from slightly below, tangerine accents, warrior style'
   }
 })

@@ -13,6 +13,7 @@ export default defineCard({
   armor: 9,
   ai: { value: 3 },
   art: {
-    subject: 'Battle-Scarred Helm: a single piece of armor on a stand, warrior style'
+    subject:
+      'Battle-Scarred Helm: a single helm made of rusted iron and chains, in a beam of light from above, dramatic backlight, amber accents, warrior style'
   }
 })

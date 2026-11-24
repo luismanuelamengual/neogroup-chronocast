@@ -16,6 +16,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['energy'] },
   art: {
-    subject: 'Altar of Pistons: a single mysterious pistons artifact glowing on a pedestal, steampunk steam era style'
+    subject:
+      'Altar of Pistons: an ancient altar made of ivory and jade, standing on a windy cliff, diagonal dynamic composition, saffron yellow accents, steampunk steam era style'
   }
 })

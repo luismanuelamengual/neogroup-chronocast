@@ -36,6 +36,6 @@ export default defineCard({
   ai: { value: 3, tags: ['ability', 'buff', 'energy'] },
   art: {
     subject:
-      'an eldritch horror from the end of time, the hollow void spawn, lunging forward, dark end-of-time void style'
+      'Hollow Void Spawn: a spawn with pallid flesh with green veins and wings made of shadow, turning its head toward the viewer, amber accents, dark end-of-time void style'
   }
 })

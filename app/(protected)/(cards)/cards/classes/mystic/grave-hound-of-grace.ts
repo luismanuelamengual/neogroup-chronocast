@@ -17,6 +17,7 @@ export default defineCard({
   health: 13,
   ai: { value: 4 },
   art: {
-    subject: 'an undead creature, the grave hound of grace, roaring, mystic healer style'
+    subject:
+      'Grave Hound of Grace: a hound with a black tattered shroud and grave dirt falling off it, standing proud on a rock, ivory accents, mystic healer style'
   }
 })

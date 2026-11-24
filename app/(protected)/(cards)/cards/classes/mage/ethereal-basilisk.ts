@@ -19,6 +19,7 @@ export default defineCard({
   health: 10,
   ai: { value: 4 },
   art: {
-    subject: 'a dragon-kin creature, the ethereal basilisk, standing guard, mage style'
+    subject:
+      'Ethereal Basilisk: a basilisk with golden scales and a frilled neck, leaping forward, rose pink accents, mage style'
   }
 })

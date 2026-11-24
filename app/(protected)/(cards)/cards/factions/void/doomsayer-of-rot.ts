@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['aggro'] },
   art: {
-    subject: 'a hooded doomsday cultist, the doomsayer of rot, roaring, dark end-of-time void style'
+    subject:
+      'Doomsayer of Rot: a muscular middle-aged woman with pale skin, ash brown hair in long braids and a jeweled brow piercing, wearing a deep hood, dressed in chains and a sackcloth tabard, ringing a cracked bell, with calm focus, ivory accents, dark end-of-time void style'
   }
 })

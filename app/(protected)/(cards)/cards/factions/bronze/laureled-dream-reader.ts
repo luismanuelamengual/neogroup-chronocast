@@ -22,6 +22,6 @@ export default defineCard({
   ai: { value: 5, tags: ['draw'] },
   art: {
     subject:
-      'an ancient temple seer in white robes, the laureled dream reader, lunging forward, ancient bronze-age empire style'
+      'Laureled Dream Reader: a lanky adult woman with dark ebony skin, chestnut hair in a messy bun and a burn scar on the jaw, wearing a sheer veil, dressed in flowing white robes with a laurel crown, holding a sleeping lantern of dreams, with calm focus, indigo accents, ancient bronze-age empire style'
   }
 })

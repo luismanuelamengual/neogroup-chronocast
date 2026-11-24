@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['buff'] },
   art: {
-    subject: 'a dinosaur, the stegosaur of the first fire, standing guard, prehistoric jungle era style'
+    subject:
+      'Stegosaur of the First Fire: a stegosaur with an ash grey hide with frosty blue tips and tar-stained legs, charging head-on, tangerine accents, prehistoric jungle era style'
   }
 })

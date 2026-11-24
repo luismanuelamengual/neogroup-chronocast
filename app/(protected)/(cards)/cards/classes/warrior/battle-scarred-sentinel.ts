@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['buff'] },
   art: {
-    subject: 'a mythic ancient creature, the battle-scarred sentinel, charging into battle, warrior style'
+    subject:
+      'Battle-Scarred Sentinel: a sentinel with grey stone-like skin and gilded armor plates, circling warily, cobalt blue accents, warrior style'
   }
 })

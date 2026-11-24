@@ -18,6 +18,6 @@ export default defineCard({
   ai: { value: 4 },
   art: {
     subject:
-      'a prehistoric tribe warrior in furs and bone ornaments, the ash-covered stonethrower, roaring, prehistoric jungle era style'
+      'Ash-Covered Stonethrower: an athletic young man with deep brown skin, honey blond hair slicked back, heavy stubble and war paint stripes, wearing feathers tied in the hair, dressed in a feathered cape, winding up a sling, with a fierce scowl, turquoise accents, prehistoric jungle era style'
   }
 })

@@ -24,6 +24,6 @@ export default defineCard({
   ai: { value: 3, tags: ['defense'] },
   art: {
     subject:
-      'a steampunk brass automaton, the wind-up soldier of pistons, raising its weapon, steampunk steam era style'
+      'Wind-Up Soldier of Pistons: a soldier built of gold filigree with blue dials, with a smoking chimney, marching forward, steampunk steam era style'
   }
 })

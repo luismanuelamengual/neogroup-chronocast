@@ -23,6 +23,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['heal'] },
   art: {
-    subject: 'a steampunk inventor with goggles, the oiled clockmaker, charging into battle, steampunk steam era style'
+    subject:
+      'Oiled Clockmaker: a wiry young dwarf woman with pale skin, ash brown hair in twin buns and heterochromatic eyes, wearing a welding mask pushed up, dressed in a leather apron full of tools, holding a strange relic, walking calmly, with a mischievous wink, tangerine accents, steampunk steam era style'
   }
 })

@@ -23,6 +23,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['draw'] },
   art: {
-    subject: 'an elemental spirit, the thunderhead of dusk, standing guard, time rift wanderer style'
+    subject:
+      'Thunderhead of Dusk: an elemental thunderhead with a hunched beast shape made of ember red sparks, circling warily, time rift wanderer style'
   }
 })

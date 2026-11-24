@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['removal'] },
   art: {
-    subject: 'Barrage of Chrome: a crackling bolt of energy striking a lone target, neon cyberpunk future style'
+    subject:
+      'Barrage of Chrome: a dense volley of projectiles raining down, crackling with forked lightning, in a sunlit meadow, diagonal dynamic composition, rose pink accents, neon cyberpunk future style'
   }
 })

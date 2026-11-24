@@ -21,6 +21,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['summon'] },
   art: {
-    subject: 'a steampunk flying machine, the experimental aeronaut, lunging forward, steampunk steam era style'
+    subject:
+      'Experimental Aeronaut: an aeronaut built of gunmetal with orange hazard stripes, with a cracked glass dome, firing steam, steampunk steam era style'
   }
 })

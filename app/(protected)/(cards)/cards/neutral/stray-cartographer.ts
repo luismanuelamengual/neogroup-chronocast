@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['aggro', 'ramp'] },
   art: {
-    subject: 'a time-traveling adventurer, the stray cartographer, mid-leap, time rift wanderer style'
+    subject:
+      'Stray Cartographer: a lanky elderly catfolk man with silver hair in a messy bun, mutton chops and a gap-toothed grin, wearing a feathered cap, dressed in a colonial explorer jacket covered in pockets, unrolling a living map of shifting lands, with grim determination, teal accents, time rift wanderer style'
   }
 })

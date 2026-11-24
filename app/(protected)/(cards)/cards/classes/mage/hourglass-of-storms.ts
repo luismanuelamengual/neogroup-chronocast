@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 1, tags: ['energy'] },
   art: {
-    subject: 'Hourglass of Storms: a giant hourglass with sand flowing upward, mage style'
+    subject:
+      'Hourglass of Storms: a giant ornate hourglass with glowing falling sand, against a starry sky, close-up filling the frame, crimson accents, mage style'
   }
 })

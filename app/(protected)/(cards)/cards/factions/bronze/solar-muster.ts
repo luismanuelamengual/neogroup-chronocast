@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['summon'] },
   art: {
-    subject: 'Solar Muster: a glowing portal with a creature stepping through, ancient bronze-age empire style'
+    subject:
+      'Solar Muster: a row of empty helmets and spears lit by dawn light, in a ruined temple, swirling around the center, indigo accents, ancient bronze-age empire style'
   }
 })

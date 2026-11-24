@@ -16,6 +16,7 @@ export default defineCard({
   health: 11,
   ai: { value: 5 },
   art: {
-    subject: 'a cyberpunk hacker with holographic screens, the netrunner of the pack, mid-leap, hunter style'
+    subject:
+      'Netrunner of the Pack: a plump elderly android woman with a smooth metal scalp and heavy golden earrings, wearing a VR visor, dressed in a sleek bodysuit traced with light lines, typing on a floating keyboard, with a serene smile, teal accents, hunter style'
   }
 })

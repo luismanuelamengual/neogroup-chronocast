@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['buff', 'tribe'] },
   art: {
-    subject: 'Totem of Coal: a single mysterious coal artifact glowing on a pedestal, steampunk steam era style'
+    subject:
+      'Totem of Coal: an ancient totem made of dark yew wood and brass fittings, standing in a ruined temple, dramatic backlight, scarlet accents, steampunk steam era style'
   }
 })

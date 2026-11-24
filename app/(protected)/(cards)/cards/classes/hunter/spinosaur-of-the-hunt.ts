@@ -31,6 +31,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['ability', 'aggro', 'energy', 'tribe'] },
   art: {
-    subject: 'a dinosaur, the spinosaur of the hunt, glaring at the viewer, hunter style'
+    subject:
+      'Spinosaur of the Hunt: a spinosaur with a pale lavender hide with gold markings and feathered arms, leaping forward, emerald accents, hunter style'
   }
 })

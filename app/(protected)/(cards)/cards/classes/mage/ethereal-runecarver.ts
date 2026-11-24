@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['draw', 'tribe'] },
   art: {
-    subject: 'a medieval spellcaster, the ethereal runecarver, glaring at the viewer, mage style'
+    subject:
+      'Ethereal Runecarver: a wiry young elf woman with tan skin, chestnut hair spiky and a scar across one eye, dressed in a hooded traveling cloak with silver clasps, carving a glowing rune into stone, with grim determination, cobalt blue accents, mage style'
   }
 })

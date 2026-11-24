@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['buff', 'tribe'] },
   art: {
-    subject: 'a cyberpunk street criminal, the towering boss, mid-leap, warrior style'
+    subject:
+      'Towering Boss: a towering elderly android man with a smooth metal scalp and round spectacles, dressed in a samurai-styled carbon armor, sitting back with a cigar and a cane, with a sly grin, magenta accents, warrior style'
   }
 })

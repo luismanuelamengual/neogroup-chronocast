@@ -61,10 +61,19 @@ export function batchOf(file: string): string {
 
 const BATCH_ORDER = ['neutral', 'faction', 'class', 'hero']
 
+/**
+ * Abilities, traps, gear, artifacts and items show the thing itself: the spell,
+ * the object or the effect, never someone casting or holding it (that made the
+ * same few characters show up on many cards).
+ */
+export const OBJECT_ONLY =
+  'the object or magical effect itself is the only subject, no people, no characters, no hands, no creatures holding it'
+
 export function promptFor(card: CardDefinition, portrait = false): string {
   const framing = portrait ? 'square close-up portrait of the face and shoulders, ' : ''
+  const objectOnly = card.type === 'ally' || card.type === 'hero' ? '' : `${OBJECT_ONLY}. `
 
-  return `${BASE_PROMPT}. ${FACTION_STYLES[card.faction]}. ${framing}${card.art.subject}`
+  return `${BASE_PROMPT}. ${FACTION_STYLES[card.faction]}. ${objectOnly}${framing}${card.art.subject}`
 }
 
 /** Every image the catalog needs, batch by batch. */

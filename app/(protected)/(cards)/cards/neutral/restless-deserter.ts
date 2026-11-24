@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['draw'] },
   art: {
-    subject: 'a time-traveling adventurer, the restless deserter, raising its weapon, time rift wanderer style'
+    subject:
+      'Restless Deserter: a muscular young lizardfolk woman with olive scales and a jeweled brow piercing, wearing a feathered cap, dressed in a patchwork coat stitched from fabrics of many centuries, dragging a broken standard, with a mischievous wink, violet accents, time rift wanderer style'
   }
 })

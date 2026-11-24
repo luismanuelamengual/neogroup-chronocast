@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['aggro', 'removal'] },
   art: {
-    subject: 'an ice-age beast, the sharp boar, raising its weapon, hunter style'
+    subject:
+      'Sharp Boar: a boar with black fur with silver tips and a hump of fat, turning its head toward the viewer, ivory accents, hunter style'
   }
 })

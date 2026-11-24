@@ -27,6 +27,6 @@ export default defineCard({
   ai: { value: 4, tags: ['buff', 'defense', 'tribe'] },
   art: {
     subject:
-      'an ancient temple seer in white robes, the acolyte of the senate, lunging forward, ancient bronze-age empire style'
+      'Acolyte of the Senate: a barrel-chested young man with tan skin, ash brown hair in a high ponytail, a thin mustache and a crooked broken nose, wearing a sheer veil, dressed in a saffron chiton with gold arm bands, carrying a smoking censer, with a serene smile, crimson accents, ancient bronze-age empire style'
   }
 })

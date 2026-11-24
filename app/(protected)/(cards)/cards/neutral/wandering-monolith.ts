@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['defense'] },
   art: {
-    subject: 'Wandering Monolith: a single mysterious monolith artifact glowing on a pedestal, time rift wanderer style'
+    subject:
+      'Wandering Monolith: an ancient monolith made of carved obsidian, standing in a ruined temple, close-up filling the frame, violet accents, time rift wanderer style'
   }
 })

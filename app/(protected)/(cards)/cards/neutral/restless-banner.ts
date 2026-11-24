@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['removal'] },
   art: {
-    subject: 'Restless Banner: a single mysterious banner artifact glowing on a pedestal, time rift wanderer style'
+    subject:
+      'Restless Banner: an ancient banner made of dark yew wood and brass fittings, standing among ancient trees, swirling around the center, crimson accents, time rift wanderer style'
   }
 })

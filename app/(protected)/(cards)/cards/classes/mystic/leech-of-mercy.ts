@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['removal'] },
   art: {
-    subject: 'Leech of Mercy: a glowing magical leech charm, mystic healer style'
+    subject:
+      'Leech of Mercy: an enchanted leech made of gilded marble, on a mossy rock, seen from above, emerald accents, mystic healer style'
   }
 })

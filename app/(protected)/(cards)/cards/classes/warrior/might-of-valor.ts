@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['buff'] },
   art: {
-    subject: 'Might of Valor: a warrior surrounded by a surging aura of power, warrior style'
+    subject:
+      'Might of Valor: a huge glowing fist-shaped aura of raw power, in a ruined temple, close-up filling the frame, indigo accents, warrior style'
   }
 })

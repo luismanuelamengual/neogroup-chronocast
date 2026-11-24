@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 2 },
   art: {
-    subject: 'Vestments of Renewal: a single piece of armor on a stand, mystic healer style'
+    subject:
+      'Vestments of Renewal: a single vestments made of blackened iron with gold inlay, on a worn wooden table, framed by drifting embers, teal accents, mystic healer style'
   }
 })

@@ -23,6 +23,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['buff', 'tribe'] },
   art: {
-    subject: 'an undead creature, the banshee of light, charging into battle, mystic healer style'
+    subject:
+      'Banshee of Light: a banshee with translucent blue ectoplasm and rusted chains, circling warily, rose pink accents, mystic healer style'
   }
 })

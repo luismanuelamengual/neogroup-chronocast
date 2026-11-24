@@ -19,6 +19,6 @@ export default defineCard({
   ai: { value: 3, tags: ['defense'] },
   art: {
     subject:
-      'Lantern of the Wanderer: a single mysterious wanderer artifact glowing on a pedestal, time rift wanderer style'
+      'Lantern of the Wanderer: an ancient lantern made of gilded marble, standing in a misty clearing, bursting toward the viewer, tangerine accents, time rift wanderer style'
   }
 })

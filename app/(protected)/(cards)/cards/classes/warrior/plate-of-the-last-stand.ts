@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 6 },
   art: {
-    subject: 'Plate of the Last Stand: a single piece of armor on a stand, warrior style'
+    subject:
+      'Plate of the Last Stand: a single plate made of rusted iron and chains, on cracked stone tiles, swirling around the center, turquoise accents, warrior style'
   }
 })

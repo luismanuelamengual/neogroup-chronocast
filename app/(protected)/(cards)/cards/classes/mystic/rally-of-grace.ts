@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['buff'] },
   art: {
-    subject: 'Rally of Grace: a warrior surrounded by a surging aura of power, mystic healer style'
+    subject:
+      'Rally of Grace: a tattered war banner planted in the ground, glowing with rallying light, in a sunlit meadow, bursting toward the viewer, teal accents, mystic healer style'
   }
 })

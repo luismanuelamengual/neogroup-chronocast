@@ -16,6 +16,7 @@ export default defineCard({
   },
   ai: { value: 6, tags: ['summon'] },
   art: {
-    subject: 'Gathering of Lightning: a glowing portal with a creature stepping through, mage style'
+    subject:
+      'Gathering of Lightning: many small lights converging into one bright orb, over burning grassland, framed by drifting embers, violet accents, mage style'
   }
 })

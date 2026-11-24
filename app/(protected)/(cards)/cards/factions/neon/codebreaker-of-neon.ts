@@ -21,6 +21,6 @@ export default defineCard({
   ai: { value: 4, tags: ['buff', 'tribe'] },
   art: {
     subject:
-      'a cyberpunk hacker with holographic screens, the codebreaker of neon, raising its weapon, neon cyberpunk future style'
+      'Codebreaker of Neon: a towering young android woman with a smooth metal scalp and a bandaged forehead, wearing a VR visor, dressed in a lab coat with VR rig, twisting a cube of glowing code, with a serene smile, magenta accents, neon cyberpunk future style'
   }
 })

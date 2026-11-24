@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['buff', 'tribe'] },
   art: {
-    subject: 'an ice-age beast, the dire wolf of the fang, mid-leap, prehistoric jungle era style'
+    subject:
+      'Dire Wolf of the Fang: a wolf with striped ginger fur and frost in its mane, sniffing the air, indigo accents, prehistoric jungle era style'
   }
 })

@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['antiGear'] },
   art: {
-    subject: 'a time-traveling wanderer, the mercenary of the crossroads, standing guard, time rift wanderer style'
+    subject:
+      'Mercenary of the Crossroads: a lanky middle-aged goblin man with sandy hair slicked back, a full beard and sharp cheekbones, wearing a wide-brimmed hat, dressed in a 1920s pinstripe suit with a tattered cape, resting a notched greatsword on the shoulder, with wide-eyed wonder, saffron yellow accents, time rift wanderer style'
   }
 })

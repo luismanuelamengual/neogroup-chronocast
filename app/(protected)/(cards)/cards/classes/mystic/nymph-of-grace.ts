@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['buff'] },
   art: {
-    subject: 'a fairy-tale fae creature, the nymph of grace, crouching, ready to strike, mystic healer style'
+    subject:
+      'Nymph of Grace: a nymph with lilac skin and silver hair and a crown of mushrooms, pawing the ground, cobalt blue accents, mystic healer style'
   }
 })

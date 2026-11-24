@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['removal'] },
   art: {
-    subject: 'Spike of the Comet: a crackling bolt of energy striking a lone target, mage style'
+    subject:
+      'Spike of the Comet: a giant jagged spike bursting up from cracked ground, circled by glowing violet runes, in a sunlit meadow, dramatic backlight, cobalt blue accents, mage style'
   }
 })

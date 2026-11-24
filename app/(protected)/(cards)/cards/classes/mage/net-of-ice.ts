@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['trap'] },
   art: {
-    subject: 'Net of Ice: a hidden ice about to spring, mage style'
+    subject:
+      'Net of Ice: a weighted rope net hidden under leaves, about to spring, diagonal dynamic composition, saffron yellow accents, mage style'
   }
 })

@@ -16,6 +16,7 @@ export default defineCard({
   },
   ai: { value: 1, tags: ['draw'] },
   art: {
-    subject: 'Endless Plan: glowing cards and runes swirling out of an open book, dark end-of-time void style'
+    subject:
+      'Endless Plan: a battle map table with glowing pieces and arrows, over burning grassland, centered and seen from slightly below, crimson accents, dark end-of-time void style'
   }
 })

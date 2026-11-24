@@ -16,6 +16,7 @@ export default defineCard({
   durability: 2,
   ai: { value: 2 },
   art: {
-    subject: 'Longbow of the Hawk: a single longbow weapon floating in dramatic light, hunter style'
+    subject:
+      'Longbow of the Hawk: a single longbow made of gilded marble, swept by a spiraling gust with leaves, on a workbench with tools, dramatic backlight, gold accents, hunter style'
   }
 })

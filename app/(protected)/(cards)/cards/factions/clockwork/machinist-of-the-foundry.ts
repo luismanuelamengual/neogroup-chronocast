@@ -17,6 +17,6 @@ export default defineCard({
   ai: { value: 3 },
   art: {
     subject:
-      'a steampunk inventor with goggles, the machinist of the foundry, glaring at the viewer, steampunk steam era style'
+      'Machinist of the Foundry: a muscular elderly gnome man with warm beige skin, salt-and-pepper hair in a wild mane, a pointed goatee and round spectacles, wearing a battered top hat, dressed in a padded flight jacket, operating a sparking lathe arm, with a fierce scowl, lime green accents, steampunk steam era style'
   }
 })

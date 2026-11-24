@@ -25,6 +25,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['buff', 'tribe'] },
   art: {
-    subject: 'a dragon-kin creature, the firedrake of the tower, standing guard, medieval magic order style'
+    subject:
+      'Firedrake of the Tower: a firedrake with obsidian scales with ember cracks and smoke curling from its nostrils, prowling low, scarlet accents, medieval magic order style'
   }
 })

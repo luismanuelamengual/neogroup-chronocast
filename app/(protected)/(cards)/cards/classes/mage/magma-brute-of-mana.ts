@@ -23,6 +23,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['energy'] },
   art: {
-    subject: 'an elemental spirit, the magma brute of mana, mid-leap, mage style'
+    subject:
+      'Magma Brute of Mana: an elemental brute with a jagged crystal body made of mossy green and grey stone, turning its head toward the viewer, mage style'
   }
 })

@@ -14,6 +14,7 @@ export default defineCard({
   durability: 4,
   ai: { value: 5 },
   art: {
-    subject: 'Armored Mace: a single mace weapon floating in dramatic light, warrior style'
+    subject:
+      'Armored Mace: a single mace made of blue steel with silver runes, on a worn wooden table, centered and seen from slightly below, magenta accents, warrior style'
   }
 })

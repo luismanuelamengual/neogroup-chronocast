@@ -23,6 +23,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['removal'] },
   art: {
-    subject: 'an elemental spirit, the stone golem of mana, charging into battle, mage style'
+    subject:
+      'Stone Golem of Mana: an elemental golem with a swirling vortex shape made of molten orange and black rock, circling warily, mage style'
   }
 })

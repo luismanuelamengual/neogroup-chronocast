@@ -30,6 +30,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['ability', 'aggro', 'draw', 'energy', 'tribe'] },
   art: {
-    subject: 'a cyberpunk hacker with holographic screens, the codebreaker of the hawk, mid-leap, hunter style'
+    subject:
+      'Codebreaker of the Hawk: a broad-shouldered young man with sun-weathered bronze skin, charcoal grey hair in a topknot, mutton chops and a beaded chin piercing, dressed in a lab coat with VR rig, twisting a cube of glowing code, with a haunted stare, turquoise accents, hunter style'
   }
 })

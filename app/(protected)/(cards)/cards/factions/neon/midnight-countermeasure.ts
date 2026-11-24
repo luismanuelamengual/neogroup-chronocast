@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['trap'] },
   art: {
-    subject: 'Midnight Countermeasure: a hidden countermeasure about to spring, neon cyberpunk future style'
+    subject:
+      'Midnight Countermeasure: a hidden pressure plate wired with glowing filaments, wrapped in swirling black smoke, close-up filling the frame, saffron yellow accents, neon cyberpunk future style'
   }
 })

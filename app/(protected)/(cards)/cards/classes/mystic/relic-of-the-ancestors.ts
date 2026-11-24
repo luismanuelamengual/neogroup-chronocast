@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['removal'] },
   art: {
-    subject: 'Relic of the Ancestors: a single mysterious ancestors artifact glowing on a pedestal, mystic healer style'
+    subject:
+      'Relic of the Ancestors: an ancient relic made of blue steel with silver runes, radiating golden holy light, standing on a hilltop at dusk, swirling around the center, tangerine accents, mystic healer style'
   }
 })

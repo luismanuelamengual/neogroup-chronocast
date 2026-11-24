@@ -23,6 +23,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['buff', 'tribe'] },
   art: {
-    subject: 'a dragon-kin creature, the learned wyvern, lunging forward, mage style'
+    subject:
+      'Learned Wyvern: a wyvern with frost-blue scales and a crown of horns, charging head-on, scarlet accents, mage style'
   }
 })

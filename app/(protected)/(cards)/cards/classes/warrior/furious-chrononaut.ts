@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['defense'] },
   art: {
-    subject: 'a time-traveling adventurer, the furious chrononaut, charging into battle, warrior style'
+    subject:
+      'Furious Chrononaut: a stocky adult owlfolk woman with sandy feathers and a gap-toothed grin, wearing a knotted bandana, dressed in a Renaissance doublet with mismatched armor pieces, adjusting a brass time compass on the wrist, with a serene smile, tangerine accents, warrior style'
   }
 })

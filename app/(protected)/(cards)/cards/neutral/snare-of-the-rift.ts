@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['draw', 'removal'] },
   art: {
-    subject: 'Snare of the Rift: glowing chains binding a struggling creature, time rift wanderer style'
+    subject:
+      'Snare of the Rift: a looped rope snare snapping shut, over burning grassland, swirling around the center, lime green accents, time rift wanderer style'
   }
 })

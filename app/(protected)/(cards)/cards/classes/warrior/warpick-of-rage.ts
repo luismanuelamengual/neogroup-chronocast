@@ -14,6 +14,7 @@ export default defineCard({
   durability: 3,
   ai: { value: 3 },
   art: {
-    subject: 'Warpick of Rage: a single warpick weapon floating in dramatic light, warrior style'
+    subject:
+      'Warpick of Rage: a single warpick made of chrome with neon light strips, half buried in snow, framed by drifting embers, emerald accents, warrior style'
   }
 })

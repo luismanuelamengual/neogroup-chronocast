@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['summon'] },
   art: {
-    subject: 'a dinosaur, the stegosaur of the hunt, charging into battle, hunter style'
+    subject:
+      'Stegosaur of the Hunt: a stegosaur with a copper hide with turquoise patina and thick plated armor, charging head-on, gold accents, hunter style'
   }
 })

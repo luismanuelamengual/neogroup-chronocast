@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['removal'] },
   art: {
-    subject: 'a medieval spellcaster, the enchanted cryomancer, standing guard, medieval magic order style'
+    subject:
+      'Enchanted Cryomancer: a muscular young gnome woman with deep brown skin, a shaved head and a gap-toothed grin, wearing a deep hood, dressed in star-embroidered indigo robes, forming a shard of ice, with a fierce scowl, saffron yellow accents, medieval magic order style'
   }
 })

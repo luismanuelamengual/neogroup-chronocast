@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['buff'] },
   art: {
-    subject: 'Rally of the Arcanum: a warrior surrounded by a surging aura of power, mage style'
+    subject:
+      'Rally of the Arcanum: a tattered war banner planted in the ground, glowing with rallying light, over rooftops at night, close-up filling the frame, rose pink accents, mage style'
   }
 })

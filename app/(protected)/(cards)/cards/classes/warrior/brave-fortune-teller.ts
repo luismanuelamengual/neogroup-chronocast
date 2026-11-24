@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['buff'] },
   art: {
-    subject: 'a time-traveling adventurer, the brave fortune teller, standing guard, warrior style'
+    subject:
+      'Brave Fortune Teller: an athletic middle-aged lizardfolk man with ruddy scales, heavy stubble and a jeweled brow piercing, wearing a feathered cap, dressed in a 1920s pinstripe suit with a tattered cape, holding a crystal ball swirling with images, with wide-eyed wonder, amber accents, warrior style'
   }
 })

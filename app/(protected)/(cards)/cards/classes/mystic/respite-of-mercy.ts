@@ -16,6 +16,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['heal'] },
   art: {
-    subject: 'Respite of Mercy: warm golden light healing a wounded figure, mystic healer style'
+    subject:
+      'Respite of Mercy: a quiet campfire with a steaming kettle and bedroll, in a dark forest clearing, diagonal dynamic composition, magenta accents, mystic healer style'
   }
 })

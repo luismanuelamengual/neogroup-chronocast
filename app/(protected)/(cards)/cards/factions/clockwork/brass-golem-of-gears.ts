@@ -19,6 +19,7 @@ export default defineCard({
   health: 10,
   ai: { value: 4 },
   art: {
-    subject: 'a steampunk brass automaton, the brass golem of gears, standing guard, steampunk steam era style'
+    subject:
+      'Brass Golem of Gears: a golem built of riveted copper with green patina, with a smoking chimney, turning its lens toward the viewer, steampunk steam era style'
   }
 })

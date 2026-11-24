@@ -21,6 +21,6 @@ export default defineCard({
   ai: { value: 4, tags: ['summon'] },
   art: {
     subject:
-      'a hooded doomsday cultist, the rotting hierophant, crouching, ready to strike, dark end-of-time void style'
+      'Rotting Hierophant: a willowy elderly pale ghoul-like man with salt-and-pepper hair in short curls, a forked beard and a golden nose ring, dressed in a violet cowl with eye embroidery, raising a rotted staff, with a serene smile, crimson accents, dark end-of-time void style'
   }
 })

@@ -15,6 +15,7 @@ export default defineCard({
   durability: 2,
   ai: { value: 1 },
   art: {
-    subject: 'Lantern Staff of Renewal: a single lantern staff weapon floating in dramatic light, mystic healer style'
+    subject:
+      'Lantern Staff of Renewal: a single staff made of chrome with neon light strips, on a workbench with tools, bursting toward the viewer, saffron yellow accents, mystic healer style'
   }
 })

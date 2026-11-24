@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 1, tags: ['removal'] },
   art: {
-    subject: 'Faithful Bomb: a single faithful bomb item lying on a stone, time rift wanderer style'
+    subject:
+      'Faithful Bomb: a small bomb made of dark yew wood and brass fittings, on cracked stone tiles, diagonal dynamic composition, gold accents, time rift wanderer style'
   }
 })

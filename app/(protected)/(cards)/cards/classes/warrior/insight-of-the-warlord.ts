@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['draw', 'tribe'] },
   art: {
-    subject: 'Insight of the Warlord: glowing cards and runes swirling out of an open book, warrior style'
+    subject:
+      'Insight of the Warlord: a giant glowing eye opening in the sky, against a starry sky, bursting toward the viewer, tangerine accents, warrior style'
   }
 })

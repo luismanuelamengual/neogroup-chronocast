@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['antiGear'] },
   art: {
-    subject: 'Scholarly Rust: a sword and shield cracking and rusting apart, mage style'
+    subject:
+      'Scholarly Rust: a weapon blade crumbling into flakes of orange rust, above a calm lake at dusk, close-up filling the frame, crimson accents, mage style'
   }
 })

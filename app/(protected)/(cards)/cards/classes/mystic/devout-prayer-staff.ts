@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 6 },
   art: {
-    subject: 'Devout Prayer Staff: a single staff weapon floating in dramatic light, mystic healer style'
+    subject:
+      'Devout Prayer Staff: a single staff made of pale ash wood wrapped in red cloth, on a worn wooden table, diagonal dynamic composition, magenta accents, mystic healer style'
   }
 })

@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['removal'] },
   art: {
-    subject: 'Manacle of the Hawk: a glowing magical manacle charm, hunter style'
+    subject:
+      'Manacle of the Hawk: an enchanted manacle made of blackened iron with gold inlay, swept by a spiraling gust with leaves, floating above a marble pedestal, seen from above, lime green accents, hunter style'
   }
 })

@@ -22,6 +22,6 @@ export default defineCard({
   ai: { value: 3, tags: ['energy'] },
   art: {
     subject:
-      'a cyberpunk hacker with holographic screens, the virus of neon, glaring at the viewer, neon cyberpunk future style'
+      'Virus of Neon: a willowy elderly android man with a smooth metal scalp and round spectacles, wearing a glowing hood, dressed in a tracksuit with a neural crown, spreading glitching green code, with grim determination, amber accents, neon cyberpunk future style'
   }
 })

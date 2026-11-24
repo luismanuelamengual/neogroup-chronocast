@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['removal'] },
   art: {
-    subject: 'Lucky Shrine: a single mysterious shrine artifact glowing on a pedestal, time rift wanderer style'
+    subject:
+      'Lucky Shrine: an ancient shrine made of rusted iron and chains, standing in a torchlit hall, swirling around the center, scarlet accents, time rift wanderer style'
   }
 })

@@ -16,6 +16,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['heal'] },
   art: {
-    subject: 'Totem of the Herd: a single mysterious herd artifact glowing on a pedestal, prehistoric jungle era style'
+    subject:
+      'Totem of the Herd: an ancient totem made of crystal and silver filigree, standing in shallow water, bursting toward the viewer, ivory accents, prehistoric jungle era style'
   }
 })

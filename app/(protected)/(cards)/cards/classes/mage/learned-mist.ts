@@ -28,6 +28,7 @@ export default defineCard({
   },
   ai: { value: 8, tags: ['removal'] },
   art: {
-    subject: 'an elemental spirit, the learned mist, crouching, ready to strike, mage style'
+    subject:
+      'Learned Mist: an elemental mist with a towering pillar shape made of storm purple with yellow lightning, roaring with jaws wide open, mage style'
   }
 })

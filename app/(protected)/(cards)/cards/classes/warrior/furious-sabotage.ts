@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['antiGear'] },
   art: {
-    subject: 'Furious Sabotage: a sword and shield cracking and rusting apart, warrior style'
+    subject:
+      'Furious Sabotage: a sword and a shield cracking and rusting apart, against a starry sky, swirling around the center, crimson accents, warrior style'
   }
 })

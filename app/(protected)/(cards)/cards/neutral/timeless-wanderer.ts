@@ -31,6 +31,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['ability', 'energy', 'heal'] },
   art: {
-    subject: 'a time-traveling wanderer, the timeless wanderer, lunging forward, time rift wanderer style'
+    subject:
+      'Timeless Wanderer: a hunched middle-aged halfling man with ruddy skin, chestnut hair in thick dreadlocks, a full beard and a crooked broken nose, wearing a beaded headband, dressed in a pirate greatcoat with clock-face buttons, leaning on a carved walking staff, with a mischievous wink, magenta accents, time rift wanderer style'
   }
 })

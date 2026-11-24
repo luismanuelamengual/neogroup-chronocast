@@ -20,6 +20,6 @@ export default defineCard({
   ai: { value: 4, tags: ['aggro'] },
   art: {
     subject:
-      'Altar of the Sun Temple: a single mysterious temple artifact glowing on a pedestal, ancient bronze-age empire style'
+      'Altar of the Sun Temple: an ancient altar made of rough stone and sinew, radiating golden holy light, standing among ancient trees, swirling around the center, ivory accents, ancient bronze-age empire style'
   }
 })

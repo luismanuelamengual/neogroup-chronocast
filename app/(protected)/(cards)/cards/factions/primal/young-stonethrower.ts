@@ -27,6 +27,6 @@ export default defineCard({
   ai: { value: 5, tags: ['heal'] },
   art: {
     subject:
-      'a prehistoric tribe warrior in furs and bone ornaments, the young stonethrower, crouching, ready to strike, prehistoric jungle era style'
+      'Young Stonethrower: a barrel-chested adult neanderthal woman with golden skin, jet black hair in a wild mane and a bandaged forehead, dressed in ochre body paint and a reed skirt, winding up a sling, with a mischievous wink, rose pink accents, prehistoric jungle era style'
   }
 })

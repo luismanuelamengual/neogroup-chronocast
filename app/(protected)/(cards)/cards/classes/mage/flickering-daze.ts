@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['aggro', 'removal'] },
   art: {
-    subject: 'Flickering Daze: glowing chains binding a struggling creature, mage style'
+    subject:
+      'Flickering Daze: spinning stars and swirls circling a dented helmet, covered in frost and ice crystals, over a stormy battlefield, centered and seen from slightly below, crimson accents, mage style'
   }
 })

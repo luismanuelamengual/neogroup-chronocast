@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['summon'] },
   art: {
-    subject: 'a dinosaur, the wild tyrant, charging into battle, hunter style'
+    subject:
+      'Wild Tyrant: a tyrant with a slate-blue hide with white bands and a scarred snout, circling warily, violet accents, hunter style'
   }
 })

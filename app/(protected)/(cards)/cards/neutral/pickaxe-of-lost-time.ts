@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 7 },
   art: {
-    subject: 'Pickaxe of Lost Time: a single pickaxe weapon floating in dramatic light, time rift wanderer style'
+    subject:
+      'Pickaxe of Lost Time: a single pickaxe made of rough stone and sinew, surrounded by floating clock hands and glowing sand, on a workbench with tools, bursting toward the viewer, scarlet accents, time rift wanderer style'
   }
 })

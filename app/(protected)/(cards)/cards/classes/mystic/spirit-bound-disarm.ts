@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['antiGear'] },
   art: {
-    subject: 'Spirit-Bound Disarm: a sword and shield cracking and rusting apart, mystic healer style'
+    subject:
+      'Spirit-Bound Disarm: a sword flying out of reach, spinning through the air, in a misty valley, close-up filling the frame, ivory accents, mystic healer style'
   }
 })

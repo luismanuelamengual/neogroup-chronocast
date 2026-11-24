@@ -22,6 +22,6 @@ export default defineCard({
   ai: { value: 2, tags: ['defense'] },
   art: {
     subject:
-      'an ancient temple seer in white robes, the augur of the laurel, raising its weapon, ancient bronze-age empire style'
+      'Augur of the Laurel: a petite elderly woman with sun-weathered bronze skin, snow-white hair in thick dreadlocks and round spectacles, wearing a golden diadem, dressed in a sky-blue peplos with a veil, releasing a white bird, with a confident smirk, ivory accents, ancient bronze-age empire style'
   }
 })

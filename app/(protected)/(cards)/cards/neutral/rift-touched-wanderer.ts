@@ -31,6 +31,6 @@ export default defineCard({
   ai: { value: 3, tags: ['ability', 'draw', 'energy'] },
   art: {
     subject:
-      'a time-traveling wanderer, the rift-touched wanderer, crouching, ready to strike, time rift wanderer style'
+      'Rift-Touched Wanderer: an athletic young foxfolk man with blue-black hair in a tall mohawk, heavy stubble and heavy golden earrings, wearing a fur hat, dressed in a Roman toga under a leather bomber jacket, leaning on a carved walking staff, with a sly grin, scarlet accents, time rift wanderer style'
   }
 })

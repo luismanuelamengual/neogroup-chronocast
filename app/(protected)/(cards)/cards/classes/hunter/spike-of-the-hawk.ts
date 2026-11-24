@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['removal'] },
   art: {
-    subject: 'Spike of the Hawk: a crackling bolt of energy striking a lone target, hunter style'
+    subject:
+      'Spike of the Hawk: a giant jagged spike bursting up from cracked ground, swept by a spiraling gust with leaves, above a calm lake at dusk, framed by drifting embers, magenta accents, hunter style'
   }
 })

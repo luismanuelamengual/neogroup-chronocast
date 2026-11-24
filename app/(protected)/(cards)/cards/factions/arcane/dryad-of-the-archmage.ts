@@ -24,6 +24,7 @@ export default defineCard({
   },
   ai: { value: 6, tags: ['heal'] },
   art: {
-    subject: 'a fairy-tale fae creature, the dryad of the archmage, standing guard, medieval magic order style'
+    subject:
+      'Dryad of the Archmage: a dryad with dappled grey coat and gold mane and moth wings, turning its head toward the viewer, teal accents, medieval magic order style'
   }
 })

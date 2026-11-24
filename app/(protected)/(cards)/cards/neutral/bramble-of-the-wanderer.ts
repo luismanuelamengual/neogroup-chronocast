@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['draw'] },
   art: {
-    subject: 'an elemental spirit, the bramble of the wanderer, raising its weapon, time rift wanderer style'
+    subject:
+      'Bramble of the Wanderer: an elemental bramble with a hulking humanoid shape made of pearly white mist, sniffing the air, time rift wanderer style'
   }
 })

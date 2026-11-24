@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 1 },
   art: {
-    subject: 'Warpick of the Warlord: a single warpick weapon floating in dramatic light, warrior style'
+    subject:
+      'Warpick of the Warlord: a single warpick made of white bone and leather wraps, on a mossy rock, bursting toward the viewer, lime green accents, warrior style'
   }
 })

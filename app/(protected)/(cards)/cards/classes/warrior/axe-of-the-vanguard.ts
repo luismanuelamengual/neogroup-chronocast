@@ -14,6 +14,7 @@ export default defineCard({
   durability: 3,
   ai: { value: 4 },
   art: {
-    subject: 'Axe of the Vanguard: a single axe weapon floating in dramatic light, warrior style'
+    subject:
+      'Axe of the Vanguard: a single axe made of carved obsidian, on a pile of old coins, diagonal dynamic composition, crimson accents, warrior style'
   }
 })

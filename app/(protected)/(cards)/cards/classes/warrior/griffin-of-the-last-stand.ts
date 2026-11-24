@@ -24,6 +24,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['buff', 'draw', 'tribe'] },
   art: {
-    subject: 'a mythic ancient creature, the griffin of the last stand, crouching, ready to strike, warrior style'
+    subject:
+      'Griffin of the Last Stand: a griffin with sea-green scales and a red war banner tied to it, rearing up, gold accents, warrior style'
   }
 })

@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['heal'] },
   art: {
-    subject: 'Blessed Idol: a single mysterious idol artifact glowing on a pedestal, mystic healer style'
+    subject:
+      'Blessed Idol: an ancient idol made of carved obsidian, standing in shallow water, close-up filling the frame, saffron yellow accents, mystic healer style'
   }
 })

@@ -23,6 +23,6 @@ export default defineCard({
   ai: { value: 5, tags: ['draw', 'tribe'] },
   art: {
     subject:
-      'a steampunk brass automaton, the wind-up tin sentry, crouching, ready to strike, steampunk steam era style'
+      'Wind-Up Tin Sentry: a sentry built of polished brass with ruby lenses, with tank treads, skidding into position, steampunk steam era style'
   }
 })

@@ -16,6 +16,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['summon'] },
   art: {
-    subject: 'Imperial Horn: a glowing portal with a creature stepping through, ancient bronze-age empire style'
+    subject:
+      'Imperial Horn: a great war horn sounding a visible blast of sound, in a ruined temple, framed by drifting embers, crimson accents, ancient bronze-age empire style'
   }
 })

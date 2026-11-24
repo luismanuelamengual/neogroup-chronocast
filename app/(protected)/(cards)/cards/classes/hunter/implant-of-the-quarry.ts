@@ -15,6 +15,7 @@ export default defineCard({
   targets: ['friendlyAlly'],
   ai: { value: 1, tags: ['buff'] },
   art: {
-    subject: 'Implant of the Quarry: a glowing magical implant charm, hunter style'
+    subject:
+      'Implant of the Quarry: an enchanted implant made of chrome with neon light strips, resting on a velvet cloth, framed by drifting embers, turquoise accents, hunter style'
   }
 })

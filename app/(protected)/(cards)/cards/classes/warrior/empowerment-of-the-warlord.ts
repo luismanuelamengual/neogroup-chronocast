@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['buff'] },
   art: {
-    subject: 'Empowerment of the Warlord: a warrior surrounded by a surging aura of power, warrior style'
+    subject:
+      'Empowerment of the Warlord: a floating gem overflowing with radiant energy, in a dark forest clearing, diagonal dynamic composition, cobalt blue accents, warrior style'
   }
 })

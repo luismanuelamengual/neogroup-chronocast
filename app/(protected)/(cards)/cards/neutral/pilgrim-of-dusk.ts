@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['ramp'] },
   art: {
-    subject: 'a time-traveling adventurer, the pilgrim of dusk, raising its weapon, time rift wanderer style'
+    subject:
+      'Pilgrim of Dusk: a wiry elderly foxfolk woman with charcoal grey hair in an undercut and a golden nose ring, wearing a knotted bandana, dressed in a kimono with brass shoulder plates, holding prayer beads and a staff, with a sly grin, indigo accents, time rift wanderer style'
   }
 })

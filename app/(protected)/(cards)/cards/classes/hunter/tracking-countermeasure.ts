@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['trap'] },
   art: {
-    subject: 'Tracking Countermeasure: a hidden countermeasure about to spring, hunter style'
+    subject:
+      'Tracking Countermeasure: a hidden pressure plate wired with glowing filaments, bursting toward the viewer, cobalt blue accents, hunter style'
   }
 })

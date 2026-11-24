@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['removal'] },
   art: {
-    subject: 'Lance of Runes: a crackling bolt of energy striking a lone target, medieval magic order style'
+    subject:
+      'Lance of Runes: a long lance of pure energy piercing the air, circled by glowing violet runes, over burning grassland, seen from above, teal accents, medieval magic order style'
   }
 })

@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['aggro'] },
   art: {
-    subject: 'Nocturnal Idol: a single mysterious idol artifact glowing on a pedestal, hunter style'
+    subject:
+      'Nocturnal Idol: an ancient idol made of ivory and jade, wrapped in swirling black smoke, standing on a windy cliff, diagonal dynamic composition, magenta accents, hunter style'
   }
 })

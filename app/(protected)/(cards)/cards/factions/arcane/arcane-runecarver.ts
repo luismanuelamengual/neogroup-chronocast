@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['aggro'] },
   art: {
-    subject: 'a medieval spellcaster, the arcane runecarver, charging into battle, medieval magic order style'
+    subject:
+      'Arcane Runecarver: a broad-shouldered elderly man with ruddy skin, charcoal grey hair long and straight, a forked beard and a beauty mark, wearing a pointed hat, dressed in violet robes with floating rune bands, carving a glowing rune into stone, with calm focus, rose pink accents, medieval magic order style'
   }
 })

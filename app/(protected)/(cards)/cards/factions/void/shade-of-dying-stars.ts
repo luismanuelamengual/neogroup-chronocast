@@ -18,6 +18,7 @@ export default defineCard({
   health: 12,
   ai: { value: 5 },
   art: {
-    subject: 'an eldritch horror from the end of time, the shade of dying stars, roaring, dark end-of-time void style'
+    subject:
+      'Shade of Dying Stars: a shade with translucent purple membranes and many writhing limbs, pawing the ground, tangerine accents, dark end-of-time void style'
   }
 })

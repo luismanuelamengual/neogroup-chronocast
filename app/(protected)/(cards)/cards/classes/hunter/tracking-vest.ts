@@ -13,6 +13,7 @@ export default defineCard({
   armor: 9,
   ai: { value: 3 },
   art: {
-    subject: 'Tracking Vest: a single piece of armor on a stand, hunter style'
+    subject:
+      'Tracking Vest: a single vest made of chrome with neon light strips, on a fur rug, centered and seen from slightly below, rose pink accents, hunter style'
   }
 })

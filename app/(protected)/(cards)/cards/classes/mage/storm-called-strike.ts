@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['removal', 'tribe'] },
   art: {
-    subject: 'Storm-Called Strike: a crackling bolt of energy striking a lone target, mage style'
+    subject:
+      'Storm-Called Strike: a single devastating impact crater with shockwaves, crackling with forked lightning, in a snowy pass, seen from above, indigo accents, mage style'
   }
 })

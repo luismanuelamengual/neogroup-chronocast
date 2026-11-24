@@ -15,6 +15,7 @@ export default defineCard({
   targets: ['friendlyAlly'],
   ai: { value: 4, tags: ['buff'] },
   art: {
-    subject: 'Plating of Mana: a glowing magical plating charm, mage style'
+    subject:
+      'Plating of Mana: an enchanted plating made of blue steel with silver runes, leaning against a ruined wall, diagonal dynamic composition, magenta accents, mage style'
   }
 })

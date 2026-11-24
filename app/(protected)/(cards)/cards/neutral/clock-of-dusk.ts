@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['energy'] },
   art: {
-    subject: 'Clock of Dusk: a single mysterious dusk artifact glowing on a pedestal, time rift wanderer style'
+    subject:
+      'Clock of Dusk: an ancient clock made of gilded marble, standing on a windy cliff, centered and seen from slightly below, tangerine accents, time rift wanderer style'
   }
 })

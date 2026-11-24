@@ -13,6 +13,7 @@ export default defineCard({
   armor: 10,
   ai: { value: 4 },
   art: {
-    subject: 'Patient Vest: a single piece of armor on a stand, hunter style'
+    subject:
+      'Patient Vest: a single vest made of carved obsidian, on a pile of old coins, seen from above, violet accents, hunter style'
   }
 })

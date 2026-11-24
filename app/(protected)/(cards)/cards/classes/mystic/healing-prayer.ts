@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['draw', 'heal'] },
   art: {
-    subject: 'Healing Prayer: warm golden light healing a wounded figure, mystic healer style'
+    subject:
+      'Healing Prayer: prayer candles and beads glowing on a stone, above a calm lake at dusk, centered and seen from slightly below, amber accents, mystic healer style'
   }
 })

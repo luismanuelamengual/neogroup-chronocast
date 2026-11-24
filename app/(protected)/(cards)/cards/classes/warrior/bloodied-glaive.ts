@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 2 },
   art: {
-    subject: 'Bloodied Glaive: a single glaive weapon floating in dramatic light, warrior style'
+    subject:
+      'Bloodied Glaive: a single glaive made of copper with green patina, in a beam of light from above, close-up filling the frame, violet accents, warrior style'
   }
 })

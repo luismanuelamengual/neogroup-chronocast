@@ -21,6 +21,6 @@ export default defineCard({
   ai: { value: 2, tags: ['draw'] },
   art: {
     subject:
-      'a time-traveling adventurer, the bounty hunter of borrowed hours, glaring at the viewer, time rift wanderer style'
+      'Bounty Hunter of Borrowed Hours: a lanky middle-aged man with golden skin, platinum blond hair in a sharp bob, heavy stubble and heterochromatic eyes, wearing a fur hat, dressed in a medieval tabard over a space suit liner, holding a wanted poster and a coiled lasso, with wide-eyed wonder, lime green accents, time rift wanderer style'
   }
 })

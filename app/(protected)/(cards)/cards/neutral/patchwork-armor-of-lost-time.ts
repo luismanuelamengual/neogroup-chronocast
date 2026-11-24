@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 4 },
   art: {
-    subject: 'Patchwork Armor of Lost Time: a single piece of armor on a stand, time rift wanderer style'
+    subject:
+      'Patchwork Armor of Lost Time: a single armor made of white bone and leather wraps, half buried in snow, diagonal dynamic composition, violet accents, time rift wanderer style'
   }
 })

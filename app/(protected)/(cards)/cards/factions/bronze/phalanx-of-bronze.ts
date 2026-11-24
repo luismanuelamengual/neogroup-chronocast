@@ -16,6 +16,6 @@ export default defineCard({
   ai: { value: 4 },
   art: {
     subject:
-      'an ancient bronze-armored soldier, the phalanx of bronze, crouching, ready to strike, ancient bronze-age empire style'
+      'Phalanx of Bronze: a broad-shouldered elderly woman with freckled fair skin, salt-and-pepper hair cropped short and sharp cheekbones, dressed in light skirmisher leathers with bronze bracers, locking a tall round shield, with wide-eyed wonder, turquoise accents, ancient bronze-age empire style'
   }
 })

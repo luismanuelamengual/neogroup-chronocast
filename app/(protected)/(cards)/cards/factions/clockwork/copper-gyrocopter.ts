@@ -17,6 +17,7 @@ export default defineCard({
   health: 8,
   ai: { value: 2 },
   art: {
-    subject: 'a steampunk flying machine, the copper gyrocopter, mid-leap, steampunk steam era style'
+    subject:
+      'Copper Gyrocopter: a gyrocopter built of gold filigree with blue dials, with a spinning propeller, turning its lens toward the viewer, steampunk steam era style'
   }
 })

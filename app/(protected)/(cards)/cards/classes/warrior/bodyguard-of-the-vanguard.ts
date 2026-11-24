@@ -21,6 +21,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['heal'] },
   art: {
-    subject: 'a cyberpunk street criminal, the bodyguard of the vanguard, lunging forward, warrior style'
+    subject:
+      'Bodyguard of the Vanguard: a willowy adult android woman with a smooth metal scalp and a bandaged forehead, wearing a tinted visor, dressed in a hooded street jacket with glowing seams, raising a riot shield, with a haunted stare, crimson accents, warrior style'
   }
 })

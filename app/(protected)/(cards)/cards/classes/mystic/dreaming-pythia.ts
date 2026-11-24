@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['buff', 'tribe'] },
   art: {
-    subject: 'an ancient temple seer in white robes, the dreaming pythia, roaring, mystic healer style'
+    subject:
+      'Dreaming Pythia: a stocky adult woman with warm beige skin, sandy hair in twin buns and round spectacles, dressed in flowing white robes with a laurel crown, breathing glowing vapors, with a haunted stare, cobalt blue accents, mystic healer style'
   }
 })

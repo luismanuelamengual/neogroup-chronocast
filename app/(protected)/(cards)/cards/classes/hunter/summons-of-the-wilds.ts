@@ -16,6 +16,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['summon'] },
   art: {
-    subject: 'Summons of the Wilds: a glowing portal with a creature stepping through, hunter style'
+    subject:
+      'Summons of the Wilds: a glowing summoning circle opening a portal, in a snowy pass, dramatic backlight, turquoise accents, hunter style'
   }
 })

@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['trap'] },
   art: {
-    subject: 'Decoy of the Undercity: a hidden undercity about to spring, neon cyberpunk future style'
+    subject:
+      'Decoy of the Undercity: a straw decoy dummy standing in a misty clearing, crackling with forked lightning, bursting toward the viewer, crimson accents, neon cyberpunk future style'
   }
 })

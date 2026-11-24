@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 3 },
   art: {
-    subject: 'Orb of Storms: a single orb weapon floating in dramatic light, mage style'
+    subject:
+      'Orb of Storms: a single orb made of rusted iron and chains, crackling with forked lightning, on a mossy rock, centered and seen from slightly below, emerald accents, mage style'
   }
 })

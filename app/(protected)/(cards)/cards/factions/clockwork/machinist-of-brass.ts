@@ -31,6 +31,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['ability', 'draw', 'energy', 'tribe'] },
   art: {
-    subject: 'a steampunk inventor with goggles, the machinist of brass, mid-leap, steampunk steam era style'
+    subject:
+      'Machinist of Brass: an athletic adult woman with umber skin, honey blond hair cropped short and a dusting of freckles, wearing brass goggles over the eyes, dressed in grease-stained overalls, operating a sparking lathe arm, with a haunted stare, indigo accents, steampunk steam era style'
   }
 })

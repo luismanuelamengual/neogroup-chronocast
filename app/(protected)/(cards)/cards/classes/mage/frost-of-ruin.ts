@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['draw', 'removal'] },
   art: {
-    subject: 'Frost of Ruin: glowing chains binding a struggling creature, mage style'
+    subject:
+      'Frost of Ruin: a spiral of razor-sharp frost shards, in a snowy pass, close-up filling the frame, emerald accents, mage style'
   }
 })

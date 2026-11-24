@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['aggro', 'removal'] },
   art: {
-    subject: 'Hex of Steel: glowing chains binding a struggling creature, warrior style'
+    subject:
+      'Hex of Steel: a glowing hex sigil burning in the air, circled by glowing violet runes, over burning grassland, close-up filling the frame, lime green accents, warrior style'
   }
 })

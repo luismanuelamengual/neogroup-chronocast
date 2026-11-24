@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['buff'] },
   art: {
-    subject: 'Might of Lost Time: a warrior surrounded by a surging aura of power, time rift wanderer style'
+    subject:
+      'Might of Lost Time: a huge glowing fist-shaped aura of raw power, in a dark forest clearing, diagonal dynamic composition, emerald accents, time rift wanderer style'
   }
 })

@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['heal', 'summon'] },
   art: {
-    subject: 'a time-traveling adventurer, the lamplighter of the crossroads, mid-leap, time rift wanderer style'
+    subject:
+      'Lamplighter of the Crossroads: a petite middle-aged lizardfolk man with olive scales, mutton chops and a crooked broken nose, wearing a feathered cap, dressed in a sailor uniform with bronze greaves, raising a lantern on a long pole, with a mischievous wink, turquoise accents, time rift wanderer style'
   }
 })

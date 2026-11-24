@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['removal'] },
   art: {
-    subject: 'Snare of Embers: glowing chains binding a struggling creature, medieval magic order style'
+    subject:
+      'Snare of Embers: a looped rope snare snapping shut, over a desert of red dunes, centered and seen from slightly below, violet accents, medieval magic order style'
   }
 })

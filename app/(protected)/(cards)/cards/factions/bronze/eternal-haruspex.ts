@@ -32,6 +32,6 @@ export default defineCard({
   ai: { value: 3, tags: ['ability', 'aggro', 'energy', 'tribe'] },
   art: {
     subject:
-      'an ancient temple seer in white robes, the eternal haruspex, raising its weapon, ancient bronze-age empire style'
+      'Eternal Haruspex: a wiry adult man with warm beige skin, honey blond hair in twin buns, mutton chops and heterochromatic eyes, wearing a laurel wreath, dressed in a bronze-trimmed priestly stole, reading signs in a golden bowl, with a haunted stare, saffron yellow accents, ancient bronze-age empire style'
   }
 })

@@ -19,6 +19,6 @@ export default defineCard({
   ai: { value: 3, tags: ['defense'] },
   art: {
     subject:
-      'Lantern of the Foundry: a single mysterious foundry artifact glowing on a pedestal, steampunk steam era style'
+      'Lantern of the Foundry: an ancient lantern made of rusted iron and chains, standing on a hilltop at dusk, swirling around the center, cobalt blue accents, steampunk steam era style'
   }
 })

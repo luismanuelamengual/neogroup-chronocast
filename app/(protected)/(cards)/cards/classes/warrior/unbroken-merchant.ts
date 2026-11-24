@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['buff'] },
   art: {
-    subject: 'a time-traveling adventurer, the unbroken merchant, roaring, warrior style'
+    subject:
+      'Unbroken Merchant: a wiry middle-aged catfolk man with platinum blond hair in short curls, a braided beard and a monocle, wearing a deep hood, dressed in a monk robe with a futuristic utility belt, balancing a scale heaped with glowing trinkets, with grim determination, scarlet accents, warrior style'
   }
 })

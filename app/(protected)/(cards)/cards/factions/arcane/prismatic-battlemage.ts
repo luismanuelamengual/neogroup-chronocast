@@ -24,6 +24,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['buff', 'energy', 'tribe'] },
   art: {
-    subject: 'a medieval spellcaster, the prismatic battlemage, raising its weapon, medieval magic order style'
+    subject:
+      'Prismatic Battlemage: a willowy middle-aged gnome man with sun-weathered bronze skin, blue-black hair in twin buns, heavy stubble and a jeweled brow piercing, dressed in a scholar coat with ink-stained cuffs, carrying a glowing satchel, pointing ahead, with a confident smirk, lime green accents, medieval magic order style'
   }
 })

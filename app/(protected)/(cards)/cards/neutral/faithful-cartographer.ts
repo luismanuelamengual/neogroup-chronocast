@@ -15,6 +15,7 @@ export default defineCard({
   health: 11,
   ai: { value: 5 },
   art: {
-    subject: 'a time-traveling adventurer, the faithful cartographer, roaring, time rift wanderer style'
+    subject:
+      'Faithful Cartographer: a willowy young dwarf man with freckled fair skin, chestnut hair in a tall mohawk, a thin mustache and bushy eyebrows, wearing a turban, dressed in a long ferryman cloak with tide-worn hems, unrolling a living map of shifting lands, with a sly grin, tangerine accents, time rift wanderer style'
   }
 })

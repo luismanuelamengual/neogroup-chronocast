@@ -24,6 +24,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['buff', 'tribe'] },
   art: {
-    subject: 'an ice-age beast, the dire wolf of the first fire, lunging forward, prehistoric jungle era style'
+    subject:
+      'Dire Wolf of the First Fire: a wolf with grey-brown fur dusted with frost and massive sabre fangs, leaping forward, teal accents, prehistoric jungle era style'
   }
 })

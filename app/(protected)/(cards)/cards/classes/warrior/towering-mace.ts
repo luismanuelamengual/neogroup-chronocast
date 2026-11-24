@@ -14,6 +14,7 @@ export default defineCard({
   durability: 3,
   ai: { value: 3 },
   art: {
-    subject: 'Towering Mace: a single mace weapon floating in dramatic light, warrior style'
+    subject:
+      'Towering Mace: a single mace made of ivory and jade, on cracked stone tiles, bursting toward the viewer, saffron yellow accents, warrior style'
   }
 })

@@ -13,6 +13,7 @@ export default defineCard({
   armor: 7,
   ai: { value: 3 },
   art: {
-    subject: 'Radiant Halo: a single piece of armor on a stand, mystic healer style'
+    subject:
+      'Radiant Halo: a single halo made of ivory and jade, on a mossy rock, diagonal dynamic composition, lime green accents, mystic healer style'
   }
 })

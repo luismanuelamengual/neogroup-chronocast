@@ -17,6 +17,7 @@ export default defineCard({
   health: 8,
   ai: { value: 4 },
   art: {
-    subject: 'a steampunk inventor with goggles, the wind-up mechanic, standing guard, steampunk steam era style'
+    subject:
+      'Wind-Up Mechanic: a plump adult dwarf woman with golden skin, snow-white hair in an afro and a scar across one eye, wearing brass goggles over the eyes, dressed in a waistcoat with a pocket watch chain, swinging a huge wrench, with a sly grin, crimson accents, steampunk steam era style'
   }
 })

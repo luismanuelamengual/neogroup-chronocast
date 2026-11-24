@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 6, tags: ['aggro'] },
   art: {
-    subject: 'a cyberpunk street criminal, the courier of the mainframe, standing guard, neon cyberpunk future style'
+    subject:
+      'Courier of the Mainframe: a wiry elderly android man with a smooth metal scalp, heavy stubble and a beaded chin piercing, wearing a street hood, dressed in a bulky riot exosuit, clutching a sealed glowing letter, with a haunted stare, ivory accents, neon cyberpunk future style'
   }
 })

@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['draw', 'tribe'] },
   art: {
-    subject: 'an ancient bronze-armored soldier, the phalanx of steel, lunging forward, warrior style'
+    subject:
+      'Phalanx of Steel: a muscular middle-aged man with warm beige skin, jet black hair slicked back, a pointed goatee and a golden nose ring, dressed in scale armor with a purple sash, locking a tall round shield, with calm focus, scarlet accents, warrior style'
   }
 })

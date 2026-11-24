@@ -21,6 +21,6 @@ export default defineCard({
   ai: { value: 7, tags: ['defense'] },
   art: {
     subject:
-      'an ancient bronze-armored soldier, the phalanx of the legion, standing guard, ancient bronze-age empire style'
+      'Phalanx of the Legion: an athletic young man with olive skin, charcoal grey hair with a side-swept fringe, a forked beard and a bandaged forehead, wearing a plain bronze helm, dressed in a bronze muscle cuirass and red cape, locking a tall round shield, with a fierce scowl, emerald accents, ancient bronze-age empire style'
   }
 })

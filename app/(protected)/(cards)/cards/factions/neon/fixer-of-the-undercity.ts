@@ -24,6 +24,6 @@ export default defineCard({
   ai: { value: 4, tags: ['aggro', 'buff', 'draw', 'tribe'] },
   art: {
     subject:
-      'a cyberpunk street criminal, the fixer of the undercity, crouching, ready to strike, neon cyberpunk future style'
+      'Fixer of the Undercity: a broad-shouldered middle-aged man with deep brown skin, acid green hair in long braids and a golden nose ring, wearing a tinted visor, dressed in a hooded street jacket with glowing seams, carrying a glowing satchel, spinning around, with a mischievous wink, indigo accents, neon cyberpunk future style'
   }
 })

@@ -21,6 +21,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['heal'] },
   art: {
-    subject: 'a fairy-tale fae creature, the satyr of renewal, raising its weapon, mystic healer style'
+    subject:
+      'Satyr of Renewal: a satyr with snowy coat and silver mane and small curled horns, charging head-on, saffron yellow accents, mystic healer style'
   }
 })

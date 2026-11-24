@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['revive'] },
   art: {
-    subject: 'a fairy-tale fae creature, the pixie of the ancestors, roaring, mystic healer style'
+    subject:
+      'Pixie of the Ancestors: a pixie with pale blue skin and starry hair and a trail of glowing pollen, baring its teeth, rose pink accents, mystic healer style'
   }
 })

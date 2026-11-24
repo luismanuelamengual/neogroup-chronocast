@@ -22,6 +22,6 @@ export default defineCard({
   ai: { value: 5, tags: ['buff'] },
   art: {
     subject:
-      'a prehistoric tribe warrior in furs and bone ornaments, the thundering gatherer, crouching, ready to strike, prehistoric jungle era style'
+      'Thundering Gatherer: a hunched elderly man with freckled fair skin, salt-and-pepper hair in a messy bun, a thin mustache and a gap-toothed grin, wearing feathers tied in the hair, dressed in a leopard-skin wrap with bone beads, gripping a well-worn weapon, crouched low, with a sly grin, magenta accents, prehistoric jungle era style'
   }
 })

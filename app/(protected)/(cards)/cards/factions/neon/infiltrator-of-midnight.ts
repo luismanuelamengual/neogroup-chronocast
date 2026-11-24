@@ -23,6 +23,6 @@ export default defineCard({
   ai: { value: 3, tags: ['buff', 'tribe'] },
   art: {
     subject:
-      'a cyberpunk hacker with holographic screens, the infiltrator of midnight, charging into battle, neon cyberpunk future style'
+      'Infiltrator of Midnight: a barrel-chested adult android woman with a smooth metal scalp and glowing tattoos on the cheeks, wearing a VR visor, dressed in a cropped jacket with holo patches, slipping through a glowing doorway, with wide-eyed wonder, amber accents, neon cyberpunk future style'
   }
 })

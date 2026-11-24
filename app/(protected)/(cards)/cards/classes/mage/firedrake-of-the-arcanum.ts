@@ -28,6 +28,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['removal'] },
   art: {
-    subject: 'a dragon-kin creature, the firedrake of the arcanum, standing guard, mage style'
+    subject:
+      'Firedrake of the Arcanum: a firedrake with iridescent green-purple scales and tattered wings, prowling low, ivory accents, mage style'
   }
 })

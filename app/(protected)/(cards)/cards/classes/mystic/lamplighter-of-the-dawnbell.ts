@@ -14,6 +14,7 @@ export default defineCard({
   health: 8,
   ai: { value: 3 },
   art: {
-    subject: 'a time-traveling adventurer, the lamplighter of the dawnbell, standing guard, mystic healer style'
+    subject:
+      'Lamplighter of the Dawnbell: a wiry elderly halfling man with ruddy skin, snow-white hair in a single long braid, mutton chops and heavy golden earrings, wearing a straw hat, dressed in a monk robe with a futuristic utility belt, raising a lantern on a long pole, with calm focus, emerald accents, mystic healer style'
   }
 })

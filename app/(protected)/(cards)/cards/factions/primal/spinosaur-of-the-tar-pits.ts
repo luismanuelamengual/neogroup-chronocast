@@ -23,6 +23,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['buff', 'tribe'] },
   art: {
-    subject: 'a dinosaur, the spinosaur of the tar pits, crouching, ready to strike, prehistoric jungle era style'
+    subject:
+      'Spinosaur of the Tar Pits: a spinosaur with a deep brown hide with a cream belly and a bony frill, standing proud on a rock, saffron yellow accents, prehistoric jungle era style'
   }
 })

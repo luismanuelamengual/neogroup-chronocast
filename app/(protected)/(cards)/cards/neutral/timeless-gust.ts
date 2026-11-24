@@ -23,6 +23,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['summon'] },
   art: {
-    subject: 'an elemental spirit, the timeless gust, mid-leap, time rift wanderer style'
+    subject:
+      'Timeless Gust: an elemental gust with a jagged crystal body made of pearly white mist, turning its head toward the viewer, time rift wanderer style'
   }
 })

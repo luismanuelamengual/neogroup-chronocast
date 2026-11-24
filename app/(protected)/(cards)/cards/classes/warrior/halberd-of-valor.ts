@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 1 },
   art: {
-    subject: 'Halberd of Valor: a single halberd weapon floating in dramatic light, warrior style'
+    subject:
+      'Halberd of Valor: a single halberd made of carved obsidian, on a workbench with tools, dramatic backlight, teal accents, warrior style'
   }
 })

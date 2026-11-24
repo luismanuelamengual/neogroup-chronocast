@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['draw', 'removal'] },
   art: {
-    subject: 'Frost of the Pack: glowing chains binding a struggling creature, hunter style'
+    subject:
+      'Frost of the Pack: a spiral of razor-sharp frost shards, over a desert of red dunes, seen from above, indigo accents, hunter style'
   }
 })

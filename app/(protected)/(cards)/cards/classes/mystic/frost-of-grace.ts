@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['removal'] },
   art: {
-    subject: 'Frost of Grace: glowing chains binding a struggling creature, mystic healer style'
+    subject:
+      'Frost of Grace: a spiral of razor-sharp frost shards, over a stormy battlefield, seen from above, emerald accents, mystic healer style'
   }
 })

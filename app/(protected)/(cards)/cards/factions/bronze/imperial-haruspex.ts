@@ -21,6 +21,6 @@ export default defineCard({
   ai: { value: 5, tags: ['defense'] },
   art: {
     subject:
-      'an ancient temple seer in white robes, the imperial haruspex, lunging forward, ancient bronze-age empire style'
+      'Imperial Haruspex: a stocky young man with umber skin, sandy hair in a tall mohawk, a pointed goatee and a jeweled brow piercing, dressed in a sea-green himation with pearl strands, reading signs in a golden bowl, with grim determination, violet accents, ancient bronze-age empire style'
   }
 })

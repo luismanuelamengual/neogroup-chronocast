@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 1, tags: ['antiGear'] },
   art: {
-    subject: 'Bold Rust: a sword and shield cracking and rusting apart, time rift wanderer style'
+    subject:
+      'Bold Rust: a weapon blade crumbling into flakes of orange rust, in a ruined temple, seen from above, saffron yellow accents, time rift wanderer style'
   }
 })

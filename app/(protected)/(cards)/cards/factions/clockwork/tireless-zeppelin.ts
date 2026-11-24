@@ -32,6 +32,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['ability', 'draw', 'energy', 'tribe'] },
   art: {
-    subject: 'a steampunk flying machine, the tireless zeppelin, mid-leap, steampunk steam era style'
+    subject:
+      'Tireless Zeppelin: a zeppelin built of carbon black with violet circuits, with a cracked glass dome, raising a mechanical arm, steampunk steam era style'
   }
 })

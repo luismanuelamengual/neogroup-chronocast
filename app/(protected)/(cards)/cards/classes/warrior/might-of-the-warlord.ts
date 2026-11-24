@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 1, tags: ['buff'] },
   art: {
-    subject: 'Might of the Warlord: a warrior surrounded by a surging aura of power, warrior style'
+    subject:
+      'Might of the Warlord: a huge glowing fist-shaped aura of raw power, in a misty valley, bursting toward the viewer, scarlet accents, warrior style'
   }
 })

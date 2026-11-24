@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['aggro', 'buff', 'tribe'] },
   art: {
-    subject: 'a mythic ancient creature, the talos of the laurel, roaring, ancient bronze-age empire style'
+    subject:
+      'Talos of the Laurel: a talos with bronze-tinted skin and a red war banner tied to it, pawing the ground, emerald accents, ancient bronze-age empire style'
   }
 })

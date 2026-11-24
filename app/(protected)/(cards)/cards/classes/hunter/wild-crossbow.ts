@@ -14,6 +14,7 @@ export default defineCard({
   durability: 4,
   ai: { value: 5 },
   art: {
-    subject: 'Wild Crossbow: a single crossbow weapon floating in dramatic light, hunter style'
+    subject:
+      'Wild Crossbow: a single crossbow made of ivory and jade, floating above a marble pedestal, bursting toward the viewer, magenta accents, hunter style'
   }
 })

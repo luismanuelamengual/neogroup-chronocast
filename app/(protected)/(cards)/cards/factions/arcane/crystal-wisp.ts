@@ -23,6 +23,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['aggro'] },
   art: {
-    subject: 'a fairy-tale fae creature, the crystal wisp, charging into battle, medieval magic order style'
+    subject:
+      'Crystal Wisp: a wisp with sea-green skin and coral hair and goat legs, sniffing the air, ivory accents, medieval magic order style'
   }
 })

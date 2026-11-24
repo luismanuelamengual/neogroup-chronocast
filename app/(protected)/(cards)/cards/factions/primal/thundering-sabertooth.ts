@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['summon'] },
   art: {
-    subject: 'an ice-age beast, the thundering sabertooth, mid-leap, prehistoric jungle era style'
+    subject:
+      'Thundering Sabertooth: a sabertooth with black fur with silver tips and huge curved tusks, turning its head toward the viewer, saffron yellow accents, prehistoric jungle era style'
   }
 })

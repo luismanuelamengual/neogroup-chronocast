@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['removal'] },
   art: {
-    subject: 'Hex of the Oracle: a glowing magical hex charm, ancient bronze-age empire style'
+    subject:
+      'Hex of the Oracle: an enchanted hex made of chrome with neon light strips, on a mossy rock, seen from above, scarlet accents, ancient bronze-age empire style'
   }
 })

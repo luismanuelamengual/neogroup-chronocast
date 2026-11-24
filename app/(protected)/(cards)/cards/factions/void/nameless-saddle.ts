@@ -15,6 +15,7 @@ export default defineCard({
   targets: ['friendlyAlly'],
   ai: { value: 2, tags: ['buff'] },
   art: {
-    subject: 'Nameless Saddle: a glowing magical nameless charm, dark end-of-time void style'
+    subject:
+      'Nameless Saddle: an enchanted saddle made of chrome with neon light strips, on a workbench with tools, seen from above, teal accents, dark end-of-time void style'
   }
 })

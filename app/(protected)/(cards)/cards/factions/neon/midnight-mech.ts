@@ -21,6 +21,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['draw', 'tribe'] },
   art: {
-    subject: 'a futuristic cyborg with glowing implants, the midnight mech, standing guard, neon cyberpunk future style'
+    subject:
+      'Midnight Mech: a mech built of carbon black with violet circuits, with antenna arrays, marching forward, neon cyberpunk future style'
   }
 })

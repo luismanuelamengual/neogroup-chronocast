@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['buff'] },
   art: {
-    subject: 'an ancient bronze-armored soldier, the veteran of the shieldwall, charging into battle, warrior style'
+    subject:
+      'Veteran of the Shieldwall: a stocky adult woman with warm beige skin, honey blond hair in cornrows and a dusting of freckles, wearing a plain bronze helm, dressed in a bronze muscle cuirass and red cape, holding a dented shield, with a booming laugh, turquoise accents, warrior style'
   }
 })

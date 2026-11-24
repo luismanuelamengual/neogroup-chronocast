@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 7, tags: ['heal'] },
   art: {
-    subject: 'an elemental spirit, the spark of dusk, mid-leap, time rift wanderer style'
+    subject:
+      'Spark of Dusk: an elemental spark with a swirling vortex shape made of molten orange and black rock, baring its teeth, time rift wanderer style'
   }
 })

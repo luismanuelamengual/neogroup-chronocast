@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['antiGear'] },
   art: {
-    subject: 'Patient Sabotage: a sword and shield cracking and rusting apart, hunter style'
+    subject:
+      'Patient Sabotage: a sword and a shield cracking and rusting apart, in a misty valley, bursting toward the viewer, turquoise accents, hunter style'
   }
 })

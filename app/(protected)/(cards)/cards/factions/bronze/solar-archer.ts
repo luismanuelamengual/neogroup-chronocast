@@ -34,6 +34,6 @@ export default defineCard({
   ai: { value: 3, tags: ['ability', 'buff', 'energy', 'tribe'] },
   art: {
     subject:
-      'an ancient bronze-armored soldier, the solar archer, crouching, ready to strike, ancient bronze-age empire style'
+      'Solar Archer: a barrel-chested middle-aged woman with golden skin, honey blond hair in an afro and a scar across one eye, dressed in a bronze muscle cuirass and red cape, holding a lantern, turning to look over the shoulder, with a confident smirk, magenta accents, ancient bronze-age empire style'
   }
 })

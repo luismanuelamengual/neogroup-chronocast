@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['buff', 'tribe'] },
   art: {
-    subject: 'a time-traveling wanderer, the lamplighter of the wanderer, standing guard, time rift wanderer style'
+    subject:
+      'Lamplighter of the Wanderer: a wiry elderly catfolk woman with salt-and-pepper hair in long braids and a beauty mark, wearing a bowler hat, dressed in a colonial explorer jacket covered in pockets, raising a lantern on a long pole, with a fierce scowl, scarlet accents, time rift wanderer style'
   }
 })

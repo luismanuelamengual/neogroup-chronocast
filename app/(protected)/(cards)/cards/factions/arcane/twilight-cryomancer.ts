@@ -18,6 +18,7 @@ export default defineCard({
   health: 8,
   ai: { value: 4 },
   art: {
-    subject: 'a medieval spellcaster, the twilight cryomancer, glaring at the viewer, medieval magic order style'
+    subject:
+      'Twilight Cryomancer: a lanky elderly woman with umber skin, salt-and-pepper hair cropped short and bushy eyebrows, wearing a deep hood, dressed in star-embroidered indigo robes, forming a shard of ice, with a haunted stare, violet accents, medieval magic order style'
   }
 })

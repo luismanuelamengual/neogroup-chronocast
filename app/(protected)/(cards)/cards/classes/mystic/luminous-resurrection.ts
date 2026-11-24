@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 7, tags: ['heal', 'revive'] },
   art: {
-    subject: 'Luminous Resurrection: a ghostly figure rising from a grave in green light, mystic healer style'
+    subject:
+      'Luminous Resurrection: a beam of light lifting from an open grave, in a dark forest clearing, framed by drifting embers, violet accents, mystic healer style'
   }
 })

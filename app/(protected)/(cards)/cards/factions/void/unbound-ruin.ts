@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['removal'] },
   art: {
-    subject: 'Unbound Ruin: a creature disintegrating into dust, dark end-of-time void style'
+    subject:
+      'Unbound Ruin: a crumbling column collapsing into dust, over burning grassland, swirling around the center, violet accents, dark end-of-time void style'
   }
 })

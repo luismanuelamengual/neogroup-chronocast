@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['draw', 'removal'] },
   art: {
-    subject: 'Binding of Lightning: glowing chains binding a struggling creature, mage style'
+    subject:
+      'Binding of Lightning: glowing chains coiling tightly around nothing, locking shut, in a dark forest clearing, centered and seen from slightly below, crimson accents, mage style'
   }
 })

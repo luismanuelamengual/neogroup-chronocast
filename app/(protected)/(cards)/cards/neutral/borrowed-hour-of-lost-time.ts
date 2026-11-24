@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['energy'] },
   art: {
-    subject: 'Borrowed Hour of Lost Time: a giant hourglass with sand flowing upward, time rift wanderer style'
+    subject:
+      'Borrowed Hour of Lost Time: a great bell tower clock face glowing at midnight, above a calm lake at dusk, swirling around the center, indigo accents, time rift wanderer style'
   }
 })

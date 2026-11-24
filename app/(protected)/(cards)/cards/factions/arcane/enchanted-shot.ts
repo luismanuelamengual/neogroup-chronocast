@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['removal'] },
   art: {
-    subject: 'Enchanted Shot: a crackling bolt of energy striking a lone target, medieval magic order style'
+    subject:
+      'Enchanted Shot: a single arrow in flight trailing a streak of light, circled by glowing violet runes, over burning grassland, swirling around the center, tangerine accents, medieval magic order style'
   }
 })

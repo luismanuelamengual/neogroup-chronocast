@@ -16,6 +16,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['heal'] },
   art: {
-    subject: 'Mending of Mercy: warm golden light healing a wounded figure, mystic healer style'
+    subject:
+      'Mending of Mercy: a glowing needle stitching a torn cloth back together, in a snowy pass, close-up filling the frame, saffron yellow accents, mystic healer style'
   }
 })

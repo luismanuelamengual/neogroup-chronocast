@@ -20,6 +20,6 @@ export default defineCard({
   ai: { value: 5, tags: ['draw', 'ramp', 'summon'] },
   art: {
     subject:
-      'an incredible glowing copper engine with turquoise time energy flowing through glass tubes and spinning gears'
+      'The Copperwick Engine: a small engine made of dark yew wood and brass fittings, floating above a marble pedestal, dramatic backlight, turquoise accents'
   }
 })

@@ -20,6 +20,6 @@ export default defineCard({
   ai: { value: 5, tags: ['summon'] },
   art: {
     subject:
-      'a cyberpunk hacker with holographic screens, the infiltrator of the ambush, crouching, ready to strike, hunter style'
+      'Infiltrator of the Ambush: a wiry elderly android woman with a smooth metal scalp and a monocle, wearing a glowing hood, dressed in a tracksuit with a neural crown, slipping through a glowing doorway, with wide-eyed wonder, tangerine accents, hunter style'
   }
 })

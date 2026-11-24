@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['aggro', 'removal'] },
   art: {
-    subject: 'Hex of the Hunt: glowing chains binding a struggling creature, hunter style'
+    subject:
+      'Hex of the Hunt: a glowing hex sigil burning in the air, circled by glowing violet runes, in a snowy pass, swirling around the center, gold accents, hunter style'
   }
 })

@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['buff'] },
   art: {
-    subject: 'Might of the Long Road: a warrior surrounded by a surging aura of power, time rift wanderer style'
+    subject:
+      'Might of the Long Road: a huge glowing fist-shaped aura of raw power, in a snowy pass, centered and seen from slightly below, teal accents, time rift wanderer style'
   }
 })

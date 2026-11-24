@@ -28,6 +28,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['buff', 'heal', 'tribe'] },
   art: {
-    subject: 'an elemental spirit, the wandering mist, lunging forward, time rift wanderer style'
+    subject:
+      'Wandering Mist: an elemental mist with a swirling vortex shape made of silver wind streams, standing proud on a rock, time rift wanderer style'
   }
 })

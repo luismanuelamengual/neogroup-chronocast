@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['revive'] },
   art: {
-    subject: 'Forsaken Resurrection: a ghostly figure rising from a grave in green light, dark end-of-time void style'
+    subject:
+      'Forsaken Resurrection: a beam of light lifting from an open grave, in a sunlit meadow, framed by drifting embers, amber accents, dark end-of-time void style'
   }
 })

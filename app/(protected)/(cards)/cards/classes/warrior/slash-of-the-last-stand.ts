@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['removal'] },
   art: {
-    subject: 'Slash of the Last Stand: a crackling bolt of energy striking a lone target, warrior style'
+    subject:
+      'Slash of the Last Stand: a glowing crescent slash cutting through the air, in a snowy pass, seen from above, amber accents, warrior style'
   }
 })

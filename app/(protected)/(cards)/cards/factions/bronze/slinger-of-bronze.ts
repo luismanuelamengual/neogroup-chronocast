@@ -21,6 +21,6 @@ export default defineCard({
   ai: { value: 4, tags: ['buff'] },
   art: {
     subject:
-      'an ancient bronze-armored soldier, the slinger of bronze, lunging forward, ancient bronze-age empire style'
+      'Slinger of Bronze: a plump middle-aged woman with ruddy skin, blue-black hair in a topknot and glowing tattoos on the cheeks, wearing a plumed Greek helmet, dressed in segmented lorica armor with a crested helmet, whirling a leather sling, with a serene smile, lime green accents, ancient bronze-age empire style'
   }
 })

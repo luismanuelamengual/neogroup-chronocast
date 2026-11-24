@@ -23,6 +23,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['defense', 'heal'] },
   art: {
-    subject: 'a time-traveling wanderer, the mercenary of the wanderer, lunging forward, time rift wanderer style'
+    subject:
+      'Mercenary of the Wanderer: a petite elderly dwarf woman with warm beige skin, silver hair in a messy bun and heavy golden earrings, wearing a turban, dressed in a Renaissance doublet with mismatched armor pieces, resting a notched greatsword on the shoulder, with a confident smirk, violet accents, time rift wanderer style'
   }
 })

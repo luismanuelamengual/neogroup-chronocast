@@ -14,6 +14,7 @@ export default defineCard({
   durability: 4,
   ai: { value: 4 },
   art: {
-    subject: 'Cutlass of the Long Road: a single cutlass weapon floating in dramatic light, time rift wanderer style'
+    subject:
+      'Cutlass of the Long Road: a single cutlass made of white bone and leather wraps, in a beam of light from above, seen from above, emerald accents, time rift wanderer style'
   }
 })

@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['removal'] },
   art: {
-    subject: 'a medieval spellcaster, the enchantress of the archmage, charging into battle, medieval magic order style'
+    subject:
+      'Enchantress of the Archmage: an athletic adult tiefling man with freckled fair skin, chestnut hair in a sharp bob, a full beard and heterochromatic eyes, wearing a thin silver circlet, dressed in frost-white robes with icicle trim, weaving threads of light between the fingers, with wide-eyed wonder, gold accents, medieval magic order style'
   }
 })

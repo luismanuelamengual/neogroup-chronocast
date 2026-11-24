@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 1, tags: ['removal'] },
   art: {
-    subject: 'Toxin of Pistons: a dripping vial of green venom, steampunk steam era style'
+    subject:
+      'Toxin of Pistons: a cracked vial leaking glowing poison, in a dark forest clearing, seen from above, magenta accents, steampunk steam era style'
   }
 })

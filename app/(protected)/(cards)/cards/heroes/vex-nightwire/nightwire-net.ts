@@ -21,6 +21,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['draw', 'removal', 'trap'] },
   art: {
-    subject: 'an almost invisible web of glowing neon wires stretched across an alley, a monster caught in it'
+    subject:
+      'Nightwire Net: a weighted rope net hidden under leaves, about to spring, dramatic backlight, turquoise accents'
   }
 })

@@ -16,6 +16,7 @@ export default defineCard({
   targets: ['friendlyAlly'],
   ai: { value: 2, tags: ['buff'] },
   art: {
-    subject: 'Hungry Blessing: a glowing magical hungry charm, prehistoric jungle era style'
+    subject:
+      'Hungry Blessing: an enchanted blessing made of white bone and leather wraps, on a worn wooden table, framed by drifting embers, violet accents, prehistoric jungle era style'
   }
 })

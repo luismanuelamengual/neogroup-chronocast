@@ -23,6 +23,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['removal'] },
   art: {
-    subject: 'a dragon-kin creature, the moonlit basilisk, raising its weapon, medieval magic order style'
+    subject:
+      'Moonlit Basilisk: a basilisk with golden scales and a rooster crest, rearing up, cobalt blue accents, medieval magic order style'
   }
 })

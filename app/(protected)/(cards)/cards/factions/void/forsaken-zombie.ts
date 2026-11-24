@@ -16,6 +16,7 @@ export default defineCard({
   health: 8,
   ai: { value: 3 },
   art: {
-    subject: 'an undead creature, the forsaken zombie, charging into battle, dark end-of-time void style'
+    subject:
+      'Forsaken Zombie: a zombie with translucent blue ectoplasm and a cracked halo, circling warily, tangerine accents, dark end-of-time void style'
   }
 })

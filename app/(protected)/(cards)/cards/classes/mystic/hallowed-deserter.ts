@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['buff'] },
   art: {
-    subject: 'a time-traveling adventurer, the hallowed deserter, roaring, mystic healer style'
+    subject:
+      'Hallowed Deserter: a barrel-chested middle-aged foxfolk man with auburn hair in an afro, a thin mustache and a burn scar on the jaw, dressed in a medieval tabard over a space suit liner, dragging a broken standard, with wide-eyed wonder, gold accents, mystic healer style'
   }
 })

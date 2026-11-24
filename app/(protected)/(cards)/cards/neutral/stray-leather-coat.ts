@@ -13,6 +13,7 @@ export default defineCard({
   armor: 9,
   ai: { value: 3 },
   art: {
-    subject: 'Stray Leather Coat: a single piece of armor on a stand, time rift wanderer style'
+    subject:
+      'Stray Leather Coat: a single coat made of rusted iron and chains, on a mossy rock, bursting toward the viewer, rose pink accents, time rift wanderer style'
   }
 })

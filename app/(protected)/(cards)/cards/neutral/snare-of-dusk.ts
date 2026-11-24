@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['removal'] },
   art: {
-    subject: 'Snare of Dusk: glowing chains binding a struggling creature, time rift wanderer style'
+    subject:
+      'Snare of Dusk: a looped rope snare snapping shut, in a snowy pass, dramatic backlight, teal accents, time rift wanderer style'
   }
 })

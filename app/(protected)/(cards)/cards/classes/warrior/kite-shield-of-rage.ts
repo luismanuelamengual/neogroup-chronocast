@@ -13,6 +13,7 @@ export default defineCard({
   armor: 9,
   ai: { value: 3 },
   art: {
-    subject: 'Kite Shield of Rage: a single piece of armor on a stand, warrior style'
+    subject:
+      'Kite Shield of Rage: a single shield made of dark yew wood and brass fittings, leaning against a ruined wall, dramatic backlight, gold accents, warrior style'
   }
 })

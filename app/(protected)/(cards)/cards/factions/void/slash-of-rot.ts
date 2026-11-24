@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 6, tags: ['removal'] },
   art: {
-    subject: 'Slash of Rot: a crackling bolt of energy striking a lone target, dark end-of-time void style'
+    subject:
+      'Slash of Rot: a glowing crescent slash cutting through the air, wrapped in swirling black smoke, in a misty valley, close-up filling the frame, magenta accents, dark end-of-time void style'
   }
 })

@@ -21,6 +21,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['control'] },
   art: {
-    subject: 'an undead creature, the banshee of shadows, standing guard, dark end-of-time void style'
+    subject:
+      'Banshee of Shadows: a banshee with rotting green flesh and a broken crown, rearing up, cobalt blue accents, dark end-of-time void style'
   }
 })

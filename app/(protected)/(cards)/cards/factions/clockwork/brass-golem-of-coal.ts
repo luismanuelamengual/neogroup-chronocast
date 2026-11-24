@@ -25,6 +25,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['buff', 'tribe'] },
   art: {
-    subject: 'a steampunk brass automaton, the brass golem of coal, mid-leap, steampunk steam era style'
+    subject:
+      'Brass Golem of Coal: a golem built of white plating with magenta glow, with a single giant lens, banking through the air, steampunk steam era style'
   }
 })

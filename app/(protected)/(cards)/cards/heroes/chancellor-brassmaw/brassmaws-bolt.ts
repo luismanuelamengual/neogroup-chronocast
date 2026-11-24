@@ -21,6 +21,6 @@ export default defineCard({
   ai: { value: 5 },
   art: {
     subject:
-      "Brassmaw's Bolt: the signature spell of the hero, a devastating blast of clockwork energy, steampunk steam era style"
+      "Brassmaw's Bolt: a crackling bolt of energy streaking forward, surrounded by rippling sound waves, in a sunlit meadow, swirling around the center, crimson accents, steampunk steam era style"
   }
 })

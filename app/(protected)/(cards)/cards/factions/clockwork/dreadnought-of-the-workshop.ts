@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['defense'] },
   art: {
-    subject: 'a steampunk flying machine, the dreadnought of the workshop, mid-leap, steampunk steam era style'
+    subject:
+      'Dreadnought of the Workshop: a dreadnought built of white plating with magenta glow, with tank treads, hovering above the ground, steampunk steam era style'
   }
 })

@@ -16,6 +16,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['defense'] },
   art: {
-    subject: 'Silent Monolith: a single mysterious monolith artifact glowing on a pedestal, neon cyberpunk future style'
+    subject:
+      'Silent Monolith: an ancient monolith made of blackened iron with gold inlay, standing in a torchlit hall, diagonal dynamic composition, cobalt blue accents, neon cyberpunk future style'
   }
 })

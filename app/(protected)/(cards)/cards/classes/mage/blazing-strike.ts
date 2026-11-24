@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['removal'] },
   art: {
-    subject: 'Blazing Strike: a crackling bolt of energy striking a lone target, mage style'
+    subject:
+      'Blazing Strike: a single devastating impact crater with shockwaves, wreathed in roaring flames, over a stormy battlefield, centered and seen from slightly below, turquoise accents, mage style'
   }
 })

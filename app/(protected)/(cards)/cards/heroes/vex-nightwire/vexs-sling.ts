@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 5 },
   art: {
-    subject: "Vex's Sling: the legendary signature weapon of the hero, glowing, neon cyberpunk future style"
+    subject:
+      "Vex's Sling: a single sling made of carved obsidian, wrapped in swirling black smoke, on cracked stone tiles, swirling around the center, teal accents, neon cyberpunk future style"
   }
 })

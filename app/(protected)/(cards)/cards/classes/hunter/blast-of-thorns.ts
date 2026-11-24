@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['removal'] },
   art: {
-    subject: 'Blast of Thorns: a crackling bolt of energy striking a lone target, hunter style'
+    subject:
+      'Blast of Thorns: a violent explosion of energy, in a dark forest clearing, diagonal dynamic composition, ivory accents, hunter style'
   }
 })

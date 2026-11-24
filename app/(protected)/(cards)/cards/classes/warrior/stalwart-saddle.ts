@@ -16,6 +16,7 @@ export default defineCard({
   targets: ['friendlyAlly'],
   ai: { value: 4, tags: ['buff'] },
   art: {
-    subject: 'Stalwart Saddle: a glowing magical stalwart charm, warrior style'
+    subject:
+      'Stalwart Saddle: an enchanted saddle made of blue steel with silver runes, on a fur rug, swirling around the center, gold accents, warrior style'
   }
 })

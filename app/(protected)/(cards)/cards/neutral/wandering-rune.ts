@@ -16,6 +16,7 @@ export default defineCard({
   targets: ['friendlyAlly'],
   ai: { value: 4, tags: ['buff'] },
   art: {
-    subject: 'Wandering Rune: a glowing magical wandering charm, time rift wanderer style'
+    subject:
+      'Wandering Rune: an enchanted rune made of blue steel with silver runes, on a fur rug, centered and seen from slightly below, teal accents, time rift wanderer style'
   }
 })

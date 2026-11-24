@@ -26,6 +26,7 @@ export default defineCard({
   },
   ai: { value: 7, tags: ['buff', 'draw', 'tribe'] },
   art: {
-    subject: "an ancient temple seer in white robes, the tauron's prophet, mid-leap, ancient bronze-age empire style"
+    subject:
+      "Tauron's Prophet: an athletic adult woman with pale skin, chestnut hair in a topknot and a monocle, wearing a sheer veil, dressed in linen robes painted with eye symbols, pointing at the sky with a scroll, with a mischievous wink, rose pink accents, ancient bronze-age empire style"
   }
 })

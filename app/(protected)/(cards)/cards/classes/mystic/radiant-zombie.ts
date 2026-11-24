@@ -18,6 +18,7 @@ export default defineCard({
   health: 9,
   ai: { value: 3 },
   art: {
-    subject: 'an undead creature, the radiant zombie, raising its weapon, mystic healer style'
+    subject:
+      'Radiant Zombie: a zombie with pale glowing white spirit-light and exposed ribs, rearing up, magenta accents, mystic healer style'
   }
 })

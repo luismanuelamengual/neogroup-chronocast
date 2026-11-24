@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['buff', 'tribe'] },
   art: {
-    subject: 'an ancient bronze-armored soldier, the imperial charioteer, roaring, ancient bronze-age empire style'
+    subject:
+      'Imperial Charioteer: a hunched middle-aged woman with deep brown skin, a shaved head and a gap-toothed grin, wearing a crested helmet, dressed in scale armor with a purple sash, cracking a whip from a bronze chariot, with a sly grin, rose pink accents, ancient bronze-age empire style'
   }
 })

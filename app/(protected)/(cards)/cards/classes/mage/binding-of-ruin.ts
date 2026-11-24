@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['removal'] },
   art: {
-    subject: 'Binding of Ruin: glowing chains binding a struggling creature, mage style'
+    subject:
+      'Binding of Ruin: glowing chains coiling tightly around nothing, locking shut, above a calm lake at dusk, bursting toward the viewer, gold accents, mage style'
   }
 })

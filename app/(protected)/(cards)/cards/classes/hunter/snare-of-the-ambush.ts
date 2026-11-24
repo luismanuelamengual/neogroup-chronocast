@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 6, tags: ['draw', 'removal'] },
   art: {
-    subject: 'Snare of the Ambush: glowing chains binding a struggling creature, hunter style'
+    subject:
+      'Snare of the Ambush: a looped rope snare snapping shut, inside a cave of crystals, bursting toward the viewer, ivory accents, hunter style'
   }
 })

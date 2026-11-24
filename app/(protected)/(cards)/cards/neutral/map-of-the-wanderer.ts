@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['buff'] },
   art: {
-    subject: 'Map of the Wanderer: a single map of the wanderer item lying on a stone, time rift wanderer style'
+    subject:
+      'Map of the Wanderer: a small map made of crystal and silver filigree, on a mossy rock, close-up filling the frame, saffron yellow accents, time rift wanderer style'
   }
 })

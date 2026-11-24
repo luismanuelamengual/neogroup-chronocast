@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 1, tags: ['removal'] },
   art: {
-    subject: 'Weary Stasis: glowing chains binding a struggling creature, time rift wanderer style'
+    subject:
+      'Weary Stasis: a clock frozen inside a floating crystal, its hands stopped, over a stormy battlefield, dramatic backlight, lime green accents, time rift wanderer style'
   }
 })

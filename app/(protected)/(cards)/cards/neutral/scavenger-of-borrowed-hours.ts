@@ -25,6 +25,6 @@ export default defineCard({
   ai: { value: 4, tags: ['antiGear', 'draw'] },
   art: {
     subject:
-      'a time-traveling wanderer, the scavenger of borrowed hours, charging into battle, time rift wanderer style'
+      'Scavenger of Borrowed Hours: a broad-shouldered adult lizardfolk woman with light brown scales and glowing tattoos on the cheeks, wearing a wide-brimmed hat, dressed in a long ferryman cloak with tide-worn hems, carrying a sack bursting with salvaged relics, with a serene smile, gold accents, time rift wanderer style'
   }
 })

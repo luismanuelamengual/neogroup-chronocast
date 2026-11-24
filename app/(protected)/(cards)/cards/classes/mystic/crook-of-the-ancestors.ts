@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 4 },
   art: {
-    subject: 'Crook of the Ancestors: a single crook weapon floating in dramatic light, mystic healer style'
+    subject:
+      'Crook of the Ancestors: a single crook made of rough stone and sinew, radiating golden holy light, on cracked stone tiles, framed by drifting embers, lime green accents, mystic healer style'
   }
 })

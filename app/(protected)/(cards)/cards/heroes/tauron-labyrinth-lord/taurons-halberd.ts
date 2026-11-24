@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 5 },
   art: {
-    subject: "Tauron's Halberd: the legendary signature weapon of the hero, glowing, ancient bronze-age empire style"
+    subject:
+      "Tauron's Halberd: a single halberd made of polished bronze with engraved spirals, resting on a velvet cloth, centered and seen from slightly below, gold accents, ancient bronze-age empire style"
   }
 })

@@ -21,6 +21,7 @@ export default defineCard({
   },
   ai: { value: 1, tags: ['aggro', 'ramp'] },
   art: {
-    subject: 'a steampunk brass automaton, the brass steam knight, mid-leap, steampunk steam era style'
+    subject:
+      'Brass Steam Knight: a knight built of polished brass with ruby lenses, with antenna arrays, raising a mechanical arm, steampunk steam era style'
   }
 })

@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['heal'] },
   art: {
-    subject: 'an ice-age beast, the cave bear of the hunt moon, charging into battle, prehistoric jungle era style'
+    subject:
+      'Cave Bear of the Hunt Moon: a bear with golden tawny fur and battle scars, prowling low, crimson accents, prehistoric jungle era style'
   }
 })

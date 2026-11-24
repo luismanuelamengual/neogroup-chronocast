@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 5 },
   art: {
-    subject: "Varro's Glaive: the legendary signature weapon of the hero, glowing, ancient bronze-age empire style"
+    subject:
+      "Varro's Glaive: a single glaive made of white bone and leather wraps, on a pile of old coins, centered and seen from slightly below, turquoise accents, ancient bronze-age empire style"
   }
 })

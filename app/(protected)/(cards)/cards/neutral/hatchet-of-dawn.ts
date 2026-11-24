@@ -15,6 +15,7 @@ export default defineCard({
   durability: 2,
   ai: { value: 1 },
   art: {
-    subject: 'Hatchet of Dawn: a single hatchet weapon floating in dramatic light, time rift wanderer style'
+    subject:
+      'Hatchet of Dawn: a single hatchet made of carved obsidian, radiating golden holy light, floating above a marble pedestal, swirling around the center, amber accents, time rift wanderer style'
   }
 })

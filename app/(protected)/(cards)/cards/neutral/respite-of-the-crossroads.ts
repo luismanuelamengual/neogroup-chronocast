@@ -16,6 +16,7 @@ export default defineCard({
   },
   ai: { value: 1, tags: ['heal'] },
   art: {
-    subject: 'Respite of the Crossroads: warm golden light healing a wounded figure, time rift wanderer style'
+    subject:
+      'Respite of the Crossroads: a quiet campfire with a steaming kettle and bedroll, in a snowy pass, framed by drifting embers, tangerine accents, time rift wanderer style'
   }
 })

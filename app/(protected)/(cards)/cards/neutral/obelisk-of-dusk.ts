@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['defense'] },
   art: {
-    subject: 'Obelisk of Dusk: a single mysterious dusk artifact glowing on a pedestal, time rift wanderer style'
+    subject:
+      'Obelisk of Dusk: an ancient obelisk made of copper with green patina, standing in shallow water, dramatic backlight, lime green accents, time rift wanderer style'
   }
 })

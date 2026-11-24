@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['draw'] },
   art: {
-    subject: 'a time-traveling adventurer, the rift-touched squire, standing guard, time rift wanderer style'
+    subject:
+      'Rift-Touched Squire: a towering elderly dwarf woman with tan skin, salt-and-pepper hair in cornrows and a dusting of freckles, wearing a tricorn hat, dressed in a wool shawl hung with tiny bells, carrying an oversized shield, with calm focus, tangerine accents, time rift wanderer style'
   }
 })

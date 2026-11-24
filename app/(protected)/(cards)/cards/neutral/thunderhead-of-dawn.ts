@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['ramp'] },
   art: {
-    subject: 'an elemental spirit, the thunderhead of dawn, raising its weapon, time rift wanderer style'
+    subject:
+      'Thunderhead of Dawn: an elemental thunderhead with a serpent-like coil made of mossy green and grey stone, pawing the ground, time rift wanderer style'
   }
 })

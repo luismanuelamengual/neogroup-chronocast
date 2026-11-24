@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['defense'] },
   art: {
-    subject: 'Aegis of Rage: a huge shimmering shield of force, warrior style'
+    subject:
+      'Aegis of Rage: a radiant dome-shaped magical barrier, against a starry sky, swirling around the center, indigo accents, warrior style'
   }
 })

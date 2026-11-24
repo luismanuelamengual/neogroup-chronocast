@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['removal'] },
   art: {
-    subject: 'Stray Strike: a crackling bolt of energy striking a lone target, time rift wanderer style'
+    subject:
+      'Stray Strike: a single devastating impact crater with shockwaves, in a misty valley, seen from above, indigo accents, time rift wanderer style'
   }
 })

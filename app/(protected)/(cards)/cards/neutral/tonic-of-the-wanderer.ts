@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['draw', 'tribe'] },
   art: {
-    subject: 'Tonic of the Wanderer: a single tonic of the wanderer item lying on a stone, time rift wanderer style'
+    subject:
+      'Tonic of the Wanderer: a small tonic made of blackened iron with gold inlay, on a pile of old coins, swirling around the center, tangerine accents, time rift wanderer style'
   }
 })

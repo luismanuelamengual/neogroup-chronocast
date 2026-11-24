@@ -13,6 +13,7 @@ export default defineCard({
   armor: 9,
   ai: { value: 3 },
   art: {
-    subject: 'Spirit-Bound Shroud: a single piece of armor on a stand, mystic healer style'
+    subject:
+      'Spirit-Bound Shroud: a single shroud made of rough stone and sinew, on cracked stone tiles, dramatic backlight, tangerine accents, mystic healer style'
   }
 })

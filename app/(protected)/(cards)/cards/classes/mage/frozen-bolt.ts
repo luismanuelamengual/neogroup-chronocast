@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['removal'] },
   art: {
-    subject: 'Frozen Bolt: a crackling bolt of energy striking a lone target, mage style'
+    subject:
+      'Frozen Bolt: a crackling bolt of energy streaking forward, covered in frost and ice crystals, in a misty valley, centered and seen from slightly below, rose pink accents, mage style'
   }
 })

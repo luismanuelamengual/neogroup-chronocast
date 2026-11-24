@@ -13,6 +13,7 @@ export default defineCard({
   armor: 9,
   ai: { value: 3 },
   art: {
-    subject: 'Plate of Steel: a single piece of armor on a stand, warrior style'
+    subject:
+      'Plate of Steel: a single plate made of pale ash wood wrapped in red cloth, on a worn wooden table, framed by drifting embers, crimson accents, warrior style'
   }
 })

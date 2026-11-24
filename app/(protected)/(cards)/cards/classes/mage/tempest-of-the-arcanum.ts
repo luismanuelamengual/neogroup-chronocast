@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 6, tags: ['removal'] },
   art: {
-    subject: 'Tempest of the Arcanum: a wave of destruction sweeping across a battlefield, mage style'
+    subject:
+      'Tempest of the Arcanum: a towering storm of wind and lightning, swept by a spiraling gust with leaves, over rooftops at night, framed by drifting embers, violet accents, mage style'
   }
 })

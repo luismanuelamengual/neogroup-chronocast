@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 5 },
   art: {
-    subject: "Ooma's Banner: a sacred relic of the hero glowing on an altar, prehistoric jungle era style"
+    subject:
+      "Ooma's Banner: an ancient banner made of crystal and silver filigree, standing on a windy cliff, swirling around the center, indigo accents, prehistoric jungle era style"
   }
 })

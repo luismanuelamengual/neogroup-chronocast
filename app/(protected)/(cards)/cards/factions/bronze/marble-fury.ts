@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['buff'] },
   art: {
-    subject: 'Marble Fury: a warrior surrounded by a surging aura of power, ancient bronze-age empire style'
+    subject:
+      'Marble Fury: a roaring red storm of rage swirling around a cracked war axe, over a desert of red dunes, diagonal dynamic composition, amber accents, ancient bronze-age empire style'
   }
 })

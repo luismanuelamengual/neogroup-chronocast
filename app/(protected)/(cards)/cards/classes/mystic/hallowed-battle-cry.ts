@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['buff'] },
   art: {
-    subject: 'Hallowed Battle Cry: a warrior surrounded by a surging aura of power, mystic healer style'
+    subject:
+      'Hallowed Battle Cry: a visible shockwave of sound blasting across a battlefield, over rooftops at night, centered and seen from slightly below, cobalt blue accents, mystic healer style'
   }
 })

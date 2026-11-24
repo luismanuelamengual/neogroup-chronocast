@@ -13,6 +13,7 @@ export default defineCard({
   armor: 3,
   ai: { value: 1 },
   art: {
-    subject: 'Keen-Eyed Hide: a single piece of armor on a stand, hunter style'
+    subject:
+      'Keen-Eyed Hide: a single hide made of rusted iron and chains, on a worn wooden table, centered and seen from slightly below, emerald accents, hunter style'
   }
 })

@@ -26,6 +26,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['defense', 'draw', 'tribe'] },
   art: {
-    subject: 'a steampunk flying machine, the airship of brass, glaring at the viewer, steampunk steam era style'
+    subject:
+      'Airship of Brass: an airship built of bronze with steam vents, with a ticking clock face on its chest, firing steam, steampunk steam era style'
   }
 })

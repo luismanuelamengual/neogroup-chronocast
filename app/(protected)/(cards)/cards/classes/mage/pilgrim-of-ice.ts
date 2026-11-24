@@ -34,6 +34,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['ability', 'energy', 'removal'] },
   art: {
-    subject: 'a time-traveling adventurer, the pilgrim of ice, lunging forward, mage style'
+    subject:
+      'Pilgrim of Ice: a barrel-chested adult elf man with warm beige skin, snow-white hair in a single long braid and a gap-toothed grin, wearing a straw hat, dressed in a colonial explorer jacket covered in pockets, holding prayer beads and a staff, with a sly grin, amber accents, mage style'
   }
 })

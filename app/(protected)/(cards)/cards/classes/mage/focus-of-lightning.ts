@@ -16,6 +16,7 @@ export default defineCard({
   durability: 2,
   ai: { value: 2 },
   art: {
-    subject: 'Focus of Lightning: a single focus weapon floating in dramatic light, mage style'
+    subject:
+      'Focus of Lightning: a single focus made of blackened iron with gold inlay, crackling with forked lightning, stuck in the sand, seen from above, lime green accents, mage style'
   }
 })

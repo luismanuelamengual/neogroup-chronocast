@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['draw'] },
   art: {
-    subject: 'a cyberpunk street criminal, the encrypted street samurai, lunging forward, neon cyberpunk future style'
+    subject:
+      'Encrypted Street Samurai: a petite middle-aged man with light brown skin, acid green hair spiky, a braided beard and a jeweled brow piercing, dressed in a sleeveless kevlar vest with chrome pauldrons, drawing a glowing katana, with calm focus, teal accents, neon cyberpunk future style'
   }
 })

@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 6, tags: ['draw'] },
   art: {
-    subject: 'a time-traveling adventurer, the brave squire, crouching, ready to strike, warrior style'
+    subject:
+      'Brave Squire: a lanky elderly goblin woman with salt-and-pepper hair in thick dreadlocks and sharp cheekbones, wearing a tricorn hat, dressed in a pirate greatcoat with clock-face buttons, carrying an oversized shield, with a confident smirk, turquoise accents, warrior style'
   }
 })

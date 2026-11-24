@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['summon'] },
   art: {
-    subject: 'a time-traveling adventurer, the old cartographer, charging into battle, time rift wanderer style'
+    subject:
+      'Old Cartographer: a plump adult catfolk man with platinum blond hair long and straight, a forked beard and a gap-toothed grin, dressed in a monk robe with a futuristic utility belt, unrolling a living map of shifting lands, with grim determination, emerald accents, time rift wanderer style'
   }
 })

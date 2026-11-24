@@ -21,6 +21,6 @@ export default defineCard({
   ai: { value: 3, tags: ['draw', 'tribe'] },
   art: {
     subject:
-      'an ancient temple seer in white robes, the devout haruspex, crouching, ready to strike, mystic healer style'
+      'Devout Haruspex: a muscular middle-aged woman with sun-weathered bronze skin, jet black hair spiky and a scar across one eye, wearing a golden diadem, dressed in a sea-green himation with pearl strands, reading signs in a golden bowl, with grim determination, tangerine accents, mystic healer style'
   }
 })

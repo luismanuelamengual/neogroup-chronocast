@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 5 },
   art: {
-    subject: "Kade's Cleaver: the legendary signature weapon of the hero, glowing, neon cyberpunk future style"
+    subject:
+      "Kade's Cleaver: a single cleaver made of ivory and jade, in a beam of light from above, diagonal dynamic composition, amber accents, neon cyberpunk future style"
   }
 })

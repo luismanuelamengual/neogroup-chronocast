@@ -16,6 +16,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['summon'] },
   art: {
-    subject: 'Tracking Horn: a glowing portal with a creature stepping through, hunter style'
+    subject:
+      'Tracking Horn: a great war horn sounding a visible blast of sound, above a calm lake at dusk, framed by drifting embers, amber accents, hunter style'
   }
 })

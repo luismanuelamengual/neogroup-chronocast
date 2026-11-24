@@ -17,6 +17,6 @@ export default defineCard({
   ai: { value: 2 },
   art: {
     subject:
-      'an ancient bronze-armored soldier, the loyal charioteer, glaring at the viewer, ancient bronze-age empire style'
+      'Loyal Charioteer: a willowy middle-aged man with light brown skin, platinum blond hair in cornrows, heavy stubble and a beauty mark, wearing a plumed Greek helmet, dressed in a Greek hoplite panoply with a horsehair crest, cracking a whip from a bronze chariot, with a mischievous wink, amber accents, ancient bronze-age empire style'
   }
 })

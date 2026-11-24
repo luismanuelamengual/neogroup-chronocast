@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 5 },
   art: {
-    subject: "Queen Static's Blowgun: the legendary signature weapon of the hero, glowing, neon cyberpunk future style"
+    subject:
+      "Queen Static's Blowgun: a single blowgun made of blue steel with silver runes, crackling with forked lightning, on a worn wooden table, dramatic backlight, saffron yellow accents, neon cyberpunk future style"
   }
 })

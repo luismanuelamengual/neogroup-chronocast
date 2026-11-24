@@ -21,6 +21,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['removal'] },
   art: {
-    subject: 'a dragon-kin creature, the starlit dragon, standing guard, medieval magic order style'
+    subject:
+      'Starlit Dragon: a dragon with sapphire scales and a crown of horns, standing proud on a rock, amber accents, medieval magic order style'
   }
 })

@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 6, tags: ['antiGear'] },
   art: {
-    subject: 'an elemental spirit, the bold gust, lunging forward, time rift wanderer style'
+    subject:
+      'Bold Gust: an elemental gust with a serpent-like coil made of ember red sparks, mid-stride, time rift wanderer style'
   }
 })

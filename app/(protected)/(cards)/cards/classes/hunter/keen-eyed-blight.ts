@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['removal'] },
   art: {
-    subject: 'Keen-Eyed Blight: a dripping vial of green venom, hunter style'
+    subject:
+      'Keen-Eyed Blight: withered black thorns spreading over dead leaves, in a misty valley, bursting toward the viewer, crimson accents, hunter style'
   }
 })

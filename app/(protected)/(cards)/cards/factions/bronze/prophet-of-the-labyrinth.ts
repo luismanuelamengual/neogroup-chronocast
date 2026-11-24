@@ -32,6 +32,6 @@ export default defineCard({
   ai: { value: 5, tags: ['ability', 'defense', 'energy'] },
   art: {
     subject:
-      'an ancient temple seer in white robes, the prophet of the labyrinth, standing guard, ancient bronze-age empire style'
+      'Prophet of the Labyrinth: a towering elderly woman with golden skin, silver hair in short curls and a beaded chin piercing, wearing a golden diadem, dressed in linen robes painted with eye symbols, pointing at the sky with a scroll, with a booming laugh, teal accents, ancient bronze-age empire style'
   }
 })

@@ -21,6 +21,7 @@ export default defineCard({
   },
   ai: { value: 6, tags: ['buff'] },
   art: {
-    subject: 'a cyberpunk street criminal, the unbroken hitman, raising its weapon, warrior style'
+    subject:
+      'Unbroken Hitman: a hunched young woman with tan skin, ultraviolet hair with a side-swept fringe and an eyepatch, wearing a tinted visor, dressed in a sleeveless kevlar vest with chrome pauldrons, holding a silenced pistol, with a haunted stare, indigo accents, warrior style'
   }
 })

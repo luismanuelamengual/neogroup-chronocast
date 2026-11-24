@@ -21,6 +21,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['heal'] },
   art: {
-    subject: 'an ice-age beast, the tar-soaked sabertooth, raising its weapon, prehistoric jungle era style'
+    subject:
+      'Tar-Soaked Sabertooth: a sabertooth with sandy fur with dark mane and a hump of fat, sniffing the air, ivory accents, prehistoric jungle era style'
   }
 })

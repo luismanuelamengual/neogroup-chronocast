@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['aggro'] },
   art: {
-    subject: 'Furious Banner: a single mysterious banner artifact glowing on a pedestal, warrior style'
+    subject:
+      'Furious Banner: an ancient banner made of blackened iron with gold inlay, standing in a ruined temple, framed by drifting embers, amber accents, warrior style'
   }
 })

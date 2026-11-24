@@ -21,6 +21,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['draw'] },
   art: {
-    subject: 'a medieval spellcaster, the enchantress of the tower, roaring, medieval magic order style'
+    subject:
+      'Enchantress of the Tower: a hunched young dwarf woman with dark ebony skin, sandy hair in a tall mohawk and sharp cheekbones, wearing a pointed hat, dressed in a crimson mantle with ember-edged sleeves, weaving threads of light between the fingers, with a mischievous wink, violet accents, medieval magic order style'
   }
 })

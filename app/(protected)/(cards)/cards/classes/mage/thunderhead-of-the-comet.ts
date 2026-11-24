@@ -33,6 +33,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['ability', 'buff', 'energy', 'tribe'] },
   art: {
-    subject: 'an elemental spirit, the thunderhead of the comet, charging into battle, mage style'
+    subject:
+      'Thunderhead of the Comet: an elemental thunderhead with a crouching wolf shape made of swirling sand gold, standing proud on a rock, mage style'
   }
 })

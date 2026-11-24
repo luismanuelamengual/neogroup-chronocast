@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['aggro', 'tribe'] },
   art: {
-    subject: 'an undead creature, the hallowed revenant, charging into battle, mystic healer style'
+    subject:
+      'Hallowed Revenant: a revenant with mummified bandages and candles stuck in its shoulders, sniffing the air, crimson accents, mystic healer style'
   }
 })

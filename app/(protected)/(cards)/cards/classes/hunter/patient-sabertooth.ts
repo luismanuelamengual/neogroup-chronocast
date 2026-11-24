@@ -23,6 +23,7 @@ export default defineCard({
   },
   ai: { value: 9, tags: ['removal', 'summon'] },
   art: {
-    subject: 'an ice-age beast, the patient sabertooth, roaring, hunter style'
+    subject:
+      'Patient Sabertooth: a sabertooth with shaggy russet fur and a bone collar, baring its teeth, crimson accents, hunter style'
   }
 })

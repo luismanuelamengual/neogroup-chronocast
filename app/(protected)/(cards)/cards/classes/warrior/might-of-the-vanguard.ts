@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['buff'] },
   art: {
-    subject: 'Might of the Vanguard: a warrior surrounded by a surging aura of power, warrior style'
+    subject:
+      'Might of the Vanguard: a huge glowing fist-shaped aura of raw power, in a sunlit meadow, centered and seen from slightly below, saffron yellow accents, warrior style'
   }
 })

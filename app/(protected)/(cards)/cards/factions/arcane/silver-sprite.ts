@@ -17,6 +17,7 @@ export default defineCard({
   health: 16,
   ai: { value: 6 },
   art: {
-    subject: 'a fairy-tale fae creature, the silver sprite, standing guard, medieval magic order style'
+    subject:
+      'Silver Sprite: a sprite with lilac skin and silver hair and a crown of mushrooms, roaring with jaws wide open, emerald accents, medieval magic order style'
   }
 })

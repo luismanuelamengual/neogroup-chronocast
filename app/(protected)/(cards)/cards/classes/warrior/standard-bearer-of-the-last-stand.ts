@@ -21,6 +21,6 @@ export default defineCard({
   ai: { value: 4, tags: ['buff'] },
   art: {
     subject:
-      'an ancient bronze-armored soldier, the standard-bearer of the last stand, charging into battle, warrior style'
+      'Standard-Bearer of the Last Stand: a willowy adult woman with light brown skin, blue-black hair in a wild mane and heavy golden earrings, dressed in chain mail with a lion pelt, raising an eagle standard, with a serene smile, tangerine accents, warrior style'
   }
 })

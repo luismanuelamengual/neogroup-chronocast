@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['removal'] },
   art: {
-    subject: 'Sting of the Silent Trail: a dripping vial of green venom, hunter style'
+    subject:
+      'Sting of the Silent Trail: a giant venomous stinger dripping poison, in a misty valley, centered and seen from slightly below, rose pink accents, hunter style'
   }
 })

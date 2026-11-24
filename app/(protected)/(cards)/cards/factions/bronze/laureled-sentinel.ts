@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['draw', 'tribe'] },
   art: {
-    subject: 'a mythic ancient creature, the laureled sentinel, lunging forward, ancient bronze-age empire style'
+    subject:
+      'Laureled Sentinel: a sentinel with marble-white skin and a bronze shield strapped to it, mid-stride, magenta accents, ancient bronze-age empire style'
   }
 })

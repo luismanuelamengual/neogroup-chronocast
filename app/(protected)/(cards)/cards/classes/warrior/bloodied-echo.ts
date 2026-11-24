@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['revive'] },
   art: {
-    subject: 'Bloodied Echo: a ghostly figure rising from a grave in green light, warrior style'
+    subject:
+      'Bloodied Echo: rippling translucent copies of a bell fading into the distance, against a starry sky, bursting toward the viewer, turquoise accents, warrior style'
   }
 })

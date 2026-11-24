@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['antiGear'] },
   art: {
-    subject: 'a steampunk inventor with goggles, the foreman of gears, raising its weapon, steampunk steam era style'
+    subject:
+      'Foreman of Gears: a hunched elderly gnome woman with ruddy skin, charcoal grey hair in an undercut and a crooked broken nose, dressed in a brass-buttoned tailcoat with rolled sleeves, holding a small caged light, bracing for impact, with calm focus, violet accents, steampunk steam era style'
   }
 })

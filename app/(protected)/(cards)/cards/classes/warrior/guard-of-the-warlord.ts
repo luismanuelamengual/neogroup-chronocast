@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['defense', 'draw'] },
   art: {
-    subject: 'Guard of the Warlord: a huge shimmering shield of force, warrior style'
+    subject:
+      'Guard of the Warlord: a towering tower shield standing alone, over rooftops at night, centered and seen from slightly below, violet accents, warrior style'
   }
 })

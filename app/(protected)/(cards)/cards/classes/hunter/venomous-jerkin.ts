@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 3 },
   art: {
-    subject: 'Venomous Jerkin: a single piece of armor on a stand, hunter style'
+    subject:
+      'Venomous Jerkin: a single jerkin made of white bone and leather wraps, leaning against a ruined wall, diagonal dynamic composition, lime green accents, hunter style'
   }
 })

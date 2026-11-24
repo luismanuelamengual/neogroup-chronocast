@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['removal'] },
   art: {
-    subject: 'Lantern of Flame: a single mysterious flame artifact glowing on a pedestal, mage style'
+    subject:
+      'Lantern of Flame: an ancient lantern made of crystal and silver filigree, wreathed in roaring flames, standing among ancient trees, swirling around the center, scarlet accents, mage style'
   }
 })

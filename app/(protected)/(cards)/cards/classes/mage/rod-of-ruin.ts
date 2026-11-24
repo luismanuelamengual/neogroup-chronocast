@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 5 },
   art: {
-    subject: 'Rod of Ruin: a single rod weapon floating in dramatic light, mage style'
+    subject:
+      'Rod of Ruin: a single rod made of dark yew wood and brass fittings, in a beam of light from above, swirling around the center, amber accents, mage style'
   }
 })

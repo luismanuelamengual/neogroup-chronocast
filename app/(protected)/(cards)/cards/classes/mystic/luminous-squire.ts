@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['revive'] },
   art: {
-    subject: 'a time-traveling adventurer, the luminous squire, charging into battle, mystic healer style'
+    subject:
+      'Luminous Squire: an athletic middle-aged orc man with platinum blond hair in long braids, a braided beard and a beaded chin piercing, wearing a beaded headband, dressed in a Roman toga under a leather bomber jacket, carrying an oversized shield, with a fierce scowl, lime green accents, mystic healer style'
   }
 })

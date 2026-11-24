@@ -20,6 +20,6 @@ export default defineCard({
   ai: { value: 5 },
   art: {
     subject:
-      "Ada's Strike: the signature spell of the hero, a devastating blast of clockwork energy, steampunk steam era style"
+      "Ada's Strike: a single devastating impact crater with shockwaves, against a starry sky, framed by drifting embers, amber accents, steampunk steam era style"
   }
 })

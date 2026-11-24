@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['buff'] },
   art: {
-    subject: 'Rally of the Volcano: a warrior surrounded by a surging aura of power, prehistoric jungle era style'
+    subject:
+      'Rally of the Volcano: a tattered war banner planted in the ground, glowing with rallying light, over a desert of red dunes, diagonal dynamic composition, tangerine accents, prehistoric jungle era style'
   }
 })

@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 4 },
   art: {
-    subject: 'Pickaxe of Borrowed Hours: a single pickaxe weapon floating in dramatic light, time rift wanderer style'
+    subject:
+      'Pickaxe of Borrowed Hours: a single pickaxe made of chrome with neon light strips, surrounded by floating clock hands and glowing sand, on a fur rug, close-up filling the frame, gold accents, time rift wanderer style'
   }
 })

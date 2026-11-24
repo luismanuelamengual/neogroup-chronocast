@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['removal'] },
   art: {
-    subject: 'Hungry Banner: a single mysterious banner artifact glowing on a pedestal, prehistoric jungle era style'
+    subject:
+      'Hungry Banner: an ancient banner made of rough stone and sinew, covered in frost and ice crystals, standing in a misty clearing, centered and seen from slightly below, magenta accents, prehistoric jungle era style'
   }
 })

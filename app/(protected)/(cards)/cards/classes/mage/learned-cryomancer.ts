@@ -21,6 +21,7 @@ export default defineCard({
   },
   ai: { value: 6, tags: ['removal'] },
   art: {
-    subject: 'a medieval spellcaster, the learned cryomancer, lunging forward, mage style'
+    subject:
+      'Learned Cryomancer: a petite adult man with pale skin, auburn hair in short curls, a forked beard and round spectacles, wearing a thin silver circlet, dressed in a scholar coat with ink-stained cuffs, forming a shard of ice, with a fierce scowl, saffron yellow accents, mage style'
   }
 })

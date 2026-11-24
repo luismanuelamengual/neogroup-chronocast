@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 4 },
   art: {
-    subject: 'Lantern Staff of Mercy: a single lantern staff weapon floating in dramatic light, mystic healer style'
+    subject:
+      'Lantern Staff of Mercy: a single staff made of blackened iron with gold inlay, half buried in snow, diagonal dynamic composition, tangerine accents, mystic healer style'
   }
 })

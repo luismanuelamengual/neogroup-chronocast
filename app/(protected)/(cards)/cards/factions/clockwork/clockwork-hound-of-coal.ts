@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['defense'] },
   art: {
-    subject: 'a steampunk brass automaton, the clockwork hound of coal, raising its weapon, steampunk steam era style'
+    subject:
+      'Clockwork Hound of Coal: a hound built of gunmetal with orange hazard stripes, with segmented spider legs, standing guard, steampunk steam era style'
   }
 })

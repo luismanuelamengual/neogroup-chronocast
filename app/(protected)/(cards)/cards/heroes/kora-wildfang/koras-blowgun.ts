@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 5 },
   art: {
-    subject: "Kora's Blowgun: the legendary signature weapon of the hero, glowing, prehistoric jungle era style"
+    subject:
+      "Kora's Blowgun: a single blowgun made of pale ash wood wrapped in red cloth, swept by a spiraling gust with leaves, on cracked stone tiles, close-up filling the frame, emerald accents, prehistoric jungle era style"
   }
 })

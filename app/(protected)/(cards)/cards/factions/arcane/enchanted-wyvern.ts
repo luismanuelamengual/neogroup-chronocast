@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['draw'] },
   art: {
-    subject: 'a dragon-kin creature, the enchanted wyvern, mid-leap, medieval magic order style'
+    subject:
+      'Enchanted Wyvern: a wyvern with bronze scales and membranous wings spread wide, mid-stride, crimson accents, medieval magic order style'
   }
 })

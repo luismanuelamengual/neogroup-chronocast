@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['draw'] },
   art: {
-    subject: 'a time-traveling adventurer, the weary merchant, mid-leap, time rift wanderer style'
+    subject:
+      'Weary Merchant: a towering adult woman with freckled fair skin, blue-black hair in a high ponytail and war paint stripes, wearing a straw hat, dressed in a monk robe with a futuristic utility belt, balancing a scale heaped with glowing trinkets, with wide-eyed wonder, ivory accents, time rift wanderer style'
   }
 })

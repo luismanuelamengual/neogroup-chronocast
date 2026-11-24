@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 7, tags: ['draw', 'removal', 'revive'] },
   art: {
-    subject: 'an ancient black book with a cover made of void crystal, its pages showing the end of every era'
+    subject:
+      'Tome of Endings: a small tome made of dark yew wood and brass fittings, wrapped in swirling black smoke, on a fur rug, bursting toward the viewer, teal accents'
   }
 })

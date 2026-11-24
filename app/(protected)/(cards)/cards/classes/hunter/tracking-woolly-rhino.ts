@@ -21,6 +21,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['heal'] },
   art: {
-    subject: 'an ice-age beast, the tracking woolly rhino, mid-leap, hunter style'
+    subject:
+      'Tracking Woolly Rhino: a rhino with grey-brown fur dusted with frost and huge curved tusks, roaring with jaws wide open, emerald accents, hunter style'
   }
 })

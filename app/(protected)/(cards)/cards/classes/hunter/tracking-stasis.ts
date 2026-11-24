@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 1, tags: ['removal'] },
   art: {
-    subject: 'Tracking Stasis: glowing chains binding a struggling creature, hunter style'
+    subject:
+      'Tracking Stasis: a clock frozen inside a floating crystal, its hands stopped, above a calm lake at dusk, close-up filling the frame, turquoise accents, hunter style'
   }
 })

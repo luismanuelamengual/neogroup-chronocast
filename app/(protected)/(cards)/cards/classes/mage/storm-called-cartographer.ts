@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['removal'] },
   art: {
-    subject: 'a time-traveling adventurer, the storm-called cartographer, crouching, ready to strike, mage style'
+    subject:
+      'Storm-Called Cartographer: a stocky elderly orc woman with silver hair in a sharp bob and a crooked broken nose, wearing a beaded headband, dressed in a long ferryman cloak with tide-worn hems, unrolling a living map of shifting lands, with a booming laugh, violet accents, mage style'
   }
 })

@@ -19,6 +19,6 @@ export default defineCard({
   ai: { value: 3, tags: ['heal'] },
   art: {
     subject:
-      'Sundial of the Last Hour: a single mysterious hour artifact glowing on a pedestal, dark end-of-time void style'
+      'Sundial of the Last Hour: an ancient sundial made of rusted iron and chains, standing on a floating rock, centered and seen from slightly below, tangerine accents, dark end-of-time void style'
   }
 })

@@ -16,6 +16,7 @@ export default defineCard({
   durability: 2,
   ai: { value: 2 },
   art: {
-    subject: 'Spirit-Bound Bell: a single bell weapon floating in dramatic light, mystic healer style'
+    subject:
+      'Spirit-Bound Bell: a single bell made of carved obsidian, surrounded by rippling sound waves, on a mossy rock, swirling around the center, amber accents, mystic healer style'
   }
 })

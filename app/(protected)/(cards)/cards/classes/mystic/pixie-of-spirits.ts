@@ -23,6 +23,7 @@ export default defineCard({
   },
   ai: { value: 1, tags: ['aggro', 'tribe'] },
   art: {
-    subject: 'a fairy-tale fae creature, the pixie of spirits, lunging forward, mystic healer style'
+    subject:
+      'Pixie of Spirits: a pixie with bark-brown skin with leafy hair and antlers with blossoms, leaping forward, tangerine accents, mystic healer style'
   }
 })

@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['trap'] },
   art: {
-    subject: 'Unyielding Trap: a hidden trap about to spring, ancient bronze-age empire style'
+    subject:
+      'Unyielding Trap: a rusty iron jaw trap half buried in sand, radiating golden holy light, framed by drifting embers, gold accents, ancient bronze-age empire style'
   }
 })

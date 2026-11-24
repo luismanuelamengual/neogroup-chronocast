@@ -15,6 +15,7 @@ export default defineCard({
   health: 10,
   ai: { value: 3 },
   art: {
-    subject: 'a cyberpunk street criminal, the neon thug, lunging forward, neon cyberpunk future style'
+    subject:
+      'Neon Thug: a petite middle-aged android man with a smooth metal scalp, a forked beard and a tattooed neck, dressed in a sharp black suit with neon tie, cracking brass knuckles, with a booming laugh, scarlet accents, neon cyberpunk future style'
   }
 })

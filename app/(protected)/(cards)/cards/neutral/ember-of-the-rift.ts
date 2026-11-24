@@ -23,6 +23,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['antiGear'] },
   art: {
-    subject: 'an elemental spirit, the ember of the rift, glaring at the viewer, time rift wanderer style'
+    subject:
+      'Ember of the Rift: an elemental ember with a jagged crystal body made of pale turquoise rift light, roaring with jaws wide open, time rift wanderer style'
   }
 })

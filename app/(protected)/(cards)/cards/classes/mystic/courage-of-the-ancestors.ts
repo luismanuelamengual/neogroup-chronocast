@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['buff'] },
   art: {
-    subject: 'Courage of the Ancestors: a warrior surrounded by a surging aura of power, mystic healer style'
+    subject:
+      'Courage of the Ancestors: a lion-head emblem blazing with golden light, over a stormy battlefield, seen from above, tangerine accents, mystic healer style'
   }
 })

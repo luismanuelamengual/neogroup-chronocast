@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['trap'] },
   art: {
-    subject: 'Pit of Spirits: a hidden spirits about to spring, mystic healer style'
+    subject:
+      'Pit of Spirits: a camouflaged pit with sharpened stakes, radiating golden holy light, swirling around the center, indigo accents, mystic healer style'
   }
 })

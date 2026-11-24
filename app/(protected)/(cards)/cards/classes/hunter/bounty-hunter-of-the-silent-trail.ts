@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['removal'] },
   art: {
-    subject: 'a time-traveling adventurer, the bounty hunter of the silent trail, roaring, hunter style'
+    subject:
+      'Bounty Hunter of the Silent Trail: a towering adult owlfolk woman with sandy feathers and a jeweled brow piercing, dressed in a 1920s pinstripe suit with a tattered cape, holding a wanted poster and a coiled lasso, with a confident smirk, amber accents, hunter style'
   }
 })

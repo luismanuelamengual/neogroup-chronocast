@@ -14,6 +14,7 @@ export default defineCard({
   durability: 2,
   ai: { value: 2 },
   art: {
-    subject: 'Cleaver of Valor: a single cleaver weapon floating in dramatic light, warrior style'
+    subject:
+      'Cleaver of Valor: a single cleaver made of white bone and leather wraps, leaning against a ruined wall, close-up filling the frame, scarlet accents, warrior style'
   }
 })

@@ -22,6 +22,6 @@ export default defineCard({
   ai: { value: 4, tags: ['buff', 'tribe'] },
   art: {
     subject:
-      'a prehistoric tribe warrior in furs and bone ornaments, the scarred cave painter, standing guard, prehistoric jungle era style'
+      'Scarred Cave Painter: a stocky elderly neanderthal man with sun-weathered bronze skin, a shaved head, a braided beard and a dusting of freckles, wearing feathers tied in the hair, dressed in a hide tunic with antler toggles, painting glowing handprints on rock, with a haunted stare, rose pink accents, prehistoric jungle era style'
   }
 })

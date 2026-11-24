@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 1, tags: ['buff'] },
   art: {
-    subject: 'a time-traveling adventurer, the armored fortune teller, standing guard, warrior style'
+    subject:
+      'Armored Fortune Teller: a towering young elf woman with tan skin, honey blond hair in a tall mohawk and heterochromatic eyes, wearing a bowler hat, dressed in desert robes with an aviator scarf, holding a crystal ball swirling with images, with a booming laugh, teal accents, warrior style'
   }
 })

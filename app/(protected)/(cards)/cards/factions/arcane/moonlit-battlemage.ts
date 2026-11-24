@@ -22,6 +22,7 @@ export default defineCard({
   },
   ai: { value: 1, tags: ['aggro', 'heal'] },
   art: {
-    subject: 'a medieval spellcaster, the moonlit battlemage, lunging forward, medieval magic order style'
+    subject:
+      'Moonlit Battlemage: a plump elderly half-orc man with light brown skin, silver hair in a messy bun and a scar across one eye, wearing a deep hood, dressed in layered emerald robes with a book chained to the belt, gripping a well-worn weapon, crouched low, with grim determination, tangerine accents, medieval magic order style'
   }
 })

@@ -21,6 +21,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['heal'] },
   art: {
-    subject: 'an ancient temple seer in white robes, the dreaming seer, raising its weapon, mystic healer style'
+    subject:
+      'Dreaming Seer: a broad-shouldered elderly man with pale skin, silver hair in a sharp bob, heavy stubble and a dusting of freckles, wearing a laurel wreath, dressed in linen robes painted with eye symbols, gazing into a bowl of water, with a fierce scowl, teal accents, mystic healer style'
   }
 })

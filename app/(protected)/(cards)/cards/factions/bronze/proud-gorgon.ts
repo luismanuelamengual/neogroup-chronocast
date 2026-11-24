@@ -25,6 +25,7 @@ export default defineCard({
   },
   ai: { value: 7, tags: ['defense', 'summon'] },
   art: {
-    subject: 'a mythic ancient creature, the proud gorgon, roaring, ancient bronze-age empire style'
+    subject:
+      'Proud Gorgon: a gorgon with sea-green scales and laurel leaves tangled in it, charging head-on, gold accents, ancient bronze-age empire style'
   }
 })

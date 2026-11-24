@@ -16,6 +16,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['draw'] },
   art: {
-    subject: 'Brave Secret: glowing cards and runes swirling out of an open book, warrior style'
+    subject:
+      'Brave Secret: a sealed envelope with a glowing wax seal, half hidden in shadow, against a starry sky, framed by drifting embers, cobalt blue accents, warrior style'
   }
 })

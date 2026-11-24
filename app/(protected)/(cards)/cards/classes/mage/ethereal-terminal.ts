@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['heal'] },
   art: {
-    subject: 'Ethereal Terminal: a single mysterious terminal artifact glowing on a pedestal, mage style'
+    subject:
+      'Ethereal Terminal: an ancient terminal made of ivory and jade, standing on a floating rock, swirling around the center, gold accents, mage style'
   }
 })

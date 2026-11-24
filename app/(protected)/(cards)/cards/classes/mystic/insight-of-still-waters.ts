@@ -16,6 +16,7 @@ export default defineCard({
   },
   ai: { value: 1, tags: ['draw'] },
   art: {
-    subject: 'Insight of Still Waters: glowing cards and runes swirling out of an open book, mystic healer style'
+    subject:
+      'Insight of Still Waters: a giant glowing eye opening in the sky, over rooftops at night, swirling around the center, magenta accents, mystic healer style'
   }
 })

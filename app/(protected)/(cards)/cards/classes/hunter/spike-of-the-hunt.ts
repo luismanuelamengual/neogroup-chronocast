@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 1, tags: ['removal'] },
   art: {
-    subject: 'Spike of the Hunt: a crackling bolt of energy striking a lone target, hunter style'
+    subject:
+      'Spike of the Hunt: a giant jagged spike bursting up from cracked ground, in a ruined temple, swirling around the center, saffron yellow accents, hunter style'
   }
 })

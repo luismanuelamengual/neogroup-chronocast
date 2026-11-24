@@ -15,6 +15,7 @@ export default defineCard({
   durability: 3,
   ai: { value: 4 },
   art: {
-    subject: 'Harpoon of the Ambush: a single harpoon weapon floating in dramatic light, hunter style'
+    subject:
+      'Harpoon of the Ambush: a single harpoon made of crystal and silver filigree, leaning against a ruined wall, centered and seen from slightly below, magenta accents, hunter style'
   }
 })

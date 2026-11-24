@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 1, tags: ['ramp'] },
   art: {
-    subject: 'Timeless Tick: a giant hourglass with sand flowing upward, time rift wanderer style'
+    subject:
+      'Timeless Tick: a pocket watch mid-tick with glowing gears exploding outward, over a stormy battlefield, dramatic backlight, saffron yellow accents, time rift wanderer style'
   }
 })

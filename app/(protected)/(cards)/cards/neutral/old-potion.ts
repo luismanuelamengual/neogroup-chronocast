@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['removal'] },
   art: {
-    subject: 'Old Potion: a single old potion item lying on a stone, time rift wanderer style'
+    subject:
+      'Old Potion: a small potion made of blackened iron with gold inlay, resting on a velvet cloth, framed by drifting embers, amber accents, time rift wanderer style'
   }
 })

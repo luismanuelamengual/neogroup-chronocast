@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['buff'] },
   art: {
-    subject: 'Stalwart Battle Cry: a warrior surrounded by a surging aura of power, warrior style'
+    subject:
+      'Stalwart Battle Cry: a visible shockwave of sound blasting across a battlefield, over a desert of red dunes, framed by drifting embers, violet accents, warrior style'
   }
 })

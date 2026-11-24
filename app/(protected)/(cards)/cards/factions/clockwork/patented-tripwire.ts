@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['trap'] },
   art: {
-    subject: 'Patented Tripwire: a hidden tripwire about to spring, steampunk steam era style'
+    subject:
+      'Patented Tripwire: a thin glinting tripwire stretched low between rocks, seen from above, emerald accents, steampunk steam era style'
   }
 })

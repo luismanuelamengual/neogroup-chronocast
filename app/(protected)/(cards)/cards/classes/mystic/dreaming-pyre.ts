@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['removal'] },
   art: {
-    subject: 'Dreaming Pyre: a roaring ball of fire, mystic healer style'
+    subject:
+      'Dreaming Pyre: a roaring funeral pyre of tall flames, in a dark forest clearing, bursting toward the viewer, turquoise accents, mystic healer style'
   }
 })

@@ -15,6 +15,7 @@ export default defineCard({
   targets: ['friendlyAlly'],
   ai: { value: 3, tags: ['buff'] },
   art: {
-    subject: 'Serene Rune: a glowing magical serene charm, mystic healer style'
+    subject:
+      'Serene Rune: an enchanted rune made of white bone and leather wraps, leaning against a ruined wall, framed by drifting embers, violet accents, mystic healer style'
   }
 })

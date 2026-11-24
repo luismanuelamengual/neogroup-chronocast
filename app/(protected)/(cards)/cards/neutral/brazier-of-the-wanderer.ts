@@ -19,6 +19,6 @@ export default defineCard({
   ai: { value: 1, tags: ['aggro'] },
   art: {
     subject:
-      'Brazier of the Wanderer: a single mysterious wanderer artifact glowing on a pedestal, time rift wanderer style'
+      'Brazier of the Wanderer: an ancient brazier made of blue steel with silver runes, standing in a ruined temple, dramatic backlight, magenta accents, time rift wanderer style'
   }
 })

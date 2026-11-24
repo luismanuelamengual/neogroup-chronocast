@@ -25,6 +25,7 @@ export default defineCard({
   },
   ai: { value: 7, tags: ['heal', 'summon'] },
   art: {
-    subject: "a hooded doomsday cultist, the vorhal's flagellant, lunging forward, dark end-of-time void style"
+    subject:
+      "Vorhal's Flagellant: a broad-shouldered elderly woman with light brown skin, snow-white hair in an undercut and a jeweled brow piercing, wearing a crown of thorns, dressed in ash-grey vestments with a rusted censer, swinging a chain flail, with a fierce scowl, gold accents, dark end-of-time void style"
   }
 })

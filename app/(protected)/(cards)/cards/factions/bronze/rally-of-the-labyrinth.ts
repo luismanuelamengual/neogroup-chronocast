@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 1, tags: ['buff'] },
   art: {
-    subject: 'Rally of the Labyrinth: a warrior surrounded by a surging aura of power, ancient bronze-age empire style'
+    subject:
+      'Rally of the Labyrinth: a tattered war banner planted in the ground, glowing with rallying light, in a snowy pass, close-up filling the frame, lime green accents, ancient bronze-age empire style'
   }
 })

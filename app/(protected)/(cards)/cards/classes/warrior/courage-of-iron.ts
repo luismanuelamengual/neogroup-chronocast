@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['buff'] },
   art: {
-    subject: 'Courage of Iron: a warrior surrounded by a surging aura of power, warrior style'
+    subject:
+      'Courage of Iron: a lion-head emblem blazing with golden light, over a desert of red dunes, centered and seen from slightly below, indigo accents, warrior style'
   }
 })

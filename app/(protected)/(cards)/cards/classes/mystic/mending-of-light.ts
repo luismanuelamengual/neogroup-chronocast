@@ -16,6 +16,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['heal'] },
   art: {
-    subject: 'Mending of Light: warm golden light healing a wounded figure, mystic healer style'
+    subject:
+      'Mending of Light: a glowing needle stitching a torn cloth back together, over rooftops at night, centered and seen from slightly below, cobalt blue accents, mystic healer style'
   }
 })

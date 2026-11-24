@@ -21,6 +21,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['trap'] },
   art: {
-    subject: 'Venomous Tripwire: a hidden tripwire about to spring, hunter style'
+    subject:
+      'Venomous Tripwire: a thin glinting tripwire stretched low between rocks, dripping bubbling green acid, swirling around the center, ivory accents, hunter style'
   }
 })

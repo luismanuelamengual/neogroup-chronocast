@@ -21,6 +21,6 @@ export default defineCard({
   ai: { value: 5 },
   art: {
     subject:
-      "Ilyra's Slash: the signature spell of the hero, a devastating blast of arcane energy, medieval magic order style"
+      "Ilyra's Slash: a glowing crescent slash cutting through the air, circled by glowing violet runes, in a dark forest clearing, close-up filling the frame, emerald accents, medieval magic order style"
   }
 })

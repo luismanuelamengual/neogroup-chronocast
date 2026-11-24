@@ -16,6 +16,7 @@ export default defineCard({
   health: 13,
   ai: { value: 6 },
   art: {
-    subject: 'a time-traveling wanderer, the clever fortune teller, mid-leap, time rift wanderer style'
+    subject:
+      'Clever Fortune Teller: a barrel-chested middle-aged goblin man with blue-black hair in a single long braid and a tattooed neck, wearing a deep hood, dressed in a Roman toga under a leather bomber jacket, holding a crystal ball swirling with images, with grim determination, crimson accents, time rift wanderer style'
   }
 })

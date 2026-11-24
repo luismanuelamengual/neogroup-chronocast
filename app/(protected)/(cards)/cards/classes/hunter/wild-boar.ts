@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['aggro'] },
   art: {
-    subject: 'an ice-age beast, the wild boar, raising its weapon, hunter style'
+    subject:
+      'Wild Boar: a boar with spotted cream fur and massive sabre fangs, standing proud on a rock, crimson accents, hunter style'
   }
 })

@@ -16,6 +16,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['heal'] },
   art: {
-    subject: 'Amber-Eyed Blessing: warm golden light healing a wounded figure, prehistoric jungle era style'
+    subject:
+      'Amber-Eyed Blessing: a halo of soft light over an empty altar, over a stormy battlefield, seen from above, lime green accents, prehistoric jungle era style'
   }
 })

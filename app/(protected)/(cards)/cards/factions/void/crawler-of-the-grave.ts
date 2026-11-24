@@ -24,6 +24,6 @@ export default defineCard({
   ai: { value: 2, tags: ['draw', 'sacrifice'] },
   art: {
     subject:
-      'an eldritch horror from the end of time, the crawler of the grave, charging into battle, dark end-of-time void style'
+      'Crawler of the Grave: a crawler with oily black flesh with ultraviolet eyes and a gaping maw in its chest, mid-stride, rose pink accents, dark end-of-time void style'
   }
 })

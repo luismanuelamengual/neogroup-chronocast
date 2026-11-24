@@ -20,6 +20,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['buff', 'tribe'] },
   art: {
-    subject: 'a dinosaur, the sharp raptor, mid-leap, hunter style'
+    subject:
+      'Sharp Raptor: a raptor with a jet black hide with an emerald sheen and a broken tooth, pawing the ground, magenta accents, hunter style'
   }
 })

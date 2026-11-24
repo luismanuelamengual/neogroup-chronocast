@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 3, tags: ['draw', 'tribe'] },
   art: {
-    subject: 'Flask of Dawn: a single flask of dawn item lying on a stone, time rift wanderer style'
+    subject:
+      'Flask of Dawn: a small flask made of crystal and silver filigree, on a workbench with tools, centered and seen from slightly below, lime green accents, time rift wanderer style'
   }
 })

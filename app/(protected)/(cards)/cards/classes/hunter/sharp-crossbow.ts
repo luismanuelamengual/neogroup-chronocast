@@ -14,6 +14,7 @@ export default defineCard({
   durability: 3,
   ai: { value: 3 },
   art: {
-    subject: 'Sharp Crossbow: a single crossbow weapon floating in dramatic light, hunter style'
+    subject:
+      'Sharp Crossbow: a single crossbow made of blackened iron with gold inlay, half buried in snow, dramatic backlight, gold accents, hunter style'
   }
 })

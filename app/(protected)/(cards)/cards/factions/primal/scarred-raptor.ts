@@ -16,6 +16,7 @@ export default defineCard({
   health: 7,
   ai: { value: 2 },
   art: {
-    subject: 'a dinosaur, the scarred raptor, charging into battle, prehistoric jungle era style'
+    subject:
+      'Scarred Raptor: a raptor with a violet hide with silver spots and a crest of quills, pawing the ground, scarlet accents, prehistoric jungle era style'
   }
 })

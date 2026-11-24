@@ -18,6 +18,7 @@ export default defineCard({
   },
   ai: { value: 2, tags: ['buff'] },
   art: {
-    subject: 'Restless Ration: a single restless ration item lying on a stone, time rift wanderer style'
+    subject:
+      'Restless Ration: a small ration made of ivory and jade, on a fur rug, centered and seen from slightly below, emerald accents, time rift wanderer style'
   }
 })

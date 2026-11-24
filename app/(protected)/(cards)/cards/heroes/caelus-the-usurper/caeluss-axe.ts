@@ -19,6 +19,7 @@ export default defineCard({
   },
   ai: { value: 5 },
   art: {
-    subject: "Caelus's Axe: the legendary signature weapon of the hero, glowing, ancient bronze-age empire style"
+    subject:
+      "Caelus's Axe: a single axe made of copper with green patina, leaning against a ruined wall, bursting toward the viewer, cobalt blue accents, ancient bronze-age empire style"
   }
 })

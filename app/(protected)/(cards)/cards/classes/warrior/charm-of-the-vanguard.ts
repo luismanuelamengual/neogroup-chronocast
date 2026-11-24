@@ -16,6 +16,7 @@ export default defineCard({
   targets: ['friendlyAlly'],
   ai: { value: 3, tags: ['buff'] },
   art: {
-    subject: 'Charm of the Vanguard: a glowing magical charm charm, warrior style'
+    subject:
+      'Charm of the Vanguard: an enchanted charm made of gilded marble, floating above a marble pedestal, seen from above, teal accents, warrior style'
   }
 })

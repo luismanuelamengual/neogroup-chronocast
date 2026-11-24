@@ -24,6 +24,7 @@ export default defineCard({
   },
   ai: { value: 5, tags: ['aggro', 'draw', 'tribe'] },
   art: {
-    subject: 'a hooded doomsday cultist, the pale zealot, glaring at the viewer, dark end-of-time void style'
+    subject:
+      'Pale Zealot: a hunched young grey-skinned man with snow-white hair spiky, a braided beard and heavy golden earrings, wearing a crown of thorns, dressed in a mud-caked burial wrap, holding a black candle, with a booming laugh, cobalt blue accents, dark end-of-time void style'
   }
 })

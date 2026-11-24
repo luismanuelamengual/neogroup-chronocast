@@ -20,6 +20,6 @@ export default defineCard({
   ai: { value: 2, tags: ['removal'] },
   art: {
     subject:
-      'a cyberpunk hacker with holographic screens, the infiltrator of the silent trail, raising its weapon, hunter style'
+      'Infiltrator of the Silent Trail: an athletic middle-aged man with ruddy skin, honey blond hair with a side-swept fringe, a pointed goatee and glowing tattoos on the cheeks, wearing chunky headphones, dressed in an oversized hoodie with cables spilling out, slipping through a glowing doorway, with a mischievous wink, saffron yellow accents, hunter style'
   }
 })

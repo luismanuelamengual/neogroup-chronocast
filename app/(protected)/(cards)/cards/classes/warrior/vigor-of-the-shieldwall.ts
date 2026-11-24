@@ -17,6 +17,7 @@ export default defineCard({
   },
   ai: { value: 4, tags: ['buff'] },
   art: {
-    subject: 'Vigor of the Shieldwall: a warrior surrounded by a surging aura of power, warrior style'
+    subject:
+      'Vigor of the Shieldwall: a glowing heart of green life energy pulsing with veins of light, against a starry sky, centered and seen from slightly below, scarlet accents, warrior style'
   }
 })
