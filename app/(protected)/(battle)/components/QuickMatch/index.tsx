@@ -85,7 +85,7 @@ export default function QuickMatch({ deck: active }: QuickMatchProps) {
     return (
       <BattleScreen
         onChangeHeroes={() => router.push('/play')}
-        renderEnd={(state, showLog) => (
+        renderEnd={(state) => (
           <QuickMatchEnd
             key={ticket.matchId}
             state={state}
@@ -93,7 +93,6 @@ export default function QuickMatch({ deck: active }: QuickMatchProps) {
             busy={dealing}
             onRematch={() => void deal(ticket.matchId)}
             onNewRival={() => void deal()}
-            onShowLog={showLog}
           />
         )}
       />
@@ -147,11 +146,10 @@ interface QuickMatchEndProps {
   busy: boolean
   onRematch: () => void
   onNewRival: () => void
-  onShowLog: () => void
 }
 
 /** The end of a quick match: sends the record once, and shows the gold the server paid after replaying it. */
-function QuickMatchEnd({ state, ticket, busy, onRematch, onNewRival, onShowLog }: QuickMatchEndProps) {
+function QuickMatchEnd({ state, ticket, busy, onRematch, onNewRival }: QuickMatchEndProps) {
   const t = useT()
   const router = useRouter()
   const api = useQuickMatch()
@@ -195,7 +193,6 @@ function QuickMatchEnd({ state, ticket, busy, onRematch, onNewRival, onShowLog }
       onRematch={() => !busy && onRematch()}
       onChangeHeroes={() => !busy && onNewRival()}
       changeLabel={t('battle.quick.newRival')}
-      onShowLog={onShowLog}
     />
   )
 }

@@ -95,7 +95,7 @@ export default function CampaignMap({ campaign: initial, deck }: CampaignMapProp
       <BattleScreen
         onChangeHeroes={backToMap}
         music={ticket.stage === STAGES_PER_CAMPAIGN ? 'boss' : 'battle'}
-        renderEnd={(state, showLog) => (
+        renderEnd={(state) => (
           <CampaignEnd
             state={state}
             ticket={ticket}
@@ -107,7 +107,6 @@ export default function CampaignMap({ campaign: initial, deck }: CampaignMapProp
             onNext={ticket.stage < STAGES_PER_CAMPAIGN ? () => void play(ticket.stage + 1) : undefined}
             onRetry={() => void play(ticket.stage)}
             onMap={backToMap}
-            onShowLog={showLog}
           />
         )}
       />

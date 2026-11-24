@@ -136,8 +136,8 @@ export default function BattleScreen({
   tutorial?: boolean
   /** The theme of the battle ('boss' against a campaign's boss). */
   music?: MusicId
-  /** A screen of its own for the end of the match (a campaign battle); `showLog` opens the log. */
-  renderEnd?: (state: MatchState, showLog: () => void) => ReactNode
+  /** A screen of its own for the end of the match (a campaign battle). */
+  renderEnd?: (state: MatchState) => ReactNode
 }) {
   const t = useT()
   const store = useBattleStore()
@@ -1008,7 +1008,7 @@ export default function BattleScreen({
           onConfirm={store.confirmMulligan}
         />
       )}
-      {mode === 'finished' && renderEnd?.(state, () => setLogOpen(true))}
+      {mode === 'finished' && renderEnd?.(state)}
       {mode === 'finished' && !renderEnd && (
         <BattleEnd
           state={state}
@@ -1016,7 +1016,6 @@ export default function BattleScreen({
           online={online}
           reward={store.reward}
           onRematch={() => deck && store.start(deck, rivalHeroId)}
-          onShowLog={() => setLogOpen(true)}
           onChangeHeroes={() => {
             store.leave()
             onChangeHeroes()

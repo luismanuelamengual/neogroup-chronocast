@@ -20,7 +20,6 @@ interface BattleEndProps {
   changeLabel?: string
   /** A line under the rewards (a quick match: verifying, or no more gold today). */
   rewardNote?: string | null
-  onShowLog: () => void
 }
 
 /** The end of the match: victory, defeat or draw, why, and what to do next. */
@@ -32,8 +31,7 @@ export default function BattleEnd({
   onRematch,
   onChangeHeroes,
   changeLabel,
-  rewardNote = null,
-  onShowLog
+  rewardNote = null
 }: BattleEndProps) {
   const { t, locale } = useI18n()
   const winner = state.result?.winner
@@ -74,9 +72,6 @@ export default function BattleEnd({
               </GameButton>
             </>
           )}
-          <GameButton color="ghost" onClick={onShowLog}>
-            📜 {t('battle.log')}
-          </GameButton>
           <GameButton color="ghost" href="/menu">
             {t('battle.end.menu')}
           </GameButton>

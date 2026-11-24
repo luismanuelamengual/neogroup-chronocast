@@ -30,7 +30,6 @@ interface CampaignEndProps {
   onNext?: () => void
   onRetry: () => void
   onMap: () => void
-  onShowLog: () => void
 }
 
 /**
@@ -39,16 +38,7 @@ interface CampaignEndProps {
  * gold, the pack's cards and, after the boss, the exclusive card. A defeat
  * offers to try again.
  */
-export default function CampaignEnd({
-  state,
-  ticket,
-  heroId,
-  onProgress,
-  onNext,
-  onRetry,
-  onMap,
-  onShowLog
-}: CampaignEndProps) {
+export default function CampaignEnd({ state, ticket, heroId, onProgress, onNext, onRetry, onMap }: CampaignEndProps) {
   const { t, locale } = useI18n()
   const api = useCampaign()
   const record = useBattleStore((store) => store.record)
@@ -131,9 +121,6 @@ export default function CampaignEnd({
           )}
           <GameButton color="cyan" onClick={onMap} disabled={status === 'verifying'}>
             {t('campaign.end.map')}
-          </GameButton>
-          <GameButton color="ghost" onClick={onShowLog}>
-            📜 {t('battle.log')}
           </GameButton>
         </div>
       </div>
