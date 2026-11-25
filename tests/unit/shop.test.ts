@@ -204,7 +204,7 @@ describe('prices and selling', () => {
   })
 
   it('prices the heroes by rarity, dearer the rarer', () => {
-    expect(RARITIES.map((rarity) => HERO_PRICES[rarity])).toEqual([1000, 1100, 1200, 2000, 5000, 12000, 25000])
+    expect(RARITIES.map((rarity) => HERO_PRICES[rarity])).toEqual([1000, 1100, 1200, 2500, 7000, 12000, 25000])
   })
 
   it('sells every card with a price and the playable heroes (dear), never campaign rewards or bosses', () => {

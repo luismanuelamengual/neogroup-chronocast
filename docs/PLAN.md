@@ -607,8 +607,8 @@ Módulo `(shop)`, con tres pestañas: **Sobres**, **Cartas** y **Vender**. Preci
 | Común      | 40 – 80                   | 1.000                 | Nivel 1          |
 | Poco común | 140 – 220                 | 1.100                 | Nivel 5          |
 | Rara       | 450 – 750                 | 1.200                 | Nivel 10         |
-| Épica      | 1.400 – 2.200             | 2.000                 | Nivel 20         |
-| Legendaria | 4.000 – 6.000             | 5.000                 | Nivel 40         |
+| Épica      | 1.400 – 2.200             | 2.500                 | Nivel 20         |
+| Legendaria | 4.000 – 6.000             | 7.000                 | Nivel 40         |
 | Exótica    | 10.000 – 14.000           | 12.000                | Nivel 70         |
 | Mítica     | 25.000 – 35.000           | 25.000                | Nivel 100        |
 

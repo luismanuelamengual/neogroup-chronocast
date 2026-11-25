@@ -11,8 +11,8 @@ export const HERO_PRICES: Record<Rarity, number> = {
   common: 1000,
   uncommon: 1100,
   rare: 1200,
-  epic: 2000,
-  legendary: 5000,
+  epic: 2500,
+  legendary: 7000,
   exotic: 12000,
   mythic: 25000
 }
