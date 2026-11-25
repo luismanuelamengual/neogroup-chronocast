@@ -87,7 +87,7 @@ export default function CampaignEnd({ state, ticket, heroId, onProgress, onNext,
         {status === 'failed' && (
           <div className="campaign-end__note">
             <p>⚠️ {t('campaign.end.verifyFailed')}</p>
-            <GameButton color="ghost" size="small" onClick={() => void verify()}>
+            <GameButton color="secondary" size="small" onClick={() => void verify()}>
               {t('campaign.end.tryAgain')}
             </GameButton>
           </div>
@@ -112,16 +112,16 @@ export default function CampaignEnd({ state, ticket, heroId, onProgress, onNext,
           {outcome === 'victory' ? (
             onNext &&
             status === 'idle' && (
-              <GameButton color="gold" onClick={onNext}>
+              <GameButton color="primary" onClick={onNext}>
                 {t('campaign.end.next')}
               </GameButton>
             )
           ) : (
-            <GameButton color="gold" onClick={onRetry}>
+            <GameButton color="primary" onClick={onRetry}>
               {t('campaign.end.retry')}
             </GameButton>
           )}
-          <GameButton color="cyan" onClick={onMap} disabled={status === 'verifying'}>
+          <GameButton color="secondary" onClick={onMap} disabled={status === 'verifying'}>
             {t('campaign.end.map')}
           </GameButton>
         </div>
@@ -164,7 +164,7 @@ function RewardPack({ name, cards }: { name: string; cards: string[] }) {
         <CardSpotlight cardId={cards[spotlight]} shine={shines(cards[spotlight])} onClose={close} />
       )}
       {!done && (
-        <GameButton color="cyan" size="small" disabled={revealing} onClick={revealAll}>
+        <GameButton color="secondary" size="small" disabled={revealing} onClick={revealAll}>
           {t('shop.opening.revealAll')}
         </GameButton>
       )}

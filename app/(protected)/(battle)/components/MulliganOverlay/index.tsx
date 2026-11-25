@@ -86,7 +86,7 @@ export default function MulliganOverlay({
         {waiting ? (
           <p className="mulligan-overlay__waiting">{t('battle.mulligan.waiting')}</p>
         ) : (
-          <GameButton color={marked.length > 0 ? 'magenta' : 'lime'} onClick={() => onConfirm(marked)}>
+          <GameButton color="primary" onClick={() => onConfirm(marked)}>
             {marked.length > 0 ? t('battle.mulligan.change', { count: marked.length }) : t('battle.mulligan.keep')}
             {left != null && ` · ${left}`}
           </GameButton>

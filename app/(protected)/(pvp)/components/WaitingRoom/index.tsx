@@ -63,7 +63,7 @@ export default function WaitingRoom({ view, onCancel }: { view: MatchView; onCan
                 <div className="waiting-room__code">
                   <span>{t('match.code')}</span>
                   <strong>{view.code}</strong>
-                  <GameButton size="small" color="cyan" onClick={share}>
+                  <GameButton size="small" color="secondary" onClick={share}>
                     🔗 {t('match.share')}
                   </GameButton>
                 </div>
@@ -75,11 +75,11 @@ export default function WaitingRoom({ view, onCancel }: { view: MatchView; onCan
           )}
           <div className="waiting-room__buttons">
             {!closed && (
-              <GameButton color="ghost" onClick={onCancel}>
+              <GameButton color="secondary" onClick={onCancel}>
                 {t('match.cancel')}
               </GameButton>
             )}
-            <GameButton color={closed ? 'gold' : 'ghost'} href="/lobby">
+            <GameButton color="secondary" href="/lobby">
               {t('match.backToLobby')}
             </GameButton>
           </div>

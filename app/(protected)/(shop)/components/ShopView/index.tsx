@@ -47,7 +47,7 @@ export default function ShopView({ initial, tab: initialTab }: { initial: ShopSt
   return (
     <div className="shop-view">
       <header>
-        <GameButton color="ghost" size="small" href="/menu">
+        <GameButton color="secondary" size="small" href="/menu">
           ← {t('shop.back')}
         </GameButton>
         <h1>{t('shop.title')}</h1>

@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest'
 import { momentSounds } from '@/app/(protected)/(battle)/utils/battleSounds'
-import { describeEvent } from '@/app/(protected)/(battle)/utils/describeEvent'
 import { attackLines, heavyHeroHit, slotEffects } from '@/app/(protected)/(battle)/utils/effects'
 import { projectPlan, usedCards } from '@/app/(protected)/(battle)/utils/projection'
 import { attackRefs, moveRefs, refsFor, summonRefs } from '@/app/(protected)/(battle)/utils/targets'
@@ -99,19 +98,7 @@ describe('targets', () => {
   })
 })
 
-describe('the battle log and animations', () => {
-  it('describes the events by the names of the cards', () => {
-    const state = testMatch()
-
-    place(state, 'b', 'test-soldier', 2)
-
-    expect(describeEvent({ type: 'damage', target: { player: 'b', slot: 2 }, amount: 7, absorbed: 0 }, t, state)).toBe(
-      'test-soldier takes 7 damage'
-    )
-    expect(describeEvent({ type: 'heroFell', player: 'a' }, t, state)).toBe('Test Hero falls')
-    expect(describeEvent({ type: 'step', step: 1 }, t, state)).toBeNull()
-  })
-
+describe('the battle animations', () => {
   it('turns events into floating numbers and moves on the slots', () => {
     const effects = slotEffects(
       [

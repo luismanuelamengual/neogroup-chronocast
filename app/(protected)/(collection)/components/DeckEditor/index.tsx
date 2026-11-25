@@ -152,11 +152,11 @@ export default function DeckEditor({ deck, heroId: initialHeroId, collection }: 
 
     if (card.type === 'hero') {
       return cardId === heroId
-        ? [{ label: t('decks.editor.removeHero'), color: 'magenta', onClick: clear }]
+        ? [{ label: t('decks.editor.removeHero'), color: 'secondary', onClick: clear }]
         : [
             {
               label: t('decks.editor.chooseThisHero'),
-              color: 'gold',
+              color: 'primary',
               onClick: () => {
                 chooseHero(cardId)
                 setSpotlight(null)
@@ -172,7 +172,7 @@ export default function DeckEditor({ deck, heroId: initialHeroId, collection }: 
     return [
       {
         label: t('decks.editor.add'),
-        color: 'gold',
+        color: 'primary',
         disabledReason:
           inDeck >= owned
             ? t('decks.editor.noneLeft')
@@ -185,7 +185,7 @@ export default function DeckEditor({ deck, heroId: initialHeroId, collection }: 
       },
       {
         label: t('decks.editor.remove'),
-        color: 'magenta',
+        color: 'secondary',
         disabledReason: inDeck === 0 ? t('decks.editor.notInDeck') : null,
         onClick: () => change(cardId, -1)
       }
@@ -231,7 +231,7 @@ export default function DeckEditor({ deck, heroId: initialHeroId, collection }: 
   return (
     <div className="deck-editor">
       <header className="deck-editor__bar">
-        <GameButton color="ghost" size="small" href="/decks">
+        <GameButton color="secondary" size="small" href="/decks">
           ← {t('decks.editor.back')}
         </GameButton>
         <input
@@ -260,13 +260,13 @@ export default function DeckEditor({ deck, heroId: initialHeroId, collection }: 
         </button>
         <GameButton
           size="small"
-          color={confirmClear ? 'magenta' : 'ghost'}
+          color={confirmClear ? 'danger' : 'secondary'}
           disabled={!hero}
           onClick={() => (confirmClear ? clear() : setConfirmClear(true))}
         >
           {confirmClear ? t('decks.editor.clearConfirm') : t('decks.editor.clear')}
         </GameButton>
-        <GameButton size="small" color="gold" loading={saving} disabled={!canSave || !dirty} onClick={save}>
+        <GameButton size="small" color="primary" loading={saving} disabled={!canSave || !dirty} onClick={save}>
           {t('decks.editor.save')}
         </GameButton>
 

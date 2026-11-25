@@ -56,11 +56,11 @@ export default function DeckList({ decks: initialDecks }: { decks: DeckSummary[]
   return (
     <div className="deck-list">
       <header>
-        <GameButton color="ghost" size="small" href="/menu">
+        <GameButton color="secondary" size="small" href="/menu">
           ← {t('decks.back')}
         </GameButton>
         <h1>{t('decks.title')}</h1>
-        <GameButton color="gold" size="small" href="/decks/new">
+        <GameButton color="primary" size="small" href="/decks/new">
           + {t('decks.new')}
         </GameButton>
       </header>
@@ -100,7 +100,7 @@ export default function DeckList({ decks: initialDecks }: { decks: DeckSummary[]
               </div>
               {!deck.active && deck.playable && (
                 <div className="deck-list__actions" onClick={(event) => event.stopPropagation()}>
-                  <GameButton size="small" color="gold" onClick={() => activate(deck)}>
+                  <GameButton size="small" color="primary" onClick={() => activate(deck)}>
                     {t('decks.setActive')}
                   </GameButton>
                 </div>
@@ -128,10 +128,10 @@ export default function DeckList({ decks: initialDecks }: { decks: DeckSummary[]
             <h2>{t('decks.deleteTitle')}</h2>
             <p>{t('decks.deleteConfirm', { name: confirming.name })}</p>
             <div>
-              <GameButton size="small" color="ghost" onClick={() => setConfirming(null)}>
+              <GameButton size="small" color="secondary" onClick={() => setConfirming(null)}>
                 {t('common.cancel')}
               </GameButton>
-              <GameButton size="small" color="magenta" onClick={() => remove(confirming)}>
+              <GameButton size="small" color="danger" onClick={() => remove(confirming)}>
                 {t('decks.delete')}
               </GameButton>
             </div>

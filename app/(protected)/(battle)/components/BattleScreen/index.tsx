@@ -9,7 +9,6 @@ import { useMusic } from '@/app/(protected)/(art)/hooks/useMusic'
 import { playSfx } from '@/app/(protected)/(art)/utils/sound'
 import AttackArrows from '@/app/(protected)/(battle)/components/AttackArrows'
 import BattleEnd from '@/app/(protected)/(battle)/components/BattleEnd'
-import BattleLog from '@/app/(protected)/(battle)/components/BattleLog'
 import BoardSlot, { SlotHighlight } from '@/app/(protected)/(battle)/components/BoardSlot'
 import CardStack, { STACK_DEPTH, type StackCard } from '@/app/(protected)/(battle)/components/CardStack'
 import DeckPickOverlay from '@/app/(protected)/(battle)/components/DeckPickOverlay'
@@ -153,10 +152,9 @@ export default function BattleScreen({
   const t = useT()
   const cardName = useCardName()
   const store = useBattleStore()
-  const { state, view, timeline, selection, mode, frame, failures, log, fast, deck, rivalHeroId, me, rival } = store
+  const { state, view, timeline, selection, mode, frame, failures, fast, deck, rivalHeroId, me, rival } = store
   const online = !!store.online
   const metrics = useMetrics()
-  const [logOpen, setLogOpen] = useState(false)
   const [confirmSurrender, setConfirmSurrender] = useState(false)
   const [spot, setSpot] = useState<Spot | null>(null)
   /** Choosing the card of the deck the hero's ability takes. */
@@ -623,6 +621,17 @@ export default function BattleScreen({
     }
   }
 
+  /**
+   * 'notEnoughEnergy' when an energy-paid ability costs more than the energy
+   * left after the actions already programmed this phase. Checked up front so
+   * the button is off even for abilities with several targets (whose first
+   * tap only picks a target and never reaches the engine's check).
+   */
+  const energyShort = (ability: ActiveAbility, hero: boolean) =>
+    board && (hero || ability.resource === 'energy') && (board.players[me].energy ?? 0) < ability.cost
+      ? 'notEnoughEnergy'
+      : null
+
   /** The first place where an action works, or why none does. */
   const firstWorking = (current: Selection, refs: SlotRef[], kind: SlotHighlight, none: string) => {
     if (refs.some((ref) => works(current, ref, kind))) {
@@ -683,13 +692,13 @@ export default function BattleScreen({
       spotActions = [
         {
           label: t('battle.buttons.play'),
-          color: 'lime',
+          color: 'primary',
           disabledReason: reason(playReason),
           onClick: () => (needs === 'nothing' ? choose(null, { kind: 'play', cardUid: spot.uid }) : choose(current))
         },
         {
           label: t('battle.buttons.sacrifice'),
-          color: 'violet',
+          color: 'secondary',
           disabledReason: reason(usedNow ? 'cardUsed' : store.check({ kind: 'sacrifice', cardUid: spot.uid })),
           onClick: () => choose(null, { kind: 'sacrifice', cardUid: spot.uid })
         }
@@ -708,13 +717,13 @@ export default function BattleScreen({
       spotActions = [
         {
           label: t('battle.buttons.attack'),
-          color: 'magenta',
+          color: 'primary',
           disabledReason: reason(firstWorking(attack, attackRefs(board, me), 'attack', 'invalidTarget')),
           onClick: () => choose(attack)
         },
         {
           label: t('battle.buttons.move'),
-          color: 'cyan',
+          color: 'secondary',
           disabledReason: reason(firstWorking(move, moveRefs(board, me, unit.uid), 'move', 'invalidTarget')),
           onClick: () => choose(move)
         }
@@ -726,11 +735,12 @@ export default function BattleScreen({
 
         spotActions.push({
           label: abilityLabel(ability, false),
-          color: 'violet',
+          color: 'secondary',
           disabledReason: reason(
-            ability.targets?.length
-              ? firstWorking(aim, refsFor(board, me, ability.targets[0]), 'target', 'invalidTarget')
-              : store.check(direct)
+            energyShort(ability, false) ??
+              (ability.targets?.length
+                ? firstWorking(aim, refsFor(board, me, ability.targets[0]), 'target', 'invalidTarget')
+                : store.check(direct))
           ),
           onClick: () => (ability.targets?.length ? choose(aim) : choose(null, direct))
         })
@@ -748,7 +758,7 @@ export default function BattleScreen({
       spotActions = [
         {
           label: t('battle.buttons.weaponAttack'),
-          color: 'magenta',
+          color: 'primary',
           disabledReason: reason(
             hero.weapon ? firstWorking(attack, attackRefs(board, me), 'attack', 'invalidTarget') : 'noWeapon'
           ),
@@ -761,8 +771,11 @@ export default function BattleScreen({
 
         spotActions.push({
           label: abilityLabel(ability, true),
-          color: 'violet',
-          disabledReason: reason(first ? store.check({ kind: 'heroAbility', targets: [], cardId: first }) : 'noChoice'),
+          color: 'secondary',
+          disabledReason: reason(
+            energyShort(ability, true) ??
+              (first ? store.check({ kind: 'heroAbility', targets: [], cardId: first }) : 'noChoice')
+          ),
           onClick: () => {
             setSpot(null)
             setDeckPick(true)
@@ -774,11 +787,12 @@ export default function BattleScreen({
 
         spotActions.push({
           label: abilityLabel(ability, true),
-          color: 'violet',
+          color: 'secondary',
           disabledReason: reason(
-            ability.targets?.length
-              ? firstWorking(aim, refsFor(board, me, ability.targets[0]), 'target', 'invalidTarget')
-              : store.check(direct)
+            energyShort(ability, true) ??
+              (ability.targets?.length
+                ? firstWorking(aim, refsFor(board, me, ability.targets[0]), 'target', 'invalidTarget')
+                : store.check(direct))
           ),
           onClick: () => (ability.targets?.length ? choose(aim) : choose(null, direct))
         })
@@ -797,11 +811,12 @@ export default function BattleScreen({
       spotActions = [
         {
           label: abilityLabel(ability, false),
-          color: 'violet',
+          color: 'secondary',
           disabledReason: reason(
-            ability.targets?.length
-              ? firstWorking(aim, refsFor(board, me, ability.targets[0]), 'target', 'invalidTarget')
-              : store.check(direct)
+            energyShort(ability, false) ??
+              (ability.targets?.length
+                ? firstWorking(aim, refsFor(board, me, ability.targets[0]), 'target', 'invalidTarget')
+                : store.check(direct))
           ),
           onClick: () => (ability.targets?.length ? choose(aim) : choose(null, direct))
         }
@@ -1130,9 +1145,6 @@ export default function BattleScreen({
             <button type="button" className={fast ? 'active' : ''} onClick={store.toggleFast}>
               {t('battle.fast')}
             </button>
-            <button type="button" onClick={() => setLogOpen(true)}>
-              📜 {t('battle.log')}
-            </button>
             {online ? (
               <button
                 type="button"
@@ -1282,7 +1294,6 @@ export default function BattleScreen({
         />
       )}
       {tutorial && <TutorialCoach mode={mode} phase={state.phase} />}
-      {logOpen && <BattleLog log={log} state={state} onClose={() => setLogOpen(false)} />}
     </div>
   )
 }

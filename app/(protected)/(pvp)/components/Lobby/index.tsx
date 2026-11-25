@@ -73,7 +73,7 @@ export default function Lobby({ deck, rooms: initialRooms, activeMatch, rating, 
   return (
     <div className="lobby">
       <header>
-        <GameButton color="ghost" size="small" href="/play">
+        <GameButton color="secondary" size="small" href="/play">
           ← {t('lobby.back')}
         </GameButton>
         <h1>{t('lobby.title')}</h1>
@@ -85,7 +85,7 @@ export default function Lobby({ deck, rooms: initialRooms, activeMatch, rating, 
       {activeMatch != null && (
         <div className="lobby__active">
           <span>{t('lobby.activeMatch')}</span>
-          <GameButton color="magenta" size="small" href={`/match/${activeMatch}`}>
+          <GameButton color="primary" size="small" href={`/match/${activeMatch}`}>
             {t('lobby.resume')}
           </GameButton>
         </div>
@@ -96,7 +96,7 @@ export default function Lobby({ deck, rooms: initialRooms, activeMatch, rating, 
           <h2>{t('lobby.yourDeck')}</h2>
           <ActiveDeckChip deck={deck} />
           <GameButton
-            color="gold"
+            color="primary"
             size="large"
             disabled={disabled}
             loading={busy === 'quick'}
@@ -105,11 +105,16 @@ export default function Lobby({ deck, rooms: initialRooms, activeMatch, rating, 
             ⚡ {t('lobby.quickMatch')}
           </GameButton>
           <div className="lobby__row">
-            <GameButton color="cyan" disabled={disabled} loading={busy === 'public'} onClick={() => create('public')}>
+            <GameButton
+              color="secondary"
+              disabled={disabled}
+              loading={busy === 'public'}
+              onClick={() => create('public')}
+            >
               {t('lobby.createPublic')}
             </GameButton>
             <GameButton
-              color="violet"
+              color="secondary"
               disabled={disabled}
               loading={busy === 'private'}
               onClick={() => create('private')}
@@ -131,12 +136,17 @@ export default function Lobby({ deck, rooms: initialRooms, activeMatch, rating, 
               aria-label={t('lobby.code')}
               onChange={(event) => setCode(event.target.value.toUpperCase().replace(/[^A-Z]/g, ''))}
             />
-            <GameButton type="submit" color="lime" disabled={disabled || code.length !== 6} loading={busy === 'code'}>
+            <GameButton
+              type="submit"
+              color="primary"
+              disabled={disabled || code.length !== 6}
+              loading={busy === 'code'}
+            >
               {t('lobby.join')}
             </GameButton>
           </form>
           <p className="lobby__note">{t('lobby.publicNote')}</p>
-          <GameButton color="ghost" size="small" href="/practice">
+          <GameButton color="secondary" size="small" href="/practice">
             🤖 {t('lobby.practice')}
           </GameButton>
         </section>
@@ -163,7 +173,7 @@ export default function Lobby({ deck, rooms: initialRooms, activeMatch, rating, 
                     </span>
                     <GameButton
                       size="small"
-                      color="lime"
+                      color="primary"
                       disabled={disabled}
                       loading={busy === `room-${room.id}`}
                       onClick={() => go(`room-${room.id}`, () => pvp.joinRoom({ matchId: room.id }))}

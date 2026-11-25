@@ -89,11 +89,11 @@ export default function PracticeSetup({ deck: active, tutorial = false }: Practi
         </div>
       </section>
       <footer>
-        <GameButton color="ghost" href="/play">
+        <GameButton color="secondary" href="/play">
           {t('battle.practice.back')}
         </GameButton>
         <GameButton
-          color="gold"
+          color="primary"
           size="large"
           disabled={!deck}
           onClick={() => {

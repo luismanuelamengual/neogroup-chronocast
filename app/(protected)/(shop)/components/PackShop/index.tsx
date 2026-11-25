@@ -79,7 +79,7 @@ export default function PackShop({ state, onChange, onOpened }: PackShopProps) {
       </div>
       <GameButton
         size="small"
-        color="gold"
+        color="primary"
         disabled={state.gold < pack.price || (buying != null && buying !== pack.id)}
         loading={buying === pack.id}
         onClick={() => buy(pack.id, state.collection)}

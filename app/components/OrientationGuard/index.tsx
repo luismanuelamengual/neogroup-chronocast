@@ -51,7 +51,7 @@ export default function OrientationGuard() {
       </h2>
       <p className="orientation-guard-text">{t('orientation.text')}</p>
       {canLock && (
-        <GameButton color="gold" size="large" onClick={playInLandscape}>
+        <GameButton color="primary" size="large" onClick={playInLandscape}>
           {t('orientation.lock')}
         </GameButton>
       )}

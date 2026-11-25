@@ -108,7 +108,7 @@ export default function QuickMatch({ deck: active }: QuickMatchProps) {
           <p>{t('battle.quick.text')}</p>
         </header>
         <ActiveDeckChip deck={active} />
-        <GameButton color="ghost" href="/play">
+        <GameButton color="secondary" href="/play">
           {t('battle.quick.back')}
         </GameButton>
       </div>
@@ -120,10 +120,10 @@ export default function QuickMatch({ deck: active }: QuickMatchProps) {
       <div className="quick-match">
         <p className="quick-match__error">⚠️ {t('battle.quick.dealFailed')}</p>
         <div className="quick-match__buttons">
-          <GameButton color="gold" onClick={() => void deal()}>
+          <GameButton color="primary" onClick={() => void deal()}>
             {t('battle.quick.retry')}
           </GameButton>
-          <GameButton color="ghost" href="/play">
+          <GameButton color="secondary" href="/play">
             {t('battle.quick.back')}
           </GameButton>
         </div>

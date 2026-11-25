@@ -53,7 +53,7 @@ export default function DeckPickOverlay({
             </button>
           ))}
         </div>
-        <GameButton color="ghost" onClick={onClose}>
+        <GameButton color="secondary" onClick={onClose}>
           {t('battle.deckPick.cancel')}
         </GameButton>
       </div>

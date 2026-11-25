@@ -99,10 +99,10 @@ export default function MainMenu({ gold, rating, progress }: MainMenuProps) {
           ))}
         </nav>
         <div className="secondary">
-          <GameButton color="ghost" size="small" href="/account">
+          <GameButton color="secondary" size="small" href="/account">
             {t('nav.myProfile')}
           </GameButton>
-          <GameButton color="ghost" size="small" onClick={logout}>
+          <GameButton color="secondary" size="small" onClick={logout}>
             {t('nav.logout')}
           </GameButton>
         </div>

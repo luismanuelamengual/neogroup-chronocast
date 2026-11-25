@@ -54,7 +54,7 @@ export default function TutorialCoach({ mode, phase }: { mode: BattleMode; phase
         </button>
         <GameButton
           size="small"
-          color="gold"
+          color="primary"
           onClick={() => (index === TIPS.length - 1 ? finish() : setIndex(index + 1))}
         >
           {t('tutorial.next')}

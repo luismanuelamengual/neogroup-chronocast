@@ -48,7 +48,7 @@ export default function ActiveDeckChip({ deck, heroId, className }: ActiveDeckCh
             <small>{t('activeDeck.title')}</small>
             <strong>{deck.name}</strong>
           </span>
-          <GameButton size="small" color="ghost" href="/decks">
+          <GameButton size="small" color="secondary" href="/decks">
             {t('activeDeck.change')}
           </GameButton>
         </div>
@@ -59,7 +59,7 @@ export default function ActiveDeckChip({ deck, heroId, className }: ActiveDeckCh
           {!deck && (
             <>
               {' '}
-              <GameButton size="small" color="violet" href="/decks">
+              <GameButton size="small" color="primary" href="/decks">
                 {t('lobby.goToDecks')}
               </GameButton>
             </>

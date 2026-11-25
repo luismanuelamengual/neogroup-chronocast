@@ -90,7 +90,7 @@ export default function LoginForm({ callbackUrl, verified, passwordReset }: Logi
         {t('auth.login.subtitle')}
       </Typography>
       <GameButton
-        color="ghost"
+        color="secondary"
         fullWidth
         className="google-button"
         startIcon={<GoogleLogo />}

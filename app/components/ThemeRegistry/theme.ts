@@ -42,7 +42,7 @@ export const theme = createTheme({
   palette: {
     mode: 'light',
     primary: { main: GAME_COLORS.violet, dark: '#5a34d6', contrastText: '#ffffff' },
-    secondary: { main: GAME_COLORS.cyan, dark: GAME_COLORS.cyanDark, contrastText: '#ffffff' },
+    secondary: { main: GAME_COLORS.gold, dark: GAME_COLORS.goldDark, contrastText: '#4a2604' },
     error: { main: GAME_COLORS.magenta },
     success: { main: GAME_COLORS.limeDark },
     warning: { main: GAME_COLORS.goldDark },

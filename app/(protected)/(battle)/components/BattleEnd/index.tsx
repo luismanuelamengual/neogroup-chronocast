@@ -61,20 +61,20 @@ export default function BattleEnd({
         {rewardNote && <p className="battle-end__note">{rewardNote}</p>}
         <div className="battle-end__buttons">
           {online ? (
-            <GameButton color="gold" onClick={onChangeHeroes}>
+            <GameButton color="primary" onClick={onChangeHeroes}>
               {t('battle.end.lobby')}
             </GameButton>
           ) : (
             <>
-              <GameButton color="gold" onClick={onRematch}>
+              <GameButton color="primary" onClick={onRematch}>
                 {t('battle.end.rematch')}
               </GameButton>
-              <GameButton color="cyan" onClick={onChangeHeroes}>
+              <GameButton color="secondary" onClick={onChangeHeroes}>
                 {changeLabel ?? t('battle.end.changeHeroes')}
               </GameButton>
             </>
           )}
-          <GameButton color="ghost" href="/menu">
+          <GameButton color="secondary" href="/menu">
             {t('battle.end.menu')}
           </GameButton>
         </div>

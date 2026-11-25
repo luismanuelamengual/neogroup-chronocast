@@ -101,13 +101,13 @@ export default function SellShop({ state, onChange }: SellShopProps) {
           <div>
             <GameButton
               size="small"
-              color="magenta"
+              color="primary"
               loading={busy}
               onClick={() => finish(() => sellCards({ [cardId]: pending.count }))}
             >
               {t('shop.sell.confirm')}
             </GameButton>
-            <GameButton size="small" color="ghost" onClick={() => setPending(null)}>
+            <GameButton size="small" color="secondary" onClick={() => setPending(null)}>
               {t('shop.sell.cancel')}
             </GameButton>
           </div>
@@ -122,11 +122,11 @@ export default function SellShop({ state, onChange }: SellShopProps) {
     return (
       <div className="sell-shop__actions">
         {used > 0 && <p className="sell-shop__locked">{t('shop.sell.freeCopies', { count: free })}</p>}
-        <GameButton size="small" color="gold" disabled={busy} onClick={() => sell(cardId, 1)}>
+        <GameButton size="small" color="primary" disabled={busy} onClick={() => sell(cardId, 1)}>
           {t('shop.sell.sellOne', { gold: sellPrice(card).toLocaleString(locale) })}
         </GameButton>
         {spare > 1 && (
-          <GameButton size="small" color="lime" disabled={busy} onClick={() => sell(cardId, spare)}>
+          <GameButton size="small" color="secondary" disabled={busy} onClick={() => sell(cardId, spare)}>
             {t('shop.sell.sellExtra', { count: spare, gold: (sellPrice(card) * spare).toLocaleString(locale) })}
           </GameButton>
         )}
@@ -150,15 +150,15 @@ export default function SellShop({ state, onChange }: SellShopProps) {
         </div>
         {confirmingQuick ? (
           <div className="sell-shop__quick-confirm">
-            <GameButton color="magenta" loading={busy} onClick={() => finish(quickSell)}>
+            <GameButton color="primary" loading={busy} onClick={() => finish(quickSell)}>
               {t('shop.sell.confirm')}
             </GameButton>
-            <GameButton color="ghost" onClick={() => setConfirmingQuick(false)}>
+            <GameButton color="secondary" onClick={() => setConfirmingQuick(false)}>
               {t('shop.sell.cancel')}
             </GameButton>
           </div>
         ) : (
-          <GameButton color="gold" disabled={planCount === 0} onClick={() => setConfirmingQuick(true)}>
+          <GameButton color="primary" disabled={planCount === 0} onClick={() => setConfirmingQuick(true)}>
             {t('shop.sell.quickButton')}
           </GameButton>
         )}

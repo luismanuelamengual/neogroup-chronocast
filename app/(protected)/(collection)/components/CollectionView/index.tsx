@@ -36,7 +36,7 @@ export default function CollectionView({ collection }: { collection: Collection 
   return (
     <div className="collection-view">
       <header>
-        <GameButton color="ghost" size="small" href="/menu">
+        <GameButton color="secondary" size="small" href="/menu">
           ← {t('collection.back')}
         </GameButton>
         <h1>{t('collection.title')}</h1>

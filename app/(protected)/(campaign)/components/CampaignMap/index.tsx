@@ -116,7 +116,7 @@ export default function CampaignMap({ campaign: initial, deck }: CampaignMapProp
   return (
     <div className={`campaign-map faction-${hero.faction}`}>
       <header>
-        <GameButton color="ghost" size="small" href="/campaign">
+        <GameButton color="secondary" size="small" href="/campaign">
           ← {t('campaign.title')}
         </GameButton>
         <h1>{t(storyKey(campaign.heroId, 'title'))}</h1>
@@ -209,7 +209,7 @@ export default function CampaignMap({ campaign: initial, deck }: CampaignMapProp
               <div className="campaign-map__start">
                 <ActiveDeckChip deck={deck} heroId={campaign.heroId} />
                 <GameButton
-                  color="gold"
+                  color="primary"
                   size="large"
                   disabled={busy || !canPlayWith(deck, campaign.heroId)}
                   onClick={() => void play(stage.number)}

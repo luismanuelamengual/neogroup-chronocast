@@ -40,7 +40,7 @@ export default function CardDetail({ cardId, owned, onClose, children }: CardDet
           <h3>{t('collection.whoCanUse')}</h3>
           <p>{card.type === 'hero' ? '—' : restrictionText(card, t)}</p>
           {children}
-          <GameButton color="ghost" size="small" onClick={onClose}>
+          <GameButton color="secondary" size="small" onClick={onClose}>
             {t('common.close')}
           </GameButton>
         </div>

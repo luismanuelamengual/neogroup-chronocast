@@ -22,11 +22,6 @@ export const RIVAL: PlayerId = 'b'
 
 export type BattleMode = 'idle' | 'mulligan' | 'planning' | 'resolving' | 'finished'
 
-export interface PhaseLog {
-  phase: number
-  events: MatchEvent[]
-}
-
 /** What an online (PvP) match asks of the server; every answer is the match as this player sees it. */
 export interface OnlineMatch {
   matchId: number
@@ -68,7 +63,6 @@ interface BattleStore {
   frame: { key: number; events: MatchEvent[] }
   /** The actions that failed in the phase being resolved, by side and step. */
   failures: Record<PlayerId, (FailReason | null)[]>
-  log: PhaseLog[]
   fast: boolean
   /** Changes on each new match or exit, so a resolution still playing knows it must stop. */
   run: number
@@ -217,7 +211,6 @@ export const useBattleStore = create<BattleStore>()((set, get) => {
     step: null,
     frame: { key: 0, events: [] },
     failures: noFailures(),
-    log: [],
     fast: false,
     run: 0,
     online: null,
@@ -253,7 +246,6 @@ export const useBattleStore = create<BattleStore>()((set, get) => {
         step: null,
         frame: { key: 0, events: [] },
         failures: noFailures(),
-        log: [],
         run: store.run + 1
       }))
     },
@@ -280,7 +272,6 @@ export const useBattleStore = create<BattleStore>()((set, get) => {
         step: null,
         frame: { key: 0, events: [] },
         failures: noFailures(),
-        log: [],
         run: store.run + 1
       }))
       get().applyView(view)
@@ -337,8 +328,7 @@ export const useBattleStore = create<BattleStore>()((set, get) => {
 
         set((state) => ({
           mode: 'idle',
-          view: null,
-          log: [...state.log, { phase: resolution.phase, events: resolution.events }]
+          view: null
         }))
         enterStage(incoming)
 
@@ -468,8 +458,7 @@ export const useBattleStore = create<BattleStore>()((set, get) => {
 
       set((store) => ({
         state: result.state,
-        view: null,
-        log: [...store.log, { phase: state.phase, events: result.events }]
+        view: null
       }))
 
       if (result.state.status === 'finished') {

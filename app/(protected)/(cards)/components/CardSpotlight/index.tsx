@@ -6,7 +6,7 @@ import { ReactNode, useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import CardView from '@/app/(protected)/(cards)/components/CardView'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
-import GameButton from '@/app/components/GameButton'
+import GameButton, { GameButtonColor } from '@/app/components/GameButton'
 import { useT } from '@/app/i18n/I18nProvider'
 
 /** The size of a CardView at zoom 1. */
@@ -28,7 +28,7 @@ function fitZoom(withActions: boolean): number {
 /** A button beside the card: something to do with it (the battle screen). */
 export interface SpotlightAction {
   label: string
-  color?: 'lime' | 'violet' | 'cyan' | 'magenta' | 'gold'
+  color?: GameButtonColor
   /** Why it can't be done now: the button shows disabled with this line under it. */
   disabledReason?: string | null
   onClick: () => void
@@ -122,7 +122,7 @@ export default function CardSpotlight({ cardId, shine, onClose, badge, actions, 
             {actions?.map((action) => (
               <div key={action.label} className="card-spotlight__action">
                 <GameButton
-                  color={action.color ?? 'lime'}
+                  color={action.color ?? 'primary'}
                   disabled={!!action.disabledReason}
                   fullWidth
                   onClick={action.onClick}

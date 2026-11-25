@@ -108,11 +108,11 @@ export default function PackOpening({ pack, gold, onChange, onOpened, onClose }:
       <div className="pack-opening__actions">
         {done ? (
           <>
-            <GameButton color="ghost" onClick={onClose}>
+            <GameButton color="secondary" onClick={onClose}>
               {t('shop.opening.close')}
             </GameButton>
             <GameButton
-              color="gold"
+              color="primary"
               disabled={gold < definition.price}
               loading={buying != null}
               onClick={() => buy(pack.packId, pack.before)}
@@ -123,7 +123,7 @@ export default function PackOpening({ pack, gold, onChange, onOpened, onClose }:
         ) : (
           <>
             <span className="pack-opening__hint">{t('shop.opening.tap')}</span>
-            <GameButton color="cyan" disabled={revealing} onClick={revealAll}>
+            <GameButton color="secondary" disabled={revealing} onClick={revealAll}>
               {t('shop.opening.revealAll')}
             </GameButton>
           </>

@@ -7,7 +7,7 @@ import classNames from 'classnames'
 import Link from 'next/link'
 import { ReactNode } from 'react'
 
-export type GameButtonColor = 'gold' | 'cyan' | 'magenta' | 'lime' | 'violet' | 'ghost'
+export type GameButtonColor = 'primary' | 'secondary' | 'danger'
 export type GameButtonSize = 'small' | 'medium' | 'large'
 
 interface GameButtonProps extends Omit<ButtonBaseProps, 'color'> {
@@ -22,12 +22,13 @@ interface GameButtonProps extends Omit<ButtonBaseProps, 'color'> {
 }
 
 /**
- * Game button: a chunky glossy button in a vivid color (gold, cyan, magenta,
- * lime, violet or white) with a dark ink outline. The main call to action of
- * every game screen.
+ * Game button: a chunky glossy button with a dark ink outline, in one of the
+ * three colors of the app: primary (gold, the main call to action of each
+ * screen), secondary (white, for secondary and neutral actions) or danger
+ * (red, only for destructive actions such as deleting).
  */
 export default function GameButton({
-  color = 'gold',
+  color = 'primary',
   size = 'medium',
   fullWidth,
   loading,

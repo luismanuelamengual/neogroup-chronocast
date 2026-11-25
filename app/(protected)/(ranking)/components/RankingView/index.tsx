@@ -19,7 +19,7 @@ export default function RankingView({ ranking, userId }: { ranking: Ranking; use
   return (
     <div className="ranking-view">
       <header>
-        <GameButton color="ghost" size="small" href="/menu">
+        <GameButton color="secondary" size="small" href="/menu">
           ← {t('ranking.back')}
         </GameButton>
         <h1>{t('ranking.title')}</h1>

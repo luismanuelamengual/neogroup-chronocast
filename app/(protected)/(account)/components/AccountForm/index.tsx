@@ -79,7 +79,7 @@ export default function AccountForm({ account }: AccountFormProps) {
 
   return (
     <div className="account-page">
-      <GameButton href="/menu" size="small" color="ghost" className="back" startIcon={<ArrowBackIcon />}>
+      <GameButton href="/menu" size="small" color="secondary" className="back" startIcon={<ArrowBackIcon />}>
         {t('nav.mainMenu')}
       </GameButton>
       <GamePanel className="profile" title={t('account.profile')}>
@@ -128,7 +128,7 @@ export default function AccountForm({ account }: AccountFormProps) {
               </MenuItem>
             ))}
           </TextField>
-          <GameButton type="submit" color="cyan" fullWidth loading={saving}>
+          <GameButton type="submit" color="primary" fullWidth loading={saving}>
             {t('account.save')}
           </GameButton>
         </form>

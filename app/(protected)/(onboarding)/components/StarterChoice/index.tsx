@@ -88,7 +88,7 @@ export default function StarterChoice() {
           )
         })}
       </div>
-      <GameButton color="gold" size="large" loading={loading} onClick={choose}>
+      <GameButton color="primary" size="large" loading={loading} onClick={choose}>
         {t('onboarding.choose', { hero: hero.name })}
       </GameButton>
     </div>
@@ -170,10 +170,10 @@ function StarterOpening({ cards }: { cards: string[] }) {
         <div className="starter-choice__done">
           <p>{t('onboarding.openedText')}</p>
           <div>
-            <GameButton color="gold" size="large" href="/practice?tutorial=1">
+            <GameButton color="primary" size="large" href="/practice?tutorial=1">
               {t('onboarding.tutorial')}
             </GameButton>
-            <GameButton color="ghost" href="/menu">
+            <GameButton color="secondary" href="/menu">
               {t('onboarding.menu')}
             </GameButton>
           </div>
@@ -182,7 +182,7 @@ function StarterOpening({ cards }: { cards: string[] }) {
         <div className="starter-choice__done">
           <p>{t('onboarding.tap')}</p>
           <div>
-            <GameButton color="cyan" disabled={revealing} onClick={revealAll}>
+            <GameButton color="secondary" disabled={revealing} onClick={revealAll}>
               {t('onboarding.revealAll')}
             </GameButton>
           </div>

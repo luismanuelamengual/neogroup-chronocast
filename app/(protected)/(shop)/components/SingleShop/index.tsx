@@ -91,7 +91,7 @@ export default function SingleShop({ state, onChange }: SingleShopProps) {
       <div className="single-shop__buy">
         <GameButton
           size="small"
-          color="gold"
+          color="primary"
           disabled={state.gold < price || busy != null}
           loading={busy === 'buy-1'}
           onClick={() => buy(cardId, 1)}
@@ -101,7 +101,7 @@ export default function SingleShop({ state, onChange }: SingleShopProps) {
         {missing > 1 && (
           <GameButton
             size="small"
-            color="lime"
+            color="secondary"
             disabled={state.gold < price * missing || busy != null}
             loading={busy === `buy-${missing}`}
             onClick={() => buy(cardId, missing)}

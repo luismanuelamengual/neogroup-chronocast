@@ -28,7 +28,7 @@ export default function PlayMenu() {
     <div className="play-menu">
       <Backdrop />
       <header>
-        <GameButton color="ghost" size="small" href="/menu">
+        <GameButton color="secondary" size="small" href="/menu">
           ← {t('play.back')}
         </GameButton>
         <h1>{t('play.title')}</h1>

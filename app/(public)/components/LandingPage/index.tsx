@@ -26,7 +26,7 @@ export default async function LandingPage() {
         <Logo size="large" className="logo" />
         <p className="tagline">{t('landing.tagline')}</p>
         <div className="actions">
-          <GameButton size="large" color="magenta" href="/login">
+          <GameButton size="large" color="primary" href="/login">
             {t('landing.playFree')}
           </GameButton>
         </div>

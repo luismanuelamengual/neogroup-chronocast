@@ -22,7 +22,7 @@ export default function CampaignList({ campaigns }: { campaigns: CampaignSummary
   return (
     <div className="campaign-list">
       <header>
-        <GameButton color="ghost" size="small" href="/play">
+        <GameButton color="secondary" size="small" href="/play">
           ← {t('campaign.back')}
         </GameButton>
         <h1>{t('campaign.title')}</h1>
@@ -63,7 +63,7 @@ export default function CampaignList({ campaigns }: { campaigns: CampaignSummary
                   </span>
                 </div>
                 {campaign.owned ? (
-                  <GameButton color={campaign.stage > 0 ? 'cyan' : 'gold'} href={`/campaign/${campaign.heroId}`}>
+                  <GameButton color="primary" href={`/campaign/${campaign.heroId}`}>
                     {campaign.completed
                       ? t('campaign.replay')
                       : campaign.stage > 0

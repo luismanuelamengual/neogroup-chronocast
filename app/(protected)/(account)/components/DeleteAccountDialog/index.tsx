@@ -51,7 +51,7 @@ export default function DeleteAccountDialog() {
 
   return (
     <>
-      <GameButton color="magenta" fullWidth onClick={() => setOpen(true)}>
+      <GameButton color="danger" fullWidth onClick={() => setOpen(true)}>
         {t('account.delete.button')}
       </GameButton>
       <Dialog open={open} onClose={close} fullWidth maxWidth="xs">
@@ -70,10 +70,10 @@ export default function DeleteAccountDialog() {
             />
           </DialogContent>
           <DialogActions sx={{ gap: 1, p: 2 }}>
-            <GameButton color="ghost" size="small" onClick={close}>
+            <GameButton color="secondary" size="small" onClick={close}>
               {t('common.cancel')}
             </GameButton>
-            <GameButton type="submit" size="small" color="magenta" disabled={!confirmed} loading={deleting}>
+            <GameButton type="submit" size="small" color="danger" disabled={!confirmed} loading={deleting}>
               {t('account.delete.confirm')}
             </GameButton>
           </DialogActions>
