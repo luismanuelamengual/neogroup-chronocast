@@ -51,8 +51,9 @@
     min-height: 116px;
     padding: 12px;
     overflow: hidden;
-    border: var(--frame-border);
-    border-left: 8px solid var(--faction);
+    // No CSS border: it would sit outside the art (the backdrop fills the padding box only).
+    // The frame is drawn on top by ::after, so the illustration covers the whole rounded tile.
+    border: 0;
     border-radius: var(--frame-radius);
     // Without art yet: a dark wash of the faction color, so the white texts still read.
     background: linear-gradient(120deg, color-mix(in srgb, var(--faction) 55%, #1b1440), #1b1440);
@@ -70,16 +71,25 @@
         linear-gradient(0deg, color-mix(in srgb, var(--faction) 45%, transparent), transparent 60%);
     }
 
+    // The single frame: a ring over the art's edge, tinted with the faction (gold when active).
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      border: 2px solid color-mix(in srgb, var(--faction) 55%, white);
+      border-radius: inherit;
+      pointer-events: none;
+    }
+
     @each $faction in primal, bronze, arcane, clockwork, neon, void, neutral {
       &.faction-#{$faction} {
         --faction: var(--faction-#{$faction});
       }
     }
 
-    &.active {
-      box-shadow:
-        0 0 0 3px var(--color-gold),
-        var(--frame-shadow);
+    &.active::after {
+      border: 3px solid var(--color-gold);
     }
 
     cursor: pointer;
