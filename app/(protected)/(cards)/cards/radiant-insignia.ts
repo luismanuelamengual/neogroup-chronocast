@@ -1,0 +1,22 @@
+import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+
+export default defineCard({
+  id: 'radiant-insignia',
+  type: 'attachment',
+  name: 'Radiant Insignia',
+  text: 'Attach to an ally of yours: it gains +2 health.',
+  flavor: 'Worn with pride, shining with purpose.',
+  faction: 'neutral',
+  restriction: { classes: ['mystic'] },
+  rarity: 'common',
+  price: 40,
+  cost: 1,
+  keywords: ['lifesteal'],
+  health: 2,
+  targets: ['friendlyAlly'],
+  ai: { value: 1, tags: ['buff'] },
+  art: {
+    subject:
+      'Radiant Insignia: an enchanted insignia made of dark yew wood and brass fittings, on a workbench with tools, framed by drifting embers, turquoise accents, mystic healer style'
+  }
+})

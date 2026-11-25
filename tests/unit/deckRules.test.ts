@@ -1,6 +1,7 @@
 import '@/app/(protected)/(cards)/utils/catalog'
 import { describe, expect, it } from 'vitest'
 import { starterDeck } from '@/app/(protected)/(cards)/data/starters'
+import { Restriction } from '@/app/(protected)/(engine)/models/Restriction'
 import { canUseCard, validateDeck } from '@/app/(protected)/(engine)/utils/deckRules'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
 
@@ -20,6 +21,19 @@ describe('canUseCard', () => {
     expect(canUseCard(varro, getCard('armored-mace'))).toBe(true) // its class
     expect(canUseCard(varro, getCard('astral-bolt'))).toBe(false) // another class
     expect(canUseCard(varro, getCard('ilyra-starweaver'))).toBe(false) // a hero
+  })
+
+  it('combines criteria: a hero must pass every one, matching any of its values', () => {
+    // Varro: Bronze, Dawn, Warrior.
+    const card = (restriction: Restriction) => ({ ...getCard('bold-gust'), restriction })
+
+    expect(canUseCard(varro, card({ factions: ['bronze'], sides: ['dawn'], classes: ['warrior'] }))).toBe(true)
+    expect(canUseCard(varro, card({ factions: ['bronze'], sides: ['eclipse'], classes: ['warrior'] }))).toBe(false)
+    expect(canUseCard(varro, card({ factions: ['bronze'], classes: ['mage'] }))).toBe(false)
+    expect(canUseCard(varro, card({ factions: ['clockwork', 'bronze'] }))).toBe(true)
+    expect(canUseCard(varro, card({ classes: ['mage', 'hunter'] }))).toBe(false)
+    expect(canUseCard(varro, card({ sides: ['dawn'], heroes: [VARRO, 'ada-copperwick'] }))).toBe(true)
+    expect(canUseCard(varro, card({ sides: ['eclipse'], heroes: [VARRO] }))).toBe(false)
   })
 })
 

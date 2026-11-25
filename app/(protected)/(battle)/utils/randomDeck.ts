@@ -42,18 +42,17 @@ function costWeight(cost: number): number {
 
 /** The hero's own cards, its class's and its faction's come up more than the neutral ones. */
 function affinityWeight(hero: CardDefinition, card: CardDefinition): number {
-  switch (card.restriction.kind) {
-    case 'hero':
-      return 3
-    case 'class':
-      return 2.5
-    case 'faction':
-      return 2
-    case 'side':
-      return 1.75
-    default:
-      return hero.faction === card.faction ? 1.5 : 1
+  const { factions, sides, classes, heroes } = card.restriction
+
+  if (heroes?.length) {
+    return 3
   }
+
+  // A card with several criteria weighs like its most specific one.
+  const weights = [classes?.length ? 2.5 : 0, factions?.length ? 2 : 0, sides?.length ? 1.75 : 0]
+  const weight = Math.max(...weights)
+
+  return weight > 0 ? weight : hero.faction === card.faction ? 1.5 : 1
 }
 
 /** A seeded random number generator in [0, 1). */

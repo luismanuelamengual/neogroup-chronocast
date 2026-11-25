@@ -1,0 +1,25 @@
+import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { healHero } from '@/app/(protected)/(engine)/effects'
+
+export default defineCard({
+  id: 'blessed-halo',
+  type: 'armor',
+  name: 'Blessed Halo',
+  text: 'When it is equipped: your hero heals 4.',
+  flavor: 'Heavier than it looks, lighter than it feels.',
+  faction: 'neutral',
+  restriction: { classes: ['mystic'] },
+  rarity: 'uncommon',
+  price: 155,
+  cost: 2,
+  armor: 2,
+  durability: 3,
+  onPlay(ctx) {
+    healHero(ctx, 4)
+  },
+  ai: { value: 2 },
+  art: {
+    subject:
+      'Blessed Halo: a single halo made of crystal and silver filigree, on a workbench with tools, dramatic backlight, indigo accents, mystic healer style'
+  }
+})

@@ -14,33 +14,35 @@ import { emptyTimeline, PlannedAction, Timeline } from '@/app/(protected)/(engin
 import { SlotRef } from '@/app/(protected)/(engine)/models/SlotRef'
 import { TargetKind } from '@/app/(protected)/(engine)/models/TargetKind'
 import { createMatch } from '@/app/(protected)/(engine)/utils/createMatch'
-import { validateDeck } from '@/app/(protected)/(engine)/utils/deckRules'
+import { canUseCard, validateDeck } from '@/app/(protected)/(engine)/utils/deckRules'
 import { resolvePhase } from '@/app/(protected)/(engine)/utils/resolvePhase'
 import { CARDS_ES } from '@/app/i18n/cards/es'
 import { renderIndex } from '@/scripts/cards-index'
 
 const INDEX_FILE = path.join(process.cwd(), 'app', '(protected)', '(cards)', 'cards', 'index.generated.ts')
 
-/** The folder of a card tells which heroes can use it (docs/PLAN.md, section 5.1). */
-function expectedRestriction(file: string, card: CardDefinition): boolean {
-  const [group, name] = file.split('/')
-  const restriction = card.restriction
+/**
+ * The faction of a card agrees with its restriction (docs/PLAN.md, section
+ * 4.2): a card of a faction (not neutral) is only for heroes of that faction,
+ * through `factions` or through the heroes it lists. A hero must exist.
+ */
+function consistentRestriction(card: CardDefinition): boolean {
+  const { factions = [], heroes = [] } = card.restriction
+  const owners = heroes.map((heroId) => ALL_CARDS.find((candidate) => candidate.id === heroId))
 
-  switch (group) {
-    case 'neutral':
-      return restriction.kind === 'any' && card.faction === 'neutral'
-    case 'factions':
-      return restriction.kind === 'faction' && restriction.faction === name && card.faction === name
-    case 'classes':
-      return restriction.kind === 'class' && restriction.heroClass === name
-    case 'heroes':
-      return restriction.kind === 'hero' && restriction.heroId === name
-    case 'sides':
-      return restriction.kind === 'side' && restriction.side === name && card.faction === 'neutral'
-    default:
-      return false
+  if (owners.some((hero) => hero?.type !== 'hero')) {
+    return false
   }
+
+  return (
+    card.faction === 'neutral' ||
+    (factions.length > 0 ? factions.every((faction) => faction === card.faction) : false) ||
+    (owners.length > 0 && owners.every((hero) => hero!.faction === card.faction))
+  )
 }
+
+/** The hero a card is exclusive to (undefined: any other card). */
+const ownerOf = (card: CardDefinition): string | undefined => card.restriction.heroes?.[0]
 
 describe('the card catalog', () => {
   it('the generated index is up to date', () => {
@@ -55,9 +57,21 @@ describe('the card catalog', () => {
     expect(new Set(ALL_CARDS.map((card) => card.id)).size).toBe(ALL_CARDS.length)
   })
 
-  it('every card lives in the folder that matches its restriction', () => {
+  it('every card lives straight in cards/, with a faction that matches its restriction', () => {
     for (const { file, card } of CARD_FILES) {
-      expect(expectedRestriction(file, card), file).toBe(true)
+      expect(file, file).not.toContain('/')
+      expect(consistentRestriction(card), file).toBe(true)
+    }
+  })
+
+  it('every card can be used by at least one hero', () => {
+    const heroes = ALL_CARDS.filter((card) => card.type === 'hero')
+
+    for (const card of ALL_CARDS.filter((candidate) => candidate.type !== 'hero')) {
+      expect(
+        heroes.some((hero) => canUseCard(hero, card)),
+        card.id
+      ).toBe(true)
     }
   })
 
@@ -92,7 +106,7 @@ describe('the card catalog', () => {
       expect(CARDS, card.id).not.toContain(card)
 
       if (card.type !== 'hero') {
-        const owner = card.restriction.kind === 'hero' ? card.restriction.heroId : ''
+        const owner = ownerOf(card) ?? ''
 
         expect(ALL_CARDS.find((hero) => hero.id === owner)?.boss, card.id).toBe(true)
       }
@@ -218,9 +232,7 @@ describe('every card works in a match', () => {
 
   for (const card of ALL_CARDS.filter((candidate) => candidate.type !== 'hero')) {
     it(card.id, () => {
-      const state = sandbox(
-        heroes.find((hero) => card.restriction.kind === 'hero' && hero.id === card.restriction.heroId)?.id
-      )
+      const state = sandbox(heroes.find((hero) => hero.id === ownerOf(card))?.id)
       const uid = state.nextUid++
 
       state.players.a.hand.push({ uid, cardId: card.id })
@@ -236,9 +248,7 @@ describe('every card works in a match', () => {
 
   for (const card of ALL_CARDS.filter((candidate) => candidate.type === 'ally' && candidate.ability)) {
     it(`${card.id} (ally ability)`, () => {
-      const state = sandbox(
-        heroes.find((hero) => card.restriction.kind === 'hero' && hero.id === card.restriction.heroId)?.id
-      )
+      const state = sandbox(heroes.find((hero) => hero.id === ownerOf(card))?.id)
       const caster = state.players.a.allies[0]!
 
       // The sandbox ally becomes this card, ready to act.

@@ -362,17 +362,24 @@ export const en: Messages = {
     },
     typeLine: {
       hero: '{side} {type} · {faction} {heroClass}',
-      class: '{type} · {heroClass}',
       signature: '{type} · Signature',
-      faction: '{type} · {faction}',
-      side: '{type} · {side}'
+      restricted: '{type} · {parts}'
     },
     restriction: {
       any: 'Any hero',
       faction: 'Heroes of the {faction} faction',
       class: '{heroClass} heroes',
       hero: 'Only {hero}',
-      side: 'Heroes of the {side} side'
+      side: 'Heroes of the {side} side',
+      combined: 'Heroes: {parts}',
+      part: {
+        hero: 'hero {hero}',
+        faction: '{faction} faction',
+        side: '{side} side',
+        class: '{heroClass} class'
+      },
+      or: 'or',
+      and: 'and'
     }
   },
   onboarding: {

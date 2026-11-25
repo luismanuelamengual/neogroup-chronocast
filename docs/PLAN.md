@@ -287,19 +287,32 @@ Por encima de facciones y clases, como los Humanos y las Sombras de Shadow Era, 
 | `dawn` (Alba)       | ☀️      | Ada, Aldric, Gideon, Gorrak, Ilyra, Kora, Nysa, Legado Varro, Vex, Tauron, Ryn, Omnigear                                               |
 | `eclipse` (Eclipse) | 🌑      | Caelus, Canciller Bocabronce, Astrónomo Hueco, Kazhul, Malachar, Morgrath, Nyx, Ooma, Supervisor Kade, Reina Estática, Vorhal, Xulthar |
 
-Algunas cartas neutrales son exclusivas de un bando (`{ kind: 'side', side }`) y viven en `cards/sides/<bando>/`. Por ejemplo, el Sello del Alba y el Sello del Eclipse: cada uno destruye al otro con su habilidad.
+Algunas cartas neutrales son exclusivas de un bando (`{ sides: ['dawn'] }`). Por ejemplo, el Sello del Alba y el Sello del Eclipse: cada uno destruye al otro con su habilidad.
 
 ### 4.2 Restricción de cada carta
 
-Cada carta declara para quién es (`restriction` en su archivo):
+Cada carta declara para quién es (`restriction` en su archivo). La restricción tiene **cuatro criterios que se combinan libremente**, y cada uno es una lista de valores:
 
-| Restricción                    | Quién la puede usar                                | Uso típico                                       |
-| ------------------------------ | -------------------------------------------------- | ------------------------------------------------ |
-| `{ kind: 'any' }`              | Cualquier héroe (cartas `neutral`)                 | Aliados genéricos, objetos, ubicaciones          |
-| `{ kind: 'faction', faction }` | Cualquier héroe de esa facción                     | La mayoría de los aliados y las ubicaciones      |
-| `{ kind: 'class', heroClass }` | Cualquier héroe de esa clase, de cualquier facción | Habilidades, armas y armaduras                   |
-| `{ kind: 'hero', heroId }`     | Solo ese héroe                                     | Cartas exclusivas (su arma propia, su compañero) |
-| `{ kind: 'side', side }`       | Cualquier héroe de ese bando (sección 4.1.1)       | Cartas enfrentadas entre bandos (los Sellos)     |
+| Criterio   | Qué pide del héroe                       |
+| ---------- | ---------------------------------------- |
+| `factions` | Que sea de alguna de esas facciones      |
+| `sides`    | Que sea de alguno de esos bandos (4.1.1) |
+| `classes`  | Que sea de alguna de esas clases         |
+| `heroes`   | Que sea alguno de esos héroes            |
+
+Un héroe puede usar la carta si cumple **todos** los criterios que la carta lista (dentro de cada uno alcanza con **uno** de sus valores). Un criterio que no aparece no restringe nada, así que `{}` es para cualquier héroe.
+
+| Restricción                                                          | Quién la puede usar                 | Uso típico                                       |
+| -------------------------------------------------------------------- | ----------------------------------- | ------------------------------------------------ |
+| `{}`                                                                 | Cualquier héroe (cartas `neutral`)  | Aliados genéricos, objetos                       |
+| `{ factions: ['bronze'] }`                                           | Los héroes de Bronce                | La mayoría de los aliados                        |
+| `{ classes: ['warrior'] }`                                           | Los guerreros, de cualquier facción | Habilidades, armas y armaduras                   |
+| `{ heroes: ['legate-varro'] }`                                       | Solo ese héroe                      | Cartas exclusivas (su arma propia, su compañero) |
+| `{ sides: ['dawn'] }`                                                | Los héroes del Alba                 | Cartas enfrentadas entre bandos (los Sellos)     |
+| `{ factions: ['clockwork', 'neon'] }`                                | Los héroes de Relojería o de Neón   | Cartas puente entre dos eras                     |
+| `{ factions: ['clockwork'], sides: ['dawn'], classes: ['warrior'] }` | Los guerreros de Relojería del Alba | Cartas muy específicas                           |
+
+`defineCard` rechaza un criterio vacío (`[]`) o con valores repetidos, y un héroe siempre es `{ heroes: [<su id>] }`. La colección y la carta lo muestran en palabras: "Héroes de la facción Relojería o Neón", o con varios criterios "Héroes de facción Relojería, bando Alba y clase Guerrero".
 
 `canUseCard(hero, card)` en `(engine)/utils/deckRules.ts` es la única función que decide esto, y la usan el editor de mazos, la colección (filtro "usables con este héroe"), el starter, la tienda (marca de "no la puede usar tu héroe") y el servidor antes de una partida.
 
@@ -351,22 +364,15 @@ Un mazo de comunes bien armado tiene que poder ganarle a uno de míticas mal arm
 
 ```
 app/(protected)/(cards)/cards/
-  neutral/                     Cartas para cualquier héroe
-  factions/
-    primal/  bronze/  arcane/  clockwork/  neon/  void/
-  classes/
-    warrior/  mage/  hunter/  mystic/
-  heroes/
-    <hero-id>/                 La carta del héroe y sus exclusivas
-      <hero-id>.ts
-      <exclusive-card-id>.ts
+  <card-id>.ts                 Todas las cartas al mismo nivel (héroes, sus exclusivas, neutrales, de facción, de bando y de clase)
+  index.generated.ts           El índice que arma `yarn cards:index`
 art/source/cards/<card-id>.png   ← la imagen generada (no se sube al repo)
 public/cards/<card-id>.webp      ← la imagen procesada por `yarn art`
 ```
 
-**Las cartas para todas las facciones van en `cards/neutral/`**, no en la raíz ni en `cards/common/`: la raíz queda solo para las carpetas (así se ve de un vistazo dónde está cada cosa) y `common` se confundiría con la rareza Común. `neutral` es además el nombre que usa la facción en el código.
+**Todas las cartas van en la misma carpeta, sin subcarpetas.** La facción, el bando, la clase y el héroe de una carta son **datos del archivo** (`faction`, `restriction`, y `side` en los héroes), no carpetas: una carpeta obliga a elegir una sola de esas dimensiones, y una carta puede tocar varias (por ejemplo de Relojería, para el bando del Alba y de Guerrero). `yarn cards:index` falla si encuentra una subcarpeta.
 
-La carpeta ordena, pero **la que manda es la `restriction` del archivo**. Un test verifica que coincidan (una carta en `classes/mage/` tiene que tener `{ kind: 'class', heroClass: 'mage' }`), así nunca quedan desordenadas.
+Los agrupamientos (las secciones de `/dev/cards` y los lotes de `art/catalog.csv`) salen de la `restriction` de cada carta (`(cards)/utils/cardGroup.ts`), nunca del archivo. Un test verifica que la `faction` coincida con la `restriction` (una carta de una facción, no `neutral`, solo es para héroes de esa facción, por `factions` o por los `heroes` que lista) y que cada carta la pueda usar al menos un héroe. Una carta con varios criterios va en el grupo del primero, en este orden: héroe, facción, bando y clase.
 
 El `id` de la carta es el nombre del archivo, en inglés y en `kebab-case`. Un test lo exige y nunca cambia, porque las colecciones y los mazos guardados lo referencian.
 
@@ -380,7 +386,7 @@ export default defineCard({
   id: 'bronze-legionary',
   type: 'ally',
   faction: 'bronze',
-  restriction: { kind: 'faction', faction: 'bronze' },
+  restriction: { factions: ['bronze'] },
   rarity: 'common',
   price: 55,
   cost: 2,
@@ -428,7 +434,7 @@ Se pone en `art/source/cards/<card-id>.png` y `yarn art` la procesa (sección 9.
 
 ### 7.5 Validación del catálogo (`tests/unit/cards.test.ts`)
 
-Para cada carta: id igual al nombre del archivo e ids únicos; carpeta coherente con la `restriction`; costo, estadísticas y precio dentro del rango de su rareza; tipo, facción, clase y palabras clave válidas; prompt presente; y una **prueba de humo**: se juega la carta en una partida de prueba contra objetivos válidos y el motor no puede tirar errores.
+Para cada carta: id igual al nombre del archivo e ids únicos; todas en `cards/` sin subcarpetas y con la `faction` coherente con la `restriction`; costo, estadísticas y precio dentro del rango de su rareza; tipo, facción, clase y palabras clave válidas; prompt presente; y una **prueba de humo**: se juega la carta en una partida de prueba contra objetivos válidos y el motor no puede tirar errores.
 
 ### 7.6 Idiomas
 
@@ -839,24 +845,24 @@ Cada fase termina con algo jugable o usable, sus tests y el README actualizado (
 
 ## 19. Decisiones tomadas
 
-| Tema                            | Decisión                                                                                                                                                                                     |
-| ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Tamaño de mazo                  | Mínimo 40, máximo 200, contando el héroe                                                                                                                                                     |
-| Héroe                           | Exactamente 1 por mazo. El jugador elige su héroe inicial y el starter trae ese héroe + 39 cartas usables por él                                                                             |
-| Cronos                          | Descartar da +1 de capacidad permanente; se recarga cada fase; 1 descarte por fase                                                                                                           |
-| Vida de los héroes              | Entre 90 y 120                                                                                                                                                                               |
-| Equipo del héroe                | Empieza sin arma ni armadura; son cartas que se adjuntan                                                                                                                                     |
-| Restricciones                   | Cada carta es para cualquier héroe, una facción, una clase o un héroe en particular                                                                                                          |
-| Movimiento entre slots          | Mecánica general de todas las facciones                                                                                                                                                      |
-| Mano                            | 7 iniciales y máximo 7                                                                                                                                                                       |
-| Tiempo de programación          | 90 segundos por fase                                                                                                                                                                         |
-| Ubicación del héroe             | Detrás de sus aliados (o al costado en pantallas anchas), nunca delante                                                                                                                      |
-| Idioma del código               | Todo en inglés; el español solo como traducción de la interfaz y de las cartas (opcional)                                                                                                    |
-| Cartas para todas las facciones | `cards/neutral/`                                                                                                                                                                             |
-| `yarn art`                      | Muestra cada imagen en el momento en que la procesa; `--watch` para procesar al instante                                                                                                     |
-| Sobres                          | El doble de precio que en el plan anterior                                                                                                                                                   |
-| Cartas sueltas                  | Precio propio por carta, dentro de un rango por rareza, el doble que en el plan anterior                                                                                                     |
-| Rating                          | Solo el actual (`users.rating`), sin historial                                                                                                                                               |
-| `gold_ledger`, `pack_openings`  | Fuera del plan. La garantía de los sobres usa un contador en `users`. Si más adelante hace falta auditar el oro (por un bug de premios, por ejemplo), se puede sumar el libro de movimientos |
-| Partidas privadas               | No cuentan para el rating y dan la mitad de oro                                                                                                                                              |
-| Orientación                     | Horizontal, como Crisol                                                                                                                                                                      |
+| Tema                           | Decisión                                                                                                                                                                                     |
+| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Tamaño de mazo                 | Mínimo 40, máximo 200, contando el héroe                                                                                                                                                     |
+| Héroe                          | Exactamente 1 por mazo. El jugador elige su héroe inicial y el starter trae ese héroe + 39 cartas usables por él                                                                             |
+| Cronos                         | Descartar da +1 de capacidad permanente; se recarga cada fase; 1 descarte por fase                                                                                                           |
+| Vida de los héroes             | Entre 90 y 120                                                                                                                                                                               |
+| Equipo del héroe               | Empieza sin arma ni armadura; son cartas que se adjuntan                                                                                                                                     |
+| Restricciones                  | Criterios combinables (facciones, bandos, clases y héroes); el héroe tiene que cumplirlos todos                                                                                              |
+| Movimiento entre slots         | Mecánica general de todas las facciones                                                                                                                                                      |
+| Mano                           | 7 iniciales y máximo 7                                                                                                                                                                       |
+| Tiempo de programación         | 90 segundos por fase                                                                                                                                                                         |
+| Ubicación del héroe            | Detrás de sus aliados (o al costado en pantallas anchas), nunca delante                                                                                                                      |
+| Idioma del código              | Todo en inglés; el español solo como traducción de la interfaz y de las cartas (opcional)                                                                                                    |
+| Carpeta de las cartas          | Todas en `cards/`, al mismo nivel; facción, bando, clase y héroe son datos de la carta, no carpetas                                                                                          |
+| `yarn art`                     | Muestra cada imagen en el momento en que la procesa; `--watch` para procesar al instante                                                                                                     |
+| Sobres                         | El doble de precio que en el plan anterior                                                                                                                                                   |
+| Cartas sueltas                 | Precio propio por carta, dentro de un rango por rareza, el doble que en el plan anterior                                                                                                     |
+| Rating                         | Solo el actual (`users.rating`), sin historial                                                                                                                                               |
+| `gold_ledger`, `pack_openings` | Fuera del plan. La garantía de los sobres usa un contador en `users`. Si más adelante hace falta auditar el oro (por un bug de premios, por ejemplo), se puede sumar el libro de movimientos |
+| Partidas privadas              | No cuentan para el rating y dan la mitad de oro                                                                                                                                              |
+| Orientación                    | Horizontal, como Crisol                                                                                                                                                                      |

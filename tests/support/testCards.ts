@@ -12,7 +12,7 @@ import { registerCards } from '@/app/(protected)/(engine)/utils/registry'
 /** Small cards to test the rules one at a time, without depending on the real catalog. */
 const base = {
   faction: 'neutral',
-  restriction: { kind: 'any' },
+  restriction: {},
   rarity: 'common',
   text: '',
   art: { subject: 'test' }
@@ -38,7 +38,7 @@ export const TEST_CARDS: CardDefinition[] = [
     health: 50,
     heroClass: 'warrior',
     side: 'dawn',
-    restriction: { kind: 'hero', heroId: 'test-hero' }
+    restriction: { heroes: ['test-hero'] }
   }),
   ally('test-filler', 1, 1),
   ally('test-soldier', 10, 20),
@@ -137,7 +137,7 @@ export const TEST_CARDS: CardDefinition[] = [
     health: 50,
     heroClass: 'mage',
     side: 'eclipse',
-    restriction: { kind: 'hero', heroId: 'test-shaman' },
+    restriction: { heroes: ['test-shaman'] },
     ability: {
       name: 'Test Spark',
       text: 'Deal 5 damage to an enemy slot.',

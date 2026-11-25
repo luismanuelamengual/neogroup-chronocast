@@ -366,17 +366,24 @@ export const es = {
     },
     typeLine: {
       hero: '{side} {type} · {faction} · {heroClass}',
-      class: '{type} · {heroClass}',
       signature: '{type} · Exclusiva',
-      faction: '{type} · {faction}',
-      side: '{type} · {side}'
+      restricted: '{type} · {parts}'
     },
     restriction: {
       any: 'Cualquier héroe',
       faction: 'Héroes de la facción {faction}',
       class: 'Héroes de clase {heroClass}',
       hero: 'Solo {hero}',
-      side: 'Héroes del bando {side}'
+      side: 'Héroes del bando {side}',
+      combined: 'Héroes de {parts}',
+      part: {
+        hero: 'héroe {hero}',
+        faction: 'facción {faction}',
+        side: 'bando {side}',
+        class: 'clase {heroClass}'
+      },
+      or: 'o',
+      and: 'y'
     }
   },
   onboarding: {

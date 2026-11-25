@@ -12,6 +12,7 @@
 import { mkdirSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import { CARD_FILES } from '@/app/(protected)/(cards)/cards/index.generated'
+import { cardGroup } from '@/app/(protected)/(cards)/utils/cardGroup'
 import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition'
 import { FACTION_STYLES, SIDE_STYLES } from '@/scripts/art/factions'
 
@@ -51,12 +52,11 @@ export interface ArtRow {
   portrait: boolean
 }
 
-/** The batch of a card: its group in the catalog, from the folder of its file. */
-export function batchOf(file: string): string {
-  const [group, name] = file.split('/')
-  const prefix: Record<string, string> = { factions: 'faction', classes: 'class', heroes: 'hero', sides: 'side' }
+/** The batch of a card: its group in the catalog, from its restriction (not from its file). */
+export function batchOf(card: CardDefinition): string {
+  const { kind, name } = cardGroup(card)
 
-  return group === 'neutral' ? 'neutral' : `${prefix[group] ?? group}-${name}`
+  return kind === 'neutral' ? 'neutral' : `${kind}-${name}`
 }
 
 const BATCH_ORDER = ['neutral', 'side', 'faction', 'class', 'hero']
@@ -72,16 +72,17 @@ export const OBJECT_ONLY =
 export function promptFor(card: CardDefinition, portrait = false): string {
   const framing = portrait ? 'square close-up portrait of the face and shoulders, ' : ''
   const objectOnly = card.type === 'ally' || card.type === 'hero' ? '' : `${OBJECT_ONLY}. `
-  // A card of one side takes the look of its side instead of the neutral one.
-  const style = card.restriction.kind === 'side' ? SIDE_STYLES[card.restriction.side] : FACTION_STYLES[card.faction]
+  // A neutral card of one side takes the look of its side instead of the neutral one.
+  const sides = card.restriction.sides ?? []
+  const style = card.faction === 'neutral' && sides.length === 1 ? SIDE_STYLES[sides[0]] : FACTION_STYLES[card.faction]
 
   return `${BASE_PROMPT}. ${style}. ${objectOnly}${framing}${card.art.subject}`
 }
 
 /** Every image the catalog needs, batch by batch. */
 export function artRows(): ArtRow[] {
-  const rows = CARD_FILES.flatMap(({ file, card }) => {
-    const batch = batchOf(file)
+  const rows = CARD_FILES.flatMap(({ card }) => {
+    const batch = batchOf(card)
     const main: ArtRow = {
       batch,
       file: `${card.id}.png`,

@@ -133,14 +133,7 @@ Siempre `POST` con body JSON, nombre `verbNoun`, respuesta `{ success, data }` /
 
 ## Cartas
 
-Cada carta es un archivo en `app/(protected)/(cards)/cards/` que exporta `defineCard({...})`. La carpeta dice quién puede usarla:
-
-| Carpeta               | Restricción                                   |
-| --------------------- | --------------------------------------------- |
-| `neutral/`            | Cualquier héroe                               |
-| `factions/<faction>/` | Los héroes de esa facción                     |
-| `classes/<class>/`    | Los héroes de esa clase                       |
-| `heroes/<hero-id>/`   | El héroe (su archivo) y sus cartas exclusivas |
+Cada carta es un archivo en `app/(protected)/(cards)/cards/` que exporta `defineCard({...})`. **Todas están al mismo nivel, sin subcarpetas**: quién puede usarla lo dice su `restriction`, no la carpeta. La restricción combina cuatro criterios, cada uno una lista: `factions`, `sides`, `classes` y `heroes`. El héroe tiene que cumplir todos los que la carta lista, con cualquiera de sus valores (`{}` es cualquier héroe). Por ejemplo, `{ factions: ['clockwork'], sides: ['dawn'], classes: ['warrior'] }` es para los guerreros de Relojería del Alba, y `{ factions: ['clockwork', 'neon'] }` para los de Relojería o Neón (docs/PLAN.md, sección 4.2).
 
 - El `id` es el nombre del archivo (kebab-case) y todo está en inglés. La lógica se escribe con los hooks (`onPlay`, `onEnter`, `onDeath`, `onPhaseStart`, `onTrigger`...) y los efectos reutilizables de `(engine)/effects`.
 - `defineCard` valida el formato (campos por tipo, costo, precio dentro del rango de su rareza, vida de héroe entre 45 y 60) y tira error al importar si algo está mal.

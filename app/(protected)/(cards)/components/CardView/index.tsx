@@ -42,22 +42,21 @@ function typeLine(card: CardDefinition, t: Translator): string {
   }
 
   const tribe = card.tribe ? ` · ${t(`game.tribes.${card.tribe}`)}` : ''
+  const { factions = [], sides = [], classes = [], heroes = [] } = card.restriction
 
-  switch (card.restriction.kind) {
-    case 'class':
-      return t('game.typeLine.class', { type, heroClass: t(`game.classes.${card.restriction.heroClass}`) }) + tribe
-    case 'hero':
-      return t('game.typeLine.signature', { type }) + tribe
-    case 'side':
-      return (
-        t('game.typeLine.side', {
-          type,
-          side: `${SIDE_ICONS[card.restriction.side]} ${t(`game.sides.${card.restriction.side}`)}`
-        }) + tribe
-      )
-    default:
-      return t('game.typeLine.faction', { type, faction }) + tribe
+  if (heroes.length > 0) {
+    return t('game.typeLine.signature', { type }) + tribe
   }
+
+  // The faction shows unless the card is only for some sides or classes (then
+  // it is neutral and they say more): "Ally · Clockwork · ☀️ Dawn · Warrior".
+  const parts = [
+    ...(factions.length > 0 || (sides.length === 0 && classes.length === 0) ? [faction] : []),
+    ...(sides.length > 0 ? [sides.map((side) => `${SIDE_ICONS[side]} ${t(`game.sides.${side}`)}`).join(' / ')] : []),
+    ...(classes.length > 0 ? [classes.map((heroClass) => t(`game.classes.${heroClass}`)).join(' / ')] : [])
+  ]
+
+  return t('game.typeLine.restricted', { type, parts: parts.join(' · ') }) + tribe
 }
 
 /** The names of some elements, with their icons: "🔥 Fire, ❄️ Ice". */

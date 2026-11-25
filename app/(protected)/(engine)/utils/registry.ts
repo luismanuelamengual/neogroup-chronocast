@@ -17,7 +17,7 @@ const HIDDEN_CARD: CardDefinition = {
   name: '?',
   text: '',
   faction: 'neutral',
-  restriction: { kind: 'any' },
+  restriction: {},
   rarity: 'common',
   cost: 0,
   art: { subject: 'the back of a card' }

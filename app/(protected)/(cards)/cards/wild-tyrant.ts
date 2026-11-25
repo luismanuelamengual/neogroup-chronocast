@@ -1,0 +1,27 @@
+import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { summonCard } from '@/app/(protected)/(engine)/effects'
+
+export default defineCard({
+  id: 'wild-tyrant',
+  type: 'ally',
+  name: 'Wild Tyrant',
+  text: 'When it enters: summon a Sabertooth Cub.',
+  flavor: 'The jungle trembles when it wakes.',
+  faction: 'neutral',
+  restriction: { classes: ['hunter'] },
+  rarity: 'common',
+  weak: ['ice'],
+  price: 55,
+  cost: 3,
+  tribe: 'saurian',
+  attack: 3,
+  health: 7,
+  onEnter(ctx) {
+    summonCard(ctx, ctx.owner, 'sabertooth-cub')
+  },
+  ai: { value: 3, tags: ['summon'] },
+  art: {
+    subject:
+      'Wild Tyrant: a tyrant with a slate-blue hide with white bands and a scarred snout, circling warily, violet accents, hunter style'
+  }
+})

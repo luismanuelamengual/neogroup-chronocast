@@ -75,7 +75,7 @@ describe('the campaigns', () => {
 
       expect(campaign.stages).toHaveLength(STAGES_PER_CAMPAIGN)
       expect(reward.reward, reward.id).toBe(true)
-      expect(reward.restriction).toEqual({ kind: 'hero', heroId: campaign.heroId })
+      expect(reward.restriction).toEqual({ heroes: [campaign.heroId] })
       expect(heroIds, campaign.heroId).toContain(campaign.heroId)
       expect(new Set(campaign.stages.map((stage) => stage.rival)).size, campaign.heroId).toBe(STAGES_PER_CAMPAIGN)
       expect(

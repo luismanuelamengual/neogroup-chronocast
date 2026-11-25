@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react'
 import { CARD_FILES } from '@/app/(protected)/(cards)/cards/index.generated'
 import CardView from '@/app/(protected)/(cards)/components/CardView'
+import { cardGroup, CardGroupKind } from '@/app/(protected)/(cards)/utils/cardGroup'
 import { HEROES } from '@/app/(protected)/(cards)/utils/catalog'
 import CardFilters from '@/app/(protected)/(collection)/components/CardFilters'
 import { CardFilter, EMPTY_FILTER, matchesFilter } from '@/app/(protected)/(collection)/utils/filters'
@@ -10,13 +11,13 @@ import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition
 import { cardName } from '@/app/i18n/cards'
 import { useI18n } from '@/app/i18n/I18nProvider'
 
-/** The groups of the catalog, in the order the page shows them (by folder of cards/). */
-const GROUPS = [
-  { folder: 'heroes', title: 'Heroes and signature cards' },
-  { folder: 'neutral', title: 'Neutral' },
-  { folder: 'sides', title: 'Sides (Dawn and Eclipse)' },
-  { folder: 'factions', title: 'Factions' },
-  { folder: 'classes', title: 'Classes' }
+/** The groups of the catalog, in the order the page shows them (by who can use them). */
+const GROUPS: { kind: CardGroupKind; title: string }[] = [
+  { kind: 'hero', title: 'Heroes and signature cards' },
+  { kind: 'neutral', title: 'Neutral' },
+  { kind: 'side', title: 'Sides (Dawn and Eclipse)' },
+  { kind: 'faction', title: 'Factions' },
+  { kind: 'class', title: 'Classes' }
 ]
 /** Dev-only filter: the special kinds of cards players never own. */
 const KINDS = {
@@ -41,8 +42,8 @@ function matchesKind(card: CardDefinition, kind: Kind): boolean {
 }
 
 /**
- * The whole catalog drawn with CardView, grouped by folder, with the filters of
- * the collection (plus the file path in the search and the kind of card). A
+ * The whole catalog drawn with CardView, grouped by who can use them (their restriction), with the filters of
+ * the collection (plus the file name in the search and the kind of card). A
  * client component: the card definitions carry their logic (functions), which
  * can't cross from the server.
  */
@@ -89,12 +90,14 @@ export default function CardsCatalog() {
         )}
       </div>
       {files.length === 0 && <p className="dev-cards__empty">No card matches the filters.</p>}
-      {GROUPS.map(({ folder, title }) => {
-        const group = files.filter(({ file }) => file.startsWith(`${folder}/`))
+      {GROUPS.map(({ kind: groupKind, title }) => {
+        const group = files
+          .filter(({ card }) => cardGroup(card).kind === groupKind)
+          .sort((a, b) => cardGroup(a.card).name.localeCompare(cardGroup(b.card).name))
 
         return (
           group.length > 0 && (
-            <section key={folder}>
+            <section key={groupKind}>
               <h2>
                 {title} · {group.length}
               </h2>

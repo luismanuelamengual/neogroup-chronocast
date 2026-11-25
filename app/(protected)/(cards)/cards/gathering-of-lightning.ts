@@ -1,0 +1,23 @@
+import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { summonCard } from '@/app/(protected)/(engine)/effects'
+
+export default defineCard({
+  id: 'gathering-of-lightning',
+  type: 'ability',
+  name: 'Gathering of Lightning',
+  text: 'Summon an Arcane Familiar.',
+  flavor: 'Every storm starts with a single spark.',
+  faction: 'neutral',
+  restriction: { classes: ['mage'] },
+  rarity: 'mythic',
+  price: 29000,
+  cost: 3,
+  onPlay(ctx) {
+    summonCard(ctx, ctx.owner, 'arcane-familiar')
+  },
+  ai: { value: 6, tags: ['summon'] },
+  art: {
+    subject:
+      'Gathering of Lightning: many small lights converging into one bright orb, over burning grassland, framed by drifting embers, violet accents, mage style'
+  }
+})

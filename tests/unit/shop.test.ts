@@ -30,7 +30,7 @@ function fakeCatalog(): CardDefinition[] {
         name: `${rarity} ${faction}`,
         text: '',
         faction,
-        restriction: { kind: 'any' },
+        restriction: {},
         rarity,
         price: 100,
         cost: 1,

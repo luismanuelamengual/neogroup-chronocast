@@ -10,20 +10,15 @@ export function canUseCard(hero: CardDefinition, card: CardDefinition): boolean 
     return false
   }
 
-  const restriction = card.restriction
+  const { factions, sides, classes, heroes } = card.restriction
+  const side = sideOf(hero)
 
-  switch (restriction.kind) {
-    case 'any':
-      return true
-    case 'faction':
-      return hero.faction === restriction.faction
-    case 'class':
-      return hero.heroClass === restriction.heroClass
-    case 'hero':
-      return hero.id === restriction.heroId
-    case 'side':
-      return sideOf(hero) === restriction.side
-  }
+  return (
+    (!factions?.length || factions.includes(hero.faction)) &&
+    (!sides?.length || (side !== null && sides.includes(side))) &&
+    (!classes?.length || (hero.heroClass !== undefined && classes.includes(hero.heroClass))) &&
+    (!heroes?.length || heroes.includes(hero.id))
+  )
 }
 
 export type DeckProblem =

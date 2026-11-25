@@ -4,6 +4,7 @@ import { deleteAccount } from '@/app/(protected)/(account)/services/accounts'
 import { CARDS } from '@/app/(protected)/(cards)/utils/catalog'
 import { addCards, chooseStarter, getCollection } from '@/app/(protected)/(collection)/services/collection'
 import { getDeck, listDecks, saveDeck, setActiveDeck } from '@/app/(protected)/(collection)/services/decks'
+import { isUnrestricted } from '@/app/(protected)/(engine)/models/Restriction'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
 import { HERO_PRICES } from '@/app/(protected)/(shop)/data/prices'
 import { buyPack } from '@/app/(protected)/(shop)/services/packs'
@@ -184,7 +185,7 @@ describe('the shop', () => {
     const count = starter.cards[cardId]
     const other = CARDS.find(
       (card) =>
-        card.type !== 'hero' && card.restriction.kind === 'any' && copyLimit(card) >= count && !starter.cards[card.id]
+        card.type !== 'hero' && isUnrestricted(card.restriction) && copyLimit(card) >= count && !starter.cards[card.id]
     )!
 
     // The active deck swaps that card for another one: its copies are free to sell.

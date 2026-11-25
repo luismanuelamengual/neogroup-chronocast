@@ -1,6 +1,7 @@
 import { PRICE_RANGES } from '@/app/(protected)/(cards)/data/rarities'
 import { HERO_ABILITY_MIN_COST, HERO_MAX_HEALTH, HERO_MIN_HEALTH } from '@/app/(protected)/(engine)/data/rules'
 import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition'
+import { RESTRICTION_CRITERIA, restrictionCriteria } from '@/app/(protected)/(engine)/models/Restriction'
 
 /**
  * Declares a card: checks its shape (a clear error at load time instead of a
@@ -51,6 +52,14 @@ export function cardProblems(card: CardDefinition): string[] {
     problems.push('the thorns keyword needs "thorns"')
   }
 
+  for (const criterion of RESTRICTION_CRITERIA) {
+    const values: string[] | undefined = card.restriction[criterion]
+
+    if (values && (values.length === 0 || new Set(values).size !== values.length)) {
+      problems.push(`the "${criterion}" of the restriction lists at least one value, each one once`)
+    }
+  }
+
   switch (card.type) {
     case 'hero':
       need('health')
@@ -61,7 +70,7 @@ export function cardProblems(card: CardDefinition): string[] {
         problems.push(`a hero has from ${HERO_MIN_HEALTH} to ${HERO_MAX_HEALTH} health`)
       }
 
-      if (card.restriction.kind !== 'hero' || card.restriction.heroId !== card.id) {
+      if (restrictionCriteria(card.restriction).join() !== 'heroes' || card.restriction.heroes?.join() !== card.id) {
         problems.push('a hero is restricted to itself')
       }
 

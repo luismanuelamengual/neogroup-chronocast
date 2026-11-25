@@ -1,7 +1,9 @@
 /* eslint-disable no-console */
 /**
  * Writes app/(protected)/(cards)/cards/index.generated.ts: one import per card
- * file under cards/. Runs by itself before `yarn dev`, `yarn build` and
+ * file of cards/. Every card lives at the same level of that folder, whatever
+ * its faction, side, class or hero (that is metadata of the card, not a
+ * folder), so a subfolder is an error. Runs by itself before `yarn dev`, `yarn build` and
  * `yarn test`, so adding a card is only creating its file (and its image).
  *
  * Usage: yarn cards:index         (writes the index)
@@ -21,7 +23,7 @@ function cardFiles(dir: string): string[] {
       const full = path.join(dir, name)
 
       if (statSync(full).isDirectory()) {
-        return cardFiles(full)
+        throw new Error(`cards/${name}/: every card goes straight in cards/, without subfolders.`)
       }
 
       return name.endsWith('.ts') && full !== INDEX_FILE ? [full] : []
@@ -40,7 +42,7 @@ export function renderIndex(): string {
     "import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition'",
     ...imports,
     '',
-    '/** Every card of the game, with the path of its file (relative to this folder). */',
+    '/** Every card of the game, with the name of its file (without .ts). */',
     'export const CARD_FILES: { file: string; card: CardDefinition }[] = [',
     files.map((file, index) => `  { file: '${file}', card: card${index} }`).join(',\n'),
     ']',
