@@ -12,6 +12,7 @@ import BattleEnd from '@/app/(protected)/(battle)/components/BattleEnd'
 import BattleLog from '@/app/(protected)/(battle)/components/BattleLog'
 import BoardSlot, { SlotHighlight } from '@/app/(protected)/(battle)/components/BoardSlot'
 import CardStack, { STACK_DEPTH, type StackCard } from '@/app/(protected)/(battle)/components/CardStack'
+import DeckPickOverlay from '@/app/(protected)/(battle)/components/DeckPickOverlay'
 import MiniCard from '@/app/(protected)/(battle)/components/MiniCard'
 import MulliganOverlay from '@/app/(protected)/(battle)/components/MulliganOverlay'
 import TimelineBar from '@/app/(protected)/(battle)/components/TimelineBar'
@@ -24,6 +25,7 @@ import { KEYWORD_ICONS } from '@/app/(protected)/(battle)/utils/icons'
 import { projectPlan, usedCards } from '@/app/(protected)/(battle)/utils/projection'
 import {
   allyAbility,
+  artifactAbility,
   attackRefs,
   cardNeeds,
   heroCard,
@@ -35,7 +37,14 @@ import {
 import CardSpotlight, { SpotlightAction, SpotlightCard } from '@/app/(protected)/(cards)/components/CardSpotlight'
 import { ACTIONS_PER_PHASE, ALLY_SLOTS, SUPPORT_SLOTS } from '@/app/(protected)/(engine)/data/rules'
 import { ActiveAbility } from '@/app/(protected)/(engine)/models/CardDefinition'
-import { Afflictions, HeroState, MatchState, PlayerState, Unit } from '@/app/(protected)/(engine)/models/MatchState'
+import {
+  Afflictions,
+  CardInstance,
+  HeroState,
+  MatchState,
+  PlayerState,
+  Unit
+} from '@/app/(protected)/(engine)/models/MatchState'
 import { PlannedAction } from '@/app/(protected)/(engine)/models/PlannedAction'
 import { PlayerId } from '@/app/(protected)/(engine)/models/PlayerId'
 import { SlotRef } from '@/app/(protected)/(engine)/models/SlotRef'
@@ -73,6 +82,7 @@ type Spot =
   | { kind: 'hand'; uid: number; cardId: string }
   | { kind: 'ally'; player: PlayerId; uid: number; cardId: string }
   | { kind: 'hero'; player: PlayerId; cardId: string }
+  | { kind: 'artifact'; player: PlayerId; uid: number; cardId: string }
   | { kind: 'inspect'; cardId: string; note?: string }
 
 /** The sizes of the cards on this screen (px), from the size of the window. */
@@ -149,6 +159,8 @@ export default function BattleScreen({
   const [logOpen, setLogOpen] = useState(false)
   const [confirmSurrender, setConfirmSurrender] = useState(false)
   const [spot, setSpot] = useState<Spot | null>(null)
+  /** Choosing the card of the deck the hero's ability takes. */
+  const [deckPick, setDeckPick] = useState(false)
   const programming = mode === 'planning'
   /** The timeline can be changed (online, not after it was sent). */
   const planning = programming && !store.submitted
@@ -242,6 +254,14 @@ export default function BattleScreen({
           return { action: { kind: 'heroAttack', target: ref } }
         }
 
+        case 'artifact': {
+          const targets = [...current.ability, ref]
+
+          return targets.length >= (artifactAbility(board, me, current.uid)?.targets?.length ?? 0)
+            ? { action: { kind: 'artifactAbility', artifactUid: current.uid, targets } }
+            : { next: { ...current, ability: targets } }
+        }
+
         default:
           return {}
       }
@@ -312,6 +332,12 @@ export default function BattleScreen({
         }
 
         return valid('attack', attackRefs(board, me))
+      }
+
+      case 'artifact': {
+        const kind = artifactAbility(board, me, selection.uid)?.targets?.[selection.ability.length]
+
+        return kind ? valid('target', refsFor(board, me, kind)) : NO_HIGHLIGHTS
       }
 
       default:
@@ -397,7 +423,7 @@ export default function BattleScreen({
     const disarmer = restrainer('disarms')
     const silencer = restrainer('silences')
     const notes = [
-      `⚔️ ${unit.attack + unit.tempAttack} · ❤️ ${unit.health}/${unit.maxHealth}`,
+      `⚔️ ${unit.attack + unit.tempAttack + (unit.veil?.attack ?? 0)} · ❤️ ${unit.health}/${unit.maxHealth}`,
       ...afflictionNotes(unit)
     ]
 
@@ -425,6 +451,10 @@ export default function BattleScreen({
 
     if (unit.tempAttack) {
       notes.push(t('battle.statusNotes.tempAttack', { amount: signed(unit.tempAttack) }))
+    }
+
+    if (unit.veil) {
+      notes.push(t('battle.statusNotes.veil', { amount: unit.veil.attack, until: until(unit.veil.untilPhase) }))
     }
 
     if (definition.attack != null && unit.attack !== definition.attack) {
@@ -513,6 +543,10 @@ export default function BattleScreen({
       notes.push(t('battle.statusNotes.heroAbilityUsed'))
     }
 
+    for (const boon of board.players[player].boons ?? []) {
+      notes.push(t(`battle.statusNotes.boon_${boon.kind}`, { amount: boon.amount, until: until(boon.untilPhase) }))
+    }
+
     if (hero.fallen) {
       notes.push(t('battle.statusNotes.fallen'))
     }
@@ -561,6 +595,18 @@ export default function BattleScreen({
     }
   }
 
+  /** A face-up support card: an artifact opens with its ability (when it has one); a trap is only looked at. */
+  const onSupportClick = (player: PlayerId, card: CardInstance) => {
+    const isArtifact = (board.players[player].artifacts ?? []).some((candidate) => candidate.uid === card.uid)
+
+    if (isArtifact) {
+      store.select(null)
+      setSpot({ kind: 'artifact', player, uid: card.uid, cardId: card.cardId })
+    } else {
+      inspect(card.cardId)
+    }
+  }
+
   const inspect = (cardId: string, note?: string) => {
     store.select(null)
     setSpot({ kind: 'inspect', cardId, note })
@@ -589,6 +635,28 @@ export default function BattleScreen({
   }
 
   // ─── The card shown big, and its buttons ──────────────────────────────────
+
+  // The cards of the deck the hero's ability can take (one per card, with its copies).
+  const heroChoice = heroCard(board, me).ability?.choice
+  const deckChoices: { cardId: string; copies: number }[] = []
+
+  if (heroChoice === 'deckArtifact') {
+    for (const card of state.players[me].deck) {
+      if (getCard(card.cardId).type !== 'artifact') {
+        continue
+      }
+
+      const found = deckChoices.find((choice) => choice.cardId === card.cardId)
+
+      if (found) {
+        found.copies++
+      } else {
+        deckChoices.push({ cardId: card.cardId, copies: 1 })
+      }
+    }
+
+    deckChoices.sort((a, b) => cardName(a.cardId).localeCompare(cardName(b.cardId)))
+  }
 
   let spotActions: SpotlightAction[] = []
   let spotNote: string | undefined
@@ -688,7 +756,19 @@ export default function BattleScreen({
         }
       ]
 
-      if (ability) {
+      if (ability?.choice) {
+        const first = deckChoices[0]?.cardId
+
+        spotActions.push({
+          label: abilityLabel(ability, true),
+          color: 'violet',
+          disabledReason: reason(first ? store.check({ kind: 'heroAbility', targets: [], cardId: first }) : 'noChoice'),
+          onClick: () => {
+            setSpot(null)
+            setDeckPick(true)
+          }
+        })
+      } else if (ability) {
         const aim: Selection = { kind: 'hero', ability: [] }
         const direct: PlannedAction = { kind: 'heroAbility', targets: [] }
 
@@ -703,6 +783,29 @@ export default function BattleScreen({
           onClick: () => (ability.targets?.length ? choose(aim) : choose(null, direct))
         })
       }
+    }
+  } else if (spot?.kind === 'artifact') {
+    const artifact = (board.players[spot.player].artifacts ?? []).find((candidate) => candidate.uid === spot.uid)
+    const ability = artifact ? getCard(artifact.cardId).ability : undefined
+
+    spotNote = artifact?.abilityUsedThisPhase ? t('battle.statusNotes.artifactAbilityUsed') : undefined
+
+    if (planning && artifact && ability && spot.player === me) {
+      const aim: Selection = { kind: 'artifact', uid: artifact.uid, ability: [] }
+      const direct: PlannedAction = { kind: 'artifactAbility', artifactUid: artifact.uid, targets: [] }
+
+      spotActions = [
+        {
+          label: abilityLabel(ability, false),
+          color: 'violet',
+          disabledReason: reason(
+            ability.targets?.length
+              ? firstWorking(aim, refsFor(board, me, ability.targets[0]), 'target', 'invalidTarget')
+              : store.check(direct)
+          ),
+          onClick: () => (ability.targets?.length ? choose(aim) : choose(null, direct))
+        }
+      ]
     }
   } else if (spot?.kind === 'inspect') {
     spotNote = spot.note
@@ -757,6 +860,8 @@ export default function BattleScreen({
           : t('battle.hints.attack')
     } else if (selection.kind === 'hero') {
       aimHint = selection.ability ? t('battle.hints.target') : t('battle.hints.attack')
+    } else if (selection.kind === 'artifact') {
+      aimHint = t('battle.hints.target')
     }
   }
 
@@ -814,9 +919,19 @@ export default function BattleScreen({
             <button
               key={index}
               type="button"
-              className={classNames('battle-screen__support', { empty: !entry })}
+              className={classNames('battle-screen__support', {
+                empty: !entry,
+                selected: !!entry && selection?.kind === 'artifact' && selection.uid === entry.card.uid,
+                'ability-ready':
+                  planning &&
+                  player === me &&
+                  !!entry &&
+                  !entry.faceDown &&
+                  !!getCard(entry.card.cardId).ability &&
+                  !entry.card.abilityUsedThisPhase
+              })}
               disabled={!entry || entry.faceDown}
-              onClick={() => entry && !entry.faceDown && inspect(entry.card.cardId)}
+              onClick={() => entry && !entry.faceDown && onSupportClick(player, entry.card)}
             >
               {entry && (
                 <CardStack width={metrics.support}>
@@ -1134,6 +1249,16 @@ export default function BattleScreen({
         />
       )}
 
+      {deckPick && planning && (
+        <DeckPickOverlay
+          options={deckChoices}
+          onClose={() => setDeckPick(false)}
+          onPick={(cardId) => {
+            setDeckPick(false)
+            program({ kind: 'heroAbility', targets: [], cardId })
+          }}
+        />
+      )}
       {mode === 'mulligan' && (
         <MulliganOverlay
           hand={state.players[me].hand}
@@ -1164,7 +1289,7 @@ export default function BattleScreen({
 
 /** An ally on the board: its whole card, with its live attack and health, keywords and state. */
 function UnitCard({ unit, width, phase }: { unit: Unit; width: number; phase: number }) {
-  const attack = unit.attack + unit.tempAttack
+  const attack = unit.attack + unit.tempAttack + (unit.veil?.attack ?? 0)
   const keywords = unit.keywords.filter((keyword) => KEYWORD_ICONS[keyword])
   const frozen = (unit.frozenUntilPhase ?? 0) >= phase
   const stunned = unit.stunnedUntilPhase >= phase && !frozen
@@ -1179,7 +1304,9 @@ function UnitCard({ unit, width, phase }: { unit: Unit; width: number; phase: nu
           ))}
         </span>
       )}
-      <span className={classNames('battle-screen__badge attack', { boosted: unit.tempAttack > 0 })}>{attack}</span>
+      <span className={classNames('battle-screen__badge attack', { boosted: unit.tempAttack > 0 || !!unit.veil })}>
+        {attack}
+      </span>
       <span className={classNames('battle-screen__badge health', { hurt: unit.health < unit.maxHealth })}>
         {unit.health}
       </span>

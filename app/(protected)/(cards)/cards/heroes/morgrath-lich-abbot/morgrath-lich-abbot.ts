@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damage, damageRandomAlly, healHero } from '@/app/(protected)/(engine)/effects'
+import { damageRandomAlly, reviveTopAlly, topDiscardAlly } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'morgrath-lich-abbot',
   type: 'hero',
   name: 'Morgrath, the Lich Abbot',
-  text: 'Unholy Bolt (5): deal 12 shadow damage to an enemy slot and your hero heals 6. At the start of each phase, deal 3 shadow damage to a random enemy ally.',
+  text: 'Unholy Rising (4): the ally on top of your discard pile returns to play. At the start of each phase, deal 3 shadow damage to a random enemy ally.',
   flavor: 'He prayed for eternal life. Something answered.',
   faction: 'arcane',
   heroClass: 'mage',
@@ -15,13 +15,19 @@ export default defineCard({
   cost: 0,
   health: 65,
   ability: {
-    name: 'Unholy Bolt',
-    text: 'Deal 12 shadow damage to an enemy slot and your hero heals 6.',
-    cost: 5,
-    targets: ['enemySlot'],
+    name: 'Unholy Rising',
+    text: 'The ally on top of your discard pile returns to play.',
+    cost: 4,
+    ai: { tags: ['revive'] },
+    canActivate(ctx) {
+      if (!topDiscardAlly(ctx, ctx.owner)) {
+        return 'noChoice'
+      }
+
+      return ctx.engine.freeSlots(ctx.owner).length > 0 ? null : 'slotsFull'
+    },
     activate(ctx) {
-      damage(ctx, ctx.targets[0], 12)
-      healHero(ctx, 6)
+      reviveTopAlly(ctx, ctx.owner)
     }
   },
   onPhaseStart(ctx) {

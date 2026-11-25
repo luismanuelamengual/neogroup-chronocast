@@ -1,4 +1,5 @@
 import { Element } from '@/app/(protected)/(engine)/models/Element'
+import { BoonKind } from '@/app/(protected)/(engine)/models/MatchState'
 import { PlannedAction } from '@/app/(protected)/(engine)/models/PlannedAction'
 import { PlayerId } from '@/app/(protected)/(engine)/models/PlayerId'
 import { SlotRef } from '@/app/(protected)/(engine)/models/SlotRef'
@@ -30,6 +31,10 @@ export type FailReason =
   /** An attachment keeps the ally from using its ability. */
   | 'silenced'
   | 'frozen'
+  /** There is no card for it to take (in the hand, the deck or the discard pile). */
+  | 'noChoice'
+  /** There is nothing in play for it to destroy. */
+  | 'nothingToDestroy'
 
 /** A card of the hero or of the support slots that can be broken. */
 export type GearKind = 'weapon' | 'armor' | 'artifact' | 'trap'
@@ -76,4 +81,8 @@ export type MatchEvent =
   | { type: 'returnToHand'; player: PlayerId; cardId: string }
   | { type: 'heroFell'; player: PlayerId }
   | { type: 'chronos'; player: PlayerId; amount: number }
+  | { type: 'boon'; player: PlayerId; kind: BoonKind; amount: number; untilPhase: number }
+  /** A card of the hand discarded by an effect. */
+  | { type: 'discard'; player: PlayerId; cardId: string }
+  | { type: 'veil'; player: PlayerId; attack: number; untilPhase: number }
   | { type: 'end'; winner: PlayerId | null; reason: string }

@@ -8,5 +8,7 @@ export type Selection =
   | { kind: 'ally'; uid: number; mode?: 'attack' | 'move'; ability?: SlotRef[] }
   /** The player's hero: attack with the weapon, or aim the ability (`ability` set). */
   | { kind: 'hero'; ability: SlotRef[] | null }
+  /** One of the player's artifacts in play: aim its ability, with the targets chosen so far. */
+  | { kind: 'artifact'; uid: number; ability: SlotRef[] }
   /** Just looking at a card (an enemy ally, a hero, an attachment...). */
   | { kind: 'inspect'; cardId: string }

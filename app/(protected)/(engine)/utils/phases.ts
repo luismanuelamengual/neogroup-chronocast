@@ -13,6 +13,7 @@ export function startPhase(engine: MatchEngine): void {
   state.phase++
   state.step = -1
   engine.emit({ type: 'phaseStart', phase: state.phase })
+  engine.expireBoons()
 
   for (const id of PLAYER_IDS) {
     const player = engine.player(id)
@@ -31,6 +32,10 @@ export function startPhase(engine: MatchEngine): void {
       unit.attacksThisPhase = 0
       unit.abilityUsedThisPhase = false
       unit.tempAttack = 0
+    }
+
+    for (const artifact of player.artifacts ?? []) {
+      artifact.abilityUsedThisPhase = false
     }
   }
 

@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damage } from '@/app/(protected)/(engine)/effects'
+import { damage, discardAtPhaseEnd } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'queen-static',
   type: 'hero',
   name: 'Queen Static',
-  text: 'Feedback (3): deal 8 lightning damage to an enemy slot. Fast. At the end of each phase, deal 2 lightning damage to the enemy hero.',
+  text: 'Interference (4): at the end of this phase, the rival discards 2 random cards. At the end of each phase, deal 2 lightning damage to the enemy hero.',
   flavor: 'She lives in the noise between channels.',
   faction: 'neon',
   heroClass: 'hunter',
@@ -15,13 +15,11 @@ export default defineCard({
   cost: 0,
   health: 61,
   ability: {
-    name: 'Feedback',
-    text: 'Deal 8 lightning damage to an enemy slot.',
-    cost: 3,
-    speed: 'fast',
-    targets: ['enemySlot'],
+    name: 'Interference',
+    text: 'At the end of this phase, the rival discards 2 random cards.',
+    cost: 4,
     activate(ctx) {
-      damage(ctx, ctx.targets[0], 8)
+      discardAtPhaseEnd(ctx, ctx.opponent, 2)
     }
   },
   onPhaseEnd(ctx) {

@@ -26,7 +26,7 @@ interface UnitTokenProps {
 export default function UnitToken({ unit, fresh, stunned }: UnitTokenProps) {
   const card = getCard(unit.cardId)
   const name = useCardName()(card)
-  const attack = unit.attack + unit.tempAttack
+  const attack = unit.attack + unit.tempAttack + (unit.veil?.attack ?? 0)
   const keywords = unit.keywords.filter((keyword) => KEYWORD_ICONS[keyword])
 
   return (
@@ -43,7 +43,9 @@ export default function UnitToken({ unit, fresh, stunned }: UnitTokenProps) {
           {unit.shield && !keywords.includes('shield') && <span>🔰</span>}
         </span>
       )}
-      <span className={classNames('unit-token__stat attack', { boosted: unit.tempAttack > 0 })}>{attack}</span>
+      <span className={classNames('unit-token__stat attack', { boosted: unit.tempAttack > 0 || !!unit.veil })}>
+        {attack}
+      </span>
       <span className={classNames('unit-token__stat health', { hurt: unit.health < unit.maxHealth })}>
         {unit.health}
       </span>

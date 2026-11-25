@@ -128,6 +128,16 @@ export function describeEvent(
       return event.amount < 0
         ? t('battle.events.chronosLoss', { player: player(event.player), amount: -event.amount })
         : t('battle.events.chronos', { player: player(event.player), amount: event.amount })
+    case 'boon':
+      return t(`battle.events.boon_${event.kind}`, {
+        player: player(event.player),
+        amount: event.amount,
+        phase: event.untilPhase
+      })
+    case 'discard':
+      return t('battle.events.discard', { player: player(event.player), card: card(event.cardId) })
+    case 'veil':
+      return t('battle.events.veil', { player: player(event.player), amount: event.attack, phase: event.untilPhase })
     case 'fail':
       return t('battle.events.fail', {
         player: player(event.player),

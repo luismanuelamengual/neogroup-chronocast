@@ -1,6 +1,7 @@
 import { ACTIONS_PER_PHASE, ALLY_SLOTS } from '@/app/(protected)/(engine)/data/rules'
 import { PlannedAction, Timeline, WAIT } from '@/app/(protected)/(engine)/models/PlannedAction'
 import { SlotRef } from '@/app/(protected)/(engine)/models/SlotRef'
+import { hasCard } from '@/app/(protected)/(engine)/utils/registry'
 import { ApiException } from '@/app/models/ApiException'
 
 type Raw = Record<string, unknown>
@@ -31,6 +32,11 @@ function slotRefs(value: unknown): SlotRef[] | undefined {
   return Array.isArray(value) && value.length <= 3 ? value.map(slotRef) : fail()
 }
 
+/** A card id: kebab-case, of a card of the catalog. */
+function cardId(value: unknown): string {
+  return typeof value === 'string' && /^[a-z0-9]+(-[a-z0-9]+)*$/.test(value) && hasCard(value) ? value : fail()
+}
+
 function action(value: unknown): PlannedAction {
   const raw = (value ?? {}) as Raw
 
@@ -51,11 +57,21 @@ function action(value: unknown): PlannedAction {
     case 'heroAttack':
       return { kind: 'heroAttack', target: slotRef(raw.target) }
     case 'heroAbility':
-      return { kind: 'heroAbility', ...(raw.targets != null ? { targets: slotRefs(raw.targets) } : {}) }
+      return {
+        kind: 'heroAbility',
+        ...(raw.targets != null ? { targets: slotRefs(raw.targets) } : {}),
+        ...(raw.cardId != null ? { cardId: cardId(raw.cardId) } : {})
+      }
     case 'allyAbility':
       return {
         kind: 'allyAbility',
         allyUid: int(raw.allyUid),
+        ...(raw.targets != null ? { targets: slotRefs(raw.targets) } : {})
+      }
+    case 'artifactAbility':
+      return {
+        kind: 'artifactAbility',
+        artifactUid: int(raw.artifactUid),
         ...(raw.targets != null ? { targets: slotRefs(raw.targets) } : {})
       }
     case 'move':

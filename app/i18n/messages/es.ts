@@ -564,7 +564,17 @@ export const es = {
       armor: '🛡️ Armadura: {card} · -{reduction} de daño por golpe · {durability} golpes',
       heroAttacked: '✋ Ya atacó con el arma en esta fase',
       heroAbilityUsed: '✋ Ya usó su habilidad en esta fase',
+      artifactAbilityUsed: '✋ Ya usó su habilidad en esta fase',
+      boon_guard: '🛡️ Tus aliados reciben {amount} de daño menos {until}',
+      boon_empower: '💥 Hace {amount} de daño más al rival {until}',
+      boon_allyDiscount: '💰 Los aliados cuestan {amount} Cronos menos {until}',
+      veil: '👁️ Oculto: Sigilo y +{amount} de ataque {until}',
       fallen: '💀 Cayó: llegó a 0 de vida'
+    },
+    deckPick: {
+      title: 'Elegí un artefacto de tu mazo',
+      text: 'Entra en juego sin pagar su costo, y tu mazo se mezcla.',
+      cancel: 'Cancelar'
     },
     mulligan: {
       title: 'Tu mano inicial',
@@ -613,6 +623,7 @@ export const es = {
       heroAttack: 'Arma',
       heroAbility: 'Habilidad',
       allyAbility: 'Habilidad de aliado',
+      artifactAbility: 'Habilidad de artefacto',
       move: 'Mover'
     },
     speeds: {
@@ -644,6 +655,8 @@ export const es = {
       cantAttack: 'Un adjunto no lo deja atacar',
       silenced: 'Un adjunto no lo deja usar su habilidad',
       frozen: 'Está congelado',
+      noChoice: 'No hay ninguna carta para tomar',
+      nothingToDestroy: 'No hay nada en juego para destruir',
       timelineFull: 'La línea de tiempo ya tiene 6 acciones'
     },
     floats: {
@@ -697,6 +710,11 @@ export const es = {
       heroFell: 'Cae {player}',
       chronos: '{player} gana {amount} Cronos',
       chronosLoss: '{player} pierde {amount} Cronos',
+      boon_guard: 'Los aliados de {player} reciben {amount} de daño menos hasta el final de la fase {phase}',
+      boon_empower: '{player} hace {amount} de daño más hasta el final de la fase {phase}',
+      boon_allyDiscount: 'Los aliados de {player} cuestan {amount} Cronos menos hasta el final de la fase {phase}',
+      discard: '{player} descarta {card}',
+      veil: 'Los aliados de {player} se ocultan (Sigilo, +{amount} de ataque) hasta el final de la fase {phase}',
       fail: '{player}, paso {step}: {reason}',
       end: 'Fin de la partida'
     },

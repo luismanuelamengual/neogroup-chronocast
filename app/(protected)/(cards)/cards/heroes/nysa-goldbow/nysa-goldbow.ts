@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buff, damage } from '@/app/(protected)/(engine)/effects'
+import { boostWeapon, buff } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'nysa-goldbow',
   type: 'hero',
   name: 'Nysa Goldbow',
-  text: 'Golden Arrow (3): deal 8 wind damage to an enemy slot. When another ally of yours enters, it gains +1 attack.',
+  text: 'Gilded String (3): your weapon gains +3 attack and +2 durability. When another ally of yours enters, it gains +1 attack.',
   flavor: 'She hunted with the gods once. Now she hunts for herself.',
   faction: 'bronze',
   heroClass: 'hunter',
@@ -15,12 +15,15 @@ export default defineCard({
   cost: 0,
   health: 50,
   ability: {
-    name: 'Golden Arrow',
-    text: 'Deal 8 wind damage to an enemy slot.',
+    name: 'Gilded String',
+    text: 'Your weapon gains +3 attack and +2 durability.',
     cost: 3,
-    targets: ['enemySlot'],
+    ai: { tags: ['weapon'] },
+    canActivate(ctx) {
+      return ctx.engine.player(ctx.owner).hero.weapon ? null : 'noWeapon'
+    },
     activate(ctx) {
-      damage(ctx, ctx.targets[0], 8)
+      boostWeapon(ctx, ctx.owner, 3, 2)
     }
   },
   onAllyEnter(ctx, ally) {

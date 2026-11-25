@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffAllies, healHero } from '@/app/(protected)/(engine)/effects'
+import { buff, healHero, priciestAllyInHand, summonPriciestFromHand } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'omnigear-prime',
   type: 'hero',
   name: 'Omnigear Prime',
-  text: 'Assembly Line (4): your allies gain +3 attack and +3 health. At the start of each phase, your hero heals 2.',
+  text: 'Assembly Line (4): the most expensive ally of your hand that costs 6 Chronos or less is summoned without paying its cost and gains +3 attack and +3 health. At the start of each phase, your hero heals 2.',
   flavor: 'The machine that builds machines decided it no longer needs builders.',
   faction: 'clockwork',
   heroClass: 'warrior',
@@ -15,11 +15,22 @@ export default defineCard({
   health: 65,
   ability: {
     name: 'Assembly Line',
-    text: 'Your allies gain +3 attack and +3 health.',
+    text: 'The most expensive ally of your hand that costs 6 Chronos or less is summoned without paying its cost and gains +3 attack and +3 health.',
     cost: 4,
-    ai: { tags: ['buffAll'] },
+    ai: { tags: ['summonHand'] },
+    canActivate(ctx) {
+      if (!priciestAllyInHand(ctx, ctx.owner, 6)) {
+        return 'noChoice'
+      }
+
+      return ctx.engine.freeSlots(ctx.owner).length > 0 ? null : 'slotsFull'
+    },
     activate(ctx) {
-      buffAllies(ctx, ctx.owner, 3, 3)
+      const unit = summonPriciestFromHand(ctx, ctx.owner, 6)
+
+      if (unit) {
+        buff(ctx, unit, 3, 3)
+      }
     }
   },
   onPhaseStart(ctx) {

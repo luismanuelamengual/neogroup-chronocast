@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { alliesOf, buff, damageAllAllies } from '@/app/(protected)/(engine)/effects'
+import { alliesOf, buff, drainChronosCapacity, gainChronosCapacity } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'caelus-the-usurper',
   type: 'hero',
   name: 'Caelus the Usurper',
-  text: 'Decimate (4): deal 3 light damage to every enemy ally. At the start of each phase, your allies gain +1 attack.',
+  text: 'Tribute (5): the rival loses 1 Chronos capacity and you gain it. At the start of each phase, your allies gain +1 attack.',
   flavor: 'He stole a crown from a Rome that never was, and wants the real one.',
   faction: 'bronze',
   heroClass: 'warrior',
@@ -15,12 +15,11 @@ export default defineCard({
   cost: 0,
   health: 53,
   ability: {
-    name: 'Decimate',
-    text: 'Deal 3 light damage to every enemy ally.',
-    cost: 4,
-    ai: { tags: ['removal'] },
+    name: 'Tribute',
+    text: 'The rival loses 1 Chronos capacity and you gain it.',
+    cost: 5,
     activate(ctx) {
-      damageAllAllies(ctx, ctx.opponent, 3)
+      gainChronosCapacity(ctx, ctx.owner, drainChronosCapacity(ctx, ctx.opponent, 1))
     }
   },
   onPhaseStart(ctx) {

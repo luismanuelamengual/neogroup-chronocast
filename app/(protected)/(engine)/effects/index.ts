@@ -1,8 +1,9 @@
+import { ALLY_SLOTS } from '@/app/(protected)/(engine)/data/rules'
 import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition'
 import { EffectContext } from '@/app/(protected)/(engine)/models/EffectContext'
 import { Element } from '@/app/(protected)/(engine)/models/Element'
-import { Unit } from '@/app/(protected)/(engine)/models/MatchState'
-import { PlayerId } from '@/app/(protected)/(engine)/models/PlayerId'
+import { BoonKind, CardInstance, Unit } from '@/app/(protected)/(engine)/models/MatchState'
+import { PLAYER_IDS, PlayerId } from '@/app/(protected)/(engine)/models/PlayerId'
 import { SlotRef } from '@/app/(protected)/(engine)/models/SlotRef'
 import { Tribe } from '@/app/(protected)/(engine)/models/Tribe'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
@@ -417,6 +418,26 @@ export function destroyArtifact(
   return ctx.engine.destroyArtifact(player, which)
 }
 
+/** Destroys every copy in play of an artifact (`cardId`), on both sides; how many. */
+export function destroyArtifactsById(ctx: EffectContext, cardId: string): number {
+  return ctx.engine.destroyArtifactsWhere((card) => card.cardId === cardId)
+}
+
+/** Whether an artifact (`cardId`) is in play, on either side. */
+export function artifactInPlay(ctx: EffectContext, cardId: string): boolean {
+  return PLAYER_IDS.some((player) => ctx.engine.player(player).artifacts.some((card) => card.cardId === cardId))
+}
+
+/** Destroys this artifact (`ctx.self`). */
+export function destroySelfArtifact(ctx: EffectContext): void {
+  ctx.engine.destroyArtifactsWhere((card, player) => player === ctx.owner && card.uid === ctx.self.uid)
+}
+
+/** Whether any ally is in play, on either side. */
+export function anyAllyInPlay(ctx: EffectContext): boolean {
+  return PLAYER_IDS.some((player) => ctx.engine.allies(player).length > 0)
+}
+
 /** Destroys a random face-down trap of a player. False when it has none. */
 export function destroyTrap(ctx: EffectContext, player: PlayerId): boolean {
   return ctx.engine.destroyTrap(player)
@@ -544,4 +565,165 @@ export function damageEnemyHero(ctx: EffectContext, amount: number, element?: El
 /** Heals the owner's hero. */
 export function healHero(ctx: EffectContext, amount: number): void {
   heal(ctx, { player: ctx.owner, slot: 'hero' }, amount)
+}
+
+// ─── Heroes' abilities ───────────────────────────────────────────────────────
+
+/** The ally on top of a side's discard pile (the last one to get there), or null. */
+export function topDiscardAlly(ctx: EffectContext, player: PlayerId): CardInstance | null {
+  const discard = ctx.engine.player(player).discard
+
+  for (let i = discard.length - 1; i >= 0; i--) {
+    if (getCard(discard[i].cardId).type === 'ally') {
+      return discard[i]
+    }
+  }
+
+  return null
+}
+
+/** Brings back to the board the ally on top of the discard pile. */
+export function reviveTopAlly(ctx: EffectContext, player: PlayerId): Unit | null {
+  const card = topDiscardAlly(ctx, player)
+
+  if (!card || ctx.engine.freeSlots(player).length === 0) {
+    return null
+  }
+
+  const side = ctx.engine.player(player)
+
+  side.discard = side.discard.filter((candidate) => candidate.uid !== card.uid)
+
+  return ctx.engine.summon(player, card)
+}
+
+/** The most expensive ally of the hand that costs `maxCost` Chronos or less (the first one on a tie), or null. */
+export function priciestAllyInHand(ctx: EffectContext, player: PlayerId, maxCost: number): CardInstance | null {
+  let best: CardInstance | null = null
+
+  for (const card of ctx.engine.player(player).hand) {
+    const definition = getCard(card.cardId)
+
+    if (
+      definition.type === 'ally' &&
+      definition.cost <= maxCost &&
+      (!best || definition.cost > getCard(best.cardId).cost)
+    ) {
+      best = card
+    }
+  }
+
+  return best
+}
+
+/** Summons, without paying it, the most expensive ally of the hand that costs `maxCost` or less. */
+export function summonPriciestFromHand(ctx: EffectContext, player: PlayerId, maxCost: number): Unit | null {
+  const card = priciestAllyInHand(ctx, player, maxCost)
+
+  if (!card || ctx.engine.freeSlots(player).length === 0) {
+    return null
+  }
+
+  const side = ctx.engine.player(player)
+
+  side.hand = side.hand.filter((candidate) => candidate.uid !== card.uid)
+  ctx.engine.emit({ type: 'play', player, cardId: card.cardId })
+
+  return ctx.engine.summon(player, card)
+}
+
+/** The hero's weapon gains +`attack` and +`durability`. False when it has none. */
+export function boostWeapon(ctx: EffectContext, player: PlayerId, attack: number, durability: number): boolean {
+  const weapon = ctx.engine.player(player).hero.weapon
+
+  if (!weapon) {
+    return false
+  }
+
+  weapon.attack += attack
+  ctx.engine.emit({ type: 'buff', target: { player, slot: 'hero' }, attack, health: 0 })
+  ctx.engine.repairGear(player, 'weapon', durability)
+
+  return true
+}
+
+/** Whether the deck has an artifact with that id. */
+export function deckHasArtifact(ctx: EffectContext, player: PlayerId, cardId: string | undefined): boolean {
+  return (
+    cardId != null &&
+    ctx.engine.player(player).deck.some((card) => card.cardId === cardId) &&
+    getCard(cardId).type === 'artifact'
+  )
+}
+
+/** Puts in play, without paying it, an artifact of the deck (`cardId`), and shuffles the deck. */
+export function playArtifactFromDeck(ctx: EffectContext, player: PlayerId, cardId: string): boolean {
+  return ctx.engine.playArtifactFromDeck(player, cardId)
+}
+
+/** The allies of a side gain `stealth` and +`attack` until the end of the next phase. */
+export function veilAllies(ctx: EffectContext, player: PlayerId, attack: number): void {
+  ctx.engine.veilAllies(player, attack)
+}
+
+/** A lasting effect on a whole side until the end of the next phase (`guard`, `empower`, `allyDiscount`). */
+export function addBoon(ctx: EffectContext, player: PlayerId, kind: BoonKind, amount: number): void {
+  ctx.engine.addBoon(player, kind, amount)
+}
+
+/** Poisons every ally of a side. */
+export function poisonAllAllies(ctx: EffectContext, player: PlayerId, amount: number): void {
+  for (const ref of allyRefs(ctx, player)) {
+    poison(ctx, ref, amount)
+  }
+}
+
+/** The slots next to an ally slot of a side (none next to the hero). */
+export function slotsNextTo(ctx: EffectContext, target: SlotRef): SlotRef[] {
+  if (target.slot === 'hero') {
+    return []
+  }
+
+  const slot = target.slot
+
+  return [slot - 1, slot + 1]
+    .filter((candidate) => candidate >= 0 && candidate < ALLY_SLOTS)
+    .map((candidate) => ({ player: target.player, slot: candidate }))
+}
+
+/** A player discards `count` random cards of the hand when the current phase ends. */
+export function discardAtPhaseEnd(ctx: EffectContext, player: PlayerId, count: number): void {
+  ctx.engine.scheduleDiscard(player, count)
+}
+
+/** Every ally of a side loses `amount` attack for good (never below 0). */
+export function weakenAllAllies(ctx: EffectContext, player: PlayerId, amount: number): void {
+  for (const unit of ctx.engine.allies(player)) {
+    const loss = Math.min(amount, Math.max(0, unit.attack))
+
+    if (loss > 0) {
+      ctx.engine.buff(unit.uid, -loss, 0)
+    }
+  }
+}
+
+/**
+ * Takes control of an enemy ally for a moment: it hits `target` (another slot of its own side) with its attack and its
+ * element, as if the caster's side had attacked, and then it's stunned for the rest of this phase and the next one.
+ */
+export function mindControl(ctx: EffectContext, controlled: SlotRef, target: SlotRef): boolean {
+  const unit = ctx.engine.targetUnit(controlled)
+
+  if (!unit) {
+    return false
+  }
+
+  ctx.engine.emit({ type: 'attack', attacker: controlled, target })
+  ctx.engine.damage(target, ctx.engine.attackOf(unit), {
+    player: ctx.owner,
+    element: getCard(unit.cardId).element
+  })
+  ctx.engine.stun(unit.uid, 1)
+
+  return true
 }

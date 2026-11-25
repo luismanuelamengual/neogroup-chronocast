@@ -12,6 +12,8 @@ export interface CardInstance {
   owner?: PlayerId
   /** An artifact: uses left (it is discarded at 0). */
   charges?: number
+  /** An artifact: its ability was already used this phase. */
+  abilityUsedThisPhase?: boolean
 }
 
 /** Lasting status effects on a hero or an ally. */
@@ -50,7 +52,26 @@ export interface Unit extends Afflictions {
   echoUsed: boolean
   /** Cards attached to the ally (shown under it; discarded when it leaves the board). */
   attachments?: CardInstance[]
+  /**
+   * A hero's ability hid it: +`attack` and `stealth` (when `stealth`, the ability gave it) while the phase
+   * is not past `untilPhase`.
+   */
+  veil?: { attack: number; stealth: boolean; untilPhase: number }
 }
+
+/**
+ * A lasting effect on a whole side, from a hero's ability, while the phase is not past `untilPhase`:
+ *   - guard:        the damage its allies take is `amount` less (not arcane damage)
+ *   - empower:      the damage it deals to the rival's hero and allies is `amount` more
+ *   - allyDiscount: its allies cost `amount` Chronos less (never below 0)
+ */
+export interface Boon {
+  kind: BoonKind
+  amount: number
+  untilPhase: number
+}
+
+export type BoonKind = 'guard' | 'empower' | 'allyDiscount'
 
 export interface HeroState extends Afflictions {
   uid: number
@@ -88,6 +109,10 @@ export interface PlayerState {
   chronosCapacity: number
   /** Energy stored by the hero: it grows each phase and pays the hero's ability (and some allies'). */
   energy: number
+  /** Lasting effects on the whole side (from a hero's ability). */
+  boons?: Boon[]
+  /** Random cards of the hand it discards when the current phase ends (an enemy hero's ability). */
+  discardAtPhaseEnd?: number
   sacrificesThisPhase: number
   /** Draws from an empty deck so far. */
   fatigue: number

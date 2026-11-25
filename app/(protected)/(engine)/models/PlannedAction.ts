@@ -9,9 +9,12 @@ export type PlannedAction =
   | { kind: 'play'; cardUid: number; slot?: number; targets?: SlotRef[] }
   | { kind: 'allyAttack'; allyUid: number; target: SlotRef }
   | { kind: 'heroAttack'; target: SlotRef }
-  | { kind: 'heroAbility'; targets?: SlotRef[] }
+  /** `cardId`: the card of the deck the ability asks to choose (`choice` of the ability). */
+  | { kind: 'heroAbility'; targets?: SlotRef[]; cardId?: string }
   /** Use the ability of an ally (instead of attacking with it that phase). */
   | { kind: 'allyAbility'; allyUid: number; targets?: SlotRef[] }
+  /** Use the ability of an artifact in play (once per phase). */
+  | { kind: 'artifactAbility'; artifactUid: number; targets?: SlotRef[] }
   /** Move an ally to an empty slot, or swap it with the ally there (a neighbor; any with `agile`). */
   | { kind: 'move'; allyUid: number; toSlot: number }
 

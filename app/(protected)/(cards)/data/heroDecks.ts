@@ -22,10 +22,10 @@ const HERO_DECK_LISTS: Record<string, [string, number][]> = {
     ['scepter-of-storms', 1],
     ['flickering-ward', 2],
     ['silk-wrap-of-ruin', 1],
-    ['old-potion', 2],
+    ['restless-banner', 2],
     ['timeless-rune', 2],
-    ['faithful-amulet', 1],
-    ['hourglass-of-ice', 1]
+    ['clock-of-dusk', 1],
+    ['lantern-of-flame', 1]
   ],
   'aldric-dawnkeeper': [
     ['moonlit-battlemage', 3],

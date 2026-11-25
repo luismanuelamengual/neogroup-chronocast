@@ -26,6 +26,11 @@ function actionCard(state: MatchState, player: PlayerId, action: PlannedAction):
     return state.players[player].allies.find((unit) => unit?.uid === action.allyUid)?.cardId ?? null
   }
 
+  // An artifact's ability too, after the artifact.
+  if (action.kind === 'artifactAbility') {
+    return state.players[player].artifacts.find((card) => card.uid === action.artifactUid)?.cardId ?? null
+  }
+
   if (action.kind !== 'play' && action.kind !== 'sacrifice') {
     return null
   }
@@ -80,7 +85,10 @@ function ActionBox({ action, state, player, hidden, projection, failure, active,
       : action.kind === 'move'
         ? `${action.toSlot + 1}`
         : targetLabel(
-            action.kind === 'play' || action.kind === 'heroAbility' || action.kind === 'allyAbility'
+            action.kind === 'play' ||
+              action.kind === 'heroAbility' ||
+              action.kind === 'allyAbility' ||
+              action.kind === 'artifactAbility'
               ? action.targets?.[0]
               : undefined
           )

@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buff, buffAt } from '@/app/(protected)/(engine)/effects'
+import { buff, deckHasArtifact, playArtifactFromDeck } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'ada-copperwick',
   type: 'hero',
   name: 'Ada Copperwick',
-  text: 'Tinker (3): an ally of yours gains +3 attack and +4 health. When another ally of yours enters, it gains +1 attack.',
+  text: 'Blueprint (4): put an artifact of your choice from your deck into play without paying its cost, then shuffle your deck. When another ally of yours enters, it gains +1 attack.',
   flavor: 'Magic is just engineering nobody has explained yet.',
   faction: 'clockwork',
   heroClass: 'mage',
@@ -14,12 +14,20 @@ export default defineCard({
   cost: 0,
   health: 58,
   ability: {
-    name: 'Tinker',
-    text: 'An ally of yours gains +3 attack and +4 health.',
-    cost: 3,
-    targets: ['friendlyAlly'],
+    name: 'Blueprint',
+    text: 'Put an artifact of your choice from your deck into play without paying its cost, then shuffle your deck.',
+    cost: 4,
+    choice: 'deckArtifact',
+    ai: { tags: ['deckArtifact'] },
+    canActivate(ctx) {
+      if (!deckHasArtifact(ctx, ctx.owner, ctx.choice)) {
+        return 'noChoice'
+      }
+
+      return ctx.engine.freeSupport(ctx.owner) > 0 ? null : 'supportFull'
+    },
     activate(ctx) {
-      buffAt(ctx, ctx.targets[0], 3, 4)
+      playArtifactFromDeck(ctx, ctx.owner, ctx.choice!)
     }
   },
   onAllyEnter(ctx, ally) {

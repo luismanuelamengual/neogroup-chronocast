@@ -14,6 +14,8 @@ export interface EffectContext {
   /** The card whose logic runs (`uid` is the ally's on the board, or the card's). */
   self: { uid: number; cardId: string }
   targets: SlotRef[]
+  /** The card chosen when it was programmed (an ability with `choice`). */
+  choice?: string
   /** Seeded random number in [0, 1): the same match always plays the same. */
   random(): number
 }

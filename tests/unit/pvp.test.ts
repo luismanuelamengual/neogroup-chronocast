@@ -22,7 +22,7 @@ function match(): MatchState {
 }
 
 describe('hidden information', () => {
-  it('hides the rival hand, traps and both decks, and the random generator', () => {
+  it('hides the rival hand, traps and both decks (but the own artifacts), and the random generator', () => {
     const state = match()
     const view = redactState(state, 'b')
 
@@ -30,7 +30,10 @@ describe('hidden information', () => {
     expect(view.players.a.hand.map((card) => card.uid)).toEqual(state.players.a.hand.map((card) => card.uid))
     expect(view.players.b.hand).toEqual(state.players.b.hand)
     expect(view.players.b.deck).toHaveLength(state.players.b.deck.length)
-    expect(view.players.b.deck.every((card) => card.cardId === HIDDEN_CARD)).toBe(true)
+    expect(
+      view.players.b.deck.every((card) => card.cardId === HIDDEN_CARD || getCard(card.cardId).type === 'artifact')
+    ).toBe(true)
+    expect(view.players.a.deck.every((card) => card.cardId === HIDDEN_CARD)).toBe(true)
     expect(view.rng).toBe(0)
     expect(state.players.a.hand[0].cardId).not.toBe(HIDDEN_CARD)
     expect(getCard(HIDDEN_CARD).name).toBe('?')

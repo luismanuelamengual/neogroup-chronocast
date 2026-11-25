@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damage, discardSize, healHero } from '@/app/(protected)/(engine)/effects'
+import { addBoon, damage, discardSize, poisonAllAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'malachar-the-unmade',
   type: 'hero',
   name: 'Malachar the Unmade',
-  text: 'Unmake (4): deal 11 shadow damage to an enemy slot. If your discard pile has 6 or more cards, your hero heals 5. At the start of each phase, if your discard pile has 8 or more cards, deal 2 shadow damage to the enemy hero.',
+  text: 'Plague of the Void (4): poison 5 every enemy ally. Until the end of the next phase, your allies cost 1 Chronos less. At the start of each phase, if your discard pile has 8 or more cards, deal 2 shadow damage to the enemy hero.',
   flavor: 'He unmade himself to see what lies beyond time.',
   faction: 'void',
   heroClass: 'mage',
@@ -15,16 +15,13 @@ export default defineCard({
   cost: 0,
   health: 55,
   ability: {
-    name: 'Unmake',
-    text: 'Deal 11 shadow damage to an enemy slot. If your discard pile has 6 or more cards, your hero heals 5.',
+    name: 'Plague of the Void',
+    text: 'Poison 5 every enemy ally. Until the end of the next phase, your allies cost 1 Chronos less.',
     cost: 4,
-    targets: ['enemySlot'],
+    ai: { tags: ['allyDiscount'] },
     activate(ctx) {
-      damage(ctx, ctx.targets[0], 11)
-
-      if (discardSize(ctx, ctx.owner) >= 6) {
-        healHero(ctx, 5)
-      }
+      poisonAllAllies(ctx, ctx.opponent, 5)
+      addBoon(ctx, ctx.owner, 'allyDiscount', 1)
     }
   },
   onPhaseStart(ctx) {

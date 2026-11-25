@@ -175,10 +175,13 @@ function sandbox(heroId = STARTER_HERO_IDS[0]): MatchState {
 }
 
 function targetsFor(kinds: TargetKind[] = []): SlotRef[] {
+  let enemySlots = 0
+
   return kinds.map((kind) => {
     switch (kind) {
       case 'enemySlot':
-        return { player: 'b', slot: 'hero' }
+        // Distinct slots when a card aims at more than one.
+        return enemySlots++ === 0 ? { player: 'b', slot: 'hero' } : { player: 'b', slot: enemySlots - 2 }
       case 'enemyAlly':
         return { player: 'b', slot: 0 }
       case 'friendlyAlly':
@@ -251,8 +254,23 @@ describe('every card works in a match', () => {
     it(`${hero.id} (ability)`, () => {
       const state = sandbox(hero.id)
       const timeline = emptyTimeline()
+      const side = state.players.a
 
-      timeline[0] = { kind: 'heroAbility', targets: targetsFor(hero.ability?.targets) }
+      // What some abilities take: a weapon, an ally in the discard pile and in the hand, an artifact in the deck.
+      side.hero.weapon = {
+        card: { uid: state.nextUid++, cardId: 'cutlass-of-the-long-road' },
+        attack: 4,
+        durability: 3
+      }
+      side.discard.push({ uid: state.nextUid++, cardId: 'faithful-wanderer' })
+      side.hand.push({ uid: state.nextUid++, cardId: 'faithful-wanderer' })
+      side.deck.unshift({ uid: state.nextUid++, cardId: 'brazier-of-the-wanderer' })
+
+      timeline[0] = {
+        kind: 'heroAbility',
+        targets: targetsFor(hero.ability?.targets),
+        ...(hero.ability?.choice ? { cardId: 'brazier-of-the-wanderer' } : {})
+      }
 
       expect(hero.ability).toBeDefined()
       expect(failures(state, timeline)).toEqual([])

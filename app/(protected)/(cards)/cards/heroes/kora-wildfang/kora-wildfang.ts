@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damage } from '@/app/(protected)/(engine)/effects'
+import { damage, draw } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'kora-wildfang',
   type: 'hero',
   name: 'Kora Wildfang',
-  text: 'Quick Shot (3): deal 9 wind damage to an enemy slot. Fast.',
+  text: 'Scout Shot (3): deal 6 wind damage to an enemy slot and draw a card.',
   flavor: 'The jungle taught her one rule: shoot first.',
   faction: 'primal',
   heroClass: 'hunter',
@@ -15,13 +15,13 @@ export default defineCard({
   cost: 0,
   health: 60,
   ability: {
-    name: 'Quick Shot',
-    text: 'Deal 9 wind damage to an enemy slot.',
+    name: 'Scout Shot',
+    text: 'Deal 6 wind damage to an enemy slot and draw a card.',
     cost: 3,
-    speed: 'fast',
     targets: ['enemySlot'],
     activate(ctx) {
-      damage(ctx, ctx.targets[0], 9)
+      damage(ctx, ctx.targets[0], 6)
+      draw(ctx, ctx.owner, 1)
     }
   },
   ai: { value: 0 },

@@ -146,7 +146,7 @@ export default function CardView({ card: original, art }: CardViewProps) {
   const image = art ?? ownArt
   // Abilities, items, locations and traps have no stats: without the row, the text keeps clear of the bottom edge.
   const hasStats = card.attack != null || card.armor != null || card.durability != null || card.health != null
-  // An ally with an ability has more to say: no flavor text.
+  // An ally or artifact with an ability has more to say: no flavor text.
   const allyAbility = !!card.ability && card.type !== 'hero'
   const textRef = useRef<HTMLDivElement>(null)
   const nameRef = useRef<HTMLHeadingElement>(null)

@@ -13,6 +13,7 @@ import { opponentOf, PLAYER_IDS, PlayerId } from '@/app/(protected)/(engine)/mod
 import { SlotRef } from '@/app/(protected)/(engine)/models/SlotRef'
 import { Speed, SPEEDS } from '@/app/(protected)/(engine)/models/Speed'
 import { TargetKind } from '@/app/(protected)/(engine)/models/TargetKind'
+import { cardCost } from '@/app/(protected)/(engine)/utils/boons'
 import { MatchEngine } from '@/app/(protected)/(engine)/utils/engine'
 import { startPhase } from '@/app/(protected)/(engine)/utils/phases'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
@@ -108,6 +109,8 @@ export function resolvePhase(
   }
 
   if (next.status !== 'finished') {
+    engine.discardScheduled()
+
     for (const id of PLAYER_IDS) {
       engine.dispatch(id, 'onPhaseEnd')
     }
@@ -171,6 +174,12 @@ export function actionSpeed(engine: MatchEngine, player: PlayerId, action: Plann
       const found = engine.findUnit(action.allyUid)
 
       return (found && getCard(found.unit.cardId).ability?.speed) || 'normal'
+    }
+
+    case 'artifactAbility': {
+      const artifact = engine.player(player).artifacts.find((card) => card.uid === action.artifactUid)
+
+      return (artifact && getCard(artifact.cardId).ability?.speed) || 'normal'
     }
 
     default:
@@ -238,9 +247,11 @@ function performAction(engine: MatchEngine, player: PlayerId, action: PlannedAct
     case 'heroAttack':
       return heroAttack(engine, player, action.target)
     case 'heroAbility':
-      return heroAbility(engine, player, action.targets ?? [])
+      return heroAbility(engine, player, action.targets ?? [], action.cardId)
     case 'allyAbility':
       return allyAbility(engine, player, action.allyUid, action.targets ?? [])
+    case 'artifactAbility':
+      return artifactAbility(engine, player, action.artifactUid, action.targets ?? [])
     case 'move':
       return move(engine, player, action.allyUid, action.toSlot)
   }
@@ -284,14 +295,15 @@ function play(
   }
 
   const definition: CardDefinition = getCard(card.cardId)
+  const cost = cardCost(engine.state, player, definition)
 
-  if (side.chronos < definition.cost) {
+  if (side.chronos < cost) {
     return 'notEnoughChronos'
   }
 
   const pay = () => {
     removeCard(engine, player, uid)
-    side.chronos -= definition.cost
+    side.chronos -= cost
     engine.emit({ type: 'play', player, cardId: definition.id })
   }
 
@@ -631,7 +643,7 @@ function heroAttack(engine: MatchEngine, player: PlayerId, target: SlotRef): Fai
   return null
 }
 
-function heroAbility(engine: MatchEngine, player: PlayerId, targets: SlotRef[]): FailReason | null {
+function heroAbility(engine: MatchEngine, player: PlayerId, targets: SlotRef[], choice?: string): FailReason | null {
   const side = engine.player(player)
   const ability = getCard(side.hero.cardId).ability
 
@@ -656,6 +668,13 @@ function heroAbility(engine: MatchEngine, player: PlayerId, targets: SlotRef[]):
     return 'invalidTarget'
   }
 
+  const ctx = engine.context(player, side.hero, targets, choice)
+  const blocked = (ability.choice && choice == null ? 'noChoice' : null) ?? ability.canActivate?.(ctx) ?? null
+
+  if (blocked) {
+    return blocked
+  }
+
   engine.gainEnergy(player, -ability.cost, false)
   side.hero.abilityUsedThisPhase = true
 
@@ -663,7 +682,7 @@ function heroAbility(engine: MatchEngine, player: PlayerId, targets: SlotRef[]):
     return 'cancelled'
   }
 
-  ability.activate(engine.context(player, side.hero, targets))
+  ability.activate(ctx)
 
   return null
 }
@@ -726,6 +745,63 @@ function allyAbility(engine: MatchEngine, player: PlayerId, uid: number, targets
   }
 
   ability.activate(engine.context(player, unit, targets))
+
+  return null
+}
+
+/**
+ * The ability of an artifact in play: once per phase, paid with Chronos (or
+ * energy with `resource: 'energy'`). Artifacts can't be stunned or silenced,
+ * and an enemy trap can cancel it like any other ability.
+ */
+function artifactAbility(engine: MatchEngine, player: PlayerId, uid: number, targets: SlotRef[]): FailReason | null {
+  const side = engine.player(player)
+  const artifact = side.artifacts.find((card) => card.uid === uid)
+
+  if (!artifact) {
+    return 'noCard'
+  }
+
+  const ability = getCard(artifact.cardId).ability
+
+  if (!ability) {
+    return 'noAbility'
+  }
+
+  if (artifact.abilityUsedThisPhase) {
+    return 'abilityUsed'
+  }
+
+  const energy = ability.resource === 'energy'
+
+  if (energy ? (side.energy ?? 0) < ability.cost : side.chronos < ability.cost) {
+    return energy ? 'notEnoughEnergy' : 'notEnoughChronos'
+  }
+
+  if (!validTargets(engine, player, ability.targets ?? [], targets)) {
+    return 'invalidTarget'
+  }
+
+  const ctx = engine.context(player, artifact, targets)
+  const blocked = ability.canActivate?.(ctx) ?? null
+
+  if (blocked) {
+    return blocked
+  }
+
+  if (energy) {
+    engine.gainEnergy(player, -ability.cost, false)
+  } else {
+    side.chronos -= ability.cost
+  }
+
+  artifact.abilityUsedThisPhase = true
+
+  if (engine.triggerTrap(opponentOf(player), 'enemyAbility')) {
+    return 'cancelled'
+  }
+
+  ability.activate(ctx)
 
   return null
 }

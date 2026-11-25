@@ -9,9 +9,12 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'ada-copperwick': {
     name: 'Ada Copperwick',
-    text: 'Inventar (3): un aliado tuyo gana +3 de ataque y +4 de vida. Cuando entra otro aliado tuyo, gana +1 de ataque.',
+    text: 'Plano Maestro (4): poné en juego un artefacto de tu mazo a elección, sin pagar su costo, y mezclá tu mazo. Cuando entra otro aliado tuyo, gana +1 de ataque.',
     flavor: 'La magia es ingeniería que nadie explicó todavía.',
-    ability: { name: 'Inventar', text: 'Un aliado tuyo gana +3 de ataque y +4 de vida.' }
+    ability: {
+      name: 'Plano Maestro',
+      text: 'Poné en juego un artefacto de tu mazo a elección, sin pagar su costo, y mezclá tu mazo.'
+    }
   },
   'adas-strike': {
     name: 'Golpe de Ada',
@@ -400,9 +403,10 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     flavor: 'Demasiado joven para conocer el miedo, lo bastante grande para enfrentarlo.'
   },
   'brazier-of-the-ancestors': {
-    name: 'Brasero de los Ancestros',
-    text: 'Al empezar cada fase: tu héroe se cura 3. (3 usos)',
-    flavor: 'Sus llamas guardan los rostros de los ancianos.'
+    name: 'Sello del Eclipse',
+    text: 'Al empezar cada fase: hace 2 de daño de sombra a todos los aliados, también a los tuyos. Si no hay aliados, se destruye.',
+    flavor: 'Por un momento, ninguna hora es de nadie.',
+    ability: { name: 'Devorar el Alba', text: 'Destruye todos los Sellos del Alba en juego.' }
   },
   'brazier-of-the-wanderer': {
     name: 'Brasero del Errante',
@@ -411,9 +415,9 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'breastplate-of-rage': { name: 'Peto de la Ira', flavor: 'Forjado al rojo, llevado más al rojo todavía.' },
   'caelus-the-usurper': {
     name: 'Caelus el Usurpador',
-    text: 'Diezmar (4): hacé 3 de daño de luz a cada aliado enemigo. Al empezar cada fase, tus aliados ganan +1 de ataque.',
+    text: 'Tributo (5): el rival pierde 1 de capacidad de Cronos y vos la ganás. Al empezar cada fase, tus aliados ganan +1 de ataque.',
     flavor: 'Robó una corona de una Roma que nunca existió, y quiere la verdadera.',
-    ability: { name: 'Diezmar', text: 'Hacé 3 de daño de luz a cada aliado enemigo.' }
+    ability: { name: 'Tributo', text: 'El rival pierde 1 de capacidad de Cronos y vos la ganás.' }
   },
   'caeluss-axe': {
     name: 'Hacha de Caelus',
@@ -898,9 +902,9 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'ghoul-of-mercy': { name: 'Necrófago de la Misericordia', flavor: 'Solo come lo que ya está perdido.' },
   'gideon-ironsteam': {
     name: 'Gideon Ironsteam',
-    text: 'Puño de Pistón (3): hacé 9 de daño de fuego a un slot enemigo y tu héroe se cura 4.',
+    text: 'Sobrecalentar (4): quemá a un aliado enemigo (4) y a sus vecinos (2).',
     flavor: 'Mitad hombre, mitad motor, todo testarudez.',
-    ability: { name: 'Puño de Pistón', text: 'Hacé 9 de daño de fuego a un slot enemigo y tu héroe se cura 4.' }
+    ability: { name: 'Sobrecalentar', text: 'Quemá a un aliado enemigo (4) y a sus vecinos (2).' }
   },
   'gideons-hammer': {
     name: 'Martillo de Gideon',
@@ -1037,9 +1041,9 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'hollow-astronomer': {
     name: 'El Astrónomo Hueco',
-    text: 'Colapsar Estrella (6): hacé 16 de daño de arcano a un slot enemigo. Al empezar cada fase, hacé 2 de daño de arcano al héroe enemigo.',
+    text: 'Supernova (5): hacé 12 de daño de arcano a un slot enemigo y 4 a los slots vecinos. Al empezar cada fase, hacé 2 de daño de arcano al héroe enemigo.',
     flavor: 'Trazó el mapa de cada estrella, y después empezó a apagarlas.',
-    ability: { name: 'Colapsar Estrella', text: 'Hacé 16 de daño de arcano a un slot enemigo.' }
+    ability: { name: 'Supernova', text: 'Hacé 12 de daño de arcano a un slot enemigo y 4 a los slots vecinos.' }
   },
   'hollow-vision': { name: 'Visión Hueca', text: 'Robá 2 cartas.', flavor: 'Muestra lo que falta.' },
   'hollow-void-spawn': {
@@ -1085,9 +1089,9 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'hydra-of-the-senate': { name: 'Hidra del Senado', text: 'Al entrar: tu héroe se cura 5.' },
   'ilyra-starweaver': {
     name: 'Ilyra Starweaver',
-    text: 'Rayo Arcano (3): hacé 10 de daño de arcano a un slot enemigo.',
+    text: 'Rayos Gemelos (3): hacé 7 de daño de arcano a 2 slots enemigos distintos.',
     flavor: 'Lee el futuro en las constelaciones, y después lo reescribe.',
-    ability: { name: 'Rayo Arcano', text: 'Hacé 10 de daño de arcano a un slot enemigo.' }
+    ability: { name: 'Rayos Gemelos', text: 'Hacé 7 de daño de arcano a 2 slots enemigos distintos.' }
   },
   'ilyras-slash': { name: 'Tajo de Ilyra', text: 'Hacé 10 de daño de arcano a un slot enemigo y robá una carta.' },
   'imperial-charioteer': {
@@ -1203,9 +1207,9 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'kite-shield-of-rage': { name: 'Escudo Cometa de la Ira', flavor: 'Golpealo y te devuelve el golpe más fuerte.' },
   'kora-wildfang': {
     name: 'Kora Wildfang',
-    text: 'Disparo Rápido (3): hacé 9 de daño de viento a un slot enemigo. Rápida.',
+    text: 'Disparo Explorador (3): hacé 6 de daño de viento a un slot enemigo y robá una carta.',
     flavor: 'La jungla le enseñó una regla: disparar primero.',
-    ability: { name: 'Disparo Rápido', text: 'Hacé 9 de daño de viento a un slot enemigo.' }
+    ability: { name: 'Disparo Explorador', text: 'Hacé 6 de daño de viento a un slot enemigo y robá una carta.' }
   },
   'koras-blowgun': {
     name: 'Cerbatana de Kora',
@@ -1299,9 +1303,12 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'legate-varro': {
     name: 'Legado Varro',
-    text: 'Fortificar (3): tu héroe se cura 18. Instantánea.',
+    text: 'Testudo (4): hasta el final de la próxima fase, tus aliados reciben 2 de daño menos y vos hacés 2 de daño más al héroe y a los aliados enemigos. Instantánea.',
     flavor: 'Aguantó la línea en más siglos de los que puede contar.',
-    ability: { name: 'Fortificar', text: 'Tu héroe se cura 18.' }
+    ability: {
+      name: 'Testudo',
+      text: 'Hasta el final de la próxima fase, tus aliados reciben 2 de daño menos y vos hacés 2 de daño más al héroe y a los aliados enemigos.'
+    }
   },
   'longbow-of-the-hawk': { name: 'Arco Largo del Halcón', flavor: 'Ve más lejos que su arquero.' },
   'longbow-of-the-silent-trail': {
@@ -1354,11 +1361,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'malachar-the-unmade': {
     name: 'Malachar el Deshecho',
-    text: 'Deshacer (4): hacé 11 de daño de sombra a un slot enemigo. Si tu descarte tiene 6 cartas o más, tu héroe se cura 5. Al empezar cada fase, si tu descarte tiene 8 cartas o más, hacé 2 de daño de sombra al héroe enemigo.',
+    text: 'Plaga del Vacío (4): envenená 5 a cada aliado enemigo. Hasta el final de la próxima fase, tus aliados cuestan 1 Crono menos. Al empezar cada fase, si tu descarte tiene 8 cartas o más, hacé 2 de daño de sombra al héroe enemigo.',
     flavor: 'Se deshizo a sí mismo para ver qué hay más allá del tiempo.',
     ability: {
-      name: 'Deshacer',
-      text: 'Hacé 11 de daño de sombra a un slot enemigo. Si tu descarte tiene 6 cartas o más, tu héroe se cura 5.'
+      name: 'Plaga del Vacío',
+      text: 'Envenená 5 a cada aliado enemigo. Hasta el final de la próxima fase, tus aliados cuestan 1 Crono menos.'
     }
   },
   'malachars-blast': {
@@ -1490,9 +1497,9 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'moonlit-wisp': { name: 'Fuego Fatuo Lunar', text: 'Al entrar: robá una carta.' },
   'morgrath-lich-abbot': {
     name: 'Morgrath, el Abad Liche',
-    text: 'Rayo Impío (5): hacé 12 de daño de sombra a un slot enemigo y tu héroe se cura 6. Al empezar cada fase, hacé 3 de daño de sombra a un aliado enemigo al azar.',
+    text: 'Alzamiento Impío (4): el aliado de más arriba de tu descarte vuelve al juego. Al empezar cada fase, hacé 3 de daño de sombra a un aliado enemigo al azar.',
     flavor: 'Rezó por la vida eterna. Algo le contestó.',
-    ability: { name: 'Rayo Impío', text: 'Hacé 12 de daño de sombra a un slot enemigo y tu héroe se cura 6.' }
+    ability: { name: 'Alzamiento Impío', text: 'El aliado de más arriba de tu descarte vuelve al juego.' }
   },
   'morgraths-blast': {
     name: 'Estallido de Morgrath',
@@ -1568,21 +1575,23 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'nymph-of-the-tower': { name: 'Ninfa de la Torre', flavor: 'Le canta al musgo de las piedras viejas.' },
   'nysa-goldbow': {
     name: 'Nysa Goldbow',
-    text: 'Flecha Dorada (3): hacé 8 de daño de viento a un slot enemigo. Cuando entra otro aliado tuyo, gana +1 de ataque.',
+    text: 'Cuerda Dorada (3): tu arma gana +3 de ataque y +2 de durabilidad. Cuando entra otro aliado tuyo, gana +1 de ataque.',
     flavor: 'Una vez cazó con los dioses. Ahora caza para ella.',
-    ability: { name: 'Flecha Dorada', text: 'Hacé 8 de daño de viento a un slot enemigo.' }
+    ability: { name: 'Cuerda Dorada', text: 'Tu arma gana +3 de ataque y +2 de durabilidad.' }
   },
   'nysas-bow': { name: 'Arco de Nysa', text: 'Al equiparla: hacé 4 de daño de viento a un aliado enemigo al azar.' },
   'nyx-hollowsong': {
     name: 'Nyx Hollowsong',
-    text: 'Llamar a los Caídos (4): dos aliados al azar de tu descarte vuelven al juego. Al final de cada fase, tu héroe se cura 2.',
+    text: 'Debilitación Total (5): todos los aliados enemigos tienen -2 de ataque. Al final de cada fase, tu héroe se cura 2.',
     flavor: 'Su canto llega a los muertos. Siempre vuelven a escuchar.',
-    ability: { name: 'Llamar a los Caídos', text: 'Dos aliados al azar de tu descarte vuelven al juego.' }
+    ability: { name: 'Debilitación Total', text: 'Todos los aliados enemigos tienen -2 de ataque.' }
   },
   'nyxs-idol': { name: 'Ídolo de Nyx', text: 'Al empezar cada fase: tu héroe se cura 3 y tus aliados se curan 2.' },
   'obelisk-of-dusk': {
-    name: 'Obelisco del Ocaso',
-    text: 'Al empezar cada fase: tu héroe se cura 3. (3 usos)'
+    name: 'Sello del Alba',
+    text: 'Al empezar cada fase: tus aliados se curan 4.',
+    flavor: 'Ninguna noche ganó jamás. Este sello se encarga de eso.',
+    ability: { name: 'Romper el Eclipse', text: 'Destruye todos los Sellos del Eclipse en juego.' }
   },
   'obelisk-of-flame': {
     name: 'Obelisco de Llamas',
@@ -1624,9 +1633,12 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'omnigear-prime': {
     name: 'Omnigear Prime',
-    text: 'Línea de Montaje (4): tus aliados ganan +3 de ataque y +3 de vida. Al empezar cada fase, tu héroe se cura 2.',
+    text: 'Línea de Montaje (4): el aliado más caro de tu mano que cueste 6 Cronos o menos se invoca sin pagar su costo y gana +3 de ataque y +3 de vida. Al empezar cada fase, tu héroe se cura 2.',
     flavor: 'La máquina que construye máquinas decidió que ya no necesita constructores.',
-    ability: { name: 'Línea de Montaje', text: 'Tus aliados ganan +3 de ataque y +3 de vida.' }
+    ability: {
+      name: 'Línea de Montaje',
+      text: 'El aliado más caro de tu mano que cueste 6 Cronos o menos se invoca sin pagar su costo y gana +3 de ataque y +3 de vida.'
+    }
   },
   'omnigears-gyrocopter': {
     name: 'Girocóptero de Omnigear',
@@ -1667,9 +1679,12 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'overseer-kade': {
     name: 'Supervisor Kade',
-    text: 'Bloqueo Total (5): aturdí a cada aliado enemigo. Al empezar cada fase, tu héroe se cura 2.',
+    text: 'Control Mental (4): tomá el control de un aliado enemigo hasta el final de la fase: ataca a otro aliado enemigo o al héroe enemigo, y después queda aturdido hasta el final de la próxima fase. Al empezar cada fase, tu héroe se cura 2.',
     flavor: 'Ve todas las cámaras de la megaciudad. Todas a la vez.',
-    ability: { name: 'Bloqueo Total', text: 'Aturdí a cada aliado enemigo.' }
+    ability: {
+      name: 'Control Mental',
+      text: 'Tomá el control de un aliado enemigo hasta el final de la fase: ataca a otro aliado enemigo o al héroe enemigo, y después queda aturdido hasta el final de la próxima fase.'
+    }
   },
   'pale-voidcaller': { name: 'Invocadora del Vacío Pálida', flavor: 'Cuando habla, la oscuridad responde.' },
   'pale-zealot': {
@@ -1789,9 +1804,9 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'queen-static': {
     name: 'Reina Estática',
-    text: 'Retroalimentación (3): hacé 8 de daño de rayo a un slot enemigo. Rápida. Al final de cada fase, hacé 2 de daño de rayo al héroe enemigo.',
+    text: 'Interferencia (4): al terminar esta fase, el rival descarta 2 cartas al azar. Al final de cada fase, hacé 2 de daño de rayo al héroe enemigo.',
     flavor: 'Vive en el ruido entre los canales.',
-    ability: { name: 'Retroalimentación', text: 'Hacé 8 de daño de rayo a un slot enemigo.' }
+    ability: { name: 'Interferencia', text: 'Al terminar esta fase, el rival descarta 2 cartas al azar.' }
   },
   'queen-statics-blowgun': {
     name: 'Cerbatana de la Reina Estática',
@@ -2381,9 +2396,12 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'tauron-labyrinth-lord': {
     name: 'Tauron, Señor del Laberinto',
-    text: 'Cornada (4): hacé 12 de daño de tierra a un slot enemigo. Al empezar cada fase, tu héroe se cura 2.',
+    text: 'Embestida (5): hacé daño de tierra igual a 6 + el ataque de tu arma a un aliado enemigo y a sus vecinos. Al empezar cada fase, tu héroe se cura 2.',
     flavor: 'Nadie que entró a su laberinto encontró la salida.',
-    ability: { name: 'Cornada', text: 'Hacé 12 de daño de tierra a un slot enemigo.' }
+    ability: {
+      name: 'Embestida',
+      text: 'Hacé daño de tierra igual a 6 + el ataque de tu arma a un aliado enemigo y a sus vecinos.'
+    }
   },
   'taurons-halberd': {
     name: 'Alabarda de Tauron',
@@ -2588,9 +2606,12 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'vex-nightwire': {
     name: 'Vex Nightwire',
-    text: 'Disparo Hackeado (3): hacé 7 de daño de sombra a un slot enemigo. Instantánea. Al final de cada fase, hacé 1 de daño de sombra al héroe enemigo.',
+    text: 'Protocolo Fantasma (4): tus aliados ganan Sigilo y +2 de ataque hasta el final de la próxima fase. Al final de cada fase, hacé 1 de daño de sombra al héroe enemigo.',
     flavor: 'Caza blancos que nadie más puede encontrar.',
-    ability: { name: 'Disparo Hackeado', text: 'Hacé 7 de daño de sombra a un slot enemigo.' }
+    ability: {
+      name: 'Protocolo Fantasma',
+      text: 'Tus aliados ganan Sigilo y +2 de ataque hasta el final de la próxima fase.'
+    }
   },
   'vexs-sling': { name: 'Honda de Vex', text: 'Al equiparla: hacé 4 de daño de sombra a un aliado enemigo al azar.' },
   'victorious-bronze-giant': { name: 'Gigante de Bronce Victorioso', text: 'Al entrar: tu héroe se cura 8.' },

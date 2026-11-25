@@ -18,9 +18,17 @@ import {
 } from '@/app/(protected)/(engine)/models/Element'
 import { Keyword } from '@/app/(protected)/(engine)/models/Keyword'
 import { MatchEvent, StatusKind } from '@/app/(protected)/(engine)/models/MatchEvent'
-import { Afflictions, CardInstance, MatchState, PlayerState, Unit } from '@/app/(protected)/(engine)/models/MatchState'
+import {
+  Afflictions,
+  BoonKind,
+  CardInstance,
+  MatchState,
+  PlayerState,
+  Unit
+} from '@/app/(protected)/(engine)/models/MatchState'
 import { opponentOf, PLAYER_IDS, PlayerId } from '@/app/(protected)/(engine)/models/PlayerId'
 import { SlotRef } from '@/app/(protected)/(engine)/models/SlotRef'
+import { boonOf, veilAttack } from '@/app/(protected)/(engine)/utils/boons'
 import { nextRandom } from '@/app/(protected)/(engine)/utils/random'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
 
@@ -128,7 +136,7 @@ export class MatchEngine {
   }
 
   attackOf(unit: Unit): number {
-    return Math.max(0, unit.attack + unit.tempAttack)
+    return Math.max(0, unit.attack + unit.tempAttack + veilAttack(this.state, unit))
   }
 
   /** Stunned or frozen: it can't act. */
@@ -302,8 +310,12 @@ export class MatchEngine {
   private elementalDamage(target: SlotRef, unit: Unit | null, amount: number, source?: DamageSource): number {
     const element = source?.element
 
-    if (!element || source?.status) {
+    if (source?.status) {
       return this.modifiedDamage(target, amount)
+    }
+
+    if (!element) {
+      return this.boosted(target, this.modifiedDamage(target, amount), source)
     }
 
     let result = amount
@@ -323,14 +335,36 @@ export class MatchEngine {
     }
 
     if (element === 'arcane') {
-      return Math.max(0, Math.round(result))
+      return this.boosted(target, Math.max(0, Math.round(result)), source, true)
     }
 
     if (definition.resist?.includes(element)) {
       result = Math.ceil(result / 2)
     }
 
-    return this.modifiedDamage(target, result)
+    return this.boosted(target, this.modifiedDamage(target, result), source)
+  }
+
+  /**
+   * The boons of the heroes' abilities on a damage about to land: `empower` of the side dealing it
+   * (against the rival), then `guard` of the side whose ally takes it (not against arcane damage).
+   */
+  private boosted(target: SlotRef, amount: number, source?: DamageSource, arcane = false): number {
+    if (amount <= 0) {
+      return amount
+    }
+
+    let result = amount
+
+    if (source && source.player !== target.player) {
+      result += boonOf(this.state, source.player, 'empower')
+    }
+
+    if (target.slot !== 'hero' && !arcane) {
+      result -= boonOf(this.state, target.player, 'guard')
+    }
+
+    return Math.max(0, result)
   }
 
   /** The rule an element adds once its damage landed (`dealt` > 0) on `target`. */
@@ -642,6 +676,24 @@ export class MatchEngine {
     return true
   }
 
+  /** Destroys every artifact in play, of both players, that `matches` (to the discard pile); how many. */
+  destroyArtifactsWhere(matches: (card: CardInstance, player: PlayerId) => boolean): number {
+    let count = 0
+
+    for (const player of PLAYER_IDS) {
+      const side = this.player(player)
+
+      for (const artifact of side.artifacts.filter((card) => matches(card, player))) {
+        side.artifacts = side.artifacts.filter((card) => card.uid !== artifact.uid)
+        side.discard.push({ uid: artifact.uid, cardId: artifact.cardId })
+        this.emit({ type: 'gearDestroyed', player, cardId: artifact.cardId, kind: 'artifact' })
+        count++
+      }
+    }
+
+    return count
+  }
+
   /** Destroys a random face-down trap of a player (it is revealed as it goes to the discard pile). */
   destroyTrap(player: PlayerId): boolean {
     const side = this.player(player)
@@ -739,6 +791,98 @@ export class MatchEngine {
     if (found) {
       this.damageUnit(uid, found.unit.health + found.unit.maxHealth, { player: opponentOf(found.player), poison: true })
     }
+  }
+
+  /** A lasting effect on a whole side until the end of the phase `phases` phases from now (1: the next one). */
+  addBoon(player: PlayerId, kind: BoonKind, amount: number, phases = 1): void {
+    const side = this.player(player)
+    const untilPhase = this.state.phase + phases
+
+    side.boons = [...(side.boons ?? []), { kind, amount, untilPhase }]
+    this.emit({ type: 'boon', player, kind, amount, untilPhase })
+  }
+
+  /** The allies of a side gain `stealth` and +`attack` until the end of the phase `phases` phases from now. */
+  veilAllies(player: PlayerId, attack: number, phases = 1): void {
+    const untilPhase = this.state.phase + phases
+
+    for (const unit of this.allies(player)) {
+      const stealth = !unit.keywords.includes('stealth')
+
+      if (stealth) {
+        unit.keywords.push('stealth')
+      }
+
+      unit.veil = { attack, stealth: stealth || !!unit.veil?.stealth, untilPhase }
+    }
+
+    this.emit({ type: 'veil', player, attack, untilPhase })
+  }
+
+  /** The player discards `count` random cards of the hand when the current phase ends. */
+  scheduleDiscard(player: PlayerId, count: number): void {
+    const side = this.player(player)
+
+    side.discardAtPhaseEnd = (side.discardAtPhaseEnd ?? 0) + count
+  }
+
+  /** The discards scheduled for the end of the phase (the cards programmed this phase are already spent). */
+  discardScheduled(): void {
+    for (const id of PLAYER_IDS) {
+      const side = this.player(id)
+
+      for (let i = 0; i < (side.discardAtPhaseEnd ?? 0) && side.hand.length > 0; i++) {
+        const [card] = side.hand.splice(Math.floor(this.random() * side.hand.length), 1)
+
+        side.discard.push(card)
+        this.emit({ type: 'discard', player: id, cardId: card.cardId })
+      }
+
+      delete side.discardAtPhaseEnd
+    }
+  }
+
+  /** Ends the boons and veils that are past (at the start of a phase). */
+  expireBoons(): void {
+    for (const id of PLAYER_IDS) {
+      const side = this.player(id)
+
+      if (side.boons) {
+        side.boons = side.boons.filter((boon) => boon.untilPhase >= this.state.phase)
+      }
+
+      for (const unit of this.allies(id)) {
+        if (unit.veil && unit.veil.untilPhase < this.state.phase) {
+          if (unit.veil.stealth) {
+            unit.keywords = unit.keywords.filter((keyword) => keyword !== 'stealth')
+          }
+
+          delete unit.veil
+        }
+      }
+    }
+  }
+
+  /**
+   * Puts in play, without paying it, an artifact of the deck (the first copy of `cardId`), then shuffles the
+   * deck. False when there is none or the support slots are full.
+   */
+  playArtifactFromDeck(player: PlayerId, cardId: string): boolean {
+    const side = this.player(player)
+    const card = side.deck.find((candidate) => candidate.cardId === cardId)
+    const definition = card && getCard(card.cardId)
+
+    if (!card || definition?.type !== 'artifact' || this.freeSupport(player) <= 0) {
+      return false
+    }
+
+    side.deck = side.deck.filter((candidate) => candidate.uid !== card.uid)
+    side.artifacts.push({ uid: card.uid, cardId: card.cardId, charges: definition.charges })
+    this.emit({ type: 'artifact', player, cardId: definition.id })
+    definition.onPlay?.(this.context(player, card))
+    this.shuffle(side.deck)
+
+    return true
   }
 
   /** Adds (or, negative, takes away) energy, between 0 and MAX_ENERGY. */
@@ -987,13 +1131,19 @@ export class MatchEngine {
 
   // ─── Card logic ────────────────────────────────────────────────────────────
 
-  context(owner: PlayerId, self: { uid: number; cardId: string }, targets: SlotRef[] = []): EffectContext {
+  context(
+    owner: PlayerId,
+    self: { uid: number; cardId: string },
+    targets: SlotRef[] = [],
+    choice?: string
+  ): EffectContext {
     return {
       engine: this,
       owner,
       opponent: opponentOf(owner),
       self: { uid: self.uid, cardId: self.cardId },
       targets,
+      ...(choice != null ? { choice } : {}),
       random: () => this.random()
     }
   }

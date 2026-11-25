@@ -559,7 +559,17 @@ export const en: Messages = {
       armor: '🛡️ Armor: {card} · -{reduction} damage per hit · {durability} hits',
       heroAttacked: '✋ Already attacked with the weapon this phase',
       heroAbilityUsed: '✋ Already used its ability this phase',
+      artifactAbilityUsed: '✋ Already used its ability this phase',
+      boon_guard: '🛡️ Your allies take {amount} less damage {until}',
+      boon_empower: '💥 Deals {amount} more damage to the rival {until}',
+      boon_allyDiscount: '💰 Allies cost {amount} Chronos less {until}',
+      veil: '👁️ Hidden: stealth and +{amount} attack {until}',
       fallen: '💀 Fallen: reached 0 health'
+    },
+    deckPick: {
+      title: 'Choose an artifact of your deck',
+      text: 'It enters play without paying its cost, and your deck is shuffled.',
+      cancel: 'Cancel'
     },
     mulligan: {
       title: 'Your opening hand',
@@ -608,6 +618,7 @@ export const en: Messages = {
       heroAttack: 'Weapon',
       heroAbility: 'Ability',
       allyAbility: 'Ally ability',
+      artifactAbility: 'Artifact ability',
       move: 'Move'
     },
     speeds: {
@@ -639,6 +650,8 @@ export const en: Messages = {
       cantAttack: 'An attachment keeps it from attacking',
       silenced: 'An attachment keeps it from using its ability',
       frozen: 'It is frozen',
+      noChoice: 'There is no card for it to take',
+      nothingToDestroy: 'There is nothing in play for it to destroy',
       timelineFull: 'The timeline already has 6 actions'
     },
     floats: {
@@ -692,6 +705,11 @@ export const en: Messages = {
       heroFell: '{player} falls',
       chronos: '{player} gains {amount} Chronos',
       chronosLoss: '{player} loses {amount} Chronos',
+      boon_guard: "{player}'s allies take {amount} less damage until the end of phase {phase}",
+      boon_empower: '{player} deals {amount} more damage until the end of phase {phase}',
+      boon_allyDiscount: "{player}'s allies cost {amount} Chronos less until the end of phase {phase}",
+      discard: '{player} discards {card}',
+      veil: "{player}'s allies hide (stealth, +{amount} attack) until the end of phase {phase}",
       fail: '{player}, step {step}: {reason}',
       end: 'The match is over'
     },

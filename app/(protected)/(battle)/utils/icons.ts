@@ -60,5 +60,6 @@ export const ACTION_ICONS: Record<PlannedAction['kind'], string> = {
   heroAttack: '🗡️',
   heroAbility: '✨',
   allyAbility: '🌀',
+  artifactAbility: '🔮',
   move: '↔️'
 }

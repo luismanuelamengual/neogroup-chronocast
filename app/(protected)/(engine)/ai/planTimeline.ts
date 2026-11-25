@@ -5,9 +5,13 @@ import { PlannedAction, Timeline, WAIT } from '@/app/(protected)/(engine)/models
 import { opponentOf, PlayerId } from '@/app/(protected)/(engine)/models/PlayerId'
 import { SlotRef } from '@/app/(protected)/(engine)/models/SlotRef'
 import { TargetKind } from '@/app/(protected)/(engine)/models/TargetKind'
+import { cardCost } from '@/app/(protected)/(engine)/utils/boons'
+import { MatchEngine } from '@/app/(protected)/(engine)/utils/engine'
 import { projectTimeline } from '@/app/(protected)/(engine)/utils/projectTimeline'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
 
+/** Hero abilities used before the cards: they put cards in play for free or make them cheaper. */
+const EARLY_ABILITY_TAGS = ['summonHand', 'deckArtifact', 'allyDiscount']
 /** Above this capacity the computer stops turning cards into Chronos. */
 const SACRIFICE_UNTIL_CAPACITY = 8
 
@@ -97,8 +101,31 @@ export function planTimeline(state: MatchState, player: PlayerId, style: PlanSty
   let hasArmor = !!side.hero.armor
   let support = side.traps.length + (side.artifacts ?? []).length
 
+  const programHeroAbility = () => {
+    if (
+      style.ability &&
+      heroAbility &&
+      heroAbility.cost <= energy &&
+      !side.hero.abilityUsedThisPhase &&
+      worthCasting(state, player, heroAbility)
+    ) {
+      const targets = chooseTargets(state, player, heroAbility.targets ?? [])
+      const cardId = heroAbility.choice ? chooseFromDeck(state, player) : undefined
+
+      if (targets && (!heroAbility.choice || cardId) && tryAdd({ kind: 'heroAbility', targets, cardId })) {
+        energy -= heroAbility.cost
+      }
+    }
+  }
+
+  const early = (heroAbility?.ai?.tags ?? []).some((tag) => EARLY_ABILITY_TAGS.includes(tag))
+
+  if (early) {
+    programHeroAbility()
+  }
+
   for (const { card, definition } of playable) {
-    if (definition.cost > budget || timeline.length >= ACTIONS_PER_PHASE - 1) {
+    if (cardCost(state, player, definition) > budget || timeline.length >= ACTIONS_PER_PHASE - 1) {
       continue
     }
 
@@ -140,7 +167,7 @@ export function planTimeline(state: MatchState, player: PlayerId, style: PlanSty
     }
 
     if (action && tryAdd(action)) {
-      budget -= definition.cost
+      budget -= cardCost(state, player, definition)
       used.add(card.uid)
       freeSlots -= definition.type === 'ally' ? 1 : 0
       hasWeapon ||= definition.type === 'weapon'
@@ -149,19 +176,9 @@ export function planTimeline(state: MatchState, player: PlayerId, style: PlanSty
     }
   }
 
-  // 3. Hero ability.
-  if (
-    style.ability &&
-    heroAbility &&
-    heroAbility.cost <= energy &&
-    !side.hero.abilityUsedThisPhase &&
-    worthCasting(state, player, heroAbility)
-  ) {
-    const targets = chooseTargets(state, player, heroAbility.targets ?? [])
-
-    if (targets && tryAdd({ kind: 'heroAbility', targets })) {
-      energy -= heroAbility.cost
-    }
+  // 3. Hero ability (before the cards when it saves Chronos for them).
+  if (!early) {
+    programHeroAbility()
   }
 
   // 4. Ally abilities: an ally uses its ability instead of attacking when the ability is worth more than its hit.
@@ -192,6 +209,39 @@ export function planTimeline(state: MatchState, player: PlayerId, style: PlanSty
         }
 
         acted.add(unit.uid)
+      }
+    }
+  }
+
+  // 4b. Artifact abilities: they don't take an ally's attack, so each one that is worth it now is used.
+  if (style.ability) {
+    const engine = new MatchEngine(state)
+
+    for (const artifact of side.artifacts ?? []) {
+      const ability = getCard(artifact.cardId).ability
+      const paidWithEnergy = ability?.resource === 'energy'
+
+      if (
+        !ability ||
+        artifact.abilityUsedThisPhase ||
+        ability.cost > (paidWithEnergy ? energy : budget) ||
+        !worthCasting(state, player, ability)
+      ) {
+        continue
+      }
+
+      const targets = chooseTargets(state, player, ability.targets ?? [])
+
+      if (!targets || ability.canActivate?.(engine.context(player, artifact, targets))) {
+        continue
+      }
+
+      if (tryAdd({ kind: 'artifactAbility', artifactUid: artifact.uid, targets })) {
+        if (paidWithEnergy) {
+          energy -= ability.cost
+        } else {
+          budget -= ability.cost
+        }
       }
     }
   }
@@ -265,6 +315,16 @@ function underPressure(state: MatchState, player: PlayerId): boolean {
   const power = (id: PlayerId) => state.players[id].allies.reduce((sum, unit) => sum + (unit ? unit.attack : 0), 0)
 
   return side.hero.health < side.hero.maxHealth / 2 || power(opponentOf(player)) > power(player)
+}
+
+/** The most valuable artifact of the deck (an ability that puts one in play), or undefined. */
+function chooseFromDeck(state: MatchState, player: PlayerId): string | undefined {
+  const artifacts = state.players[player].deck
+    .map((card) => getCard(card.cardId))
+    .filter((definition) => definition.type === 'artifact')
+    .sort((a, b) => value(b) - value(a) || b.cost - a.cost)
+
+  return artifacts[0]?.id
 }
 
 /** The card to turn into Chronos: one it can't afford for a while, or the least valuable. */
@@ -346,13 +406,25 @@ function chooseTargets(state: MatchState, player: PlayerId, kinds: TargetKind[])
 
         targets.push(enemies.sort((a, b) => b.unit.attack - a.unit.attack)[0].ref)
         break
-      case 'enemySlot':
-        targets.push(
-          enemies.length > 0
-            ? enemies.sort((a, b) => b.unit.attack - a.unit.attack)[0].ref
-            : { player: enemy, slot: 'hero' }
+
+      case 'enemySlot': {
+        // Several targets of the same ability go to different slots: the strongest allies, then the hero.
+        const options: SlotRef[] = [
+          ...enemies.sort((a, b) => b.unit.attack - a.unit.attack).map(({ ref }) => ref),
+          { player: enemy, slot: 'hero' }
+        ]
+        const free = options.find(
+          (ref) => !targets.some((taken) => taken.player === ref.player && taken.slot === ref.slot)
         )
+
+        if (!free) {
+          return null
+        }
+
+        targets.push(free)
         break
+      }
+
       case 'friendlyAlly':
         if (friends.length === 0) {
           return null

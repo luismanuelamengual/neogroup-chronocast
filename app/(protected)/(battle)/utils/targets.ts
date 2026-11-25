@@ -80,6 +80,13 @@ export function heroCard(state: MatchState, player: PlayerId): CardDefinition {
   return getCard(state.players[player].hero.cardId)
 }
 
+/** The ability of one of the player's artifacts in play, if it has one. */
+export function artifactAbility(state: MatchState, player: PlayerId, uid: number): ActiveAbility | undefined {
+  const artifact = (state.players[player].artifacts ?? []).find((candidate) => candidate.uid === uid)
+
+  return artifact ? getCard(artifact.cardId).ability : undefined
+}
+
 /** The ability of one of the player's allies on the board, if it has one. */
 export function allyAbility(state: MatchState, player: PlayerId, uid: number): ActiveAbility | undefined {
   const unit = state.players[player].allies.find((candidate) => candidate?.uid === uid)

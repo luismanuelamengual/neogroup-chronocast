@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damage } from '@/app/(protected)/(engine)/effects'
+import { damage, slotsNextTo } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'hollow-astronomer',
   type: 'hero',
   name: 'The Hollow Astronomer',
-  text: 'Collapse Star (6): deal 16 arcane damage to an enemy slot. At the start of each phase, deal 2 arcane damage to the enemy hero.',
+  text: 'Supernova (5): deal 12 arcane damage to an enemy slot and 4 to the slots next to it. At the start of each phase, deal 2 arcane damage to the enemy hero.',
   flavor: 'He mapped every star, then started putting them out.',
   faction: 'arcane',
   heroClass: 'mage',
@@ -15,12 +15,16 @@ export default defineCard({
   cost: 0,
   health: 60,
   ability: {
-    name: 'Collapse Star',
-    text: 'Deal 16 arcane damage to an enemy slot.',
-    cost: 6,
+    name: 'Supernova',
+    text: 'Deal 12 arcane damage to an enemy slot and 4 to the slots next to it.',
+    cost: 5,
     targets: ['enemySlot'],
     activate(ctx) {
-      damage(ctx, ctx.targets[0], 16)
+      damage(ctx, ctx.targets[0], 12)
+
+      for (const ref of slotsNextTo(ctx, ctx.targets[0])) {
+        damage(ctx, ref, 4)
+      }
     }
   },
   onPhaseStart(ctx) {

@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { addBoon } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'legate-varro',
   type: 'hero',
   name: 'Legate Varro',
-  text: 'Fortify (3): your hero heals 18. Instant.',
+  text: 'Testudo (4): until the end of the next phase, your allies take 2 less damage and you deal 2 more damage to the enemy hero and allies. Instant.',
   flavor: 'He has held the line in more centuries than he can count.',
   faction: 'bronze',
   heroClass: 'warrior',
@@ -14,13 +14,13 @@ export default defineCard({
   cost: 0,
   health: 65,
   ability: {
-    name: 'Fortify',
-    text: 'Your hero heals 18.',
-    cost: 3,
+    name: 'Testudo',
+    text: 'Until the end of the next phase, your allies take 2 less damage and you deal 2 more damage to the enemy hero and allies.',
+    cost: 4,
     speed: 'instant',
-    ai: { tags: ['heal'] },
     activate(ctx) {
-      healHero(ctx, 18)
+      addBoon(ctx, ctx.owner, 'guard', 2)
+      addBoon(ctx, ctx.owner, 'empower', 2)
     }
   },
   ai: { value: 0 },

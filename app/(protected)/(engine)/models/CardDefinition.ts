@@ -4,6 +4,7 @@ import { Element } from '@/app/(protected)/(engine)/models/Element'
 import { Faction } from '@/app/(protected)/(engine)/models/Faction'
 import { HeroClass } from '@/app/(protected)/(engine)/models/HeroClass'
 import { Keyword } from '@/app/(protected)/(engine)/models/Keyword'
+import { FailReason } from '@/app/(protected)/(engine)/models/MatchEvent'
 import { Unit } from '@/app/(protected)/(engine)/models/MatchState'
 import { Rarity } from '@/app/(protected)/(engine)/models/Rarity'
 import { Restriction } from '@/app/(protected)/(engine)/models/Restriction'
@@ -25,10 +26,17 @@ export interface ActiveAbility {
   resource?: AbilityResource
   speed?: Speed
   targets?: TargetKind[]
+  /** A card the player chooses when programming it (it arrives as `ctx.choice`): an artifact of the deck. */
+  choice?: AbilityChoice
+  /** Why it can't be used now (checked before paying, so nothing is spent); null: it can. */
+  canActivate?(ctx: EffectContext): FailReason | null
   /** Hints for the AI, like the ones of a card (`heal`, `removal`, `revive`, `buffAll`...): when using it is worth it. */
   ai?: { tags?: string[] }
   activate(ctx: EffectContext): void
 }
+
+/** What a player chooses for an ability, besides its targets. */
+export type AbilityChoice = 'deckArtifact'
 
 /** What an ability is paid with. */
 export type AbilityResource = 'chronos' | 'energy'

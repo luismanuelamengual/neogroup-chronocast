@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damage, healHero } from '@/app/(protected)/(engine)/effects'
+import { burn, slotsNextTo, unitAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'gideon-ironsteam',
   type: 'hero',
   name: 'Gideon Ironsteam',
-  text: 'Piston Punch (3): deal 9 fire damage to an enemy slot and your hero heals 4.',
+  text: 'Overheat (4): burn an enemy ally (4) and the allies next to it (2).',
   flavor: 'Half man, half engine, all stubbornness.',
   faction: 'clockwork',
   heroClass: 'warrior',
@@ -15,13 +15,18 @@ export default defineCard({
   cost: 0,
   health: 63,
   ability: {
-    name: 'Piston Punch',
-    text: 'Deal 9 fire damage to an enemy slot and your hero heals 4.',
-    cost: 3,
-    targets: ['enemySlot'],
+    name: 'Overheat',
+    text: 'Burn an enemy ally (4) and the allies next to it (2).',
+    cost: 4,
+    targets: ['enemyAlly'],
     activate(ctx) {
-      damage(ctx, ctx.targets[0], 9)
-      healHero(ctx, 4)
+      burn(ctx, ctx.targets[0], 4)
+
+      for (const ref of slotsNextTo(ctx, ctx.targets[0])) {
+        if (unitAt(ctx, ref)) {
+          burn(ctx, ref, 2)
+        }
+      }
     }
   },
   ai: { value: 0 },
