@@ -133,8 +133,8 @@ describe('rewards', () => {
   it('a public win pays 40, the bonus against a higher rating and the first win of the day', () => {
     const rewards = matchRewards({ ...base, visibility: 'public', result: { winner: 'a', reason: 'hero' } })
 
-    expect(rewards.a).toEqual({ ratingDelta: 15, rating: 1215, gold: 140, firstWin: true })
-    expect(rewards.b).toEqual({ ratingDelta: -15, rating: 1185, gold: 5, firstWin: false })
+    expect(rewards.a).toEqual({ ratingDelta: 15, rating: 1215, gold: 140, firstWin: true, xp: 100, level: null })
+    expect(rewards.b).toEqual({ ratingDelta: -15, rating: 1185, gold: 5, firstWin: false, xp: 30, level: null })
     expect(winBonus(1200, 1600)).toBe(20)
     expect(winBonus(1200, 1400)).toBe(10)
     expect(winBonus(1400, 1200)).toBe(0)
@@ -144,8 +144,8 @@ describe('rewards', () => {
     const draw = matchRewards({ ...base, visibility: 'public', result: { winner: null, reason: 'phaseLimit' } })
     const quit = matchRewards({ ...base, visibility: 'public', result: { winner: 'a', reason: 'abandon' } })
 
-    expect(draw.a).toMatchObject({ gold: 15, ratingDelta: 0 })
-    expect(quit.b).toMatchObject({ gold: 0, ratingDelta: -15 })
+    expect(draw.a).toMatchObject({ gold: 15, ratingDelta: 0, xp: 50 })
+    expect(quit.b).toMatchObject({ gold: 0, ratingDelta: -15, xp: 0 })
   })
 
   it('private matches pay half, keep the rating and stop paying at the daily cap', () => {
@@ -155,9 +155,14 @@ describe('rewards', () => {
       ratingDelta: 0,
       rating: 1200,
       gold: 20,
-      firstWin: false
+      firstWin: false,
+      xp: 50,
+      level: null
     })
-    expect(matchRewards({ ...base, visibility: 'private', result, privateCapReached: true }).a.gold).toBe(0)
+    expect(matchRewards({ ...base, visibility: 'private', result, privateCapReached: true }).a).toMatchObject({
+      gold: 0,
+      xp: 0
+    })
   })
 
   it('days and leagues', () => {

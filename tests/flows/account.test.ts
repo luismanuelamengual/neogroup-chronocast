@@ -28,10 +28,12 @@ describe('account deletion', () => {
   })
 
   // A raw row starts with no gold: the sign up gives STARTING_GOLD.
-  it('starts every row with 1200 of Prestige and no gold', async () => {
+  it('starts every row with 1200 of Prestige, no gold and level 1', async () => {
     const user = await User.find(beto)
 
     expect(Number(user!.rating)).toBe(1200)
     expect(Number(user!.gold)).toBe(0)
+    expect(Number(user!.xp)).toBe(0)
+    expect(Number(user!.level)).toBe(1)
   })
 })

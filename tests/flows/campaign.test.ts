@@ -92,8 +92,18 @@ describe('campaigns', () => {
     const { dealt, record } = await winBattle(userId, deckId, 1)
     const reward = await finishBattle(userId, dealt.ticket, record, T0)
 
-    expect(reward).toEqual({ stage: 1, firstWin: true, gold: 50, pack: null, rewardCardId: null, progress: 1 })
-    expect(await gold(userId)).toBe(before + 50)
+    expect(reward).toEqual({
+      stage: 1,
+      firstWin: true,
+      gold: 50,
+      pack: null,
+      rewardCardId: null,
+      progress: 1,
+      xp: 100,
+      level: { xp: 100, level: 2, levelsGained: 1, gold: 1000, xpInLevel: 0, xpForNext: 200 }
+    })
+    // 50 of the battle and 1,000 of reaching level 2 with its 100 XP.
+    expect(await gold(userId)).toBe(before + 50 + 1000)
     expect((await listCampaigns(userId)).find((campaign) => campaign.heroId === HERO)?.stage).toBe(1)
     await expect(startBattle(userId, HERO, 2, deckId, T0)).resolves.toMatchObject({ stage: 2 })
 
@@ -101,13 +111,15 @@ describe('campaigns', () => {
     expect(await finishBattle(userId, dealt.ticket, record, T0)).toMatchObject({
       firstWin: false,
       gold: 0,
-      progress: 1
+      progress: 1,
+      xp: 0,
+      level: null
     })
 
     const again = await winBattle(userId, deckId, 1)
 
-    expect(await finishBattle(userId, again.dealt.ticket, again.record, T0)).toMatchObject({ firstWin: false })
-    expect(await gold(userId)).toBe(before + 50)
+    expect(await finishBattle(userId, again.dealt.ticket, again.record, T0)).toMatchObject({ firstWin: false, xp: 0 })
+    expect(await gold(userId)).toBe(before + 50 + 1000)
   })
 
   it('rejects a record that does not win the replay, a forged ticket and an expired one', async () => {

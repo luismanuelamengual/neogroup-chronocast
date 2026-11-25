@@ -227,7 +227,7 @@ describe('a match', () => {
 
     expect(view.status).toBe('finished')
     expect(view.state!.result).toEqual({ winner: 'a', reason: 'abandon' })
-    expect(view.reward).toMatchObject({ gold: 140, firstWin: true })
+    expect(view.reward).toMatchObject({ gold: 140, firstWin: true, xp: 100, level: { level: 2, gold: 1000 } })
     expect((await getMatchState(bob.id, matchId, null, now))!.reward).toMatchObject({ gold: 0 })
   })
 
@@ -237,18 +237,21 @@ describe('a match', () => {
     const view = await forfeitMatch(bob.id, matchId, T0 + 5000)
 
     expect(view.state!.result).toEqual({ winner: 'a', reason: 'surrender' })
-    expect(view.reward).toEqual({ ratingDelta: -15, rating: 1185, gold: 0, firstWin: false })
+    expect(view.reward).toMatchObject({ ratingDelta: -15, rating: 1185, gold: 0, firstWin: false, xp: 0 })
 
     const winner = await user(ana.id)
 
     expect(Number(winner.rating)).toBe(1215)
-    expect(Number(winner.gold)).toBe(140)
+    // 140 of the match and 1,000 of reaching level 2 with its 100 XP.
+    expect(Number(winner.gold)).toBe(140 + 1000)
+    expect(Number(winner.xp)).toBe(100)
+    expect(Number(winner.level)).toBe(2)
     expect(Number(winner.pvpmatches ?? winner.pvpMatches)).toBe(1)
     expect(Number((await user(bob.id)).rating)).toBe(1185)
 
     // Nothing more after the end.
     await forfeitMatch(ana.id, matchId, T0 + 6000)
-    expect(Number((await user(ana.id)).gold)).toBe(140)
+    expect(Number((await user(ana.id)).gold)).toBe(140 + 1000)
     expect(await activeMatchId(ana.id, T0 + 6000)).toBeNull()
   })
 
@@ -258,7 +261,8 @@ describe('a match', () => {
     await start('public', T0 + 2000)
     await forfeitMatch(bob.id, matchId, T0 + 3000)
 
-    expect(Number((await user(ana.id)).gold)).toBe(140 + 40)
+    // 200 XP: level 2 (1,000 of gold), level 3 needs 300.
+    expect(Number((await user(ana.id)).gold)).toBe(140 + 40 + 1000)
   })
 
   it('private matches keep the rating, pay half and nothing after 3 a day against the same rival', async () => {
@@ -270,7 +274,9 @@ describe('a match', () => {
     const winner = await user(ana.id)
 
     expect(Number(winner.rating)).toBe(1200)
-    expect(Number(winner.gold)).toBe(3 * 20)
+    // 3 × 50 XP: level 2 (1,000 of gold).
+    expect(Number(winner.gold)).toBe(3 * 20 + 1000)
+    expect(Number(winner.xp)).toBe(3 * 50)
   })
 
   it('two requests resolving the same phase resolve it only once', async () => {

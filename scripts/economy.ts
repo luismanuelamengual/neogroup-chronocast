@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 /**
  * Economy: how long things take for a typical player (docs/PLAN.md, section
- * 16). Prints the gold of a day, the days to unlock each rarity and the days
+ * 16). Prints the gold and XP of a day, the days to reach the level of each
+ * rarity (with the gold of its levels) and the days
  * to complete the collection of each starter hero (4 copies, 1 if unique, of
  * every card it can use) buying singles or packs (with quick sell of the
  * spare copies).
@@ -17,9 +18,10 @@ import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition
 import { RARITIES } from '@/app/(protected)/(engine)/models/Rarity'
 import { canUseCard } from '@/app/(protected)/(engine)/utils/deckRules'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
+import { LEVEL_UP_GOLD, PVP_XP, RARITY_LEVELS } from '@/app/(protected)/(progression)/data/levels'
+import { totalXpForLevel } from '@/app/(protected)/(progression)/utils/levels'
 import { GOLD_REWARDS } from '@/app/(protected)/(shop)/data/gold'
 import { findPack, PackDefinition } from '@/app/(protected)/(shop)/data/packs'
-import { UNLOCK_COSTS } from '@/app/(protected)/(shop)/data/prices'
 import { drawPack } from '@/app/(protected)/(shop)/utils/drawPack'
 import { copyLimit, isInPacks, sellPrice } from '@/app/(protected)/(shop)/utils/prices'
 
@@ -38,7 +40,15 @@ function goldPerDay(): number {
   return Math.round(wins * perWin + losses * GOLD_REWARDS.loss + (wins >= 1 ? GOLD_REWARDS.firstWinOfDay : 0))
 }
 
+/** XP of a typical day of public matches. */
+function xpPerDay(): number {
+  const wins = matchesPerDay * winRate
+
+  return Math.round(wins * PVP_XP.win + (matchesPerDay - wins) * PVP_XP.loss)
+}
+
 const daily = goldPerDay()
+const dailyXp = xpPerDay()
 const days = (gold: number) => (gold / daily).toFixed(1)
 
 /** What a hero's collection is missing: copies of each card it can use, beyond what the starter gives. */
@@ -56,12 +66,9 @@ function missingCards(hero: CardDefinition, owned: Record<string, number>): Reco
   return missing
 }
 
-/** Buying singles: the unlocks the cards need plus each card at its price. */
+/** Buying singles: each card at its price (its rarity opens with the level, not with gold). */
 function singlesCost(missing: Record<string, number>): number {
-  const top = Math.max(0, ...Object.keys(missing).map((id) => RARITIES.indexOf(getCard(id).rarity)))
-  const unlocks = RARITIES.slice(0, top + 1).reduce((sum, rarity) => sum + UNLOCK_COSTS[rarity], 0)
-
-  return unlocks + Object.entries(missing).reduce((sum, [id, count]) => sum + getCard(id).price! * count, 0)
+  return Object.entries(missing).reduce((sum, [id, count]) => sum + getCard(id).price! * count, 0)
 }
 
 /** Buying one kind of pack until the hero's collection is complete, selling every spare copy: the net gold. */
@@ -92,15 +99,18 @@ function median(values: number[]): number {
 }
 
 console.log(`\nA typical player: ${matchesPerDay} public matches a day, ${Math.round(winRate * 100)} % won.`)
-console.log(`Gold a day: ${daily}\n`)
+console.log(`Gold a day: ${daily}   XP a day: ${dailyXp}\n`)
 
-console.log('Unlocking single cards (cumulative):')
-
-let unlockTotal = 0
+console.log('Levels that open the rarities of single cards (and the gold their levels paid):')
 
 for (const rarity of RARITIES.slice(1)) {
-  unlockTotal += UNLOCK_COSTS[rarity]
-  console.log(`  ${rarity.padEnd(10)} ${String(unlockTotal).padStart(7)} gold   ${days(unlockTotal).padStart(6)} days`)
+  const level = RARITY_LEVELS[rarity]
+  const xp = totalXpForLevel(level)
+  const gold = (level - 1) * LEVEL_UP_GOLD
+
+  console.log(
+    `  ${rarity.padEnd(10)} level ${String(level).padStart(3)}  ${String(xp).padStart(7)} XP   ${(xp / dailyXp).toFixed(1).padStart(6)} days   +${gold} gold`
+  )
 }
 
 const byRarity = RARITIES.map(

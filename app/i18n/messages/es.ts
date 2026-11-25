@@ -260,6 +260,13 @@ export const es = {
     rating: 'Prestigio',
     cardCount: { one: '{count} carta', other: '{count} cartas' }
   },
+  progression: {
+    level: 'Nivel',
+    levelShort: 'Nv {level}',
+    xpProgress: '{xp} / {next} XP',
+    xpGained: '+{xp} XP',
+    levelUp: '¡Nivel {level}! +{gold} de oro'
+  },
   game: {
     factions: {
       primal: 'Primal',
@@ -790,9 +797,7 @@ export const es = {
       close: 'Seguir'
     },
     cards: {
-      unlock: 'Desbloquear',
-      unlockFirst: 'Primero desbloqueá {rarity}',
-      unlocked: '¡Desbloqueaste las cartas {rarity}!',
+      lockedLevel: 'Se desbloquea en nivel {level}',
       buyOne: 'Comprar 1 por {price}',
       complete: 'Completar a {count} por {price}',
       bought: { one: 'Compraste {card}', other: 'Compraste {count} copias de {card}' },
@@ -1536,10 +1541,7 @@ export const es = {
     ownRoom: 'No podés unirte a tu propia sala',
     notEnoughGold: 'No te alcanza el oro: cuesta {price} y tenés {gold}',
     unknownPack: 'Ese sobre no existe',
-    invalidRarity: 'Esa rareza no existe',
-    rarityAlreadyUnlocked: 'Ya desbloqueaste esa rareza',
-    previousRarityLocked: 'Primero desbloqueá la rareza anterior',
-    rarityLocked: 'Esa rareza todavía está bloqueada en la tienda',
+    rarityLocked: 'Necesitás nivel {level} para comprar cartas de esa rareza',
     invalidCount: 'Cantidad inválida',
     cardNotForSale: 'Esa carta no se vende suelta',
     heroOwned: 'Ya tenés ese héroe',

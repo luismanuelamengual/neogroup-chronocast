@@ -4,18 +4,17 @@ import './index.scss'
 import classNames from 'classnames'
 import { useMemo, useState } from 'react'
 import CardView from '@/app/(protected)/(cards)/components/CardView'
-import { CardBack } from '@/app/(protected)/(cards)/components/FlipCard'
 import { CARDS, HEROES } from '@/app/(protected)/(cards)/utils/catalog'
 import CardDetail from '@/app/(protected)/(collection)/components/CardDetail'
 import CardFilters from '@/app/(protected)/(collection)/components/CardFilters'
 import { CardFilter, compareCards, EMPTY_FILTER, matchesFilter } from '@/app/(protected)/(collection)/utils/filters'
-import { RARITIES, Rarity } from '@/app/(protected)/(engine)/models/Rarity'
+import { Rarity } from '@/app/(protected)/(engine)/models/Rarity'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
+import { rarityLevel } from '@/app/(protected)/(progression)/utils/levels'
 import GoldAmount from '@/app/(protected)/(shop)/components/GoldAmount'
-import { UNLOCK_COSTS } from '@/app/(protected)/(shop)/data/prices'
 import { useShop } from '@/app/(protected)/(shop)/hooks/useShop'
 import { ShopState } from '@/app/(protected)/(shop)/models/ShopState'
-import { copyLimit, isBuyable, nextUnlock, shopPrice } from '@/app/(protected)/(shop)/utils/prices'
+import { copyLimit, isBuyable, shopPrice } from '@/app/(protected)/(shop)/utils/prices'
 import GameButton from '@/app/components/GameButton'
 import { useIncrementalList } from '@/app/hooks/useIncrementalList'
 import { useNotifications } from '@/app/hooks/useNotifications'
@@ -29,33 +28,38 @@ interface SingleShopProps {
 
 /**
  * The cards tab (docs/PLAN.md, section 11.2): every card for sale at its own
- * price, with the filters of the collection. Only the unlocked rarities are
- * shown: each locked one is a face-down card at the end, with its unlock cost,
- * so what it holds stays a mystery until it is unlocked (in order, the next
- * one from its own card).
+ * price, with the filters of the collection. The rarities the player's level
+ * has not opened yet are shown too, after the open ones: blurred, with a
+ * padlock and the level that opens them (RARITY_LEVELS). They stay a mystery:
+ * they can't be opened in detail and a search never finds them.
  */
 export default function SingleShop({ state, onChange }: SingleShopProps) {
   const { t, locale } = useI18n()
   const cardName = useCardName()
-  const { buyCard, unlockRarity } = useShop()
+  const { buyCard } = useShop()
   const { showSuccessMessage } = useNotifications()
   const [filter, setFilter] = useState<CardFilter>(EMPTY_FILTER)
   const [detail, setDetail] = useState<string | null>(null)
   const [busy, setBusy] = useState<string | null>(null)
-  const next = nextUnlock(state.unlocked)
+  const isLocked = (rarity: Rarity) => !state.unlocked.includes(rarity)
   const cards = useMemo(
     () =>
       CARDS.filter(
         (card) =>
           isBuyable(card) &&
-          state.unlocked.includes(card.rarity) &&
-          matchesFilter(card, filter, state.collection[card.id] ?? 0)
+          matchesFilter(card, filter, state.collection[card.id] ?? 0) &&
+          // A search by name or text never finds a locked card: what it holds is a mystery.
+          (!filter.search.trim() || state.unlocked.includes(card.rarity))
       )
         .slice()
-        .sort(compareCards),
+        .sort(
+          (a, b) =>
+            Number(!state.unlocked.includes(a.rarity)) - Number(!state.unlocked.includes(b.rarity)) ||
+            (state.unlocked.includes(a.rarity) ? 0 : rarityLevel(a.rarity) - rarityLevel(b.rarity)) ||
+            compareCards(a, b)
+        ),
     [filter, state.collection, state.unlocked]
   )
-  const lockedRarities = RARITIES.filter((rarity) => !state.unlocked.includes(rarity))
 
   const run = async (key: string, action: () => Promise<ShopState>, success: string) => {
     setBusy(key)
@@ -70,21 +74,8 @@ export default function SingleShop({ state, onChange }: SingleShopProps) {
     }
   }
 
-  const unlock = (rarity: Rarity) =>
-    run('unlock', () => unlockRarity(rarity), t('shop.cards.unlocked', { rarity: t(`game.rarities.${rarity}`) }))
   const buy = (cardId: string, count: number) =>
     run(`buy-${count}`, () => buyCard(cardId, count), t('shop.cards.bought', { count, card: cardName(cardId) }))
-  const unlockButton = next && (
-    <GameButton
-      size="small"
-      color="violet"
-      disabled={state.gold < next.cost}
-      loading={busy === 'unlock'}
-      onClick={() => unlock(next.rarity)}
-    >
-      🔓 {t('shop.cards.unlock')}
-    </GameButton>
-  )
 
   const actions = (cardId: string) => {
     const card = getCard(cardId)
@@ -129,45 +120,38 @@ export default function SingleShop({ state, onChange }: SingleShopProps) {
 
   return (
     <div className="single-shop">
-      <CardFilters
-        filter={filter}
-        onChange={setFilter}
-        heroes={HEROES.map((hero) => hero.id)}
-        rarities={state.unlocked}
-      />
+      <CardFilters filter={filter} onChange={setFilter} heroes={HEROES.map((hero) => hero.id)} />
       {cards.length === 0 && <p className="single-shop__empty">{t('shop.cards.empty')}</p>}
       <div className="single-shop__grid">
-        {visibleCards.map((card) => (
-          <button key={card.id} type="button" className="single-shop__card" onClick={() => setDetail(card.id)}>
-            <span className="single-shop__zoom">
-              <CardView card={card} />
-            </span>
-            <span className="single-shop__owned">×{state.collection[card.id] ?? 0}</span>
-            <span className="single-shop__price">
-              <GoldAmount amount={shopPrice(card)} />
-            </span>
-          </button>
-        ))}
+        {visibleCards.map((card) => {
+          const locked = isLocked(card.rarity)
+
+          return (
+            <button
+              key={card.id}
+              type="button"
+              className={classNames('single-shop__card', { 'single-shop__card--locked': locked })}
+              disabled={locked}
+              onClick={() => setDetail(card.id)}
+            >
+              <span className="single-shop__zoom" aria-hidden={locked}>
+                <CardView card={card} />
+              </span>
+              {locked ? (
+                <span className="single-shop__lock">
+                  <span aria-hidden="true">🔒</span>
+                  {t('shop.cards.lockedLevel', { level: rarityLevel(card.rarity) })}
+                </span>
+              ) : (
+                <span className="single-shop__owned">×{state.collection[card.id] ?? 0}</span>
+              )}
+              <span className="single-shop__price">
+                <GoldAmount amount={shopPrice(card)} />
+              </span>
+            </button>
+          )
+        })}
         <span ref={sentinelCards} className="incremental-sentinel" aria-hidden="true" />
-        {lockedRarities.map((rarity, index) => (
-          <div key={rarity} className={classNames('single-shop__mystery', `rarity-${rarity}`)}>
-            <span className="single-shop__mystery-back">
-              <CardBack />
-              <span className="single-shop__mystery-mark" aria-hidden="true">
-                ?
-              </span>
-            </span>
-            <strong className="single-shop__mystery-name">🔒 {t(`game.rarities.${rarity}`)}</strong>
-            <GoldAmount amount={UNLOCK_COSTS[rarity]} className="single-shop__mystery-cost" />
-            {next?.rarity === rarity ? (
-              unlockButton
-            ) : (
-              <span className="single-shop__mystery-label">
-                {t('shop.cards.unlockFirst', { rarity: t(`game.rarities.${lockedRarities[index - 1]}`) })}
-              </span>
-            )}
-          </div>
-        ))}
       </div>
       {detail && (
         <CardDetail cardId={detail} owned={state.collection[detail] ?? 0} onClose={() => setDetail(null)}>

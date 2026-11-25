@@ -10,6 +10,8 @@ import { issueTicket, readTicket } from '@/app/(protected)/(campaign)/utils/tick
 import { addCards, getCollection } from '@/app/(protected)/(collection)/services/collection'
 import { getDeck, toDeckList } from '@/app/(protected)/(collection)/services/decks'
 import { deckProblems } from '@/app/(protected)/(collection)/utils/deckProblems'
+import { CAMPAIGN_XP } from '@/app/(protected)/(progression)/data/levels'
+import { grantXp } from '@/app/(protected)/(progression)/services/levels'
 import { findPack } from '@/app/(protected)/(shop)/data/packs'
 import { openPack } from '@/app/(protected)/(shop)/services/packs'
 import { earnGold } from '@/app/(protected)/(shop)/services/shop'
@@ -91,7 +93,7 @@ export async function startBattle(
  * plays the battle again from the ticket's seed and deck, the player's
  * mulligan and timelines, and the computer's deterministic AI; only if the
  * player wins that replay does it count. The first win of a battle unlocks the
- * next one and pays its gold, its pack (battles 5 and 10) and, for the boss,
+ * next one and pays its gold, its XP, its pack (battles 5 and 10) and, for the boss,
  * the hero's exclusive card. Winning a battle again pays nothing.
  */
 export async function finishBattle(
@@ -120,7 +122,9 @@ export async function finishBattle(
     gold: 0,
     pack: null,
     rewardCardId: null,
-    progress: 0
+    progress: 0,
+    xp: 0,
+    level: null
   }
 
   await DB.transaction(async () => {
@@ -156,6 +160,8 @@ export async function finishBattle(
     reward.progress = stage.number
     reward.gold = stage.gold
     await earnGold(userId, stage.gold)
+    reward.xp = stage.boss ? CAMPAIGN_XP.boss : CAMPAIGN_XP.win
+    reward.level = await grantXp(userId, reward.xp)
 
     const pack = stage.pack ? findPack(stage.pack) : undefined
 

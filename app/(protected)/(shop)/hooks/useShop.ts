@@ -1,7 +1,6 @@
 'use client'
 
 import { useCallback } from 'react'
-import { Rarity } from '@/app/(protected)/(engine)/models/Rarity'
 import { PackPurchase, Sale, ShopState } from '@/app/(protected)/(shop)/models/ShopState'
 import { useRequests } from '@/app/hooks/useRequests'
 
@@ -9,10 +8,6 @@ export function useShop() {
   const executeRequest = useRequests()
   const buyPack = useCallback(
     (packId: string) => executeRequest<PackPurchase>('/buyPack', { packId }),
-    [executeRequest]
-  )
-  const unlockRarity = useCallback(
-    (rarity: Rarity) => executeRequest<ShopState>('/unlockRarity', { rarity }),
     [executeRequest]
   )
   const buyCard = useCallback(
@@ -25,5 +20,5 @@ export function useShop() {
   )
   const quickSell = useCallback(() => executeRequest<Sale>('/quickSell', {}), [executeRequest])
 
-  return { buyPack, unlockRarity, buyCard, sellCards, quickSell }
+  return { buyPack, buyCard, sellCards, quickSell }
 }

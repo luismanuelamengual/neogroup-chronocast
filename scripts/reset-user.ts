@@ -41,12 +41,13 @@ async function run(): Promise<void> {
     await DB.table('matches').where('playerA', userId).delete()
     await DB.table('matches').where('playerB', userId).delete()
     await DB.table('campaign_progress').where('userId', userId).delete()
-    await DB.table('shop_unlocks').where('userId', userId).delete()
     // deck_cards go with their decks (ON DELETE CASCADE).
     await DB.table('decks').where('userId', userId).delete()
     await DB.table('user_cards').where('userId', userId).delete()
     await DB.table('users').where('id', userId).update({
       gold: STARTING_GOLD,
+      xp: 0,
+      level: 1,
       rating: 1200,
       starterHeroId: null,
       packsWithoutLegendary: 0,

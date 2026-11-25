@@ -3,6 +3,7 @@ import { MatchState } from '@/app/(protected)/(engine)/models/MatchState'
 import { Timeline } from '@/app/(protected)/(engine)/models/PlannedAction'
 import { PlayerId } from '@/app/(protected)/(engine)/models/PlayerId'
 import { ResolutionFrame } from '@/app/(protected)/(engine)/utils/resolvePhase'
+import { LevelGain } from '@/app/(protected)/(progression)/models/LevelGain'
 
 export type MatchVisibility = 'public' | 'private'
 export type MatchStatus = 'waiting' | 'playing' | 'finished' | 'abandoned' | 'closed'
@@ -24,6 +25,10 @@ export interface PlayerReward {
   rating: number
   gold: number
   firstWin: boolean
+  /** XP earned (docs/PLAN.md, section 10.4). */
+  xp: number
+  /** Where the XP left the player: its level and the gold of the levels gained (null: not applied yet). */
+  level: LevelGain | null
 }
 
 export interface SeatInfo {

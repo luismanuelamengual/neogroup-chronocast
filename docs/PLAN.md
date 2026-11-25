@@ -19,7 +19,7 @@ Este documento es el plan completo. Todavía no hay código: cada sección dice 
 7. [Una carta = un archivo `.ts`](#7-una-carta--un-archivo-ts)
 8. [El catálogo de 590 cartas](#8-el-catálogo-de-590-cartas)
 9. [Arte: archivo de prompts y `yarn art`](#9-arte-archivo-de-prompts-y-yarn-art)
-10. [Rating (el "ELO") y oro](#10-rating-el-elo-y-oro)
+10. [Rating (el "ELO"), oro y niveles](#10-rating-el-elo-oro-y-niveles)
 11. [Tienda](#11-tienda)
 12. [PvP: salas y partidas](#12-pvp-salas-y-partidas)
 13. [CPU: campañas por héroe](#13-cpu-campañas-por-héroe)
@@ -506,7 +506,7 @@ Como en Crisol (`sharp`: recorta, achica a WebP en `public/cards/` y escribe `pu
 
 ---
 
-## 10. Rating (el "ELO") y oro
+## 10. Rating (el "ELO"), oro y niveles
 
 ### 10.1 Nombre
 
@@ -546,7 +546,36 @@ delta    = round(30 × (score − expected))       score: 1 gana, 0.5 empate, 0 
 - Partidas privadas: la mitad, y como máximo 3 con premio por día contra el mismo rival (evita que dos amigos se regalen oro).
 - Partida rápida contra la CPU: 20 por victoria, 8 por empate y 3 por derrota (sin Prestigio ni bonus del día), como máximo 10 partidas con oro por día. El servidor reparte la semilla y el mazo de la CPU y repite la partida antes de pagar (como en la campaña).
 - Campaña: oro la primera vez que se gana cada combate (de 50 a 300 según la dificultad) y 10 % de eso si se repite.
+- Cuentas nuevas: arrancan con **1.000** de oro (`STARTING_GOLD`).
 - Todo cambio de oro pasa por el servidor, dentro de una transacción.
+
+### 10.4 Niveles y experiencia (XP)
+
+Cada batalla que el servidor verifica da **XP**; la XP sube el **nivel** del jugador (`users.xp` y `users.level`, se empieza en el nivel 1). Cada nivel ganado paga **1.000 de oro** (`LEVEL_UP_GOLD`) y el nivel abre las rarezas de la tienda (11.2). Todo en `(progression)/data/levels.ts`.
+
+**Curva**: pasar del nivel L al L + 1 cuesta `100 × L` XP (100 para el 2, 200 más para el 3...). Llegar al nivel N cuesta `50 × N × (N − 1)` XP en total:
+
+| Nivel | XP total | Victorias PvP aprox. (a 100 XP) |
+| ----- | -------- | ------------------------------- |
+| 5     | 1.000    | 10                              |
+| 10    | 4.500    | 45                              |
+| 20    | 19.000   | 190                             |
+| 40    | 78.000   | 780                             |
+| 70    | 241.500  | 2.415                           |
+| 100   | 495.000  | 4.950                           |
+
+**XP por batalla**:
+
+| Modo                              | Victoria | Empate | Derrota | Abandono |
+| --------------------------------- | -------- | ------ | ------- | -------- |
+| PvP pública                       | 100      | 50     | 30      | 0        |
+| PvP privada (mismo tope que oro)  | 50       | 25     | 15      | 0        |
+| Partida rápida vs CPU (10 por día)| 50       | 25     | 15      | —        |
+| Campaña (primera victoria)        | 100 (jefe 200) | — | —      | —        |
+
+- Perder también da algo de XP (menos que ganar), para que cada partida cuente; rendirse o abandonar no da nada.
+- La partida rápida da XP solo en las partidas que dan oro (las 10 primeras del día); la campaña, solo la primera vez que se gana cada combate (como su oro). La práctica no da XP.
+- La XP de PvP se guarda con los premios de la partida (`rewards[player].level`) y el final de la batalla muestra "+X XP", la barra del nivel y, si subiste, "¡Nivel N! +1.000 de oro". El menú principal muestra el nivel con su barra.
 
 ---
 
@@ -571,20 +600,22 @@ Módulo `(shop)`, con tres pestañas: **Sobres**, **Cartas** y **Vender**. Preci
 
 ### 11.2 Cartas sueltas
 
-**Cada carta tiene su propio precio** (`price` en su archivo), dentro del rango de su rareza. Por ejemplo, una común muy jugada puede costar 75 y otra de nicho 45. Las rarezas se desbloquean de a una pagando oro:
+**Cada carta tiene su propio precio** (`price` en su archivo), dentro del rango de su rareza. Por ejemplo, una común muy jugada puede costar 75 y otra de nicho 45. Las rarezas se desbloquean con el **nivel** del jugador (10.4, `RARITY_LEVELS`):
 
-| Rareza     | Rango de precio por carta | Desbloqueo (una vez)    |
-| ---------- | ------------------------- | ----------------------- |
-| Común      | 40 – 80                   | Abierta desde el inicio |
-| Poco común | 140 – 220                 | 1.000                   |
-| Rara       | 450 – 750                 | 2.000                   |
-| Épica      | 1.400 – 2.200             | 5.000                   |
-| Legendaria | 4.000 – 6.000             | 10.000                  |
-| Exótica    | 10.000 – 14.000           | 20.000                  |
-| Mítica     | 25.000 – 35.000           | 40.000                  |
+| Rareza     | Rango de precio por carta | Héroe (`HERO_PRICES`) | Se desbloquea en |
+| ---------- | ------------------------- | --------------------- | ---------------- |
+| Común      | 40 – 80                   | 1.000                 | Nivel 1          |
+| Poco común | 140 – 220                 | 1.100                 | Nivel 5          |
+| Rara       | 450 – 750                 | 1.200                 | Nivel 10         |
+| Épica      | 1.400 – 2.200             | 2.000                 | Nivel 20         |
+| Legendaria | 4.000 – 6.000             | 5.000                 | Nivel 40         |
+| Exótica    | 10.000 – 14.000           | 12.000                | Nivel 70         |
+| Mítica     | 25.000 – 35.000           | 25.000                | Nivel 100        |
 
 - El centro de cada rango es el doble de los precios del plan anterior.
-- Para desbloquear una rareza hay que tener la anterior desbloqueada. También se venden los héroes jugables (no los jefes), uno por jugador, según su rareza: común 2.000, rara 3.000, épica 5.000 y legendaria 8.000 (`HERO_PRICES`); no salen en sobres ni se venden. La pestaña Cartas muestra el catálogo con filtros (facción, clase, tipo, costo, rareza, "usables con mi héroe") solo con las rarezas desbloqueadas: cada rareza bloqueada aparece al final como una carta boca abajo con "?" y su costo, para que sus cartas sean una sorpresa; la siguiente en orden se desbloquea desde su propia carta.
+- No se paga nada por desbloquear: alcanza con llegar al nivel. Los sobres pueden traer cualquier rareza a cualquier nivel.
+- También se venden los héroes jugables (no los jefes), uno por jugador, al precio de su rareza (columna "Héroe"; hoy solo hay héroes comunes, raros, épicos y legendarios); su rareza también tiene que estar desbloqueada. No salen en sobres ni se venden.
+- La pestaña Cartas muestra **todo** el catálogo a la venta con filtros (facción, clase, tipo, costo, rareza, "usables con mi héroe"): primero las rarezas desbloqueadas y después las bloqueadas, difuminadas y con un candado que dice "Se desbloquea en nivel X". Las bloqueadas son un misterio: no se pueden abrir en detalle (están bien difuminadas) y la búsqueda por nombre o texto no las encuentra.
 - Las cartas premio de las campañas no se venden sueltas.
 
 ### 11.3 Vender
@@ -748,7 +779,8 @@ app/
     (battle)/        Battle screen (shared by PvP and campaign)
     (pvp)/           Lobby, matches, submitPlan / getMatchState, rating
     (campaign)/      Hero campaigns, progress, result verification
-    (shop)/          Packs, singles, unlocks, selling
+    (shop)/          Packs, singles, selling
+    (progression)/   Levels and XP: the curve, XP per battle, grantXp, level badges
     (ranking)/       Leaderboard
     (account)/       Profile (as in Crisol)
     (art)/           Dev pages: /dev/cards (whole catalog), /dev/battle (sandbox)
@@ -785,12 +817,11 @@ Sin React ni base de datos, determinístico, con tests:
 
 | Tabla               | Contenido                                                                   |
 | ------------------- | --------------------------------------------------------------------------- |
-| `users`             | Como Crisol, más `rating`, `gold`, `starterHeroId`, `packsWithoutLegendary` |
+| `users`             | Como Crisol, más `rating`, `gold`, `xp`, `level`, `starterHeroId`, `packsWithoutLegendary` |
 | (auth)              | `email_verification_tokens`, `password_reset_tokens` (como Crisol)          |
 | `user_cards`        | `userId`, `cardId`, `quantity`                                              |
 | `decks`             | `id`, `userId`, `name`, `heroId`, `updatedAt`                               |
 | `deck_cards`        | `deckId`, `cardId`, `count`                                                 |
-| `shop_unlocks`      | `userId`, `rarity`, `unlockedAt`                                            |
 | `matches`           | Ver 12.4                                                                    |
 | `campaign_progress` | `userId`, `heroId`, `stage`, `completedAt`                                  |
 
@@ -803,11 +834,11 @@ Las cartas, héroes y campañas **no** van en la base: viven en el código y se 
 ## 16. Testing y balance
 
 - **`tests/unit`**: el motor (fases, velocidades, simultaneidad, empate, fallas, movimientos, protector, cada palabra clave, adjuntar armas y armaduras, mano de 7, fatiga, límite de fases), las reglas de mazo y `canUseCard`, los starters, el rating, los sobres (probabilidades y garantía con semilla), los precios dentro de su rango, la validación del catálogo (7.5), la IA (siempre devuelve una línea válida) e i18n.
-- **`tests/flows`** (SQLite en memoria con las migraciones reales): registro y starter, compra de sobres y cartas, desbloqueos, venta y venta rápida, una partida PvP completa (salas, planes, plazo vencido, resolución, rating, oro, abandono) y la verificación de una partida de campaña.
+- **`tests/flows`** (SQLite en memoria con las migraciones reales): registro y starter, compra de sobres y cartas, rarezas bloqueadas por nivel, XP y subida de nivel, venta y venta rápida, una partida PvP completa (salas, planes, plazo vencido, resolución, rating, oro, abandono) y la verificación de una partida de campaña.
 - **Simulación** (scripts como `yarn battles` en Crisol):
   - `yarn duel [heroA] [heroB]`: miles de partidas CPU contra CPU; porcentaje de victorias por héroe, por carta (cuando está en el mazo) y largo medio de las partidas (objetivo: 6 a 12 fases).
   - `yarn campaign <hero-id>`: qué tan seguido gana un mazo típico cada combate de la campaña.
-  - `yarn economy`: oro por día de un jugador típico, cuánto tarda en completar la colección de su héroe y en desbloquear cada rareza.
+  - `yarn economy`: oro por día de un jugador típico, cuánto tarda en completar la colección de su héroe y en llegar al nivel de cada rareza.
 
 ---
 

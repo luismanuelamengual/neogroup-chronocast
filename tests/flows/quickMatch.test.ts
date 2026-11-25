@@ -2,7 +2,12 @@ import { DB } from '@neogroup/neorm'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { QUICK_MATCH_AI_LEVEL, QUICK_MATCH_TTL_MS } from '@/app/(protected)/(battle)/data/quickMatch'
 import { QuickMatchTicket } from '@/app/(protected)/(battle)/models/QuickMatchDto'
-import { finishQuickMatch, quickMatchGold, startQuickMatch } from '@/app/(protected)/(battle)/services/quickMatches'
+import {
+  finishQuickMatch,
+  quickMatchGold,
+  quickMatchXp,
+  startQuickMatch
+} from '@/app/(protected)/(battle)/services/quickMatches'
 import { createPracticeMatch } from '@/app/(protected)/(battle)/utils/practice'
 import { BattleRecord } from '@/app/(protected)/(campaign)/utils/playCampaign'
 import { chooseStarter } from '@/app/(protected)/(collection)/services/collection'
@@ -68,7 +73,9 @@ describe('quick matches against the CPU', () => {
       ratingDelta: 0,
       firstWin: false,
       capped: false,
-      gold: quickMatchGold(state.result!)
+      gold: quickMatchGold(state.result!),
+      xp: quickMatchXp(state.result!),
+      level: { xp: quickMatchXp(state.result!), level: 1, levelsGained: 0, gold: 0 }
     })
     expect(await gold(userId)).toBe(before + reward.gold)
 
@@ -118,10 +125,13 @@ describe('quick matches against the CPU', () => {
 
     for (let i = 0; i < QUICK_MATCH_GOLD.prizesPerDay + 1; i++) {
       const dealt = await startQuickMatch(userId, deckId, null, T0)
-      const reward = await finishQuickMatch(userId, dealt.matchId, play(dealt).record, T0 + i)
+      const played = play(dealt)
+      const reward = await finishQuickMatch(userId, dealt.matchId, played.record, T0 + i)
 
       expect(reward.capped).toBe(i >= QUICK_MATCH_GOLD.prizesPerDay)
-      paid += reward.gold
+      expect(reward.xp).toBe(reward.capped ? 0 : quickMatchXp(played.state.result!))
+      // The gold of the match plus 1,000 for each level its XP gave.
+      paid += reward.gold + (reward.level?.gold ?? 0)
     }
 
     expect(await gold(userId)).toBe(before + paid)

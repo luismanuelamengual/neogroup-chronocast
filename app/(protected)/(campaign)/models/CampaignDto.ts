@@ -1,4 +1,5 @@
 import { DeckList } from '@/app/(protected)/(engine)/models/DeckList'
+import { LevelGain } from '@/app/(protected)/(progression)/models/LevelGain'
 
 /** A campaign as the player sees it: whether it can play it and how far it got. */
 export interface CampaignSummary {
@@ -30,4 +31,7 @@ export interface BattleReward {
   rewardCardId: string | null
   /** Battles won in the campaign after this one. */
   progress: number
+  /** XP of the first win (CAMPAIGN_XP) and where it left the player (null: nothing earned). */
+  xp: number
+  level: LevelGain | null
 }

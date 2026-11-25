@@ -2,19 +2,18 @@ import '@/app/(protected)/(cards)/utils/catalog'
 import { DB } from '@neogroup/neorm'
 import { addCards, getCollection } from '@/app/(protected)/(collection)/services/collection'
 import { getActiveDeck } from '@/app/(protected)/(collection)/services/decks'
-import { RARITIES, Rarity } from '@/app/(protected)/(engine)/models/Rarity'
+import { Rarity } from '@/app/(protected)/(engine)/models/Rarity'
 import { getCard, hasCard } from '@/app/(protected)/(engine)/utils/registry'
+import { levelProgress, rarityLevel, unlockedRarities } from '@/app/(protected)/(progression)/utils/levels'
 import { MAX_BUY_COUNT } from '@/app/(protected)/(shop)/data/prices'
 import { Sale, ShopState } from '@/app/(protected)/(shop)/models/ShopState'
 import {
   isBuyable,
   isSellable,
-  nextUnlock,
   quickSellPlan,
   sellableCopies,
   sellPrice,
-  shopPrice,
-  unlockedRarities
+  shopPrice
 } from '@/app/(protected)/(shop)/utils/prices'
 import { ApiException } from '@/app/models/ApiException'
 import { column } from '@/app/utils/rows'
@@ -51,11 +50,9 @@ export async function earnGold(userId: number, amount: number): Promise<void> {
     .update({ gold: gold + amount })
 }
 
-/** The rarities a player can buy single cards of. */
+/** The rarities a player can buy single cards of: the ones its level opened (RARITY_LEVELS). */
 export async function getUnlocked(userId: number): Promise<Rarity[]> {
-  const rows = await DB.table('shop_unlocks').where('userId', userId).get()
-
-  return unlockedRarities(rows.map((row) => String(row.rarity)))
+  return unlockedRarities(levelProgress(Number((await userRow(userId)).xp ?? 0)).level)
 }
 
 /** The copies of each card the active deck holds (hero included): selling never takes those. */
@@ -66,46 +63,21 @@ export async function getDeckUsage(userId: number): Promise<Record<string, numbe
 }
 
 export async function getShopState(userId: number): Promise<ShopState> {
-  const [user, collection, unlocked, deckUsage] = await Promise.all([
+  const [user, collection, deckUsage] = await Promise.all([
     userRow(userId),
     getCollection(userId),
-    getUnlocked(userId),
     getDeckUsage(userId)
   ])
+  const progress = levelProgress(Number(user.xp ?? 0))
 
   return {
     gold: Number(user.gold ?? 0),
     collection,
-    unlocked,
+    level: progress.level,
+    unlocked: unlockedRarities(progress.level),
     packsWithoutLegendary: Number(column(user, 'packsWithoutLegendary') ?? 0),
     deckUsage
   }
-}
-
-/** Unlocks the next rarity of single cards (each one needs the previous). */
-export async function unlockRarity(userId: number, rarity: Rarity): Promise<ShopState> {
-  if (!RARITIES.includes(rarity)) {
-    throw new ApiException('errors.invalidRarity')
-  }
-
-  await DB.transaction(async () => {
-    const unlocked = await getUnlocked(userId)
-
-    if (unlocked.includes(rarity)) {
-      throw new ApiException('errors.rarityAlreadyUnlocked')
-    }
-
-    const next = nextUnlock(unlocked)
-
-    if (!next || next.rarity !== rarity) {
-      throw new ApiException('errors.previousRarityLocked')
-    }
-
-    await spendGold(userId, next.cost)
-    await DB.table('shop_unlocks').insert({ userId, rarity })
-  })
-
-  return getShopState(userId)
 }
 
 function checkCount(count: unknown, max: number): number {
@@ -118,7 +90,7 @@ function checkCount(count: unknown, max: number): number {
   return value
 }
 
-/** Buys copies of a single card at its own price (a hero: one, if not owned yet): its rarity must be unlocked. */
+/** Buys copies of a single card at its own price (a hero: one, if not owned yet): the player's level must open its rarity. */
 export async function buyCard(userId: number, cardId: string, count: number = 1): Promise<ShopState> {
   const copies = checkCount(count, MAX_BUY_COUNT)
 
@@ -130,7 +102,7 @@ export async function buyCard(userId: number, cardId: string, count: number = 1)
 
   await DB.transaction(async () => {
     if (!(await getUnlocked(userId)).includes(card.rarity)) {
-      throw new ApiException('errors.rarityLocked')
+      throw new ApiException('errors.rarityLocked', 400, { level: rarityLevel(card.rarity) })
     }
 
     if (card.type === 'hero' && (copies > 1 || ((await getCollection(userId))[cardId] ?? 0) > 0)) {

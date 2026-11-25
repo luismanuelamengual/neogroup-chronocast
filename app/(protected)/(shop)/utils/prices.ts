@@ -1,9 +1,9 @@
 import { MAX_COPIES, MAX_UNIQUE_COPIES } from '@/app/(protected)/(engine)/data/rules'
 import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition'
-import { RARITIES, Rarity } from '@/app/(protected)/(engine)/models/Rarity'
+import { RARITIES } from '@/app/(protected)/(engine)/models/Rarity'
 import { getCard, hasCard } from '@/app/(protected)/(engine)/utils/registry'
 import { isRetired } from '@/app/(protected)/(engine)/utils/retired'
-import { CONFIRM_SELL_FROM, HERO_PRICES, SELL_RATE, UNLOCK_COSTS } from '@/app/(protected)/(shop)/data/prices'
+import { CONFIRM_SELL_FROM, HERO_PRICES, SELL_RATE } from '@/app/(protected)/(shop)/data/prices'
 
 /** Cards the shop sells: playable heroes and every card with a price, but campaign rewards and boss cards. */
 export function isBuyable(card: CardDefinition): boolean {
@@ -37,28 +37,6 @@ export function sellPrice(card: CardDefinition): number {
 /** Selling it asks for confirmation: epic or better. */
 export function isValuable(card: CardDefinition): boolean {
   return RARITIES.indexOf(card.rarity) >= RARITIES.indexOf(CONFIRM_SELL_FROM)
-}
-
-/** The rarities unlocked, in order: common plus the ones bought. */
-export function unlockedRarities(bought: string[]): Rarity[] {
-  const unlocked: Rarity[] = ['common']
-
-  for (const rarity of RARITIES.slice(1)) {
-    if (!bought.includes(rarity)) {
-      break
-    }
-
-    unlocked.push(rarity)
-  }
-
-  return unlocked
-}
-
-/** The next rarity to unlock and its cost (null: all of them are open). */
-export function nextUnlock(unlocked: Rarity[]): { rarity: Rarity; cost: number } | null {
-  const rarity = RARITIES[unlocked.length]
-
-  return rarity ? { rarity, cost: UNLOCK_COSTS[rarity] } : null
 }
 
 /** The most copies of a card worth having: 1 of a hero, 4 of a card (1 if it is unique). */

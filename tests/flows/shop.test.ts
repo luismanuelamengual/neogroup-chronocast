@@ -1,14 +1,14 @@
 import { DB } from '@neogroup/neorm'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { deleteAccount } from '@/app/(protected)/(account)/services/accounts'
 import { CARDS } from '@/app/(protected)/(cards)/utils/catalog'
 import { addCards, chooseStarter, getCollection } from '@/app/(protected)/(collection)/services/collection'
 import { getDeck, listDecks, saveDeck, setActiveDeck } from '@/app/(protected)/(collection)/services/decks'
 import { isUnrestricted } from '@/app/(protected)/(engine)/models/Restriction'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
+import { totalXpForLevel } from '@/app/(protected)/(progression)/utils/levels'
 import { HERO_PRICES } from '@/app/(protected)/(shop)/data/prices'
 import { buyPack } from '@/app/(protected)/(shop)/services/packs'
-import { buyCard, getShopState, quickSell, sellCards, unlockRarity } from '@/app/(protected)/(shop)/services/shop'
+import { buyCard, getShopState, quickSell, sellCards } from '@/app/(protected)/(shop)/services/shop'
 import { copyLimit, sellPrice } from '@/app/(protected)/(shop)/utils/prices'
 import { createUser, resetDatabase } from '@/tests/setup/database'
 
@@ -18,6 +18,12 @@ const UNCOMMON = CARDS.find((card) => card.rarity === 'uncommon')!
 
 async function setGold(userId: number, gold: number): Promise<void> {
   await DB.table('users').where('id', userId).update({ gold })
+}
+
+async function setLevel(userId: number, level: number): Promise<void> {
+  await DB.table('users')
+    .where('id', userId)
+    .update({ xp: totalXpForLevel(level), level })
 }
 
 const total = (cards: Record<string, number>) => Object.values(cards).reduce((sum, count) => sum + count, 0)
@@ -30,10 +36,11 @@ describe('the shop', () => {
     ana = await createUser('ana@chronocast.test')
   })
 
-  it('starts with common open, no gold and the guarantee counter at 0', async () => {
+  it('starts at level 1 with common open, no gold and the guarantee counter at 0', async () => {
     expect(await getShopState(ana)).toEqual({
       gold: 0,
       collection: {},
+      level: 1,
       unlocked: ['common'],
       packsWithoutLegendary: 0,
       deckUsage: {}
@@ -71,20 +78,21 @@ describe('the shop', () => {
     expect(state.packsWithoutLegendary).toBe(2)
   })
 
-  it('unlocks the rarities in order and for their cost', async () => {
-    await setGold(ana, 4500)
+  it('opens the rarities with the level, never with gold', async () => {
+    await setGold(ana, 50000)
+    expect((await getShopState(ana)).unlocked).toEqual(['common'])
 
-    await expect(unlockRarity(ana, 'rare')).rejects.toMatchObject({ messageKey: 'errors.previousRarityLocked' })
-    await expect(unlockRarity(ana, 'common')).rejects.toMatchObject({ messageKey: 'errors.rarityAlreadyUnlocked' })
+    await setLevel(ana, 5)
+    expect((await getShopState(ana)).unlocked).toEqual(['common', 'uncommon'])
 
-    const state = await unlockRarity(ana, 'uncommon')
+    await setLevel(ana, 19)
+    expect((await getShopState(ana)).unlocked).toEqual(['common', 'uncommon', 'rare'])
 
-    expect(state).toMatchObject({ gold: 3500, unlocked: ['common', 'uncommon'] })
-    await expect(unlockRarity(ana, 'uncommon')).rejects.toMatchObject({ messageKey: 'errors.rarityAlreadyUnlocked' })
+    await setLevel(ana, 20)
+    expect(await getShopState(ana)).toMatchObject({ level: 20, unlocked: ['common', 'uncommon', 'rare', 'epic'] })
 
-    expect((await unlockRarity(ana, 'rare')).unlocked).toEqual(['common', 'uncommon', 'rare'])
-    await expect(unlockRarity(ana, 'epic')).rejects.toMatchObject({ messageKey: 'errors.notEnoughGold' })
-    expect((await getShopState(ana)).gold).toBe(1500)
+    await setLevel(ana, 100)
+    expect((await getShopState(ana)).unlocked).toHaveLength(7)
   })
 
   it('sells single cards at their own price, only of unlocked rarities', async () => {
@@ -95,12 +103,16 @@ describe('the shop', () => {
     expect(state.gold).toBe(2000 - 2 * COMMON.price!)
     expect(state.collection[COMMON.id]).toBe(2)
 
-    await expect(buyCard(ana, UNCOMMON.id)).rejects.toMatchObject({ messageKey: 'errors.rarityLocked' })
+    await expect(buyCard(ana, UNCOMMON.id)).rejects.toMatchObject({
+      messageKey: 'errors.rarityLocked',
+      params: { level: 5 }
+    })
+    await setGold(ana, HERO_PRICES.common - 1)
     await expect(buyCard(ana, VARRO)).rejects.toMatchObject({ messageKey: 'errors.notEnoughGold' })
     await expect(buyCard(ana, 'hoplite-conscript')).rejects.toMatchObject({ messageKey: 'errors.cardNotForSale' })
     await expect(buyCard(ana, COMMON.id, 0)).rejects.toMatchObject({ messageKey: 'errors.invalidCount' })
 
-    await unlockRarity(ana, 'uncommon')
+    await setLevel(ana, 5)
     await setGold(ana, UNCOMMON.price!)
     state = await buyCard(ana, UNCOMMON.id)
 
@@ -128,6 +140,13 @@ describe('the shop', () => {
     await expect(buyCard(ana, 'hoplite-conscript')).rejects.toMatchObject({ messageKey: 'errors.cardNotForSale' })
     state = await getShopState(ana)
     expect(state.gold).toBe(price * 2)
+
+    const legendary = CARDS.find((card) => card.type === 'hero' && !card.boss && card.rarity === 'legendary')!
+
+    await setGold(ana, HERO_PRICES.legendary)
+    await expect(buyCard(ana, legendary.id)).rejects.toMatchObject({ messageKey: 'errors.rarityLocked' })
+    await setLevel(ana, 40)
+    expect((await buyCard(ana, legendary.id)).collection[legendary.id]).toBe(1)
   })
 
   it('buys back cards for 15 % of their price', async () => {
@@ -205,13 +224,5 @@ describe('the shop', () => {
     expect(sale.state.deckUsage[cardId]).toBeUndefined()
     expect(decks.find((deck) => deck.id === swapped.id)).toMatchObject({ active: true, playable: true })
     expect(decks.find((deck) => deck.id === deckId)?.playable).toBe(false)
-  })
-
-  it('deleting the account deletes its unlocks', async () => {
-    await setGold(ana, 1000)
-    await unlockRarity(ana, 'uncommon')
-    await deleteAccount(ana)
-
-    expect(await DB.table('shop_unlocks').get()).toHaveLength(0)
   })
 })

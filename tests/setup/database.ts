@@ -5,7 +5,6 @@ import createTables from '@/database/migrations/001-create-tables'
 const TABLES = [
   'campaign_progress',
   'matches',
-  'shop_unlocks',
   'deck_cards',
   'decks',
   'user_cards',

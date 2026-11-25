@@ -1,6 +1,7 @@
 import { MatchResult } from '@/app/(protected)/(engine)/models/MatchState'
 import { opponentOf, PLAYER_IDS, PlayerId } from '@/app/(protected)/(engine)/models/PlayerId'
 import { applyRating, MatchScore, ratingDelta } from '@/app/(protected)/(engine)/utils/rating'
+import { PVP_XP } from '@/app/(protected)/(progression)/data/levels'
 import { MatchVisibility, PlayerReward } from '@/app/(protected)/(pvp)/models/MatchView'
 import { GOLD_REWARDS } from '@/app/(protected)/(shop)/data/gold'
 
@@ -24,7 +25,8 @@ export function winBonus(rating: number, rivalRating: number): number {
  * matches move the rating (Elo, K = 30) and pay gold by result, with +100 for
  * the first win of the day; the one who surrenders or abandons gets nothing.
  * Private matches don't move the rating and pay half (without the daily bonus),
- * and nothing after 3 against the same rival in a day.
+ * and nothing after 3 against the same rival in a day. XP follows the same
+ * rules (PVP_XP); the level it gives is applied when the match is saved.
  */
 export function matchRewards({
   visibility,
@@ -50,6 +52,8 @@ export function matchRewards({
           : quit
             ? GOLD_REWARDS.abandon
             : GOLD_REWARDS.loss
+    let xp =
+      score === 0.5 ? (quit ? PVP_XP.abandon : PVP_XP.draw) : won ? PVP_XP.win : quit ? PVP_XP.abandon : PVP_XP.loss
     let delta = 0
     let firstWin = false
 
@@ -59,9 +63,17 @@ export function matchRewards({
       gold += firstWin ? GOLD_REWARDS.firstWinOfDay : 0
     } else {
       gold = privateCapReached ? 0 : Math.round(gold * GOLD_REWARDS.privateFactor)
+      xp = privateCapReached ? 0 : Math.round(xp * GOLD_REWARDS.privateFactor)
     }
 
-    rewards[player] = { ratingDelta: delta, rating: applyRating(ratings[player], delta), gold, firstWin }
+    rewards[player] = {
+      ratingDelta: delta,
+      rating: applyRating(ratings[player], delta),
+      gold,
+      firstWin,
+      xp,
+      level: null
+    }
   }
 
   return rewards

@@ -47,6 +47,14 @@ export class User extends BaseEntity {
   @Column({ cast: 'number' })
   gold!: number
 
+  /** Total experience earned in battles. */
+  @Column({ cast: 'number' })
+  xp!: number
+
+  /** Level of the experience (1 up): opens the rarities of the shop. */
+  @Column({ cast: 'number' })
+  level!: number
+
   /** The starter hero chosen on the first visit (null: not chosen yet, the player goes to /welcome). */
   @Column()
   starterHeroId!: string | null

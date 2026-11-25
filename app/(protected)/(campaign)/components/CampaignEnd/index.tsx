@@ -15,6 +15,7 @@ import { shines, useFlipReveal } from '@/app/(protected)/(cards)/hooks/useFlipRe
 import { MatchState } from '@/app/(protected)/(engine)/models/MatchState'
 import { RARITIES } from '@/app/(protected)/(engine)/models/Rarity'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
+import LevelGainView from '@/app/(protected)/(progression)/components/LevelGainView'
 import { findPack } from '@/app/(protected)/(shop)/data/packs'
 import { packName } from '@/app/(protected)/(shop)/utils/packName'
 import GameButton from '@/app/components/GameButton'
@@ -95,6 +96,7 @@ export default function CampaignEnd({ state, ticket, heroId, onProgress, onNext,
         {reward?.firstWin && (
           <div className="campaign-end__rewards">
             <span className="gold">🪙 +{reward.gold.toLocaleString(locale)}</span>
+            {reward.level && <LevelGainView gain={reward.level} />}
             {reward.rewardCardId && (
               <div className="campaign-end__exclusive">
                 <strong>🎁 {t('campaign.end.newCard')}</strong>

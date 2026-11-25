@@ -1,9 +1,10 @@
 import '@/app/(protected)/(cards)/utils/catalog'
 import { DB } from '@neogroup/neorm'
 import { PLANNING_SECONDS } from '@/app/(protected)/(engine)/data/rules'
-import { opponentOf, PlayerId } from '@/app/(protected)/(engine)/models/PlayerId'
+import { opponentOf, PLAYER_IDS, PlayerId } from '@/app/(protected)/(engine)/models/PlayerId'
 import { mulligan } from '@/app/(protected)/(engine)/utils/createMatch'
 import { forfeit } from '@/app/(protected)/(engine)/utils/endMatch'
+import { applyXp } from '@/app/(protected)/(progression)/utils/levels'
 import { MAX_CATCH_UP } from '@/app/(protected)/(pvp)/data/pvp'
 import { MatchView, PlayerReward, SeatInfo } from '@/app/(protected)/(pvp)/models/MatchView'
 import {
@@ -74,6 +75,14 @@ async function commit(match: MatchRow, progress: MatchProgress, now: number): Pr
         privateCapReached: match.visibility === 'private' && (await privateMatchesToday(match, now)) >= 3
       })
       const winner = result.winner
+
+      // The XP of each player and the level (and its gold) it gives, saved with the rewards.
+      for (const player of PLAYER_IDS) {
+        if (users[player]) {
+          rewards[player].level = applyXp(Number(users[player]!.xp ?? 0), rewards[player].xp)
+        }
+      }
+
       const saved = await saveMatch(match, {
         ...progressColumns(progress),
         rewards: JSON.stringify(rewards),
@@ -93,9 +102,12 @@ async function commit(match: MatchRow, progress: MatchProgress, now: number): Pr
           continue
         }
 
+        const level = rewards[player].level
         const changes: Record<string, unknown> = {
-          gold: Number(user.gold ?? 0) + rewards[player].gold,
-          rating: rewards[player].rating
+          gold: Number(user.gold ?? 0) + rewards[player].gold + (level?.gold ?? 0),
+          rating: rewards[player].rating,
+          xp: Number(user.xp ?? 0) + rewards[player].xp,
+          level: level?.level ?? Number(user.level ?? 1)
         }
 
         if (match.visibility === 'public') {

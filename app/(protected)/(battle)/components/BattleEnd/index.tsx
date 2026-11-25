@@ -4,6 +4,7 @@ import './index.scss'
 import classNames from 'classnames'
 import { MatchState } from '@/app/(protected)/(engine)/models/MatchState'
 import { PlayerId } from '@/app/(protected)/(engine)/models/PlayerId'
+import LevelGainView from '@/app/(protected)/(progression)/components/LevelGainView'
 import type { PlayerReward } from '@/app/(protected)/(pvp)/models/MatchView'
 import GameButton from '@/app/components/GameButton'
 import { useI18n } from '@/app/i18n/I18nProvider'
@@ -56,6 +57,7 @@ export default function BattleEnd({
             {reward.firstWin && <span className="first">{t('battle.end.firstWin')}</span>}
           </div>
         )}
+        {reward?.level && reward.level.xp > 0 && <LevelGainView gain={reward.level} />}
         {rewardNote && <p className="battle-end__note">{rewardNote}</p>}
         <div className="battle-end__buttons">
           {online ? (

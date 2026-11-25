@@ -256,6 +256,13 @@ export const en: Messages = {
     rating: 'Prestige',
     cardCount: { one: '{count} card', other: '{count} cards' }
   },
+  progression: {
+    level: 'Level',
+    levelShort: 'Lv {level}',
+    xpProgress: '{xp} / {next} XP',
+    xpGained: '+{xp} XP',
+    levelUp: 'Level {level}! +{gold} gold'
+  },
   game: {
     factions: {
       primal: 'Primal',
@@ -785,9 +792,7 @@ export const en: Messages = {
       close: 'Continue'
     },
     cards: {
-      unlock: 'Unlock',
-      unlockFirst: 'Unlock {rarity} first',
-      unlocked: 'You unlocked the {rarity} cards!',
+      lockedLevel: 'Unlocks at level {level}',
       buyOne: 'Buy 1 for {price}',
       complete: 'Complete to {count} for {price}',
       bought: { one: 'You bought {card}', other: 'You bought {count} copies of {card}' },
@@ -1534,10 +1539,7 @@ export const en: Messages = {
     ownRoom: 'You cannot join your own room',
     notEnoughGold: 'Not enough gold: it costs {price} and you have {gold}',
     unknownPack: 'That pack does not exist',
-    invalidRarity: 'That rarity does not exist',
-    rarityAlreadyUnlocked: 'You already unlocked that rarity',
-    previousRarityLocked: 'Unlock the previous rarity first',
-    rarityLocked: 'That rarity is still locked in the shop',
+    rarityLocked: 'You need level {level} to buy cards of that rarity',
     invalidCount: 'Invalid amount',
     cardNotForSale: 'That card is not sold as a single',
     heroOwned: 'You already have that hero',

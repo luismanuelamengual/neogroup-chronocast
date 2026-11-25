@@ -5,7 +5,7 @@
  * how long things take.
  */
 /** Gold of a brand new account (sign up, first Google sign in and `yarn db:reset-user`). */
-export const STARTING_GOLD = 2000
+export const STARTING_GOLD = 1000
 
 export const GOLD_REWARDS = {
   win: 40,

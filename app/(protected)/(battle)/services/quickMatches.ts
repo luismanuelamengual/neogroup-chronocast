@@ -12,6 +12,8 @@ import { getDeck, toDeckList } from '@/app/(protected)/(collection)/services/dec
 import { deckProblems } from '@/app/(protected)/(collection)/utils/deckProblems'
 import { DeckList } from '@/app/(protected)/(engine)/models/DeckList'
 import { MatchResult } from '@/app/(protected)/(engine)/models/MatchState'
+import { QUICK_MATCH_XP } from '@/app/(protected)/(progression)/data/levels'
+import { grantXp } from '@/app/(protected)/(progression)/services/levels'
 import { dayStart } from '@/app/(protected)/(pvp)/utils/rewards'
 import { QUICK_MATCH_GOLD } from '@/app/(protected)/(shop)/data/gold'
 import { earnGold } from '@/app/(protected)/(shop)/services/shop'
@@ -33,6 +35,11 @@ export function quickMatchGold(result: MatchResult): number {
     : result.winner === 'a'
       ? QUICK_MATCH_GOLD.win
       : QUICK_MATCH_GOLD.loss
+}
+
+/** The XP a quick match pays the player ("a") for its result. */
+export function quickMatchXp(result: MatchResult): number {
+  return result.winner == null ? QUICK_MATCH_XP.draw : result.winner === 'a' ? QUICK_MATCH_XP.win : QUICK_MATCH_XP.loss
 }
 
 /** Quick matches that paid gold to the player today (UTC). */
@@ -104,8 +111,8 @@ export async function startQuickMatch(
  * Claims the gold of a quick match (docs/PLAN.md, section 13.4, as in the
  * campaign): the server plays it again from the seed and decks it dealt, the
  * player's mulligan and timelines, and the computer's deterministic AI. Only
- * a replay that reaches the end pays, by its result, once per match and for
- * at most `QUICK_MATCH_GOLD.prizesPerDay` matches a day.
+ * a replay that reaches the end pays gold and XP, by its result, once per
+ * match and for at most `QUICK_MATCH_GOLD.prizesPerDay` matches a day.
  */
 export async function finishQuickMatch(
   userId: number,
@@ -136,11 +143,20 @@ export async function finishQuickMatch(
   }
 
   const result = final.result
-  const reward: QuickMatchReward = { ratingDelta: 0, rating: 0, gold: 0, firstWin: false, capped: false }
+  const reward: QuickMatchReward = {
+    ratingDelta: 0,
+    rating: 0,
+    gold: 0,
+    firstWin: false,
+    xp: 0,
+    level: null,
+    capped: false
+  }
 
   await DB.transaction(async () => {
     reward.capped = (await prizesToday(userId, now)) >= QUICK_MATCH_GOLD.prizesPerDay
     reward.gold = reward.capped ? 0 : quickMatchGold(result)
+    reward.xp = reward.capped ? 0 : quickMatchXp(result)
 
     // Only one claim of the same match closes it (two at once: the second pays nothing).
     const changed = await DB.table('matches')
@@ -150,7 +166,7 @@ export async function finishQuickMatch(
         status: 'finished',
         state: JSON.stringify(final),
         result: JSON.stringify(result),
-        rewards: JSON.stringify({ gold: reward.gold }),
+        rewards: JSON.stringify({ gold: reward.gold, xp: reward.xp }),
         winnerId: result.winner === 'a' ? userId : null,
         finishedAt: now
       })
@@ -162,6 +178,8 @@ export async function finishQuickMatch(
     if (reward.gold > 0) {
       await earnGold(userId, reward.gold)
     }
+
+    reward.level = await grantXp(userId, reward.xp)
 
     reward.rating = Number((await DB.table('users').where('id', userId).first())?.rating ?? 0)
   })

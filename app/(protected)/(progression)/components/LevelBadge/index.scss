@@ -1,0 +1,28 @@
+.level-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 2px solid var(--color-outline);
+  border-radius: 999px;
+  background: var(--color-violet);
+  color: white;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  box-shadow: 0 3px 0 var(--color-outline);
+
+  &__bar {
+    width: 48px;
+    height: 8px;
+    overflow: hidden;
+    border: 2px solid var(--color-outline);
+    border-radius: 999px;
+    background: white;
+
+    span {
+      display: block;
+      height: 100%;
+      background: var(--color-cyan);
+    }
+  }
+}

@@ -58,70 +58,49 @@
     font-size: 0.95rem;
   }
 
-  // A locked rarity: a face-down card with a question mark, its cards unknown.
-  &__mystery {
-    --rarity: var(--color-outline);
+  // A rarity the player's level has not opened: blurred, with the level that opens it.
+  &__card--locked {
+    cursor: default;
+    .single-shop__zoom {
+      filter: blur(6px) grayscale(0.6);
+      opacity: 0.75;
+    }
 
+    &:hover .single-shop__zoom {
+      transform: none;
+    }
+
+    .single-shop__price {
+      opacity: 0.7;
+    }
+  }
+
+  &__lock {
+    position: absolute;
+    z-index: 3;
+    top: 50%;
+    left: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
+    gap: 2px;
+    width: max-content;
+    max-width: 120px;
+    padding: 6px 10px;
+    border: 2px solid var(--color-outline);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 3px 0 var(--color-outline);
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    line-height: 1.15;
     text-align: center;
+    transform: translate(-50%, -60%);
 
-    @each $rarity in uncommon, rare, epic, legendary, exotic, mythic {
-      &.rarity-#{$rarity} {
-        --rarity: var(--rarity-#{$rarity});
-      }
+    > span {
+      font-size: 1.6rem;
+      line-height: 1;
     }
-  }
-
-  &__mystery-back {
-    position: relative;
-    width: 132px;
-    height: 185px;
-    filter: saturate(0.8);
-    opacity: 0.9;
-
-    .card-back {
-      --flip-radius: 10px;
-    }
-  }
-
-  &__mystery-mark {
-    position: absolute;
-    inset: 0;
-    display: grid;
-    place-items: center;
-    color: #fff6d6;
-    font-family: var(--font-logo);
-    font-size: 4rem;
-    text-shadow:
-      0 3px 0 var(--color-outline),
-      0 0 18px rgba(240, 180, 60, 0.8);
-  }
-
-  &__mystery-name {
-    padding: 0 10px;
-    border: 2px solid var(--rarity);
-    border-radius: 999px;
-    background: color-mix(in srgb, var(--rarity) 18%, white);
-    font-size: 0.9rem;
-  }
-
-  &__mystery-cost {
-    font-weight: 800;
-  }
-
-  &__mystery .game-button {
-    margin-top: 2px;
-  }
-
-  &__mystery-label {
-    max-width: 140px;
-    color: var(--color-text-secondary);
-    font-size: 0.75rem;
-    font-weight: 800;
-    line-height: 1.25;
   }
 
   &__owned-hero {

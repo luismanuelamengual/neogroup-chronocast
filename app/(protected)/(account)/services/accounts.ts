@@ -29,7 +29,6 @@ export async function deleteAccount(userId: number): Promise<void> {
 
     await DB.table('decks').where('userId', userId).delete()
     await DB.table('user_cards').where('userId', userId).delete()
-    await DB.table('shop_unlocks').where('userId', userId).delete()
     await DB.table('email_verification_tokens').where('userId', userId).delete()
     await DB.table('password_reset_tokens').where('userId', userId).delete()
     await DB.table('users').where('id', userId).delete()

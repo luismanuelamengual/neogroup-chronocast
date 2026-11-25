@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react'
 import SoundButton from '@/app/(protected)/(art)/components/SoundButton'
 import { useMusic } from '@/app/(protected)/(art)/hooks/useMusic'
 import MenuSection from '@/app/(protected)/(home)/components/MenuSection'
+import LevelBadge from '@/app/(protected)/(progression)/components/LevelBadge'
+import { LevelProgress } from '@/app/(protected)/(progression)/models/LevelGain'
 import { useUserStore } from '@/app/(protected)/stores/users'
 import InstallAppBanner from '@/app/(pwa)/components/InstallAppBanner'
 import { clearCachedPages } from '@/app/(pwa)/utils/offlinePages'
@@ -25,11 +27,17 @@ const SECTIONS = [
 ] as const
 
 /**
- * Main menu (/menu): the logo, the player's gold and Prestige, the sections of
+ * Main menu (/menu): the logo, the player's level, gold and Prestige, the sections of
  * the game, the profile and sign out. The version of the running build sits at
  * the bottom, to tell whether a new deploy has been picked up.
  */
-export default function MainMenu({ gold, rating }: { gold: number; rating: number }) {
+interface MainMenuProps {
+  gold: number
+  rating: number
+  progress: LevelProgress
+}
+
+export default function MainMenu({ gold, rating, progress }: MainMenuProps) {
   const { t, locale } = useI18n()
   const user = useUserStore((state) => state.user)
   // Formatted after mount: the build time renders in the device's time zone,
@@ -58,6 +66,7 @@ export default function MainMenu({ gold, rating }: { gold: number; rating: numbe
         <Logo size="small" />
         <div className="stats">
           <SoundButton className="sound" />
+          <LevelBadge progress={progress} />
           <span className="stat gold" title={t('home.gold')}>
             <span className="icon" aria-hidden="true">
               🪙

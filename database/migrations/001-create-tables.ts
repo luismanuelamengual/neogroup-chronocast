@@ -8,13 +8,14 @@ import { DB, Schema } from '@neogroup/neorm'
  *
  *   - users / email_verification_tokens / password_reset_tokens → authentication
  *   - user_cards / decks / deck_cards → the collection and the saved decks
- *   - shop_unlocks → the rarities each player unlocked to buy single cards
  *   - matches → PvP rooms and matches
  *   - campaign_progress → how far each player got in each hero's campaign
  *
- * `users.rating` is the Prestige (Elo-like rating of public PvP matches) and
- * `users.gold` the gold to spend in the shop. The card catalog is not stored:
- * it lives in the code and the tables reference cards by id.
+ * `users.rating` is the Prestige (Elo-like rating of public PvP matches),
+ * `users.gold` the gold to spend in the shop and `users.xp` / `users.level`
+ * the experience and the level it gives (the level opens the rarities of the
+ * shop). The card catalog is not stored: it lives in the code and the tables
+ * reference cards by id.
  */
 export default {
   name: '001-create-tables',
@@ -34,6 +35,9 @@ export default {
         table.boolean('active').default(true)
         table.integer('rating').default(1200)
         table.integer('gold').default(0)
+        // Total experience earned and the level it gives (kept in sync by grantXp).
+        table.integer('xp').default(0)
+        table.integer('level').default(1)
         // The hero chosen on the first visit (null: not chosen yet).
         table.string('starterHeroId', 80).nullable()
         // The pity counter of the packs.
@@ -99,17 +103,6 @@ export default {
 
         table.unique(['deckId', 'cardId'])
         table.foreign('deckId').references('id').on('decks').cascadeOnDelete()
-      })
-
-      // Common is open from the start, so it never has a row.
-      await Schema.createIfNotExists('shop_unlocks', (table) => {
-        table.increments('id')
-        table.integer('userId')
-        table.string('rarity', 20)
-        table.timestamp('unlockedAt').useCurrent()
-
-        table.unique(['userId', 'rarity'])
-        table.foreign('userId').references('id').on('users').cascadeOnDelete()
       })
 
       // The players and a copy of their decks, the engine state (JSON), the

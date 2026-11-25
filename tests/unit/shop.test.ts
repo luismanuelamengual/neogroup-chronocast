@@ -4,18 +4,16 @@ import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition
 import { Faction } from '@/app/(protected)/(engine)/models/Faction'
 import { RARITIES, Rarity } from '@/app/(protected)/(engine)/models/Rarity'
 import { findPack, PACK_SIZE, PackDefinition, PACKS } from '@/app/(protected)/(shop)/data/packs'
-import { HERO_PRICES, UNLOCK_COSTS } from '@/app/(protected)/(shop)/data/prices'
+import { HERO_PRICES } from '@/app/(protected)/(shop)/data/prices'
 import { availableRarity, drawPack, packPool, rollRarity } from '@/app/(protected)/(shop)/utils/drawPack'
 import { slotOdds } from '@/app/(protected)/(shop)/utils/odds'
 import {
   copyLimit,
   isBuyable,
   isInPacks,
-  nextUnlock,
   quickSellPlan,
   sellPrice,
-  shopPrice,
-  unlockedRarities
+  shopPrice
 } from '@/app/(protected)/(shop)/utils/prices'
 
 /** A full fake catalog: 3 cards of every rarity in two factions and neutral, plus a hero and a reward. */
@@ -198,20 +196,15 @@ describe('drawing a pack', () => {
   })
 })
 
-describe('prices, unlocks and selling', () => {
+describe('prices and selling', () => {
   it('sells a card for 15 % of its price, rounded', () => {
     expect(sellPrice({ ...FAKE[0], price: 60 })).toBe(9)
     expect(sellPrice({ ...FAKE[0], price: 45 })).toBe(7)
     expect(sellPrice({ ...FAKE[0], price: 5000 })).toBe(750)
   })
 
-  it('unlocks the rarities in order, each one for its cost', () => {
-    expect(unlockedRarities([])).toEqual(['common'])
-    expect(unlockedRarities(['uncommon', 'epic'])).toEqual(['common', 'uncommon'])
-    expect(nextUnlock(['common'])).toEqual({ rarity: 'uncommon', cost: 1000 })
-    expect(nextUnlock(['common', 'uncommon'])).toEqual({ rarity: 'rare', cost: 2000 })
-    expect(nextUnlock([...RARITIES])).toBeNull()
-    expect(Object.values(UNLOCK_COSTS)).toEqual([0, 1000, 2000, 5000, 10000, 20000, 40000])
+  it('prices the heroes by rarity, dearer the rarer', () => {
+    expect(RARITIES.map((rarity) => HERO_PRICES[rarity])).toEqual([1000, 1100, 1200, 2000, 5000, 12000, 25000])
   })
 
   it('sells every card with a price and the playable heroes (dear), never campaign rewards or bosses', () => {

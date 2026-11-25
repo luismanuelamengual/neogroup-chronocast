@@ -5,7 +5,9 @@ import { Rarity } from '@/app/(protected)/(engine)/models/Rarity'
 export interface ShopState {
   gold: number
   collection: Collection
-  /** Rarities open to buy single cards, in order (common always). */
+  /** The player's level: it opens the rarities of single cards (RARITY_LEVELS). */
+  level: number
+  /** Rarities open to buy single cards at that level, in order (common always). */
   unlocked: Rarity[]
   /** The guarantee counter: guardian/eternal packs in a row without a legendary. */
   packsWithoutLegendary: number
