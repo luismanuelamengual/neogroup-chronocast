@@ -16,8 +16,6 @@
   border-radius: 18px;
   background: radial-gradient(circle at 50% 35%, var(--tone) 0%, var(--tone-dark) 85%);
   box-shadow:
-    inset 0 0 0 3px var(--tone),
-    inset 0 0 0 5px rgba(255, 220, 140, 0.85),
     0 5px 0 var(--color-outline),
     0 12px 24px rgba(59, 42, 110, 0.25);
   color: #ffffff;
@@ -25,6 +23,19 @@
   transition:
     transform 0.15s ease,
     box-shadow 0.15s ease;
+
+  // The trim of the section's color and the gold line inside, drawn over the art
+  // so that the art's zoom on hover never covers them.
+  &::after {
+    position: absolute;
+    inset: 0;
+    border-radius: 15px;
+    box-shadow:
+      inset 0 0 0 3px var(--tone),
+      inset 0 0 0 5px rgba(255, 220, 140, 0.85);
+    content: '';
+    pointer-events: none;
+  }
 
   &.color-violet {
     --tone: var(--color-violet);
@@ -114,22 +125,41 @@
     opacity: 0.92;
   }
 
-  &:hover,
+  // Hover only where there is a pointer: on a phone the tap would leave it stuck.
+  @media (hover: hover) {
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow:
+        0 7px 0 var(--color-outline),
+        0 18px 32px rgba(59, 42, 110, 0.38);
+
+      .art {
+        transform: scale(1.05);
+      }
+    }
+  }
+
   &.Mui-focusVisible {
     transform: translateY(-3px);
+    box-shadow:
+      0 7px 0 var(--color-outline),
+      0 18px 32px rgba(59, 42, 110, 0.38);
 
     .art {
       transform: scale(1.05);
     }
   }
 
+  // Pressed (mouse or touch): it sinks, with a shorter shadow, and keeps the frame.
   &:active {
     transform: translateY(2px);
     box-shadow:
-      inset 0 0 0 3px var(--tone),
-      inset 0 0 0 5px rgba(255, 220, 140, 0.85),
       0 2px 0 var(--color-outline),
       0 6px 12px rgba(59, 42, 110, 0.2);
+
+    .art {
+      transform: none;
+    }
   }
 }
 
