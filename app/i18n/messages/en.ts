@@ -738,7 +738,6 @@ export const en: Messages = {
     cards: {
       lockedLevel: 'Unlocks at level {level}',
       buyOne: 'Buy 1 for {price}',
-      complete: 'Complete to {count} for {price}',
       bought: { one: 'You bought {card}', other: 'You bought {count} copies of {card}' },
       heroOwned: 'You already have this hero',
       empty: 'No card for sale matches the filters.'

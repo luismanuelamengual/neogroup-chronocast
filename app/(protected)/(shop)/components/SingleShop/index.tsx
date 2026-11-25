@@ -14,7 +14,7 @@ import { rarityLevel } from '@/app/(protected)/(progression)/utils/levels'
 import GoldAmount from '@/app/(protected)/(shop)/components/GoldAmount'
 import { useShop } from '@/app/(protected)/(shop)/hooks/useShop'
 import { ShopState } from '@/app/(protected)/(shop)/models/ShopState'
-import { copyLimit, isBuyable, shopPrice } from '@/app/(protected)/(shop)/utils/prices'
+import { isBuyable, shopPrice } from '@/app/(protected)/(shop)/utils/prices'
 import GameButton from '@/app/components/GameButton'
 import { useIncrementalList } from '@/app/hooks/useIncrementalList'
 import { useNotifications } from '@/app/hooks/useNotifications'
@@ -74,13 +74,12 @@ export default function SingleShop({ state, onChange }: SingleShopProps) {
     }
   }
 
-  const buy = (cardId: string, count: number) =>
-    run(`buy-${count}`, () => buyCard(cardId, count), t('shop.cards.bought', { count, card: cardName(cardId) }))
+  const buy = (cardId: string) =>
+    run('buy', () => buyCard(cardId, 1), t('shop.cards.bought', { count: 1, card: cardName(cardId) }))
 
   const actions = (cardId: string) => {
     const card = getCard(cardId)
     const owned = state.collection[cardId] ?? 0
-    const missing = copyLimit(card) - owned
     const price = shopPrice(card)
 
     if (card.type === 'hero' && owned > 0) {
@@ -93,25 +92,11 @@ export default function SingleShop({ state, onChange }: SingleShopProps) {
           size="small"
           color="primary"
           disabled={state.gold < price || busy != null}
-          loading={busy === 'buy-1'}
-          onClick={() => buy(cardId, 1)}
+          loading={busy === 'buy'}
+          onClick={() => buy(cardId)}
         >
           {t('shop.cards.buyOne', { price: price.toLocaleString(locale) })}
         </GameButton>
-        {missing > 1 && (
-          <GameButton
-            size="small"
-            color="secondary"
-            disabled={state.gold < price * missing || busy != null}
-            loading={busy === `buy-${missing}`}
-            onClick={() => buy(cardId, missing)}
-          >
-            {t('shop.cards.complete', {
-              count: copyLimit(card),
-              price: (price * missing).toLocaleString(locale)
-            })}
-          </GameButton>
-        )}
       </div>
     )
   }

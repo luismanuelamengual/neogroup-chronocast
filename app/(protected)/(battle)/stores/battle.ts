@@ -326,10 +326,7 @@ export const useBattleStore = create<BattleStore>()((set, get) => {
           return
         }
 
-        set((state) => ({
-          mode: 'idle',
-          view: null
-        }))
+        set({ mode: 'idle', view: null })
         enterStage(incoming)
 
         const pending = get().pendingView
@@ -456,10 +453,7 @@ export const useBattleStore = create<BattleStore>()((set, get) => {
         return
       }
 
-      set((store) => ({
-        state: result.state,
-        view: null
-      }))
+      set({ state: result.state, view: null })
 
       if (result.state.status === 'finished') {
         set({ mode: 'finished', step: null })

@@ -16,10 +16,11 @@
   // The wordmark: engraved capitals, the old-world side of the theme.
   --font-logo: 'Cinzel Decorative', Georgia, 'Times New Roman', serif;
 
-  // The page behind every screen: warm parchment with a hint of violet time
-  // magic in the corners and, very faint, an astrolabe clock (public/ui/watermark.svg).
+  // The page behind every screen: a pastel sky at the edge of time, with floating
+  // fragments of other eras in the corners (public/ui/page-background.webp, prompt in
+  // art/backgrounds.md) over a warm parchment tint that shows while it loads.
   --color-parchment: #fbfaf7;
-  --page-watermark: url('/ui/watermark.svg') 50% 50% / min(118vmax, 1500px) no-repeat;
+  --page-watermark: url('/ui/page-background.webp') 50% 50% / cover no-repeat;
   --page-tint:
     radial-gradient(1100px 700px at 0% 0%, rgba(138, 92, 255, 0.09) 0%, transparent 60%),
     radial-gradient(900px 700px at 100% 100%, rgba(240, 160, 32, 0.05) 0%, transparent 60%),

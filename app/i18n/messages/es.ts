@@ -743,7 +743,6 @@ export const es = {
     cards: {
       lockedLevel: 'Se desbloquea en nivel {level}',
       buyOne: 'Comprar 1 por {price}',
-      complete: 'Completar a {count} por {price}',
       bought: { one: 'Compraste {card}', other: 'Compraste {count} copias de {card}' },
       heroOwned: 'Ya tenés este héroe',
       empty: 'Ninguna carta a la venta coincide con los filtros.'
