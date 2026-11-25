@@ -2,6 +2,7 @@ import { DB } from '@neogroup/neorm'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { chooseStarter } from '@/app/(protected)/(collection)/services/collection'
 import { PLANNING_SECONDS } from '@/app/(protected)/(engine)/data/rules'
+import { getCard } from '@/app/(protected)/(engine)/utils/registry'
 import { DEADLINE_GRACE_MS, MULLIGAN_SECONDS, ROOM_TTL_MS } from '@/app/(protected)/(pvp)/data/pvp'
 import { MatchView } from '@/app/(protected)/(pvp)/models/MatchView'
 import { forfeitMatch, getMatchState, submitMulligan, submitPlan, tick } from '@/app/(protected)/(pvp)/services/matches'
@@ -139,7 +140,13 @@ describe('a match', () => {
     expect(rival.hand.length).toBeGreaterThan(0)
     expect(rival.hand.every((card) => card.cardId === HIDDEN_CARD)).toBe(true)
     expect(rival.deck.every((card) => card.cardId === HIDDEN_CARD)).toBe(true)
-    expect(own.deck.every((card) => card.cardId === HIDDEN_CARD)).toBe(true)
+    // The own deck is hidden too, except its artifacts (an ability lets the player choose one):
+    // first, sorted by id, so neither their place in the deck nor the order of the rest is told.
+    const shown = own.deck.filter((card) => card.cardId !== HIDDEN_CARD).map((card) => card.cardId)
+
+    expect(shown.every((cardId) => getCard(cardId).type === 'artifact')).toBe(true)
+    expect(shown).toEqual([...shown].sort())
+    expect(own.deck.slice(0, shown.length).map((card) => card.cardId)).toEqual(shown)
     expect(own.hand.every((card) => card.cardId !== HIDDEN_CARD)).toBe(true)
     expect(view.state!.rng).toBe(0)
     expect(view.state!.seed).toBe(0)
