@@ -1,4 +1,9 @@
+// Full-screen loading state: the game's own page background (a soft light veil in the
+// center so the dial reads) and an animated clock dial. Sized for a phone in landscape
+// (844×390) first, a little larger on taller screens.
 .loading-screen {
+  --dial-size: min(124px, 32dvh);
+
   position: fixed;
   inset: 0;
   z-index: 20;
@@ -6,47 +11,118 @@
   align-items: center;
   justify-content: center;
   padding: var(--safe-top) 0 0;
-  background-color: rgba(255, 248, 238, 0.85);
-  backdrop-filter: blur(4px);
+  background:
+    radial-gradient(closest-side at 50% 50%, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0) 100%) 50% 50% /
+      min(560px, 90vw) min(420px, 90dvh) no-repeat,
+    var(--page-background);
+  background-color: var(--color-parchment);
+  animation: loading-fade-in 240ms ease-out both;
 
   .wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    gap: 14px;
   }
 
-  .hourglass {
-    width: 56px;
-    height: 74px;
-    filter: drop-shadow(0 4px 0 var(--color-outline));
-    animation: hourglass-turn 1.6s ease-in-out infinite;
+  .dial {
+    position: relative;
+    width: var(--dial-size);
+    height: var(--dial-size);
+    animation: loading-float 3.2s ease-in-out infinite;
+  }
 
-    .top {
-      fill: var(--color-magenta);
+  .glow {
+    position: absolute;
+    inset: -22%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 201, 60, 0.45) 0%, rgba(138, 92, 255, 0.18) 45%, transparent 70%);
+    animation: loading-pulse 1.8s ease-in-out infinite;
+  }
+
+  .face {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    filter: drop-shadow(0 4px 10px rgba(43, 35, 80, 0.25));
+
+    .arc,
+    .ring-dashed,
+    .hand,
+    .hand-short {
+      transform-box: view-box;
+      transform-origin: 50% 50%;
     }
 
-    .bottom {
-      fill: var(--color-cyan);
+    .arc {
+      animation: loading-spin 1.1s cubic-bezier(0.5, 0.15, 0.5, 0.85) infinite;
+    }
+
+    .ring-dashed {
+      animation: loading-spin 9s linear infinite reverse;
+    }
+
+    .hand {
+      animation: loading-spin 2.2s linear infinite;
+    }
+
+    .hand-short {
+      animation: loading-spin 26.4s linear infinite;
+    }
+
+    .gem {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: loading-gem 1.1s ease-in-out infinite;
+    }
+  }
+
+  // Sand motes orbiting the dial, each a little behind the one before.
+  .orbit {
+    position: absolute;
+    inset: -14%;
+    animation: loading-spin 3.6s linear infinite;
+
+    .mote {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 7px;
+      height: 7px;
+      margin: -3.5px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ffffff 0%, var(--color-gold) 55%, rgba(255, 201, 60, 0) 100%);
+      transform: rotate(calc(var(--i) * -22deg)) translateY(calc(var(--dial-size) * -0.64))
+        scale(calc(1 - var(--i) * 0.13));
+      opacity: calc(1 - var(--i) * 0.14);
     }
   }
 
   .message {
     margin: 0;
+    padding: 6px 16px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.75);
     color: var(--color-text);
     font-family: var(--font-display);
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     letter-spacing: 0.04em;
+    box-shadow: 0 2px 8px rgba(43, 35, 80, 0.12);
   }
 
   .progress {
     display: flex;
     align-items: center;
     gap: 10px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.75);
+    box-shadow: 0 2px 8px rgba(43, 35, 80, 0.12);
 
     .bar {
-      width: 180px;
-      height: 12px;
+      width: min(200px, 40vw);
+      height: 10px;
       overflow: hidden;
       border: 2px solid var(--color-outline);
       border-radius: 8px;
@@ -55,7 +131,7 @@
 
     .fill {
       height: 100%;
-      background: linear-gradient(90deg, var(--color-magenta), var(--color-violet), var(--color-cyan));
+      background: linear-gradient(90deg, var(--color-gold-light), var(--color-gold), var(--color-violet));
       transform-origin: left;
       transition: transform 200ms ease;
     }
@@ -67,14 +143,81 @@
       font-variant-numeric: tabular-nums;
     }
   }
+
+  @media (min-height: 561px) {
+    --dial-size: 150px;
+  }
 }
 
-@keyframes hourglass-turn {
-  0%,
-  70% {
-    transform: rotate(0deg);
+// A spinner that stops after one turn looks frozen: on low-end phones and with
+// reduced motion only the cheap rotation of the arc keeps going (no glow, no float).
+html.low-end .loading-screen {
+  .glow,
+  .orbit {
+    display: none;
   }
+
+  .face .arc {
+    animation-iteration-count: infinite !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading-screen {
+    .glow,
+    .orbit {
+      display: none;
+    }
+
+    .face .arc {
+      animation-duration: 2.4s;
+      animation-iteration-count: infinite !important;
+    }
+  }
+}
+
+@keyframes loading-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loading-float {
+  0%,
   100% {
-    transform: rotate(180deg);
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes loading-pulse {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(0.94);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes loading-gem {
+  0%,
+  100% {
+    fill: var(--color-violet);
+    transform: scale(1);
+  }
+  50% {
+    fill: var(--color-gold);
+    transform: scale(1.18);
+  }
+}
+
+@keyframes loading-fade-in {
+  from {
+    opacity: 0;
   }
 }
