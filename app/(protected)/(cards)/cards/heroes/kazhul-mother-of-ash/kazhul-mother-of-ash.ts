@@ -9,6 +9,7 @@ export default defineCard({
   flavor: 'She sleeps under the volcano. Nobody wants her awake.',
   faction: 'primal',
   heroClass: 'hunter',
+  side: 'eclipse',
   restriction: { kind: 'hero', heroId: 'kazhul-mother-of-ash' },
   rarity: 'legendary',
   element: 'fire',

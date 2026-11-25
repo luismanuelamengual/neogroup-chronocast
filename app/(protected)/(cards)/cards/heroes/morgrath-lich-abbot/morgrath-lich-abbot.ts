@@ -9,6 +9,7 @@ export default defineCard({
   flavor: 'He prayed for eternal life. Something answered.',
   faction: 'arcane',
   heroClass: 'mage',
+  side: 'eclipse',
   restriction: { kind: 'hero', heroId: 'morgrath-lich-abbot' },
   rarity: 'legendary',
   element: 'shadow',

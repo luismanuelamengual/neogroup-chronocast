@@ -49,6 +49,8 @@ function affinityWeight(hero: CardDefinition, card: CardDefinition): number {
       return 2.5
     case 'faction':
       return 2
+    case 'side':
+      return 1.75
     default:
       return hero.faction === card.faction ? 1.5 : 1
   }

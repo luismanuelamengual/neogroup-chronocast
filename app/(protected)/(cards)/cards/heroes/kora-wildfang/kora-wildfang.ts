@@ -9,6 +9,7 @@ export default defineCard({
   flavor: 'The jungle taught her one rule: shoot first.',
   faction: 'primal',
   heroClass: 'hunter',
+  side: 'dawn',
   restriction: { kind: 'hero', heroId: 'kora-wildfang' },
   rarity: 'common',
   element: 'wind',

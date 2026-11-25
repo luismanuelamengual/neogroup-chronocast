@@ -9,6 +9,7 @@ export default defineCard({
   flavor: 'He owns the factories, the city and most of the clocks.',
   faction: 'clockwork',
   heroClass: 'mage',
+  side: 'eclipse',
   restriction: { kind: 'hero', heroId: 'chancellor-brassmaw' },
   rarity: 'legendary',
   element: 'sonic',

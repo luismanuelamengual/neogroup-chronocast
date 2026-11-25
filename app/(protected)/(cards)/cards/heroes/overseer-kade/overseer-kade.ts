@@ -9,6 +9,7 @@ export default defineCard({
   flavor: 'He sees every camera in the megacity. All at once.',
   faction: 'neon',
   heroClass: 'warrior',
+  side: 'eclipse',
   restriction: { kind: 'hero', heroId: 'overseer-kade' },
   rarity: 'legendary',
   cost: 0,

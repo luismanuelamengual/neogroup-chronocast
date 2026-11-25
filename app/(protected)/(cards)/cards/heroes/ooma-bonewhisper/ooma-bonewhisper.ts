@@ -9,6 +9,7 @@ export default defineCard({
   flavor: 'The bones of the ancestors speak. She listens.',
   faction: 'primal',
   heroClass: 'mystic',
+  side: 'eclipse',
   restriction: { kind: 'hero', heroId: 'ooma-bonewhisper' },
   rarity: 'epic',
   cost: 0,

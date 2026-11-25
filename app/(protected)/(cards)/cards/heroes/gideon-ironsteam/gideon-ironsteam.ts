@@ -9,6 +9,7 @@ export default defineCard({
   flavor: 'Half man, half engine, all stubbornness.',
   faction: 'clockwork',
   heroClass: 'warrior',
+  side: 'dawn',
   restriction: { kind: 'hero', heroId: 'gideon-ironsteam' },
   rarity: 'rare',
   element: 'fire',

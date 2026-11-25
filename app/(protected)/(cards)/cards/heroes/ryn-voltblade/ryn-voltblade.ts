@@ -9,6 +9,7 @@ export default defineCard({
   flavor: 'The fastest blade in the megacity.',
   faction: 'neon',
   heroClass: 'warrior',
+  side: 'dawn',
   restriction: { kind: 'hero', heroId: 'ryn-voltblade' },
   rarity: 'epic',
   cost: 0,

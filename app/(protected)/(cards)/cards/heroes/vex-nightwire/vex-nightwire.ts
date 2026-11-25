@@ -9,6 +9,7 @@ export default defineCard({
   flavor: 'She hunts targets nobody else can find.',
   faction: 'neon',
   heroClass: 'hunter',
+  side: 'dawn',
   restriction: { kind: 'hero', heroId: 'vex-nightwire' },
   rarity: 'rare',
   element: 'shadow',

@@ -55,6 +55,7 @@ export function cardProblems(card: CardDefinition): string[] {
     case 'hero':
       need('health')
       need('heroClass')
+      need('side')
 
       if (card.health != null && (card.health < HERO_MIN_HEALTH || card.health > HERO_MAX_HEALTH)) {
         problems.push(`a hero has from ${HERO_MIN_HEALTH} to ${HERO_MAX_HEALTH} health`)

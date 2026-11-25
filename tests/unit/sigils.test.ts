@@ -1,13 +1,15 @@
-import '@/app/(protected)/(cards)/utils/catalog'
 import { describe, expect, it } from 'vitest'
+import { HEROES } from '@/app/(protected)/(cards)/utils/catalog'
 import { MatchState } from '@/app/(protected)/(engine)/models/MatchState'
 import { emptyTimeline, Timeline } from '@/app/(protected)/(engine)/models/PlannedAction'
+import { sideOf } from '@/app/(protected)/(engine)/models/Side'
+import { canUseCard } from '@/app/(protected)/(engine)/utils/deckRules'
+import { getCard } from '@/app/(protected)/(engine)/utils/registry'
 import { resolvePhase } from '@/app/(protected)/(engine)/utils/resolvePhase'
 import { give, place, testMatch, timeline } from '@/tests/support/testCards'
 
-// The Dawn and Eclipse Sigils keep the ids of the cards they replaced.
-const DAWN = 'obelisk-of-dusk'
-const ECLIPSE = 'brazier-of-the-ancestors'
+const DAWN = 'dawn-sigil'
+const ECLIPSE = 'eclipse-sigil'
 
 function run(state: MatchState, a: Timeline = emptyTimeline(), b: Timeline = emptyTimeline()) {
   return resolvePhase(state, { a, b })
@@ -122,5 +124,28 @@ describe('the Dawn and Eclipse Sigils', () => {
     const reasons = events.flatMap((event) => (event.type === 'fail' ? [event.reason] : []))
 
     expect(reasons).toEqual(['abilityUsed'])
+  })
+})
+
+describe('the Dawn and Eclipse sides', () => {
+  it('every hero has a side, twelve and twelve', () => {
+    const heroes = HEROES.filter((hero) => !hero.boss)
+    const dawn = heroes.filter((hero) => sideOf(hero) === 'dawn')
+    const eclipse = heroes.filter((hero) => sideOf(hero) === 'eclipse')
+
+    expect(dawn).toHaveLength(12)
+    expect(eclipse).toHaveLength(12)
+    expect(sideOf(getCard('legate-varro'))).toBe('dawn')
+    expect(sideOf(getCard('nyx-hollowsong'))).toBe('eclipse')
+  })
+
+  it('each Sigil only goes in the decks of its side', () => {
+    const dawnHero = getCard('legate-varro')
+    const eclipseHero = getCard('nyx-hollowsong')
+
+    expect(canUseCard(dawnHero, getCard(DAWN))).toBe(true)
+    expect(canUseCard(dawnHero, getCard(ECLIPSE))).toBe(false)
+    expect(canUseCard(eclipseHero, getCard(ECLIPSE))).toBe(true)
+    expect(canUseCard(eclipseHero, getCard(DAWN))).toBe(false)
   })
 })

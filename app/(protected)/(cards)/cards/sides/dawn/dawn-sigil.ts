@@ -1,21 +1,17 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
 import { artifactInPlay, destroyArtifactsById, healAllAllies } from '@/app/(protected)/(engine)/effects'
 
-/**
- * Dawn Sigil (the id comes from the card it replaced, so collections keep it).
- * Its rival is the Eclipse Sigil (id `brazier-of-the-ancestors`): each one can
- * destroy the other with its ability.
- */
-const ECLIPSE_SIGIL_ID = 'brazier-of-the-ancestors'
+/** Its rival, the Eclipse Sigil: each one can destroy the other with its ability. */
+const ECLIPSE_SIGIL_ID = 'eclipse-sigil'
 
 export default defineCard({
-  id: 'obelisk-of-dusk',
+  id: 'dawn-sigil',
   type: 'artifact',
   name: 'Dawn Sigil',
   text: 'At the start of each phase: your allies heal 4.',
   flavor: 'No night has ever won. This sigil makes sure of it.',
   faction: 'neutral',
-  restriction: { kind: 'any' },
+  restriction: { kind: 'side', side: 'dawn' },
   rarity: 'common',
   price: 75,
   cost: 3,
@@ -35,6 +31,6 @@ export default defineCard({
   ai: { value: 3, tags: ['heal'] },
   art: {
     subject:
-      'Dawn Sigil: a floating golden sun-disc sigil engraved with clock numerals, radiating warm sunrise rays over a misty valley at first light, centered and seen from slightly below, white and gold accents, time rift wanderer style'
+      'Dawn Sigil: a floating golden sun-disc seal engraved with clock numerals, radiating warm sunrise rays, centered and seen from slightly below, misty valley at first light in the background'
   }
 })

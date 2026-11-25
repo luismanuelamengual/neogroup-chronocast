@@ -9,6 +9,7 @@ export default defineCard({
   flavor: 'Her song reaches the dead. They always come back to listen.',
   faction: 'void',
   heroClass: 'mystic',
+  side: 'eclipse',
   restriction: { kind: 'hero', heroId: 'nyx-hollowsong' },
   rarity: 'rare',
   cost: 0,

@@ -9,6 +9,7 @@ export default defineCard({
   flavor: 'Nobody who enters his maze has found the way out.',
   faction: 'bronze',
   heroClass: 'warrior',
+  side: 'dawn',
   restriction: { kind: 'hero', heroId: 'tauron-labyrinth-lord' },
   rarity: 'legendary',
   element: 'earth',

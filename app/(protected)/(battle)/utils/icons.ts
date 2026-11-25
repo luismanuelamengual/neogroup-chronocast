@@ -2,6 +2,7 @@ import { CardType } from '@/app/(protected)/(engine)/models/CardType'
 import { Element } from '@/app/(protected)/(engine)/models/Element'
 import { Keyword } from '@/app/(protected)/(engine)/models/Keyword'
 import { PlannedAction } from '@/app/(protected)/(engine)/models/PlannedAction'
+import { Side } from '@/app/(protected)/(engine)/models/Side'
 
 /** Small icons of the keywords that matter on the board. */
 export const KEYWORD_ICONS: Partial<Record<Keyword, string>> = {
@@ -62,4 +63,10 @@ export const ACTION_ICONS: Record<PlannedAction['kind'], string> = {
   allyAbility: '🌀',
   artifactAbility: '🔮',
   move: '↔️'
+}
+
+/** The emblem of each side: Dawn and Eclipse. */
+export const SIDE_ICONS: Record<Side, string> = {
+  dawn: '☀️',
+  eclipse: '🌑'
 }

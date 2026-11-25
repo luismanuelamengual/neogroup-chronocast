@@ -402,12 +402,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Al entrar: robá la primera arma de tu mazo.',
     flavor: 'Demasiado joven para conocer el miedo, lo bastante grande para enfrentarlo.'
   },
-  'brazier-of-the-ancestors': {
-    name: 'Sello del Eclipse',
-    text: 'Al empezar cada fase: hace 2 de daño de sombra a todos los aliados, también a los tuyos. Si no hay aliados, se destruye.',
-    flavor: 'Por un momento, ninguna hora es de nadie.',
-    ability: { name: 'Devorar el Alba', text: 'Destruye todos los Sellos del Alba en juego.' }
-  },
+
   'brazier-of-the-wanderer': {
     name: 'Brasero del Errante',
     text: 'Al empezar cada fase: hacé 1 de daño al héroe enemigo. (3 usos)'
@@ -554,7 +549,12 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Cíclope de la Ira',
     text: 'Al entrar: hacé 1 de daño al héroe enemigo por cada Coloso tuyo.'
   },
-  'decoy-of-the-undercity': {
+  'dawn-sigil': {
+    name: 'Sello del Alba',
+    text: 'Al empezar cada fase: tus aliados se curan 4.',
+    flavor: 'Ninguna noche ganó jamás. Este sello se encarga de eso.',
+    ability: { name: 'Romper el Eclipse', text: 'Destruye todos los Sellos del Eclipse en juego.' }
+  },  'decoy-of-the-undercity': {
     name: 'Señuelo de la Ciudad Baja',
     text: 'Cuando el rival usa una habilidad: robá una carta y hacé 5 de daño de rayo al héroe enemigo.'
   },
@@ -626,7 +626,12 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Eco, el Cuervo Espiritual',
     text: 'Al morir: un aliado al azar de tu pila de descarte vuelve al juego.'
   },
-  'electric-glitch': {
+  'eclipse-sigil': {
+    name: 'Sello del Eclipse',
+    text: 'Al empezar cada fase: hace 2 de daño de sombra a todos los aliados, también a los tuyos. Si no hay aliados, se destruye.',
+    flavor: 'Por un momento, ninguna hora es de nadie.',
+    ability: { name: 'Devorar el Alba', text: 'Destruye todos los Sellos del Alba en juego.' }
+  },  'electric-glitch': {
     name: 'Glitch Eléctrico',
     text: 'Al terminar cada fase: hacé 1 de daño de rayo al héroe enemigo.'
   },
@@ -1587,12 +1592,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     ability: { name: 'Debilitación Total', text: 'Todos los aliados enemigos tienen -2 de ataque.' }
   },
   'nyxs-idol': { name: 'Ídolo de Nyx', text: 'Al empezar cada fase: tu héroe se cura 3 y tus aliados se curan 2.' },
-  'obelisk-of-dusk': {
-    name: 'Sello del Alba',
-    text: 'Al empezar cada fase: tus aliados se curan 4.',
-    flavor: 'Ninguna noche ganó jamás. Este sello se encarga de eso.',
-    ability: { name: 'Romper el Eclipse', text: 'Destruye todos los Sellos del Eclipse en juego.' }
-  },
+
   'obelisk-of-flame': {
     name: 'Obelisco de Llamas',
     text: 'Al empezar cada fase: hacé 2 de daño de fuego al héroe enemigo. (3 usos)'

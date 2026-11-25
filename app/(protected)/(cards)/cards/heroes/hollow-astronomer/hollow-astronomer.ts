@@ -9,6 +9,7 @@ export default defineCard({
   flavor: 'He mapped every star, then started putting them out.',
   faction: 'arcane',
   heroClass: 'mage',
+  side: 'eclipse',
   restriction: { kind: 'hero', heroId: 'hollow-astronomer' },
   rarity: 'legendary',
   element: 'arcane',

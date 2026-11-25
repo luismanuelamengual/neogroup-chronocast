@@ -9,6 +9,7 @@ export default defineCard({
   flavor: 'It ate the last star. It is still hungry.',
   faction: 'void',
   heroClass: 'mystic',
+  side: 'eclipse',
   restriction: { kind: 'hero', heroId: 'xulthar-the-devourer' },
   rarity: 'legendary',
   element: 'acid',

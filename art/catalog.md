@@ -202,10 +202,6 @@ Collectible card game illustration, painted cartoon style, very vivid and satura
 
 Collectible card game illustration, painted cartoon style, very vivid and saturated colors, high contrast, clean thick outlines, dramatic lighting, one clear main subject in sharp focus filling most of the frame, simple soft-focus background with few objects, muted and darker than the subject, vertical framing, no text, no frame, no watermark. the Time Rift between eras, floating fragments of different centuries, turquoise rift light, hourglasses and clock motifs. the object or magical effect itself is the only subject, no people, no characters, no hands, no creatures holding it. Might of the Long Road: a huge glowing fist-shaped aura of raw power, in a snowy pass, centered and seen from slightly below, teal accents, time rift wanderer style
 
-**obelisk-of-dusk.png** (1024×1280)
-
-Collectible card game illustration, painted cartoon style, very vivid and saturated colors, high contrast, clean thick outlines, dramatic lighting, one clear main subject in sharp focus filling most of the frame, simple soft-focus background with few objects, muted and darker than the subject, vertical framing, no text, no frame, no watermark. the Time Rift between eras, floating fragments of different centuries, turquoise rift light, hourglasses and clock motifs. the object or magical effect itself is the only subject, no people, no characters, no hands, no creatures holding it. Obelisk of Dusk: an ancient obelisk made of copper with green patina, standing in shallow water, dramatic backlight, lime green accents, time rift wanderer style
-
 **old-blessing.png** (1024×1280)
 
 Collectible card game illustration, painted cartoon style, very vivid and saturated colors, high contrast, clean thick outlines, dramatic lighting, one clear main subject in sharp focus filling most of the frame, simple soft-focus background with few objects, muted and darker than the subject, vertical framing, no text, no frame, no watermark. the Time Rift between eras, floating fragments of different centuries, turquoise rift light, hourglasses and clock motifs. the object or magical effect itself is the only subject, no people, no characters, no hands, no creatures holding it. Old Blessing: a halo of soft light over an empty altar, inside a cave of crystals, swirling around the center, turquoise accents, time rift wanderer style
@@ -465,6 +461,18 @@ Collectible card game illustration, painted cartoon style, very vivid and satura
 **weary-stasis.png** (1024×1280)
 
 Collectible card game illustration, painted cartoon style, very vivid and saturated colors, high contrast, clean thick outlines, dramatic lighting, one clear main subject in sharp focus filling most of the frame, simple soft-focus background with few objects, muted and darker than the subject, vertical framing, no text, no frame, no watermark. the Time Rift between eras, floating fragments of different centuries, turquoise rift light, hourglasses and clock motifs. the object or magical effect itself is the only subject, no people, no characters, no hands, no creatures holding it. Weary Stasis: a clock frozen inside a floating crystal, its hands stopped, over a stormy battlefield, dramatic backlight, lime green accents, time rift wanderer style
+
+## side-dawn
+
+**dawn-sigil.png** (1024×1280)
+
+Collectible card game illustration, painted cartoon style, very vivid and saturated colors, high contrast, clean thick outlines, dramatic lighting, one clear main subject in sharp focus filling most of the frame, simple soft-focus background with few objects, muted and darker than the subject, vertical framing, no text, no frame, no watermark. the Dawn side of the Time Rift, radiant sunrise light breaking through clouds, warm gold, white and soft rose tones, sun discs and clock motifs. the object or magical effect itself is the only subject, no people, no characters, no hands, no creatures holding it. Dawn Sigil: a floating golden sun-disc seal engraved with clock numerals, radiating warm sunrise rays, centered and seen from slightly below, misty valley at first light in the background
+
+## side-eclipse
+
+**eclipse-sigil.png** (1024×1280)
+
+Collectible card game illustration, painted cartoon style, very vivid and saturated colors, high contrast, clean thick outlines, dramatic lighting, one clear main subject in sharp focus filling most of the frame, simple soft-focus background with few objects, muted and darker than the subject, vertical framing, no text, no frame, no watermark. the Eclipse side of the Time Rift, a black sun with a burning corona in a dark sky, deep indigo, ultraviolet and cold silver tones, broken clock motifs. the object or magical effect itself is the only subject, no people, no characters, no hands, no creatures holding it. Eclipse Sigil: a floating black seal shaped like an eclipsed sun with a burning violet corona and broken clock hands, centered and seen from slightly below, cold shadows over a dark valley in the background
 
 ## faction-arcane
 
@@ -2047,10 +2055,6 @@ Collectible card game illustration, painted cartoon style, very vivid and satura
 **borrowed-hour-of-grace.png** (1024×1280)
 
 Collectible card game illustration, painted cartoon style, very vivid and saturated colors, high contrast, clean thick outlines, dramatic lighting, one clear main subject in sharp focus filling most of the frame, simple soft-focus background with few objects, muted and darker than the subject, vertical framing, no text, no frame, no watermark. the Time Rift between eras, floating fragments of different centuries, turquoise rift light, hourglasses and clock motifs. the object or magical effect itself is the only subject, no people, no characters, no hands, no creatures holding it. Borrowed Hour of Grace: a great bell tower clock face glowing at midnight, over a stormy battlefield, centered and seen from slightly below, cobalt blue accents, mystic healer style
-
-**brazier-of-the-ancestors.png** (1024×1280)
-
-Collectible card game illustration, painted cartoon style, very vivid and saturated colors, high contrast, clean thick outlines, dramatic lighting, one clear main subject in sharp focus filling most of the frame, simple soft-focus background with few objects, muted and darker than the subject, vertical framing, no text, no frame, no watermark. the Time Rift between eras, floating fragments of different centuries, turquoise rift light, hourglasses and clock motifs. the object or magical effect itself is the only subject, no people, no characters, no hands, no creatures holding it. Brazier of the Ancestors: an ancient brazier made of polished bronze with engraved spirals, standing in a ruined temple, diagonal dynamic composition, amber accents, mystic healer style
 
 **courage-of-spirits.png** (1024×1280)
 

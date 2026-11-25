@@ -35,6 +35,8 @@ function expectedRestriction(file: string, card: CardDefinition): boolean {
       return restriction.kind === 'class' && restriction.heroClass === name
     case 'heroes':
       return restriction.kind === 'hero' && restriction.heroId === name
+    case 'sides':
+      return restriction.kind === 'side' && restriction.side === name && card.faction === 'neutral'
     default:
       return false
   }

@@ -9,6 +9,7 @@ export default defineCard({
   flavor: 'Magic is just engineering nobody has explained yet.',
   faction: 'clockwork',
   heroClass: 'mage',
+  side: 'dawn',
   restriction: { kind: 'hero', heroId: 'ada-copperwick' },
   rarity: 'epic',
   cost: 0,

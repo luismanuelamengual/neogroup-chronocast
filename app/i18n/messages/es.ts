@@ -270,6 +270,10 @@ export const es = {
       void: 'Vacío',
       neutral: 'Neutral'
     },
+    sides: {
+      dawn: 'Alba',
+      eclipse: 'Eclipse'
+    },
     elements: {
       fire: 'Fuego',
       ice: 'Hielo',
@@ -361,16 +365,18 @@ export const es = {
       slow: 'Lenta'
     },
     typeLine: {
-      hero: '{type} · {faction} · {heroClass}',
+      hero: '{side} {type} · {faction} · {heroClass}',
       class: '{type} · {heroClass}',
       signature: '{type} · Exclusiva',
-      faction: '{type} · {faction}'
+      faction: '{type} · {faction}',
+      side: '{type} · {side}'
     },
     restriction: {
       any: 'Cualquier héroe',
       faction: 'Héroes de la facción {faction}',
       class: 'Héroes de clase {heroClass}',
-      hero: 'Solo {hero}'
+      hero: 'Solo {hero}',
+      side: 'Héroes del bando {side}'
     }
   },
   onboarding: {

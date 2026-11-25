@@ -9,6 +9,7 @@ export default defineCard({
   flavor: 'When the last clock stops, he is what is left.',
   faction: 'void',
   heroClass: 'mage',
+  side: 'eclipse',
   restriction: { kind: 'hero', heroId: 'vorhal-the-last-hour' },
   rarity: 'legendary',
   element: 'time',

@@ -9,6 +9,7 @@ export default defineCard({
   flavor: 'He stole a crown from a Rome that never was, and wants the real one.',
   faction: 'bronze',
   heroClass: 'warrior',
+  side: 'eclipse',
   restriction: { kind: 'hero', heroId: 'caelus-the-usurper' },
   rarity: 'legendary',
   element: 'light',

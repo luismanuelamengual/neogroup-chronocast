@@ -9,6 +9,7 @@ export default defineCard({
   flavor: 'She lives in the noise between channels.',
   faction: 'neon',
   heroClass: 'hunter',
+  side: 'eclipse',
   restriction: { kind: 'hero', heroId: 'queen-static' },
   rarity: 'legendary',
   element: 'lightning',

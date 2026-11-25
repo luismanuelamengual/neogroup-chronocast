@@ -9,6 +9,7 @@ export default defineCard({
   flavor: 'He unmade himself to see what lies beyond time.',
   faction: 'void',
   heroClass: 'mage',
+  side: 'eclipse',
   restriction: { kind: 'hero', heroId: 'malachar-the-unmade' },
   rarity: 'legendary',
   element: 'shadow',

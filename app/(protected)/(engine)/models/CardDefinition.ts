@@ -8,6 +8,7 @@ import { FailReason } from '@/app/(protected)/(engine)/models/MatchEvent'
 import { Unit } from '@/app/(protected)/(engine)/models/MatchState'
 import { Rarity } from '@/app/(protected)/(engine)/models/Rarity'
 import { Restriction } from '@/app/(protected)/(engine)/models/Restriction'
+import { Side } from '@/app/(protected)/(engine)/models/Side'
 import { SlotRef } from '@/app/(protected)/(engine)/models/SlotRef'
 import { Speed } from '@/app/(protected)/(engine)/models/Speed'
 import { TargetKind } from '@/app/(protected)/(engine)/models/TargetKind'
@@ -104,6 +105,8 @@ export interface CardDefinition {
   armor?: number
   /** Heroes. */
   heroClass?: HeroClass
+  /** Heroes: their side, Dawn or Eclipse (docs/PLAN.md, section 4.1.1). */
+  side?: Side
   /** Heroes and some allies. */
   ability?: ActiveAbility
   /** What the player chooses when programming it (abilities, items). */

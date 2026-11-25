@@ -9,6 +9,7 @@ export default defineCard({
   flavor: 'Every night ends. He makes sure of it.',
   faction: 'arcane',
   heroClass: 'mystic',
+  side: 'dawn',
   restriction: { kind: 'hero', heroId: 'aldric-dawnkeeper' },
   rarity: 'epic',
   cost: 0,

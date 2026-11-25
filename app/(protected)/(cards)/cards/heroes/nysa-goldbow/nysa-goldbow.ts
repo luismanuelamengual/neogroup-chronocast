@@ -9,6 +9,7 @@ export default defineCard({
   flavor: 'She hunted with the gods once. Now she hunts for herself.',
   faction: 'bronze',
   heroClass: 'hunter',
+  side: 'dawn',
   restriction: { kind: 'hero', heroId: 'nysa-goldbow' },
   rarity: 'rare',
   element: 'wind',

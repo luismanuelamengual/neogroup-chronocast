@@ -9,6 +9,7 @@ export default defineCard({
   flavor: 'The machine that builds machines decided it no longer needs builders.',
   faction: 'clockwork',
   heroClass: 'warrior',
+  side: 'dawn',
   restriction: { kind: 'hero', heroId: 'omnigear-prime' },
   rarity: 'legendary',
   cost: 0,

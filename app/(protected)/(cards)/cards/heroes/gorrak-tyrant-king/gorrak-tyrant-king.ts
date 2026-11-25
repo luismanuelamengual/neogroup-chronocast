@@ -9,6 +9,7 @@ export default defineCard({
   flavor: 'The jungle has one king. He eats the others.',
   faction: 'primal',
   heroClass: 'hunter',
+  side: 'dawn',
   restriction: { kind: 'hero', heroId: 'gorrak-tyrant-king' },
   rarity: 'legendary',
   element: 'earth',

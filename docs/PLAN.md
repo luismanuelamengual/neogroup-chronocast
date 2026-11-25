@@ -278,6 +278,17 @@ Los 12 héroes: 2 por facción, de clases distintas, y cada clase aparece en 3 f
 
 Los 3 héroes iniciales son de facciones y clases distintas, así la elección del principio se siente diferente.
 
+### 4.1.1 Bandos: Alba y Eclipse
+
+Por encima de facciones y clases, como los Humanos y las Sombras de Shadow Era, cada héroe pertenece a uno de **dos bandos** (`side` en su archivo, `(engine)/models/Side.ts`). El reparto es a mano, por el aspecto de cada héroe: los de cara de buenos van al Alba y los villanos y monstruos al Eclipse, así que una facción puede tener héroes de los dos bandos.
+
+| Bando (id)          | Emblema | Héroes                                                                                                                                 |
+| ------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `dawn` (Alba)       | ☀️      | Ada, Aldric, Gideon, Gorrak, Ilyra, Kora, Nysa, Legado Varro, Vex, Tauron, Ryn, Omnigear                                               |
+| `eclipse` (Eclipse) | 🌑      | Caelus, Canciller Bocabronce, Astrónomo Hueco, Kazhul, Malachar, Morgrath, Nyx, Ooma, Supervisor Kade, Reina Estática, Vorhal, Xulthar |
+
+Algunas cartas neutrales son exclusivas de un bando (`{ kind: 'side', side }`) y viven en `cards/sides/<bando>/`. Por ejemplo, el Sello del Alba y el Sello del Eclipse: cada uno destruye al otro con su habilidad.
+
 ### 4.2 Restricción de cada carta
 
 Cada carta declara para quién es (`restriction` en su archivo):
@@ -288,6 +299,7 @@ Cada carta declara para quién es (`restriction` en su archivo):
 | `{ kind: 'faction', faction }` | Cualquier héroe de esa facción                     | La mayoría de los aliados y las ubicaciones      |
 | `{ kind: 'class', heroClass }` | Cualquier héroe de esa clase, de cualquier facción | Habilidades, armas y armaduras                   |
 | `{ kind: 'hero', heroId }`     | Solo ese héroe                                     | Cartas exclusivas (su arma propia, su compañero) |
+| `{ kind: 'side', side }`       | Cualquier héroe de ese bando (sección 4.1.1)       | Cartas enfrentadas entre bandos (los Sellos)     |
 
 `canUseCard(hero, card)` en `(engine)/utils/deckRules.ts` es la única función que decide esto, y la usan el editor de mazos, la colección (filtro "usables con este héroe"), el starter, la tienda (marca de "no la puede usar tu héroe") y el servidor antes de una partida.
 

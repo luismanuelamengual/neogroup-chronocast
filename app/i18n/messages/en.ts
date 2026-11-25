@@ -266,6 +266,10 @@ export const en: Messages = {
       void: 'Void',
       neutral: 'Neutral'
     },
+    sides: {
+      dawn: 'Dawn',
+      eclipse: 'Eclipse'
+    },
     elements: {
       fire: 'Fire',
       ice: 'Ice',
@@ -357,16 +361,18 @@ export const en: Messages = {
       slow: 'Slow'
     },
     typeLine: {
-      hero: '{type} · {faction} {heroClass}',
+      hero: '{side} {type} · {faction} {heroClass}',
       class: '{type} · {heroClass}',
       signature: '{type} · Signature',
-      faction: '{type} · {faction}'
+      faction: '{type} · {faction}',
+      side: '{type} · {side}'
     },
     restriction: {
       any: 'Any hero',
       faction: 'Heroes of the {faction} faction',
       class: '{heroClass} heroes',
-      hero: 'Only {hero}'
+      hero: 'Only {hero}',
+      side: 'Heroes of the {side} side'
     }
   },
   onboarding: {

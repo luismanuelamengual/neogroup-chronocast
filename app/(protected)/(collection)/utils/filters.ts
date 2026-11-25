@@ -77,5 +77,7 @@ export function restrictionText(card: CardDefinition, t: Translator): string {
       return t('game.restriction.class', { heroClass: t(`game.classes.${restriction.heroClass}`) })
     case 'hero':
       return t('game.restriction.hero', { hero: getCard(restriction.heroId).name })
+    case 'side':
+      return t('game.restriction.side', { side: t(`game.sides.${restriction.side}`) })
   }
 }

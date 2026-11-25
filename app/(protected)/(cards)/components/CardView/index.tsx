@@ -3,10 +3,11 @@
 import './index.scss'
 import classNames from 'classnames'
 import { RefObject, useEffect, useLayoutEffect, useRef } from 'react'
-import { ELEMENT_ICONS } from '@/app/(protected)/(battle)/utils/icons'
+import { ELEMENT_ICONS, SIDE_ICONS } from '@/app/(protected)/(battle)/utils/icons'
 import { useCardArt } from '@/app/(protected)/(cards)/stores/cardArt'
 import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition'
 import { Element } from '@/app/(protected)/(engine)/models/Element'
+import { sideOf } from '@/app/(protected)/(engine)/models/Side'
 import { translateCard } from '@/app/i18n/cards'
 import { useI18n } from '@/app/i18n/I18nProvider'
 import { Translator } from '@/app/i18n/translate'
@@ -30,7 +31,10 @@ function typeLine(card: CardDefinition, t: Translator): string {
   const faction = t(`game.factions.${card.faction}`)
 
   if (card.type === 'hero') {
+    const side = sideOf(card)
+
     return t('game.typeLine.hero', {
+      side: side ? SIDE_ICONS[side] : '',
       type,
       faction,
       heroClass: card.heroClass ? t(`game.classes.${card.heroClass}`) : ''
@@ -44,6 +48,13 @@ function typeLine(card: CardDefinition, t: Translator): string {
       return t('game.typeLine.class', { type, heroClass: t(`game.classes.${card.restriction.heroClass}`) }) + tribe
     case 'hero':
       return t('game.typeLine.signature', { type }) + tribe
+    case 'side':
+      return (
+        t('game.typeLine.side', {
+          type,
+          side: `${SIDE_ICONS[card.restriction.side]} ${t(`game.sides.${card.restriction.side}`)}`
+        }) + tribe
+      )
     default:
       return t('game.typeLine.faction', { type, faction }) + tribe
   }

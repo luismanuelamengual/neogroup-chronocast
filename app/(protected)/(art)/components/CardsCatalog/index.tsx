@@ -14,6 +14,7 @@ import { useI18n } from '@/app/i18n/I18nProvider'
 const GROUPS = [
   { folder: 'heroes', title: 'Heroes and signature cards' },
   { folder: 'neutral', title: 'Neutral' },
+  { folder: 'sides', title: 'Sides (Dawn and Eclipse)' },
   { folder: 'factions', title: 'Factions' },
   { folder: 'classes', title: 'Classes' }
 ]

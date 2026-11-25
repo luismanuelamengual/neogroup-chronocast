@@ -625,111 +625,111 @@ import card620 from '@/app/(protected)/(cards)/cards/neutral/bounty-hunter-of-bo
 import card621 from '@/app/(protected)/(cards)/cards/neutral/bounty-hunter-of-the-long-road'
 import card622 from '@/app/(protected)/(cards)/cards/neutral/bounty-hunter-of-the-rift'
 import card623 from '@/app/(protected)/(cards)/cards/neutral/bramble-of-the-wanderer'
-import card624 from '@/app/(protected)/(cards)/cards/neutral/brazier-of-the-ancestors'
-import card625 from '@/app/(protected)/(cards)/cards/neutral/brazier-of-the-wanderer'
-import card626 from '@/app/(protected)/(cards)/cards/neutral/clever-chrononaut'
-import card627 from '@/app/(protected)/(cards)/cards/neutral/clever-fortune-teller'
-import card628 from '@/app/(protected)/(cards)/cards/neutral/clever-merchant'
-import card629 from '@/app/(protected)/(cards)/cards/neutral/clever-scroll'
-import card630 from '@/app/(protected)/(cards)/cards/neutral/clock-of-dusk'
-import card631 from '@/app/(protected)/(cards)/cards/neutral/cutlass-of-the-long-road'
-import card632 from '@/app/(protected)/(cards)/cards/neutral/ember-of-the-rift'
-import card633 from '@/app/(protected)/(cards)/cards/neutral/faithful-amulet'
-import card634 from '@/app/(protected)/(cards)/cards/neutral/faithful-bomb'
-import card635 from '@/app/(protected)/(cards)/cards/neutral/faithful-cartographer'
-import card636 from '@/app/(protected)/(cards)/cards/neutral/faithful-moment'
-import card637 from '@/app/(protected)/(cards)/cards/neutral/faithful-wanderer'
-import card638 from '@/app/(protected)/(cards)/cards/neutral/flask-of-dawn'
-import card639 from '@/app/(protected)/(cards)/cards/neutral/flask-of-dusk'
-import card640 from '@/app/(protected)/(cards)/cards/neutral/flask-of-the-wanderer'
-import card641 from '@/app/(protected)/(cards)/cards/neutral/guardian-spirit'
-import card642 from '@/app/(protected)/(cards)/cards/neutral/hatchet-of-dawn'
-import card643 from '@/app/(protected)/(cards)/cards/neutral/hex-of-dawn'
-import card644 from '@/app/(protected)/(cards)/cards/neutral/hourglass-shard-of-borrowed-hours'
-import card645 from '@/app/(protected)/(cards)/cards/neutral/lamplighter-of-the-crossroads'
-import card646 from '@/app/(protected)/(cards)/cards/neutral/lamplighter-of-the-wanderer'
-import card647 from '@/app/(protected)/(cards)/cards/neutral/lantern-of-the-wanderer'
-import card648 from '@/app/(protected)/(cards)/cards/neutral/leech-of-lost-time'
-import card649 from '@/app/(protected)/(cards)/cards/neutral/lost-chrononaut'
-import card650 from '@/app/(protected)/(cards)/cards/neutral/lost-stance'
-import card651 from '@/app/(protected)/(cards)/cards/neutral/lost-vision'
-import card652 from '@/app/(protected)/(cards)/cards/neutral/lucky-blessing'
-import card653 from '@/app/(protected)/(cards)/cards/neutral/lucky-shrine'
-import card654 from '@/app/(protected)/(cards)/cards/neutral/lucky-stasis'
-import card655 from '@/app/(protected)/(cards)/cards/neutral/magma-brute-of-the-long-road'
-import card656 from '@/app/(protected)/(cards)/cards/neutral/map-of-the-long-road'
-import card657 from '@/app/(protected)/(cards)/cards/neutral/map-of-the-wanderer'
-import card658 from '@/app/(protected)/(cards)/cards/neutral/mercenary-of-borrowed-hours'
-import card659 from '@/app/(protected)/(cards)/cards/neutral/mercenary-of-the-crossroads'
-import card660 from '@/app/(protected)/(cards)/cards/neutral/mercenary-of-the-wanderer'
-import card661 from '@/app/(protected)/(cards)/cards/neutral/might-of-lost-time'
-import card662 from '@/app/(protected)/(cards)/cards/neutral/might-of-the-long-road'
-import card663 from '@/app/(protected)/(cards)/cards/neutral/obelisk-of-dusk'
-import card664 from '@/app/(protected)/(cards)/cards/neutral/old-blessing'
-import card665 from '@/app/(protected)/(cards)/cards/neutral/old-cartographer'
-import card666 from '@/app/(protected)/(cards)/cards/neutral/old-chrononaut'
-import card667 from '@/app/(protected)/(cards)/cards/neutral/old-potion'
-import card668 from '@/app/(protected)/(cards)/cards/neutral/patchwork-armor-of-lost-time'
-import card669 from '@/app/(protected)/(cards)/cards/neutral/pickaxe-of-borrowed-hours'
-import card670 from '@/app/(protected)/(cards)/cards/neutral/pickaxe-of-lost-time'
-import card671 from '@/app/(protected)/(cards)/cards/neutral/pilgrim-of-dawn'
-import card672 from '@/app/(protected)/(cards)/cards/neutral/pilgrim-of-dusk'
-import card673 from '@/app/(protected)/(cards)/cards/neutral/pilgrim-of-the-crossroads'
-import card674 from '@/app/(protected)/(cards)/cards/neutral/rally-of-lost-time'
-import card675 from '@/app/(protected)/(cards)/cards/neutral/respite-of-the-crossroads'
-import card676 from '@/app/(protected)/(cards)/cards/neutral/restless-banner'
-import card677 from '@/app/(protected)/(cards)/cards/neutral/restless-deserter'
-import card678 from '@/app/(protected)/(cards)/cards/neutral/restless-icicle'
-import card679 from '@/app/(protected)/(cards)/cards/neutral/restless-ration'
-import card680 from '@/app/(protected)/(cards)/cards/neutral/restless-wanderer'
-import card681 from '@/app/(protected)/(cards)/cards/neutral/rift-spark'
-import card682 from '@/app/(protected)/(cards)/cards/neutral/rift-touched-idol'
-import card683 from '@/app/(protected)/(cards)/cards/neutral/rift-touched-squire'
-import card684 from '@/app/(protected)/(cards)/cards/neutral/rift-touched-wanderer'
-import card685 from '@/app/(protected)/(cards)/cards/neutral/salve-of-the-wanderer'
-import card686 from '@/app/(protected)/(cards)/cards/neutral/sandstorm-of-dawn'
-import card687 from '@/app/(protected)/(cards)/cards/neutral/scavenger-of-borrowed-hours'
-import card688 from '@/app/(protected)/(cards)/cards/neutral/scavenger-of-the-crossroads'
-import card689 from '@/app/(protected)/(cards)/cards/neutral/scavenger-of-the-rift'
-import card690 from '@/app/(protected)/(cards)/cards/neutral/scrap-plate-of-the-rift'
-import card691 from '@/app/(protected)/(cards)/cards/neutral/shackle-of-dawn'
-import card692 from '@/app/(protected)/(cards)/cards/neutral/shatter-of-the-long-road'
-import card693 from '@/app/(protected)/(cards)/cards/neutral/slash-of-the-long-road'
-import card694 from '@/app/(protected)/(cards)/cards/neutral/snare-of-dusk'
-import card695 from '@/app/(protected)/(cards)/cards/neutral/snare-of-the-rift'
-import card696 from '@/app/(protected)/(cards)/cards/neutral/spark-of-dusk'
-import card697 from '@/app/(protected)/(cards)/cards/neutral/spark-of-the-crossroads'
-import card698 from '@/app/(protected)/(cards)/cards/neutral/spike-of-the-wanderer'
-import card699 from '@/app/(protected)/(cards)/cards/neutral/stone-golem-of-dawn'
-import card700 from '@/app/(protected)/(cards)/cards/neutral/stray-cartographer'
-import card701 from '@/app/(protected)/(cards)/cards/neutral/stray-fury'
-import card702 from '@/app/(protected)/(cards)/cards/neutral/stray-leather-coat'
-import card703 from '@/app/(protected)/(cards)/cards/neutral/stray-strike'
-import card704 from '@/app/(protected)/(cards)/cards/neutral/study-of-dawn'
-import card705 from '@/app/(protected)/(cards)/cards/neutral/sundial-of-borrowed-hours'
-import card706 from '@/app/(protected)/(cards)/cards/neutral/thunderhead-of-dawn'
-import card707 from '@/app/(protected)/(cards)/cards/neutral/thunderhead-of-dusk'
-import card708 from '@/app/(protected)/(cards)/cards/neutral/timeless-fortune-teller'
-import card709 from '@/app/(protected)/(cards)/cards/neutral/timeless-gust'
-import card710 from '@/app/(protected)/(cards)/cards/neutral/timeless-icicle'
-import card711 from '@/app/(protected)/(cards)/cards/neutral/timeless-rune'
-import card712 from '@/app/(protected)/(cards)/cards/neutral/timeless-tick'
-import card713 from '@/app/(protected)/(cards)/cards/neutral/timeless-tide'
-import card714 from '@/app/(protected)/(cards)/cards/neutral/timeless-wanderer'
-import card715 from '@/app/(protected)/(cards)/cards/neutral/tonic-of-the-wanderer'
-import card716 from '@/app/(protected)/(cards)/cards/neutral/vigor-of-dusk'
-import card717 from '@/app/(protected)/(cards)/cards/neutral/virus-of-dusk'
-import card718 from '@/app/(protected)/(cards)/cards/neutral/wandering-ferryman'
-import card719 from '@/app/(protected)/(cards)/cards/neutral/wandering-gust'
-import card720 from '@/app/(protected)/(cards)/cards/neutral/wandering-mist'
-import card721 from '@/app/(protected)/(cards)/cards/neutral/wandering-monolith'
-import card722 from '@/app/(protected)/(cards)/cards/neutral/wandering-plan'
-import card723 from '@/app/(protected)/(cards)/cards/neutral/wandering-rune'
-import card724 from '@/app/(protected)/(cards)/cards/neutral/wandering-stasis'
-import card725 from '@/app/(protected)/(cards)/cards/neutral/wandering-wanderer'
-import card726 from '@/app/(protected)/(cards)/cards/neutral/weary-merchant'
-import card727 from '@/app/(protected)/(cards)/cards/neutral/weary-plan'
-import card728 from '@/app/(protected)/(cards)/cards/neutral/weary-stasis'
+import card624 from '@/app/(protected)/(cards)/cards/neutral/brazier-of-the-wanderer'
+import card625 from '@/app/(protected)/(cards)/cards/neutral/clever-chrononaut'
+import card626 from '@/app/(protected)/(cards)/cards/neutral/clever-fortune-teller'
+import card627 from '@/app/(protected)/(cards)/cards/neutral/clever-merchant'
+import card628 from '@/app/(protected)/(cards)/cards/neutral/clever-scroll'
+import card629 from '@/app/(protected)/(cards)/cards/neutral/clock-of-dusk'
+import card630 from '@/app/(protected)/(cards)/cards/neutral/cutlass-of-the-long-road'
+import card631 from '@/app/(protected)/(cards)/cards/neutral/ember-of-the-rift'
+import card632 from '@/app/(protected)/(cards)/cards/neutral/faithful-amulet'
+import card633 from '@/app/(protected)/(cards)/cards/neutral/faithful-bomb'
+import card634 from '@/app/(protected)/(cards)/cards/neutral/faithful-cartographer'
+import card635 from '@/app/(protected)/(cards)/cards/neutral/faithful-moment'
+import card636 from '@/app/(protected)/(cards)/cards/neutral/faithful-wanderer'
+import card637 from '@/app/(protected)/(cards)/cards/neutral/flask-of-dawn'
+import card638 from '@/app/(protected)/(cards)/cards/neutral/flask-of-dusk'
+import card639 from '@/app/(protected)/(cards)/cards/neutral/flask-of-the-wanderer'
+import card640 from '@/app/(protected)/(cards)/cards/neutral/guardian-spirit'
+import card641 from '@/app/(protected)/(cards)/cards/neutral/hatchet-of-dawn'
+import card642 from '@/app/(protected)/(cards)/cards/neutral/hex-of-dawn'
+import card643 from '@/app/(protected)/(cards)/cards/neutral/hourglass-shard-of-borrowed-hours'
+import card644 from '@/app/(protected)/(cards)/cards/neutral/lamplighter-of-the-crossroads'
+import card645 from '@/app/(protected)/(cards)/cards/neutral/lamplighter-of-the-wanderer'
+import card646 from '@/app/(protected)/(cards)/cards/neutral/lantern-of-the-wanderer'
+import card647 from '@/app/(protected)/(cards)/cards/neutral/leech-of-lost-time'
+import card648 from '@/app/(protected)/(cards)/cards/neutral/lost-chrononaut'
+import card649 from '@/app/(protected)/(cards)/cards/neutral/lost-stance'
+import card650 from '@/app/(protected)/(cards)/cards/neutral/lost-vision'
+import card651 from '@/app/(protected)/(cards)/cards/neutral/lucky-blessing'
+import card652 from '@/app/(protected)/(cards)/cards/neutral/lucky-shrine'
+import card653 from '@/app/(protected)/(cards)/cards/neutral/lucky-stasis'
+import card654 from '@/app/(protected)/(cards)/cards/neutral/magma-brute-of-the-long-road'
+import card655 from '@/app/(protected)/(cards)/cards/neutral/map-of-the-long-road'
+import card656 from '@/app/(protected)/(cards)/cards/neutral/map-of-the-wanderer'
+import card657 from '@/app/(protected)/(cards)/cards/neutral/mercenary-of-borrowed-hours'
+import card658 from '@/app/(protected)/(cards)/cards/neutral/mercenary-of-the-crossroads'
+import card659 from '@/app/(protected)/(cards)/cards/neutral/mercenary-of-the-wanderer'
+import card660 from '@/app/(protected)/(cards)/cards/neutral/might-of-lost-time'
+import card661 from '@/app/(protected)/(cards)/cards/neutral/might-of-the-long-road'
+import card662 from '@/app/(protected)/(cards)/cards/neutral/old-blessing'
+import card663 from '@/app/(protected)/(cards)/cards/neutral/old-cartographer'
+import card664 from '@/app/(protected)/(cards)/cards/neutral/old-chrononaut'
+import card665 from '@/app/(protected)/(cards)/cards/neutral/old-potion'
+import card666 from '@/app/(protected)/(cards)/cards/neutral/patchwork-armor-of-lost-time'
+import card667 from '@/app/(protected)/(cards)/cards/neutral/pickaxe-of-borrowed-hours'
+import card668 from '@/app/(protected)/(cards)/cards/neutral/pickaxe-of-lost-time'
+import card669 from '@/app/(protected)/(cards)/cards/neutral/pilgrim-of-dawn'
+import card670 from '@/app/(protected)/(cards)/cards/neutral/pilgrim-of-dusk'
+import card671 from '@/app/(protected)/(cards)/cards/neutral/pilgrim-of-the-crossroads'
+import card672 from '@/app/(protected)/(cards)/cards/neutral/rally-of-lost-time'
+import card673 from '@/app/(protected)/(cards)/cards/neutral/respite-of-the-crossroads'
+import card674 from '@/app/(protected)/(cards)/cards/neutral/restless-banner'
+import card675 from '@/app/(protected)/(cards)/cards/neutral/restless-deserter'
+import card676 from '@/app/(protected)/(cards)/cards/neutral/restless-icicle'
+import card677 from '@/app/(protected)/(cards)/cards/neutral/restless-ration'
+import card678 from '@/app/(protected)/(cards)/cards/neutral/restless-wanderer'
+import card679 from '@/app/(protected)/(cards)/cards/neutral/rift-spark'
+import card680 from '@/app/(protected)/(cards)/cards/neutral/rift-touched-idol'
+import card681 from '@/app/(protected)/(cards)/cards/neutral/rift-touched-squire'
+import card682 from '@/app/(protected)/(cards)/cards/neutral/rift-touched-wanderer'
+import card683 from '@/app/(protected)/(cards)/cards/neutral/salve-of-the-wanderer'
+import card684 from '@/app/(protected)/(cards)/cards/neutral/sandstorm-of-dawn'
+import card685 from '@/app/(protected)/(cards)/cards/neutral/scavenger-of-borrowed-hours'
+import card686 from '@/app/(protected)/(cards)/cards/neutral/scavenger-of-the-crossroads'
+import card687 from '@/app/(protected)/(cards)/cards/neutral/scavenger-of-the-rift'
+import card688 from '@/app/(protected)/(cards)/cards/neutral/scrap-plate-of-the-rift'
+import card689 from '@/app/(protected)/(cards)/cards/neutral/shackle-of-dawn'
+import card690 from '@/app/(protected)/(cards)/cards/neutral/shatter-of-the-long-road'
+import card691 from '@/app/(protected)/(cards)/cards/neutral/slash-of-the-long-road'
+import card692 from '@/app/(protected)/(cards)/cards/neutral/snare-of-dusk'
+import card693 from '@/app/(protected)/(cards)/cards/neutral/snare-of-the-rift'
+import card694 from '@/app/(protected)/(cards)/cards/neutral/spark-of-dusk'
+import card695 from '@/app/(protected)/(cards)/cards/neutral/spark-of-the-crossroads'
+import card696 from '@/app/(protected)/(cards)/cards/neutral/spike-of-the-wanderer'
+import card697 from '@/app/(protected)/(cards)/cards/neutral/stone-golem-of-dawn'
+import card698 from '@/app/(protected)/(cards)/cards/neutral/stray-cartographer'
+import card699 from '@/app/(protected)/(cards)/cards/neutral/stray-fury'
+import card700 from '@/app/(protected)/(cards)/cards/neutral/stray-leather-coat'
+import card701 from '@/app/(protected)/(cards)/cards/neutral/stray-strike'
+import card702 from '@/app/(protected)/(cards)/cards/neutral/study-of-dawn'
+import card703 from '@/app/(protected)/(cards)/cards/neutral/sundial-of-borrowed-hours'
+import card704 from '@/app/(protected)/(cards)/cards/neutral/thunderhead-of-dawn'
+import card705 from '@/app/(protected)/(cards)/cards/neutral/thunderhead-of-dusk'
+import card706 from '@/app/(protected)/(cards)/cards/neutral/timeless-fortune-teller'
+import card707 from '@/app/(protected)/(cards)/cards/neutral/timeless-gust'
+import card708 from '@/app/(protected)/(cards)/cards/neutral/timeless-icicle'
+import card709 from '@/app/(protected)/(cards)/cards/neutral/timeless-rune'
+import card710 from '@/app/(protected)/(cards)/cards/neutral/timeless-tick'
+import card711 from '@/app/(protected)/(cards)/cards/neutral/timeless-tide'
+import card712 from '@/app/(protected)/(cards)/cards/neutral/timeless-wanderer'
+import card713 from '@/app/(protected)/(cards)/cards/neutral/tonic-of-the-wanderer'
+import card714 from '@/app/(protected)/(cards)/cards/neutral/vigor-of-dusk'
+import card715 from '@/app/(protected)/(cards)/cards/neutral/virus-of-dusk'
+import card716 from '@/app/(protected)/(cards)/cards/neutral/wandering-ferryman'
+import card717 from '@/app/(protected)/(cards)/cards/neutral/wandering-gust'
+import card718 from '@/app/(protected)/(cards)/cards/neutral/wandering-mist'
+import card719 from '@/app/(protected)/(cards)/cards/neutral/wandering-monolith'
+import card720 from '@/app/(protected)/(cards)/cards/neutral/wandering-plan'
+import card721 from '@/app/(protected)/(cards)/cards/neutral/wandering-rune'
+import card722 from '@/app/(protected)/(cards)/cards/neutral/wandering-stasis'
+import card723 from '@/app/(protected)/(cards)/cards/neutral/wandering-wanderer'
+import card724 from '@/app/(protected)/(cards)/cards/neutral/weary-merchant'
+import card725 from '@/app/(protected)/(cards)/cards/neutral/weary-plan'
+import card726 from '@/app/(protected)/(cards)/cards/neutral/weary-stasis'
+import card727 from '@/app/(protected)/(cards)/cards/sides/dawn/dawn-sigil'
+import card728 from '@/app/(protected)/(cards)/cards/sides/eclipse/eclipse-sigil'
 
 /** Every card of the game, with the path of its file (relative to this folder). */
 export const CARD_FILES: { file: string; card: CardDefinition }[] = [
@@ -1357,109 +1357,109 @@ export const CARD_FILES: { file: string; card: CardDefinition }[] = [
   { file: 'neutral/bounty-hunter-of-the-long-road', card: card621 },
   { file: 'neutral/bounty-hunter-of-the-rift', card: card622 },
   { file: 'neutral/bramble-of-the-wanderer', card: card623 },
-  { file: 'neutral/brazier-of-the-ancestors', card: card624 },
-  { file: 'neutral/brazier-of-the-wanderer', card: card625 },
-  { file: 'neutral/clever-chrononaut', card: card626 },
-  { file: 'neutral/clever-fortune-teller', card: card627 },
-  { file: 'neutral/clever-merchant', card: card628 },
-  { file: 'neutral/clever-scroll', card: card629 },
-  { file: 'neutral/clock-of-dusk', card: card630 },
-  { file: 'neutral/cutlass-of-the-long-road', card: card631 },
-  { file: 'neutral/ember-of-the-rift', card: card632 },
-  { file: 'neutral/faithful-amulet', card: card633 },
-  { file: 'neutral/faithful-bomb', card: card634 },
-  { file: 'neutral/faithful-cartographer', card: card635 },
-  { file: 'neutral/faithful-moment', card: card636 },
-  { file: 'neutral/faithful-wanderer', card: card637 },
-  { file: 'neutral/flask-of-dawn', card: card638 },
-  { file: 'neutral/flask-of-dusk', card: card639 },
-  { file: 'neutral/flask-of-the-wanderer', card: card640 },
-  { file: 'neutral/guardian-spirit', card: card641 },
-  { file: 'neutral/hatchet-of-dawn', card: card642 },
-  { file: 'neutral/hex-of-dawn', card: card643 },
-  { file: 'neutral/hourglass-shard-of-borrowed-hours', card: card644 },
-  { file: 'neutral/lamplighter-of-the-crossroads', card: card645 },
-  { file: 'neutral/lamplighter-of-the-wanderer', card: card646 },
-  { file: 'neutral/lantern-of-the-wanderer', card: card647 },
-  { file: 'neutral/leech-of-lost-time', card: card648 },
-  { file: 'neutral/lost-chrononaut', card: card649 },
-  { file: 'neutral/lost-stance', card: card650 },
-  { file: 'neutral/lost-vision', card: card651 },
-  { file: 'neutral/lucky-blessing', card: card652 },
-  { file: 'neutral/lucky-shrine', card: card653 },
-  { file: 'neutral/lucky-stasis', card: card654 },
-  { file: 'neutral/magma-brute-of-the-long-road', card: card655 },
-  { file: 'neutral/map-of-the-long-road', card: card656 },
-  { file: 'neutral/map-of-the-wanderer', card: card657 },
-  { file: 'neutral/mercenary-of-borrowed-hours', card: card658 },
-  { file: 'neutral/mercenary-of-the-crossroads', card: card659 },
-  { file: 'neutral/mercenary-of-the-wanderer', card: card660 },
-  { file: 'neutral/might-of-lost-time', card: card661 },
-  { file: 'neutral/might-of-the-long-road', card: card662 },
-  { file: 'neutral/obelisk-of-dusk', card: card663 },
-  { file: 'neutral/old-blessing', card: card664 },
-  { file: 'neutral/old-cartographer', card: card665 },
-  { file: 'neutral/old-chrononaut', card: card666 },
-  { file: 'neutral/old-potion', card: card667 },
-  { file: 'neutral/patchwork-armor-of-lost-time', card: card668 },
-  { file: 'neutral/pickaxe-of-borrowed-hours', card: card669 },
-  { file: 'neutral/pickaxe-of-lost-time', card: card670 },
-  { file: 'neutral/pilgrim-of-dawn', card: card671 },
-  { file: 'neutral/pilgrim-of-dusk', card: card672 },
-  { file: 'neutral/pilgrim-of-the-crossroads', card: card673 },
-  { file: 'neutral/rally-of-lost-time', card: card674 },
-  { file: 'neutral/respite-of-the-crossroads', card: card675 },
-  { file: 'neutral/restless-banner', card: card676 },
-  { file: 'neutral/restless-deserter', card: card677 },
-  { file: 'neutral/restless-icicle', card: card678 },
-  { file: 'neutral/restless-ration', card: card679 },
-  { file: 'neutral/restless-wanderer', card: card680 },
-  { file: 'neutral/rift-spark', card: card681 },
-  { file: 'neutral/rift-touched-idol', card: card682 },
-  { file: 'neutral/rift-touched-squire', card: card683 },
-  { file: 'neutral/rift-touched-wanderer', card: card684 },
-  { file: 'neutral/salve-of-the-wanderer', card: card685 },
-  { file: 'neutral/sandstorm-of-dawn', card: card686 },
-  { file: 'neutral/scavenger-of-borrowed-hours', card: card687 },
-  { file: 'neutral/scavenger-of-the-crossroads', card: card688 },
-  { file: 'neutral/scavenger-of-the-rift', card: card689 },
-  { file: 'neutral/scrap-plate-of-the-rift', card: card690 },
-  { file: 'neutral/shackle-of-dawn', card: card691 },
-  { file: 'neutral/shatter-of-the-long-road', card: card692 },
-  { file: 'neutral/slash-of-the-long-road', card: card693 },
-  { file: 'neutral/snare-of-dusk', card: card694 },
-  { file: 'neutral/snare-of-the-rift', card: card695 },
-  { file: 'neutral/spark-of-dusk', card: card696 },
-  { file: 'neutral/spark-of-the-crossroads', card: card697 },
-  { file: 'neutral/spike-of-the-wanderer', card: card698 },
-  { file: 'neutral/stone-golem-of-dawn', card: card699 },
-  { file: 'neutral/stray-cartographer', card: card700 },
-  { file: 'neutral/stray-fury', card: card701 },
-  { file: 'neutral/stray-leather-coat', card: card702 },
-  { file: 'neutral/stray-strike', card: card703 },
-  { file: 'neutral/study-of-dawn', card: card704 },
-  { file: 'neutral/sundial-of-borrowed-hours', card: card705 },
-  { file: 'neutral/thunderhead-of-dawn', card: card706 },
-  { file: 'neutral/thunderhead-of-dusk', card: card707 },
-  { file: 'neutral/timeless-fortune-teller', card: card708 },
-  { file: 'neutral/timeless-gust', card: card709 },
-  { file: 'neutral/timeless-icicle', card: card710 },
-  { file: 'neutral/timeless-rune', card: card711 },
-  { file: 'neutral/timeless-tick', card: card712 },
-  { file: 'neutral/timeless-tide', card: card713 },
-  { file: 'neutral/timeless-wanderer', card: card714 },
-  { file: 'neutral/tonic-of-the-wanderer', card: card715 },
-  { file: 'neutral/vigor-of-dusk', card: card716 },
-  { file: 'neutral/virus-of-dusk', card: card717 },
-  { file: 'neutral/wandering-ferryman', card: card718 },
-  { file: 'neutral/wandering-gust', card: card719 },
-  { file: 'neutral/wandering-mist', card: card720 },
-  { file: 'neutral/wandering-monolith', card: card721 },
-  { file: 'neutral/wandering-plan', card: card722 },
-  { file: 'neutral/wandering-rune', card: card723 },
-  { file: 'neutral/wandering-stasis', card: card724 },
-  { file: 'neutral/wandering-wanderer', card: card725 },
-  { file: 'neutral/weary-merchant', card: card726 },
-  { file: 'neutral/weary-plan', card: card727 },
-  { file: 'neutral/weary-stasis', card: card728 }
+  { file: 'neutral/brazier-of-the-wanderer', card: card624 },
+  { file: 'neutral/clever-chrononaut', card: card625 },
+  { file: 'neutral/clever-fortune-teller', card: card626 },
+  { file: 'neutral/clever-merchant', card: card627 },
+  { file: 'neutral/clever-scroll', card: card628 },
+  { file: 'neutral/clock-of-dusk', card: card629 },
+  { file: 'neutral/cutlass-of-the-long-road', card: card630 },
+  { file: 'neutral/ember-of-the-rift', card: card631 },
+  { file: 'neutral/faithful-amulet', card: card632 },
+  { file: 'neutral/faithful-bomb', card: card633 },
+  { file: 'neutral/faithful-cartographer', card: card634 },
+  { file: 'neutral/faithful-moment', card: card635 },
+  { file: 'neutral/faithful-wanderer', card: card636 },
+  { file: 'neutral/flask-of-dawn', card: card637 },
+  { file: 'neutral/flask-of-dusk', card: card638 },
+  { file: 'neutral/flask-of-the-wanderer', card: card639 },
+  { file: 'neutral/guardian-spirit', card: card640 },
+  { file: 'neutral/hatchet-of-dawn', card: card641 },
+  { file: 'neutral/hex-of-dawn', card: card642 },
+  { file: 'neutral/hourglass-shard-of-borrowed-hours', card: card643 },
+  { file: 'neutral/lamplighter-of-the-crossroads', card: card644 },
+  { file: 'neutral/lamplighter-of-the-wanderer', card: card645 },
+  { file: 'neutral/lantern-of-the-wanderer', card: card646 },
+  { file: 'neutral/leech-of-lost-time', card: card647 },
+  { file: 'neutral/lost-chrononaut', card: card648 },
+  { file: 'neutral/lost-stance', card: card649 },
+  { file: 'neutral/lost-vision', card: card650 },
+  { file: 'neutral/lucky-blessing', card: card651 },
+  { file: 'neutral/lucky-shrine', card: card652 },
+  { file: 'neutral/lucky-stasis', card: card653 },
+  { file: 'neutral/magma-brute-of-the-long-road', card: card654 },
+  { file: 'neutral/map-of-the-long-road', card: card655 },
+  { file: 'neutral/map-of-the-wanderer', card: card656 },
+  { file: 'neutral/mercenary-of-borrowed-hours', card: card657 },
+  { file: 'neutral/mercenary-of-the-crossroads', card: card658 },
+  { file: 'neutral/mercenary-of-the-wanderer', card: card659 },
+  { file: 'neutral/might-of-lost-time', card: card660 },
+  { file: 'neutral/might-of-the-long-road', card: card661 },
+  { file: 'neutral/old-blessing', card: card662 },
+  { file: 'neutral/old-cartographer', card: card663 },
+  { file: 'neutral/old-chrononaut', card: card664 },
+  { file: 'neutral/old-potion', card: card665 },
+  { file: 'neutral/patchwork-armor-of-lost-time', card: card666 },
+  { file: 'neutral/pickaxe-of-borrowed-hours', card: card667 },
+  { file: 'neutral/pickaxe-of-lost-time', card: card668 },
+  { file: 'neutral/pilgrim-of-dawn', card: card669 },
+  { file: 'neutral/pilgrim-of-dusk', card: card670 },
+  { file: 'neutral/pilgrim-of-the-crossroads', card: card671 },
+  { file: 'neutral/rally-of-lost-time', card: card672 },
+  { file: 'neutral/respite-of-the-crossroads', card: card673 },
+  { file: 'neutral/restless-banner', card: card674 },
+  { file: 'neutral/restless-deserter', card: card675 },
+  { file: 'neutral/restless-icicle', card: card676 },
+  { file: 'neutral/restless-ration', card: card677 },
+  { file: 'neutral/restless-wanderer', card: card678 },
+  { file: 'neutral/rift-spark', card: card679 },
+  { file: 'neutral/rift-touched-idol', card: card680 },
+  { file: 'neutral/rift-touched-squire', card: card681 },
+  { file: 'neutral/rift-touched-wanderer', card: card682 },
+  { file: 'neutral/salve-of-the-wanderer', card: card683 },
+  { file: 'neutral/sandstorm-of-dawn', card: card684 },
+  { file: 'neutral/scavenger-of-borrowed-hours', card: card685 },
+  { file: 'neutral/scavenger-of-the-crossroads', card: card686 },
+  { file: 'neutral/scavenger-of-the-rift', card: card687 },
+  { file: 'neutral/scrap-plate-of-the-rift', card: card688 },
+  { file: 'neutral/shackle-of-dawn', card: card689 },
+  { file: 'neutral/shatter-of-the-long-road', card: card690 },
+  { file: 'neutral/slash-of-the-long-road', card: card691 },
+  { file: 'neutral/snare-of-dusk', card: card692 },
+  { file: 'neutral/snare-of-the-rift', card: card693 },
+  { file: 'neutral/spark-of-dusk', card: card694 },
+  { file: 'neutral/spark-of-the-crossroads', card: card695 },
+  { file: 'neutral/spike-of-the-wanderer', card: card696 },
+  { file: 'neutral/stone-golem-of-dawn', card: card697 },
+  { file: 'neutral/stray-cartographer', card: card698 },
+  { file: 'neutral/stray-fury', card: card699 },
+  { file: 'neutral/stray-leather-coat', card: card700 },
+  { file: 'neutral/stray-strike', card: card701 },
+  { file: 'neutral/study-of-dawn', card: card702 },
+  { file: 'neutral/sundial-of-borrowed-hours', card: card703 },
+  { file: 'neutral/thunderhead-of-dawn', card: card704 },
+  { file: 'neutral/thunderhead-of-dusk', card: card705 },
+  { file: 'neutral/timeless-fortune-teller', card: card706 },
+  { file: 'neutral/timeless-gust', card: card707 },
+  { file: 'neutral/timeless-icicle', card: card708 },
+  { file: 'neutral/timeless-rune', card: card709 },
+  { file: 'neutral/timeless-tick', card: card710 },
+  { file: 'neutral/timeless-tide', card: card711 },
+  { file: 'neutral/timeless-wanderer', card: card712 },
+  { file: 'neutral/tonic-of-the-wanderer', card: card713 },
+  { file: 'neutral/vigor-of-dusk', card: card714 },
+  { file: 'neutral/virus-of-dusk', card: card715 },
+  { file: 'neutral/wandering-ferryman', card: card716 },
+  { file: 'neutral/wandering-gust', card: card717 },
+  { file: 'neutral/wandering-mist', card: card718 },
+  { file: 'neutral/wandering-monolith', card: card719 },
+  { file: 'neutral/wandering-plan', card: card720 },
+  { file: 'neutral/wandering-rune', card: card721 },
+  { file: 'neutral/wandering-stasis', card: card722 },
+  { file: 'neutral/wandering-wanderer', card: card723 },
+  { file: 'neutral/weary-merchant', card: card724 },
+  { file: 'neutral/weary-plan', card: card725 },
+  { file: 'neutral/weary-stasis', card: card726 },
+  { file: 'sides/dawn/dawn-sigil', card: card727 },
+  { file: 'sides/eclipse/eclipse-sigil', card: card728 }
 ]

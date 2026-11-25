@@ -9,6 +9,7 @@ export default defineCard({
   flavor: 'He has held the line in more centuries than he can count.',
   faction: 'bronze',
   heroClass: 'warrior',
+  side: 'dawn',
   restriction: { kind: 'hero', heroId: 'legate-varro' },
   rarity: 'common',
   cost: 0,

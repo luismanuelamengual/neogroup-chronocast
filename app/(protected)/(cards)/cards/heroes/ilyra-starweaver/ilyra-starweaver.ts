@@ -9,6 +9,7 @@ export default defineCard({
   flavor: 'She reads the future in the constellations, then rewrites it.',
   faction: 'arcane',
   heroClass: 'mage',
+  side: 'dawn',
   restriction: { kind: 'hero', heroId: 'ilyra-starweaver' },
   rarity: 'common',
   element: 'arcane',

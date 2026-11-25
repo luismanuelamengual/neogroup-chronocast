@@ -13,7 +13,7 @@ import { mkdirSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import { CARD_FILES } from '@/app/(protected)/(cards)/cards/index.generated'
 import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition'
-import { FACTION_STYLES } from '@/scripts/art/factions'
+import { FACTION_STYLES, SIDE_STYLES } from '@/scripts/art/factions'
 
 export const BASE_PROMPT =
   'Collectible card game illustration, painted cartoon style, very vivid and saturated colors, high contrast, ' +
@@ -54,12 +54,12 @@ export interface ArtRow {
 /** The batch of a card: its group in the catalog, from the folder of its file. */
 export function batchOf(file: string): string {
   const [group, name] = file.split('/')
-  const prefix: Record<string, string> = { factions: 'faction', classes: 'class', heroes: 'hero' }
+  const prefix: Record<string, string> = { factions: 'faction', classes: 'class', heroes: 'hero', sides: 'side' }
 
   return group === 'neutral' ? 'neutral' : `${prefix[group] ?? group}-${name}`
 }
 
-const BATCH_ORDER = ['neutral', 'faction', 'class', 'hero']
+const BATCH_ORDER = ['neutral', 'side', 'faction', 'class', 'hero']
 
 /**
  * Abilities, traps, gear, artifacts and items show the thing itself: the spell,
@@ -72,8 +72,10 @@ export const OBJECT_ONLY =
 export function promptFor(card: CardDefinition, portrait = false): string {
   const framing = portrait ? 'square close-up portrait of the face and shoulders, ' : ''
   const objectOnly = card.type === 'ally' || card.type === 'hero' ? '' : `${OBJECT_ONLY}. `
+  // A card of one side takes the look of its side instead of the neutral one.
+  const style = card.restriction.kind === 'side' ? SIDE_STYLES[card.restriction.side] : FACTION_STYLES[card.faction]
 
-  return `${BASE_PROMPT}. ${FACTION_STYLES[card.faction]}. ${objectOnly}${framing}${card.art.subject}`
+  return `${BASE_PROMPT}. ${style}. ${objectOnly}${framing}${card.art.subject}`
 }
 
 /** Every image the catalog needs, batch by batch. */

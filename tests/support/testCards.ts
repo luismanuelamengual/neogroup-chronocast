@@ -37,6 +37,7 @@ export const TEST_CARDS: CardDefinition[] = [
     cost: 0,
     health: 50,
     heroClass: 'warrior',
+    side: 'dawn',
     restriction: { kind: 'hero', heroId: 'test-hero' }
   }),
   ally('test-filler', 1, 1),
@@ -135,6 +136,7 @@ export const TEST_CARDS: CardDefinition[] = [
     cost: 0,
     health: 50,
     heroClass: 'mage',
+    side: 'eclipse',
     restriction: { kind: 'hero', heroId: 'test-shaman' },
     ability: {
       name: 'Test Spark',

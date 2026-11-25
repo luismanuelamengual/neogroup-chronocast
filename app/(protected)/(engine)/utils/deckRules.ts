@@ -1,6 +1,7 @@
 import { MAX_COPIES, MAX_DECK_SIZE, MAX_UNIQUE_COPIES, MIN_DECK_SIZE } from '@/app/(protected)/(engine)/data/rules'
 import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition'
 import { DeckList } from '@/app/(protected)/(engine)/models/DeckList'
+import { sideOf } from '@/app/(protected)/(engine)/models/Side'
 import { getCard, hasCard } from '@/app/(protected)/(engine)/utils/registry'
 
 /** Whether a hero can have a card in its deck (docs/PLAN.md, section 4.2). */
@@ -20,6 +21,8 @@ export function canUseCard(hero: CardDefinition, card: CardDefinition): boolean 
       return hero.heroClass === restriction.heroClass
     case 'hero':
       return hero.id === restriction.heroId
+    case 'side':
+      return sideOf(hero) === restriction.side
   }
 }
 
