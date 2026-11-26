@@ -466,7 +466,7 @@ export const en: Messages = {
       back: 'Back',
       ok: 'The deck follows every rule',
       unsaved: 'There are unsaved changes',
-      emptyDeck: 'Tap the cards below to add them.',
+      emptyDeck: 'Tap the cards on the right to add them.',
       clear: 'Clear',
       clearConfirm: 'Clear all?',
       removeHero: 'Remove hero (clears the deck)',

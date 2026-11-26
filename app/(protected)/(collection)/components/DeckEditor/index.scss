@@ -1,11 +1,12 @@
-// The deck editor, phone in landscape first (844×390): a bar, the deck as a
-// strip of whole cards and the pool below, scrolling sideways. Taller screens
-// draw the cards bigger and the pool in more rows.
+// The deck editor, phone in landscape first (844×390): a bar on top, the deck
+// as a list in a narrow column on the left and the pool filling the rest, both
+// scrolling down. Taller screens draw wider lines and bigger cards.
 .deck-editor {
   --card-w: 220px;
   --card-h: 308px;
-  --deck-zoom: 0.4;
-  --pool-zoom: 0.44;
+  --deck-w: 190px;
+  --row-h: 30px;
+  --pool-zoom: 0.42;
 
   display: flex;
   flex-direction: column;
@@ -19,7 +20,8 @@
   color: var(--color-text);
 
   @media (min-height: 560px) {
-    --deck-zoom: 0.55;
+    --deck-w: 260px;
+    --row-h: 38px;
     --pool-zoom: 0.55;
 
     gap: 10px;
@@ -165,22 +167,30 @@
     }
   }
 
-  // --- Cards, deck and pool ---
+  // --- The deck (left column) and the pool (the rest) ---
 
   &__zoom {
     display: block;
-    zoom: var(--deck-zoom);
+    zoom: var(--pool-zoom);
   }
 
+  &__body {
+    display: flex;
+    flex: 1;
+    gap: 8px;
+    min-height: 0;
+  }
+
+  // The deck as a list: one short line per card, scrolling down.
   &__deck {
     display: flex;
+    flex-direction: column;
     flex-shrink: 0;
-    align-items: center;
-    gap: 6px;
-    min-height: calc(var(--card-h) * var(--deck-zoom) + 12px);
-    padding: 6px 8px;
-    overflow-x: auto;
-    overflow-y: hidden;
+    gap: 3px;
+    width: var(--deck-w);
+    min-height: 0;
+    padding: 6px;
+    overflow: hidden;
     border: var(--frame-border);
     border-radius: var(--frame-radius);
     background: linear-gradient(180deg, #2b2350, #1b1440);
@@ -188,53 +198,145 @@
     scrollbar-width: thin;
   }
 
-  &__slot {
+  &__list {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 3px;
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: thin;
+  }
+
+  &__row {
+    --faction: var(--faction-neutral);
+
     position: relative;
+    display: flex;
     flex-shrink: 0;
-    padding: 0;
-    border: 0;
-    background: none;
+    align-items: center;
+    gap: 6px;
+    height: var(--row-h);
+    padding: 0 6px 0 4px;
+    overflow: hidden;
+    border: 2px solid var(--color-outline);
+    border-left: 5px solid var(--faction);
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--faction) 45%, #1b1440);
+    color: white;
     cursor: pointer;
     font: inherit;
+    text-align: left;
     transition: transform 0.12s;
 
-    &:active {
-      transform: scale(0.95);
+    @each $faction in primal, bronze, arcane, clockwork, neon, void, neutral {
+      &.faction-#{$faction} {
+        --faction: var(--faction-#{$faction});
+      }
     }
 
+    &:active {
+      transform: scale(0.97);
+    }
+
+    // The art as a strip on the right, fading into the line under the name.
+    &-art {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 70%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      mask-image: linear-gradient(90deg, transparent, black 60%);
+      pointer-events: none;
+    }
+
+    &-cost {
+      position: relative;
+      display: grid;
+      flex-shrink: 0;
+      place-items: center;
+      width: 22px;
+      height: 22px;
+      border: 2px solid var(--color-outline);
+      border-radius: 50%;
+      background: var(--color-chronos);
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      line-height: 1;
+    }
+
+    &-name {
+      position: relative;
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      font-size: 0.74rem;
+      font-weight: 800;
+      line-height: 1.1;
+      text-overflow: ellipsis;
+      text-shadow:
+        0 1px 2px black,
+        0 0 4px black;
+      white-space: nowrap;
+    }
+
+    &-count {
+      position: relative;
+      flex-shrink: 0;
+      padding: 0 6px;
+      border: 2px solid var(--color-outline);
+      border-radius: 999px;
+      background: white;
+      color: var(--color-text);
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      line-height: 1.2;
+    }
+
+    // The hero is fixed on top of the column: only the list under it scrolls.
     &.hero {
-      margin-right: 6px;
+      height: calc(var(--row-h) * 1.6);
+      margin-bottom: 3px;
+      padding-left: 8px;
+
+      .deck-editor__row-art {
+        width: 85%;
+        object-position: center 20%;
+      }
+
+      .deck-editor__row-name {
+        font-family: var(--font-title);
+        font-size: 0.95rem;
+        font-weight: 400;
+      }
     }
 
     &--empty {
-      display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
-      gap: 4px;
-      width: calc(var(--card-w) * var(--deck-zoom));
-      height: calc(var(--card-h) * var(--deck-zoom));
-      padding: 6px;
+      gap: 2px;
+      height: calc(var(--row-h) * 2.2);
       border: 2px dashed rgba(255, 255, 255, 0.5);
-      border-radius: 10px;
-      color: white;
+      background: none;
       cursor: default;
       text-align: center;
 
       span {
-        font-size: 1.6rem;
+        font-size: 1.3rem;
       }
 
       small {
         font-size: 0.66rem;
         font-weight: 800;
-        line-height: 1.15;
       }
     }
   }
 
-  // The ×N of a card, the same in the deck (copies in it) and the pool (copies free to add),
-  // and drawn like the counter of the single cards shop: a white pill over the top right corner.
+  // The ×N of a pool card (copies free to add), drawn like the counter of the
+  // single cards shop: a white pill over the top right corner.
   &__count {
     position: absolute;
     z-index: 3;
@@ -250,9 +352,9 @@
   }
 
   &__hint {
-    margin: 0 8px;
+    margin: 4px;
     color: rgba(255, 255, 255, 0.75);
-    font-size: 0.78rem;
+    font-size: 0.72rem;
     font-weight: 700;
   }
 
@@ -261,6 +363,7 @@
     flex: 1;
     flex-direction: column;
     gap: 4px;
+    min-width: 0;
     min-height: 0;
 
     header {
@@ -284,6 +387,11 @@
         min-width: 0;
         overflow-x: auto;
         scrollbar-width: none;
+
+        input[type='search'] {
+          flex-shrink: 0;
+          width: 130px;
+        }
       }
     }
 
@@ -298,36 +406,23 @@
     min-height: 0;
   }
 
-  // Columns that fill the height in as many rows as fit, scrolling sideways.
+  // As many columns as fit the width, scrolling down.
   &__grid {
     position: absolute;
     inset: 0;
     display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: calc(var(--card-w) * var(--pool-zoom));
-    grid-template-rows: repeat(auto-fill, calc(var(--card-h) * var(--pool-zoom)));
-    align-content: center;
+    grid-template-columns: repeat(auto-fill, calc(var(--card-w) * var(--pool-zoom)));
+    grid-auto-rows: calc(var(--card-h) * var(--pool-zoom));
+    justify-content: space-evenly;
     gap: 8px;
-    padding: 6px 4px 0;
-    overflow-x: auto;
-    overflow-y: hidden;
+    padding: 6px 4px;
+    overflow-x: hidden;
+    overflow-y: auto;
     scrollbar-width: thin;
 
-    .deck-editor__zoom {
-      zoom: var(--pool-zoom);
-    }
-
-    // The global sentinel spans the first column, which in a column flow leaves a hole
-    // there (bottom left): here it is a thin column of its own after the last card.
     .incremental-sentinel,
     .deck-editor__hint {
-      grid-column: auto;
-      grid-row: 1 / -1;
-    }
-
-    .incremental-sentinel {
-      width: 1px;
-      height: auto;
+      grid-column: 1 / -1;
     }
   }
 

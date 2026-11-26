@@ -470,7 +470,7 @@ export const es = {
       back: 'Volver',
       ok: 'El mazo cumple todas las reglas',
       unsaved: 'Hay cambios sin guardar',
-      emptyDeck: 'Tocá las cartas de abajo para agregarlas.',
+      emptyDeck: 'Tocá las cartas de la derecha para agregarlas.',
       clear: 'Vaciar',
       clearConfirm: '¿Vaciar todo?',
       removeHero: 'Quitar héroe (vacía el mazo)',

@@ -131,17 +131,27 @@
     object-position: center 22%;
   }
 
+  // "Active" is a status, not a button: a flat dark chip with gold text, so it doesn't
+  // look like the raised gold "Activate" button that sits in the same corner on other decks.
   &__active {
     position: absolute;
-    top: 8px;
-    right: 10px;
-    padding: 1px 10px;
-    border: 2px solid var(--color-outline);
+    top: 10px;
+    right: 12px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 10px;
+    border: 1.5px solid var(--color-gold);
     border-radius: 999px;
-    background: var(--color-gold);
-    color: var(--color-outline);
+    background: rgba(20, 14, 48, 0.72);
+    color: var(--color-gold);
     font-family: var(--font-display);
-    font-size: 0.78rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(2px);
   }
 
   &__hero {
@@ -166,6 +176,8 @@
     min-width: 170px;
     flex-direction: column;
     gap: 2px;
+    // Room for the corner chip/button so a long name doesn't run under it.
+    padding-right: 72px;
     font-size: 0.82rem;
     font-weight: 700;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
@@ -190,7 +202,12 @@
     }
   }
 
+  // Activate: in the top right corner (where the "Active" chip goes on the active deck).
   &__actions {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 2;
     display: flex;
     flex-wrap: wrap;
     align-items: center;

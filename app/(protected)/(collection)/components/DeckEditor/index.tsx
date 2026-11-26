@@ -7,6 +7,7 @@ import { useEffect, useMemo, useState } from 'react'
 import toast from 'react-hot-toast'
 import CardSpotlight, { SpotlightAction } from '@/app/(protected)/(cards)/components/CardSpotlight'
 import CardView from '@/app/(protected)/(cards)/components/CardView'
+import { useCardArt } from '@/app/(protected)/(cards)/stores/cardArt'
 import { CARDS, HEROES } from '@/app/(protected)/(cards)/utils/catalog'
 import CardFilters from '@/app/(protected)/(collection)/components/CardFilters'
 import { useCollection } from '@/app/(protected)/(collection)/hooks/useCollection'
@@ -20,6 +21,7 @@ import {
 } from '@/app/(protected)/(collection)/utils/deckProblems'
 import { CardFilter, compareCards, EMPTY_FILTER, matchesFilter } from '@/app/(protected)/(collection)/utils/filters'
 import { MAX_COPIES, MAX_DECK_SIZE, MAX_UNIQUE_COPIES, MIN_DECK_SIZE } from '@/app/(protected)/(engine)/data/rules'
+import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition'
 import { canUseCard } from '@/app/(protected)/(engine)/utils/deckRules'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
 import GameButton from '@/app/components/GameButton'
@@ -34,6 +36,43 @@ function problemText(problem: CollectionProblem, t: Translator): string {
   return t(`decks.problems.${problem.code}`, { ...problem, card } as unknown as Record<string, string | number>)
 }
 
+interface DeckRowProps {
+  card: CardDefinition
+  /** The copies in the deck (none for the hero). */
+  count?: number
+  /** The image to show behind the name (default: the card's own art). */
+  art?: string
+  onClick: () => void
+}
+
+/**
+ * One line of the deck list: the cost, the name over a strip of the art and
+ * the ×N copies, so a whole deck fits in a narrow column. The hero is the same
+ * line, taller, with its portrait.
+ */
+function DeckRow({ card, count, art, onClick }: DeckRowProps) {
+  const cardName = useCardName()
+  const portrait = useCardArt(art ?? card.id)
+  const own = useCardArt(card.id)
+  const image = portrait ?? own
+  const isHero = card.type === 'hero'
+
+  return (
+    <button
+      type="button"
+      className={classNames('deck-editor__row', `faction-${card.faction}`, `rarity-${card.rarity}`, { hero: isHero })}
+      title={cardName(card)}
+      onClick={onClick}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      {image && <img className="deck-editor__row-art" src={image} alt="" loading="lazy" />}
+      {!isHero && <span className="deck-editor__row-cost">{card.cost}</span>}
+      <span className="deck-editor__row-name">{cardName(card)}</span>
+      {count != null && <span className="deck-editor__row-count">×{count}</span>}
+    </button>
+  )
+}
+
 interface DeckEditorProps {
   /** The deck being edited (null: a new one). */
   deck: DeckDto | null
@@ -45,16 +84,15 @@ interface DeckEditorProps {
 /**
  * The deck editor (docs/PLAN.md, section 14.2), laid out for a phone in
  * landscape: a bar on top (back, name, X/40 counter with the cost curve and the
- * broken rules, clear, save), the deck itself as a strip of whole cards with
- * their ×N counts, and below it the owned cards the hero can use, with
- * filters. A tap on any card shows it big, with buttons to add or remove it.
+ * broken rules, clear, save), the deck as a list of short lines (cost, name,
+ * ×N) in a column on the left, and the owned cards the hero can use, with
+ * filters, filling the rest of the width. A tap on any card shows it big, with buttons to add or remove it.
  *
  * The hero is always the first card: a new or cleared deck only offers the
  * owned heroes, and once one is in, the pool shows the cards that hero can use.
  */
 export default function DeckEditor({ deck, heroId: initialHeroId, collection }: DeckEditorProps) {
   const t = useT()
-  const cardName = useCardName()
   const router = useRouter()
   const { saveDeck } = useCollection()
   const [heroId, setHeroId] = useState<string | null>(initialHeroId)
@@ -295,75 +333,64 @@ export default function DeckEditor({ deck, heroId: initialHeroId, collection }: 
         )}
       </header>
 
-      <section className="deck-editor__deck" aria-label={t('decks.editor.list')}>
-        {hero ? (
-          <button
-            type="button"
-            className="deck-editor__slot hero"
-            title={cardName(hero)}
-            onClick={() => setSpotlight(hero.id)}
-          >
-            <span className="deck-editor__zoom">
-              <CardView card={hero} />
-            </span>
-          </button>
-        ) : (
-          <div className="deck-editor__slot deck-editor__slot--empty">
-            <span>👑</span>
-            <small>{t('decks.editor.heroFirst')}</small>
-          </div>
-        )}
-        {entries.map(({ card, count }) => (
-          <button
-            key={card.id}
-            type="button"
-            className="deck-editor__slot"
-            title={cardName(card)}
-            onClick={() => setSpotlight(card.id)}
-          >
-            <span className="deck-editor__zoom">
-              <CardView card={card} />
-            </span>
-            <span className="deck-editor__count">×{count}</span>
-          </button>
-        ))}
-        {hero && entries.length === 0 && <p className="deck-editor__hint">{t('decks.editor.emptyDeck')}</p>}
-      </section>
-
-      <section className="deck-editor__pool">
-        <header>
+      <div className="deck-editor__body">
+        <section className="deck-editor__deck" aria-label={t('decks.editor.list')}>
           {hero ? (
-            <CardFilters filter={filter} onChange={setFilter} hide={['usableBy', 'ownedOnly', 'rarity']} />
+            <DeckRow card={hero} art={`${hero.id}-portrait`} onClick={() => setSpotlight(hero.id)} />
           ) : (
-            <h2>{t('decks.chooseHero')}</h2>
+            <div className="deck-editor__row deck-editor__row--empty">
+              <span>👑</span>
+              <small>{t('decks.editor.heroFirst')}</small>
+            </div>
           )}
-        </header>
-        <div className="deck-editor__scroller">
-          <div className="deck-editor__grid">
-            {visiblePool.map((card) => {
-              const left = (collection[card.id] ?? 0) - (cards[card.id] ?? 0)
-
-              // A card with no copies left to add is hidden (filtered here and not in the pool,
-              // so adding a card does not start the incremental list over).
-              if (hero && left <= 0) {
-                return null
-              }
-
-              return (
-                <button key={card.id} type="button" className="deck-editor__card" onClick={() => setSpotlight(card.id)}>
-                  <span className="deck-editor__zoom">
-                    <CardView card={card} />
-                  </span>
-                  {/* The copies still free to add (more than the deck takes: spares to sell). */}
-                  {hero && <span className="deck-editor__count">×{Math.max(0, left)}</span>}
-                </button>
-              )
-            })}
-            {!hero && heroes.length === 0 && <p className="deck-editor__hint">{t('decks.editor.noHeroes')}</p>}
-            <span ref={sentinelPool} className="incremental-sentinel" aria-hidden="true" />
+          <div className="deck-editor__list">
+            {entries.map(({ card, count }) => (
+              <DeckRow key={card.id} card={card} count={count} onClick={() => setSpotlight(card.id)} />
+            ))}
+            {hero && entries.length === 0 && <p className="deck-editor__hint">{t('decks.editor.emptyDeck')}</p>}
           </div>
-        </div>
-      </section>
+        </section>
+
+        <section className="deck-editor__pool">
+          <header>
+            {hero ? (
+              <CardFilters filter={filter} onChange={setFilter} hide={['usableBy', 'ownedOnly', 'rarity']} />
+            ) : (
+              <h2>{t('decks.chooseHero')}</h2>
+            )}
+          </header>
+          <div className="deck-editor__scroller">
+            <div className="deck-editor__grid">
+              {visiblePool.map((card) => {
+                const left = (collection[card.id] ?? 0) - (cards[card.id] ?? 0)
+
+                // A card with no copies left to add is hidden (filtered here and not in the pool,
+                // so adding a card does not start the incremental list over).
+                if (hero && left <= 0) {
+                  return null
+                }
+
+                return (
+                  <button
+                    key={card.id}
+                    type="button"
+                    className="deck-editor__card"
+                    onClick={() => setSpotlight(card.id)}
+                  >
+                    <span className="deck-editor__zoom">
+                      <CardView card={card} />
+                    </span>
+                    {/* The copies still free to add (more than the deck takes: spares to sell). */}
+                    {hero && <span className="deck-editor__count">×{Math.max(0, left)}</span>}
+                  </button>
+                )
+              })}
+              {!hero && heroes.length === 0 && <p className="deck-editor__hint">{t('decks.editor.noHeroes')}</p>}
+              <span ref={sentinelPool} className="incremental-sentinel" aria-hidden="true" />
+            </div>
+          </div>
+        </section>
+      </div>
 
       {spotlight && (
         <CardSpotlight
