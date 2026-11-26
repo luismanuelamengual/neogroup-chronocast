@@ -95,6 +95,26 @@
     height: clamp(170px, 48dvh, 300px);
   }
 
+  // Where each art sits in its frame (the default is 50% 22%): a higher
+  // percentage shows a lower part of the art, so the art goes up.
+  .menu-section.menu-section {
+    &.section-play .art {
+      background-position-y: 32%;
+    }
+
+    &.section-decks .art {
+      background-position-y: 0%;
+    }
+
+    &.section-shop .art {
+      background-position-y: 70%;
+    }
+
+    &.section-ranking .art {
+      background-position-y: 0%;
+    }
+  }
+
   .secondary {
     display: flex;
     gap: 10px;

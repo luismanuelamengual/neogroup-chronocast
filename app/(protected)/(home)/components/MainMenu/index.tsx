@@ -95,6 +95,7 @@ export default function MainMenu({ gold, rating, progress }: MainMenuProps) {
               art={section.art}
               icon={section.icon}
               color={section.color}
+              className={`section-${section.key}`}
             />
           ))}
         </nav>
