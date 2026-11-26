@@ -1448,7 +1448,7 @@ export const es = {
     traveler: 'Viajero',
     chronicler: 'Cronista',
     guardian: 'Guardián',
-    timelord: 'Señor del Tiempo',
+    timelord: 'Cronarca',
     eternal: 'Eterno'
   },
   ranking: {

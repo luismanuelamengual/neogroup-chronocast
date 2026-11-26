@@ -9,7 +9,7 @@ export default defineCard({
   faction: 'clockwork',
   restriction: { factions: ['clockwork'] },
   rarity: 'epic',
-  price: 2040,
+  price: 1300,
   cost: 5,
   tribe: 'inventor',
   keywords: ['shield'],

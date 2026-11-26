@@ -10,7 +10,7 @@ export default defineCard({
   restriction: { factions: ['bronze'] },
   rarity: 'uncommon',
   element: 'light',
-  price: 170,
+  price: 160,
   cost: 3,
   tribe: 'legionnaire',
   keywords: ['shield'],

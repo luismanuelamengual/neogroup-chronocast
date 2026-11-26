@@ -11,7 +11,7 @@ export default defineCard({
   restriction: { classes: ['mystic'] },
   rarity: 'uncommon',
   element: 'light',
-  price: 155,
+  price: 140,
   cost: 2,
   speed: 'instant',
   trigger: 'enemyAttack',

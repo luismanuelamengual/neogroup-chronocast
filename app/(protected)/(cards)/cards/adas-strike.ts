@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'clockwork',
   restriction: { heroes: ['ada-copperwick'] },
   rarity: 'epic',
-  price: 1880,
+  price: 1200,
   cost: 4,
   keywords: ['unique'],
   targets: ['enemySlot'],

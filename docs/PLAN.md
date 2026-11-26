@@ -516,7 +516,7 @@ Propuestas, en orden de preferencia:
 2. **Renombre** (_Renown_).
 3. **Cronorrango** (_Chronorank_).
 
-En el código es `rating`. Se muestra con **ligas** por tramos: Aprendiz (< 1100), Viajero (1100–1299), Cronista (1300–1499), Guardián (1500–1699), Señor del Tiempo (1700–1899), Eterno (1900+).
+En el código es `rating`. Se muestra con **ligas** por tramos: Aprendiz (< 1100), Viajero (1100–1299), Cronista (1300–1499), Guardián (1500–1699), Cronarca (1700–1899), Eterno (1900+).
 
 ### 10.2 Cálculo
 
@@ -587,12 +587,13 @@ Módulo `(shop)`, con tres pestañas: **Sobres**, **Cartas** y **Vender**. Preci
 
 | Sobre (id)   | Precio | Contenido                                                                            |
 | ------------ | ------ | ------------------------------------------------------------------------------------ |
-| `traveler`   | 300    | 6 comunes, 2 poco comunes; 10 % de que una sea rara                                  |
-| `chronicler` | 800    | 4 comunes, 3 poco comunes, 1 rara o mejor (rara 80 %, épica 16 %, legendaria 4 %)    |
-| `guardian`   | 2.000  | 3 poco comunes, 3 raras, 2 épicas o mejor (épica 80 %, legendaria 17 %, exótica 3 %) |
-| `eternal`    | 5.000  | 2 raras, 3 épicas, 2 legendarias, 1 exótica o mejor (exótica 85 %, mítica 15 %)      |
+| `traveler`   | 500    | 6 comunes, 2 poco comunes; 10 % de que una sea rara                                  |
+| `chronicler` | 900    | 4 comunes, 3 poco comunes, 1 rara o mejor (rara 80 %, épica 16 %, legendaria 4 %)    |
+| `guardian`   | 3.200  | 3 poco comunes, 3 raras, 2 épicas o mejor (épica 80 %, legendaria 17 %, exótica 3 %) |
+| `eternal`    | 8.000  | 2 raras, 3 épicas, 2 legendarias, 1 exótica o mejor (exótica 85 %, mítica 15 %)      |
 | `faction-*`  | 1.000  | Como `chronicler`, pero solo cartas de una facción y neutrales                       |
 
+- **Precio**: el valor esperado de sus 8 cartas, tomando el medio del rango de cada rareza (11.2), con un 30 % de descuento porque son al azar, y después redondeado. Los de facción cuestan un poco más que `chronicler` porque permiten apuntar.
 - **Probabilidades visibles** en la tienda (Google Play exige mostrar las probabilidades de los artículos al azar).
 - **Garantía**: cada 10 sobres `guardian` o `eternal` sin legendaria, el siguiente trae una (contador `users.packsWithoutLegendary`).
 - Los sobres pueden traer cartas que tu héroe actual no puede usar: sirven para otros héroes o para vender. Los sobres de facción ayudan a apuntar.
@@ -604,15 +605,14 @@ Módulo `(shop)`, con tres pestañas: **Sobres**, **Cartas** y **Vender**. Preci
 
 | Rareza     | Rango de precio por carta | Héroe (`HERO_PRICES`) | Se desbloquea en |
 | ---------- | ------------------------- | --------------------- | ---------------- |
-| Común      | 40 – 80                   | 1.000                 | Nivel 1          |
-| Poco común | 140 – 220                 | 1.100                 | Nivel 5          |
-| Rara       | 450 – 750                 | 1.200                 | Nivel 10         |
-| Épica      | 1.400 – 2.200             | 2.500                 | Nivel 20         |
-| Legendaria | 4.000 – 6.000             | 7.000                 | Nivel 40         |
-| Exótica    | 10.000 – 14.000           | 12.000                | Nivel 70         |
-| Mítica     | 25.000 – 35.000           | 25.000                | Nivel 100        |
+| Común      | 40 – 80                   | 900                   | Nivel 1          |
+| Poco común | 120 – 220                 | 1.000                 | Nivel 5          |
+| Rara       | 300 – 600                 | 1.200                 | Nivel 10         |
+| Épica      | 900 – 1.400               | 1.500                 | Nivel 20         |
+| Legendaria | 2.000 – 2.400             | 2.800                 | Nivel 40         |
+| Exótica    | 3.000 – 3.400             | 3.800                 | Nivel 70         |
+| Mítica     | 4.000 – 4.400             | 4.800                 | Nivel 100        |
 
-- El centro de cada rango es el doble de los precios del plan anterior.
 - No se paga nada por desbloquear: alcanza con llegar al nivel. Los sobres pueden traer cualquier rareza a cualquier nivel.
 - También se venden los héroes jugables (no los jefes), uno por jugador, al precio de su rareza (columna "Héroe"; hoy solo hay héroes comunes, raros, épicos y legendarios); su rareza también tiene que estar desbloqueada. No salen en sobres ni se venden.
 - La pestaña Cartas muestra **todo** el catálogo a la venta con filtros (facción, clase, tipo, costo, rareza, "usables con mi héroe"): primero las rarezas desbloqueadas y después las bloqueadas, difuminadas y con un candado que dice "Se desbloquea en nivel X". Las bloqueadas son un misterio: no se pueden abrir en detalle (están bien difuminadas) y la búsqueda por nombre o texto no las encuentra.
@@ -620,7 +620,7 @@ Módulo `(shop)`, con tres pestañas: **Sobres**, **Cartas** y **Vender**. Preci
 
 ### 11.3 Vender
 
-- **Precio de venta**: el 15 % del precio de esa carta, redondeado (una común de 60 se vende a 9). Pide confirmación si es de épica para arriba. Las copias que usa el mazo activo no se pueden vender: solo las de sobra, para que el mazo activo siga jugable.
+- **Precio de venta**: el 30 % del precio de esa carta, redondeado (una común de 60 se vende a 18). Pide confirmación si es de épica para arriba. Las copias que usa el mazo activo no se pueden vender: solo las de sobra, para que el mazo activo siga jugable.
 - **Venta rápida**: un botón vende todas las copias que pasan de 4 de cada carta (de 1 si es `unique`), muestra el total antes de confirmar y nunca toca una carta que deje un mazo guardado sin completar.
 
 ---

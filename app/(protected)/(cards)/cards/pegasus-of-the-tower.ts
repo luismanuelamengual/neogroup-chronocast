@@ -11,7 +11,7 @@ export default defineCard({
   rarity: 'uncommon',
   resist: ['arcane'],
   weak: ['shadow'],
-  price: 155,
+  price: 140,
   cost: 2,
   tribe: 'fae',
   attack: 3,

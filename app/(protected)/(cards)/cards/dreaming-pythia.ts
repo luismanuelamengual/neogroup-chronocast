@@ -10,7 +10,7 @@ export default defineCard({
   restriction: { classes: ['mystic'] },
   rarity: 'rare',
   resist: ['light'],
-  price: 570,
+  price: 420,
   cost: 3,
   tribe: 'oracle',
   attack: 5,

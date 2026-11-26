@@ -11,7 +11,7 @@ export default defineCard({
   restriction: { factions: ['void'] },
   rarity: 'rare',
   element: 'shadow',
-  price: 690,
+  price: 540,
   cost: 5,
   targets: ['enemyAlly'],
   onPlay(ctx) {

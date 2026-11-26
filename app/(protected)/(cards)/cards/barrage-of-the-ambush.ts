@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'neutral',
   restriction: { classes: ['hunter'] },
   rarity: 'legendary',
-  price: 5200,
+  price: 2240,
   cost: 4,
   targets: ['enemySlot'],
   onPlay(ctx) {

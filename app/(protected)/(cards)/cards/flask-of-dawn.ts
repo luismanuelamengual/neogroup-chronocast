@@ -9,7 +9,7 @@ export default defineCard({
   faction: 'neutral',
   restriction: {},
   rarity: 'uncommon',
-  price: 170,
+  price: 160,
   cost: 3,
   onPlay(ctx) {
     seekTribe(ctx, ctx.owner, 'elemental')

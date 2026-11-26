@@ -10,7 +10,7 @@ export default defineCard({
   restriction: { classes: ['hunter'] },
   rarity: 'uncommon',
   element: 'wind',
-  price: 155,
+  price: 140,
   cost: 2,
   tribe: 'netrunner',
   attack: 4,

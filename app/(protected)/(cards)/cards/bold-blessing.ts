@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'neutral',
   restriction: {},
   rarity: 'legendary',
-  price: 5200,
+  price: 2240,
   cost: 4,
   onPlay(ctx) {
     healHero(ctx, 16)

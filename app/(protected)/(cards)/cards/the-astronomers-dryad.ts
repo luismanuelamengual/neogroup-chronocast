@@ -12,7 +12,7 @@ export default defineCard({
   element: 'arcane',
   resist: ['arcane'],
   weak: ['shadow'],
-  price: 5600,
+  price: 2320,
   cost: 5,
   tribe: 'fae',
   keywords: ['shield', 'unique'],

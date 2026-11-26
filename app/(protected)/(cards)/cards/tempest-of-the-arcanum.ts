@@ -11,7 +11,7 @@ export default defineCard({
   restriction: { classes: ['mage'] },
   rarity: 'rare',
   element: 'wind',
-  price: 690,
+  price: 540,
   cost: 5,
   speed: 'slow',
   onPlay(ctx) {

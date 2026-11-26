@@ -11,7 +11,7 @@ export default defineCard({
   rarity: 'epic',
   element: 'acid',
   weak: ['ice'],
-  price: 1880,
+  price: 1200,
   cost: 4,
   tribe: 'saurian',
   attack: 5,

@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'neutral',
   restriction: { classes: ['hunter'] },
   rarity: 'uncommon',
-  price: 155,
+  price: 140,
   cost: 2,
   targets: ['enemyAlly'],
   onPlay(ctx) {

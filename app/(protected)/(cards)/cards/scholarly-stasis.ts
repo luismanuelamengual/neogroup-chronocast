@@ -10,7 +10,7 @@ export default defineCard({
   restriction: { classes: ['mage'] },
   rarity: 'rare',
   element: 'time',
-  price: 510,
+  price: 360,
   cost: 2,
   targets: ['enemyAlly'],
   onPlay(ctx) {

@@ -12,7 +12,7 @@ export default defineCard({
   element: 'water',
   resist: ['water'],
   weak: ['lightning'],
-  price: 1560,
+  price: 1000,
   cost: 2,
   tribe: 'elemental',
   keywords: ['shield'],

@@ -9,7 +9,7 @@ export default defineCard({
   faction: 'neutral',
   restriction: { classes: ['hunter'] },
   rarity: 'legendary',
-  price: 6000,
+  price: 2400,
   cost: 7,
   tribe: 'beast',
   keywords: ['stealth', 'ranged', 'unique'],

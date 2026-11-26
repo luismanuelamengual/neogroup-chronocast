@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'neon',
   restriction: { factions: ['neon'] },
   rarity: 'epic',
-  price: 1560,
+  price: 1000,
   cost: 2,
   modifyDamage(ctx, target, amount) {
     return isAllyOf(ctx, target, ctx.owner) && target.slot !== 'hero' ? Math.max(0, amount - 1) : amount

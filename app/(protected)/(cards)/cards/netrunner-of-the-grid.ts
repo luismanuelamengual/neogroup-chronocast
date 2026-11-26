@@ -9,7 +9,7 @@ export default defineCard({
   faction: 'neon',
   restriction: { factions: ['neon'] },
   rarity: 'uncommon',
-  price: 170,
+  price: 160,
   cost: 3,
   tribe: 'netrunner',
   keywords: ['ranged'],

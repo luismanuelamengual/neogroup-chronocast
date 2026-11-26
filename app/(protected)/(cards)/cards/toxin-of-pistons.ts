@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'clockwork',
   restriction: { factions: ['clockwork'] },
   rarity: 'uncommon',
-  price: 140,
+  price: 120,
   cost: 1,
   targets: ['enemyAlly'],
   onPlay(ctx) {

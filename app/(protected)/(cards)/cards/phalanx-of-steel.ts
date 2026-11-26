@@ -9,7 +9,7 @@ export default defineCard({
   faction: 'neutral',
   restriction: { classes: ['warrior'] },
   rarity: 'uncommon',
-  price: 155,
+  price: 140,
   cost: 2,
   tribe: 'legionnaire',
   keywords: ['cleave'],

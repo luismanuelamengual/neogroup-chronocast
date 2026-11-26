@@ -12,7 +12,7 @@ export default defineCard({
   element: 'light',
   resist: ['earth'],
   weak: ['acid'],
-  price: 155,
+  price: 140,
   cost: 2,
   tribe: 'colossus',
   attack: 3,

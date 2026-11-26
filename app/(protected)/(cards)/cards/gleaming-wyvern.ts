@@ -12,7 +12,7 @@ export default defineCard({
   element: 'arcane',
   resist: ['fire'],
   weak: ['ice'],
-  price: 11600,
+  price: 3160,
   cost: 3,
   tribe: 'drake',
   keywords: ['ranged', 'shield', 'unique'],

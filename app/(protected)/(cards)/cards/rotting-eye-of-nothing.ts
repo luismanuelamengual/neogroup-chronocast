@@ -11,7 +11,7 @@ export default defineCard({
   rarity: 'epic',
   resist: ['shadow'],
   weak: ['sonic'],
-  price: 1560,
+  price: 1000,
   cost: 2,
   tribe: 'horror',
   keywords: ['lifesteal'],

@@ -10,7 +10,7 @@ export default defineCard({
   restriction: { classes: ['hunter'] },
   rarity: 'exotic',
   element: 'shadow',
-  price: 11600,
+  price: 3160,
   cost: 3,
   targets: ['enemySlot'],
   onPlay(ctx) {

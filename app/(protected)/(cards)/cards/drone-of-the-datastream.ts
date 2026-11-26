@@ -11,7 +11,7 @@ export default defineCard({
   rarity: 'epic',
   element: 'sonic',
   weak: ['lightning'],
-  price: 1560,
+  price: 1000,
   cost: 2,
   tribe: 'cyborg',
   keywords: ['quick'],

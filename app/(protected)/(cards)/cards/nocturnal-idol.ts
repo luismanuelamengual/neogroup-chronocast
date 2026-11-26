@@ -10,7 +10,7 @@ export default defineCard({
   restriction: { classes: ['hunter'] },
   rarity: 'uncommon',
   element: 'shadow',
-  price: 170,
+  price: 160,
   cost: 3,
   charges: 3,
   onPhaseStart(ctx) {

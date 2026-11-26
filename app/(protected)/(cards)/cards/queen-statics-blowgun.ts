@@ -10,7 +10,7 @@ export default defineCard({
   restriction: { heroes: ['queen-static'] },
   rarity: 'epic',
   element: 'lightning',
-  price: 1720,
+  price: 1100,
   cost: 3,
   keywords: ['ranged', 'unique'],
   attack: 5,

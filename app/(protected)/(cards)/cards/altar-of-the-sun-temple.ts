@@ -10,7 +10,7 @@ export default defineCard({
   restriction: { factions: ['bronze'] },
   rarity: 'rare',
   element: 'light',
-  price: 570,
+  price: 420,
   cost: 3,
   charges: 4,
   onPhaseStart(ctx) {

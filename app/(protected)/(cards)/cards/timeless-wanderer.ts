@@ -10,7 +10,7 @@ export default defineCard({
   restriction: {},
   rarity: 'uncommon',
   element: 'time',
-  price: 190,
+  price: 180,
   cost: 4,
   tribe: 'drifter',
   keywords: ['guardian', 'retaliate'],

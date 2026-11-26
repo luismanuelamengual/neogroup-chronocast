@@ -11,7 +11,7 @@ export default defineCard({
   rarity: 'uncommon',
   element: 'light',
   resist: ['light'],
-  price: 205,
+  price: 200,
   cost: 5,
   tribe: 'oracle',
   keywords: ['lifesteal'],

@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'primal',
   restriction: { factions: ['primal'] },
   rarity: 'epic',
-  price: 1400,
+  price: 900,
   cost: 1,
   speed: 'instant',
   targets: ['friendlyAlly'],

@@ -10,7 +10,7 @@ export default defineCard({
   restriction: { factions: ['neon'] },
   rarity: 'rare',
   element: 'shadow',
-  price: 510,
+  price: 360,
   cost: 2,
   tribe: 'netrunner',
   attack: 2,

@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'clockwork',
   restriction: { factions: ['clockwork'] },
   rarity: 'uncommon',
-  price: 155,
+  price: 140,
   cost: 2,
   speed: 'instant',
   onPlay(ctx) {

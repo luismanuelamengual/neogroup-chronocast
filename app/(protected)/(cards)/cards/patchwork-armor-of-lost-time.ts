@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'neutral',
   restriction: {},
   rarity: 'legendary',
-  price: 4400,
+  price: 2080,
   cost: 2,
   armor: 2,
   durability: 5,

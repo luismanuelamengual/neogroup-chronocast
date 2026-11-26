@@ -11,7 +11,7 @@ export default defineCard({
   rarity: 'rare',
   resist: ['acid'],
   weak: ['lightning'],
-  price: 630,
+  price: 480,
   cost: 4,
   tribe: 'automaton',
   keywords: ['shield'],

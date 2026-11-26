@@ -9,7 +9,7 @@ export default defineCard({
   faction: 'neutral',
   restriction: { classes: ['warrior'] },
   rarity: 'rare',
-  price: 510,
+  price: 360,
   cost: 2,
   speed: 'fast',
   onPlay(ctx) {

@@ -11,7 +11,7 @@ export default defineCard({
   rarity: 'rare',
   element: 'fire',
   resist: ['arcane'],
-  price: 510,
+  price: 360,
   cost: 2,
   tribe: 'magus',
   attack: 4,

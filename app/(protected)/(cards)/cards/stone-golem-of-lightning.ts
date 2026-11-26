@@ -12,7 +12,7 @@ export default defineCard({
   element: 'earth',
   resist: ['earth'],
   weak: ['wind'],
-  price: 750,
+  price: 600,
   cost: 6,
   tribe: 'elemental',
   keywords: ['retaliate'],

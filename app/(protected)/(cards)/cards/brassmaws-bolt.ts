@@ -10,7 +10,7 @@ export default defineCard({
   restriction: { heroes: ['chancellor-brassmaw'] },
   rarity: 'epic',
   element: 'sonic',
-  price: 1880,
+  price: 1200,
   cost: 4,
   keywords: ['unique'],
   targets: ['enemySlot'],

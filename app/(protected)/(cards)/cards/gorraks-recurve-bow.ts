@@ -10,7 +10,7 @@ export default defineCard({
   restriction: { heroes: ['gorrak-tyrant-king'] },
   rarity: 'epic',
   element: 'earth',
-  price: 1720,
+  price: 1100,
   cost: 3,
   keywords: ['ranged', 'unique'],
   attack: 5,

@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'neutral',
   restriction: { classes: ['warrior'] },
   rarity: 'rare',
-  price: 570,
+  price: 420,
   cost: 3,
   attack: 5,
   health: 7,

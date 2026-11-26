@@ -11,7 +11,7 @@ export default defineCard({
   restriction: { factions: ['primal'] },
   rarity: 'uncommon',
   element: 'acid',
-  price: 170,
+  price: 160,
   cost: 3,
   tribe: 'beast',
   keywords: ['guardian', 'retaliate'],

@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'neutral',
   restriction: { classes: ['hunter'] },
   rarity: 'rare',
-  price: 510,
+  price: 360,
   cost: 2,
   onPlay(ctx) {
     summonCard(ctx, ctx.owner, 'sabertooth-cub')

@@ -10,7 +10,7 @@ export default defineCard({
   restriction: { classes: ['hunter'] },
   rarity: 'uncommon',
   element: 'acid',
-  price: 140,
+  price: 120,
   cost: 1,
   tribe: 'netrunner',
   keywords: ['ranged'],

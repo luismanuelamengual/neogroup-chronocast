@@ -10,7 +10,7 @@ export default defineCard({
   restriction: { factions: ['neon'] },
   rarity: 'rare',
   weak: ['lightning'],
-  price: 570,
+  price: 420,
   cost: 3,
   tribe: 'cyborg',
   keywords: ['ranged'],

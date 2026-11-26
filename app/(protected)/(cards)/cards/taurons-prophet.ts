@@ -10,7 +10,7 @@ export default defineCard({
   restriction: { heroes: ['tauron-labyrinth-lord'] },
   rarity: 'legendary',
   resist: ['light'],
-  price: 5600,
+  price: 2320,
   cost: 5,
   tribe: 'oracle',
   keywords: ['shield', 'unique'],

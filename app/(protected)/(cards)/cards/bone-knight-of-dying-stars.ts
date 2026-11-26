@@ -11,7 +11,7 @@ export default defineCard({
   rarity: 'uncommon',
   element: 'arcane',
   resist: ['shadow', 'ice'],
-  price: 190,
+  price: 180,
   cost: 4,
   tribe: 'undead',
   keywords: ['retaliate'],

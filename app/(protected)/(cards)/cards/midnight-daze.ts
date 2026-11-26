@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'neon',
   restriction: { factions: ['neon'] },
   rarity: 'rare',
-  price: 450,
+  price: 300,
   cost: 1,
   speed: 'fast',
   targets: ['enemyAlly'],

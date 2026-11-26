@@ -10,7 +10,7 @@ export default defineCard({
   restriction: { factions: ['primal'] },
   rarity: 'uncommon',
   weak: ['ice'],
-  price: 170,
+  price: 160,
   cost: 3,
   tribe: 'saurian',
   keywords: ['charge'],

@@ -11,7 +11,7 @@ export default defineCard({
   rarity: 'uncommon',
   element: 'time',
   resist: ['light'],
-  price: 170,
+  price: 160,
   cost: 3,
   tribe: 'oracle',
   attack: 3,

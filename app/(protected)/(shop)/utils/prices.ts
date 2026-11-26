@@ -29,7 +29,7 @@ export function isSellable(card: CardDefinition): boolean {
   return card.type !== 'hero' && !card.boss && card.price != null
 }
 
-/** Gold a copy of a card sells for: 15 % of its price, rounded. */
+/** Gold a copy of a card sells for: 30 % of its price, rounded. */
 export function sellPrice(card: CardDefinition): number {
   return Math.round((card.price ?? 0) * SELL_RATE)
 }

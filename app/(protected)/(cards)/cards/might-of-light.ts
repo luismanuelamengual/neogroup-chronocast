@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'neutral',
   restriction: { classes: ['mystic'] },
   rarity: 'rare',
-  price: 630,
+  price: 480,
   cost: 4,
   onPlay(ctx) {
     buffTribe(ctx, ctx.owner, 'fae', 2, 3)

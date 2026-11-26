@@ -9,7 +9,7 @@ export default defineCard({
   faction: 'primal',
   restriction: { heroes: ['gorrak-tyrant-king'] },
   rarity: 'legendary',
-  price: 5600,
+  price: 2320,
   cost: 5,
   tribe: 'beast',
   keywords: ['unique', 'retaliate'],

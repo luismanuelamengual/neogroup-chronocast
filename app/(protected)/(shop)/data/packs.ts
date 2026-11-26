@@ -7,7 +7,11 @@ export interface PackSlot {
   odds: Partial<Record<Rarity, number>>
 }
 
-/** A pack of the shop (docs/PLAN.md, section 11.1). Every pack has 8 cards. */
+/**
+ * A pack of the shop (docs/PLAN.md, section 11.1). Every pack has 8 cards.
+ * Its price is the expected value of its 8 cards at the middle of each
+ * rarity's price range, 30 % off (they come at random), then rounded.
+ */
 export interface PackDefinition {
   id: string
   price: number
@@ -36,17 +40,17 @@ const CHRONICLER_SLOTS: PackSlot[] = [
 export const PACKS: PackDefinition[] = [
   {
     id: 'traveler',
-    price: 300,
+    price: 500,
     slots: [
       { count: 6, odds: { common: 1 } },
       { count: 1, odds: { uncommon: 1 } },
       { count: 1, odds: { uncommon: 0.9, rare: 0.1 } }
     ]
   },
-  { id: 'chronicler', price: 800, slots: CHRONICLER_SLOTS },
+  { id: 'chronicler', price: 900, slots: CHRONICLER_SLOTS },
   {
     id: 'guardian',
-    price: 2000,
+    price: 3200,
     pity: true,
     slots: [
       { count: 3, odds: { uncommon: 1 } },
@@ -56,7 +60,7 @@ export const PACKS: PackDefinition[] = [
   },
   {
     id: 'eternal',
-    price: 5000,
+    price: 8000,
     pity: true,
     slots: [
       { count: 2, odds: { rare: 1 } },

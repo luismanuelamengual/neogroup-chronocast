@@ -8,17 +8,17 @@ import { Rarity } from '@/app/(protected)/(engine)/models/Rarity'
  * player's level (RARITY_LEVELS).
  */
 export const HERO_PRICES: Record<Rarity, number> = {
-  common: 1000,
-  uncommon: 1100,
+  common: 900,
+  uncommon: 1000,
   rare: 1200,
-  epic: 2500,
-  legendary: 7000,
-  exotic: 12000,
-  mythic: 25000
+  epic: 1500,
+  legendary: 2800,
+  exotic: 3800,
+  mythic: 4800
 }
 
 /** A card sells for this share of its price, rounded (docs/PLAN.md, section 11.3). */
-export const SELL_RATE = 0.15
+export const SELL_RATE = 0.3
 
 /** Most copies of a card bought at once. */
 export const MAX_BUY_COUNT = 10

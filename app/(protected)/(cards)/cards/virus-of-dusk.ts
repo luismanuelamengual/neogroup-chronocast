@@ -9,7 +9,7 @@ export default defineCard({
   faction: 'neutral',
   restriction: {},
   rarity: 'rare',
-  price: 630,
+  price: 480,
   cost: 4,
   attack: -5,
   targets: ['enemyAlly'],

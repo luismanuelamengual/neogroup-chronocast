@@ -10,7 +10,7 @@ export default defineCard({
   restriction: { factions: ['neon'] },
   rarity: 'legendary',
   element: 'shadow',
-  price: 4400,
+  price: 2080,
   cost: 2,
   speed: 'instant',
   trigger: 'enemyAbility',

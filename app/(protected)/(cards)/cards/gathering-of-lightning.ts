@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'neutral',
   restriction: { classes: ['mage'] },
   rarity: 'mythic',
-  price: 29000,
+  price: 4160,
   cost: 3,
   onPlay(ctx) {
     summonCard(ctx, ctx.owner, 'arcane-familiar')

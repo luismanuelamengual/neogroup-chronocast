@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'neutral',
   restriction: { classes: ['hunter'] },
   rarity: 'rare',
-  price: 450,
+  price: 300,
   cost: 1,
   onPlay(ctx) {
     draw(ctx, ctx.owner, 1)

@@ -11,7 +11,7 @@ export default defineCard({
   restriction: { classes: ['mage'] },
   rarity: 'epic',
   element: 'arcane',
-  price: 1720,
+  price: 1100,
   cost: 3,
   targets: ['enemySlot'],
   onPlay(ctx) {

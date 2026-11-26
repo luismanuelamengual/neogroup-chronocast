@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'neutral',
   restriction: { classes: ['mystic'] },
   rarity: 'exotic',
-  price: 11600,
+  price: 3160,
   cost: 3,
   onPlay(ctx) {
     repairArmor(ctx, ctx.owner, 4)

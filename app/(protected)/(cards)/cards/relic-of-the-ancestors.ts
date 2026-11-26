@@ -10,7 +10,7 @@ export default defineCard({
   restriction: { classes: ['mystic'] },
   rarity: 'legendary',
   element: 'light',
-  price: 4000,
+  price: 2000,
   cost: 1,
   onPhaseStart(ctx) {
     damageRandomAlly(ctx, ctx.opponent, 2)

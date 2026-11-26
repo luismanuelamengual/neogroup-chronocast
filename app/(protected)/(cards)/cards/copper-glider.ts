@@ -10,7 +10,7 @@ export default defineCard({
   restriction: { factions: ['clockwork'] },
   rarity: 'legendary',
   weak: ['wind'],
-  price: 6000,
+  price: 2400,
   cost: 7,
   tribe: 'skyship',
   keywords: ['thorns', 'unique'],

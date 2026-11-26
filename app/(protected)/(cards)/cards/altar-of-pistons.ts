@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'clockwork',
   restriction: { factions: ['clockwork'] },
   rarity: 'epic',
-  price: 1400,
+  price: 900,
   cost: 1,
   onPhaseStart(ctx) {
     gainEnergy(ctx, ctx.owner, 1)

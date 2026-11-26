@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'neutral',
   restriction: {},
   rarity: 'rare',
-  price: 510,
+  price: 360,
   cost: 2,
   speed: 'instant',
   targets: ['friendlyAlly'],

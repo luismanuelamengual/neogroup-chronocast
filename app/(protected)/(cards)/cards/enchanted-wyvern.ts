@@ -11,7 +11,7 @@ export default defineCard({
   rarity: 'rare',
   resist: ['fire'],
   weak: ['ice'],
-  price: 630,
+  price: 480,
   cost: 4,
   tribe: 'drake',
   keywords: ['flying'],

@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'void',
   restriction: { factions: ['void'] },
   rarity: 'uncommon',
-  price: 140,
+  price: 120,
   cost: 1,
   onPlay(ctx) {
     draw(ctx, ctx.owner, 1)

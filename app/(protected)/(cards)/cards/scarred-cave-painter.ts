@@ -10,7 +10,7 @@ export default defineCard({
   restriction: { factions: ['primal'] },
   rarity: 'rare',
   resist: ['ice'],
-  price: 570,
+  price: 420,
   cost: 3,
   tribe: 'caveborn',
   keywords: ['charge'],

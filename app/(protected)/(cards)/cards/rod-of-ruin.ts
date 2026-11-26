@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'neutral',
   restriction: { classes: ['mage'] },
   rarity: 'uncommon',
-  price: 205,
+  price: 200,
   cost: 5,
   attack: 6,
   durability: 4,

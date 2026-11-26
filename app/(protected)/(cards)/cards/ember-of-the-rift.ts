@@ -12,7 +12,7 @@ export default defineCard({
   element: 'fire',
   resist: ['fire'],
   weak: ['water'],
-  price: 570,
+  price: 420,
   cost: 3,
   tribe: 'elemental',
   keywords: ['ranged'],

@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'neutral',
   restriction: { classes: ['warrior'] },
   rarity: 'legendary',
-  price: 4800,
+  price: 2160,
   cost: 3,
   onPlay(ctx) {
     draw(ctx, ctx.owner, 2)

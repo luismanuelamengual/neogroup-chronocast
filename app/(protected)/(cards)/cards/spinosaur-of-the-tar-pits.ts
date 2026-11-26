@@ -11,7 +11,7 @@ export default defineCard({
   rarity: 'uncommon',
   element: 'acid',
   weak: ['ice'],
-  price: 190,
+  price: 180,
   cost: 4,
   tribe: 'saurian',
   attack: 2,

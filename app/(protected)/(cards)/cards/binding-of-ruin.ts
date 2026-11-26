@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'neutral',
   restriction: { classes: ['mage'] },
   rarity: 'epic',
-  price: 1560,
+  price: 1000,
   cost: 2,
   speed: 'fast',
   targets: ['enemyAlly'],

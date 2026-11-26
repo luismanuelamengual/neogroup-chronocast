@@ -10,7 +10,7 @@ export default defineCard({
   restriction: { factions: ['void'] },
   rarity: 'legendary',
   element: 'fire',
-  price: 4800,
+  price: 2160,
   cost: 3,
   tribe: 'cultist',
   keywords: ['unique'],

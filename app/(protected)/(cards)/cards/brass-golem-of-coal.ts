@@ -12,7 +12,7 @@ export default defineCard({
   element: 'earth',
   resist: ['acid'],
   weak: ['lightning'],
-  price: 155,
+  price: 140,
   cost: 2,
   tribe: 'automaton',
   keywords: ['guardian'],

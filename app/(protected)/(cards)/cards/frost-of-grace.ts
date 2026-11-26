@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'neutral',
   restriction: { classes: ['mystic'] },
   rarity: 'rare',
-  price: 450,
+  price: 300,
   cost: 1,
   targets: ['enemyAlly'],
   onPlay(ctx) {

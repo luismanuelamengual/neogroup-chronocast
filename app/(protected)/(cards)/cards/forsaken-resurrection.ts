@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'void',
   restriction: { factions: ['void'] },
   rarity: 'uncommon',
-  price: 170,
+  price: 160,
   cost: 3,
   speed: 'slow',
   onPlay(ctx) {

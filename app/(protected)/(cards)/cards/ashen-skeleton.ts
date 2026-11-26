@@ -11,7 +11,7 @@ export default defineCard({
   rarity: 'uncommon',
   element: 'fire',
   resist: ['shadow', 'ice'],
-  price: 205,
+  price: 200,
   cost: 5,
   tribe: 'undead',
   attack: 3,

@@ -11,7 +11,7 @@ export default defineCard({
   rarity: 'rare',
   resist: ['earth'],
   weak: ['acid'],
-  price: 750,
+  price: 600,
   cost: 6,
   tribe: 'colossus',
   keywords: ['guardian'],

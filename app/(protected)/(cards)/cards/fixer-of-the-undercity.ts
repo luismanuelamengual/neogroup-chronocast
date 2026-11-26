@@ -9,7 +9,7 @@ export default defineCard({
   faction: 'neon',
   restriction: { factions: ['neon'] },
   rarity: 'exotic',
-  price: 10800,
+  price: 3080,
   cost: 2,
   tribe: 'enforcer',
   keywords: ['unique'],

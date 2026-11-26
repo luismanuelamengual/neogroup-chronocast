@@ -1446,7 +1446,7 @@ export const en: Messages = {
     traveler: 'Traveler',
     chronicler: 'Chronicler',
     guardian: 'Guardian',
-    timelord: 'Time Lord',
+    timelord: 'Chronarch',
     eternal: 'Eternal'
   },
   ranking: {

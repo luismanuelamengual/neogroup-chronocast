@@ -10,7 +10,7 @@ export default defineCard({
   restriction: {},
   rarity: 'uncommon',
   element: 'time',
-  price: 170,
+  price: 160,
   cost: 3,
   keywords: ['flying'],
   attack: 4,

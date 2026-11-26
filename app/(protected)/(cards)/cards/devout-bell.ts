@@ -11,7 +11,7 @@ export default defineCard({
   restriction: { classes: ['mystic'] },
   rarity: 'rare',
   element: 'sonic',
-  price: 510,
+  price: 360,
   cost: 2,
   attack: 3,
   durability: 3,

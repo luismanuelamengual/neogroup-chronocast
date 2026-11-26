@@ -11,7 +11,7 @@ export default defineCard({
   restriction: { factions: ['void'] },
   rarity: 'rare',
   resist: ['shadow', 'ice'],
-  price: 690,
+  price: 540,
   cost: 5,
   tribe: 'undead',
   attack: 7,

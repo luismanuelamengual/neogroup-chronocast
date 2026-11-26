@@ -10,7 +10,7 @@ export default defineCard({
   restriction: { classes: ['hunter'] },
   rarity: 'uncommon',
   weak: ['ice'],
-  price: 170,
+  price: 160,
   cost: 3,
   tribe: 'saurian',
   keywords: ['ranged'],

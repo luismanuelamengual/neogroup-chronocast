@@ -9,7 +9,7 @@ export default defineCard({
   faction: 'neutral',
   restriction: { classes: ['hunter'] },
   rarity: 'rare',
-  price: 630,
+  price: 480,
   cost: 4,
   keywords: ['ranged'],
   attack: 4,

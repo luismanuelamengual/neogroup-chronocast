@@ -11,7 +11,7 @@ export default defineCard({
   rarity: 'uncommon',
   element: 'shadow',
   weak: ['lightning'],
-  price: 170,
+  price: 160,
   cost: 3,
   tribe: 'cyborg',
   attack: 4,

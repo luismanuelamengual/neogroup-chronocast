@@ -9,7 +9,7 @@ export default defineCard({
   faction: 'void',
   restriction: { heroes: ['nyx-hollowsong'] },
   rarity: 'epic',
-  price: 1720,
+  price: 1100,
   cost: 3,
   keywords: ['unique'],
   onPhaseStart(ctx) {

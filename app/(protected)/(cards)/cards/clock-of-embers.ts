@@ -9,7 +9,7 @@ export default defineCard({
   faction: 'arcane',
   restriction: { factions: ['arcane'] },
   rarity: 'uncommon',
-  price: 155,
+  price: 140,
   cost: 2,
   charges: 3,
   onPhaseStart(ctx) {

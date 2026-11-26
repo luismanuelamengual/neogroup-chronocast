@@ -9,7 +9,7 @@ export default defineCard({
   faction: 'neon',
   restriction: { heroes: ['overseer-kade'] },
   rarity: 'legendary',
-  price: 5600,
+  price: 2320,
   cost: 5,
   tribe: 'enforcer',
   keywords: ['quick', 'unique'],

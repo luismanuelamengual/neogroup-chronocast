@@ -10,7 +10,7 @@ export default defineCard({
   restriction: { classes: ['mage'] },
   rarity: 'rare',
   element: 'arcane',
-  price: 450,
+  price: 300,
   cost: 1,
   charges: 4,
   onPhaseStart(ctx) {

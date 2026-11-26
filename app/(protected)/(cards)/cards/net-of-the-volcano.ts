@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'primal',
   restriction: { factions: ['primal'] },
   rarity: 'exotic',
-  price: 10800,
+  price: 3080,
   cost: 2,
   speed: 'instant',
   trigger: 'enemySummon',

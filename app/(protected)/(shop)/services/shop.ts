@@ -116,7 +116,7 @@ export async function buyCard(userId: number, cardId: string, count: number = 1)
   return getShopState(userId)
 }
 
-/** Removes copies from a collection and pays 15 % of their price, inside a transaction. */
+/** Removes copies from a collection and pays 30 % of their price, inside a transaction. */
 async function sell(userId: number, cards: Record<string, number>): Promise<number> {
   const collection = await getCollection(userId)
   const deckUsage = await getDeckUsage(userId)

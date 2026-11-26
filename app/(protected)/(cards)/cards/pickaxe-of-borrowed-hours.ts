@@ -11,7 +11,7 @@ export default defineCard({
   restriction: {},
   rarity: 'exotic',
   element: 'time',
-  price: 10800,
+  price: 3080,
   cost: 2,
   attack: 3,
   durability: 3,

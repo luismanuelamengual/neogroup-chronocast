@@ -9,7 +9,7 @@ export default defineCard({
   faction: 'neutral',
   restriction: { classes: ['mystic'] },
   rarity: 'rare',
-  price: 570,
+  price: 420,
   cost: 3,
   armor: 3,
   durability: 3,

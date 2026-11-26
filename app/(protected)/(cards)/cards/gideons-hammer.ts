@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'clockwork',
   restriction: { heroes: ['gideon-ironsteam'] },
   rarity: 'epic',
-  price: 1720,
+  price: 1100,
   cost: 3,
   keywords: ['unique'],
   attack: 5,

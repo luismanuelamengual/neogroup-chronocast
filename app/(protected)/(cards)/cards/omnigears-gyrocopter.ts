@@ -10,7 +10,7 @@ export default defineCard({
   restriction: { heroes: ['omnigear-prime'] },
   rarity: 'legendary',
   weak: ['wind'],
-  price: 5600,
+  price: 2320,
   cost: 5,
   tribe: 'skyship',
   keywords: ['shield', 'unique'],

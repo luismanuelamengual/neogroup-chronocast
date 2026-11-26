@@ -11,7 +11,7 @@ export default defineCard({
   restriction: { factions: ['arcane'] },
   rarity: 'rare',
   element: 'arcane',
-  price: 570,
+  price: 420,
   cost: 3,
   targets: ['enemyAlly'],
   onPlay(ctx) {

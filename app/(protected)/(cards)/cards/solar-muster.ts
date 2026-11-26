@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'bronze',
   restriction: { factions: ['bronze'] },
   rarity: 'uncommon',
-  price: 190,
+  price: 180,
   cost: 4,
   onPlay(ctx) {
     summonCard(ctx, ctx.owner, 'hoplite-conscript')

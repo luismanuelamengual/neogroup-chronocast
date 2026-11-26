@@ -11,7 +11,7 @@ export default defineCard({
   rarity: 'epic',
   element: 'arcane',
   resist: ['arcane'],
-  price: 1720,
+  price: 1100,
   cost: 3,
   tribe: 'magus',
   keywords: ['flying', 'ranged'],

@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'neutral',
   restriction: { classes: ['hunter'] },
   rarity: 'epic',
-  price: 1400,
+  price: 900,
   cost: 1,
   speed: 'instant',
   trigger: 'enemySummon',

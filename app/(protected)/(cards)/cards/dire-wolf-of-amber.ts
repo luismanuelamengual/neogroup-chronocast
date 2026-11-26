@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'primal',
   restriction: { factions: ['primal'] },
   rarity: 'rare',
-  price: 510,
+  price: 360,
   cost: 2,
   tribe: 'beast',
   attack: 3,

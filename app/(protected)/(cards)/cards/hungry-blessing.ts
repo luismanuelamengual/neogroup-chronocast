@@ -8,7 +8,7 @@ export default defineCard({
   faction: 'primal',
   restriction: { factions: ['primal'] },
   rarity: 'uncommon',
-  price: 155,
+  price: 140,
   cost: 2,
   keywords: ['guardian'],
   attack: 1,

@@ -10,7 +10,7 @@ export default defineCard({
   restriction: { heroes: ['vorhal-the-last-hour'] },
   rarity: 'epic',
   element: 'time',
-  price: 1880,
+  price: 1200,
   cost: 4,
   keywords: ['unique'],
   targets: ['enemySlot'],

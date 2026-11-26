@@ -12,7 +12,7 @@ export default defineCard({
   element: 'shadow',
   resist: ['shadow'],
   weak: ['sonic'],
-  price: 170,
+  price: 160,
   cost: 3,
   tribe: 'horror',
   keywords: ['poison'],

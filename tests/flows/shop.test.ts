@@ -149,7 +149,7 @@ describe('the shop', () => {
     expect((await buyCard(ana, legendary.id)).collection[legendary.id]).toBe(1)
   })
 
-  it('buys back cards for 15 % of their price', async () => {
+  it('buys back cards for 30 % of their price', async () => {
     await addCards(ana, { [COMMON.id]: 3, [VARRO]: 1 })
 
     const sale = await sellCards(ana, { [COMMON.id]: 2 })

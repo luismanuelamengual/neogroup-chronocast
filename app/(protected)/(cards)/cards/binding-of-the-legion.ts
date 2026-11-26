@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'bronze',
   restriction: { factions: ['bronze'] },
   rarity: 'rare',
-  price: 690,
+  price: 540,
   cost: 5,
   speed: 'fast',
   targets: ['enemyAlly'],

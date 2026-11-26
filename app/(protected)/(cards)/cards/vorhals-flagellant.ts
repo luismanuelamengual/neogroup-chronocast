@@ -9,7 +9,7 @@ export default defineCard({
   faction: 'void',
   restriction: { heroes: ['vorhal-the-last-hour'] },
   rarity: 'legendary',
-  price: 5600,
+  price: 2320,
   cost: 5,
   tribe: 'cultist',
   keywords: ['unique'],

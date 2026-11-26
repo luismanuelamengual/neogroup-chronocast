@@ -10,7 +10,7 @@ export default defineCard({
   restriction: { factions: ['bronze'] },
   rarity: 'legendary',
   resist: ['light'],
-  price: 4400,
+  price: 2080,
   cost: 2,
   tribe: 'oracle',
   keywords: ['cleave', 'unique'],

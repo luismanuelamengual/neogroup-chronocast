@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'neutral',
   restriction: { classes: ['mystic'] },
   rarity: 'rare',
-  price: 510,
+  price: 360,
   cost: 2,
   onPlay(ctx) {
     healHero(ctx, 10)

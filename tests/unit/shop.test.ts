@@ -73,10 +73,10 @@ describe('pack definitions', () => {
     expect(
       PACKS.filter((definition) => !definition.faction).map((definition) => [definition.id, definition.price])
     ).toEqual([
-      ['traveler', 300],
-      ['chronicler', 800],
-      ['guardian', 2000],
-      ['eternal', 5000]
+      ['traveler', 500],
+      ['chronicler', 900],
+      ['guardian', 3200],
+      ['eternal', 8000]
     ])
     expect(PACKS.filter((definition) => definition.faction).every((definition) => definition.price === 1000)).toBe(true)
     expect(PACKS.filter((definition) => definition.pity).map((definition) => definition.id)).toEqual([
@@ -197,14 +197,14 @@ describe('drawing a pack', () => {
 })
 
 describe('prices and selling', () => {
-  it('sells a card for 15 % of its price, rounded', () => {
-    expect(sellPrice({ ...FAKE[0], price: 60 })).toBe(9)
-    expect(sellPrice({ ...FAKE[0], price: 45 })).toBe(7)
-    expect(sellPrice({ ...FAKE[0], price: 5000 })).toBe(750)
+  it('sells a card for 30 % of its price, rounded', () => {
+    expect(sellPrice({ ...FAKE[0], price: 60 })).toBe(18)
+    expect(sellPrice({ ...FAKE[0], price: 45 })).toBe(14)
+    expect(sellPrice({ ...FAKE[0], price: 5000 })).toBe(1500)
   })
 
   it('prices the heroes by rarity, dearer the rarer', () => {
-    expect(RARITIES.map((rarity) => HERO_PRICES[rarity])).toEqual([1000, 1100, 1200, 2500, 7000, 12000, 25000])
+    expect(RARITIES.map((rarity) => HERO_PRICES[rarity])).toEqual([900, 1000, 1200, 1500, 2800, 3800, 4800])
   })
 
   it('sells every card with a price and the playable heroes (dear), never campaign rewards or bosses', () => {

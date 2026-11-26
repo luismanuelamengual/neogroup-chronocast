@@ -9,7 +9,7 @@ export default defineCard({
   faction: 'neutral',
   restriction: { classes: ['mystic'] },
   rarity: 'epic',
-  price: 2040,
+  price: 1300,
   cost: 5,
   speed: 'slow',
   onPlay(ctx) {

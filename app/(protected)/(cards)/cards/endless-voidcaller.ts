@@ -9,7 +9,7 @@ export default defineCard({
   faction: 'void',
   restriction: { factions: ['void'] },
   rarity: 'rare',
-  price: 450,
+  price: 300,
   cost: 1,
   tribe: 'cultist',
   attack: 1,

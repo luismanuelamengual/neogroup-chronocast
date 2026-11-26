@@ -10,7 +10,7 @@ export default defineCard({
   restriction: { factions: ['arcane'] },
   rarity: 'epic',
   resist: ['arcane'],
-  price: 1560,
+  price: 1000,
   cost: 2,
   tribe: 'magus',
   keywords: ['ranged'],

@@ -10,7 +10,7 @@ export default defineCard({
   restriction: { classes: ['warrior'] },
   rarity: 'epic',
   element: 'arcane',
-  price: 1560,
+  price: 1000,
   cost: 2,
   targets: ['enemyAlly'],
   onPlay(ctx) {

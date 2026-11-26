@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'primal',
   restriction: { factions: ['primal'] },
   rarity: 'epic',
-  price: 1560,
+  price: 1000,
   cost: 2,
   onPhaseStart(ctx) {
     healHero(ctx, 3)

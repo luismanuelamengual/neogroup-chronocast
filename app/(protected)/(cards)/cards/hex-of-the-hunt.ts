@@ -10,7 +10,7 @@ export default defineCard({
   restriction: { classes: ['hunter'] },
   rarity: 'uncommon',
   element: 'arcane',
-  price: 170,
+  price: 160,
   cost: 3,
   targets: ['enemyAlly'],
   onPlay(ctx) {

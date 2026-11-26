@@ -9,7 +9,7 @@ export default defineCard({
   faction: 'neutral',
   restriction: {},
   rarity: 'epic',
-  price: 2040,
+  price: 1300,
   cost: 5,
   tribe: 'drifter',
   keywords: ['ranged'],

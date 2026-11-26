@@ -10,7 +10,7 @@ export default defineCard({
   restriction: { classes: ['mage'] },
   rarity: 'uncommon',
   element: 'lightning',
-  price: 155,
+  price: 140,
   cost: 2,
   attack: 3,
   health: 6,

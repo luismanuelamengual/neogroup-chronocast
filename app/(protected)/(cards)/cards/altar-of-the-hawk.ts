@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'neutral',
   restriction: { classes: ['hunter'] },
   rarity: 'legendary',
-  price: 4400,
+  price: 2080,
   cost: 2,
   onPhaseStart(ctx) {
     gainEnergy(ctx, ctx.owner, 1)

@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'bronze',
   restriction: { factions: ['bronze'] },
   rarity: 'rare',
-  price: 510,
+  price: 360,
   cost: 2,
   targets: ['enemyAlly'],
   modifyDamage(ctx, target, amount) {

@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'neutral',
   restriction: {},
   rarity: 'legendary',
-  price: 4800,
+  price: 2160,
   cost: 3,
   onPlay(ctx) {
     repairWeapon(ctx, ctx.owner, 3)

@@ -10,7 +10,7 @@ export default defineCard({
   restriction: { factions: ['neon'] },
   rarity: 'uncommon',
   element: 'earth',
-  price: 170,
+  price: 160,
   cost: 3,
   charges: 3,
   onPhaseStart(ctx) {

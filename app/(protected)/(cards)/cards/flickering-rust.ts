@@ -10,7 +10,7 @@ export default defineCard({
   restriction: { classes: ['mage'] },
   rarity: 'rare',
   element: 'acid',
-  price: 510,
+  price: 360,
   cost: 2,
   targets: ['enemyAlly'],
   onHostAttack(ctx, host) {

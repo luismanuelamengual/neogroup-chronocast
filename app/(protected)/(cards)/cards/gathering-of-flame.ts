@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'neutral',
   restriction: { classes: ['mage'] },
   rarity: 'legendary',
-  price: 4400,
+  price: 2080,
   cost: 2,
   onPlay(ctx) {
     summonCard(ctx, ctx.owner, 'rift-spark')

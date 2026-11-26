@@ -10,7 +10,7 @@ export default defineCard({
   restriction: { heroes: ['hollow-astronomer'] },
   rarity: 'epic',
   element: 'arcane',
-  price: 1880,
+  price: 1200,
   cost: 4,
   keywords: ['unique'],
   targets: ['enemySlot'],

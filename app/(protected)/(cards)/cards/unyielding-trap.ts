@@ -10,7 +10,7 @@ export default defineCard({
   restriction: { factions: ['bronze'] },
   rarity: 'epic',
   element: 'light',
-  price: 1560,
+  price: 1000,
   cost: 2,
   speed: 'instant',
   trigger: 'enemyAbility',

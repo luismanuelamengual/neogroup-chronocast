@@ -8,7 +8,7 @@ export default defineCard({
   faction: 'neutral',
   restriction: {},
   rarity: 'rare',
-  price: 570,
+  price: 420,
   cost: 3,
   keywords: ['guardian'],
   attack: 1,

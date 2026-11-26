@@ -9,7 +9,7 @@ export default defineCard({
   faction: 'neutral',
   restriction: { classes: ['mystic'] },
   rarity: 'uncommon',
-  price: 155,
+  price: 140,
   cost: 2,
   keywords: ['lifesteal'],
   attack: 3,

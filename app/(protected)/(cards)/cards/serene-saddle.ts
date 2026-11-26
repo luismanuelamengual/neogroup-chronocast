@@ -9,7 +9,7 @@ export default defineCard({
   faction: 'neutral',
   restriction: { classes: ['mystic'] },
   rarity: 'epic',
-  price: 1720,
+  price: 1100,
   cost: 3,
   keywords: ['guardian'],
   attack: 1,
