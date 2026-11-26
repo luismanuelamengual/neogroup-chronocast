@@ -5,6 +5,7 @@ import { PlannedAction, Timeline, WAIT } from '@/app/(protected)/(engine)/models
 import { opponentOf, PlayerId } from '@/app/(protected)/(engine)/models/PlayerId'
 import { SlotRef } from '@/app/(protected)/(engine)/models/SlotRef'
 import { TargetKind } from '@/app/(protected)/(engine)/models/TargetKind'
+import { attachedOptions } from '@/app/(protected)/(engine)/utils/attachedTargets'
 import { cardCost } from '@/app/(protected)/(engine)/utils/boons'
 import { MatchEngine } from '@/app/(protected)/(engine)/utils/engine'
 import { projectTimeline } from '@/app/(protected)/(engine)/utils/projectTimeline'
@@ -435,6 +436,19 @@ function chooseTargets(state: MatchState, player: PlayerId, kinds: TargetKind[])
       case 'friendlySlot':
         targets.push({ player, slot: 'hero' })
         break
+
+      case 'enemyGear':
+
+      case 'enemyAttachment': {
+        const best = bestAttached(state, player, kind)
+
+        if (!best) {
+          return null
+        }
+
+        targets.push(best)
+        break
+      }
     }
   }
 
@@ -460,6 +474,38 @@ function chooseAttackTarget(
     .sort((a, b) => b.unit.attack - a.unit.attack)
 
   return kills[0]?.ref ?? { player: enemy, slot: 'hero' }
+}
+
+/**
+ * The rival's attached card most worth breaking: the weapon (by the damage it
+ * has left), the armor (by what it would block) or what helps one of its
+ * allies (never an attachment of this player, like a curse on them).
+ */
+function bestAttached(state: MatchState, player: PlayerId, kind: TargetKind): SlotRef | null {
+  const hero = state.players[opponentOf(player)].hero
+  const scored = attachedOptions(state, player, kind)
+    .map((option) => {
+      const definition = getCard(option.card.cardId)
+
+      switch (option.kind) {
+        case 'weapon':
+          return { option, score: (hero.weapon?.attack ?? 0) * (hero.weapon?.durability ?? 0) }
+        case 'armor':
+          return { option, score: (hero.armor?.reduction ?? 0) * (hero.armor?.durability ?? 0) }
+        default:
+          return {
+            option,
+            score:
+              (option.card.owner ?? option.ref.player) === player
+                ? -1
+                : (definition.attack ?? 0) * 2 + (definition.health ?? 0) + (definition.keywords?.length ?? 0) * 2
+          }
+      }
+    })
+    .filter(({ score }) => score > 0)
+    .sort((a, b) => b.score - a.score)
+
+  return scored[0]?.option.ref ?? null
 }
 
 function allyRefs(state: MatchState, player: PlayerId): { ref: SlotRef; unit: Unit }[] {

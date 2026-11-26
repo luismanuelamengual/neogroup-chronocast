@@ -21,7 +21,11 @@ function slotRef(value: unknown): SlotRef {
     fail()
   }
 
-  return { player: ref.player, slot: ref.slot === 'hero' ? 'hero' : int(ref.slot, 0, ALLY_SLOTS - 1) }
+  return {
+    player: ref.player,
+    slot: ref.slot === 'hero' ? 'hero' : int(ref.slot, 0, ALLY_SLOTS - 1),
+    ...(ref.attached != null ? { attached: int(ref.attached) } : {})
+  }
 }
 
 function slotRefs(value: unknown): SlotRef[] | undefined {

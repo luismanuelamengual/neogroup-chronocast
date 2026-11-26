@@ -45,6 +45,12 @@ export interface DamageSource {
   chained?: boolean
 }
 
+/** A card attached to a hero (its weapon or armor) or to an ally (with the ally), that a target points to. */
+export type AttachedTarget =
+  | { kind: 'weapon'; card: CardInstance }
+  | { kind: 'armor'; card: CardInstance }
+  | { kind: 'attachment'; card: CardInstance; host: Unit }
+
 type PendingDamage =
   | { kind: 'unit'; uid: number; amount: number; source?: DamageSource }
   | { kind: 'hero'; player: PlayerId; amount: number; source?: DamageSource }
@@ -649,6 +655,100 @@ export class MatchEngine {
     this.emit({ type: 'gearRepaired', player, kind, amount })
 
     return true
+  }
+
+  /**
+   * The card a target with `attached` points to: the hero's weapon or armor,
+   * or a card attached to the ally in that slot (null when it is no longer there).
+   */
+  attachedAt(ref: SlotRef): AttachedTarget | null {
+    if (ref.attached == null) {
+      return null
+    }
+
+    if (ref.slot === 'hero') {
+      const hero = this.player(ref.player).hero
+
+      if (hero.weapon?.card.uid === ref.attached) {
+        return { kind: 'weapon', card: hero.weapon.card }
+      }
+
+      if (hero.armor?.card.uid === ref.attached) {
+        return { kind: 'armor', card: hero.armor.card }
+      }
+
+      return null
+    }
+
+    const host = this.targetUnit(ref)
+    const card = host?.attachments?.find((attachment) => attachment.uid === ref.attached)
+
+    return host && card ? { kind: 'attachment', card, host } : null
+  }
+
+  /**
+   * Destroys the card a target with `attached` points to: the hero's weapon or
+   * armor, or a card attached to an ally (it goes to its owner's discard pile
+   * and the ally loses what it gave). False when it is no longer there.
+   */
+  destroyAttached(ref: SlotRef): boolean {
+    const found = this.attachedAt(ref)
+
+    if (!found) {
+      return false
+    }
+
+    if (found.kind === 'weapon') {
+      return this.destroyWeapon(ref.player)
+    }
+
+    if (found.kind === 'armor') {
+      return this.destroyArmor(ref.player)
+    }
+
+    const { host, card } = found
+    const definition = getCard(card.cardId)
+    const owner = card.owner ?? ref.player
+
+    host.attachments = (host.attachments ?? []).filter((attachment) => attachment.uid !== card.uid)
+    this.detachStats(host, definition)
+    this.player(owner).discard.push({ uid: card.uid, cardId: card.cardId })
+    this.emit({ type: 'gearDestroyed', player: ref.player, cardId: card.cardId, kind: 'attachment' })
+
+    return true
+  }
+
+  /** An ally loses what an attachment taken off it gave it: its attack, health, keywords and thorns. */
+  private detachStats(unit: Unit, attachment: CardDefinition): void {
+    unit.attack -= attachment.attack ?? 0
+
+    const health = attachment.health ?? 0
+
+    if (health > 0) {
+      // It loses the extra max health; the damage it took stays (it never dies of this).
+      unit.maxHealth = Math.max(1, unit.maxHealth - health)
+      unit.health = Math.min(unit.health, unit.maxHealth)
+    } else if (health < 0) {
+      unit.maxHealth -= health
+      unit.health -= health
+    }
+
+    const kept = new Set([
+      ...(getCard(unit.cardId).keywords ?? []),
+      ...(unit.attachments ?? []).flatMap((other) => getCard(other.cardId).keywords ?? [])
+    ])
+
+    for (const keyword of attachment.keywords ?? []) {
+      if (!kept.has(keyword)) {
+        unit.keywords = unit.keywords.filter((candidate) => candidate !== keyword)
+
+        if (keyword === 'shield') {
+          unit.shield = false
+        }
+      }
+    }
+
+    unit.thorns = Math.max(0, unit.thorns - (attachment.thorns ?? 0))
   }
 
   /** Destroys an artifact of a player: the most expensive one, the cheapest or a random one. */

@@ -37,7 +37,7 @@ export type FailReason =
   | 'nothingToDestroy'
 
 /** A card of the hero or of the support slots that can be broken. */
-export type GearKind = 'weapon' | 'armor' | 'artifact' | 'trap'
+export type GearKind = 'weapon' | 'armor' | 'artifact' | 'trap' | 'attachment'
 
 /** A lasting status effect. */
 export type StatusKind = 'poison' | 'burn' | 'freeze'

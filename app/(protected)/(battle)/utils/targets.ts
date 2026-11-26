@@ -4,6 +4,7 @@ import { MatchState, Unit } from '@/app/(protected)/(engine)/models/MatchState'
 import { opponentOf, PlayerId } from '@/app/(protected)/(engine)/models/PlayerId'
 import { SlotRef } from '@/app/(protected)/(engine)/models/SlotRef'
 import { TargetKind } from '@/app/(protected)/(engine)/models/TargetKind'
+import { attachedOptions } from '@/app/(protected)/(engine)/utils/attachedTargets'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
 
 const SLOTS = Array.from({ length: ALLY_SLOTS }, (_, slot) => slot)
@@ -12,11 +13,16 @@ function hidden(unit: Unit | null): boolean {
   return !!unit && unit.keywords.includes('stealth')
 }
 
+/** The same place of the board (whatever attached card each one points to). */
 export function sameRef(a: SlotRef, b: SlotRef): boolean {
   return a.player === b.player && a.slot === b.slot
 }
 
-/** The slots that fit a target kind of a card (the engine checks them again when the action resolves). */
+/**
+ * The slots that fit a target kind of a card (the engine checks them again
+ * when the action resolves). For the kinds that aim at an attached card there
+ * is one ref per card (with its `attached`), so a slot can show up more than once.
+ */
 export function refsFor(state: MatchState, player: PlayerId, kind: TargetKind): SlotRef[] {
   const enemy = opponentOf(player)
   const enemyAllies = state.players[enemy].allies
@@ -37,6 +43,9 @@ export function refsFor(state: MatchState, player: PlayerId, kind: TargetKind): 
       return SLOTS.filter((slot) => ownAllies[slot]).map((slot) => ({ player, slot }))
     case 'friendlySlot':
       return SLOTS.map((slot) => ({ player, slot }))
+    case 'enemyGear':
+    case 'enemyAttachment':
+      return attachedOptions(state, player, kind).map((option) => option.ref)
   }
 }
 

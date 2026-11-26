@@ -109,7 +109,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'armored-mace': { name: 'Maza Acorazada', flavor: 'Sutil, no es.' },
   'armored-sabotage': {
     name: 'Sabotaje Acorazado',
-    text: 'Destruí la armadura enemiga. Rápida.',
+    text: 'Destruí un arma, una armadura o un adjunto enemigo, a elección. Rápida.',
     flavor: 'Toda armadura tiene una correa floja.'
   },
   'armored-tower-shield': {
@@ -469,7 +469,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'clever-scroll': {
     name: 'Pergamino Astuto',
-    text: 'Destruí el arma enemiga. Rápida.',
+    text: 'Destruí el arma o la armadura enemiga, a elección. Rápida.',
     flavor: 'Leelo al revés para el hechizo de verdad.'
   },
   'cloak-of-the-quarry': { name: 'Capa de la Presa', flavor: 'La presa nunca la ve venir.' },
@@ -554,7 +554,8 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Al empezar cada fase: tus aliados se curan 4.',
     flavor: 'Ninguna noche ganó jamás. Este sello se encarga de eso.',
     ability: { name: 'Romper el Eclipse', text: 'Destruye todos los Sellos del Eclipse en juego.' }
-  },  'decoy-of-the-undercity': {
+  },
+  'decoy-of-the-undercity': {
     name: 'Señuelo de la Ciudad Baja',
     text: 'Cuando el rival usa una habilidad: robá una carta y hacé 5 de daño de rayo al héroe enemigo.'
   },
@@ -631,7 +632,8 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Al empezar cada fase: hace 2 de daño de sombra a todos los aliados, también a los tuyos. Si no hay aliados, se destruye.',
     flavor: 'Por un momento, ninguna hora es de nadie.',
     ability: { name: 'Devorar el Alba', text: 'Destruye todos los Sellos del Alba en juego.' }
-  },  'electric-glitch': {
+  },
+  'electric-glitch': {
     name: 'Glitch Eléctrico',
     text: 'Al terminar cada fase: hacé 1 de daño de rayo al héroe enemigo.'
   },

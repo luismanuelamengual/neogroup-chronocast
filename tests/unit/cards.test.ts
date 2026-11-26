@@ -180,7 +180,8 @@ function sandbox(heroId = STARTER_HERO_IDS[0]): MatchState {
     decks: { a: { ...deck, heroId }, b: deck },
     setup: {
       a: { allies: ['lost-chrononaut'], chronosCapacity: 20, energy: 10 },
-      b: { allies: ['lost-chrononaut'], chronosCapacity: 20, energy: 10 }
+      // The rival has a weapon, for the cards that aim at an attached card.
+      b: { allies: ['lost-chrononaut'], chronosCapacity: 20, energy: 10, weapon: 'cutlass-of-the-long-road' }
     }
   })
 
@@ -190,7 +191,7 @@ function sandbox(heroId = STARTER_HERO_IDS[0]): MatchState {
   return state
 }
 
-function targetsFor(kinds: TargetKind[] = []): SlotRef[] {
+function targetsFor(state: MatchState, kinds: TargetKind[] = []): SlotRef[] {
   let enemySlots = 0
 
   return kinds.map((kind) => {
@@ -204,6 +205,9 @@ function targetsFor(kinds: TargetKind[] = []): SlotRef[] {
         return { player: 'a', slot: 0 }
       case 'friendlySlot':
         return { player: 'a', slot: 1 }
+      case 'enemyGear':
+      case 'enemyAttachment':
+        return { player: 'b', slot: 'hero', attached: state.players.b.hero.weapon!.card.uid }
     }
   })
 }
@@ -237,7 +241,7 @@ describe('every card works in a match', () => {
 
       state.players.a.hand.push({ uid, cardId: card.id })
 
-      const play: PlannedAction = { kind: 'play', cardUid: uid, slot: 1, targets: targetsFor(card.targets) }
+      const play: PlannedAction = { kind: 'play', cardUid: uid, slot: 1, targets: targetsFor(state, card.targets) }
       const timeline = emptyTimeline()
 
       timeline[0] = play
@@ -256,7 +260,7 @@ describe('every card works in a match', () => {
 
       const timeline = emptyTimeline()
 
-      timeline[0] = { kind: 'allyAbility', allyUid: caster.uid, targets: targetsFor(card.ability!.targets) }
+      timeline[0] = { kind: 'allyAbility', allyUid: caster.uid, targets: targetsFor(state, card.ability!.targets) }
 
       expect(failures(state, timeline)).toEqual([])
     })
@@ -280,7 +284,7 @@ describe('every card works in a match', () => {
 
       timeline[0] = {
         kind: 'heroAbility',
-        targets: targetsFor(hero.ability?.targets),
+        targets: targetsFor(state, hero.ability?.targets),
         ...(hero.ability?.choice ? { cardId: 'brazier-of-the-wanderer' } : {})
       }
 

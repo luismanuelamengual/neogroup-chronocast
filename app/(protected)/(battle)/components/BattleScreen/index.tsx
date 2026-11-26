@@ -47,6 +47,7 @@ import {
 import { PlannedAction } from '@/app/(protected)/(engine)/models/PlannedAction'
 import { PlayerId } from '@/app/(protected)/(engine)/models/PlayerId'
 import { SlotRef } from '@/app/(protected)/(engine)/models/SlotRef'
+import { aimsAtAttached, TargetKind } from '@/app/(protected)/(engine)/models/TargetKind'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
 import { useCardName } from '@/app/i18n/cards/useCardName'
 import { useT } from '@/app/i18n/I18nProvider'
@@ -159,6 +160,8 @@ export default function BattleScreen({
   const [spot, setSpot] = useState<Spot | null>(null)
   /** Choosing the card of the deck the hero's ability takes. */
   const [deckPick, setDeckPick] = useState(false)
+  /** Choosing which of the cards attached to a hero or an ally to aim at (a slot with more than one). */
+  const [attachedPick, setAttachedPick] = useState<{ selection: Selection; options: SlotRef[] } | null>(null)
   const programming = mode === 'planning'
   /** The timeline can be changed (online, not after it was sent). */
   const planning = programming && !store.submitted
@@ -191,6 +194,7 @@ export default function BattleScreen({
   useEffect(() => {
     if (!planning) {
       setSpot((current) => (current && current.kind !== 'inspect' ? null : current))
+      setAttachedPick(null)
     }
   }, [planning])
 
@@ -565,12 +569,13 @@ export default function BattleScreen({
 
     // Aiming: a lit place completes (or continues) the action.
     if (planning && selection && highlight) {
-      const step = nextStep(selection, ref, highlight)
+      // A target that aims at an attached card: a hero or an ally with more than one asks which.
+      const options = highlights[highlight].filter((candidate) => sameRef(candidate, ref))
 
-      if (step.action) {
-        program(step.action)
-      } else if (step.next) {
-        store.select(step.next)
+      if (options.length > 1) {
+        setAttachedPick({ selection, options })
+      } else {
+        aimAt(selection, options[0] ?? ref, highlight)
       }
 
       return
@@ -592,6 +597,67 @@ export default function BattleScreen({
       setSpot({ kind: 'ally', player: ref.player, uid: unit.uid, cardId: unit.cardId })
     }
   }
+
+  /** Completes (or continues) the action being aimed with one more target. */
+  const aimAt = (current: Selection, ref: SlotRef, highlight: SlotHighlight) => {
+    const step = nextStep(current, ref, highlight)
+
+    if (step.action) {
+      program(step.action)
+    } else if (step.next) {
+      store.select(step.next)
+    }
+  }
+
+  /** The card a target that aims at an attached card points to, with what it is (for the choice). */
+  const attachedCard = (ref: SlotRef): { cardId: string; note: string } | null => {
+    const side = board.players[ref.player]
+
+    if (ref.slot === 'hero') {
+      const { weapon, armor } = side.hero
+
+      if (weapon && weapon.card.uid === ref.attached) {
+        return {
+          cardId: weapon.card.cardId,
+          note: t('battle.attached.weapon', { attack: weapon.attack, durability: weapon.durability })
+        }
+      }
+
+      return armor && armor.card.uid === ref.attached
+        ? {
+            cardId: armor.card.cardId,
+            note: t('battle.attached.armor', { reduction: armor.reduction, durability: armor.durability })
+          }
+        : null
+    }
+
+    const card = side.allies[ref.slot]?.attachments?.find((candidate) => candidate.uid === ref.attached)
+
+    return card ? { cardId: card.cardId, note: t('battle.attached.ally') } : null
+  }
+
+  /** The target kind the current selection asks for next (null: it is not aiming a target). */
+  const nextTargetKind = (current: Selection): TargetKind | null => {
+    switch (current.kind) {
+      case 'card': {
+        const card = state.players[me].hand.find((candidate) => candidate.uid === current.uid)
+
+        return (card && getCard(card.cardId).targets?.[current.targets.length]) ?? null
+      }
+
+      case 'ally':
+        return current.ability ? (allyAbility(board, me, current.uid)?.targets?.[current.ability.length] ?? null) : null
+      case 'hero':
+        return current.ability ? (heroCard(board, me).ability?.targets?.[current.ability.length] ?? null) : null
+      case 'artifact':
+        return artifactAbility(board, me, current.uid)?.targets?.[current.ability.length] ?? null
+      default:
+        return null
+    }
+  }
+
+  /** Why a target kind has nothing to aim at: no attached card, or no valid place. */
+  const noTarget = (kind: TargetKind) => (aimsAtAttached(kind) ? 'noAttached' : 'invalidTarget')
 
   /** A face-up support card: an artifact opens with its ability (when it has one); a trap is only looked at. */
   const onSupportClick = (player: PlayerId, card: CardInstance) => {
@@ -686,7 +752,12 @@ export default function BattleScreen({
       } else if (needs === 'slot') {
         playReason = firstWorking(current, summonRefs(board, me), 'summon', 'slotsFull')
       } else {
-        playReason = firstWorking(current, refsFor(board, me, definition.targets![0]), 'target', 'invalidTarget')
+        playReason = firstWorking(
+          current,
+          refsFor(board, me, definition.targets![0]),
+          'target',
+          noTarget(definition.targets![0])
+        )
       }
 
       spotActions = [
@@ -739,7 +810,7 @@ export default function BattleScreen({
           disabledReason: reason(
             energyShort(ability, false) ??
               (ability.targets?.length
-                ? firstWorking(aim, refsFor(board, me, ability.targets[0]), 'target', 'invalidTarget')
+                ? firstWorking(aim, refsFor(board, me, ability.targets[0]), 'target', noTarget(ability.targets[0]))
                 : store.check(direct))
           ),
           onClick: () => (ability.targets?.length ? choose(aim) : choose(null, direct))
@@ -791,7 +862,7 @@ export default function BattleScreen({
           disabledReason: reason(
             energyShort(ability, true) ??
               (ability.targets?.length
-                ? firstWorking(aim, refsFor(board, me, ability.targets[0]), 'target', 'invalidTarget')
+                ? firstWorking(aim, refsFor(board, me, ability.targets[0]), 'target', noTarget(ability.targets[0]))
                 : store.check(direct))
           ),
           onClick: () => (ability.targets?.length ? choose(aim) : choose(null, direct))
@@ -815,7 +886,7 @@ export default function BattleScreen({
           disabledReason: reason(
             energyShort(ability, false) ??
               (ability.targets?.length
-                ? firstWorking(aim, refsFor(board, me, ability.targets[0]), 'target', 'invalidTarget')
+                ? firstWorking(aim, refsFor(board, me, ability.targets[0]), 'target', noTarget(ability.targets[0]))
                 : store.check(direct))
           ),
           onClick: () => (ability.targets?.length ? choose(aim) : choose(null, direct))
@@ -877,6 +948,12 @@ export default function BattleScreen({
       aimHint = selection.ability ? t('battle.hints.target') : t('battle.hints.attack')
     } else if (selection.kind === 'artifact') {
       aimHint = t('battle.hints.target')
+    }
+
+    const kind = nextTargetKind(selection)
+
+    if (kind && aimsAtAttached(kind)) {
+      aimHint = t('battle.hints.attached')
     }
   }
 
@@ -1263,11 +1340,32 @@ export default function BattleScreen({
 
       {deckPick && planning && (
         <DeckPickOverlay
-          options={deckChoices}
+          options={deckChoices.map(({ cardId, copies }) => ({ key: cardId, cardId, copies }))}
           onClose={() => setDeckPick(false)}
           onPick={(cardId) => {
             setDeckPick(false)
             program({ kind: 'heroAbility', targets: [], cardId })
+          }}
+        />
+      )}
+      {attachedPick && planning && (
+        <DeckPickOverlay
+          title={t('battle.attachedPick.title')}
+          text={t('battle.attachedPick.text')}
+          options={attachedPick.options.flatMap((ref) => {
+            const card = attachedCard(ref)
+
+            return card ? [{ key: String(ref.attached), ...card }] : []
+          })}
+          onClose={() => setAttachedPick(null)}
+          onPick={(key) => {
+            const ref = attachedPick.options.find((option) => String(option.attached) === key)
+
+            setAttachedPick(null)
+
+            if (ref) {
+              aimAt(attachedPick.selection, ref, 'target')
+            }
           }}
         />
       )}

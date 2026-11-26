@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { destroyWeapon } from '@/app/(protected)/(engine)/effects'
+import { destroyAttachedAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'clever-scroll',
   type: 'item',
   name: 'Clever Scroll',
-  text: 'Destroy the enemy weapon. Fast.',
+  text: 'Destroy the enemy weapon or armor, your choice. Fast.',
   flavor: 'Read it backwards for the real spell.',
   faction: 'neutral',
   restriction: {},
@@ -13,8 +13,9 @@ export default defineCard({
   price: 180,
   cost: 4,
   speed: 'fast',
+  targets: ['enemyGear'],
   onPlay(ctx) {
-    destroyWeapon(ctx, ctx.opponent)
+    destroyAttachedAt(ctx, ctx.targets[0])
   },
   ai: { value: 4, tags: ['antiGear'] },
   art: {

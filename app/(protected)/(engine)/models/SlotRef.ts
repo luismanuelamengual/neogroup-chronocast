@@ -6,4 +6,10 @@ export type SlotIndex = 'hero' | number
 export interface SlotRef {
   player: PlayerId
   slot: SlotIndex
+  /**
+   * A card attached to that place (its uid): the hero's weapon or armor, or a
+   * card attached to the ally. Only the target kinds that aim at an attached
+   * card set it (`enemyGear`, `enemyAttachment`).
+   */
+  attached?: number
 }

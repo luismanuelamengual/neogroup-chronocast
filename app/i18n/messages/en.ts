@@ -584,6 +584,10 @@ export const en: Messages = {
       veil: '👁️ Hidden: stealth and +{amount} attack {until}',
       fallen: '💀 Fallen: reached 0 health'
     },
+    attachedPick: {
+      title: 'Choose the attached card',
+      text: 'It has more than one: tap the one to aim at.'
+    },
     deckPick: {
       title: 'Choose an artifact of your deck',
       text: 'It enters play without paying its cost, and your deck is shuffled.',
@@ -616,7 +620,8 @@ export const en: Messages = {
       attack: 'Choose who to attack.',
       move: 'Choose where to move it.',
       summon: 'Choose a free slot to summon it.',
-      target: 'Choose the target.'
+      target: 'Choose the target.',
+      attached: 'Tap the hero or the ally that has the attached card.'
     },
     buttons: {
       attack: 'Attack',
@@ -660,6 +665,7 @@ export const en: Messages = {
       exhausted: 'That ally already acted this phase (it attacked or used its ability)',
       sacrificeLimit: 'You can generate Chronos once per phase',
       invalidTarget: 'Invalid target',
+      noAttached: 'The rival has no weapon, armor or attached cards',
       stunned: 'It is stunned',
       heroFallen: 'The hero fell',
       supportFull: 'The 5 support slots are taken',

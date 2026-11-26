@@ -219,16 +219,21 @@ function validTargets(engine: MatchEngine, player: PlayerId, kinds: TargetKind[]
 
     const enemy = target.player !== player
     const unit = engine.targetUnit(target)
+    const hidden = !!unit && engine.hasKeyword(unit, 'stealth')
 
     switch (kind) {
       case 'enemySlot':
-        return enemy && !(unit && engine.hasKeyword(unit, 'stealth'))
+        return enemy && !hidden
       case 'enemyAlly':
-        return enemy && !!unit && !engine.hasKeyword(unit, 'stealth')
+        return enemy && !!unit && !hidden
       case 'friendlyAlly':
         return !enemy && !!unit
       case 'friendlySlot':
         return !enemy
+      case 'enemyGear':
+        return enemy && target.slot === 'hero' && !!engine.attachedAt(target)
+      case 'enemyAttachment':
+        return enemy && !hidden && !!engine.attachedAt(target)
     }
   })
 }

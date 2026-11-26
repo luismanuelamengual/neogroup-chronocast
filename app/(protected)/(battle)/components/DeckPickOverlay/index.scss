@@ -83,4 +83,18 @@
     font-family: var(--font-display);
     font-size: 0.8rem;
   }
+
+  &__note {
+    display: block;
+    margin-top: 4px;
+    color: var(--color-text-secondary);
+    font-size: 0.7rem;
+    line-height: 1.2;
+    white-space: pre-line;
+
+    @media (max-height: 500px) {
+      margin-top: 2px;
+      font-size: 0.62rem;
+    }
+  }
 }

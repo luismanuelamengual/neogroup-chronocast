@@ -23,19 +23,35 @@ function useCardWidth(count: number): number {
   return width
 }
 
+/** A card the player can pick: `key` is what `onPick` gets back. */
+export interface PickOption {
+  key: string
+  cardId: string
+  /** Copies of it (shown when more than one). */
+  copies?: number
+  /** A short line under the card (what it is, its numbers). */
+  note?: string
+}
+
 /**
- * A hero's ability that takes a card of the deck: the player taps the one to
- * put in play. Only the cards that can be chosen are shown, one per card
- * (with how many copies there are), never the order of the deck.
+ * The player taps one card of a few, shown big enough to read on a phone in
+ * landscape. By default, a hero's ability that takes a card of the deck: only
+ * the cards that can be chosen are shown, one per card (with how many copies
+ * there are), never the order of the deck. With `title` and `text`, any other
+ * choice of a card (e.g. which of the cards attached to a hero or an ally to aim at).
  */
 export default function DeckPickOverlay({
   options,
   onPick,
-  onClose
+  onClose,
+  title,
+  text
 }: {
-  options: { cardId: string; copies: number }[]
-  onPick: (cardId: string) => void
+  options: PickOption[]
+  onPick: (key: string) => void
   onClose: () => void
+  title?: string
+  text?: string
 }) {
   const t = useT()
   const cardWidth = useCardWidth(options.length)
@@ -43,13 +59,18 @@ export default function DeckPickOverlay({
   return (
     <div className="deck-pick-overlay" onClick={onClose}>
       <div className="deck-pick-overlay__panel" onClick={(event) => event.stopPropagation()}>
-        <h2>{t('battle.deckPick.title')}</h2>
-        <p>{t('battle.deckPick.text')}</p>
+        <h2>{title ?? t('battle.deckPick.title')}</h2>
+        <p>{text ?? t('battle.deckPick.text')}</p>
         <div className="deck-pick-overlay__cards">
-          {options.map(({ cardId, copies }) => (
-            <button key={cardId} type="button" className="deck-pick-overlay__card" onClick={() => onPick(cardId)}>
+          {options.map(({ key, cardId, copies = 1, note }) => (
+            <button key={key} type="button" className="deck-pick-overlay__card" onClick={() => onPick(key)}>
               <MiniCard cardId={cardId} width={cardWidth} />
               {copies > 1 && <span className="deck-pick-overlay__copies">×{copies}</span>}
+              {note && (
+                <span className="deck-pick-overlay__note" style={{ width: cardWidth }}>
+                  {note}
+                </span>
+              )}
             </button>
           ))}
         </div>

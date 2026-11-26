@@ -589,6 +589,10 @@ export const es = {
       veil: '👁️ Oculto: Sigilo y +{amount} de ataque {until}',
       fallen: '💀 Cayó: llegó a 0 de vida'
     },
+    attachedPick: {
+      title: 'Elegí la carta adjunta',
+      text: 'Tiene más de una: tocá a cuál apuntar.'
+    },
     deckPick: {
       title: 'Elegí un artefacto de tu mazo',
       text: 'Entra en juego sin pagar su costo, y tu mazo se mezcla.',
@@ -621,7 +625,8 @@ export const es = {
       attack: 'Elegí a quién atacar.',
       move: 'Elegí a dónde moverlo.',
       summon: 'Elegí un slot libre para invocarlo.',
-      target: 'Elegí el objetivo.'
+      target: 'Elegí el objetivo.',
+      attached: 'Tocá al héroe o al aliado que tiene la carta adjunta.'
     },
     buttons: {
       attack: 'Atacar',
@@ -665,6 +670,7 @@ export const es = {
       exhausted: 'Ese aliado ya actuó en esta fase (atacó o usó su habilidad)',
       sacrificeLimit: 'Solo podés generar Cronos una vez por fase',
       invalidTarget: 'Objetivo inválido',
+      noAttached: 'El rival no tiene armas, armaduras ni cartas adjuntas',
       stunned: 'Está aturdido',
       heroFallen: 'El héroe cayó',
       supportFull: 'Los 5 slots de soporte están ocupados',

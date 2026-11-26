@@ -389,6 +389,15 @@ export function destroyArmor(ctx: EffectContext, player: PlayerId): boolean {
   return ctx.engine.destroyArmor(player)
 }
 
+/**
+ * Destroys the card a target points to (a target kind `enemyGear` or
+ * `enemyAttachment`): a hero's weapon or armor, or a card attached to an ally.
+ * False when it is no longer there.
+ */
+export function destroyAttachedAt(ctx: EffectContext, target: SlotRef | undefined): boolean {
+  return !!target && ctx.engine.destroyAttached(target)
+}
+
 /** A player's weapon loses durability (it breaks at 0). */
 export function wearWeapon(ctx: EffectContext, player: PlayerId, amount: number): void {
   ctx.engine.wearWeapon(player, amount)
