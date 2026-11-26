@@ -743,7 +743,6 @@ export const en: Messages = {
     },
     cards: {
       lockedLevel: 'Unlocks at level {level}',
-      buyOne: 'Buy 1 for {price}',
       bought: { one: 'You bought {card}', other: 'You bought {count} copies of {card}' },
       heroOwned: 'You already have this hero',
       empty: 'No card for sale matches the filters.'
@@ -760,21 +759,15 @@ export const en: Messages = {
       quickButton: 'Sell the spare ones',
       confirm: 'Yes, sell',
       cancel: 'Cancel',
-      sellOne: 'Sell 1 for {gold}',
+      sellOne: 'Sell',
       sellExtra: 'Sell the {count} spare for {gold}',
       confirmValuable: 'It is a {rarity} card. Are you sure you want to sell it?',
-      lockedInDeck: {
-        one: 'Your active deck uses this copy, so it cannot be sold. Take it out of the deck or activate another one to sell it.',
-        other:
-          'Your active deck uses these {count} copies, so they cannot be sold. Take them out of the deck or activate another one to sell them.'
-      },
       freeCopies: {
         one: 'You can sell {count} copy: the rest are in your active deck.',
         other: 'You can sell {count} copies: the rest are in your active deck.'
       },
       sold: { one: 'You sold {count} card for {gold} gold', other: 'You sold {count} cards for {gold} gold' },
       price: 'Sells for {gold}',
-      inDeck: 'Active deck',
       empty: 'You have no cards to sell.'
     }
   },

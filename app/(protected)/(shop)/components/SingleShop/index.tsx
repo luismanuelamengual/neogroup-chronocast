@@ -34,7 +34,7 @@ interface SingleShopProps {
  * they can't be opened in detail and a search never finds them.
  */
 export default function SingleShop({ state, onChange }: SingleShopProps) {
-  const { t, locale } = useI18n()
+  const { t } = useI18n()
   const cardName = useCardName()
   const { buyCard } = useShop()
   const { showSuccessMessage } = useNotifications()
@@ -95,7 +95,7 @@ export default function SingleShop({ state, onChange }: SingleShopProps) {
           loading={busy === 'buy'}
           onClick={() => buy(cardId)}
         >
-          {t('shop.cards.buyOne', { price: price.toLocaleString(locale) })}
+          {t('shop.buy')} · <GoldAmount amount={price} />
         </GameButton>
       </div>
     )

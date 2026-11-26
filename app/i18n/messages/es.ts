@@ -748,7 +748,6 @@ export const es = {
     },
     cards: {
       lockedLevel: 'Se desbloquea en nivel {level}',
-      buyOne: 'Comprar 1 por {price}',
       bought: { one: 'Compraste {card}', other: 'Compraste {count} copias de {card}' },
       heroOwned: 'Ya tenés este héroe',
       empty: 'Ninguna carta a la venta coincide con los filtros.'
@@ -765,21 +764,15 @@ export const es = {
       quickButton: 'Vender las de sobra',
       confirm: 'Sí, vender',
       cancel: 'Cancelar',
-      sellOne: 'Vender 1 por {gold}',
+      sellOne: 'Vender',
       sellExtra: 'Vender las {count} de sobra por {gold}',
       confirmValuable: 'Es una carta {rarity}. ¿Seguro que la querés vender?',
-      lockedInDeck: {
-        one: 'Tu mazo activo usa esta copia, así que no se puede vender. Sacala del mazo o activá otro para venderla.',
-        other:
-          'Tu mazo activo usa estas {count} copias, así que no se pueden vender. Sacalas del mazo o activá otro para venderlas.'
-      },
       freeCopies: {
         one: 'Podés vender {count} copia: las demás están en tu mazo activo.',
         other: 'Podés vender {count} copias: las demás están en tu mazo activo.'
       },
       sold: { one: 'Vendiste {count} carta por {gold} de oro', other: 'Vendiste {count} cartas por {gold} de oro' },
       price: 'Se vende a {gold}',
-      inDeck: 'Mazo activo',
       empty: 'No tenés cartas para vender.'
     }
   },

@@ -36,7 +36,9 @@ interface PendingSale {
 /**
  * The sell tab (docs/PLAN.md, section 11.3): quick sell of the spare copies
  * with its total before confirming, and the sale of single copies, which asks
- * first for an epic or better. The copies the active deck holds cannot be sold.
+ * first for an epic or better. The copies the active deck holds cannot be sold,
+ * so the list shows only the free copies of each card and leaves out the cards
+ * with none.
  */
 export default function SellShop({ state, onChange }: SellShopProps) {
   const { t, locale } = useI18n()
@@ -51,11 +53,17 @@ export default function SellShop({ state, onChange }: SellShopProps) {
   const cards = useMemo(
     () =>
       Object.keys(state.collection)
-        .filter((cardId) => hasCard(cardId) && isSellable(getCard(cardId)))
+        .filter(
+          (cardId) =>
+            hasCard(cardId) &&
+            isSellable(getCard(cardId)) &&
+            sellableCopies(state.collection[cardId] ?? 0, state.deckUsage[cardId]) > 0
+        )
         .map(getCard)
         .sort(compareCards),
-    [state.collection]
+    [state.collection, state.deckUsage]
   )
+  const freeCopies = (cardId: string) => sellableCopies(state.collection[cardId] ?? 0, state.deckUsage[cardId])
 
   const finish = async (action: () => Promise<Sale>) => {
     setBusy(true)
@@ -67,7 +75,7 @@ export default function SellShop({ state, onChange }: SellShopProps) {
       onChange(sale.state)
       showSuccessMessage(t('shop.sell.sold', { count, gold: sale.gold.toLocaleString(locale) }))
 
-      if (!sale.state.collection[detail ?? '']) {
+      if (detail && sellableCopies(sale.state.collection[detail] ?? 0, sale.state.deckUsage[detail]) === 0) {
         setDetail(null)
       }
     } catch {
@@ -116,14 +124,14 @@ export default function SellShop({ state, onChange }: SellShopProps) {
     }
 
     if (free === 0) {
-      return <p className="sell-shop__locked">🔒 {t('shop.sell.lockedInDeck', { count: used })}</p>
+      return null
     }
 
     return (
       <div className="sell-shop__actions">
         {used > 0 && <p className="sell-shop__locked">{t('shop.sell.freeCopies', { count: free })}</p>}
         <GameButton size="small" color="primary" disabled={busy} onClick={() => sell(cardId, 1)}>
-          {t('shop.sell.sellOne', { gold: sellPrice(card).toLocaleString(locale) })}
+          {t('shop.sell.sellOne')} · <GoldAmount amount={sellPrice(card)} />
         </GameButton>
         {spare > 1 && (
           <GameButton size="small" color="secondary" disabled={busy} onClick={() => sell(cardId, spare)}>
@@ -170,9 +178,8 @@ export default function SellShop({ state, onChange }: SellShopProps) {
             <span className="sell-shop__zoom">
               <CardView card={card} />
             </span>
-            <span className="sell-shop__owned">×{state.collection[card.id]}</span>
+            <span className="sell-shop__owned">×{freeCopies(card.id)}</span>
             <span className="sell-shop__tags">
-              {(state.deckUsage[card.id] ?? 0) > 0 && <span className="sell-shop__deck">{t('shop.sell.inDeck')}</span>}
               <span className="sell-shop__price" title={t('shop.sell.price', { gold: sellPrice(card) })}>
                 +<GoldAmount amount={sellPrice(card)} />
               </span>
@@ -184,7 +191,7 @@ export default function SellShop({ state, onChange }: SellShopProps) {
       {detail && (
         <CardDetail
           cardId={detail}
-          owned={state.collection[detail] ?? 0}
+          owned={freeCopies(detail)}
           onClose={() => {
             setDetail(null)
             setPending(null)
