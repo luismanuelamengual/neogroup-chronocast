@@ -17,7 +17,7 @@ import { describeSetup } from '@/app/(protected)/(campaign)/utils/describeSetup'
 import { createCampaignMatch } from '@/app/(protected)/(campaign)/utils/playCampaign'
 import { stageKey, storyKey } from '@/app/(protected)/(campaign)/utils/storyKey'
 import CardView from '@/app/(protected)/(cards)/components/CardView'
-import ActiveDeckChip, { canPlayWith } from '@/app/(protected)/(collection)/components/ActiveDeckChip'
+import { canPlayWith } from '@/app/(protected)/(collection)/components/ActiveDeckChip'
 import { ActiveDeck } from '@/app/(protected)/(collection)/models/DeckDto'
 import { MAX_AI_LEVEL } from '@/app/(protected)/(engine)/ai/levels'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
@@ -207,7 +207,6 @@ export default function CampaignMap({ campaign: initial, deck }: CampaignMapProp
               <p className="campaign-map__muted">🔒 {t('campaign.stageLocked')}</p>
             ) : (
               <div className="campaign-map__start">
-                <ActiveDeckChip deck={deck} heroId={campaign.heroId} />
                 <GameButton
                   color="primary"
                   size="large"

@@ -241,26 +241,9 @@
     display: flex;
     flex-wrap: wrap;
     align-items: end;
+    justify-content: flex-end;
     gap: 10px;
     margin-top: 4px;
-
-    label {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      font-size: 0.85rem;
-      font-weight: 800;
-    }
-
-    select {
-      padding: 8px 10px;
-      border: 2px solid var(--color-panel-border);
-      border-radius: 12px;
-      background-color: white;
-      color: var(--color-text);
-      font: inherit;
-      font-weight: 700;
-    }
   }
 }
 
