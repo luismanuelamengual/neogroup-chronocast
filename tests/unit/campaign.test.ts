@@ -65,10 +65,10 @@ describe('the campaigns', () => {
   const es = createTranslator('es')
   const en = createTranslator('en')
 
-  it('one per campaign hero, with 10 battles against 10 different heroes, the boss last, and an exclusive card for the hero', () => {
+  it('one per hero, with 10 battles against 10 different heroes, the boss last, and an exclusive card for the hero', () => {
     const heroIds = HEROES.map((hero) => hero.id)
 
-    expect(CAMPAIGNS.length).toBe(12)
+    expect(CAMPAIGNS.map((campaign) => campaign.heroId).sort()).toEqual([...heroIds].sort())
 
     for (const campaign of CAMPAIGNS) {
       const reward = getCard(campaign.rewardCardId)

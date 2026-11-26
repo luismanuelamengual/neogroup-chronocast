@@ -13,11 +13,16 @@ import GameButton from '@/app/components/GameButton'
 import { useCardName } from '@/app/i18n/cards/useCardName'
 import { useT } from '@/app/i18n/I18nProvider'
 
-/** The campaigns (/campaign): one per hero, with the player's progress and the exclusive card each one gives. */
+/**
+ * The campaigns (/campaign): one per hero, with the player's progress and the
+ * exclusive card each one gives. The ones of heroes the player does not own go
+ * last, blurred and with a padlock, like the locked cards of the shop.
+ */
 export default function CampaignList({ campaigns }: { campaigns: CampaignSummary[] }) {
   useMusic('campaign')
   const t = useT()
   const cardName = useCardName()
+  const sorted = [...campaigns].sort((a, b) => Number(b.owned) - Number(a.owned))
 
   return (
     <div className="campaign-list">
@@ -29,7 +34,7 @@ export default function CampaignList({ campaigns }: { campaigns: CampaignSummary
       </header>
       <p className="campaign-list__text">{t('campaign.text')}</p>
       <ul>
-        {campaigns.map((campaign) => {
+        {sorted.map((campaign) => {
           const hero = getCard(campaign.heroId)
 
           return (
@@ -41,13 +46,22 @@ export default function CampaignList({ campaigns }: { campaigns: CampaignSummary
               })}
             >
               <div className="campaign-list__hero">
-                <CardView card={hero} />
+                <div className="campaign-list__veil" aria-hidden={!campaign.owned}>
+                  <CardView card={hero} />
+                </div>
+                {!campaign.owned && (
+                  <span className="campaign-list__lock">
+                    <span aria-hidden="true">🔒</span>
+                  </span>
+                )}
               </div>
               <div className="campaign-list__info">
                 <h2>{t(storyKey(campaign.heroId, 'title'))}</h2>
                 <strong>{cardName(hero)}</strong>
-                <p>{t(storyKey(campaign.heroId, 'intro'))}</p>
-                <div className="campaign-list__progress" aria-label={t('campaign.map')}>
+                <p className="campaign-list__veil" aria-hidden={!campaign.owned}>
+                  {t(storyKey(campaign.heroId, 'intro'))}
+                </p>
+                <div className="campaign-list__progress campaign-list__veil" aria-label={t('campaign.map')}>
                   {Array.from({ length: STAGES_PER_CAMPAIGN }, (_, index) => (
                     <span key={index} className={classNames({ won: index < campaign.stage })} />
                   ))}
@@ -57,7 +71,7 @@ export default function CampaignList({ campaigns }: { campaigns: CampaignSummary
                       : t('campaign.progress', { won: campaign.stage, total: STAGES_PER_CAMPAIGN })}
                   </b>
                 </div>
-                <div className="campaign-list__reward">
+                <div className="campaign-list__reward campaign-list__veil" aria-hidden={!campaign.owned}>
                   <span>
                     🎁 {t('campaign.exclusive')}: <b>{cardName(campaign.rewardCardId)}</b>
                   </span>
@@ -71,7 +85,12 @@ export default function CampaignList({ campaigns }: { campaigns: CampaignSummary
                         : t('campaign.play')}
                   </GameButton>
                 ) : (
-                  <span className="campaign-list__locked">🔒 {t('campaign.locked')}</span>
+                  <div className="campaign-list__locked">
+                    <span>🔒 {t('campaign.locked')}</span>
+                    <GameButton color="secondary" size="small" href="/shop?tab=cards">
+                      {t('campaign.toShop')}
+                    </GameButton>
+                  </div>
                 )}
               </div>
             </li>

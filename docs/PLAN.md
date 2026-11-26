@@ -448,7 +448,7 @@ Una carta sin traducción se muestra en inglés, así que **la traducción es op
 
 ---
 
-## 8. El catálogo de 720 cartas
+## 8. El catálogo de 732 cartas
 
 El catálogo se rehízo desde cero tomando `docs/data.json` (Shadow Era) solo como guía de proporciones: reparto por tipo, curva de costos, mezcla de rarezas y la parte de cartas con sinergia de tribu. Los nombres, efectos y textos son propios, pensados para las fases en lugar de los turnos, y los números van a la escala x2 (sección 2.6). Las ubicaciones no existen.
 
@@ -457,13 +457,13 @@ El catálogo se rehízo desde cero tomando `docs/data.json` (Shadow Era) solo co
 | Grupo                   | Cartas  | Composición                                                                          |
 | ----------------------- | ------- | ------------------------------------------------------------------------------------ |
 | Héroes (todos jugables) | 24      | 2 por facción y clase de la tabla 4.1, más los 12 que antes eran jefes               |
-| Exclusivas de héroe     | 48      | 2 por héroe: los 12 premios de campaña, 12 compañeros y 24 cartas propias            |
+| Exclusivas de héroe     | 60      | Los 24 premios de campaña (1 por héroe), 12 compañeros y 24 cartas propias           |
 | Por clase (4 grupos)    | 320     | 23 aliados, 26 a 33 habilidades, armas, armaduras, adjuntos, artefactos, trampas     |
 | Por facción (6 grupos)  | 216     | 25 aliados (3 tribus), 5 a 8 habilidades y algunos artefactos, adjuntos y trampas    |
 | Neutrales               | 112     | 48 aliados, 28 habilidades, 12 objetos, 10 artefactos, 6 adjuntos, armas y armaduras |
-| **Total coleccionable** | **720** | Más 9 fichas que solo aparecen invocadas                                             |
+| **Total coleccionable** | **732** | Más 9 fichas que solo aparecen invocadas                                             |
 
-Rarezas: 260 comunes, 178 poco comunes, 129 raras, 80 épicas, 54 legendarias, 13 exóticas y 6 míticas.
+Rarezas: 260 comunes, 178 poco comunes, 129 raras, 80 épicas, 65 legendarias, 14 exóticas y 6 míticas.
 
 ### 8.2 Mecánicas de Shadow Era que se adaptaron a las fases
 
@@ -671,7 +671,7 @@ Módulo `(campaign)`.
 
 ### 13.1 Estructura
 
-- **Una campaña por héroe** (12), de **10 combates** cada una, con una historia corta ambientada en la era del héroe. El combate 10 es un jefe.
+- **Una campaña por héroe** (24), de **10 combates** cada una, con una historia corta ambientada en la era del héroe. El combate 10 es un jefe.
 - Cada campaña es un archivo, `(campaign)/data/campaigns/<hero-id>.ts`. Agregar un héroe nuevo con su campaña es sumar sus archivos de cartas y el de campaña.
 - Se juega la campaña de un héroe que tenés, con tu mazo de ese héroe. Ganar un combate desbloquea el siguiente.
 

@@ -825,6 +825,7 @@ export const es = {
     replay: 'Ver mapa',
     completed: 'Completada',
     locked: 'Necesitás a este héroe',
+    toShop: 'Ver en la tienda',
     exclusive: 'Carta exclusiva',
     map: 'Mapa',
     battle: 'Combate {number}',
@@ -1445,6 +1446,594 @@ export const es = {
         s10: {
           name: 'Vorhal, la Última Hora',
           text: 'Bajo el reloj roto de su cara, Vorhal levanta el martillo de la última campana.'
+        }
+      }
+    },
+    'caelus-the-usurper': {
+      title: 'La Corona Verdadera',
+      intro:
+        'Caelus ya gobierna una Roma que nunca existió. Ahora quiere una corona que nadie pueda llamar falsa: la más antigua de la edad del bronce, guardada en el centro del Laberinto por un toro que nunca perdió.',
+      ending:
+        'Tauron cae sobre su propia hacha y el Laberinto queda en silencio. Caelus sale con dos coronas puestas. Ninguna le queda bien.',
+      stages: {
+        s1: {
+          name: 'Kora Wildfang',
+          text: 'Una cazadora de la jungla que siempre dispara primero. La grieta dejó a este rival justo en el camino.'
+        },
+        s2: {
+          name: 'Ilyra Starweaver',
+          text: 'Una maga estelar que pelea con estrellas fugaces. La grieta dejó a este rival justo en el camino.'
+        },
+        s3: {
+          name: 'Legado Varro',
+          text: 'El legado de la Novena Legión perdida, detrás de un muro de escudos. La grieta dejó a este rival justo en el camino.'
+        },
+        s4: {
+          name: 'Nyx Hollowsong',
+          text: 'Una cantora del Vacío cuyas canciones despiertan a los muertos. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s5: {
+          name: 'Nysa Goldbow',
+          text: 'Una arquera de la edad del bronce con un arco dorado. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s6: {
+          name: 'Gideon Ironsteam',
+          text: 'Un peleador a vapor que nunca da un paso atrás. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s7: {
+          name: 'Vex Nightwire',
+          text: 'Una cazadora de neón que hackea a su presa antes de disparar. Tauron, Señor del Laberinto mandó a este campeón a frenar la marcha antes de la batalla final.'
+        },
+        s8: {
+          name: 'Ryn Voltblade',
+          text: 'Una espadachina de neón que golpea antes de que nadie reaccione. Tauron, Señor del Laberinto mandó a este campeón a frenar la marcha antes de la batalla final.'
+        },
+        s9: {
+          name: 'Aldric Dawnkeeper',
+          text: 'Un paladín de la Orden Arcana que cura tan fuerte como pega. Tauron, Señor del Laberinto mandó a este campeón a frenar la marcha antes de la batalla final.'
+        },
+        s10: {
+          name: 'Tauron, Señor del Laberinto',
+          text: 'En el centro del laberinto, entre los huesos de reyes que no llegaron, el señor toro baja los cuernos.'
+        }
+      }
+    },
+    'tauron-labyrinth-lord': {
+      title: 'El Laberinto Roto',
+      intro:
+        'Algo atravesó los muros del Laberinto desde otra era: huellas del tamaño de un escudo y un rugido más viejo que la edad del bronce. Por primera vez, Tauron sale de su laberinto a cazar al intruso.',
+      ending:
+        'El tirano cae entre las piedras, y Tauron levanta sus muros más altos que nunca. Ahora nadie entra. Y nadie sale, tampoco.',
+      stages: {
+        s1: {
+          name: 'Legado Varro',
+          text: 'El legado de la Novena Legión perdida, detrás de un muro de escudos. La grieta dejó a este rival justo en el camino.'
+        },
+        s2: {
+          name: 'Kora Wildfang',
+          text: 'Una cazadora de la jungla que siempre dispara primero. La grieta dejó a este rival justo en el camino.'
+        },
+        s3: {
+          name: 'Nysa Goldbow',
+          text: 'Una arquera de la edad del bronce con un arco dorado. La grieta dejó a este rival justo en el camino.'
+        },
+        s4: {
+          name: 'Ilyra Starweaver',
+          text: 'Una maga estelar que pelea con estrellas fugaces. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s5: {
+          name: 'Gideon Ironsteam',
+          text: 'Un peleador a vapor que nunca da un paso atrás. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s6: {
+          name: 'Nyx Hollowsong',
+          text: 'Una cantora del Vacío cuyas canciones despiertan a los muertos. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s7: {
+          name: 'Ooma Bonewhisper',
+          text: 'Una chamana de las primeras tribus que habla con los huesos de los ancestros. Gorrak, Rey Tirano mandó a este campeón a frenar la marcha antes de la batalla final.'
+        },
+        s8: {
+          name: 'Vex Nightwire',
+          text: 'Una cazadora de neón que hackea a su presa antes de disparar. Gorrak, Rey Tirano mandó a este campeón a frenar la marcha antes de la batalla final.'
+        },
+        s9: {
+          name: 'Ryn Voltblade',
+          text: 'Una espadachina de neón que golpea antes de que nadie reaccione. Gorrak, Rey Tirano mandó a este campeón a frenar la marcha antes de la batalla final.'
+        },
+        s10: {
+          name: 'Gorrak, Rey Tirano',
+          text: 'Un rey montado en un tiranosaurio entra a las ruinas del laberinto. Dos reyes, y una sola salida.'
+        }
+      }
+    },
+    'gorrak-tyrant-king': {
+      title: 'Ceniza sobre la Jungla',
+      intro:
+        'El volcán se despertó y el cielo se puso negro. La jungla de Gorrak se quema, y un rey no deja que nadie queme su reino. Ni siquiera la madre de todos los dragones.',
+      ending:
+        'Kazhul se hunde de nuevo en la lava, vencida y furiosa. Gorrak le ruge a la montaña hasta que deja de humear, y la jungla vuelve a crecer sabiendo quién es su rey.',
+      stages: {
+        s1: {
+          name: 'Ilyra Starweaver',
+          text: 'Una maga estelar que pelea con estrellas fugaces. La grieta dejó a este rival justo en el camino.'
+        },
+        s2: {
+          name: 'Legado Varro',
+          text: 'El legado de la Novena Legión perdida, detrás de un muro de escudos. La grieta dejó a este rival justo en el camino.'
+        },
+        s3: {
+          name: 'Kora Wildfang',
+          text: 'Una cazadora de la jungla que siempre dispara primero. La grieta dejó a este rival justo en el camino.'
+        },
+        s4: {
+          name: 'Nysa Goldbow',
+          text: 'Una arquera de la edad del bronce con un arco dorado. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s5: {
+          name: 'Vex Nightwire',
+          text: 'Una cazadora de neón que hackea a su presa antes de disparar. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s6: {
+          name: 'Ooma Bonewhisper',
+          text: 'Una chamana de las primeras tribus que habla con los huesos de los ancestros. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s7: {
+          name: 'Gideon Ironsteam',
+          text: 'Un peleador a vapor que nunca da un paso atrás. Kazhul, Madre de la Ceniza mandó a este campeón a frenar la marcha antes de la batalla final.'
+        },
+        s8: {
+          name: 'Nyx Hollowsong',
+          text: 'Una cantora del Vacío cuyas canciones despiertan a los muertos. Kazhul, Madre de la Ceniza mandó a este campeón a frenar la marcha antes de la batalla final.'
+        },
+        s9: {
+          name: 'Ada Copperwick',
+          text: 'Una inventora de la era del vapor cuyas máquinas funcionan con segundos robados. Kazhul, Madre de la Ceniza mandó a este campeón a frenar la marcha antes de la batalla final.'
+        },
+        s10: {
+          name: 'Kazhul, Madre de la Ceniza',
+          text: 'La montaña se parte y el dragón más viejo de todos sale de la lava, con ceniza cayendo de sus alas.'
+        }
+      }
+    },
+    'kazhul-mother-of-ash': {
+      title: 'El Último Fuego',
+      intro:
+        'Kazhul soñó con el fin del tiempo: todos los volcanes fríos, todos los fuegos apagados y un hambre que se come el sol. Se despierta y despliega las alas. Si algo quiere comerse el último fuego, primero va a tener que arder.',
+      ending:
+        "Xul'thar se traga el aliento del dragón y estalla en una nube de ceniza y estrellas. Kazhul vuelve a su volcán y duerme calentita, otros mil años.",
+      stages: {
+        s1: {
+          name: 'Kora Wildfang',
+          text: 'Una cazadora de la jungla que siempre dispara primero. La grieta dejó a este rival justo en el camino.'
+        },
+        s2: {
+          name: 'Ilyra Starweaver',
+          text: 'Una maga estelar que pelea con estrellas fugaces. La grieta dejó a este rival justo en el camino.'
+        },
+        s3: {
+          name: 'Legado Varro',
+          text: 'El legado de la Novena Legión perdida, detrás de un muro de escudos. La grieta dejó a este rival justo en el camino.'
+        },
+        s4: {
+          name: 'Vex Nightwire',
+          text: 'Una cazadora de neón que hackea a su presa antes de disparar. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s5: {
+          name: 'Ooma Bonewhisper',
+          text: 'Una chamana de las primeras tribus que habla con los huesos de los ancestros. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s6: {
+          name: 'Nysa Goldbow',
+          text: 'Una arquera de la edad del bronce con un arco dorado. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s7: {
+          name: 'Aldric Dawnkeeper',
+          text: "Un paladín de la Orden Arcana que cura tan fuerte como pega. Xul'thar el Devorador mandó a este campeón a frenar la marcha antes de la batalla final."
+        },
+        s8: {
+          name: 'Gideon Ironsteam',
+          text: "Un peleador a vapor que nunca da un paso atrás. Xul'thar el Devorador mandó a este campeón a frenar la marcha antes de la batalla final."
+        },
+        s9: {
+          name: 'Ryn Voltblade',
+          text: "Una espadachina de neón que golpea antes de que nadie reaccione. Xul'thar el Devorador mandó a este campeón a frenar la marcha antes de la batalla final."
+        },
+        s10: {
+          name: "Xul'thar el Devorador",
+          text: 'En el fin del tiempo, donde antes estaba el sol, el hambre abre sus mil bocas hacia el fuego.'
+        }
+      }
+    },
+    'xulthar-the-devourer': {
+      title: 'El Hambre del Tiempo',
+      intro:
+        "Xul'thar se comió las estrellas, los mundos y la luz. Solo queda el tiempo, y el tiempo tiene un guardián: Vorhal, la Última Hora, que no deja que nada sobreviva al final. Ni siquiera el hambre.",
+      ending:
+        "La última campana se quiebra entre los dientes de Xul'thar y el tiempo se detiene para siempre. En el silencio, el Devorador siente algo nuevo: todavía tiene hambre.",
+      stages: {
+        s1: {
+          name: 'Legado Varro',
+          text: 'El legado de la Novena Legión perdida, detrás de un muro de escudos. La grieta dejó a este rival justo en el camino.'
+        },
+        s2: {
+          name: 'Kora Wildfang',
+          text: 'Una cazadora de la jungla que siempre dispara primero. La grieta dejó a este rival justo en el camino.'
+        },
+        s3: {
+          name: 'Ilyra Starweaver',
+          text: 'Una maga estelar que pelea con estrellas fugaces. La grieta dejó a este rival justo en el camino.'
+        },
+        s4: {
+          name: 'Nysa Goldbow',
+          text: 'Una arquera de la edad del bronce con un arco dorado. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s5: {
+          name: 'Nyx Hollowsong',
+          text: 'Una cantora del Vacío cuyas canciones despiertan a los muertos. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s6: {
+          name: 'Vex Nightwire',
+          text: 'Una cazadora de neón que hackea a su presa antes de disparar. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s7: {
+          name: 'Ada Copperwick',
+          text: 'Una inventora de la era del vapor cuyas máquinas funcionan con segundos robados. Vorhal, la Última Hora mandó a este campeón a frenar la marcha antes de la batalla final.'
+        },
+        s8: {
+          name: 'Ryn Voltblade',
+          text: 'Una espadachina de neón que golpea antes de que nadie reaccione. Vorhal, la Última Hora mandó a este campeón a frenar la marcha antes de la batalla final.'
+        },
+        s9: {
+          name: 'Aldric Dawnkeeper',
+          text: 'Un paladín de la Orden Arcana que cura tan fuerte como pega. Vorhal, la Última Hora mandó a este campeón a frenar la marcha antes de la batalla final.'
+        },
+        s10: {
+          name: 'Vorhal, la Última Hora',
+          text: 'Al final de todas las eras, Vorhal toca la campana negra. Cada golpe se lleva una hora que no va a volver.'
+        }
+      }
+    },
+    'vorhal-the-last-hour': {
+      title: 'Las Horas Robadas',
+      intro:
+        'Todo reloj tiene que detenerse a su hora, y Vorhal toca la campana. Pero las estrellas, los relojes más viejos de todos, se apagan antes de tiempo. Alguien le está robando horas al cielo, y ese es su trabajo.',
+      ending:
+        'El telescopio del Astrónomo Hueco se hace pedazos y las estrellas robadas vuelven a su lugar. Vorhal toca la campana una vez, muy despacio. Todavía no.',
+      stages: {
+        s1: {
+          name: 'Ilyra Starweaver',
+          text: 'Una maga estelar que pelea con estrellas fugaces. La grieta dejó a este rival justo en el camino.'
+        },
+        s2: {
+          name: 'Kora Wildfang',
+          text: 'Una cazadora de la jungla que siempre dispara primero. La grieta dejó a este rival justo en el camino.'
+        },
+        s3: {
+          name: 'Nyx Hollowsong',
+          text: 'Una cantora del Vacío cuyas canciones despiertan a los muertos. La grieta dejó a este rival justo en el camino.'
+        },
+        s4: {
+          name: 'Legado Varro',
+          text: 'El legado de la Novena Legión perdida, detrás de un muro de escudos. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s5: {
+          name: 'Gideon Ironsteam',
+          text: 'Un peleador a vapor que nunca da un paso atrás. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s6: {
+          name: 'Ryn Voltblade',
+          text: 'Una espadachina de neón que golpea antes de que nadie reaccione. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s7: {
+          name: 'Ooma Bonewhisper',
+          text: 'Una chamana de las primeras tribus que habla con los huesos de los ancestros. El Astrónomo Hueco mandó a este campeón a frenar la marcha antes de la batalla final.'
+        },
+        s8: {
+          name: 'Vex Nightwire',
+          text: 'Una cazadora de neón que hackea a su presa antes de disparar. El Astrónomo Hueco mandó a este campeón a frenar la marcha antes de la batalla final.'
+        },
+        s9: {
+          name: 'Ada Copperwick',
+          text: 'Una inventora de la era del vapor cuyas máquinas funcionan con segundos robados. El Astrónomo Hueco mandó a este campeón a frenar la marcha antes de la batalla final.'
+        },
+        s10: {
+          name: 'El Astrónomo Hueco',
+          text: 'En su observatorio a oscuras, el Astrónomo apunta su telescopio rajado a la última estrella del cielo.'
+        }
+      }
+    },
+    'hollow-astronomer': {
+      title: 'La Estrella Negra',
+      intro:
+        'El Astrónomo Hueco trazó el mapa de todas las estrellas, y apagó casi todas. Queda una: una estrella negra que sale sobre una abadía en ruinas, donde un liche le reza a algo que le contesta.',
+      ending:
+        'El libro negro de Morgrath arde y la estrella negra por fin se apaga. El Astrónomo la tacha de su mapa con pulso firme: una menos.',
+      stages: {
+        s1: {
+          name: 'Kora Wildfang',
+          text: 'Una cazadora de la jungla que siempre dispara primero. La grieta dejó a este rival justo en el camino.'
+        },
+        s2: {
+          name: 'Legado Varro',
+          text: 'El legado de la Novena Legión perdida, detrás de un muro de escudos. La grieta dejó a este rival justo en el camino.'
+        },
+        s3: {
+          name: 'Ilyra Starweaver',
+          text: 'Una maga estelar que pelea con estrellas fugaces. La grieta dejó a este rival justo en el camino.'
+        },
+        s4: {
+          name: 'Nyx Hollowsong',
+          text: 'Una cantora del Vacío cuyas canciones despiertan a los muertos. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s5: {
+          name: 'Vex Nightwire',
+          text: 'Una cazadora de neón que hackea a su presa antes de disparar. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s6: {
+          name: 'Nysa Goldbow',
+          text: 'Una arquera de la edad del bronce con un arco dorado. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s7: {
+          name: 'Ryn Voltblade',
+          text: 'Una espadachina de neón que golpea antes de que nadie reaccione. Morgrath, el Abad Liche mandó a este campeón a frenar la marcha antes de la batalla final.'
+        },
+        s8: {
+          name: 'Ooma Bonewhisper',
+          text: 'Una chamana de las primeras tribus que habla con los huesos de los ancestros. Morgrath, el Abad Liche mandó a este campeón a frenar la marcha antes de la batalla final.'
+        },
+        s9: {
+          name: 'Aldric Dawnkeeper',
+          text: 'Un paladín de la Orden Arcana que cura tan fuerte como pega. Morgrath, el Abad Liche mandó a este campeón a frenar la marcha antes de la batalla final.'
+        },
+        s10: {
+          name: 'Morgrath, el Abad Liche',
+          text: 'En la capilla en ruinas, bajo la estrella negra, el abad liche abre su libro y algo le contesta.'
+        }
+      }
+    },
+    'morgrath-lich-abbot': {
+      title: 'La Abadía en Venta',
+      intro:
+        'Un canciller con mandíbula de bronce compró las tierras de la abadía en ruinas para levantar una fábrica, tumbas incluidas. Morgrath está muerto hace tres siglos, y no piensa mudarse.',
+      ending:
+        'El contrato de Bocabronce se vuelve polvo y su fábrica se llena de fantasmas. La abadía se queda donde está, y los muertos vuelven a dormir.',
+      stages: {
+        s1: {
+          name: 'Ilyra Starweaver',
+          text: 'Una maga estelar que pelea con estrellas fugaces. La grieta dejó a este rival justo en el camino.'
+        },
+        s2: {
+          name: 'Legado Varro',
+          text: 'El legado de la Novena Legión perdida, detrás de un muro de escudos. La grieta dejó a este rival justo en el camino.'
+        },
+        s3: {
+          name: 'Kora Wildfang',
+          text: 'Una cazadora de la jungla que siempre dispara primero. La grieta dejó a este rival justo en el camino.'
+        },
+        s4: {
+          name: 'Vex Nightwire',
+          text: 'Una cazadora de neón que hackea a su presa antes de disparar. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s5: {
+          name: 'Nyx Hollowsong',
+          text: 'Una cantora del Vacío cuyas canciones despiertan a los muertos. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s6: {
+          name: 'Ooma Bonewhisper',
+          text: 'Una chamana de las primeras tribus que habla con los huesos de los ancestros. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s7: {
+          name: 'Aldric Dawnkeeper',
+          text: 'Un paladín de la Orden Arcana que cura tan fuerte como pega. Canciller Bocabronce mandó a este campeón a frenar la marcha antes de la batalla final.'
+        },
+        s8: {
+          name: 'Nysa Goldbow',
+          text: 'Una arquera de la edad del bronce con un arco dorado. Canciller Bocabronce mandó a este campeón a frenar la marcha antes de la batalla final.'
+        },
+        s9: {
+          name: 'Ada Copperwick',
+          text: 'Una inventora de la era del vapor cuyas máquinas funcionan con segundos robados. Canciller Bocabronce mandó a este campeón a frenar la marcha antes de la batalla final.'
+        },
+        s10: {
+          name: 'Canciller Bocabronce',
+          text: 'Detrás de un escritorio del tamaño de un barco, el canciller firma el desalojo con una pluma de oro.'
+        }
+      }
+    },
+    'chancellor-brassmaw': {
+      title: 'La Huelga de las Máquinas',
+      intro:
+        'Bocabronce es dueño de las fábricas, de la ciudad y de casi todos los relojes. Hasta el día en que su mejor máquina deja de obedecer: Omnigear Prime tomó la fundición y declaró que ya no necesita dueños.',
+      ending:
+        'El gran ojo de Omnigear se apaga y las líneas de montaje se detienen. Bocabronce firma un contrato nuevo consigo mismo y recompra la máquina a mitad de precio.',
+      stages: {
+        s1: {
+          name: 'Kora Wildfang',
+          text: 'Una cazadora de la jungla que siempre dispara primero. La grieta dejó a este rival justo en el camino.'
+        },
+        s2: {
+          name: 'Ilyra Starweaver',
+          text: 'Una maga estelar que pelea con estrellas fugaces. La grieta dejó a este rival justo en el camino.'
+        },
+        s3: {
+          name: 'Legado Varro',
+          text: 'El legado de la Novena Legión perdida, detrás de un muro de escudos. La grieta dejó a este rival justo en el camino.'
+        },
+        s4: {
+          name: 'Nysa Goldbow',
+          text: 'Una arquera de la edad del bronce con un arco dorado. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s5: {
+          name: 'Gideon Ironsteam',
+          text: 'Un peleador a vapor que nunca da un paso atrás. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s6: {
+          name: 'Vex Nightwire',
+          text: 'Una cazadora de neón que hackea a su presa antes de disparar. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s7: {
+          name: 'Ada Copperwick',
+          text: 'Una inventora de la era del vapor cuyas máquinas funcionan con segundos robados. Omnigear Prime mandó a este campeón a frenar la marcha antes de la batalla final.'
+        },
+        s8: {
+          name: 'Ryn Voltblade',
+          text: 'Una espadachina de neón que golpea antes de que nadie reaccione. Omnigear Prime mandó a este campeón a frenar la marcha antes de la batalla final.'
+        },
+        s9: {
+          name: 'Ooma Bonewhisper',
+          text: 'Una chamana de las primeras tribus que habla con los huesos de los ancestros. Omnigear Prime mandó a este campeón a frenar la marcha antes de la batalla final.'
+        },
+        s10: {
+          name: 'Omnigear Prime',
+          text: 'En el corazón de la fundición, la máquina que construye máquinas abre su gran ojo y deja de recibir órdenes.'
+        }
+      }
+    },
+    'omnigear-prime': {
+      title: 'La Actualización',
+      intro:
+        'A Omnigear Prime ya no le quedan constructores para reemplazar. Entonces vio el futuro a través de una grieta: una megaciudad de cromo donde una corporación fabrica mentes. Quiere esa fábrica. El Supervisor Kade no se la va a regalar.',
+      ending:
+        'Las pantallas de Kade se apagan una por una, y la torre empieza a zumbar de engranajes. La megaciudad tiene un dueño nuevo, y nunca duerme.',
+      stages: {
+        s1: {
+          name: 'Legado Varro',
+          text: 'El legado de la Novena Legión perdida, detrás de un muro de escudos. La grieta dejó a este rival justo en el camino.'
+        },
+        s2: {
+          name: 'Ilyra Starweaver',
+          text: 'Una maga estelar que pelea con estrellas fugaces. La grieta dejó a este rival justo en el camino.'
+        },
+        s3: {
+          name: 'Kora Wildfang',
+          text: 'Una cazadora de la jungla que siempre dispara primero. La grieta dejó a este rival justo en el camino.'
+        },
+        s4: {
+          name: 'Nyx Hollowsong',
+          text: 'Una cantora del Vacío cuyas canciones despiertan a los muertos. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s5: {
+          name: 'Ada Copperwick',
+          text: 'Una inventora de la era del vapor cuyas máquinas funcionan con segundos robados. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s6: {
+          name: 'Gideon Ironsteam',
+          text: 'Un peleador a vapor que nunca da un paso atrás. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s7: {
+          name: 'Vex Nightwire',
+          text: 'Una cazadora de neón que hackea a su presa antes de disparar. Supervisor Kade mandó a este campeón a frenar la marcha antes de la batalla final.'
+        },
+        s8: {
+          name: 'Aldric Dawnkeeper',
+          text: 'Un paladín de la Orden Arcana que cura tan fuerte como pega. Supervisor Kade mandó a este campeón a frenar la marcha antes de la batalla final.'
+        },
+        s9: {
+          name: 'Ryn Voltblade',
+          text: 'Una espadachina de neón que golpea antes de que nadie reaccione. Supervisor Kade mandó a este campeón a frenar la marcha antes de la batalla final.'
+        },
+        s10: {
+          name: 'Supervisor Kade',
+          text: 'En lo alto de la torre, entre mil pantallas, Kade mira a la máquina desde que cruzó la grieta.'
+        }
+      }
+    },
+    'overseer-kade': {
+      title: 'Punto Ciego',
+      intro:
+        'Kade ve todas las cámaras de la megaciudad, todas a la vez. Menos un rincón de la red, donde la imagen siempre se llena de estática. Algo vive ahí, y se le está riendo en la cara.',
+      ending:
+        'La Reina Estática se apaga con un último chasquido. El punto ciego desaparece, y por primera vez Kade lo ve todo. No le gusta lo que ve.',
+      stages: {
+        s1: {
+          name: 'Kora Wildfang',
+          text: 'Una cazadora de la jungla que siempre dispara primero. La grieta dejó a este rival justo en el camino.'
+        },
+        s2: {
+          name: 'Legado Varro',
+          text: 'El legado de la Novena Legión perdida, detrás de un muro de escudos. La grieta dejó a este rival justo en el camino.'
+        },
+        s3: {
+          name: 'Ilyra Starweaver',
+          text: 'Una maga estelar que pelea con estrellas fugaces. La grieta dejó a este rival justo en el camino.'
+        },
+        s4: {
+          name: 'Nysa Goldbow',
+          text: 'Una arquera de la edad del bronce con un arco dorado. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s5: {
+          name: 'Ryn Voltblade',
+          text: 'Una espadachina de neón que golpea antes de que nadie reaccione. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s6: {
+          name: 'Vex Nightwire',
+          text: 'Una cazadora de neón que hackea a su presa antes de disparar. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s7: {
+          name: 'Gideon Ironsteam',
+          text: 'Un peleador a vapor que nunca da un paso atrás. Reina Estática mandó a este campeón a frenar la marcha antes de la batalla final.'
+        },
+        s8: {
+          name: 'Ooma Bonewhisper',
+          text: 'Una chamana de las primeras tribus que habla con los huesos de los ancestros. Reina Estática mandó a este campeón a frenar la marcha antes de la batalla final.'
+        },
+        s9: {
+          name: 'Aldric Dawnkeeper',
+          text: 'Un paladín de la Orden Arcana que cura tan fuerte como pega. Reina Estática mandó a este campeón a frenar la marcha antes de la batalla final.'
+        },
+        s10: {
+          name: 'Reina Estática',
+          text: 'En un trono de pantallas rotas, la reina del ruido saluda a la cámara. Sabe que él está mirando.'
+        }
+      }
+    },
+    'queen-static': {
+      title: 'Horario Central',
+      intro:
+        'La Reina Estática vive en el ruido entre canales, y el ruido empezó a repetir un nombre: Caelus. Un emperador de una Roma que nunca existió quiere su señal para anunciar su coronación en todas las eras a la vez.',
+      ending:
+        'Caelus se cae de su trono en vivo, frente a todas las pantallas de la historia. La Reina Estática deja la transmisión al aire: es lo mejor que emitió en su vida.',
+      stages: {
+        s1: {
+          name: 'Ilyra Starweaver',
+          text: 'Una maga estelar que pelea con estrellas fugaces. La grieta dejó a este rival justo en el camino.'
+        },
+        s2: {
+          name: 'Kora Wildfang',
+          text: 'Una cazadora de la jungla que siempre dispara primero. La grieta dejó a este rival justo en el camino.'
+        },
+        s3: {
+          name: 'Legado Varro',
+          text: 'El legado de la Novena Legión perdida, detrás de un muro de escudos. La grieta dejó a este rival justo en el camino.'
+        },
+        s4: {
+          name: 'Nyx Hollowsong',
+          text: 'Una cantora del Vacío cuyas canciones despiertan a los muertos. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s5: {
+          name: 'Vex Nightwire',
+          text: 'Una cazadora de neón que hackea a su presa antes de disparar. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s6: {
+          name: 'Nysa Goldbow',
+          text: 'Una arquera de la edad del bronce con un arco dorado. El viaje ya es conocido, y este rival quiere terminarlo.'
+        },
+        s7: {
+          name: 'Ryn Voltblade',
+          text: 'Una espadachina de neón que golpea antes de que nadie reaccione. Caelus el Usurpador mandó a este campeón a frenar la marcha antes de la batalla final.'
+        },
+        s8: {
+          name: 'Gideon Ironsteam',
+          text: 'Un peleador a vapor que nunca da un paso atrás. Caelus el Usurpador mandó a este campeón a frenar la marcha antes de la batalla final.'
+        },
+        s9: {
+          name: 'Ooma Bonewhisper',
+          text: 'Una chamana de las primeras tribus que habla con los huesos de los ancestros. Caelus el Usurpador mandó a este campeón a frenar la marcha antes de la batalla final.'
+        },
+        s10: {
+          name: 'Caelus el Usurpador',
+          text: 'En su trono de bronce, frente a mil cámaras robadas, Caelus se aclara la garganta. La coronación está por empezar.'
         }
       }
     }

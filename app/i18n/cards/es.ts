@@ -408,6 +408,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Al empezar cada fase: hacé 1 de daño al héroe enemigo. (3 usos)'
   },
   'breastplate-of-rage': { name: 'Peto de la Ira', flavor: 'Forjado al rojo, llevado más al rojo todavía.' },
+  'brother-ossian': {
+    name: 'Hermano Osián',
+    text: 'Al terminar cada fase: hacé 2 de daño de sombra a un aliado enemigo al azar y tu héroe se cura 2.',
+    flavor: 'Siguió rezando después de morir. Por costumbre.'
+  },
   'caelus-the-usurper': {
     name: 'Caelus el Usurpador',
     text: 'Tributo (5): el rival pierde 1 de capacidad de Cronos y vos la ganás. Al empezar cada fase, tus aliados ganan +1 de ataque.',
@@ -1009,6 +1014,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Tu héroe se cura 10 y robá una carta.',
     flavor: 'Dicha en voz baja, oída en todas partes.'
   },
+  'heart-of-the-volcano': {
+    name: 'Corazón del Volcán',
+    text: 'Hacé 3 de daño de fuego a todos los aliados enemigos y 5 de daño de fuego al héroe enemigo.',
+    flavor: 'Todavía late, una vez cada cien años.'
+  },
   'hex-of-dawn': {
     name: 'Maleficio del Alba',
     text: 'Adjuntala a un aliado enemigo: tiene -3 de ataque.',
@@ -1066,6 +1076,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     flavor: 'Encriptado dos veces, susurrado una.'
   },
   'hoplite-conscript': { name: 'Conscripto Hoplita', flavor: 'Ayer campesino. Hoy, un muro.' },
+  'hostile-takeover': {
+    name: 'Adquisición Hostil',
+    text: 'Cuando el rival invoca un aliado: aturdilo y robá 2 cartas.',
+    flavor: 'Leé la letra chica. La escribió él.'
+  },
   'hourglass-of-ice': {
     name: 'Reloj de Arena de Hielo',
     text: 'Ganás 4 Cronos en esta fase. Instantánea.',
@@ -1221,6 +1236,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'koras-blowgun': {
     name: 'Cerbatana de Kora',
     text: 'Al equiparla: hacé 4 de daño de viento a un aliado enemigo al azar.'
+  },
+  'labrys-of-the-labyrinth': {
+    name: 'Labrys del Laberinto',
+    text: 'Al equiparla: aturdí a un aliado enemigo al azar.',
+    flavor: 'Dos filos, una sola salida.'
   },
   'lamplighter-of-the-crossroads': {
     name: 'Farolera de la Encrucijada',
@@ -1410,6 +1430,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Furia de Mármol',
     text: 'Un aliado tuyo gana +6 de ataque en esta fase. Instantánea.',
     flavor: 'Fría como el mármol, dura como un emperador.'
+  },
+  'maw-the-elder-rex': {
+    name: 'Fauces, el Rex Anciano',
+    text: 'Al entrar: hacé 6 de daño de tierra a un aliado enemigo al azar.',
+    flavor: 'Más viejo que la jungla, y con más hambre.'
   },
   'mending-of-light': {
     name: 'Remedio de la Luz',
@@ -1693,6 +1718,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Fanática Pálida',
     text: 'Al entrar: robá el primer Cultista de tu mazo. Al morir: hacé 3 de daño de sombra al héroe enemigo.'
   },
+  'panopticon-feed': {
+    name: 'Señal del Panóptico',
+    text: 'Robá 2 cartas y aturdí a un aliado enemigo al azar.',
+    flavor: 'Sonreí. Siempre estás en cámara.'
+  },
   'patchwork-armor-of-lost-time': {
     name: 'Armadura de Retazos del Tiempo Perdido',
     text: 'Al equiparla: robá una carta.',
@@ -1786,6 +1816,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     flavor: 'La usan los que no van a dar un paso atrás.'
   },
   'plating-of-mana': { name: 'Blindaje de Maná', text: 'Adjuntala a un aliado tuyo: gana +3 de ataque y +5 de vida.' },
+  'praetor-sabina': {
+    name: 'Pretora Sabina',
+    text: 'Al entrar: tus otros aliados ganan +2 de ataque.',
+    flavor: 'Leal a la corona, la lleve quien la lleve.'
+  },
   'precise-clockmaker': {
     name: 'Relojero Preciso',
     text: 'Al entrar: ganás 1 Cronos en esta fase.',
@@ -1799,6 +1834,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Profeta del Laberinto',
     text: 'Al empezar cada fase: tu héroe se cura 2. Su habilidad se paga con energía (⚡).',
     ability: { name: 'Inspirar', text: 'Un aliado tuyo gana +1 de ataque y +2 de vida.' }
+  },
+  'prototype-zero': {
+    name: 'Prototipo Cero',
+    text: 'Al entrar: invocá 2 Drones de Engranajes.',
+    flavor: 'La primera máquina que construyó Omnigear. La única que conservó.'
   },
   'proud-gorgon': {
     name: 'Gorgona Orgullosa',
@@ -2117,6 +2157,16 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Quiebre del Largo Camino',
     text: 'El arma y la armadura enemigas pierden 2 de durabilidad cada una. Rápida.'
   },
+  'shroud-of-the-final-bell': {
+    name: 'Sudario de la Última Campana',
+    text: 'Al empezar cada fase: hacé 2 de daño de tiempo al héroe enemigo.',
+    flavor: 'Quien lo viste vive cada hora como la última.'
+  },
+  'signal-wraith': {
+    name: 'Espectro de la Señal',
+    text: 'Al entrar: al terminar esta fase, el rival descarta una carta al azar.',
+    flavor: 'Entre dos canales, alguien está mirando.'
+  },
   'signifer-lucius': { name: 'Signífero Lucio', text: 'Al entrar: tus otros aliados ganan +1 de ataque y +2 de vida.' },
   'silent-monolith': {
     name: 'Monolito Silencioso',
@@ -2290,6 +2340,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Al entrar: tu héroe se cura 7. Al empezar cada fase: tu héroe se cura 2.'
   },
   'starlit-dragon': { name: 'Dragón Estelar', text: 'Al entrar: aturdí a un aliado enemigo al azar.' },
+  'starving-spawn': {
+    name: 'Engendro Hambriento',
+    text: 'Al entrar: gana +1 de ataque y +1 de vida por cada 3 cartas de tu pila de descarte (hasta +5).',
+    flavor: 'Un pedacito del hambre. Igual es más grande que vos.'
+  },
   'starweavers-astrolabe': {
     name: 'Astrolabio de Ilyra',
     text: 'Robá 2 cartas y ganás 2 Cronos en esta fase.',
@@ -2442,6 +2497,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'the-dawn-angel': {
     name: 'El Ángel del Alba',
     text: 'Al entrar: tu héroe se cura 8 y un aliado al azar de tu pila de descarte vuelve al juego.'
+  },
+  'the-dying-star': {
+    name: 'La Estrella Moribunda',
+    text: 'Hacé 8 de daño de arcano a un slot enemigo y 3 a los slots vecinos.',
+    flavor: 'Una menos.'
   },
   'thunderhead-of-dawn': { name: 'Nubarrón del Alba', text: 'Al entrar: ganás 1 Cronos en esta fase.' },
   'thunderhead-of-dusk': { name: 'Nubarrón del Ocaso', text: 'Al entrar: robá una carta.' },
