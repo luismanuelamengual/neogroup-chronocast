@@ -8,7 +8,7 @@ export default defineCard({
   text: "Return an enemy ally to its owner's hand. Fast.",
   flavor: 'Set at sunset, sprung by moonrise.',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   price: 50,
   cost: 2,

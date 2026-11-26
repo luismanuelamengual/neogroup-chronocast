@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Totem of Coal',
   text: 'When a Inventor of yours enters: it gains +1 attack and +2 health.',
   faction: 'clockwork',
-  restriction: { factions: ['clockwork'] },
+  restriction: { factions: ['clockwork'], sides: ['eclipse'] },
   rarity: 'common',
   price: 65,
   cost: 4,

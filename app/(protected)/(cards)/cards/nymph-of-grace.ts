@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Nymph of Grace',
   text: 'When it enters: your other allies gain +2 health.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   element: 'light',
   resist: ['arcane'],

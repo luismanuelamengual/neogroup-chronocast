@@ -7,7 +7,7 @@ export default defineCard({
   name: "Omnigear's Gyrocopter",
   text: 'When it enters: your other Skyships gain +2 attack and +2 health. At the start of each phase: your hero heals 2.',
   faction: 'clockwork',
-  restriction: { heroes: ['omnigear-prime'] },
+  restriction: { factions: ['clockwork'], sides: ['dawn'] },
   rarity: 'legendary',
   weak: ['wind'],
   price: 2320,

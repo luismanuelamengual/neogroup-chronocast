@@ -8,7 +8,6 @@ export default defineCard({
   text: 'Iron Decree (4): stun an enemy ally and deal 8 sonic damage to it. At the end of each phase, your hero heals 3.',
   flavor: 'He owns the factories, the city and most of the clocks.',
   faction: 'clockwork',
-  heroClass: 'mage',
   side: 'eclipse',
   restriction: { heroes: ['chancellor-brassmaw'] },
   rarity: 'legendary',

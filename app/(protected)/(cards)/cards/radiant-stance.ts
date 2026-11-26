@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Your armor gains +3 durability and your hero heals 5.',
   flavor: 'Stand in the light and do not move.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   price: 55,
   cost: 3,

@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Deal 6 damage to an enemy slot.',
   flavor: 'One more swing. Always one more.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   price: 50,
   cost: 2,

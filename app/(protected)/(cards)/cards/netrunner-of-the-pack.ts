@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'She hunts in packets, not packs.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   price: 70,
   cost: 5,

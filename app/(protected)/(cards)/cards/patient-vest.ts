@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'It waits, like the one who wears it.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: {},
   rarity: 'rare',
   price: 420,
   cost: 3,

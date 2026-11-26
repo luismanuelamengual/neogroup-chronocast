@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Ritualist of Ash',
   text: 'When it enters: sacrifice your weakest other ally: if you do, draw 2 cards.',
   faction: 'void',
-  restriction: { factions: ['void'] },
+  restriction: { factions: ['void'], sides: ['eclipse'] },
   rarity: 'rare',
   element: 'fire',
   price: 600,

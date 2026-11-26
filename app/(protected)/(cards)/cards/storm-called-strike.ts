@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Storm-Called Strike',
   text: 'Deal 2 lightning damage to an enemy slot, +2 for each Inventor of yours.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'common',
   element: 'lightning',
   price: 50,

@@ -59,7 +59,7 @@ export function batchOf(card: CardDefinition): string {
   return kind === 'neutral' ? 'neutral' : `${kind}-${name}`
 }
 
-const BATCH_ORDER = ['neutral', 'side', 'faction', 'class', 'hero']
+const BATCH_ORDER = ['neutral', 'side', 'faction', 'hero']
 
 /**
  * Abilities, traps, gear, artifacts and items show the thing itself: the spell,

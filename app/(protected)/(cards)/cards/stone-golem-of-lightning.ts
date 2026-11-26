@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Stone Golem of Lightning',
   text: 'When it enters: deal 7 earth damage to a random enemy ally.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'rare',
   element: 'earth',
   resist: ['earth'],

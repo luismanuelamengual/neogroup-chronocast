@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Ten thousand gears, one purpose.',
   faction: 'clockwork',
-  restriction: { factions: ['clockwork'] },
+  restriction: { factions: ['clockwork'], sides: ['eclipse'] },
   rarity: 'common',
   element: 'earth',
   resist: ['acid'],

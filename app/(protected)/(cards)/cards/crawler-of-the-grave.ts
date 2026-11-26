@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Crawler of the Grave',
   text: 'When it enters: sacrifice your weakest other ally: if you do, draw 2 cards.',
   faction: 'void',
-  restriction: { factions: ['void'] },
+  restriction: { factions: ['void'], sides: ['eclipse'] },
   rarity: 'common',
   resist: ['shadow'],
   weak: ['sonic'],

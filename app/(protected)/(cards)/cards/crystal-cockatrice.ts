@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Crystal Cockatrice',
   text: 'When it enters: draw a card. At the start of each phase: deal 1 arcane damage to the enemy hero.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'] },
+  restriction: { factions: ['arcane'], sides: ['eclipse'] },
   rarity: 'legendary',
   element: 'arcane',
   resist: ['fire'],

@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When an enemy ally attacks: cancel the attack and stun it.',
   flavor: 'The jungle sets its own traps.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: {},
   rarity: 'rare',
   price: 420,
   cost: 3,

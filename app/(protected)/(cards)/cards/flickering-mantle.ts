@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Now you see it, now you miss.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'common',
   price: 55,
   cost: 3,

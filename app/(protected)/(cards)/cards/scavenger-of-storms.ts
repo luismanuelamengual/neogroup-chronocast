@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Scavenger of Storms',
   text: 'When it enters: deal 4 lightning damage to a random enemy ally.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'common',
   element: 'lightning',
   price: 55,

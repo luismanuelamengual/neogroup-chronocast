@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Mammoth of the Hunt',
   text: 'When another Beast of yours enters: it gains +1 attack and +1 health. Its ability is paid with energy (⚡).',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'rare',
   price: 420,
   cost: 3,

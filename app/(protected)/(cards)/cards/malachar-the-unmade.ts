@@ -8,7 +8,6 @@ export default defineCard({
   text: 'Plague of the Void (4): poison 5 every enemy ally. Until the end of the next phase, your allies cost 1 Chronos less. At the start of each phase, if your discard pile has 8 or more cards, deal 2 shadow damage to the enemy hero.',
   flavor: 'He unmade himself to see what lies beyond time.',
   faction: 'void',
-  heroClass: 'mage',
   side: 'eclipse',
   restriction: { heroes: ['malachar-the-unmade'] },
   rarity: 'legendary',

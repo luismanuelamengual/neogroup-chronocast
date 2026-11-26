@@ -13,7 +13,7 @@ Este documento es el plan completo. Todavía no hay código: cada sección dice 
 1. [Concepto y temática](#1-concepto-y-temática)
 2. [Reglas del combate](#2-reglas-del-combate)
 3. [Tipos de carta y palabras clave](#3-tipos-de-carta-y-palabras-clave)
-4. [Héroes, clases y restricciones de cartas](#4-héroes-clases-y-restricciones-de-cartas)
+4. [Héroes, bandos y restricciones de cartas](#4-héroes-bandos-y-restricciones-de-cartas)
 5. [Rarezas](#5-rarezas)
 6. [Reglas de mazo y starter pack](#6-reglas-de-mazo-y-starter-pack)
 7. [Una carta = un archivo `.ts`](#7-una-carta--un-archivo-ts)
@@ -162,7 +162,7 @@ Todas las constantes de esta sección viven en `(engine)/data/rules.ts` (`STARTI
 
 | Tipo (id)    | Nombre en pantalla | Descripción                                                                                                                                                                            |
 | ------------ | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `hero`       | Héroe              | Vida (90–120), facción, clase, pasiva y activa. Define qué cartas puede llevar el mazo (sección 4).                                                                                    |
+| `hero`       | Héroe              | Vida (90–120), facción, bando, pasiva y activa. Define qué cartas puede llevar el mazo (sección 4).                                                                                    |
 | `ally`       | Aliado             | Costo, ataque, vida, velocidad, palabras clave, efectos (al entrar, al atacar, al morir...).                                                                                           |
 | `ability`    | Habilidad          | Efecto de un solo uso (daño, curación, robo, control).                                                                                                                                 |
 | `weapon`     | Arma               | Se adjunta al héroe: ataque y durabilidad, a veces con efecto (veneno, robo de vida...).                                                                                               |
@@ -209,7 +209,7 @@ Cada aliado puede tener una **tribu** (`tribe` en su archivo, `(engine)/models/T
 | `void`      | No-muerto, Cultista, Horror  |
 | `neutral`   | Errante, Elemental           |
 
-Las cartas de clase usan tribus de varias facciones, así un héroe encuentra sinergias fuera de la suya. Las **fichas** (`token: true`) son aliados que solo crean otras cartas: no se coleccionan ni entran en mazos.
+Las cartas de bando y las neutrales usan tribus de varias facciones, así un héroe encuentra sinergias fuera de la suya. Las **fichas** (`token: true`) son aliados que solo crean otras cartas: no se coleccionan ni entran en mazos.
 
 ### 3.3 Estados
 
@@ -229,20 +229,20 @@ Cada palabra clave es un módulo de `(engine)/keywords/` con sus tests. El texto
 
 Todo daño tiene un **elemento** (`element` en el archivo de la carta, `(engine)/models/Element.ts`). Si la carta no tiene, el daño es **físico**. El elemento se aplica a todo el daño que hace la carta: sus efectos y, si es un aliado o un arma, también sus ataques (y el contraataque de un aliado con Represalia). Un héroe con elemento lo usa en su habilidad y su pasiva. El veneno y la quemadura no tienen elemento.
 
-| Elemento | Regla al pegar                                                                                   | Facción típica     |
-| -------- | ------------------------------------------------------------------------------------------------ | ------------------ |
-| Fuego    | El objetivo queda Quemándose 1 durante 2 fases.                                                  | Arcana, Primal     |
-| Hielo    | Hace el doble a un objetivo congelado.                                                           | Primal, Maga       |
-| Rayo     | La mitad del daño salta a un aliado vecino al azar (no vuelve a saltar).                         | Neón               |
-| Sombra   | Pasa escudos y armadura.                                                                         | Vacío              |
-| Luz      | Cura a tu héroe la mitad del daño hecho; el doble contra No-muertos y Horrores.                  | Bronce, Mística    |
-| Tiempo   | El objetivo pierde también vida máxima (no se cura). Un golpe de 3+ al héroe le quita 1 Chronos. | Errantes, Vorhal   |
-| Ácido    | Envenena 1; contra un héroe le quita 1 de durabilidad más a su armadura.                         | Primal, Neón       |
-| Arcano   | No se reduce: ignora resistencias y reducciones de daño.                                         | Arcana, Maga       |
-| Tierra   | Aturde a un aliado de 3 de ataque o menos; los voladores son inmunes.                            | Primal, Relojería  |
-| Sónico   | El objetivo pierde Sigilo.                                                                       | Neón               |
-| Agua     | El aliado pierde 1 de ataque para siempre.                                                       | Primal, Errantes   |
-| Viento   | Hace el doble a los voladores.                                                                   | Cazador, Relojería |
+| Elemento | Regla al pegar                                                                                   | Facción típica    |
+| -------- | ------------------------------------------------------------------------------------------------ | ----------------- |
+| Fuego    | El objetivo queda Quemándose 1 durante 2 fases.                                                  | Arcana, Primal    |
+| Hielo    | Hace el doble a un objetivo congelado.                                                           | Primal            |
+| Rayo     | La mitad del daño salta a un aliado vecino al azar (no vuelve a saltar).                         | Neón              |
+| Sombra   | Pasa escudos y armadura.                                                                         | Vacío             |
+| Luz      | Cura a tu héroe la mitad del daño hecho; el doble contra No-muertos y Horrores.                  | Bronce, Alba      |
+| Tiempo   | El objetivo pierde también vida máxima (no se cura). Un golpe de 3+ al héroe le quita 1 Chronos. | Errantes, Vacío   |
+| Ácido    | Envenena 1; contra un héroe le quita 1 de durabilidad más a su armadura.                         | Primal, Neón      |
+| Arcano   | No se reduce: ignora resistencias y reducciones de daño.                                         | Arcana            |
+| Tierra   | Aturde a un aliado de 3 de ataque o menos; los voladores son inmunes.                            | Primal, Relojería |
+| Sónico   | El objetivo pierde Sigilo.                                                                       | Neón              |
+| Agua     | El aliado pierde 1 de ataque para siempre.                                                       | Primal, Errantes  |
+| Viento   | Hace el doble a los voladores.                                                                   | Neón, Relojería   |
 
 **Resistente** (`resist`) recibe la mitad de ese elemento (redondeando hacia arriba) y **Vulnerable** (`weak`) el doble. Van por tribu: Draco resiste fuego y es vulnerable a hielo; Saurio vulnerable a hielo; Cavernario resiste hielo; Coloso resiste tierra y es vulnerable a ácido; Autómata resiste ácido y es vulnerable a rayo; Cíborg vulnerable a rayo; Aeronave vulnerable a viento; No-muerto resiste sombra y hielo; Horror resiste sombra y es vulnerable a sónico; Hada resiste arcano y es vulnerable a sombra; Oráculo resiste luz; Hechicero resiste arcano. Cada Elemental resiste su propio elemento y es vulnerable a su opuesto.
 
@@ -250,69 +250,64 @@ Orden del cálculo: multiplicador del elemento → vulnerabilidad → resistenci
 
 ---
 
-## 4. Héroes, clases y restricciones de cartas
+## 4. Héroes, bandos y restricciones de cartas
 
 Como en Shadow Era, **no todas las cartas se pueden usar con cualquier héroe**.
 
-### 4.1 Facción y clase
+### 4.1 Facción y bando
 
-Cada héroe tiene una **facción** (sección 1) y una **clase**:
+Cada héroe tiene una **facción** (sección 1) y un **bando** (`side` en su archivo, `(engine)/models/Side.ts`). Como los Humanos y las Sombras de Shadow Era, los bandos están por encima de las facciones y las cruzan: cada facción tiene **un héroe del Alba (los buenos) y uno del Eclipse (los malos)**. Ya no hay clases.
 
-| Clase (id) | Nombre en pantalla | Estilo                                                |
-| ---------- | ------------------ | ----------------------------------------------------- |
-| `warrior`  | Guerrero           | Armas pesadas y armaduras, golpes directos, aguante   |
-| `mage`     | Mago               | Habilidades de daño y control, armas mágicas livianas |
-| `hunter`   | Cazador            | Arcos y trampas, ataques a distancia, rematar aliados |
-| `mystic`   | Místico            | Curación, potenciar aliados, revivir                  |
+| Facción     | ☀️ Alba (`dawn`)             | 🌑 Eclipse (`eclipse`)  |
+| ----------- | ---------------------------- | ----------------------- |
+| `bronze`    | **Legado Varro** (común)     | Caelus el Usurpador     |
+| `arcane`    | **Ilyra Starweaver** (común) | Morgrath, el Abad Liche |
+| `primal`    | **Kora Wildfang** (común)    | Ooma Bonewhisper        |
+| `clockwork` | Ada Copperwick               | Canciller Bocabronce    |
+| `neon`      | Vex Nightwire                | Reina Estática          |
+| `void`      | Nyx Hollowsong               | Malachar el Deshecho    |
 
-Los 12 héroes: 2 por facción, de clases distintas, y cada clase aparece en 3 facciones:
+En negrita, los 3 héroes iniciales.
 
-| Facción     | Héroe 1               | Héroe 2 |
-| ----------- | --------------------- | ------- |
-| `bronze`    | **warrior** (inicial) | hunter  |
-| `arcane`    | **mage** (inicial)    | mystic  |
-| `primal`    | **hunter** (inicial)  | mystic  |
-| `clockwork` | warrior               | mage    |
-| `neon`      | hunter                | warrior |
-| `void`      | mage                  | mystic  |
+### 4.1.1 Bandos de las cartas: Alba, Eclipse o Neutral
 
-Los 3 héroes iniciales son de facciones y clases distintas, así la elección del principio se siente diferente.
+Cada carta que no es un héroe es **del Alba, del Eclipse o neutral**: una carta de un bando lo dice en su restricción (`{ sides: ['dawn'] }`, sola o junto a su facción) y solo la usan los héroes de ese bando; una neutral no lleva `sides` y la usa cualquiera. Las exclusivas de un héroe son de su bando. `sideOf(card)` da el bando de una carta (`null`: neutral).
 
-### 4.1.1 Bandos: Alba y Eclipse
+El reparto se hizo por el tema de cada carta: luz, curación, protección y valor van al Alba; veneno, maldiciones, robo de vida, emboscadas y furia van al Eclipse; lo genérico (los elementos, el acero, la puntería) queda neutral. En los aliados de facción manda la tribu: cada facción tiene una tribu del Alba, una del Eclipse y una neutral.
 
-Por encima de facciones y clases, como los Humanos y las Sombras de Shadow Era, cada héroe pertenece a uno de **dos bandos** (`side` en su archivo, `(engine)/models/Side.ts`). El reparto es a mano, por el aspecto de cada héroe: los de cara de buenos van al Alba y los villanos y monstruos al Eclipse, así que una facción puede tener héroes de los dos bandos.
+| Facción     | Tribu del Alba | Tribu del Eclipse | Tribu neutral |
+| ----------- | -------------- | ----------------- | ------------- |
+| `bronze`    | Legionario     | Coloso            | Oráculo       |
+| `arcane`    | Hechicero      | Draco             | Hada          |
+| `primal`    | Saurio         | Cavernario        | Fiera         |
+| `clockwork` | Inventor       | Autómata          | Aeronave      |
+| `neon`      | Hacker         | Sicario           | Cíborg        |
+| `void`      | No-muerto      | Cultista y Horror | (ninguna)     |
 
-| Bando (id)          | Emblema | Héroes                                                                                                                                 |
-| ------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `dawn` (Alba)       | ☀️      | Ada, Aldric, Gideon, Gorrak, Ilyra, Kora, Nysa, Legado Varro, Vex, Tauron, Ryn, Omnigear                                               |
-| `eclipse` (Eclipse) | 🌑      | Caelus, Canciller Bocabronce, Astrónomo Hueco, Kazhul, Malachar, Morgrath, Nyx, Ooma, Supervisor Kade, Reina Estática, Vorhal, Xulthar |
-
-Algunas cartas neutrales son exclusivas de un bando (`{ sides: ['dawn'] }`). Por ejemplo, el Sello del Alba y el Sello del Eclipse: cada uno destruye al otro con su habilidad.
+El Sello del Alba y el Sello del Eclipse son de su bando: cada uno destruye al otro con su habilidad.
 
 ### 4.2 Restricción de cada carta
 
-Cada carta declara para quién es (`restriction` en su archivo). La restricción tiene **cuatro criterios que se combinan libremente**, y cada uno es una lista de valores:
+Cada carta declara para quién es (`restriction` en su archivo). La restricción tiene **tres criterios que se combinan libremente**, y cada uno es una lista de valores:
 
 | Criterio   | Qué pide del héroe                       |
 | ---------- | ---------------------------------------- |
 | `factions` | Que sea de alguna de esas facciones      |
 | `sides`    | Que sea de alguno de esos bandos (4.1.1) |
-| `classes`  | Que sea de alguna de esas clases         |
 | `heroes`   | Que sea alguno de esos héroes            |
 
 Un héroe puede usar la carta si cumple **todos** los criterios que la carta lista (dentro de cada uno alcanza con **uno** de sus valores). Un criterio que no aparece no restringe nada, así que `{}` es para cualquier héroe.
 
-| Restricción                                                          | Quién la puede usar                 | Uso típico                                       |
-| -------------------------------------------------------------------- | ----------------------------------- | ------------------------------------------------ |
-| `{}`                                                                 | Cualquier héroe (cartas `neutral`)  | Aliados genéricos, objetos                       |
-| `{ factions: ['bronze'] }`                                           | Los héroes de Bronce                | La mayoría de los aliados                        |
-| `{ classes: ['warrior'] }`                                           | Los guerreros, de cualquier facción | Habilidades, armas y armaduras                   |
-| `{ heroes: ['legate-varro'] }`                                       | Solo ese héroe                      | Cartas exclusivas (su arma propia, su compañero) |
-| `{ sides: ['dawn'] }`                                                | Los héroes del Alba                 | Cartas enfrentadas entre bandos (los Sellos)     |
-| `{ factions: ['clockwork', 'neon'] }`                                | Los héroes de Relojería o de Neón   | Cartas puente entre dos eras                     |
-| `{ factions: ['clockwork'], sides: ['dawn'], classes: ['warrior'] }` | Los guerreros de Relojería del Alba | Cartas muy específicas                           |
+| Restricción                                    | Quién la puede usar                | Uso típico                                       |
+| ---------------------------------------------- | ---------------------------------- | ------------------------------------------------ |
+| `{}`                                           | Cualquier héroe (cartas `neutral`) | Aliados genéricos, objetos                       |
+| `{ factions: ['bronze'] }`                     | Los héroes de Bronce               | La mayoría de los aliados                        |
+| `{ heroes: ['legate-varro'] }`                 | Solo ese héroe                     | Cartas exclusivas (su arma propia, su compañero) |
+| `{ sides: ['dawn'] }`                          | Los héroes del Alba                | Habilidades, armas y armaduras del Alba          |
+| `{ factions: ['clockwork', 'neon'] }`          | Los héroes de Relojería o de Neón  | Cartas puente entre dos eras                     |
+| `{ factions: ['clockwork'], sides: ['dawn'] }` | Los héroes de Relojería del Alba   | Aliados de la tribu del Alba de una facción      |
 
-`defineCard` rechaza un criterio vacío (`[]`) o con valores repetidos, y un héroe siempre es `{ heroes: [<su id>] }`. La colección y la carta lo muestran en palabras: "Héroes de la facción Relojería o Neón", o con varios criterios "Héroes de facción Relojería, bando Alba y clase Guerrero".
+`defineCard` rechaza un criterio vacío (`[]`) o con valores repetidos, y un héroe siempre es `{ heroes: [<su id>] }`. La colección y la carta lo muestran en palabras: "Héroes de la facción Relojería o Neón", o con varios criterios "Héroes de facción Relojería y bando Alba".
 
 `canUseCard(hero, card)` en `(engine)/utils/deckRules.ts` es la única función que decide esto, y la usan el editor de mazos, la colección (filtro "usables con este héroe"), el starter, la tienda (marca de "no la puede usar tu héroe") y el servidor antes de una partida.
 
@@ -349,7 +344,7 @@ Un mazo de comunes bien armado tiene que poder ganarle a uno de míticas mal arm
 ### 6.2 Starter pack
 
 - Al registrarse, el jugador **elige el héroe con el que empieza** entre los 3 iniciales y abre su starter pack con una animación.
-- El starter tiene **40 cartas: el héroe elegido + 39 cartas normales**, todas **usables por ese héroe** (neutrales, de su facción, de su clase o exclusivas suyas), solo **comunes y poco comunes**, y como máximo 4 copias de cada una.
+- El starter tiene **40 cartas: el héroe elegido + 39 cartas normales**, todas **usables por ese héroe** (neutrales, de su facción, de su bando o exclusivas suyas), solo **comunes y poco comunes**, y como máximo 4 copias de cada una.
 - Cada starter es un **mazo armado a mano** (una lista fija por héroe en `(cards)/data/starters.ts`), no un sorteo: así se garantiza que sea jugable y tenga curva de costos. Ejemplo de las 39: 19 aliados (costos 1 a 5), 8 habilidades, 3 armas, 3 armaduras, 4 objetos, 1 ubicación y 1 trampa, en 13 o 14 cartas distintas.
 - Un test verifica que cada starter cumple las reglas de mazo (incluidas las restricciones).
 - Después del starter, una **batalla tutorial** guiada contra la CPU explica fases, Cronos, slots, movimiento y velocidad.
@@ -364,13 +359,13 @@ Un mazo de comunes bien armado tiene que poder ganarle a uno de míticas mal arm
 
 ```
 app/(protected)/(cards)/cards/
-  <card-id>.ts                 Todas las cartas al mismo nivel (héroes, sus exclusivas, neutrales, de facción, de bando y de clase)
+  <card-id>.ts                 Todas las cartas al mismo nivel (héroes, sus exclusivas, neutrales, de facción y de bando)
   index.generated.ts           El índice que arma `yarn cards:index`
 art/source/cards/<card-id>.png   ← la imagen generada (no se sube al repo)
 public/cards/<card-id>.webp      ← la imagen procesada por `yarn art`
 ```
 
-**Todas las cartas van en la misma carpeta, sin subcarpetas.** La facción, el bando, la clase y el héroe de una carta son **datos del archivo** (`faction`, `restriction`, y `side` en los héroes), no carpetas: una carpeta obliga a elegir una sola de esas dimensiones, y una carta puede tocar varias (por ejemplo de Relojería, para el bando del Alba y de Guerrero). `yarn cards:index` falla si encuentra una subcarpeta.
+**Todas las cartas van en la misma carpeta, sin subcarpetas.** La facción, el bando y el héroe de una carta son **datos del archivo** (`faction`, `restriction`, y `side` en los héroes), no carpetas: una carpeta obliga a elegir una sola de esas dimensiones, y una carta puede tocar varias (por ejemplo de Relojería y del bando del Alba). `yarn cards:index` falla si encuentra una subcarpeta.
 
 Los agrupamientos (las secciones de `/dev/cards` y los lotes de `art/catalog.csv`) salen de la `restriction` de cada carta (`(cards)/utils/cardGroup.ts`), nunca del archivo. Un test verifica que la `faction` coincida con la `restriction` (una carta de una facción, no `neutral`, solo es para héroes de esa facción, por `factions` o por los `heroes` que lista) y que cada carta la pueda usar al menos un héroe. Una carta con varios criterios va en el grupo del primero, en este orden: héroe, facción, bando y clase.
 
@@ -434,7 +429,7 @@ Se pone en `art/source/cards/<card-id>.png` y `yarn art` la procesa (sección 9.
 
 ### 7.5 Validación del catálogo (`tests/unit/cards.test.ts`)
 
-Para cada carta: id igual al nombre del archivo e ids únicos; todas en `cards/` sin subcarpetas y con la `faction` coherente con la `restriction`; costo, estadísticas y precio dentro del rango de su rareza; tipo, facción, clase y palabras clave válidas; prompt presente; y una **prueba de humo**: se juega la carta en una partida de prueba contra objetivos válidos y el motor no puede tirar errores.
+Para cada carta: id igual al nombre del archivo e ids únicos; todas en `cards/` sin subcarpetas y con la `faction` coherente con la `restriction`; costo, estadísticas y precio dentro del rango de su rareza; tipo, facción, bando y palabras clave válidas; prompt presente; y una **prueba de humo**: se juega la carta en una partida de prueba contra objetivos válidos y el motor no puede tirar errores.
 
 ### 7.6 Idiomas
 
@@ -448,22 +443,24 @@ Una carta sin traducción se muestra en inglés, así que **la traducción es op
 
 ---
 
-## 8. El catálogo de 732 cartas
+## 8. El catálogo de 720 cartas
 
 El catálogo se rehízo desde cero tomando `docs/data.json` (Shadow Era) solo como guía de proporciones: reparto por tipo, curva de costos, mezcla de rarezas y la parte de cartas con sinergia de tribu. Los nombres, efectos y textos son propios, pensados para las fases en lugar de los turnos, y los números van a la escala x2 (sección 2.6). Las ubicaciones no existen.
 
 ### 8.1 Reparto
 
-| Grupo                   | Cartas  | Composición                                                                          |
-| ----------------------- | ------- | ------------------------------------------------------------------------------------ |
-| Héroes (todos jugables) | 24      | 2 por facción y clase de la tabla 4.1, más los 12 que antes eran jefes               |
-| Exclusivas de héroe     | 60      | Los 24 premios de campaña (1 por héroe), 12 compañeros y 24 cartas propias           |
-| Por clase (4 grupos)    | 320     | 23 aliados, 26 a 33 habilidades, armas, armaduras, adjuntos, artefactos, trampas     |
-| Por facción (6 grupos)  | 216     | 25 aliados (3 tribus), 5 a 8 habilidades y algunos artefactos, adjuntos y trampas    |
-| Neutrales               | 112     | 48 aliados, 28 habilidades, 12 objetos, 10 artefactos, 6 adjuntos, armas y armaduras |
-| **Total coleccionable** | **732** | Más 9 fichas que solo aparecen invocadas                                             |
+| Grupo                   | Cartas  | Composición                                                                             |
+| ----------------------- | ------- | --------------------------------------------------------------------------------------- |
+| Héroes (todos jugables) | 12      | 1 del Alba y 1 del Eclipse por facción (tabla 4.1)                                      |
+| Exclusivas de héroe     | 60      | Las de los 12 héroes y las de los 12 héroes retirados, que pasaron a su facción y bando |
+| Por bando (antes clase) | 320     | Alba, Eclipse o neutrales según su tema (sección 4.1.1)                                 |
+| Por facción (6 grupos)  | 216     | 25 aliados (3 tribus), 5 a 8 habilidades y algunos artefactos, adjuntos y trampas       |
+| Neutrales               | 112     | 48 aliados, 28 habilidades, 12 objetos, 10 artefactos, 6 adjuntos, armas y armaduras    |
+| **Total coleccionable** | **720** | Más 9 fichas que solo aparecen invocadas                                                |
 
-Rarezas: 260 comunes, 178 poco comunes, 129 raras, 80 épicas, 65 legendarias, 14 exóticas y 6 míticas.
+Rarezas: 260 comunes, 178 poco comunes, 127 raras, 78 épicas, 57 legendarias, 14 exóticas y 6 míticas.
+
+En total quedan 230 cartas del Alba, 231 del Eclipse y 280 neutrales (con los héroes). Los 12 héroes retirados (Nysa, Tauron, Aldric, el Astrónomo Hueco, Gorrak, Kazhul, Gideon, Omnigear, Ryn, el Supervisor Kade, Vorhal y Xul'thar) se borraron con sus campañas; sus cartas exclusivas quedaron como cartas de su facción y bando, y sus premios de campaña se venden en la tienda y salen en sobres.
 
 ### 8.2 Mecánicas de Shadow Era que se adaptaron a las fases
 
@@ -566,12 +563,12 @@ Cada batalla que el servidor verifica da **XP**; la XP sube el **nivel** del jug
 
 **XP por batalla**:
 
-| Modo                              | Victoria | Empate | Derrota | Abandono |
-| --------------------------------- | -------- | ------ | ------- | -------- |
-| PvP pública                       | 100      | 50     | 30      | 0        |
-| PvP privada (mismo tope que oro)  | 50       | 25     | 15      | 0        |
-| Partida rápida vs CPU (10 por día)| 50       | 25     | 15      | —        |
-| Campaña (primera victoria)        | 100 (jefe 200) | — | —      | —        |
+| Modo                               | Victoria       | Empate | Derrota | Abandono |
+| ---------------------------------- | -------------- | ------ | ------- | -------- |
+| PvP pública                        | 100            | 50     | 30      | 0        |
+| PvP privada (mismo tope que oro)   | 50             | 25     | 15      | 0        |
+| Partida rápida vs CPU (10 por día) | 50             | 25     | 15      | —        |
+| Campaña (primera victoria)         | 100 (jefe 200) | —      | —       | —        |
 
 - Perder también da algo de XP (menos que ganar), para que cada partida cuente; rendirse o abandonar no da nada.
 - La partida rápida da XP solo en las partidas que dan oro (las 10 primeras del día); la campaña, solo la primera vez que se gana cada combate (como su oro). La práctica no da XP.
@@ -615,7 +612,7 @@ Módulo `(shop)`, con tres pestañas: **Sobres**, **Cartas** y **Vender**. Preci
 
 - No se paga nada por desbloquear: alcanza con llegar al nivel. Los sobres pueden traer cualquier rareza a cualquier nivel.
 - También se venden los héroes jugables (no los jefes), uno por jugador, al precio de su rareza (columna "Héroe"; hoy solo hay héroes comunes, raros, épicos y legendarios); su rareza también tiene que estar desbloqueada. No salen en sobres ni se venden.
-- La pestaña Cartas muestra **todo** el catálogo a la venta con filtros (facción, clase, tipo, costo, rareza, "usables con mi héroe"): primero las rarezas desbloqueadas y después las bloqueadas, difuminadas y con un candado que dice "Se desbloquea en nivel X". Las bloqueadas son un misterio: no se pueden abrir en detalle (están bien difuminadas) y la búsqueda por nombre o texto no las encuentra.
+- La pestaña Cartas muestra **todo** el catálogo a la venta con filtros (facción, bando, tipo, costo, rareza, "usables con mi héroe"): primero las rarezas desbloqueadas y después las bloqueadas, difuminadas y con un candado que dice "Se desbloquea en nivel X". Las bloqueadas son un misterio: no se pueden abrir en detalle (están bien difuminadas) y la búsqueda por nombre o texto no las encuentra.
 - Las cartas premio de las campañas no se venden sueltas.
 
 ### 11.3 Vender
@@ -671,7 +668,7 @@ Módulo `(campaign)`.
 
 ### 13.1 Estructura
 
-- **Una campaña por héroe** (24), de **10 combates** cada una, con una historia corta ambientada en la era del héroe. El combate 10 es un jefe.
+- **Una campaña por héroe** (12), de **10 combates** cada una, con una historia corta ambientada en la era del héroe. El combate 10 es un jefe.
 - Cada campaña es un archivo, `(campaign)/data/campaigns/<hero-id>.ts`. Agregar un héroe nuevo con su campaña es sumar sus archivos de cartas y el de campaña.
 - Se juega la campaña de un héroe que tenés, con tu mazo de ese héroe. Ganar un combate desbloquea el siguiente.
 
@@ -720,7 +717,7 @@ Oro por cada combate ganado la primera vez (de 50 a 300), un sobre en los combat
 ### 14.2 Pantallas
 
 - **Landing** pública, **login y registro** (como Crisol).
-- **Elección del héroe inicial** (los 3, con su facción, clase, vida y estilo) y **apertura del starter**.
+- **Elección del héroe inicial** (los 3, con su facción, bando, vida y estilo) y **apertura del starter**.
 - **Menú principal**: Jugar (PvP / Campaña), Mazos, Colección, Tienda, Ranking, Perfil; oro y rating arriba.
 - **Colección**: grilla filtrable (incluye "usables con este héroe"), detalle de carta grande con su texto y para quién es, cantidad que tenés y botón de vender.
 - **Editor de mazos**: se elige el héroe primero y solo se ofrecen cartas usables por él; lista con curva de costos, contador X/40 (hasta 200) y avisos en vivo de reglas rotas.
@@ -774,7 +771,7 @@ app/
     (home)/          Main menu (/menu)
     (onboarding)/    Starter hero choice, starter pack and tutorial
     (engine)/        Pure engine: state, phases, resolution, keywords, effects, deck rules, AI
-    (cards)/         Card catalog: cards/**, defineCard, factions, classes, starters, CardView
+    (cards)/         Card catalog: cards/**, defineCard, factions, sides, starters, CardView
     (collection)/    Collection and decks: user_cards, decks, deck_cards; deck builder
     (battle)/        Battle screen (shared by PvP and campaign)
     (pvp)/           Lobby, matches, submitPlan / getMatchState, rating
@@ -815,15 +812,15 @@ Sin React ni base de datos, determinístico, con tests:
 
 ### 15.4 Base de datos
 
-| Tabla               | Contenido                                                                   |
-| ------------------- | --------------------------------------------------------------------------- |
+| Tabla               | Contenido                                                                                  |
+| ------------------- | ------------------------------------------------------------------------------------------ |
 | `users`             | Como Crisol, más `rating`, `gold`, `xp`, `level`, `starterHeroId`, `packsWithoutLegendary` |
-| (auth)              | `email_verification_tokens`, `password_reset_tokens` (como Crisol)          |
-| `user_cards`        | `userId`, `cardId`, `quantity`                                              |
-| `decks`             | `id`, `userId`, `name`, `heroId`, `updatedAt`                               |
-| `deck_cards`        | `deckId`, `cardId`, `count`                                                 |
-| `matches`           | Ver 12.4                                                                    |
-| `campaign_progress` | `userId`, `heroId`, `stage`, `completedAt`                                  |
+| (auth)              | `email_verification_tokens`, `password_reset_tokens` (como Crisol)                         |
+| `user_cards`        | `userId`, `cardId`, `quantity`                                                             |
+| `decks`             | `id`, `userId`, `name`, `heroId`, `updatedAt`                                              |
+| `deck_cards`        | `deckId`, `cardId`, `count`                                                                |
+| `matches`           | Ver 12.4                                                                                   |
+| `campaign_progress` | `userId`, `heroId`, `stage`, `completedAt`                                                 |
 
 Sin historial de rating (solo el actual en `users.rating`), sin registro de aperturas de sobres (la garantía usa el contador `users.packsWithoutLegendary`) y sin libro de movimientos de oro (ver 19).
 
@@ -883,13 +880,13 @@ Cada fase termina con algo jugable o usable, sus tests y el README actualizado (
 | Cronos                         | Descartar da +1 de capacidad permanente; se recarga cada fase; 1 descarte por fase                                                                                                           |
 | Vida de los héroes             | Entre 90 y 120                                                                                                                                                                               |
 | Equipo del héroe               | Empieza sin arma ni armadura; son cartas que se adjuntan                                                                                                                                     |
-| Restricciones                  | Criterios combinables (facciones, bandos, clases y héroes); el héroe tiene que cumplirlos todos                                                                                              |
+| Restricciones                  | Criterios combinables (facciones, bandos y héroes); el héroe tiene que cumplirlos todos                                                                                                      |
 | Movimiento entre slots         | Mecánica general de todas las facciones                                                                                                                                                      |
 | Mano                           | 7 iniciales y máximo 7                                                                                                                                                                       |
 | Tiempo de programación         | 90 segundos por fase                                                                                                                                                                         |
 | Ubicación del héroe            | Detrás de sus aliados (o al costado en pantallas anchas), nunca delante                                                                                                                      |
 | Idioma del código              | Todo en inglés; el español solo como traducción de la interfaz y de las cartas (opcional)                                                                                                    |
-| Carpeta de las cartas          | Todas en `cards/`, al mismo nivel; facción, bando, clase y héroe son datos de la carta, no carpetas                                                                                          |
+| Carpeta de las cartas          | Todas en `cards/`, al mismo nivel; facción, bando y héroe son datos de la carta, no carpetas                                                                                                 |
 | `yarn art`                     | Muestra cada imagen en el momento en que la procesa; `--watch` para procesar al instante                                                                                                     |
 | Sobres                         | El doble de precio que en el plan anterior                                                                                                                                                   |
 | Cartas sueltas                 | Precio propio por carta, dentro de un rango por rareza, el doble que en el plan anterior                                                                                                     |

@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Starlit Dragon',
   text: 'When it enters: stun a random enemy ally.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'] },
+  restriction: { factions: ['arcane'], sides: ['eclipse'] },
   rarity: 'common',
   resist: ['fire'],
   weak: ['ice'],

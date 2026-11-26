@@ -8,7 +8,6 @@ export default defineCard({
   text: 'Unholy Rising (4): the ally on top of your discard pile returns to play. At the start of each phase, deal 3 shadow damage to a random enemy ally.',
   flavor: 'He prayed for eternal life. Something answered.',
   faction: 'arcane',
-  heroClass: 'mage',
   side: 'eclipse',
   restriction: { heroes: ['morgrath-lich-abbot'] },
   rarity: 'legendary',

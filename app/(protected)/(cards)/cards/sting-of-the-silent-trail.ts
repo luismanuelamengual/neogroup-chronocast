@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Poison an enemy ally (3).',
   flavor: 'You will not hear it. You will feel it.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'mythic',
   price: 4080,
   cost: 2,

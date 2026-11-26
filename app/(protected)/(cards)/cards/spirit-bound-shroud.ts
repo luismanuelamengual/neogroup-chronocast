@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'The ancestors keep watch from its folds.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: {},
   rarity: 'common',
   price: 55,
   cost: 3,

@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'When she speaks, the dark answers.',
   faction: 'void',
-  restriction: { factions: ['void'] },
+  restriction: { factions: ['void'], sides: ['eclipse'] },
   rarity: 'common',
   price: 80,
   cost: 6,

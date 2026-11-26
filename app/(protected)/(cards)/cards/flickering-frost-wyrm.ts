@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'It blinks between winters.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'common',
   element: 'ice',
   resist: ['fire'],

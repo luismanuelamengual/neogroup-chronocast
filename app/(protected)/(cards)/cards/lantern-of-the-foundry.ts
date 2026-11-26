@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Lantern of the Foundry',
   text: 'At the start of each phase: your hero heals 3. (3 uses)',
   faction: 'clockwork',
-  restriction: { factions: ['clockwork'] },
+  restriction: { factions: ['clockwork'], sides: ['dawn'] },
   rarity: 'common',
   price: 55,
   cost: 3,

@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Poison an enemy ally (3).',
   flavor: 'Brewed in neon, served cold.',
   faction: 'neon',
-  restriction: { factions: ['neon'] },
+  restriction: { factions: ['neon'], sides: ['eclipse'] },
   rarity: 'common',
   price: 50,
   cost: 2,

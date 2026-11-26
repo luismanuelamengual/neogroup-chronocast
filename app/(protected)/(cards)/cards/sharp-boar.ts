@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it enters: deal 3 damage to a random enemy ally.',
   flavor: 'Its tusks are its only argument.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: {},
   rarity: 'common',
   price: 50,
   cost: 2,

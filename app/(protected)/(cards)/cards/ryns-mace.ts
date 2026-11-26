@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it is equipped: your hero heals 5.',
   flavor: 'It crackles with every swing.',
   faction: 'neon',
-  restriction: { heroes: ['ryn-voltblade'] },
+  restriction: { factions: ['neon'], sides: ['dawn'] },
   rarity: 'epic',
   price: 1100,
   cost: 3,

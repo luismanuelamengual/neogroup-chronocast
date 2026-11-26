@@ -8,7 +8,7 @@ export default defineCard({
   text: 'At the start of each phase: your hero heals 3. (3 uses)',
   flavor: 'Touched by a thousand pilgrims.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'uncommon',
   price: 140,
   cost: 2,

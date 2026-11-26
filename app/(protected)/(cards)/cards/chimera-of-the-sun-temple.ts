@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Chimera of the Sun Temple',
   text: 'When it dies: your other allies gain +1 attack. At the start of each phase: your hero heals 2.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'] },
+  restriction: { factions: ['bronze'], sides: ['eclipse'] },
   rarity: 'epic',
   element: 'light',
   resist: ['earth'],

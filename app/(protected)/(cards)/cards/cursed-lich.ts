@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Cursed Lich',
   text: 'When it enters: if your discard pile has 6 or more cards, it gains +2 attack and +2 health.',
   faction: 'void',
-  restriction: { factions: ['void'] },
+  restriction: { factions: ['void'], sides: ['dawn'] },
   rarity: 'common',
   resist: ['shadow', 'ice'],
   price: 55,

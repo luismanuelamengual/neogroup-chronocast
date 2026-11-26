@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Recruit of the Warlord',
   text: 'When it enters: draw the first weapon of your deck.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   price: 50,
   cost: 2,

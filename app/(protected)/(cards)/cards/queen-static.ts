@@ -8,7 +8,6 @@ export default defineCard({
   text: 'Interference (4): at the end of this phase, the rival discards 2 random cards. At the end of each phase, deal 2 lightning damage to the enemy hero.',
   flavor: 'She lives in the noise between channels.',
   faction: 'neon',
-  heroClass: 'hunter',
   side: 'eclipse',
   restriction: { heroes: ['queen-static'] },
   rarity: 'legendary',

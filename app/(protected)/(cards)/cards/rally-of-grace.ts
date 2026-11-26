@@ -8,7 +8,7 @@ export default defineCard({
   text: 'An ally of yours gains +4 attack and +5 health.',
   flavor: 'Gather in the light.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'uncommon',
   price: 160,
   cost: 3,

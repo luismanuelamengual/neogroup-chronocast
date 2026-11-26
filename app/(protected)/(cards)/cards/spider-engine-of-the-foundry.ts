@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Spider Engine of the Foundry',
   text: 'When it enters: deal 1 damage to the enemy hero for each Automaton of yours.',
   faction: 'clockwork',
-  restriction: { factions: ['clockwork'] },
+  restriction: { factions: ['clockwork'], sides: ['eclipse'] },
   rarity: 'uncommon',
   resist: ['acid'],
   weak: ['lightning'],

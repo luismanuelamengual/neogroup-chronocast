@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it enters: you gain 1 Chronos this phase.',
   flavor: 'She is never late. She does not allow it.',
   faction: 'clockwork',
-  restriction: { factions: ['clockwork'] },
+  restriction: { factions: ['clockwork'], sides: ['dawn'] },
   rarity: 'rare',
   price: 540,
   cost: 5,

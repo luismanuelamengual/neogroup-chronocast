@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Firedrake of the Moon',
   text: 'When another Drake of yours enters: it gains +1 attack and +1 health.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'] },
+  restriction: { factions: ['arcane'], sides: ['eclipse'] },
   rarity: 'uncommon',
   element: 'fire',
   resist: ['fire'],

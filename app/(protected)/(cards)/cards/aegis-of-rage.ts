@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Your hero heals 9. Instant.',
   flavor: 'The angrier the blow, the stronger the shield.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   price: 50,
   cost: 2,

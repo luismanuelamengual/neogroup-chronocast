@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Titan of Valor',
   text: 'When it attacks: it gains +1 attack.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   resist: ['earth'],
   weak: ['acid'],

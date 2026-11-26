@@ -2,7 +2,7 @@
 /**
  * Writes app/(protected)/(cards)/cards/index.generated.ts: one import per card
  * file of cards/. Every card lives at the same level of that folder, whatever
- * its faction, side, class or hero (that is metadata of the card, not a
+ * its faction, side or hero (that is metadata of the card, not a
  * folder), so a subfolder is an error. Runs by itself before `yarn dev`, `yarn build` and
  * `yarn test`, so adding a card is only creating its file (and its image).
  *

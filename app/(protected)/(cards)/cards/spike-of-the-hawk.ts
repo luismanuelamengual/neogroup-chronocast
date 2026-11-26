@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Deal 9 wind damage to an enemy slot.',
   flavor: 'Swift as the hawk that guides it.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: {},
   rarity: 'epic',
   element: 'wind',
   price: 1100,

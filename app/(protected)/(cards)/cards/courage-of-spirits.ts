@@ -8,7 +8,7 @@ export default defineCard({
   text: 'An ally of yours gains +8 attack this phase. Instant.',
   flavor: 'The spirits whisper: do not run.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: {},
   rarity: 'common',
   price: 55,
   cost: 3,

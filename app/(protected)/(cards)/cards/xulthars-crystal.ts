@@ -7,7 +7,7 @@ export default defineCard({
   name: "Xulthar's Crystal",
   text: 'At the start of each phase: your hero heals 3 and your allies heal 2.',
   faction: 'void',
-  restriction: { heroes: ['xulthar-the-devourer'] },
+  restriction: { factions: ['void'], sides: ['eclipse'] },
   rarity: 'epic',
   price: 1100,
   cost: 3,

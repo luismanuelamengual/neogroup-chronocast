@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it is equipped: your hero heals 4.',
   flavor: 'Thrown by the jungle, caught by nobody.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: {},
   rarity: 'uncommon',
   price: 140,
   cost: 2,

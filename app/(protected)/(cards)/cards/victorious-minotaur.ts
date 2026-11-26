@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'It found the way out of the labyrinth. Then went back in.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'] },
+  restriction: { factions: ['bronze'], sides: ['eclipse'] },
   rarity: 'common',
   resist: ['earth'],
   weak: ['acid'],

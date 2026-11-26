@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Summon an Arcane Familiar.',
   flavor: 'Half of them are here. Half are almost here.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'common',
   price: 50,
   cost: 2,

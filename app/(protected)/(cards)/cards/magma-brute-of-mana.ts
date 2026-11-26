@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Magma Brute of Mana',
   text: 'At the start of each phase: your hero gains 1 energy.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'common',
   element: 'fire',
   resist: ['fire'],

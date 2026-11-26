@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Gleaming Wyvern',
   text: 'When it enters: it gains +1 attack and +1 health for each other Drake of yours. When it dies: deal 4 arcane damage to a random enemy ally.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'] },
+  restriction: { factions: ['arcane'], sides: ['eclipse'] },
   rarity: 'exotic',
   element: 'arcane',
   resist: ['fire'],

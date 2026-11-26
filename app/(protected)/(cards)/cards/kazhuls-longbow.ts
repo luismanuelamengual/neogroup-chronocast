@@ -7,7 +7,7 @@ export default defineCard({
   name: "Kazhul's Longbow",
   text: 'When it is equipped: deal 4 fire damage to a random enemy ally.',
   faction: 'primal',
-  restriction: { heroes: ['kazhul-mother-of-ash'] },
+  restriction: { factions: ['primal'], sides: ['eclipse'] },
   rarity: 'epic',
   element: 'fire',
   price: 1100,

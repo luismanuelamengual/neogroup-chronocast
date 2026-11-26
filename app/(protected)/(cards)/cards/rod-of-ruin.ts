@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it is equipped: your hero heals 7.',
   flavor: 'Everything it touches gets older.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'uncommon',
   price: 200,
   cost: 5,

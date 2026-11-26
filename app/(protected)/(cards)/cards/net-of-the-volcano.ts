@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When an enemy ally is summoned: freeze it.',
   flavor: 'Woven with lava and patience.',
   faction: 'primal',
-  restriction: { factions: ['primal'] },
+  restriction: { factions: ['primal'], sides: ['eclipse'] },
   rarity: 'exotic',
   price: 3080,
   cost: 2,

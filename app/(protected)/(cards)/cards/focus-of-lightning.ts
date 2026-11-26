@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Hold it tight and hope.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'common',
   element: 'lightning',
   price: 50,

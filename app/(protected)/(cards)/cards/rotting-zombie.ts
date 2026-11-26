@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Rotting Zombie',
   text: 'When it enters: deal 1 shadow damage to the enemy hero for each Undead of yours. Its ability is paid with energy (⚡).',
   faction: 'void',
-  restriction: { factions: ['void'] },
+  restriction: { factions: ['void'], sides: ['dawn'] },
   rarity: 'uncommon',
   element: 'shadow',
   resist: ['shadow', 'ice'],

@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Turn the key and step back.',
   faction: 'clockwork',
-  restriction: { factions: ['clockwork'] },
+  restriction: { factions: ['clockwork'], sides: ['dawn'] },
   rarity: 'common',
   price: 65,
   cost: 4,

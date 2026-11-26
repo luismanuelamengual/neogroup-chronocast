@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Dreaming Pythia',
   text: 'When it enters: it gains +1 attack and +1 health for each other Oracle of yours.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: {},
   rarity: 'rare',
   resist: ['light'],
   price: 420,

@@ -6,7 +6,7 @@ export default defineCard({
   name: 'Stalwart Saddle',
   text: 'Attach to an ally of yours: it gains +2 attack and +5 health.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'uncommon',
   price: 180,
   cost: 4,

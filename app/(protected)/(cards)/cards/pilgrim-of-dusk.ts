@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Pilgrim of Dusk',
   text: 'When it enters: you gain 1 Chronos this phase.',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   element: 'shadow',
   price: 50,

@@ -8,7 +8,7 @@ export default defineCard({
   text: 'An ally of yours gains +6 attack this phase. Instant.',
   flavor: 'Mages to the tower! Bring your books!',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'epic',
   price: 1000,
   cost: 2,

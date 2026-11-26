@@ -7,7 +7,7 @@ export default defineCard({
   text: 'Attach to an enemy ally: it has -3 attack.',
   flavor: 'A curse that only works in daylight.',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   price: 50,
   cost: 2,

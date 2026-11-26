@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Virus of the Silent Trail',
   text: 'When another Netrunner of yours enters: your hero heals 2.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'uncommon',
   element: 'acid',
   price: 120,

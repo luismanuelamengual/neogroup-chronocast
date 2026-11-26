@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Wanted: anyone flammable.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   element: 'fire',
   price: 70,

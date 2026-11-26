@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Draw 2 cards.',
   flavor: 'Encrypted twice, whispered once.',
   faction: 'neon',
-  restriction: { factions: ['neon'] },
+  restriction: { factions: ['neon'], sides: ['dawn'] },
   rarity: 'common',
   price: 65,
   cost: 4,

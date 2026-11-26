@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Nocturnal Shot',
   text: 'Deal 5 shadow damage to an enemy slot, +2 for each Drifter of yours.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'exotic',
   element: 'shadow',
   price: 3160,

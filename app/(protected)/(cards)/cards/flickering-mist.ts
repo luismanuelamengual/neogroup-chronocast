@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Flickering Mist',
   text: 'When it enters: it gains +1 attack and +1 health for each other Elemental of yours.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'rare',
   element: 'water',
   resist: ['water'],

@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Attach to an enemy ally: every damage it takes is 3 higher.',
   flavor: 'She saw your weakness long ago.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'] },
+  restriction: { factions: ['bronze'], sides: ['eclipse'] },
   rarity: 'rare',
   price: 360,
   cost: 2,

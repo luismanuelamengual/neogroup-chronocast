@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Midnight Countermeasure',
   text: 'When the enemy uses an ability: draw a card and deal 4 shadow damage to the enemy hero.',
   faction: 'neon',
-  restriction: { factions: ['neon'] },
+  restriction: { factions: ['neon'], sides: ['eclipse'] },
   rarity: 'legendary',
   element: 'shadow',
   price: 2080,

@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'The arrow arrives before the sound.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   price: 40,
   cost: 1,

@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Poison an enemy ally (3).',
   flavor: 'Rot finds the weak spot first.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: {},
   rarity: 'uncommon',
   price: 140,
   cost: 2,

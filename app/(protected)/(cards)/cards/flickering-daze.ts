@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Flickering Daze',
   text: 'Freeze an enemy ally and deal 2 ice damage to the enemy hero.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'epic',
   element: 'ice',
   price: 1000,

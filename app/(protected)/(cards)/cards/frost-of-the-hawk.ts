@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Frost of the Hawk',
   text: 'Freeze an enemy ally and deal 3 ice damage to the enemy hero.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: {},
   rarity: 'common',
   element: 'ice',
   price: 55,

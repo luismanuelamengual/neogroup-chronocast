@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Freeze an enemy ally.',
   flavor: 'Chains that burn as they hold.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   price: 40,
   cost: 1,

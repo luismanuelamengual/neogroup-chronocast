@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Deal 8 arcane damage to an enemy slot.',
   flavor: 'Wishes on falling stars rarely end like this.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'common',
   element: 'arcane',
   price: 55,

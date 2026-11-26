@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When an enemy ally is summoned: freeze it.',
   flavor: 'The bottom is further than it looks.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: {},
   rarity: 'rare',
   price: 420,
   cost: 3,

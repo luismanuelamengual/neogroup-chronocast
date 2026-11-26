@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Fixer of the Datastream',
   text: 'When it attacks: deal 3 sonic damage to the enemy hero.',
   faction: 'neon',
-  restriction: { factions: ['neon'] },
+  restriction: { factions: ['neon'], sides: ['eclipse'] },
   rarity: 'uncommon',
   element: 'sonic',
   price: 200,

@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Standard-Bearer of the Laurel',
   text: 'When it enters: your hero heals 7. At the start of each phase: your hero heals 2.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'] },
+  restriction: { factions: ['bronze'], sides: ['dawn'] },
   rarity: 'epic',
   price: 1300,
   cost: 5,

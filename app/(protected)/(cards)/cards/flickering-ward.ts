@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'It blinks just before the blow lands.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'common',
   price: 50,
   cost: 2,

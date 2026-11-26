@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Unbound Hierophant',
   text: 'When it enters: poison the enemy hero (3). When it dies: deal 3 shadow damage to the enemy hero.',
   faction: 'void',
-  restriction: { factions: ['void'] },
+  restriction: { factions: ['void'], sides: ['eclipse'] },
   rarity: 'epic',
   element: 'shadow',
   price: 1200,

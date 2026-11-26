@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it is equipped: your hero heals 4.',
   flavor: 'It sees the gap in every armor.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: {},
   rarity: 'uncommon',
   price: 140,
   cost: 2,

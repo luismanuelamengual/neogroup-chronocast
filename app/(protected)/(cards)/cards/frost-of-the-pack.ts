@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Stun an enemy ally for two phases and draw a card. Fast.',
   flavor: 'Wolves run faster on frozen ground.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'rare',
   price: 420,
   cost: 3,

@@ -2,7 +2,6 @@ import { CardType } from '@/app/(protected)/(engine)/models/CardType'
 import { EffectContext } from '@/app/(protected)/(engine)/models/EffectContext'
 import { Element } from '@/app/(protected)/(engine)/models/Element'
 import { Faction } from '@/app/(protected)/(engine)/models/Faction'
-import { HeroClass } from '@/app/(protected)/(engine)/models/HeroClass'
 import { Keyword } from '@/app/(protected)/(engine)/models/Keyword'
 import { FailReason } from '@/app/(protected)/(engine)/models/MatchEvent'
 import { Unit } from '@/app/(protected)/(engine)/models/MatchState'
@@ -103,8 +102,6 @@ export interface CardDefinition {
   durability?: number
   /** Armors: damage it takes away from each hit on the hero. */
   armor?: number
-  /** Heroes. */
-  heroClass?: HeroClass
   /** Heroes: their side, Dawn or Eclipse (docs/PLAN.md, section 4.1.1). */
   side?: Side
   /** Heroes and some allies. */

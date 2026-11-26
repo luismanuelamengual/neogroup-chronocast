@@ -8,7 +8,7 @@ export default defineCard({
   text: 'An ally of yours gains +8 attack this phase. Instant.',
   flavor: 'A shout that steadies a hundred hands.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'uncommon',
   price: 160,
   cost: 3,

@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Volatile Mark',
   text: 'Attach to an enemy ally: each time it attacks, it takes 2 ice damage.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'uncommon',
   element: 'ice',
   price: 120,

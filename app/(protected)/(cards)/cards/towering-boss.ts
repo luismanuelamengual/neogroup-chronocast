@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Towering Boss',
   text: 'When it enters: your other Enforcers gain +1 attack and +1 health.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: {},
   rarity: 'uncommon',
   price: 140,
   cost: 2,

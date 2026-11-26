@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Thunderhead of Dusk',
   text: 'When it enters: draw a card.',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   element: 'lightning',
   resist: ['lightning'],

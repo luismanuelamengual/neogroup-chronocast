@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Manacle of the Hawk',
   text: 'Attach to an enemy ally: each time it attacks, it takes 5 wind damage.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: {},
   rarity: 'common',
   element: 'wind',
   price: 65,

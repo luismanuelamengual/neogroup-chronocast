@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Your Colossi gain +1 attack and +2 health.',
   flavor: 'Raise your blades. Raise your voices.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: {},
   rarity: 'uncommon',
   price: 140,
   cost: 2,

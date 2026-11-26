@@ -7,7 +7,7 @@ export default defineCard({
   name: "Aldric's Beacon",
   text: 'At the start of each phase: your hero heals 3 and your allies heal 2.',
   faction: 'arcane',
-  restriction: { heroes: ['aldric-dawnkeeper'] },
+  restriction: { factions: ['arcane'], sides: ['dawn'] },
   rarity: 'epic',
   price: 1100,
   cost: 3,

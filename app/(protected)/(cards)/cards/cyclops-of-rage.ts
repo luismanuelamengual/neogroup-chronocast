@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Cyclops of Rage',
   text: 'When it enters: deal 1 damage to the enemy hero for each Colossus of yours.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'uncommon',
   resist: ['earth'],
   weak: ['acid'],

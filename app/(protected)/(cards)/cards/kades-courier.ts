@@ -7,7 +7,7 @@ export default defineCard({
   name: "Kade's Courier",
   text: 'When it enters: deal 1 damage to the enemy hero for each Enforcer of yours. When it attacks: deal 3 damage to the enemy hero.',
   faction: 'neon',
-  restriction: { heroes: ['overseer-kade'] },
+  restriction: { factions: ['neon'], sides: ['eclipse'] },
   rarity: 'legendary',
   price: 2320,
   cost: 5,

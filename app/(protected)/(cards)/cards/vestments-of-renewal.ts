@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it is equipped: your allies heal 2.',
   flavor: 'Worn by healers who never sleep.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'epic',
   price: 900,
   cost: 1,

@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Enchantress of Runes',
   text: 'When it enters: freeze a random enemy ally. At the start of each phase: deal 1 arcane damage to the enemy hero.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'] },
+  restriction: { factions: ['arcane'], sides: ['dawn'] },
   rarity: 'epic',
   element: 'arcane',
   resist: ['arcane'],

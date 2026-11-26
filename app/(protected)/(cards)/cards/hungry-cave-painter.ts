@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Hungry Cave Painter',
   text: 'When another Caveborn of yours enters: it gains +1 attack and +1 health.',
   faction: 'primal',
-  restriction: { factions: ['primal'] },
+  restriction: { factions: ['primal'], sides: ['eclipse'] },
   rarity: 'uncommon',
   resist: ['ice'],
   price: 140,

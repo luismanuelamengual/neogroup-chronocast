@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Battle-Scarred Sentinel',
   text: 'After it takes damage: it gains +2 attack.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'rare',
   resist: ['earth'],
   weak: ['acid'],

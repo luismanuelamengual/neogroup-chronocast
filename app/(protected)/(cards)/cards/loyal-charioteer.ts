@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'The horses trust him. So does the legion.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'] },
+  restriction: { factions: ['bronze'], sides: ['dawn'] },
   rarity: 'common',
   price: 50,
   cost: 2,

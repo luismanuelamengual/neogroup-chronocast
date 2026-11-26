@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Patient Sabotage',
   text: 'The enemy weapon and armor lose 2 durability each. Fast.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: {},
   rarity: 'common',
   price: 50,
   cost: 2,

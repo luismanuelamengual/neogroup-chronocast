@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Old steel, older promises.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: {},
   rarity: 'uncommon',
   price: 160,
   cost: 3,

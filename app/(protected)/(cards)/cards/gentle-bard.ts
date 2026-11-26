@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'His songs mend what swords cannot.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   price: 55,
   cost: 3,

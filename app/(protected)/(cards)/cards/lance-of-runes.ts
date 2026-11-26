@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Deal 9 arcane damage to an enemy ally.',
   flavor: 'Each rune adds a reason to hurt.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'] },
+  restriction: { factions: ['arcane'], sides: ['dawn'] },
   rarity: 'rare',
   element: 'arcane',
   price: 420,

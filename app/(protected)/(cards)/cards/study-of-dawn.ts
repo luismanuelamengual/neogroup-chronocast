@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Draw a card and your hero heals 3.',
   flavor: 'Learn from the light before it rises.',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   price: 50,
   cost: 2,

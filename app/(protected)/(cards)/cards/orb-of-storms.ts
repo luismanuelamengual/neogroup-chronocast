@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it is equipped: draw a card.',
   flavor: 'A storm in a jar, minus the jar.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'uncommon',
   element: 'lightning',
   price: 160,

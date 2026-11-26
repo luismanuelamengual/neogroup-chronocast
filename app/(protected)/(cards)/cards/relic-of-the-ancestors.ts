@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Relic of the Ancestors',
   text: 'At the start of each phase: deal 2 light damage to a random enemy ally.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'legendary',
   element: 'light',
   price: 2000,

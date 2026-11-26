@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Point it at summer and watch it end.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'uncommon',
   element: 'ice',
   price: 180,

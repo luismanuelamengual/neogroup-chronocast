@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Freeze an enemy ally.',
   flavor: 'The wise know when to stop the clock.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'] },
+  restriction: { factions: ['arcane'], sides: ['dawn'] },
   rarity: 'common',
   price: 40,
   cost: 1,

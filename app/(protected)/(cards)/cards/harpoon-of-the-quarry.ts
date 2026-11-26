@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it is equipped: deal 4 damage to a random enemy ally.',
   flavor: 'Barbed for the biggest prey.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'epic',
   price: 1100,
   cost: 3,

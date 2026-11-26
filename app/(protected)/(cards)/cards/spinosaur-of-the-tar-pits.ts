@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Spinosaur of the Tar Pits',
   text: 'When another Saurian of yours enters: it gains +2 attack and +2 health.',
   faction: 'primal',
-  restriction: { factions: ['primal'] },
+  restriction: { factions: ['primal'], sides: ['dawn'] },
   rarity: 'uncommon',
   element: 'acid',
   weak: ['ice'],

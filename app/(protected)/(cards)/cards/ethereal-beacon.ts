@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Ethereal Beacon',
   text: 'At the start of each phase: deal 2 arcane damage to a random enemy ally. (4 uses)',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'rare',
   element: 'arcane',
   price: 300,

@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Volatile Fortune Teller',
   text: 'When it enters: burn a random enemy ally (3). When it dies: deal 1 fire damage to every enemy ally.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'epic',
   element: 'fire',
   price: 1200,

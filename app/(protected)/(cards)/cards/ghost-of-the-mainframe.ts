@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it enters: draw a card.',
   flavor: 'It lives where the code forgot to look.',
   faction: 'neon',
-  restriction: { factions: ['neon'] },
+  restriction: { factions: ['neon'], sides: ['dawn'] },
   rarity: 'common',
   price: 65,
   cost: 4,

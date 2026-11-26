@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Thunderhead of Dawn',
   text: 'When it enters: you gain 1 Chronos this phase.',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['dawn'] },
   rarity: 'uncommon',
   element: 'lightning',
   resist: ['lightning'],

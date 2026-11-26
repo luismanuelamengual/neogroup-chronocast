@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When an enemy ally is summoned: freeze it.',
   flavor: 'Step lightly. Read the runes. Too late.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'] },
+  restriction: { factions: ['arcane'], sides: ['eclipse'] },
   rarity: 'uncommon',
   price: 140,
   cost: 2,

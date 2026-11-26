@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Stone Golem of Mana',
   text: 'When it dies: deal 1 earth damage to every enemy ally.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'common',
   element: 'earth',
   resist: ['earth'],

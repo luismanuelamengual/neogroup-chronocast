@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it is equipped: draw a card.',
   flavor: 'A small sun that obeys.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'uncommon',
   element: 'fire',
   price: 160,

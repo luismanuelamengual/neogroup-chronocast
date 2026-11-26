@@ -127,13 +127,13 @@ describe('the card catalog', () => {
     }
   })
 
-  it('the catalog has the 732 collectible cards of the plan, by rarity (docs/PLAN.md, sections 5 and 8.1)', () => {
+  it('the catalog has the 729 collectible cards of the plan, by rarity (docs/PLAN.md, sections 5 and 8.1)', () => {
     // The retired types (locations, for now) count: they are still part of the plan.
     const collectible = ALL_CARDS.filter((card) => !card.boss && !card.token)
     const count = (rarity: string) => collectible.filter((card) => card.rarity === rarity).length
 
-    expect(collectible.length).toBe(732)
-    expect(HEROES.length).toBe(24)
+    expect(collectible.length).toBe(729)
+    expect(HEROES.length).toBe(12)
     expect([
       count('common'),
       count('uncommon'),
@@ -142,7 +142,7 @@ describe('the card catalog', () => {
       count('legendary'),
       count('exotic'),
       count('mythic')
-    ]).toEqual([260, 178, 129, 80, 65, 14, 6])
+    ]).toEqual([264, 181, 129, 78, 57, 14, 6])
   })
 
   it('leaves the retired types out of what players can own (the campaign rewards stay)', () => {

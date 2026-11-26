@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Thrown from the reeds, felt in the bones.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   price: 65,
   cost: 4,

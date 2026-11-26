@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Learned Wyvern',
   text: 'When another Drake of yours enters: it gains +1 attack and +1 health.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'rare',
   resist: ['fire'],
   weak: ['ice'],

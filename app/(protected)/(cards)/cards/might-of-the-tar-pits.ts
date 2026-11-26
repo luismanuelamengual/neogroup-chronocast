@@ -8,7 +8,7 @@ export default defineCard({
   text: 'An ally of yours gains +3 attack and +4 health.',
   flavor: 'Strength from the deep black earth.',
   faction: 'primal',
-  restriction: { factions: ['primal'] },
+  restriction: { factions: ['primal'], sides: ['eclipse'] },
   rarity: 'common',
   price: 50,
   cost: 2,

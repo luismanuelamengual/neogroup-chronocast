@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When another Beast of yours enters: your hero heals 2.',
   flavor: 'It follows a trail by smell, and ends it by charging.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: {},
   rarity: 'uncommon',
   price: 180,
   cost: 4,

@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Deal 11 lightning damage to an enemy ally.',
   flavor: 'Lightning that decided to stay.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'common',
   element: 'lightning',
   price: 65,

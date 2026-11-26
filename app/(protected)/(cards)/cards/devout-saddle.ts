@@ -6,7 +6,7 @@ export default defineCard({
   name: 'Devout Saddle',
   text: 'Attach to an ally of yours: it gains +1 attack and +3 health.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'epic',
   price: 1000,
   cost: 2,

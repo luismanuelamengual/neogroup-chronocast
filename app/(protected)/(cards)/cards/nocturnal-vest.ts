@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it is equipped: draw a card.',
   flavor: 'Darker than the night it hides in.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'rare',
   price: 360,
   cost: 2,

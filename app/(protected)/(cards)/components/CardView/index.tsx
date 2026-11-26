@@ -2,12 +2,12 @@
 
 import './index.scss'
 import classNames from 'classnames'
-import { RefObject, useEffect, useLayoutEffect, useRef } from 'react'
+import { ReactNode, RefObject, useEffect, useLayoutEffect, useRef } from 'react'
 import { ELEMENT_ICONS, SIDE_ICONS } from '@/app/(protected)/(battle)/utils/icons'
 import { useCardArt } from '@/app/(protected)/(cards)/stores/cardArt'
 import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition'
 import { Element } from '@/app/(protected)/(engine)/models/Element'
-import { sideOf } from '@/app/(protected)/(engine)/models/Side'
+import { cardSide } from '@/app/(protected)/(engine)/utils/deckRules'
 import { translateCard } from '@/app/i18n/cards'
 import { useI18n } from '@/app/i18n/I18nProvider'
 import { Translator } from '@/app/i18n/translate'
@@ -25,38 +25,37 @@ const TYPE_GLYPHS: Record<CardDefinition['type'], string> = {
   artifact: '🏺'
 }
 
-/** "Ally · Bronze", "Hero · Bronze Warrior", "Weapon · Warrior class", "Ability · Signature". */
-function typeLine(card: CardDefinition, t: Translator): string {
-  const type = t(`game.types.${card.type}`)
-  const faction = t(`game.factions.${card.faction}`)
+/** "☀️ Ally - Bronze": the side's icon and the type, then the faction, each one unless it is neutral. */
+function typeLine(card: CardDefinition, t: Translator): ReactNode {
+  const side = cardSide(card)
+  const faction = card.faction !== 'neutral' ? ` - ${t(`game.factions.${card.faction}`)}` : ''
 
-  if (card.type === 'hero') {
-    const side = sideOf(card)
-
-    return t('game.typeLine.hero', {
-      side: side ? SIDE_ICONS[side] : '',
-      type,
-      faction,
-      heroClass: card.heroClass ? t(`game.classes.${card.heroClass}`) : ''
-    })
-  }
-
-  const tribe = card.tribe ? ` · ${t(`game.tribes.${card.tribe}`)}` : ''
-  const { factions = [], sides = [], classes = [], heroes = [] } = card.restriction
-
-  if (heroes.length > 0) {
-    return t('game.typeLine.signature', { type }) + tribe
-  }
-
-  // The faction shows unless the card is only for some sides or classes (then
-  // it is neutral and they say more): "Ally · Clockwork · ☀️ Dawn · Warrior".
-  const parts = [
-    ...(factions.length > 0 || (sides.length === 0 && classes.length === 0) ? [faction] : []),
-    ...(sides.length > 0 ? [sides.map((side) => `${SIDE_ICONS[side]} ${t(`game.sides.${side}`)}`).join(' / ')] : []),
-    ...(classes.length > 0 ? [classes.map((heroClass) => t(`game.classes.${heroClass}`)).join(' / ')] : [])
-  ]
-
-  return t('game.typeLine.restricted', { type, parts: parts.join(' · ') }) + tribe
+  return (
+    <>
+      {side === 'dawn' && <span className="card-view__side side-dawn">{SIDE_ICONS.dawn}</span>}
+      {side === 'eclipse' && (
+        // Drawn in SVG so it stays round at any zoom (the 🌑 emoji sits off center and hides on dark frames).
+        <svg
+          className="card-view__side side-eclipse"
+          viewBox="0 0 16 16"
+          role="img"
+          aria-label={t('game.sides.eclipse')}
+        >
+          <defs>
+            <radialGradient id="card-view-moon" cx="35%" cy="35%" r="70%">
+              <stop offset="0%" stopColor="#5b5470" />
+              <stop offset="100%" stopColor="#1f1a2e" />
+            </radialGradient>
+          </defs>
+          <circle cx="8" cy="8" r="7.5" fill="white" opacity="0.55" />
+          <circle cx="8" cy="8" r="6.5" fill="white" />
+          <circle cx="8" cy="8" r="4.5" fill="url(#card-view-moon)" />
+        </svg>
+      )}
+      {t(`game.types.${card.type}`)}
+      {faction}
+    </>
+  )
 }
 
 /** The names of some elements, with their icons: "🔥 Fire, ❄️ Ice". */

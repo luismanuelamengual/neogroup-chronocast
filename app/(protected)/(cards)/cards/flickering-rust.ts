@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Flickering Rust',
   text: 'Attach to an enemy ally: each time it attacks, it takes 3 acid damage.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'rare',
   element: 'acid',
   price: 360,

@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Deal 9 fire damage to an enemy slot.',
   flavor: 'Heat first, questions never.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'rare',
   element: 'fire',
   price: 420,

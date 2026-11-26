@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Keen-Eyed Daze',
   text: "Return an enemy ally to its owner's hand and draw a card. Fast.",
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: {},
   rarity: 'uncommon',
   price: 180,
   cost: 4,

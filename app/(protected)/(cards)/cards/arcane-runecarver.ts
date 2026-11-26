@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Arcane Runecarver',
   text: 'At the start of each phase: deal 1 arcane damage to the enemy hero.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'] },
+  restriction: { factions: ['arcane'], sides: ['dawn'] },
   rarity: 'common',
   element: 'arcane',
   resist: ['arcane'],

@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Your hero heals 9.',
   flavor: 'Rest now. The war will wait.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'uncommon',
   price: 140,
   cost: 2,

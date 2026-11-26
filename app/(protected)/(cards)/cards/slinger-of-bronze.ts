@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it dies: your other allies gain +1 attack.',
   flavor: 'A bronze stone, a perfect arc.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'] },
+  restriction: { factions: ['bronze'], sides: ['dawn'] },
   rarity: 'uncommon',
   price: 180,
   cost: 4,

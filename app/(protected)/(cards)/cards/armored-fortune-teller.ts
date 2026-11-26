@@ -8,7 +8,7 @@ export default defineCard({
   text: 'After it takes damage: it gains +2 attack.',
   flavor: 'She read the future and bought armor.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: {},
   rarity: 'uncommon',
   price: 120,
   cost: 1,

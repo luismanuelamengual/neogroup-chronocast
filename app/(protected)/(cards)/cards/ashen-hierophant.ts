@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Ashen Hierophant',
   text: 'When it dies: your Cultists gain +1 attack and +1 health. When it enters: poison the enemy hero (3).',
   faction: 'void',
-  restriction: { factions: ['void'] },
+  restriction: { factions: ['void'], sides: ['eclipse'] },
   rarity: 'legendary',
   element: 'fire',
   price: 2160,

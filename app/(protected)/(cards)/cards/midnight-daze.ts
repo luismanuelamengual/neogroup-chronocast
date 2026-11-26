@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Stun an enemy ally. Fast.',
   flavor: 'Too many lights, too little time.',
   faction: 'neon',
-  restriction: { factions: ['neon'] },
+  restriction: { factions: ['neon'], sides: ['eclipse'] },
   rarity: 'rare',
   price: 300,
   cost: 1,

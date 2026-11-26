@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it is equipped: your allies heal 2.',
   flavor: 'It remembers every blade that failed.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'mythic',
   price: 4240,
   cost: 4,

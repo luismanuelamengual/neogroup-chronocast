@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'The volcano taught him to throw.',
   faction: 'primal',
-  restriction: { factions: ['primal'] },
+  restriction: { factions: ['primal'], sides: ['eclipse'] },
   rarity: 'common',
   element: 'fire',
   resist: ['ice'],

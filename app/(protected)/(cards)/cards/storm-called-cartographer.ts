@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Storm-Called Cartographer',
   text: 'When it dies: deal 1 lightning damage to every enemy ally.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'uncommon',
   element: 'lightning',
   price: 140,

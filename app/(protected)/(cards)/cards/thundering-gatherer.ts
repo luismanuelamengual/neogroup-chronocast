@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Thundering Gatherer',
   text: 'When it enters: it gains +1 attack and +2 health.',
   faction: 'primal',
-  restriction: { factions: ['primal'] },
+  restriction: { factions: ['primal'], sides: ['eclipse'] },
   rarity: 'common',
   resist: ['ice'],
   price: 70,

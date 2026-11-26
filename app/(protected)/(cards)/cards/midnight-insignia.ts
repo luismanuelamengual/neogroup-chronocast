@@ -6,7 +6,7 @@ export default defineCard({
   name: 'Midnight Insignia',
   text: 'Attach to an ally of yours: it gains +1 attack and +3 health.',
   faction: 'neon',
-  restriction: { factions: ['neon'] },
+  restriction: { factions: ['neon'], sides: ['eclipse'] },
   rarity: 'common',
   price: 50,
   cost: 2,

@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'The sky obeys it, mostly.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'uncommon',
   element: 'lightning',
   price: 140,

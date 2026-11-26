@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it is equipped: your hero heals 6.',
   flavor: 'It lights the path to morning.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'uncommon',
   price: 180,
   cost: 4,

@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Brass Steam Knight',
   text: 'When it enters: you gain 1 Chronos this phase.',
   faction: 'clockwork',
-  restriction: { factions: ['clockwork'] },
+  restriction: { factions: ['clockwork'], sides: ['eclipse'] },
   rarity: 'common',
   resist: ['acid'],
   weak: ['lightning'],

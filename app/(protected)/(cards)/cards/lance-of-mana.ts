@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Deal 9 arcane damage to an enemy slot.',
   flavor: 'Raw magic, thrown like a spear.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'rare',
   element: 'arcane',
   price: 420,

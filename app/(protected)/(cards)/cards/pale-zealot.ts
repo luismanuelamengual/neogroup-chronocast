@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Pale Zealot',
   text: 'When it enters: draw the first Cultist of your deck. When it dies: deal 3 shadow damage to the enemy hero.',
   faction: 'void',
-  restriction: { factions: ['void'] },
+  restriction: { factions: ['void'], sides: ['eclipse'] },
   rarity: 'epic',
   element: 'shadow',
   price: 1200,

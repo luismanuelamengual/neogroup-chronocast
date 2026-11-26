@@ -8,7 +8,7 @@ export default defineCard({
   text: 'An ally of yours gains +8 attack this phase. Instant.',
   flavor: 'There is nowhere left to go but forward.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   price: 55,
   cost: 3,

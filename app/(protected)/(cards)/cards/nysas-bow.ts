@@ -7,7 +7,7 @@ export default defineCard({
   name: "Nysa's Bow",
   text: 'When it is equipped: deal 4 wind damage to a random enemy ally.',
   faction: 'bronze',
-  restriction: { heroes: ['nysa-goldbow'] },
+  restriction: { factions: ['bronze'], sides: ['dawn'] },
   rarity: 'epic',
   element: 'wind',
   price: 1100,

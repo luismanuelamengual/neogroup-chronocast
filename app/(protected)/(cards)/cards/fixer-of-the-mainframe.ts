@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Fixer of the Mainframe',
   text: 'When it enters: your other Enforcers gain +2 attack and +2 health. When it dies: draw a card.',
   faction: 'neon',
-  restriction: { factions: ['neon'] },
+  restriction: { factions: ['neon'], sides: ['eclipse'] },
   rarity: 'epic',
   price: 1300,
   cost: 5,

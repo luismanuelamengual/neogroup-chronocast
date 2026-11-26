@@ -6,7 +6,7 @@ export default defineCard({
   name: 'Brand of the Comet',
   text: "Attach to an enemy ally: it can't use its ability and has -1 attack.",
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'uncommon',
   price: 160,
   cost: 3,

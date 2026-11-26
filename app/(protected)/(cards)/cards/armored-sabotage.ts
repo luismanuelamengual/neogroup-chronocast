@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Destroy an enemy weapon, armor or attachment, your choice. Fast.',
   flavor: 'Every armor has a loose strap.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: {},
   rarity: 'rare',
   price: 540,
   cost: 5,

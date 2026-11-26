@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Your armor gains +4 durability and your hero heals 8. Draw a card.',
   flavor: 'The dead stand guard for the living.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'exotic',
   price: 3160,
   cost: 3,

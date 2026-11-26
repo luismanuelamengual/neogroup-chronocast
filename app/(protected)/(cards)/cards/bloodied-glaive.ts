@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it is equipped: your hero heals 4.',
   flavor: 'Cleaned once. Never again.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'uncommon',
   price: 140,
   cost: 2,

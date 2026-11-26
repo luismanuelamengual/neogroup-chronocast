@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it dies: draw a card.',
   flavor: 'His honor has a password.',
   faction: 'neon',
-  restriction: { factions: ['neon'] },
+  restriction: { factions: ['neon'], sides: ['eclipse'] },
   rarity: 'common',
   price: 55,
   cost: 3,

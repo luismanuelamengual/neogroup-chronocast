@@ -39,12 +39,6 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Alquimista de la Torre del Reloj',
     text: 'Al entrar: hacé 1 de daño al héroe enemigo por cada Inventor tuyo.'
   },
-  'aldric-dawnkeeper': {
-    name: 'Aldric Dawnkeeper',
-    text: 'Luz del Alba (4): tu héroe se cura 12 y tus aliados se curan 6. Al final de cada fase, tu héroe se cura 2.',
-    flavor: 'Todas las noches terminan. Él se ocupa de eso.',
-    ability: { name: 'Luz del Alba', text: 'Tu héroe se cura 12 y tus aliados se curan 6.' }
-  },
   'aldrics-beacon': {
     name: 'Faro de Aldric',
     text: 'Al empezar cada fase: tu héroe se cura 3 y tus aliados se curan 2.'
@@ -281,6 +275,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Secreto Bendito',
     text: 'Robá una carta y tu héroe se cura 3.',
     flavor: 'Los dioses también guardan secretos.'
+  },
+  bloodclock: {
+    name: 'Reloj de Sangre',
+    text: 'Al empezar cada fase: tu héroe recibe 2 de daño de sombra y robá una carta.',
+    flavor: 'Cada tic cuesta una gota. Cada gota compra un secreto.'
   },
   'bloodied-echo': {
     name: 'Eco Ensangrentado',
@@ -527,6 +526,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Reptante de la Tumba',
     text: 'Al entrar: sacrificá a tu otro aliado más débil: si lo hacés, robá 2 cartas.'
   },
+  'crimson-moon': {
+    name: 'Luna Carmesí',
+    text: 'Al terminar cada fase: robá una carta. (3 usos)',
+    flavor: 'Bajo una luna roja, los secretos sangran solos.'
+  },
   'crook-of-the-ancestors': {
     name: 'Báculo de los Ancestros',
     text: 'Al equiparla: hacé 4 de daño de luz a un aliado enemigo al azar.'
@@ -554,11 +558,22 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Cíclope de la Ira',
     text: 'Al entrar: hacé 1 de daño al héroe enemigo por cada Coloso tuyo.'
   },
+  'dawn-almanac': {
+    name: 'Almanaque del Amanecer',
+    text: 'Estudiar (2): robá una carta.',
+    flavor: 'Cada amanecer agrega una página.',
+    ability: { name: 'Estudiar', text: 'Robá una carta.' }
+  },
   'dawn-sigil': {
     name: 'Sello del Alba',
     text: 'Al empezar cada fase: tus aliados se curan 4.',
     flavor: 'Ninguna noche ganó jamás. Este sello se encarga de eso.',
     ability: { name: 'Romper el Eclipse', text: 'Destruye todos los Sellos del Eclipse en juego.' }
+  },
+  'dawns-hope': {
+    name: 'Esperanza del Alba',
+    text: 'Robá cartas hasta tener tantas como el rival (hasta 3). Si no robás ninguna, tu héroe se cura 6.',
+    flavor: 'La hora más oscura es la que llega justo antes de la luz.'
   },
   'decoy-of-the-undercity': {
     name: 'Señuelo de la Ciudad Baja',
@@ -631,6 +646,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'echo-the-spirit-crow': {
     name: 'Eco, el Cuervo Espiritual',
     text: 'Al morir: un aliado al azar de tu pila de descarte vuelve al juego.'
+  },
+  'echoes-of-the-pile': {
+    name: 'Ecos de la Pila',
+    text: 'Robá una carta por cada 3 aliados en tu pila de descarte (hasta 3).',
+    flavor: 'Los muertos hablan. Al Vacío le alcanza con escuchar.'
   },
   'eclipse-sigil': {
     name: 'Sello del Eclipse',
@@ -820,6 +840,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Al entrar: el arma enemiga pierde 1 de durabilidad.',
     flavor: 'Las máquinas trabajan más cuando él grita.'
   },
+  'form-ranks': {
+    name: 'Llamado a Formación',
+    text: 'Robá una carta por cada par de aliados tuyos que estén uno al lado del otro (hasta 3).',
+    flavor: 'Hombro con hombro, la legión piensa como uno.'
+  },
   'forsaken-resurrection': {
     name: 'Resurrección Abandonada',
     text: 'Un aliado al azar de tu pila de descarte vuelve al juego. Lenta.',
@@ -912,12 +937,6 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     flavor: 'Vive donde el código se olvidó de mirar.'
   },
   'ghoul-of-mercy': { name: 'Necrófago de la Misericordia', flavor: 'Solo come lo que ya está perdido.' },
-  'gideon-ironsteam': {
-    name: 'Gideon Ironsteam',
-    text: 'Sobrecalentar (4): quemá a un aliado enemigo (4) y a sus vecinos (2).',
-    flavor: 'Mitad hombre, mitad motor, todo testarudez.',
-    ability: { name: 'Sobrecalentar', text: 'Quemá a un aliado enemigo (4) y a sus vecinos (2).' }
-  },
   'gideons-hammer': {
     name: 'Martillo de Gideon',
     text: 'Al equiparla: tu héroe se cura 5.',
@@ -937,12 +956,6 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Gliptodonte del Volcán',
     text: 'Al entrar: invocá un Cachorro de Dientes de Sable.',
     flavor: 'Una fortaleza ambulante con el corazón caliente.'
-  },
-  'gorrak-tyrant-king': {
-    name: 'Gorrak, Rey Tirano',
-    text: 'Devorar (4): hacé 10 de daño de tierra a un slot enemigo y tu héroe se cura 6. Al empezar cada fase, tu héroe se cura 3.',
-    flavor: 'La jungla tiene un solo rey. Se come a los demás.',
-    ability: { name: 'Devorar', text: 'Hacé 10 de daño de tierra a un slot enemigo y tu héroe se cura 6.' }
   },
   'gorraks-cave-bear': {
     name: 'Oso Cavernario de Gorrak',
@@ -1055,12 +1068,6 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Maleficio de Espinas',
     text: 'Congelá a un aliado enemigo.',
     flavor: 'Cada paso cuesta un poco de sangre.'
-  },
-  'hollow-astronomer': {
-    name: 'El Astrónomo Hueco',
-    text: 'Supernova (5): hacé 12 de daño de arcano a un slot enemigo y 4 a los slots vecinos. Al empezar cada fase, hacé 2 de daño de arcano al héroe enemigo.',
-    flavor: 'Trazó el mapa de cada estrella, y después empezó a apagarlas.',
-    ability: { name: 'Supernova', text: 'Hacé 12 de daño de arcano a un slot enemigo y 4 a los slots vecinos.' }
   },
   'hollow-vision': { name: 'Visión Hueca', text: 'Robá 2 cartas.', flavor: 'Muestra lo que falta.' },
   'hollow-void-spawn': {
@@ -1190,12 +1197,6 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'kades-courier': {
     name: 'Mensajero de Kade',
     text: 'Al entrar: hacé 1 de daño al héroe enemigo por cada Sicario tuyo. Al atacar: hacé 3 de daño al héroe enemigo.'
-  },
-  'kazhul-mother-of-ash': {
-    name: 'Kazhul, Madre de la Ceniza',
-    text: 'Aliento de Ceniza (5): hacé 5 de daño de fuego a cada aliado enemigo y al héroe enemigo. Al empezar cada fase, tu héroe se cura 3.',
-    flavor: 'Duerme bajo el volcán. Nadie la quiere despierta.',
-    ability: { name: 'Aliento de Ceniza', text: 'Hacé 5 de daño de fuego a cada aliado enemigo y al héroe enemigo.' }
   },
   'kazhuls-brontosaur': {
     name: 'Brontosaurio de Kazhul',
@@ -1605,12 +1606,6 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'nymph-of-grace': { name: 'Ninfa de la Gracia', text: 'Al entrar: tus otros aliados ganan +2 de vida.' },
   'nymph-of-the-ancestors': { name: 'Ninfa de los Ancestros', text: 'Al morir: invocá un Espíritu Guardián.' },
   'nymph-of-the-tower': { name: 'Ninfa de la Torre', flavor: 'Le canta al musgo de las piedras viejas.' },
-  'nysa-goldbow': {
-    name: 'Nysa Goldbow',
-    text: 'Cuerda Dorada (3): tu arma gana +3 de ataque y +2 de durabilidad. Cuando entra otro aliado tuyo, gana +1 de ataque.',
-    flavor: 'Una vez cazó con los dioses. Ahora caza para ella.',
-    ability: { name: 'Cuerda Dorada', text: 'Tu arma gana +3 de ataque y +2 de durabilidad.' }
-  },
   'nysas-bow': { name: 'Arco de Nysa', text: 'Al equiparla: hacé 4 de daño de viento a un aliado enemigo al azar.' },
   'nyx-hollowsong': {
     name: 'Nyx Hollowsong',
@@ -1658,15 +1653,6 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Al entrar: tus aliados se curan 3.',
     flavor: 'El compañero más viejo de Ooma, y el más pesado.'
   },
-  'omnigear-prime': {
-    name: 'Omnigear Prime',
-    text: 'Línea de Montaje (4): el aliado más caro de tu mano que cueste 6 Cronos o menos se invoca sin pagar su costo y gana +3 de ataque y +3 de vida. Al empezar cada fase, tu héroe se cura 2.',
-    flavor: 'La máquina que construye máquinas decidió que ya no necesita constructores.',
-    ability: {
-      name: 'Línea de Montaje',
-      text: 'El aliado más caro de tu mano que cueste 6 Cronos o menos se invoca sin pagar su costo y gana +3 de ataque y +3 de vida.'
-    }
-  },
   'omnigears-gyrocopter': {
     name: 'Girocóptero de Omnigear',
     text: 'Al entrar: tus otras Aeronaves ganan +2 de ataque y +2 de vida. Al empezar cada fase: tu héroe se cura 2.'
@@ -1703,15 +1689,6 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'overdriven-sentry-bot': {
     name: 'Robot Centinela Sobrecargado',
     text: 'Al terminar cada fase: hacé 1 de daño de sónico al héroe enemigo.'
-  },
-  'overseer-kade': {
-    name: 'Supervisor Kade',
-    text: 'Control Mental (4): tomá el control de un aliado enemigo hasta el final de la fase: ataca a otro aliado enemigo o al héroe enemigo, y después queda aturdido hasta el final de la próxima fase. Al empezar cada fase, tu héroe se cura 2.',
-    flavor: 'Ve todas las cámaras de la megaciudad. Todas a la vez.',
-    ability: {
-      name: 'Control Mental',
-      text: 'Tomá el control de un aliado enemigo hasta el final de la fase: ataca a otro aliado enemigo o al héroe enemigo, y después queda aturdido hasta el final de la próxima fase.'
-    }
   },
   'pale-voidcaller': { name: 'Invocadora del Vacío Pálida', flavor: 'Cuando habla, la oscuridad responde.' },
   'pale-zealot': {
@@ -2032,12 +2009,6 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'La armadura enemiga pierde 3 de durabilidad. Rápida.',
     flavor: 'Un poco de agua en los engranajes rinde mucho.'
   },
-  'ryn-voltblade': {
-    name: 'Ryn Voltblade',
-    text: 'Sobrecarga (3): tus aliados ganan +4 de ataque esta fase. Instantánea. Al empezar cada fase, tu héroe se cura 2.',
-    flavor: 'La hoja más rápida de la megaciudad.',
-    ability: { name: 'Sobrecarga', text: 'Tus aliados ganan +4 de ataque esta fase.' }
-  },
   'ryns-mace': {
     name: 'Maza de Ryn',
     text: 'Al equiparla: tu héroe se cura 5.',
@@ -2103,9 +2074,20 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Estasis Docta',
     text: 'Congelá a un aliado enemigo y hacé 2 de daño de tiempo al héroe enemigo.'
   },
+  'scrap-down': {
+    name: 'Desguace',
+    text: 'Destruí tu artefacto más caro: robá 2 cartas, o 3 si costaba 4 o más.',
+    flavor: 'En el taller nada se tira. Mucho menos un buen engranaje.'
+  },
   'scrap-plate-of-the-rift': {
     name: 'Coraza de Chatarra de la Grieta',
     flavor: 'Piezas de doce siglos, unidas por la esperanza.'
+  },
+  'senate-archive': {
+    name: 'Archivo del Senado',
+    text: 'Consultar (2⚡): robá una carta.',
+    flavor: 'El imperio lo recuerda todo. Por un precio.',
+    ability: { name: 'Consultar', text: 'Robá una carta.' }
   },
   'serene-prayer-staff': {
     name: 'Vara de Plegarias Serena',
@@ -2139,6 +2121,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'shade-of-dying-stars': {
     name: 'Sombra de las Estrellas Moribundas',
     flavor: 'Lleva la luz de estrellas que ya murieron.'
+  },
+  'shadow-tithe': {
+    name: 'Diezmo de Sombra',
+    text: 'Tu héroe recibe 6 de daño de sombra. Robá 2 cartas.',
+    flavor: 'El Eclipse siempre cobra. En sangre, si te falta moneda.'
   },
   'sharp-blessing': { name: 'Bendición Afilada', text: 'Adjuntala a un aliado tuyo: gana +1 de ataque y +4 de vida.' },
   'sharp-boar': {
@@ -2241,7 +2228,7 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'solar-idol': {
     name: 'Ídolo Solar',
-    text: 'Al empezar cada fase: robá una carta. (3 usos)',
+    text: 'Al empezar cada fase: si tenés 3 o más aliados, robá una carta. (3 usos)',
     flavor: 'Bebe el sol y devuelve coraje.'
   },
   'solar-muster': {
@@ -2450,15 +2437,6 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Dientes de Sable Empapado de Brea',
     text: 'Al atacar: tu héroe se cura 3.',
     flavor: 'Salió del pozo de brea más enojado que nunca.'
-  },
-  'tauron-labyrinth-lord': {
-    name: 'Tauron, Señor del Laberinto',
-    text: 'Embestida (5): hacé daño de tierra igual a 6 + el ataque de tu arma a un aliado enemigo y a sus vecinos. Al empezar cada fase, tu héroe se cura 2.',
-    flavor: 'Nadie que entró a su laberinto encontró la salida.',
-    ability: {
-      name: 'Embestida',
-      text: 'Hacé daño de tierra igual a 6 + el ataque de tu arma a un aliado enemigo y a sus vecinos.'
-    }
   },
   'taurons-halberd': {
     name: 'Alabarda de Tauron',
@@ -2725,15 +2703,6 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Adjuntala a un aliado enemigo: cada vez que ataca, recibe 2 de daño de hielo.'
   },
   'volatile-runecarver': { name: 'Tallarrunas Volátil', text: 'Al entrar: si tenés otro Hechicero, robá una carta.' },
-  'vorhal-the-last-hour': {
-    name: 'Vorhal, la Última Hora',
-    text: 'Campanada Final (6): hacé 6 de daño de tiempo a cada aliado enemigo y el héroe enemigo pierde 2 de energía. Al empezar cada fase, hacé 1 de daño de tiempo al héroe enemigo.',
-    flavor: 'Cuando se detiene el último reloj, queda él.',
-    ability: {
-      name: 'Campanada Final',
-      text: 'Hacé 6 de daño de tiempo a cada aliado enemigo y el héroe enemigo pierde 2 de energía.'
-    }
-  },
   'vorhals-flagellant': {
     name: 'Flagelante de Vorhal',
     text: 'Cuando entra otro Cultista tuyo: tu héroe se cura 2. Al morir: invocá un Esqueleto Alzado.'
@@ -2825,12 +2794,6 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Estasis Sabia',
     text: 'Congelá a un aliado enemigo.',
     flavor: 'Los sabios saben cuándo detener el reloj.'
-  },
-  'xulthar-the-devourer': {
-    name: "Xul'thar el Devorador",
-    text: 'Consumir (6): destruí a un aliado enemigo y tu héroe se cura 10. Al empezar cada fase, si tu descarte tiene 10 cartas o más, un aliado al azar de tu descarte vuelve al juego.',
-    flavor: 'Se comió la última estrella. Todavía tiene hambre.',
-    ability: { name: 'Consumir', text: 'Destruí a un aliado enemigo y tu héroe se cura 10.' }
   },
   'xulthars-crystal': {
     name: 'Cristal de Xulthar',

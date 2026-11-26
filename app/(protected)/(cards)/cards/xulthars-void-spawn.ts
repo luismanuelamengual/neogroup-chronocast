@@ -7,7 +7,7 @@ export default defineCard({
   name: "Xulthar's Void Spawn",
   text: 'When another Horror of yours enters: your hero heals 2. When it dies: deal 4 shadow damage to the enemy hero.',
   faction: 'void',
-  restriction: { heroes: ['xulthar-the-devourer'] },
+  restriction: { factions: ['void'], sides: ['eclipse'] },
   rarity: 'legendary',
   element: 'shadow',
   resist: ['shadow'],

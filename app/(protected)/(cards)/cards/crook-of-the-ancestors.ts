@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Crook of the Ancestors',
   text: 'When it is equipped: deal 4 light damage to a random enemy ally.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'rare',
   element: 'light',
   price: 420,

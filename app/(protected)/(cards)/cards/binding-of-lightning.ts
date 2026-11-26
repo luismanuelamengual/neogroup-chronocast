@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Stun an enemy ally for two phases and draw a card. Fast.',
   flavor: 'Chains that spark and sting.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'rare',
   price: 420,
   cost: 3,

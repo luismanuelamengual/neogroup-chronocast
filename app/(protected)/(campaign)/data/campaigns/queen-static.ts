@@ -1,23 +1,22 @@
 import { defineCampaign } from '@/app/(protected)/(campaign)/utils/defineCampaign'
 
 /**
- * Queen Static: an emperor from a Rome that never was wants her signal to
- * announce his coronation in every era. The story texts live in the
- * translations (campaigns.queen-static).
+ * Queen Static: nine rivals from the other eras and Caelus the Usurper as the
+ * boss. The story texts live in the translations (campaigns.queen-static).
  */
 export default defineCampaign({
   heroId: 'queen-static',
   rewardCardId: 'signal-wraith',
   stages: [
-    { rival: 'ilyra-starweaver' },
+    { rival: 'legate-varro' },
     { rival: 'kora-wildfang' },
-    { rival: 'legate-varro', cpuSetup: { extraHealth: 5 } },
-    { rival: 'nyx-hollowsong', cpuSetup: { extraHealth: 5 } },
-    { rival: 'vex-nightwire', cpuSetup: { allies: ['cyber-hound-of-the-grid'] } },
-    { rival: 'nysa-goldbow', cpuSetup: { allies: ['loyal-charioteer'] } },
-    { rival: 'ryn-voltblade', cpuSetup: { allies: ['augmented-thug'] } },
-    { rival: 'gideon-ironsteam', cpuSetup: { extraHealth: 5 } },
-    { rival: 'ooma-bonewhisper', cpuSetup: { weapon: 'lantern-staff-of-renewal' }, playerSetup: { handSize: 6 } },
+    { rival: 'ilyra-starweaver', cpuSetup: { extraHealth: 5 } },
+    { rival: 'vex-nightwire', cpuSetup: { extraHealth: 5 } },
+    { rival: 'nyx-hollowsong', cpuSetup: { allies: ['bone-knight-of-the-void'] } },
+    { rival: 'ooma-bonewhisper', cpuSetup: { allies: ['dire-wolf-of-the-fang'] } },
+    { rival: 'ada-copperwick', cpuSetup: { allies: ['timeless-fortune-teller'] } },
+    { rival: 'malachar-the-unmade', cpuSetup: { extraHealth: 5 } },
+    { rival: 'morgrath-lich-abbot', cpuSetup: { weapon: 'focus-of-lightning' }, playerSetup: { handSize: 6 } },
     { rival: 'caelus-the-usurper' }
   ]
 })

@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Half there, fully dangerous.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'common',
   element: 'arcane',
   resist: ['fire'],

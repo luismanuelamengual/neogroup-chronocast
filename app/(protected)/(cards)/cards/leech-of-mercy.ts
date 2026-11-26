@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Attach to an enemy ally: every damage it takes is 3 higher.',
   flavor: 'It takes the pain away. And a little more.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'mythic',
   price: 4080,
   cost: 2,

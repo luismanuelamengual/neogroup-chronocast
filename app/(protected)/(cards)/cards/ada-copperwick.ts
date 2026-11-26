@@ -8,7 +8,6 @@ export default defineCard({
   text: 'Blueprint (4): put an artifact of your choice from your deck into play without paying its cost, then shuffle your deck. When another ally of yours enters, it gains +1 attack.',
   flavor: 'Magic is just engineering nobody has explained yet.',
   faction: 'clockwork',
-  heroClass: 'mage',
   side: 'dawn',
   restriction: { heroes: ['ada-copperwick'] },
   rarity: 'epic',

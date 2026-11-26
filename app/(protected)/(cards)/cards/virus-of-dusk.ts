@@ -7,7 +7,7 @@ export default defineCard({
   text: 'Attach to an enemy ally: it has -5 attack.',
   flavor: 'It spreads when the lights go down.',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['eclipse'] },
   rarity: 'rare',
   price: 480,
   cost: 4,

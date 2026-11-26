@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'It guards the tower and eats the visitors.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'] },
+  restriction: { factions: ['arcane'], sides: ['eclipse'] },
   rarity: 'common',
   resist: ['fire'],
   weak: ['ice'],

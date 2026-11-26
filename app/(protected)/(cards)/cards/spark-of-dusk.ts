@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Spark of Dusk',
   text: 'At the start of each phase: your hero heals 2.',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['eclipse'] },
   rarity: 'rare',
   element: 'lightning',
   resist: ['lightning'],

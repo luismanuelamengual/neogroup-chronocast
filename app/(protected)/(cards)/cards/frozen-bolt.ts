@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Deal 11 ice damage to an enemy slot.',
   flavor: 'It stops the target, then the heart.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'common',
   element: 'ice',
   price: 65,

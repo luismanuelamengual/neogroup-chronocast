@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Blessed by mistake.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   element: 'shadow',
   resist: ['shadow', 'ice'],

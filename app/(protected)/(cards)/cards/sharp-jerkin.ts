@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it is equipped: draw a card.',
   flavor: 'Hug at your own risk.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: {},
   rarity: 'rare',
   price: 540,
   cost: 5,

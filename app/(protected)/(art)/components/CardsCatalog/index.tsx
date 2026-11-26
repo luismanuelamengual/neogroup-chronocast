@@ -16,8 +16,7 @@ const GROUPS: { kind: CardGroupKind; title: string }[] = [
   { kind: 'hero', title: 'Heroes and signature cards' },
   { kind: 'neutral', title: 'Neutral' },
   { kind: 'side', title: 'Sides (Dawn and Eclipse)' },
-  { kind: 'faction', title: 'Factions' },
-  { kind: 'class', title: 'Classes' }
+  { kind: 'faction', title: 'Factions' }
 ]
 /** Dev-only filter: the special kinds of cards players never own. */
 const KINDS = {

@@ -8,7 +8,7 @@ export default defineCard({
   text: 'An ally of yours gains +5 attack and +7 health.',
   flavor: 'Lock shields, breathe together, stand together.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'uncommon',
   price: 180,
   cost: 4,

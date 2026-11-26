@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'It punches through armor and patience alike.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   price: 55,
   cost: 3,

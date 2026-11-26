@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Satyr of Renewal',
   text: 'At the start of each phase: your hero heals 2.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   resist: ['arcane'],
   weak: ['shadow'],

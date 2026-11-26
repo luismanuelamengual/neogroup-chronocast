@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Feral Healer',
   text: 'When it attacks: your hero heals 3.',
   faction: 'primal',
-  restriction: { factions: ['primal'] },
+  restriction: { factions: ['primal'], sides: ['eclipse'] },
   rarity: 'common',
   resist: ['ice'],
   price: 55,

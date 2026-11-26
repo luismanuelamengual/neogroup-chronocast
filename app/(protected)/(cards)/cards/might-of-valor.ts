@@ -8,7 +8,7 @@ export default defineCard({
   text: 'An ally of yours gains +4 attack this phase. Instant.',
   flavor: 'Brave hearts swing harder.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'epic',
   price: 900,
   cost: 1,

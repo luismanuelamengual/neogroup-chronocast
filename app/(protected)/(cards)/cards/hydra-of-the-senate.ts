@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Hydra of the Senate',
   text: 'When it enters: your hero heals 5.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'] },
+  restriction: { factions: ['bronze'], sides: ['eclipse'] },
   rarity: 'common',
   resist: ['earth'],
   weak: ['acid'],

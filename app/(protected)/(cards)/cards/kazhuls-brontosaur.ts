@@ -7,7 +7,7 @@ export default defineCard({
   name: "Kazhul's Brontosaur",
   text: 'When it enters: your other Saurians gain +2 attack and +2 health. At the start of each phase: it gains +1 attack and +1 health.',
   faction: 'primal',
-  restriction: { heroes: ['kazhul-mother-of-ash'] },
+  restriction: { factions: ['primal'], sides: ['eclipse'] },
   rarity: 'legendary',
   weak: ['ice'],
   price: 2320,

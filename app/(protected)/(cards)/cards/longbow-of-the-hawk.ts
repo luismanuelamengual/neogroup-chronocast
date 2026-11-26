@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'It sees farther than its archer.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: {},
   rarity: 'uncommon',
   element: 'wind',
   price: 140,

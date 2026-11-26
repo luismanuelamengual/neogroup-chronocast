@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Spinosaur of the Hunt',
   text: 'When it enters: deal 1 damage to the enemy hero for each Saurian of yours. Its ability is paid with energy (⚡).',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'uncommon',
   weak: ['ice'],
   price: 160,

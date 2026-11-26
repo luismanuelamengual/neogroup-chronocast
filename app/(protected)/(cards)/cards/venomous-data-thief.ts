@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it enters: summon a Sabertooth Cub.',
   flavor: 'Steals your secrets and leaves a bite.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'uncommon',
   element: 'acid',
   price: 180,

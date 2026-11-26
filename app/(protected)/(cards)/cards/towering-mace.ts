@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Built for giants. Swung by the stubborn.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: {},
   rarity: 'common',
   price: 55,
   cost: 3,

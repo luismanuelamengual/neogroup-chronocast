@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it dies: summon a Raptor Hatchling.',
   flavor: 'Its footsteps sound like a storm.',
   faction: 'primal',
-  restriction: { factions: ['primal'] },
+  restriction: { factions: ['primal'], sides: ['dawn'] },
   rarity: 'common',
   weak: ['ice'],
   price: 55,

@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Solar Archer',
   text: 'When it enters: it gains +1 attack and +1 health for each other Legionnaire of yours. Its ability is paid with energy (⚡).',
   faction: 'bronze',
-  restriction: { factions: ['bronze'] },
+  restriction: { factions: ['bronze'], sides: ['dawn'] },
   rarity: 'uncommon',
   element: 'light',
   price: 160,

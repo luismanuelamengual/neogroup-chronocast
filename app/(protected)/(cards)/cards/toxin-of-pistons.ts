@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Poison an enemy ally (2).',
   flavor: 'Machine oil was never meant to be drunk.',
   faction: 'clockwork',
-  restriction: { factions: ['clockwork'] },
+  restriction: { factions: ['clockwork'], sides: ['eclipse'] },
   rarity: 'uncommon',
   price: 120,
   cost: 1,

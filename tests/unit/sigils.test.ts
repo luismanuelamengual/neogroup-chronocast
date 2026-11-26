@@ -128,20 +128,22 @@ describe('the Dawn and Eclipse Sigils', () => {
 })
 
 describe('the Dawn and Eclipse sides', () => {
-  it('every hero has a side, twelve and twelve', () => {
+  it('every hero has a side: one of each side in every faction', () => {
     const heroes = HEROES.filter((hero) => !hero.boss)
     const dawn = heroes.filter((hero) => sideOf(hero) === 'dawn')
     const eclipse = heroes.filter((hero) => sideOf(hero) === 'eclipse')
 
-    expect(dawn).toHaveLength(12)
-    expect(eclipse).toHaveLength(12)
+    expect(dawn).toHaveLength(6)
+    expect(eclipse).toHaveLength(6)
+    expect(new Set(dawn.map((hero) => hero.faction)).size).toBe(6)
+    expect(new Set(eclipse.map((hero) => hero.faction)).size).toBe(6)
     expect(sideOf(getCard('legate-varro'))).toBe('dawn')
-    expect(sideOf(getCard('nyx-hollowsong'))).toBe('eclipse')
+    expect(sideOf(getCard('nyx-hollowsong'))).toBe('dawn')
   })
 
   it('each Sigil only goes in the decks of its side', () => {
     const dawnHero = getCard('legate-varro')
-    const eclipseHero = getCard('nyx-hollowsong')
+    const eclipseHero = getCard('malachar-the-unmade')
 
     expect(canUseCard(dawnHero, getCard(DAWN))).toBe(true)
     expect(canUseCard(dawnHero, getCard(ECLIPSE))).toBe(false)

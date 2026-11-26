@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Serene Return',
   text: 'A random ally of your discard pile returns to play and your hero heals 4. Slow.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'epic',
   price: 1300,
   cost: 5,

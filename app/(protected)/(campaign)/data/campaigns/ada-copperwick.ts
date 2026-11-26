@@ -1,25 +1,22 @@
 import { defineCampaign } from '@/app/(protected)/(campaign)/utils/defineCampaign'
 
 /**
- * The Machine That Dreamed: the machine she built, which decided to build itself. The story texts live in the translations
- * (campaigns.ada-copperwick).
+ * Ada Copperwick: nine rivals from the other eras and Chancellor Brassmaw as the
+ * boss. The story texts live in the translations (campaigns.ada-copperwick).
  */
 export default defineCampaign({
   heroId: 'ada-copperwick',
   rewardCardId: 'the-copperwick-engine',
   stages: [
     { rival: 'kora-wildfang' },
-    { rival: 'legate-varro' },
-    { rival: 'ilyra-starweaver', cpuSetup: { extraHealth: 5 } },
-    { rival: 'vex-nightwire', cpuSetup: { extraHealth: 5 } },
-    { rival: 'nyx-hollowsong', cpuSetup: { allies: ['bone-knight-of-the-void'] } },
-    { rival: 'gideon-ironsteam', cpuSetup: { allies: ['brass-steam-knight'] } },
-    { rival: 'nysa-goldbow', cpuSetup: { allies: ['loyal-charioteer'] } },
-    { rival: 'ryn-voltblade', cpuSetup: { extraHealth: 5 } },
-    { rival: 'ooma-bonewhisper', cpuSetup: { weapon: 'lantern-staff-of-renewal' }, playerSetup: { handSize: 6 } },
-    {
-      rival: 'omnigear-prime',
-      cpuSetup: { allies: ['brass-steam-knight'], extraHealth: 5 }
-    }
+    { rival: 'ilyra-starweaver' },
+    { rival: 'legate-varro', cpuSetup: { extraHealth: 5 } },
+    { rival: 'nyx-hollowsong', cpuSetup: { extraHealth: 5 } },
+    { rival: 'vex-nightwire', cpuSetup: { allies: ['cyber-hound-of-the-grid'] } },
+    { rival: 'ooma-bonewhisper', cpuSetup: { allies: ['dire-wolf-of-the-fang'] } },
+    { rival: 'queen-static', cpuSetup: { allies: ['midnight-mech'] } },
+    { rival: 'caelus-the-usurper', cpuSetup: { extraHealth: 5 } },
+    { rival: 'malachar-the-unmade', cpuSetup: { weapon: 'longbow-of-the-silent-trail' }, playerSetup: { handSize: 6 } },
+    { rival: 'chancellor-brassmaw', cpuSetup: { weapon: 'scepter-of-flame', extraHealth: 5 } }
   ]
 })

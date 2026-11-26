@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Swift Stonethrower',
   text: 'At the start of each phase: it gains +1 attack and +1 health.',
   faction: 'primal',
-  restriction: { factions: ['primal'] },
+  restriction: { factions: ['primal'], sides: ['eclipse'] },
   rarity: 'common',
   resist: ['ice'],
   price: 80,

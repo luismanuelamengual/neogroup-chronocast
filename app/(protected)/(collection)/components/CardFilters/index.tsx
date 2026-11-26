@@ -4,8 +4,8 @@ import './index.scss'
 import { CardFilter } from '@/app/(protected)/(collection)/utils/filters'
 import { CARD_TYPES, CardType } from '@/app/(protected)/(engine)/models/CardType'
 import { FACTIONS } from '@/app/(protected)/(engine)/models/Faction'
-import { HERO_CLASSES } from '@/app/(protected)/(engine)/models/HeroClass'
 import { RARITIES, Rarity } from '@/app/(protected)/(engine)/models/Rarity'
+import { SIDES } from '@/app/(protected)/(engine)/models/Side'
 import { useCardName } from '@/app/i18n/cards/useCardName'
 import { useT } from '@/app/i18n/I18nProvider'
 
@@ -56,6 +56,16 @@ export default function CardFilters({
           ))}
         </select>
       )}
+      {shown('side') && (
+        <select value={filter.side} onChange={(event) => set('side', event.target.value as CardFilter['side'])}>
+          <option value="">{t('collection.allSides')}</option>
+          {[...SIDES, 'neutral' as const].map((side) => (
+            <option key={side} value={side}>
+              {t(`game.sides.${side}`)}
+            </option>
+          ))}
+        </select>
+      )}
       {shown('faction') && (
         <select
           value={filter.faction}
@@ -65,19 +75,6 @@ export default function CardFilters({
           {FACTIONS.map((faction) => (
             <option key={faction} value={faction}>
               {t(`game.factions.${faction}`)}
-            </option>
-          ))}
-        </select>
-      )}
-      {shown('heroClass') && (
-        <select
-          value={filter.heroClass}
-          onChange={(event) => set('heroClass', event.target.value as CardFilter['heroClass'])}
-        >
-          <option value="">{t('collection.allClasses')}</option>
-          {HERO_CLASSES.map((heroClass) => (
-            <option key={heroClass} value={heroClass}>
-              {t(`game.classes.${heroClass}`)}
             </option>
           ))}
         </select>

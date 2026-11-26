@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Summon a Hoplite Conscript.',
   flavor: 'When it sounds, the empire marches.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'] },
+  restriction: { factions: ['bronze'], sides: ['dawn'] },
   rarity: 'common',
   price: 50,
   cost: 2,

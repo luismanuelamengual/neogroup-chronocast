@@ -8,7 +8,7 @@ export default defineCard({
   text: 'An ally of yours gains +4 attack this phase. Instant.',
   flavor: 'Lost in the maze, found in the fight.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'] },
+  restriction: { factions: ['bronze'], sides: ['eclipse'] },
   rarity: 'uncommon',
   price: 120,
   cost: 1,

@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Enchanted Wyvern',
   text: 'When it enters: draw a card.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'] },
+  restriction: { factions: ['arcane'], sides: ['eclipse'] },
   rarity: 'rare',
   resist: ['fire'],
   weak: ['ice'],

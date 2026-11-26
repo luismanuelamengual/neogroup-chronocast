@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it dies: deal 3 damage to a random enemy ally.',
   flavor: 'Not a leaf moves when she passes.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'uncommon',
   price: 140,
   cost: 2,

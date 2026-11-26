@@ -7,7 +7,7 @@ export default defineCard({
   name: "Vorhal's Flagellant",
   text: 'When another Cultist of yours enters: your hero heals 2. When it dies: summon a Risen Skeleton.',
   faction: 'void',
-  restriction: { heroes: ['vorhal-the-last-hour'] },
+  restriction: { factions: ['void'], sides: ['eclipse'] },
   rarity: 'legendary',
   price: 2320,
   cost: 5,

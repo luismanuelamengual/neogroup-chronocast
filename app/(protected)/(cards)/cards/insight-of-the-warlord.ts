@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Insight of the Warlord',
   text: 'Draw the first Legionnaire of your deck and draw the first Legionnaire of your deck.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'uncommon',
   price: 180,
   cost: 4,

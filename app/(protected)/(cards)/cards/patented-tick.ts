@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Your hero gains 3 energy. Instant.',
   flavor: 'Patent pending since 1887.',
   faction: 'clockwork',
-  restriction: { factions: ['clockwork'] },
+  restriction: { factions: ['clockwork'], sides: ['dawn'] },
   rarity: 'uncommon',
   price: 140,
   cost: 2,

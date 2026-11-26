@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Scarred Cave Painter',
   text: 'When it enters: your other Caveborn gain +1 attack and +1 health.',
   faction: 'primal',
-  restriction: { factions: ['primal'] },
+  restriction: { factions: ['primal'], sides: ['eclipse'] },
   rarity: 'rare',
   resist: ['ice'],
   price: 420,

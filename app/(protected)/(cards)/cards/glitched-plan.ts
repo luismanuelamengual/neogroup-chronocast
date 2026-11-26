@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Draw a card and your hero heals 3.',
   flavor: 'It worked in the simulation.',
   faction: 'neon',
-  restriction: { factions: ['neon'] },
+  restriction: { factions: ['neon'], sides: ['eclipse'] },
   rarity: 'common',
   price: 50,
   cost: 2,

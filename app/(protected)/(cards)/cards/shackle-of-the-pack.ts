@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Stun an enemy ally for two phases and draw a card. Fast.',
   flavor: 'The pack never lets go.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'uncommon',
   price: 180,
   cost: 4,

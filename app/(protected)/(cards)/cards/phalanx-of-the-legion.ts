@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it enters: your hero heals 9.',
   flavor: "The legion's spine, the enemy's wall.",
   faction: 'bronze',
-  restriction: { factions: ['bronze'] },
+  restriction: { factions: ['bronze'], sides: ['dawn'] },
   rarity: 'common',
   price: 80,
   cost: 7,

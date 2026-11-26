@@ -8,7 +8,7 @@ export default defineCard({
   text: 'An ally of yours gains +4 attack and +5 health.',
   flavor: 'Heard by the living and the dead.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   price: 55,
   cost: 3,

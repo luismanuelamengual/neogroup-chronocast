@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Learned Cryomancer',
   text: 'When it enters: deal 7 ice damage to a random enemy ally.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'uncommon',
   element: 'ice',
   resist: ['arcane'],

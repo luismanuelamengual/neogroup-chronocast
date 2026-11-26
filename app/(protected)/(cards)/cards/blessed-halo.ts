@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it is equipped: your hero heals 4.',
   flavor: 'Heavier than it looks, lighter than it feels.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'uncommon',
   price: 140,
   cost: 2,

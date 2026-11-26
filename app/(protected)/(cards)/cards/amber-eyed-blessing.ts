@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Your hero heals 15.',
   flavor: 'The old spirits watch through amber eyes.',
   faction: 'primal',
-  restriction: { factions: ['primal'] },
+  restriction: { factions: ['primal'], sides: ['dawn'] },
   rarity: 'common',
   price: 65,
   cost: 4,

@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Scholarly Stasis',
   text: 'Freeze an enemy ally and deal 2 time damage to the enemy hero.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'rare',
   element: 'time',
   price: 360,

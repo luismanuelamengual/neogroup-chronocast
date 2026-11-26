@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Your hero heals 6. Instant.',
   flavor: 'Still as a mountain, soft as a breeze.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   price: 40,
   cost: 1,

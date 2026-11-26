@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Draw a card and your hero heals 3.',
   flavor: 'The gods keep secrets too.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'uncommon',
   price: 140,
   cost: 2,

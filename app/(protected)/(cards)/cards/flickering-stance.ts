@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Your armor gains +2 durability. Draw a card.',
   flavor: 'Here, there, nowhere.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'common',
   price: 50,
   cost: 2,

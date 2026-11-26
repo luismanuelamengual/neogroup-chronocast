@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Prismatic Battlemage',
   text: 'When it dies: your Magi gain +1 attack and +1 health. When it enters: your hero gains 1 energy.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'] },
+  restriction: { factions: ['arcane'], sides: ['dawn'] },
   rarity: 'epic',
   resist: ['arcane'],
   price: 1000,

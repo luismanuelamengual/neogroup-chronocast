@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Runic Pyromancer',
   text: 'When it enters: draw the first Magus of your deck. Its ability is paid with energy (⚡).',
   faction: 'arcane',
-  restriction: { factions: ['arcane'] },
+  restriction: { factions: ['arcane'], sides: ['dawn'] },
   rarity: 'rare',
   element: 'fire',
   resist: ['arcane'],

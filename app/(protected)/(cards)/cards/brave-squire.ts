@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it enters: draw the first weapon of your deck.',
   flavor: 'Too young to know fear, old enough to fight it.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   price: 80,
   cost: 6,

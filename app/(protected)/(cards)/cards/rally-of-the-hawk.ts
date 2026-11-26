@@ -8,7 +8,7 @@ export default defineCard({
   text: 'An ally of yours gains +4 attack and +5 health. Instant.',
   flavor: 'The hawk circles. The hunters gather.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: {},
   rarity: 'common',
   price: 55,
   cost: 3,

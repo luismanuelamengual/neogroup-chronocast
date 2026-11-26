@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Your hero heals 9.',
   flavor: 'A breath between battles is a gift.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   price: 50,
   cost: 2,

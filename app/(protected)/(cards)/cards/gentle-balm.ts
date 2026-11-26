@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Your hero heals 16 and draw a card.',
   flavor: 'For scraped knees and broken hearts.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'epic',
   price: 1200,
   cost: 4,

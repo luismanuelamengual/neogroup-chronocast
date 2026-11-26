@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it enters: your hero heals 7.',
   flavor: 'He prices by the scar.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'rare',
   price: 540,
   cost: 5,

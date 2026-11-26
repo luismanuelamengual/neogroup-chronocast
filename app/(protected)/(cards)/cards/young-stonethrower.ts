@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Young Stonethrower',
   text: 'When another Caveborn of yours enters: your hero heals 2. When it attacks: your hero heals 3.',
   faction: 'primal',
-  restriction: { factions: ['primal'] },
+  restriction: { factions: ['primal'], sides: ['eclipse'] },
   rarity: 'legendary',
   resist: ['ice'],
   price: 2160,

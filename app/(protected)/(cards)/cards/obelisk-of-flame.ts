@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Obelisk of Flame',
   text: 'At the start of each phase: deal 2 fire damage to the enemy hero. (3 uses)',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   element: 'fire',
   price: 65,

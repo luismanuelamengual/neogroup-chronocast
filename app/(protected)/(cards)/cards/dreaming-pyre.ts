@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Burn an enemy slot (3).',
   flavor: 'It burns with the colors of dreams.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: {},
   rarity: 'legendary',
   price: 2080,
   cost: 2,

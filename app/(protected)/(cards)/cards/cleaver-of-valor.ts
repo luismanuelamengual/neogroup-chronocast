@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Courage, sharpened to an edge.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   price: 50,
   cost: 2,

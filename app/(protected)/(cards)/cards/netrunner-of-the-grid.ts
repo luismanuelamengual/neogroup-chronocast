@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Netrunner of the Grid',
   text: 'When it enters: your other Netrunners gain +1 attack and +1 health.',
   faction: 'neon',
-  restriction: { factions: ['neon'] },
+  restriction: { factions: ['neon'], sides: ['dawn'] },
   rarity: 'uncommon',
   price: 160,
   cost: 3,

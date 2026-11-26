@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'It hums when spells are near.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'common',
   price: 70,
   cost: 5,

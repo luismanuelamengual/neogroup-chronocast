@@ -8,7 +8,7 @@ export default defineCard({
   text: 'An ally of yours gains +4 attack and +5 health.',
   flavor: 'The bell rings and strength returns.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'uncommon',
   price: 160,
   cost: 3,

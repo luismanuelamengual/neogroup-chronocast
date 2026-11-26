@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Triceratops of the Herd',
   text: 'When it enters: it gains +1 attack and +1 health for each other Saurian of yours.',
   faction: 'primal',
-  restriction: { factions: ['primal'] },
+  restriction: { factions: ['primal'], sides: ['dawn'] },
   rarity: 'uncommon',
   weak: ['ice'],
   price: 160,

@@ -8,7 +8,6 @@ export default defineCard({
   text: 'Ancestral Growth (4): an ally of yours gains +5 attack and +6 health. At the start of each phase, your allies heal 2.',
   flavor: 'The bones of the ancestors speak. She listens.',
   faction: 'primal',
-  heroClass: 'mystic',
   side: 'eclipse',
   restriction: { heroes: ['ooma-bonewhisper'] },
   rarity: 'epic',

@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'The first to swing, the last to dull.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   price: 65,
   cost: 4,

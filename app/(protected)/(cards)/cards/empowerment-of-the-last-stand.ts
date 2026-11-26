@@ -8,7 +8,7 @@ export default defineCard({
   text: 'An ally of yours gains +10 attack this phase. Instant.',
   flavor: 'When all seems lost, strength arrives.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'epic',
   price: 1200,
   cost: 4,

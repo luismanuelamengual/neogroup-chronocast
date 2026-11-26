@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Laureled Sentinel',
   text: 'When it enters: draw the first Colossus of your deck.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'] },
+  restriction: { factions: ['bronze'], sides: ['eclipse'] },
   rarity: 'uncommon',
   resist: ['earth'],
   weak: ['acid'],

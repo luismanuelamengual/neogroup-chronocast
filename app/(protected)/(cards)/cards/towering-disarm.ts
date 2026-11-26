@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Destroy the enemy weapon. Fast.',
   flavor: 'Drop it. Now.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: {},
   rarity: 'uncommon',
   price: 160,
   cost: 3,

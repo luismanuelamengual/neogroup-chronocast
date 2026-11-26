@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Deal 7 damage to an enemy ally. Fast.',
   flavor: 'Aimed? Not really. Lethal? Very.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: {},
   rarity: 'epic',
   price: 1000,
   cost: 2,

@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Draw 2 cards.',
   flavor: 'Courage is easier when nobody knows.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'legendary',
   price: 2160,
   cost: 3,

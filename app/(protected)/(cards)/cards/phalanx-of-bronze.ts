@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'One shield is a wall. Twelve are an empire.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'] },
+  restriction: { factions: ['bronze'], sides: ['dawn'] },
   rarity: 'common',
   price: 65,
   cost: 4,

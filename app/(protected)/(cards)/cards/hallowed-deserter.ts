@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Hallowed Deserter',
   text: 'When it enters: your other allies gain +2 health.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'uncommon',
   element: 'light',
   price: 180,

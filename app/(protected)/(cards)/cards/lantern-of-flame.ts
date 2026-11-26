@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Lantern of Flame',
   text: 'At the start of each phase: deal 3 fire damage to a random enemy ally. (3 uses)',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'uncommon',
   element: 'fire',
   price: 160,

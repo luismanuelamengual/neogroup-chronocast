@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Forged hot, worn hotter.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   price: 50,
   cost: 2,

@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'It wears the light of stars already gone.',
   faction: 'void',
-  restriction: { factions: ['void'] },
+  restriction: { factions: ['void'], sides: ['eclipse'] },
   rarity: 'common',
   element: 'arcane',
   resist: ['shadow'],

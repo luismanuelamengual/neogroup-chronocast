@@ -8,7 +8,7 @@ export default defineCard({
   text: 'An ally of yours gains +6 attack this phase. Instant.',
   flavor: 'The front line is where legends start.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   price: 50,
   cost: 2,

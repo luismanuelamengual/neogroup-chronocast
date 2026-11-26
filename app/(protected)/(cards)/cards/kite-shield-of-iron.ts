@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Plain iron. Plainly unbreakable.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: {},
   rarity: 'common',
   price: 50,
   cost: 2,

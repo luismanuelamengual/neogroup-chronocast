@@ -8,7 +8,7 @@ export default defineCard({
   text: '',
   flavor: 'Death was just a long nap.',
   faction: 'void',
-  restriction: { factions: ['void'] },
+  restriction: { factions: ['void'], sides: ['dawn'] },
   rarity: 'common',
   resist: ['shadow', 'ice'],
   cost: 1,

@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Ethereal Apprentice',
   text: 'When it enters: freeze a random enemy ally.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'common',
   element: 'arcane',
   resist: ['arcane'],

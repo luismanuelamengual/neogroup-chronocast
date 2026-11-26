@@ -8,7 +8,7 @@ export default defineCard({
   text: 'You gain 4 Chronos this phase. Instant.',
   flavor: 'Time freezes, one grain at a time.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'common',
   price: 50,
   cost: 2,

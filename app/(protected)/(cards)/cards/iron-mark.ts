@@ -7,7 +7,7 @@ export default defineCard({
   text: 'Attach to an enemy ally: it has -2 attack.',
   flavor: 'Branded once, hunted forever.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: {},
   rarity: 'uncommon',
   price: 120,
   cost: 1,

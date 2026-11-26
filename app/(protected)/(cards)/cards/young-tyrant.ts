@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it attacks: your hero heals 2.',
   flavor: 'A king in the making, a tyrant already.',
   faction: 'primal',
-  restriction: { factions: ['primal'] },
+  restriction: { factions: ['primal'], sides: ['dawn'] },
   rarity: 'common',
   weak: ['ice'],
   price: 40,

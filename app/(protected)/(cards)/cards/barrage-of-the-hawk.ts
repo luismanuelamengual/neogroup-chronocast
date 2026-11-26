@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Deal 6 wind damage to an enemy ally. Fast.',
   flavor: 'The hawk calls, and the arrows follow.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: {},
   rarity: 'common',
   element: 'wind',
   price: 50,

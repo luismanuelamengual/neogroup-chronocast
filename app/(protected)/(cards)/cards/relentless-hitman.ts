@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'He never misses a deadline.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   price: 55,
   cost: 3,

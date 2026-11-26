@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it is equipped: your hero heals 7.',
   flavor: 'Faith with a heavy end.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'rare',
   price: 540,
   cost: 5,

@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Wind-Up Tin Sentry',
   text: 'When it enters: draw the first Automaton of your deck.',
   faction: 'clockwork',
-  restriction: { factions: ['clockwork'] },
+  restriction: { factions: ['clockwork'], sides: ['eclipse'] },
   rarity: 'rare',
   resist: ['acid'],
   weak: ['lightning'],

@@ -8,7 +8,7 @@ export default defineCard({
   text: "Return an enemy ally to its owner's hand. Fast.",
   flavor: 'Hot coals hide under the leaves.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'] },
+  restriction: { factions: ['arcane'], sides: ['eclipse'] },
   rarity: 'common',
   price: 50,
   cost: 2,

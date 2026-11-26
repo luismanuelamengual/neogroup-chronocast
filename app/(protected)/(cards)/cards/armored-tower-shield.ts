@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it is equipped: your allies heal 2.',
   flavor: 'A wall you can carry.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: {},
   rarity: 'legendary',
   price: 2080,
   cost: 2,

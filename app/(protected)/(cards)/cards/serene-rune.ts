@@ -6,7 +6,7 @@ export default defineCard({
   name: 'Serene Rune',
   text: 'Attach to an ally of yours: it gains +2 attack and +4 health.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   price: 55,
   cost: 3,

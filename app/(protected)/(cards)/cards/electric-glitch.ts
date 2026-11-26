@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Electric Glitch',
   text: 'At the end of each phase: deal 1 lightning damage to the enemy hero.',
   faction: 'neon',
-  restriction: { factions: ['neon'] },
+  restriction: { factions: ['neon'], sides: ['dawn'] },
   rarity: 'rare',
   element: 'lightning',
   price: 600,

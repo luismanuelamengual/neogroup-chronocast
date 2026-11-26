@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Firedrake of the Arcanum',
   text: 'When it enters: freeze a random enemy ally.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'common',
   element: 'fire',
   resist: ['fire'],

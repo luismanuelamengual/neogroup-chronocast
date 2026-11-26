@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Iron Gorgon',
   text: 'When it enters: draw the first weapon of your deck. Its ability is paid with energy (⚡).',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: {},
   rarity: 'uncommon',
   resist: ['earth'],
   weak: ['acid'],

@@ -18,20 +18,20 @@ describe('canUseCard', () => {
     expect(canUseCard(varro, getCard('bold-gust'))).toBe(true) // any
     expect(canUseCard(varro, getCard('laureled-dream-reader'))).toBe(true) // its faction
     expect(canUseCard(varro, getCard('arcane-runecarver'))).toBe(false) // another faction
-    expect(canUseCard(varro, getCard('armored-mace'))).toBe(true) // its class
-    expect(canUseCard(varro, getCard('astral-bolt'))).toBe(false) // another class
+    expect(canUseCard(varro, getCard('mending-of-light'))).toBe(true) // its side
+    expect(canUseCard(varro, getCard('venom-of-the-hunt'))).toBe(false) // the other side
     expect(canUseCard(varro, getCard('ilyra-starweaver'))).toBe(false) // a hero
   })
 
   it('combines criteria: a hero must pass every one, matching any of its values', () => {
-    // Varro: Bronze, Dawn, Warrior.
+    // Varro: Bronze, Dawn.
     const card = (restriction: Restriction) => ({ ...getCard('bold-gust'), restriction })
 
-    expect(canUseCard(varro, card({ factions: ['bronze'], sides: ['dawn'], classes: ['warrior'] }))).toBe(true)
-    expect(canUseCard(varro, card({ factions: ['bronze'], sides: ['eclipse'], classes: ['warrior'] }))).toBe(false)
-    expect(canUseCard(varro, card({ factions: ['bronze'], classes: ['mage'] }))).toBe(false)
+    expect(canUseCard(varro, card({ factions: ['bronze'], sides: ['dawn'] }))).toBe(true)
+    expect(canUseCard(varro, card({ factions: ['bronze'], sides: ['eclipse'] }))).toBe(false)
+    expect(canUseCard(varro, card({ factions: ['arcane'], sides: ['dawn'] }))).toBe(false)
     expect(canUseCard(varro, card({ factions: ['clockwork', 'bronze'] }))).toBe(true)
-    expect(canUseCard(varro, card({ classes: ['mage', 'hunter'] }))).toBe(false)
+    expect(canUseCard(varro, card({ sides: ['dawn', 'eclipse'] }))).toBe(true)
     expect(canUseCard(varro, card({ sides: ['dawn'], heroes: [VARRO, 'ada-copperwick'] }))).toBe(true)
     expect(canUseCard(varro, card({ sides: ['eclipse'], heroes: [VARRO] }))).toBe(false)
   })
@@ -66,7 +66,7 @@ describe('validateDeck', () => {
   })
 
   it('rejects cards the hero cannot use, heroes inside the deck and unknown cards', () => {
-    const cards = [...legal.slice(3), 'astral-bolt', 'kora-wildfang', 'no-such-card']
+    const cards = [...legal.slice(3), 'venom-of-the-hunt', 'kora-wildfang', 'no-such-card']
     const codes = validateDeck(deckOf(cards)).map((problem) => problem.code)
 
     expect(codes).toEqual(expect.arrayContaining(['restricted', 'heroInDeck', 'unknownCard']))

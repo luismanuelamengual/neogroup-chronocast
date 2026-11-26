@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it is equipped: deal 4 damage to a random enemy ally.',
   flavor: 'It points toward its last victim.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: {},
   rarity: 'epic',
   price: 1100,
   cost: 3,

@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'It eats only what is already lost.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   resist: ['shadow', 'ice'],
   price: 80,

@@ -8,7 +8,7 @@ export default defineCard({
   text: 'At the start of each phase: your hero heals 3. (4 uses)',
   flavor: 'Old hardware, still dangerous.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: {},
   rarity: 'rare',
   price: 360,
   cost: 2,

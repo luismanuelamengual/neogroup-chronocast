@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Bone Knight of Dying Stars',
   text: 'When another Undead of yours enters: your hero heals 2.',
   faction: 'void',
-  restriction: { factions: ['void'] },
+  restriction: { factions: ['void'], sides: ['dawn'] },
   rarity: 'uncommon',
   element: 'arcane',
   resist: ['shadow', 'ice'],

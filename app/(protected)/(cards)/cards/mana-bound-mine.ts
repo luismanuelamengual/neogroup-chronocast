@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Mana-Bound Mine',
   text: 'When the enemy uses an ability: draw a card and deal 5 arcane damage to the enemy hero.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   element: 'arcane',
   price: 55,

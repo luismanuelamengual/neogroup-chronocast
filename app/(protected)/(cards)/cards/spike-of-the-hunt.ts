@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Deal 4 damage to an enemy ally. Fast.',
   flavor: 'The ground itself joins the hunt.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   price: 40,
   cost: 1,

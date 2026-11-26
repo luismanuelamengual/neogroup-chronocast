@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Infiltrator of Midnight',
   text: 'When another Netrunner of yours enters: it gains +1 attack and +1 health.',
   faction: 'neon',
-  restriction: { factions: ['neon'] },
+  restriction: { factions: ['neon'], sides: ['dawn'] },
   rarity: 'rare',
   element: 'shadow',
   price: 360,

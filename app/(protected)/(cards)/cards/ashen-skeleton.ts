@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Ashen Skeleton',
   text: 'When another Undead of yours enters: it gains +2 attack and +2 health. Its ability is paid with energy (⚡).',
   faction: 'void',
-  restriction: { factions: ['void'] },
+  restriction: { factions: ['void'], sides: ['dawn'] },
   rarity: 'uncommon',
   element: 'fire',
   resist: ['shadow', 'ice'],

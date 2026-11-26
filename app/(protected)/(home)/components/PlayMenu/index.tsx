@@ -9,8 +9,8 @@ import { useT } from '@/app/i18n/I18nProvider'
 
 /** The game modes, each one illustrated with the art of a card that fits it. */
 const MODES = [
-  { key: 'campaign', icon: '🗺️', color: 'lime', href: '/campaign', art: 'aldric-dawnkeeper-portrait' },
-  { key: 'quick', icon: '🤖', color: 'cyan', href: '/quick-match', art: 'omnigear-prime-portrait' },
+  { key: 'campaign', icon: '🗺️', color: 'lime', href: '/campaign', art: 'caelus-the-usurper-portrait' },
+  { key: 'quick', icon: '🤖', color: 'cyan', href: '/quick-match', art: 'chancellor-brassmaw-portrait' },
   { key: 'online', icon: '⚔️', color: 'magenta', href: '/lobby', art: 'arena-champion' }
 ] as const
 

@@ -7,7 +7,7 @@ export default defineCard({
   text: "Attach to an enemy ally: it can't attack.",
   flavor: 'It drinks while you run.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'rare',
   price: 420,
   cost: 3,

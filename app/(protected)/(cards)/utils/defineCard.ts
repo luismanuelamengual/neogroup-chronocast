@@ -63,7 +63,6 @@ export function cardProblems(card: CardDefinition): string[] {
   switch (card.type) {
     case 'hero':
       need('health')
-      need('heroClass')
       need('side')
 
       if (card.health != null && (card.health < HERO_MIN_HEALTH || card.health > HERO_MAX_HEALTH)) {

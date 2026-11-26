@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Stun an enemy ally. Fast.',
   flavor: 'Even the sunrise can take prisoners.',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['dawn'] },
   rarity: 'rare',
   price: 360,
   cost: 2,

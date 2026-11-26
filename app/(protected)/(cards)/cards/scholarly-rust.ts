@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Scholarly Rust',
   text: 'The enemy weapon and armor lose 2 durability each. Fast.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'epic',
   price: 1000,
   cost: 2,

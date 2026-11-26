@@ -8,7 +8,7 @@ export default defineCard({
   text: 'An ally of yours gains +8 attack this phase. Instant.',
   flavor: 'The old blood still runs strong.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'uncommon',
   price: 160,
   cost: 3,

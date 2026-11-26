@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Your hero heals 9.',
   flavor: 'Light fills the cracks first.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   price: 50,
   cost: 2,

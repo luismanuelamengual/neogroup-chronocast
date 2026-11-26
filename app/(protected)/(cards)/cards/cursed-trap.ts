@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When an enemy ally is summoned: freeze it.',
   flavor: 'Whoever set it did not survive it either.',
   faction: 'void',
-  restriction: { factions: ['void'] },
+  restriction: { factions: ['void'], sides: ['eclipse'] },
   rarity: 'uncommon',
   price: 140,
   cost: 2,

@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When an enemy ally is summoned: deal 5 damage to it.',
   flavor: 'What falls in, stays in.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'epic',
   price: 900,
   cost: 1,

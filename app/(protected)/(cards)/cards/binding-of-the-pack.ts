@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Binding of the Pack',
   text: 'Freeze an enemy ally and deal 5 ice damage to the enemy hero.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'uncommon',
   element: 'ice',
   price: 200,

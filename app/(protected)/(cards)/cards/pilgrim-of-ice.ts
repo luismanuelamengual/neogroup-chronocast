@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Pilgrim of Ice',
   text: 'When it enters: freeze a random enemy ally. Its ability is paid with energy (⚡).',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'rare',
   element: 'ice',
   price: 420,

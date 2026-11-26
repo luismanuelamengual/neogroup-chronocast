@@ -8,7 +8,7 @@ export default defineCard({
   text: "Return an enemy ally to its owner's hand. Fast.",
   flavor: 'Chains forged from broken things.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'epic',
   price: 1000,
   cost: 2,

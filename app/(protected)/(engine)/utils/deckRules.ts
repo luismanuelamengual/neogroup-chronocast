@@ -1,8 +1,15 @@
 import { MAX_COPIES, MAX_DECK_SIZE, MAX_UNIQUE_COPIES, MIN_DECK_SIZE } from '@/app/(protected)/(engine)/data/rules'
 import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition'
 import { DeckList } from '@/app/(protected)/(engine)/models/DeckList'
-import { sideOf } from '@/app/(protected)/(engine)/models/Side'
+import { Side, sideOf } from '@/app/(protected)/(engine)/models/Side'
 import { getCard, hasCard } from '@/app/(protected)/(engine)/utils/registry'
+
+/** The side of a card: a hero's, its restriction's, or its hero's for a signature card. */
+export function cardSide(card: CardDefinition): Side | 'neutral' {
+  const heroId = card.type === 'hero' ? undefined : card.restriction.heroes?.[0]
+
+  return (heroId && hasCard(heroId) ? sideOf(getCard(heroId)) : sideOf(card)) ?? 'neutral'
+}
 
 /** Whether a hero can have a card in its deck (docs/PLAN.md, section 4.2). */
 export function canUseCard(hero: CardDefinition, card: CardDefinition): boolean {
@@ -10,13 +17,12 @@ export function canUseCard(hero: CardDefinition, card: CardDefinition): boolean 
     return false
   }
 
-  const { factions, sides, classes, heroes } = card.restriction
+  const { factions, sides, heroes } = card.restriction
   const side = sideOf(hero)
 
   return (
     (!factions?.length || factions.includes(hero.faction)) &&
     (!sides?.length || (side !== null && sides.includes(side))) &&
-    (!classes?.length || (hero.heroClass !== undefined && classes.includes(hero.heroClass))) &&
     (!heroes?.length || heroes.includes(hero.id))
   )
 }

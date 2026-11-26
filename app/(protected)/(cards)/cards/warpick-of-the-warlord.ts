@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it is equipped: your hero heals 3.',
   flavor: 'It has broken crowns.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'uncommon',
   price: 120,
   cost: 1,

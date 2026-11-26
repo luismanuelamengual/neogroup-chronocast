@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Every scar taught it a new trick.',
   faction: 'primal',
-  restriction: { factions: ['primal'] },
+  restriction: { factions: ['primal'], sides: ['dawn'] },
   rarity: 'common',
   weak: ['ice'],
   price: 50,

@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Enchanted Cryomancer',
   text: 'When it enters: deal 4 ice damage to a random enemy ally.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'] },
+  restriction: { factions: ['arcane'], sides: ['dawn'] },
   rarity: 'common',
   element: 'ice',
   resist: ['arcane'],

@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Chimera of the Shieldwall',
   text: 'When it dies: your hero heals 8.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'uncommon',
   resist: ['earth'],
   weak: ['acid'],

@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it enters: draw a card.',
   flavor: 'Her songs bind stone and starlight.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'] },
+  restriction: { factions: ['arcane'], sides: ['dawn'] },
   rarity: 'common',
   resist: ['arcane'],
   price: 50,

@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it attacks: it gains +1 attack.',
   flavor: 'Shot twice. Still working.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: {},
   rarity: 'rare',
   price: 540,
   cost: 5,

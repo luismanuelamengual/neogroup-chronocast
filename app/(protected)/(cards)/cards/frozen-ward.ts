@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Cold enough to stop a sword mid-swing.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'uncommon',
   price: 120,
   cost: 1,

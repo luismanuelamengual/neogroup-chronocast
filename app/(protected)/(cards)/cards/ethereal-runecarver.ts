@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Ethereal Runecarver',
   text: 'When it enters: draw the first Magus of your deck.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'uncommon',
   element: 'arcane',
   resist: ['arcane'],

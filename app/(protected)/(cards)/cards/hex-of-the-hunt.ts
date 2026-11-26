@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Hex of the Hunt',
   text: 'Freeze an enemy ally and deal 3 arcane damage to the enemy hero.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'uncommon',
   element: 'arcane',
   price: 160,

@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it is equipped: your hero heals 5.',
   flavor: 'Order, one cut at a time.',
   faction: 'neon',
-  restriction: { heroes: ['overseer-kade'] },
+  restriction: { factions: ['neon'], sides: ['eclipse'] },
   rarity: 'epic',
   price: 1100,
   cost: 3,

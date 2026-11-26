@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Your weapon gains +3 durability. Draw a card.',
   flavor: 'The first fire still protects its children.',
   faction: 'primal',
-  restriction: { factions: ['primal'] },
+  restriction: { factions: ['primal'], sides: ['dawn'] },
   rarity: 'uncommon',
   price: 160,
   cost: 3,

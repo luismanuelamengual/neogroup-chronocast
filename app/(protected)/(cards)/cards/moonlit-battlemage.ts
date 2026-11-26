@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Moonlit Battlemage',
   text: 'When another Magus of yours enters: your hero heals 2.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'] },
+  restriction: { factions: ['arcane'], sides: ['dawn'] },
   rarity: 'uncommon',
   resist: ['arcane'],
   price: 120,

@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Nocturnal Idol',
   text: 'At the start of each phase: deal 2 shadow damage to the enemy hero. (3 uses)',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'uncommon',
   element: 'shadow',
   price: 160,

@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it is equipped: your hero heals 5.',
   flavor: 'Steam-powered and opinionated.',
   faction: 'clockwork',
-  restriction: { heroes: ['gideon-ironsteam'] },
+  restriction: { factions: ['clockwork'], sides: ['dawn'] },
   rarity: 'epic',
   price: 1100,
   cost: 3,

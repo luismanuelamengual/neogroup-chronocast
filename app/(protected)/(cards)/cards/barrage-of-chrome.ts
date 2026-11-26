@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Deal 8 lightning damage to an enemy slot.',
   flavor: 'Bullets cost money. Chrome costs more.',
   faction: 'neon',
-  restriction: { factions: ['neon'] },
+  restriction: { factions: ['neon'], sides: ['dawn'] },
   rarity: 'common',
   element: 'lightning',
   price: 55,

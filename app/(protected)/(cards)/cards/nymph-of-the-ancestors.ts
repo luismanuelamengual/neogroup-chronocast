@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Nymph of the Ancestors',
   text: 'When it dies: summon a Guardian Spirit.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   resist: ['arcane'],
   weak: ['shadow'],

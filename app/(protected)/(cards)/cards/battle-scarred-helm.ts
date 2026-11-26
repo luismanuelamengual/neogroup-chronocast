@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Every dent is a story it survived.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   price: 55,
   cost: 3,

@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Summon a Sabertooth Cub.',
   flavor: 'The night has ears, and it listens.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   price: 50,
   cost: 2,

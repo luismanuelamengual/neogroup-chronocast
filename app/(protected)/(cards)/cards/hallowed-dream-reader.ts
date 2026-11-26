@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Hallowed Dream Reader',
   text: 'When it enters: your hero heals 7.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'uncommon',
   element: 'light',
   resist: ['light'],

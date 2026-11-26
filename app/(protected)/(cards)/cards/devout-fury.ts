@@ -8,7 +8,7 @@ export default defineCard({
   text: 'An ally of yours gains +1 attack and +1 health.',
   flavor: 'The faithful hit hardest.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'uncommon',
   price: 120,
   cost: 0,

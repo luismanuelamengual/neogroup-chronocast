@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Scholarly Pyromancer',
   text: 'When it enters: deal 5 fire damage to a random enemy ally.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'common',
   element: 'fire',
   resist: ['arcane'],

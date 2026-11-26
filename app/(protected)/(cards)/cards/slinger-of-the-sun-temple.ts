@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it enters: summon a Hoplite Conscript.',
   flavor: 'She never misses under the sun.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'] },
+  restriction: { factions: ['bronze'], sides: ['dawn'] },
   rarity: 'common',
   element: 'light',
   price: 55,

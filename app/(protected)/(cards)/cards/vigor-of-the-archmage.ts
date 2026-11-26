@@ -8,7 +8,7 @@ export default defineCard({
   text: 'An ally of yours gains +4 attack and +5 health.',
   flavor: 'The archmage shares a spark of his endless energy.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'] },
+  restriction: { factions: ['arcane'], sides: ['dawn'] },
   rarity: 'uncommon',
   price: 160,
   cost: 3,

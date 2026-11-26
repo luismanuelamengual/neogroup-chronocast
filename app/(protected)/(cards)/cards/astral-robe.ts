@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Woven from the night sky, stitched with stars.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'exotic',
   price: 3160,
   cost: 3,

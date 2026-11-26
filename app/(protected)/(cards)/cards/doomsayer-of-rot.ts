@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Doomsayer of Rot',
   text: 'When it dies: deal 2 shadow damage to the enemy hero.',
   faction: 'void',
-  restriction: { factions: ['void'] },
+  restriction: { factions: ['void'], sides: ['eclipse'] },
   rarity: 'common',
   element: 'shadow',
   price: 50,

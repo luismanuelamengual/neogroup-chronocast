@@ -24,8 +24,8 @@ const ARTS: Record<string, string> = {
   primal: 'cave-bear',
   bronze: 'legate-varro-portrait',
   arcane: 'archmage-of-the-spire',
-  clockwork: 'gideon-ironsteam-portrait',
-  neon: 'ryn-voltblade-portrait',
+  clockwork: 'ada-copperwick-portrait',
+  neon: 'queen-static-portrait',
   void: 'malachar-the-unmade-portrait'
 }
 

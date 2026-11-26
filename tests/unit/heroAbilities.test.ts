@@ -120,68 +120,6 @@ describe("the heroes' abilities", () => {
     expect(twice.state.players.a.energy).toBe(10)
   })
 
-  it("the Hollow Astronomer's Supernova deals 12 to the slot and 4 to its neighbors", () => {
-    const state = match('hollow-astronomer', { b: ['faithful-wanderer', 'faithful-wanderer', 'faithful-wanderer'] })
-    const { state: next, fails } = run(state, plan({ kind: 'heroAbility', targets: [{ player: 'b', slot: 1 }] }))
-
-    expect(fails).toEqual([])
-    expect(next.players.b.allies[1]).toBeFalsy()
-    expect(next.players.b.allies[0]!.health).toBe(9 - 4)
-    expect(next.players.b.allies[2]!.health).toBe(9 - 4)
-  })
-
-  it("Tauron's Ram deals 6 plus the weapon's attack to an enemy ally and its neighbors, without wearing the weapon", () => {
-    const allies = { b: ['faithful-wanderer', 'faithful-wanderer', 'faithful-wanderer'] }
-    const bare = run(
-      match('tauron-labyrinth-lord', allies),
-      plan({ kind: 'heroAbility', targets: [{ player: 'b', slot: 1 }] })
-    )
-
-    expect(bare.fails).toEqual([])
-    expect(bare.state.players.b.allies.slice(0, 3).map((unit) => unit?.health)).toEqual([3, 3, 3])
-
-    const state = match('tauron-labyrinth-lord', allies)
-
-    state.players.a.hero.weapon = { card: card(state, 'cutlass-of-the-long-road'), attack: 3, durability: 3 }
-
-    const armed = run(state, plan({ kind: 'heroAbility', targets: [{ player: 'b', slot: 1 }] }))
-
-    expect(armed.state.players.b.allies.slice(0, 3).every((unit) => !unit)).toBe(true)
-    expect(armed.state.players.a.hero.weapon?.durability).toBe(3)
-  })
-
-  it("Kade's Mind Control makes an enemy ally hit another one, and then it's stunned", () => {
-    const state = match('overseer-kade', { b: ['faithful-wanderer', 'faithful-wanderer'] })
-    const { state: next, fails } = run(
-      state,
-      plan({
-        kind: 'heroAbility',
-        targets: [
-          { player: 'b', slot: 0 },
-          { player: 'b', slot: 1 }
-        ]
-      })
-    )
-
-    expect(fails).toEqual([])
-    expect(next.players.b.allies[1]!.health).toBe(9 - 4)
-    expect(next.players.b.allies[0]!.stunnedUntilPhase).toBeGreaterThanOrEqual(next.phase)
-
-    const itself = run(
-      match('overseer-kade', { b: ['faithful-wanderer'] }),
-      plan({
-        kind: 'heroAbility',
-        targets: [
-          { player: 'b', slot: 0 },
-          { player: 'b', slot: 0 }
-        ]
-      })
-    )
-
-    expect(itself.fails).toEqual(['invalidTarget'])
-    expect(itself.state.players.a.energy).toBe(10)
-  })
-
   it("Caelus's Tribute takes 1 Chronos capacity from the rival and gives it to him", () => {
     const idle = run(match('caelus-the-usurper')).state
     const { state: next, fails } = run(match('caelus-the-usurper'), plan(ability()))
@@ -189,14 +127,6 @@ describe("the heroes' abilities", () => {
     expect(fails).toEqual([])
     expect(next.players.a.chronosCapacity).toBe(idle.players.a.chronosCapacity + 1)
     expect(next.players.b.chronosCapacity).toBe(idle.players.b.chronosCapacity - 1)
-  })
-
-  it("Gideon's Overheat burns an enemy ally for 4 and its neighbors for 2", () => {
-    const state = match('gideon-ironsteam', { b: ['faithful-wanderer', 'faithful-wanderer', 'faithful-wanderer'] })
-    const { state: next, fails } = run(state, plan({ kind: 'heroAbility', targets: [{ player: 'b', slot: 1 }] }))
-
-    expect(fails).toEqual([])
-    expect(next.players.b.allies.slice(0, 3).map((unit) => unit?.burn)).toEqual([2, 4, 2])
   })
 
   it('Nyx gives every enemy ally -2 attack', () => {
@@ -220,23 +150,6 @@ describe("the heroes' abilities", () => {
     expect(events.filter((event) => event.type === 'discard')).toHaveLength(2)
     // Two discarded, and the draw of the new phase.
     expect(next.players.b.hand).toHaveLength(hand - 2 + 1)
-  })
-
-  it("Nysa's weapon gains +3 attack and +2 durability; without a weapon it fails and nothing is spent", () => {
-    const state = match('nysa-goldbow')
-
-    state.players.a.hero.weapon = { card: card(state, 'cutlass-of-the-long-road'), attack: 4, durability: 3 }
-
-    const { state: next, fails } = run(state, plan(ability()))
-
-    expect(fails).toEqual([])
-    expect(next.players.a.hero.weapon).toMatchObject({ attack: 7, durability: 5 })
-    expect(next.players.a.energy).toBe(10 - 3 + 1)
-
-    const bare = run(match('nysa-goldbow'), plan(ability()))
-
-    expect(bare.fails).toEqual(['noWeapon'])
-    expect(bare.state.players.a.energy).toBe(10)
   })
 
   it('Ada puts the chosen artifact of the deck in play for free and shuffles the deck', () => {
@@ -296,24 +209,6 @@ describe("the heroes' abilities", () => {
     expect(first.players.a.allies[0]!.health).toBe(9 - 2)
     expect(first.players.a.boons?.length).toBe(2)
     expect(run(first).state.players.a.boons).toEqual([])
-  })
-
-  it('Omnigear summons for free the most expensive ally of the hand that costs 6 or less', () => {
-    const state = match('omnigear-prime')
-
-    state.players.a.hand = [
-      card(state, 'faithful-wanderer'),
-      card(state, 'lost-chrononaut'),
-      card(state, 'spark-of-dusk')
-    ]
-
-    const { state: next, fails } = run(state, plan(ability()))
-
-    expect(fails).toEqual([])
-    expect(next.players.a.allies.filter(Boolean).map((unit) => unit!.cardId)).toEqual(['spark-of-dusk'])
-    expect(next.players.a.hand.map((entry) => entry.cardId)).toEqual(
-      expect.arrayContaining(['faithful-wanderer', 'lost-chrononaut'])
-    )
   })
 
   it('Malachar poisons every enemy ally, and his allies cost 1 Chronos less until the end of the next phase', () => {

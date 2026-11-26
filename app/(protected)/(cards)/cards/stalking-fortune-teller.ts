@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Stalking Fortune Teller',
   text: 'When it enters: deal 3 damage to a random enemy ally. When it attacks: deal 1 damage to the enemy hero.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'epic',
   price: 1000,
   cost: 2,

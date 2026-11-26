@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it dies: your hero heals 3.',
   flavor: 'He has been angry since the Bronze Age.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'uncommon',
   price: 140,
   cost: 2,

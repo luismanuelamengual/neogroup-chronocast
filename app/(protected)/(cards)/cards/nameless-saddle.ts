@@ -6,7 +6,7 @@ export default defineCard({
   name: 'Nameless Saddle',
   text: 'Attach to an ally of yours: it gains +2 attack and +3 health.',
   faction: 'void',
-  restriction: { factions: ['void'] },
+  restriction: { factions: ['void'], sides: ['dawn'] },
   rarity: 'uncommon',
   price: 140,
   cost: 2,

@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it dies: deal 5 damage to a random enemy ally.',
   flavor: 'Her lamps burn in the darkest thickets.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'rare',
   price: 480,
   cost: 4,

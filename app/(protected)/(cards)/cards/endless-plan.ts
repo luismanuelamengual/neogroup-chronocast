@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Draw a card.',
   flavor: 'Step one: wait. Step two: wait longer.',
   faction: 'void',
-  restriction: { factions: ['void'] },
+  restriction: { factions: ['void'], sides: ['dawn'] },
   rarity: 'uncommon',
   price: 120,
   cost: 1,

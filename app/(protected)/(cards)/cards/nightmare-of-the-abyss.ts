@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Nightmare of the Abyss',
   text: 'When it enters: poison the enemy hero (3).',
   faction: 'void',
-  restriction: { factions: ['void'] },
+  restriction: { factions: ['void'], sides: ['eclipse'] },
   rarity: 'common',
   element: 'shadow',
   resist: ['shadow'],

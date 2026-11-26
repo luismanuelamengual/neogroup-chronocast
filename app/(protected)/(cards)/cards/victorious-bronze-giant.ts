@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Victorious Bronze Giant',
   text: 'When it enters: your hero heals 8.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'] },
+  restriction: { factions: ['bronze'], sides: ['eclipse'] },
   rarity: 'rare',
   resist: ['earth'],
   weak: ['acid'],

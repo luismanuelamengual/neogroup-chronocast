@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Brass Golem of Coal',
   text: 'When another Automaton of yours enters: it gains +1 attack and +1 health.',
   faction: 'clockwork',
-  restriction: { factions: ['clockwork'] },
+  restriction: { factions: ['clockwork'], sides: ['eclipse'] },
   rarity: 'uncommon',
   element: 'earth',
   resist: ['acid'],

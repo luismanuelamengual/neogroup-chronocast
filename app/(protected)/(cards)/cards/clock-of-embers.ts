@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Clock of Embers',
   text: 'At the start of each phase: your hero heals 3. (3 uses)',
   faction: 'arcane',
-  restriction: { factions: ['arcane'] },
+  restriction: { factions: ['arcane'], sides: ['eclipse'] },
   rarity: 'uncommon',
   price: 140,
   cost: 2,

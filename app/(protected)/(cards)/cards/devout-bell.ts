@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it is equipped: your hero heals 4.',
   flavor: 'Each toll is a vow kept.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'rare',
   element: 'sonic',
   price: 360,

@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it is equipped: your allies heal 2.',
   flavor: 'Soft as silk, cold as an ending.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'uncommon',
   price: 140,
   cost: 2,

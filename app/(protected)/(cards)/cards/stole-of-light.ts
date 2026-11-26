@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'A thread of sunrise across the shoulders.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'rare',
   price: 420,
   cost: 3,

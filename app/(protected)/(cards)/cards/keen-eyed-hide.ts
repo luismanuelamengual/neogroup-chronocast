@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Tanned by a hunter who never missed.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: {},
   rarity: 'common',
   price: 40,
   cost: 1,

@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Volatile Runecarver',
   text: 'When it enters: if you have another Magus, draw a card.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'uncommon',
   resist: ['arcane'],
   price: 160,

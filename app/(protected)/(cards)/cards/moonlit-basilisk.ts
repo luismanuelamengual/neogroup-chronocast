@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Moonlit Basilisk',
   text: 'When it dies: deal 4 fire damage to a random enemy ally.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'] },
+  restriction: { factions: ['arcane'], sides: ['eclipse'] },
   rarity: 'common',
   element: 'fire',
   resist: ['fire'],

@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Each wound it touches forgets itself.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'rare',
   price: 480,
   cost: 4,

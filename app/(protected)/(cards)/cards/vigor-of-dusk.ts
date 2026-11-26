@@ -8,7 +8,7 @@ export default defineCard({
   text: 'An ally of yours gains +12 attack this phase. Instant.',
   flavor: 'Evening brings a second wind.',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['eclipse'] },
   rarity: 'uncommon',
   price: 200,
   cost: 5,

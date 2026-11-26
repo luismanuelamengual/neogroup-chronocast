@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Clock of Dusk',
   text: 'At the start of each phase: your hero gains 1 energy. (3 uses)',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['eclipse'] },
   rarity: 'uncommon',
   price: 140,
   cost: 2,

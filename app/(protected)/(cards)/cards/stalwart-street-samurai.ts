@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it enters: your hero heals 8.',
   flavor: 'Neon blade, old code.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'rare',
   price: 600,
   cost: 6,

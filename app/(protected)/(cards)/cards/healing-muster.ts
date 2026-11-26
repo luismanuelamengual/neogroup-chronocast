@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Summon a Guardian Spirit.',
   flavor: 'Gather the wounded. Send back soldiers.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'rare',
   price: 360,
   cost: 2,

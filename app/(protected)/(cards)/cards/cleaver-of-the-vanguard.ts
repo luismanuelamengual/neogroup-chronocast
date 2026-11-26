@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it is equipped: your hero heals 5.',
   flavor: 'First into the fray, first out of it with trophies.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'exotic',
   price: 3160,
   cost: 3,

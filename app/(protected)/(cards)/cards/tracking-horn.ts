@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Summon a Sabertooth Cub.',
   flavor: 'One blast and the pack knows the way.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: {},
   rarity: 'uncommon',
   price: 160,
   cost: 3,

@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'It drinks only from lakes that reflect the stars.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   resist: ['arcane'],
   weak: ['shadow'],

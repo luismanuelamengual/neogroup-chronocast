@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Battle-Scarred Disarm',
   text: 'The enemy weapon and armor lose 2 durability each. Fast.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'rare',
   price: 360,
   cost: 2,

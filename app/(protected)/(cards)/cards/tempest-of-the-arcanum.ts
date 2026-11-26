@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Deal 6 wind damage to every enemy ally. Slow.',
   flavor: 'Spellbooks fly open when it blows.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'rare',
   element: 'wind',
   price: 540,

@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Your Fae gain +2 attack and +3 health.',
   flavor: 'Even shadows step aside.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'rare',
   price: 480,
   cost: 4,

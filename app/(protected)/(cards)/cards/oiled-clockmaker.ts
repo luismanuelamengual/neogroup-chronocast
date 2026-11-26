@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Oiled Clockmaker',
   text: 'When another Inventor of yours enters: your hero heals 2.',
   faction: 'clockwork',
-  restriction: { factions: ['clockwork'] },
+  restriction: { factions: ['clockwork'], sides: ['dawn'] },
   rarity: 'uncommon',
   price: 160,
   cost: 3,

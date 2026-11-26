@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Clockwork Hound of Coal',
   text: 'At the start of each phase: your hero heals 2.',
   faction: 'clockwork',
-  restriction: { factions: ['clockwork'] },
+  restriction: { factions: ['clockwork'], sides: ['eclipse'] },
   rarity: 'common',
   resist: ['acid'],
   weak: ['lightning'],

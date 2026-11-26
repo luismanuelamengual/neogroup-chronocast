@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Codebreaker of Neon',
   text: 'When it dies: your Netrunners gain +1 attack and +1 health.',
   faction: 'neon',
-  restriction: { factions: ['neon'] },
+  restriction: { factions: ['neon'], sides: ['dawn'] },
   rarity: 'uncommon',
   price: 180,
   cost: 4,

@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Draw 2 cards.',
   flavor: 'Page one: do not touch. Page two: too late.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'rare',
   price: 420,
   cost: 3,

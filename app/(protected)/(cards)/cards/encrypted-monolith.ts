@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Encrypted Monolith',
   text: 'At the start of each phase: deal 2 earth damage to the enemy hero. (3 uses)',
   faction: 'neon',
-  restriction: { factions: ['neon'] },
+  restriction: { factions: ['neon'], sides: ['dawn'] },
   rarity: 'uncommon',
   element: 'earth',
   price: 160,

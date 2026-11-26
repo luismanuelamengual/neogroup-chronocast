@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Freeze an enemy ally.',
   flavor: 'Ice written in the language of magic.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'common',
   price: 40,
   cost: 1,

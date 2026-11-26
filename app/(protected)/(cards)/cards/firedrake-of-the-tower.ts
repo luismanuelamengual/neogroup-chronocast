@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Firedrake of the Tower',
   text: 'When it enters: it gains +1 attack and +1 health for each other Drake of yours.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'] },
+  restriction: { factions: ['arcane'], sides: ['eclipse'] },
   rarity: 'rare',
   element: 'fire',
   resist: ['fire'],

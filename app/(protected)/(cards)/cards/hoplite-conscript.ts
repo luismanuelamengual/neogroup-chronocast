@@ -8,7 +8,7 @@ export default defineCard({
   text: '',
   flavor: 'Yesterday a farmer. Today, a wall.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'] },
+  restriction: { factions: ['bronze'], sides: ['dawn'] },
   rarity: 'common',
   cost: 1,
   tribe: 'legionnaire',

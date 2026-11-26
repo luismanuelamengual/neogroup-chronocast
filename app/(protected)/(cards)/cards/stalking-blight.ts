@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Poison an enemy ally (2).',
   flavor: 'It follows you home.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'uncommon',
   price: 120,
   cost: 1,

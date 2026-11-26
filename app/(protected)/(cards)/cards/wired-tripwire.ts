@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When an enemy ally is summoned: freeze it.',
   flavor: 'One wire, one hundred volts.',
   faction: 'neon',
-  restriction: { factions: ['neon'] },
+  restriction: { factions: ['neon'], sides: ['eclipse'] },
   rarity: 'common',
   price: 65,
   cost: 4,

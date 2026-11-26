@@ -8,7 +8,7 @@ export default defineCard({
   text: 'The enemy armor loses 3 durability. Fast.',
   flavor: 'A little water in the gears goes a long way.',
   faction: 'clockwork',
-  restriction: { factions: ['clockwork'] },
+  restriction: { factions: ['clockwork'], sides: ['eclipse'] },
   rarity: 'uncommon',
   price: 180,
   cost: 2,

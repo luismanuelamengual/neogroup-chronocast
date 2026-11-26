@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it dies: summon a Risen Skeleton.',
   flavor: 'He preaches the gospel of decay.',
   faction: 'void',
-  restriction: { factions: ['void'] },
+  restriction: { factions: ['void'], sides: ['eclipse'] },
   rarity: 'common',
   price: 65,
   cost: 4,

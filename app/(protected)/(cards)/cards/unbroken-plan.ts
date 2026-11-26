@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Draw the first Drifter of your deck and your hero heals 3.',
   flavor: 'The plan survived contact with the enemy.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: {},
   rarity: 'common',
   price: 50,
   cost: 2,

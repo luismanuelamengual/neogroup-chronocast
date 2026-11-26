@@ -1,9 +1,9 @@
 import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition'
 import { CardType } from '@/app/(protected)/(engine)/models/CardType'
 import { Faction } from '@/app/(protected)/(engine)/models/Faction'
-import { HeroClass } from '@/app/(protected)/(engine)/models/HeroClass'
 import { Rarity } from '@/app/(protected)/(engine)/models/Rarity'
-import { canUseCard } from '@/app/(protected)/(engine)/utils/deckRules'
+import { Side } from '@/app/(protected)/(engine)/models/Side'
+import { canUseCard, cardSide } from '@/app/(protected)/(engine)/utils/deckRules'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
 import { Translator } from '@/app/i18n/translate'
 
@@ -12,7 +12,8 @@ export interface CardFilter {
   search: string
   type: CardType | ''
   faction: Faction | ''
-  heroClass: HeroClass | ''
+  /** Dawn, Eclipse or neutral. */
+  side: Side | 'neutral' | ''
   rarity: Rarity | ''
   /** The exact cost, or 7 for 7 and up (-1 = any). */
   cost: number
@@ -25,7 +26,7 @@ export const EMPTY_FILTER: CardFilter = {
   search: '',
   type: '',
   faction: '',
-  heroClass: '',
+  side: '',
   rarity: '',
   cost: -1,
   usableBy: '',
@@ -44,11 +45,6 @@ export function compareCards(a: CardDefinition, b: CardDefinition): number {
   )
 }
 
-/** The classes a card belongs to: a hero's own class, or the classes it is restricted to. */
-function classesOf(card: CardDefinition): HeroClass[] {
-  return card.heroClass ? [card.heroClass] : (card.restriction.classes ?? [])
-}
-
 export function matchesFilter(card: CardDefinition, filter: CardFilter, owned: number): boolean {
   const search = filter.search.trim().toLowerCase()
 
@@ -56,7 +52,7 @@ export function matchesFilter(card: CardDefinition, filter: CardFilter, owned: n
     (!search || card.name.toLowerCase().includes(search) || card.text.toLowerCase().includes(search)) &&
     (!filter.type || card.type === filter.type) &&
     (!filter.faction || card.faction === filter.faction) &&
-    (!filter.heroClass || classesOf(card).includes(filter.heroClass)) &&
+    (!filter.side || cardSide(card) === filter.side) &&
     (!filter.rarity || card.rarity === filter.rarity) &&
     (filter.cost < 0 || (filter.cost >= 7 ? card.cost >= 7 : card.cost === filter.cost)) &&
     (!filter.usableBy || canUseCard(getCard(filter.usableBy), card)) &&
@@ -72,10 +68,10 @@ function joinWords(items: string[], word: string): string {
 /**
  * Who can have a card in their deck, in words: "Any hero", "Heroes of the
  * Clockwork or Neon faction", or, with several criteria, "Heroes: Clockwork
- * faction, Dawn side and Warrior class".
+ * faction and Dawn side".
  */
 export function restrictionText(card: CardDefinition, t: Translator): string {
-  const { factions = [], sides = [], classes = [], heroes = [] } = card.restriction
+  const { factions = [], sides = [], heroes = [] } = card.restriction
   const or = t('game.restriction.or')
   const values = {
     faction: joinWords(
@@ -86,21 +82,14 @@ export function restrictionText(card: CardDefinition, t: Translator): string {
       sides.map((side) => t(`game.sides.${side}`)),
       or
     ),
-    heroClass: joinWords(
-      classes.map((heroClass) => t(`game.classes.${heroClass}`)),
-      or
-    ),
     hero: joinWords(
       heroes.map((heroId) => getCard(heroId).name),
       or
     )
   }
-  const parts = [
-    heroes.length > 0 && 'hero',
-    factions.length > 0 && 'faction',
-    sides.length > 0 && 'side',
-    classes.length > 0 && 'class'
-  ].filter((part): part is 'hero' | 'faction' | 'side' | 'class' => Boolean(part))
+  const parts = [heroes.length > 0 && 'hero', factions.length > 0 && 'faction', sides.length > 0 && 'side'].filter(
+    (part): part is 'hero' | 'faction' | 'side' => Boolean(part)
+  )
 
   if (parts.length === 0) {
     return t('game.restriction.any')

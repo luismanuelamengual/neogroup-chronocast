@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it enters: summon a Sabertooth Cub.',
   flavor: 'The jungle trembles when it wakes.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: {},
   rarity: 'common',
   weak: ['ice'],
   price: 55,

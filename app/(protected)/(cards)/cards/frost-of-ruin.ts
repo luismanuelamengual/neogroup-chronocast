@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Stun an enemy ally for two phases and draw a card. Fast.',
   flavor: 'The cold that comes after the end.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'uncommon',
   price: 180,
   cost: 4,

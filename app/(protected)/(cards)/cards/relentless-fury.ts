@@ -8,7 +8,7 @@ export default defineCard({
   text: 'An ally of yours gains +4 attack this phase. Instant.',
   flavor: 'It does not stop. It does not tire.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'rare',
   price: 300,
   cost: 1,

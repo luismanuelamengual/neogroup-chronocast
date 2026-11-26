@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Strike it, and it strikes back harder.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   price: 55,
   cost: 3,

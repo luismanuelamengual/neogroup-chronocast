@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Pit of Spirits',
   text: 'When the enemy uses an ability: draw a card and deal 5 light damage to the enemy hero.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: {},
   rarity: 'common',
   element: 'light',
   price: 55,

@@ -79,7 +79,7 @@ export default function StarterChoice() {
               </span>
               <span className="starter-choice__info">
                 <strong>
-                  {t(`game.factions.${card.faction}`)} · {t(`game.classes.${card.heroClass!}`)}
+                  {t(`game.factions.${card.faction}`)} · {t(`game.sides.${card.side!}`)}
                 </strong>
                 <span>{t('onboarding.health', { health: card.health ?? 0 })}</span>
                 <span>{t(`onboarding.styles.${id}` as MessageKey)}</span>

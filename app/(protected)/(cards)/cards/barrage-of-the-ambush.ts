@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Deal 12 damage to an enemy slot.',
   flavor: 'The trees themselves let fly.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'legendary',
   price: 2240,
   cost: 4,

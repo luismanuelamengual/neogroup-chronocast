@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Its light remembers how things used to be.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'uncommon',
   price: 120,
   cost: 1,

@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Nightmare of the Void',
   text: 'When it dies: your Horrors gain +1 attack and +1 health.',
   faction: 'void',
-  restriction: { factions: ['void'] },
+  restriction: { factions: ['void'], sides: ['eclipse'] },
   rarity: 'rare',
   element: 'shadow',
   resist: ['shadow'],

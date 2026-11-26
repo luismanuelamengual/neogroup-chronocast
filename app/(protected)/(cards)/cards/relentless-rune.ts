@@ -6,7 +6,7 @@ export default defineCard({
   name: 'Relentless Rune',
   text: 'Attach to an ally of yours: it gains +1 attack and +3 health.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   price: 50,
   cost: 2,

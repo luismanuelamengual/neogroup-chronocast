@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Fixer of the Undercity',
   text: 'When it dies: your Enforcers gain +1 attack and +1 health. When it enters: draw a card.',
   faction: 'neon',
-  restriction: { factions: ['neon'] },
+  restriction: { factions: ['neon'], sides: ['eclipse'] },
   rarity: 'exotic',
   price: 3080,
   cost: 2,

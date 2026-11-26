@@ -8,7 +8,7 @@ export default defineCard({
   text: 'At the start of each phase: your hero heals 3.',
   flavor: 'The herd remembers where it stands.',
   faction: 'primal',
-  restriction: { factions: ['primal'] },
+  restriction: { factions: ['primal'], sides: ['dawn'] },
   rarity: 'epic',
   price: 1000,
   cost: 2,

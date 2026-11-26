@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Draw a card.',
   flavor: 'The best hunters say nothing.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: {},
   rarity: 'rare',
   price: 300,
   cost: 1,

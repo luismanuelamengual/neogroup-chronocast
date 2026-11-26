@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'She freezes the dusk to keep it longer.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'] },
+  restriction: { factions: ['arcane'], sides: ['dawn'] },
   rarity: 'common',
   element: 'ice',
   resist: ['arcane'],

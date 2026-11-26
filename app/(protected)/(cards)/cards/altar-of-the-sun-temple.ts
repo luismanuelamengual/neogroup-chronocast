@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Altar of the Sun Temple',
   text: 'At the start of each phase: deal 2 light damage to the enemy hero. (4 uses)',
   faction: 'bronze',
-  restriction: { factions: ['bronze'] },
+  restriction: { factions: ['bronze'], sides: ['dawn'] },
   rarity: 'rare',
   element: 'light',
   price: 420,

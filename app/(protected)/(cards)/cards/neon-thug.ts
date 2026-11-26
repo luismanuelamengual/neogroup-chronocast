@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Rent is due. So are your teeth.',
   faction: 'neon',
-  restriction: { factions: ['neon'] },
+  restriction: { factions: ['neon'], sides: ['eclipse'] },
   rarity: 'common',
   price: 55,
   cost: 3,

@@ -8,7 +8,6 @@ export default defineCard({
   text: 'Twin Bolts (3): deal 7 arcane damage to 2 different enemy slots.',
   flavor: 'She reads the future in the constellations, then rewrites it.',
   faction: 'arcane',
-  heroClass: 'mage',
   side: 'dawn',
   restriction: { heroes: ['ilyra-starweaver'] },
   rarity: 'common',

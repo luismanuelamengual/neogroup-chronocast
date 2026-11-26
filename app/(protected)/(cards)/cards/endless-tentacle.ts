@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Endless Tentacle',
   text: 'When it dies: deal 5 shadow damage to the enemy hero.',
   faction: 'void',
-  restriction: { factions: ['void'] },
+  restriction: { factions: ['void'], sides: ['eclipse'] },
   rarity: 'rare',
   element: 'shadow',
   resist: ['shadow'],

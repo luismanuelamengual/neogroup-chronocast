@@ -8,7 +8,7 @@ export default defineCard({
   text: 'An ally of yours gains +2 attack and +2 health.',
   flavor: 'His shout is worth a hundred swords.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'rare',
   price: 300,
   cost: 1,

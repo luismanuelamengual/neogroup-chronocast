@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it is equipped: your hero heals 5.',
   flavor: 'Forged in the heart of the labyrinth.',
   faction: 'bronze',
-  restriction: { heroes: ['tauron-labyrinth-lord'] },
+  restriction: { factions: ['bronze'], sides: ['dawn'] },
   rarity: 'epic',
   price: 1100,
   cost: 3,

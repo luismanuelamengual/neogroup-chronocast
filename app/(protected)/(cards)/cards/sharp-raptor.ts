@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Sharp Raptor',
   text: 'When it dies: your Saurians gain +1 attack and +1 health.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: {},
   rarity: 'uncommon',
   weak: ['ice'],
   price: 200,

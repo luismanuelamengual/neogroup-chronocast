@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Dilophosaur of the Silent Trail',
   text: 'When it enters: deal 5 damage to a random enemy ally.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   weak: ['ice'],
   price: 65,

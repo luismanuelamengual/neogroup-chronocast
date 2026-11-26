@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Deal 9 arcane damage to an enemy slot.',
   flavor: 'Fallen from the sky, still burning.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'epic',
   element: 'arcane',
   price: 1100,

@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Spike of the Ambush',
   text: 'Deal 3 damage to an enemy slot, +2 for each Netrunner of yours.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'rare',
   price: 360,
   cost: 2,

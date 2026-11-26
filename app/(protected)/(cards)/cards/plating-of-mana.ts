@@ -6,7 +6,7 @@ export default defineCard({
   name: 'Plating of Mana',
   text: 'Attach to an ally of yours: it gains +3 attack and +5 health.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'uncommon',
   price: 180,
   cost: 4,

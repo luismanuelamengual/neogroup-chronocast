@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Dreaming Seer',
   text: 'At the start of each phase: your hero heals 2.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: {},
   rarity: 'uncommon',
   resist: ['light'],
   price: 160,

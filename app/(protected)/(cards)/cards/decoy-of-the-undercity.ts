@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Decoy of the Undercity',
   text: 'When the enemy uses an ability: draw a card and deal 5 lightning damage to the enemy hero.',
   faction: 'neon',
-  restriction: { factions: ['neon'] },
+  restriction: { factions: ['neon'], sides: ['dawn'] },
   rarity: 'rare',
   element: 'lightning',
   price: 420,

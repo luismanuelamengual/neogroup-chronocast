@@ -8,7 +8,7 @@ export default defineCard({
   text: 'At the start of each phase: your hero gains 1 energy.',
   flavor: 'Offerings of oil to the god of machines.',
   faction: 'clockwork',
-  restriction: { factions: ['clockwork'] },
+  restriction: { factions: ['clockwork'], sides: ['dawn'] },
   rarity: 'epic',
   price: 900,
   cost: 1,

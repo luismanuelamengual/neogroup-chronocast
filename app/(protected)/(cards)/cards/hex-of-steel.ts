@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Hex of Steel',
   text: 'Freeze an enemy ally and deal 2 arcane damage to the enemy hero.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: {},
   rarity: 'epic',
   element: 'arcane',
   price: 1000,

@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Blessed Deserter',
   text: 'At the start of each phase: your hero heals 2.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   element: 'light',
   price: 55,

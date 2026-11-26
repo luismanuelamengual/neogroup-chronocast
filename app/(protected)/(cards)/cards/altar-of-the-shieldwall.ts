@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Altar of the Shieldwall',
   text: 'At the start of each phase: deal 2 damage to the enemy hero. (3 uses)',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   price: 55,
   cost: 3,

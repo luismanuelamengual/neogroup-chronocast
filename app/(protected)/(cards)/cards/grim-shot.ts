@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Grim Shot',
   text: 'Deal 2 shadow damage to an enemy slot, +2 for each Horror of yours.',
   faction: 'void',
-  restriction: { factions: ['void'] },
+  restriction: { factions: ['void'], sides: ['eclipse'] },
   rarity: 'common',
   element: 'shadow',
   price: 50,

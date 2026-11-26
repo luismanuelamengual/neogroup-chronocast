@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'The prey never sees it coming.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   price: 50,
   cost: 2,

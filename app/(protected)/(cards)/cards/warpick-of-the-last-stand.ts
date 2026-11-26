@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Carried by those who refuse to fall back.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   price: 50,
   cost: 2,

@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Pilgrim of Dawn',
   text: 'When it enters: destroy the priciest enemy artifact.',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   element: 'light',
   price: 55,

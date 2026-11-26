@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Imperial Charioteer',
   text: 'When it dies: your Legionnaires gain +1 attack and +1 health.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'] },
+  restriction: { factions: ['bronze'], sides: ['dawn'] },
   rarity: 'uncommon',
   price: 160,
   cost: 3,

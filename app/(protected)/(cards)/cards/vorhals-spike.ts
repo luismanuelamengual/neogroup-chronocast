@@ -7,7 +7,7 @@ export default defineCard({
   name: "Vorhal's Spike",
   text: 'Deal 10 time damage to an enemy slot and draw a card.',
   faction: 'void',
-  restriction: { heroes: ['vorhal-the-last-hour'] },
+  restriction: { factions: ['void'], sides: ['eclipse'] },
   rarity: 'epic',
   element: 'time',
   price: 1200,

@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Loyal Gorgon',
   text: 'When it enters: deal 1 light damage to the enemy hero for each Colossus of yours.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'] },
+  restriction: { factions: ['bronze'], sides: ['eclipse'] },
   rarity: 'uncommon',
   element: 'light',
   resist: ['earth'],

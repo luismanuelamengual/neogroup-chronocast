@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Quiet on the wrist, loud on the hunt.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   price: 65,
   cost: 4,

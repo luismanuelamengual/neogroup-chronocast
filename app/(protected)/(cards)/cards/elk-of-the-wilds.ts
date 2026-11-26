@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it dies: deal 7 damage to a random enemy ally.',
   flavor: 'King of the forest, crowned in antlers.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: {},
   rarity: 'common',
   price: 80,
   cost: 6,

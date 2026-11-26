@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Boilerguard of Gears',
   text: 'At the start of each phase: your hero heals 2. Its ability is paid with energy (⚡).',
   faction: 'clockwork',
-  restriction: { factions: ['clockwork'] },
+  restriction: { factions: ['clockwork'], sides: ['eclipse'] },
   rarity: 'rare',
   resist: ['acid'],
   weak: ['lightning'],

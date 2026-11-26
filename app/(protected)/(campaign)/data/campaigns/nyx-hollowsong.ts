@@ -1,8 +1,8 @@
 import { defineCampaign } from '@/app/(protected)/(campaign)/utils/defineCampaign'
 
 /**
- * The Last Bell: the bell that will ring the end of every era. The story texts live in the translations
- * (campaigns.nyx-hollowsong).
+ * Nyx Hollowsong: nine rivals from the other eras and Malachar the Unmade as the
+ * boss. The story texts live in the translations (campaigns.nyx-hollowsong).
  */
 export default defineCampaign({
   heroId: 'nyx-hollowsong',
@@ -11,14 +11,12 @@ export default defineCampaign({
     { rival: 'legate-varro' },
     { rival: 'kora-wildfang' },
     { rival: 'ilyra-starweaver', cpuSetup: { extraHealth: 5 } },
-    { rival: 'gideon-ironsteam', cpuSetup: { extraHealth: 5 } },
-    { rival: 'nysa-goldbow', cpuSetup: { allies: ['loyal-charioteer'] } },
-    { rival: 'vex-nightwire', cpuSetup: { allies: ['cyber-hound-of-the-grid'] } },
-    { rival: 'aldric-dawnkeeper', cpuSetup: { allies: ['moonlit-battlemage'] } },
-    { rival: 'ooma-bonewhisper', cpuSetup: { extraHealth: 5 } },
-    { rival: 'ada-copperwick', cpuSetup: { weapon: 'frozen-wand' }, playerSetup: { handSize: 6 } },
-    {
-      rival: 'vorhal-the-last-hour'
-    }
+    { rival: 'vex-nightwire', cpuSetup: { extraHealth: 5 } },
+    { rival: 'ada-copperwick', cpuSetup: { allies: ['timeless-fortune-teller'] } },
+    { rival: 'ooma-bonewhisper', cpuSetup: { allies: ['dire-wolf-of-the-fang'] } },
+    { rival: 'morgrath-lich-abbot', cpuSetup: { allies: ['virus-of-the-silent-trail'] } },
+    { rival: 'queen-static', cpuSetup: { extraHealth: 5 } },
+    { rival: 'chancellor-brassmaw', cpuSetup: { weapon: 'scepter-of-flame' }, playerSetup: { handSize: 6 } },
+    { rival: 'malachar-the-unmade', cpuSetup: { weapon: 'longbow-of-the-silent-trail', extraHealth: 5 } }
   ]
 })

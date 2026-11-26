@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it enters: draw the first trap of your deck.',
   flavor: 'He waits for the perfect moment to sing.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: {},
   rarity: 'uncommon',
   price: 180,
   cost: 4,

@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Talos of the Laurel',
   text: 'When it enters: your other Colossi gain +1 attack and +1 health.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'] },
+  restriction: { factions: ['bronze'], sides: ['eclipse'] },
   rarity: 'rare',
   resist: ['earth'],
   weak: ['acid'],

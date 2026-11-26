@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Freeze an enemy ally.',
   flavor: 'Every step costs a little blood.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   price: 40,
   cost: 0,

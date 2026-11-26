@@ -8,7 +8,7 @@ export default defineCard({
   text: 'An ally of yours gains +3 attack and +4 health.',
   flavor: 'They were brave. So are you.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   price: 50,
   cost: 2,

@@ -8,7 +8,7 @@ export default defineCard({
   text: 'At the start of each phase: your hero heals 3. (3 uses)',
   flavor: 'It connects to libraries that no longer exist.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'common',
   price: 50,
   cost: 2,

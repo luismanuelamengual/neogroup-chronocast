@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Astral Daze',
   text: 'Freeze an enemy ally and deal 5 arcane damage to the enemy hero.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'uncommon',
   element: 'arcane',
   price: 200,

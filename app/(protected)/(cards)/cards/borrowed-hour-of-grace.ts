@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Your hero gains 3 energy. Instant.',
   flavor: 'An hour you did not have, given freely.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'rare',
   price: 360,
   cost: 2,

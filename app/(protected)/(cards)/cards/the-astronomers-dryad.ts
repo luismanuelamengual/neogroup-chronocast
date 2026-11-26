@@ -7,7 +7,7 @@ export default defineCard({
   name: "The Astronomer's Dryad",
   text: 'When it enters: your other Fae gain +2 attack and +2 health. At the start of each phase: deal 1 arcane damage to the enemy hero.',
   faction: 'arcane',
-  restriction: { heroes: ['hollow-astronomer'] },
+  restriction: { factions: ['arcane'], sides: ['eclipse'] },
   rarity: 'legendary',
   element: 'arcane',
   resist: ['arcane'],

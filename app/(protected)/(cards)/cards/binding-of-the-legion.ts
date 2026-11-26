@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Stun an enemy ally for two phases and draw a card. Fast.',
   flavor: 'Shields close in. No way out.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'] },
+  restriction: { factions: ['bronze'], sides: ['dawn'] },
   rarity: 'rare',
   price: 540,
   cost: 5,

@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Encrypted Thug',
   text: 'When another Enforcer of yours enters: your hero heals 2.',
   faction: 'neon',
-  restriction: { factions: ['neon'] },
+  restriction: { factions: ['neon'], sides: ['eclipse'] },
   rarity: 'rare',
   price: 300,
   cost: 1,

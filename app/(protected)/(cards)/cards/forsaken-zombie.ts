@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Nobody came back for him, so he came back for them.',
   faction: 'void',
-  restriction: { factions: ['void'] },
+  restriction: { factions: ['void'], sides: ['dawn'] },
   rarity: 'common',
   resist: ['shadow', 'ice'],
   price: 55,

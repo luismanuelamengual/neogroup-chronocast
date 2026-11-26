@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Summon a Rift Spark.',
   flavor: 'Small sparks, one great fire.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'legendary',
   price: 2080,
   cost: 2,

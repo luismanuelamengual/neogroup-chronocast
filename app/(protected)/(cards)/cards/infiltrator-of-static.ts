@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Infiltrator of Static',
   text: 'When it attacks: deal 3 lightning damage to the enemy hero.',
   faction: 'neon',
-  restriction: { factions: ['neon'] },
+  restriction: { factions: ['neon'], sides: ['dawn'] },
   rarity: 'uncommon',
   element: 'lightning',
   price: 200,

@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Every dawn starts with her small flame.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   price: 55,
   cost: 3,

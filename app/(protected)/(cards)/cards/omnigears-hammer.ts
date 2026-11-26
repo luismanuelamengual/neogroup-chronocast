@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it is equipped: your hero heals 5.',
   flavor: 'Calibrated to the nanometer, swung with fury.',
   faction: 'clockwork',
-  restriction: { heroes: ['omnigear-prime'] },
+  restriction: { factions: ['clockwork'], sides: ['dawn'] },
   rarity: 'epic',
   price: 1100,
   cost: 3,

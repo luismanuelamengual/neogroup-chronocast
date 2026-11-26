@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Flask of Dawn',
   text: 'Draw the first Elemental of your deck and draw the first Elemental of your deck.',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['dawn'] },
   rarity: 'uncommon',
   price: 160,
   cost: 3,

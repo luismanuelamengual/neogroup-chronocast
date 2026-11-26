@@ -8,7 +8,7 @@ export default defineCard({
   text: 'At the start of each phase: your hero gains 1 energy.',
   flavor: 'Feathers left here are never wasted.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: {},
   rarity: 'legendary',
   price: 2080,
   cost: 2,

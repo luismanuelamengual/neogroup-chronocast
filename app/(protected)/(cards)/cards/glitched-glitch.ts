@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Glitched Glitch',
   text: 'When it attacks: deal 2 lightning damage to the enemy hero.',
   faction: 'neon',
-  restriction: { factions: ['neon'] },
+  restriction: { factions: ['neon'], sides: ['dawn'] },
   rarity: 'common',
   element: 'lightning',
   price: 65,

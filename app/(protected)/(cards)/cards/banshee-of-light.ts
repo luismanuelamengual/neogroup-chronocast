@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Banshee of Light',
   text: 'When another Undead of yours enters: it gains +1 attack and +1 health.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'rare',
   element: 'sonic',
   resist: ['shadow', 'ice'],

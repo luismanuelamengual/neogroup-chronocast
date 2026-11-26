@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Tracking Countermeasure',
   text: 'When the enemy uses an ability: draw a card and deal 4 damage to the enemy hero.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: {},
   rarity: 'common',
   price: 50,
   cost: 2,

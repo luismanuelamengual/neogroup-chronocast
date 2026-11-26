@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Stegosaur of the First Fire',
   text: 'When it enters: it gains +1 attack and +2 health.',
   faction: 'primal',
-  restriction: { factions: ['primal'] },
+  restriction: { factions: ['primal'], sides: ['dawn'] },
   rarity: 'common',
   element: 'fire',
   weak: ['ice'],

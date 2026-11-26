@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Camouflaged Brontosaur',
   text: 'When it attacks: deal 3 damage to the enemy hero.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: {},
   rarity: 'uncommon',
   weak: ['ice'],
   price: 220,

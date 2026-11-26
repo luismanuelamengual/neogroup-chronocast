@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Hollow Void Spawn',
   text: 'When it enters: if your discard pile has 6 or more cards, it gains +2 attack and +2 health. Its ability is paid with energy (⚡).',
   faction: 'void',
-  restriction: { factions: ['void'] },
+  restriction: { factions: ['void'], sides: ['eclipse'] },
   rarity: 'uncommon',
   element: 'shadow',
   resist: ['shadow'],

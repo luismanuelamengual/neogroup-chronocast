@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Burn an enemy slot (4).',
   flavor: 'Subtlety was never the point.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'uncommon',
   price: 160,
   cost: 3,

@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it attacks: deal 2 damage to the enemy hero.',
   flavor: 'Nothing on the battlefield goes to waste.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   price: 55,
   cost: 3,

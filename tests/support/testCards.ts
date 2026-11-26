@@ -36,7 +36,6 @@ export const TEST_CARDS: CardDefinition[] = [
     name: 'Test Hero',
     cost: 0,
     health: 50,
-    heroClass: 'warrior',
     side: 'dawn',
     restriction: { heroes: ['test-hero'] }
   }),
@@ -135,7 +134,6 @@ export const TEST_CARDS: CardDefinition[] = [
     name: 'Test Shaman',
     cost: 0,
     health: 50,
-    heroClass: 'mage',
     side: 'eclipse',
     restriction: { heroes: ['test-shaman'] },
     ability: {

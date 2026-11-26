@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Snare of the Ambush',
   text: "Return an enemy ally to its owner's hand and draw a card. Fast.",
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'rare',
   price: 540,
   cost: 5,

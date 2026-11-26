@@ -8,7 +8,7 @@ export default defineCard({
   text: 'An ally of yours gains +3 attack and +4 health. Instant.',
   flavor: 'Rage, now with plating.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: {},
   rarity: 'uncommon',
   price: 140,
   cost: 2,

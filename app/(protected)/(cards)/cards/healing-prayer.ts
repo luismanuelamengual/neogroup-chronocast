@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Your hero heals 10 and draw a card.',
   flavor: 'Spoken softly, heard everywhere.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'rare',
   price: 360,
   cost: 2,

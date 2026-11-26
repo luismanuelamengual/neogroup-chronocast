@@ -8,7 +8,7 @@ export default defineCard({
   text: 'An ally of yours gains +10 attack this phase. Instant.',
   flavor: 'Gather, children of the dawn.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'uncommon',
   price: 180,
   cost: 4,

@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Sandstorm of Dawn',
   text: 'When it enters: your hero heals 7.',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['dawn'] },
   rarity: 'rare',
   element: 'earth',
   resist: ['earth'],

@@ -8,7 +8,6 @@ export default defineCard({
   text: 'Tribute (5): the rival loses 1 Chronos capacity and you gain it. At the start of each phase, your allies gain +1 attack.',
   flavor: 'He stole a crown from a Rome that never was, and wants the real one.',
   faction: 'bronze',
-  heroClass: 'warrior',
   side: 'eclipse',
   restriction: { heroes: ['caelus-the-usurper'] },
   rarity: 'legendary',

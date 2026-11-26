@@ -8,7 +8,7 @@ export default defineCard({
   text: 'A random ally of your discard pile returns to play. Slow.',
   flavor: 'The battle echoes long after it ends.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   price: 55,
   cost: 3,

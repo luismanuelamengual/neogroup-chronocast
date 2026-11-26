@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Furious Banner',
   text: 'At the start of each phase: deal 2 damage to the enemy hero. (3 uses)',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   price: 65,
   cost: 4,

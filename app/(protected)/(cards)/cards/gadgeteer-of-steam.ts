@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Gadgeteer of Steam',
   text: 'When it enters: your hero heals 6. When it dies: summon a Cog Drone.',
   faction: 'clockwork',
-  restriction: { factions: ['clockwork'] },
+  restriction: { factions: ['clockwork'], sides: ['dawn'] },
   rarity: 'epic',
   price: 1300,
   cost: 5,

@@ -7,7 +7,7 @@ export default defineCard({
   name: "Tauron's Prophet",
   text: 'When it enters: if you have another Oracle, draw a card. When it dies: your other allies gain +1 attack.',
   faction: 'bronze',
-  restriction: { heroes: ['tauron-labyrinth-lord'] },
+  restriction: { factions: ['bronze'], sides: ['dawn'] },
   rarity: 'legendary',
   resist: ['light'],
   price: 2320,

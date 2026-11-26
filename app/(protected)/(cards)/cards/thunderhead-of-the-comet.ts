@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Thunderhead of the Comet',
   text: 'When it enters: your other Elementals gain +1 attack and +1 health. Its ability is paid with energy (⚡).',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'uncommon',
   element: 'lightning',
   resist: ['lightning'],

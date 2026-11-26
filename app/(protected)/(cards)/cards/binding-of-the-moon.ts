@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Stun an enemy ally. Fast.',
   flavor: 'Moonlight is softer than chains, and stronger.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'] },
+  restriction: { factions: ['arcane'], sides: ['dawn'] },
   rarity: 'rare',
   price: 360,
   cost: 2,

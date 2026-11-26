@@ -6,7 +6,7 @@ export default defineCard({
   name: 'Implant of the Quarry',
   text: 'Attach to an ally of yours: it gains +1 attack and +2 health.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   price: 40,
   cost: 1,

@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Sworn to a kingdom that no longer exists.',
   faction: 'void',
-  restriction: { factions: ['void'] },
+  restriction: { factions: ['void'], sides: ['dawn'] },
   rarity: 'common',
   element: 'shadow',
   resist: ['shadow', 'ice'],

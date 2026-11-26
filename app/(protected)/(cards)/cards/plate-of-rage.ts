@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Anger is the best rivet.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'rare',
   price: 300,
   cost: 1,

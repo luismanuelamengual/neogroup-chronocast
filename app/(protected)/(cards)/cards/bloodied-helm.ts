@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it is equipped: your allies heal 2.',
   flavor: "Not all of the blood is the wearer's.",
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'epic',
   price: 1200,
   cost: 4,

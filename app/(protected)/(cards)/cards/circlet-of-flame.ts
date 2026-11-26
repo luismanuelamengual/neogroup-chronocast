@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Thoughts burn brighter under it.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   price: 65,
   cost: 4,

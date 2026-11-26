@@ -43,16 +43,16 @@ function costWeight(cost: number): number {
   return cost <= 3 ? 1 : cost === 4 ? 0.6 : cost === 5 ? 0.3 : 0.1
 }
 
-/** The hero's own cards, its class's and its faction's come up more than the neutral ones. */
+/** The hero's own cards, its faction's and its side's come up more than the neutral ones. */
 function affinityWeight(hero: CardDefinition, card: CardDefinition): number {
-  const { factions, sides, classes, heroes } = card.restriction
+  const { factions, sides, heroes } = card.restriction
 
   if (heroes?.length) {
     return 3
   }
 
   // A card with several criteria weighs like its most specific one.
-  const weights = [classes?.length ? 2.5 : 0, factions?.length ? 2 : 0, sides?.length ? 1.75 : 0]
+  const weights = [factions?.length ? 2 : 0, sides?.length ? 1.75 : 0]
   const weight = Math.max(...weights)
 
   return weight > 0 ? weight : hero.faction === card.faction ? 1.5 : 1

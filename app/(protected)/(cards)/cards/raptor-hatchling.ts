@@ -8,7 +8,7 @@ export default defineCard({
   text: '',
   flavor: 'Born hungry.',
   faction: 'primal',
-  restriction: { factions: ['primal'] },
+  restriction: { factions: ['primal'], sides: ['dawn'] },
   rarity: 'common',
   weak: ['ice'],
   cost: 1,

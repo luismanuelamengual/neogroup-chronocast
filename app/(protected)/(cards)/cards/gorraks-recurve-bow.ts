@@ -7,7 +7,7 @@ export default defineCard({
   name: "Gorrak's Recurve Bow",
   text: 'When it is equipped: deal 4 earth damage to a random enemy ally.',
   faction: 'primal',
-  restriction: { heroes: ['gorrak-tyrant-king'] },
+  restriction: { factions: ['primal'], sides: ['dawn'] },
   rarity: 'epic',
   element: 'earth',
   price: 1100,

@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Acolyte of Spirits',
   text: 'When it enters: your other allies gain +2 health.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: {},
   rarity: 'uncommon',
   resist: ['light'],
   price: 220,

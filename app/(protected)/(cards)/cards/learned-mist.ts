@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Learned Mist',
   text: 'When it enters: burn a random enemy ally (5).',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'rare',
   element: 'water',
   resist: ['water'],

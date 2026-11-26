@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Attach to an enemy ally: every damage it takes is 3 higher.',
   flavor: 'It feeds on magic, one rune at a time.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'] },
+  restriction: { factions: ['arcane'], sides: ['eclipse'] },
   rarity: 'uncommon',
   price: 140,
   cost: 2,

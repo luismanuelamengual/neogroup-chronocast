@@ -8,7 +8,7 @@ export default defineCard({
   text: 'An ally of yours gains +5 attack and +7 health.',
   flavor: 'A rage born in a nightmare.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: {},
   rarity: 'common',
   price: 65,
   cost: 4,

@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Obelisk of the Grave',
   text: 'At the start of each phase: your hero heals 3. (4 uses)',
   faction: 'void',
-  restriction: { factions: ['void'] },
+  restriction: { factions: ['void'], sides: ['eclipse'] },
   rarity: 'rare',
   price: 360,
   cost: 2,

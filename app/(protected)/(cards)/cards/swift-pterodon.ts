@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'The sky belonged to it first.',
   faction: 'primal',
-  restriction: { factions: ['primal'] },
+  restriction: { factions: ['primal'], sides: ['dawn'] },
   rarity: 'common',
   weak: ['ice'],
   price: 65,

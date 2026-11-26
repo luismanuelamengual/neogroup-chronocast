@@ -8,7 +8,7 @@ export default defineCard({
   text: "Return an enemy ally to its owner's hand. Fast.",
   flavor: 'Frozen in ash, like the cities of old.',
   faction: 'void',
-  restriction: { factions: ['void'] },
+  restriction: { factions: ['void'], sides: ['eclipse'] },
   rarity: 'common',
   price: 50,
   cost: 2,

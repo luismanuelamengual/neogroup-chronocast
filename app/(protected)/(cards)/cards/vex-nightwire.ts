@@ -8,7 +8,6 @@ export default defineCard({
   text: 'Ghost Protocol (4): your allies gain stealth and +2 attack until the end of the next phase. At the end of each phase, deal 1 shadow damage to the enemy hero.',
   flavor: 'She hunts targets nobody else can find.',
   faction: 'neon',
-  heroClass: 'hunter',
   side: 'dawn',
   restriction: { heroes: ['vex-nightwire'] },
   rarity: 'rare',

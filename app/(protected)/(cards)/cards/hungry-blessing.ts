@@ -6,7 +6,7 @@ export default defineCard({
   name: 'Hungry Blessing',
   text: 'Attach to an ally of yours: it gains +1 attack and +3 health.',
   faction: 'primal',
-  restriction: { factions: ['primal'] },
+  restriction: { factions: ['primal'], sides: ['eclipse'] },
   rarity: 'uncommon',
   price: 140,
   cost: 2,

@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it attacks: your hero heals 3.',
   flavor: 'It does not smile. It just looks like it.',
   faction: 'void',
-  restriction: { factions: ['void'] },
+  restriction: { factions: ['void'], sides: ['dawn'] },
   rarity: 'rare',
   resist: ['shadow', 'ice'],
   price: 540,

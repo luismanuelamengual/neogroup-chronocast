@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Pixie of the Ancestors',
   text: 'When it dies: a random ally of your discard pile returns to play.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   resist: ['arcane'],
   weak: ['shadow'],

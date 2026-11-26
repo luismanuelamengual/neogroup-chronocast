@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Banshee of Shadows',
   text: 'When it enters: banish the last 3 cards of the enemy discard pile.',
   faction: 'void',
-  restriction: { factions: ['void'] },
+  restriction: { factions: ['void'], sides: ['dawn'] },
   rarity: 'common',
   element: 'sonic',
   resist: ['shadow', 'ice'],

@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Hallowed Revenant',
   text: 'When it enters: deal 1 shadow damage to the enemy hero for each Undead of yours.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'uncommon',
   element: 'shadow',
   resist: ['shadow', 'ice'],

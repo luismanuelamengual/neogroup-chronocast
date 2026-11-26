@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Your hero gains 1 energy. Instant.',
   flavor: 'Its sand is made of lightning.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'common',
   price: 40,
   cost: 0,

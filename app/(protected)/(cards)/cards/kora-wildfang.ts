@@ -8,7 +8,6 @@ export default defineCard({
   text: 'Scout Shot (3): deal 6 wind damage to an enemy slot and draw a card.',
   flavor: 'The jungle taught her one rule: shoot first.',
   faction: 'primal',
-  heroClass: 'hunter',
   side: 'dawn',
   restriction: { heroes: ['kora-wildfang'] },
   rarity: 'common',

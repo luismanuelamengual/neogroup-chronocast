@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Machinist of Brass',
   text: 'When it enters: if you have another Inventor, draw a card. Its ability is paid with energy (⚡).',
   faction: 'clockwork',
-  restriction: { factions: ['clockwork'] },
+  restriction: { factions: ['clockwork'], sides: ['dawn'] },
   rarity: 'uncommon',
   price: 140,
   cost: 2,

@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Rotting Eye of Nothing',
   text: 'When it enters: your other Horrors gain +1 attack and +1 health.',
   faction: 'void',
-  restriction: { factions: ['void'] },
+  restriction: { factions: ['void'], sides: ['eclipse'] },
   rarity: 'epic',
   resist: ['shadow'],
   weak: ['sonic'],

@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Centurion of Steel',
   text: 'When another Legionnaire of yours enters: it gains +1 attack and +1 health. When it attacks: it gains +1 attack.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: {},
   rarity: 'legendary',
   price: 2160,
   cost: 3,

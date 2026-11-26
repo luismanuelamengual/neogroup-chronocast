@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Scarred Spearman',
   text: 'After it takes damage: it gains +2 attack.',
   faction: 'primal',
-  restriction: { factions: ['primal'] },
+  restriction: { factions: ['primal'], sides: ['eclipse'] },
   rarity: 'uncommon',
   resist: ['ice'],
   price: 220,

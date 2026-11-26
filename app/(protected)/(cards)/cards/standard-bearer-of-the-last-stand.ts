@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it attacks: it gains +1 attack.',
   flavor: 'As long as the banner stands, so do we.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'uncommon',
   price: 180,
   cost: 4,

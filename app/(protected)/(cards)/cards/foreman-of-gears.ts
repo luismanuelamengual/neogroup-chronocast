@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it enters: the enemy weapon loses 1 durability.',
   flavor: 'The machines work harder when he shouts.',
   faction: 'clockwork',
-  restriction: { factions: ['clockwork'] },
+  restriction: { factions: ['clockwork'], sides: ['dawn'] },
   rarity: 'uncommon',
   price: 200,
   cost: 5,

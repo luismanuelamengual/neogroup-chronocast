@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Deal 12 arcane damage to an enemy ally.',
   flavor: 'The arrow knows the way.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'] },
+  restriction: { factions: ['arcane'], sides: ['dawn'] },
   rarity: 'rare',
   element: 'arcane',
   price: 480,

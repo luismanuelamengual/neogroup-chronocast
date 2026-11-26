@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Chains, spikes and good intentions.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   price: 50,
   cost: 2,

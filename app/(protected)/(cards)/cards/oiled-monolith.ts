@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Oiled Monolith',
   text: 'When a Automaton of yours enters: it gains +1 attack and +2 health.',
   faction: 'clockwork',
-  restriction: { factions: ['clockwork'] },
+  restriction: { factions: ['clockwork'], sides: ['eclipse'] },
   rarity: 'rare',
   price: 360,
   cost: 2,

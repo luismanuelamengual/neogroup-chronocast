@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'If it ticks, she can fix it.',
   faction: 'clockwork',
-  restriction: { factions: ['clockwork'] },
+  restriction: { factions: ['clockwork'], sides: ['dawn'] },
   rarity: 'common',
   price: 55,
   cost: 3,

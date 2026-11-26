@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'It chops through the last shadows of night.',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   element: 'light',
   price: 40,

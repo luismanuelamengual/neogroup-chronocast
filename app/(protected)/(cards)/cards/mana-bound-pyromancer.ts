@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Mana-Bound Pyromancer',
   text: 'When it enters: draw the first ability of your deck.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'rare',
   element: 'fire',
   resist: ['arcane'],

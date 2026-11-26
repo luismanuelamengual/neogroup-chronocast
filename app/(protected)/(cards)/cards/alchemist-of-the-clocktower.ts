@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Alchemist of the Clocktower',
   text: 'When it enters: deal 1 damage to the enemy hero for each Inventor of yours.',
   faction: 'clockwork',
-  restriction: { factions: ['clockwork'] },
+  restriction: { factions: ['clockwork'], sides: ['dawn'] },
   rarity: 'rare',
   price: 420,
   cost: 3,

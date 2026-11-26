@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'It guards the dead so they may rest.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   element: 'shadow',
   resist: ['shadow', 'ice'],

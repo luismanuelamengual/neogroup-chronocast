@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When an enemy ally attacks: deal 7 light damage to it.',
   flavor: 'It softens every blow.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'uncommon',
   element: 'light',
   price: 140,

@@ -1,5 +1,4 @@
 import { Faction } from '@/app/(protected)/(engine)/models/Faction'
-import { HeroClass } from '@/app/(protected)/(engine)/models/HeroClass'
 import { Side } from '@/app/(protected)/(engine)/models/Side'
 
 /**
@@ -10,20 +9,20 @@ import { Side } from '@/app/(protected)/(engine)/models/Side'
  *
  * - `{ factions: ['clockwork'] }`: the Clockwork heroes.
  * - `{ factions: ['clockwork', 'neon'] }`: the Clockwork or Neon heroes.
- * - `{ factions: ['clockwork'], sides: ['dawn'], classes: ['warrior'] }`: the Clockwork warriors of the Dawn.
+ * - `{ sides: ['eclipse'] }`: the heroes of the Eclipse.
+ * - `{ factions: ['clockwork'], sides: ['dawn'] }`: the Clockwork heroes of the Dawn.
  * - `{ heroes: ['ada-copperwick'] }`: only Ada (her signature cards).
  */
 export interface Restriction {
   factions?: Faction[]
   /** Dawn or Eclipse. */
   sides?: Side[]
-  classes?: HeroClass[]
   /** Hero ids. */
   heroes?: string[]
 }
 
 /** The criteria of a restriction, in the order they are shown. */
-export const RESTRICTION_CRITERIA = ['heroes', 'factions', 'sides', 'classes'] as const
+export const RESTRICTION_CRITERIA = ['heroes', 'factions', 'sides'] as const
 
 export type RestrictionCriterion = (typeof RESTRICTION_CRITERIA)[number]
 

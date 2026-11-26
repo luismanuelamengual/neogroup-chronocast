@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Blazing Dragon',
   text: 'When it enters: deal 1 fire damage to the enemy hero for each Drake of yours. When it dies: deal 1 fire damage to every enemy ally.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'legendary',
   element: 'fire',
   resist: ['fire'],

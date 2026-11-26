@@ -8,7 +8,7 @@ export default defineCard({
   text: 'An ally of yours gains +8 attack this phase. Instant.',
   flavor: 'Grow wild, grow strong.',
   faction: 'primal',
-  restriction: { factions: ['primal'] },
+  restriction: { factions: ['primal'], sides: ['dawn'] },
   rarity: 'rare',
   price: 420,
   cost: 3,

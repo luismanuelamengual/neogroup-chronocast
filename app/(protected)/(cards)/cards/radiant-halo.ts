@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Light that refuses to go out.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'epic',
   price: 1000,
   cost: 2,

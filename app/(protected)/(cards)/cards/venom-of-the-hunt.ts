@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Poison an enemy ally (3).',
   flavor: 'One drop for the prey, two for the proud.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   price: 50,
   cost: 2,

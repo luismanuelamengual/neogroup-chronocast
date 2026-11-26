@@ -1,24 +1,22 @@
 import { defineCampaign } from '@/app/(protected)/(campaign)/utils/defineCampaign'
 
 /**
- * Beyond the Last Hour: the hunger at the end of time that wants what is left. The story texts live in the translations
- * (campaigns.malachar-the-unmade).
+ * Malachar the Unmade: nine rivals from the other eras and Nyx Hollowsong as the
+ * boss. The story texts live in the translations (campaigns.malachar-the-unmade).
  */
 export default defineCampaign({
   heroId: 'malachar-the-unmade',
   rewardCardId: 'tome-of-endings',
   stages: [
-    { rival: 'ilyra-starweaver' },
+    { rival: 'legate-varro' },
     { rival: 'kora-wildfang' },
-    { rival: 'legate-varro', cpuSetup: { extraHealth: 5 } },
-    { rival: 'gideon-ironsteam', cpuSetup: { extraHealth: 5 } },
-    { rival: 'nyx-hollowsong', cpuSetup: { allies: ['bone-knight-of-the-void'] } },
-    { rival: 'nysa-goldbow', cpuSetup: { allies: ['loyal-charioteer'] } },
-    { rival: 'vex-nightwire', cpuSetup: { allies: ['cyber-hound-of-the-grid'] } },
-    { rival: 'ada-copperwick', cpuSetup: { extraHealth: 5 } },
-    { rival: 'aldric-dawnkeeper', cpuSetup: { weapon: 'lantern-staff-of-the-dawnbell' }, playerSetup: { handSize: 6 } },
-    {
-      rival: 'xulthar-the-devourer'
-    }
+    { rival: 'ilyra-starweaver', cpuSetup: { extraHealth: 5 } },
+    { rival: 'vex-nightwire', cpuSetup: { extraHealth: 5 } },
+    { rival: 'ada-copperwick', cpuSetup: { allies: ['timeless-fortune-teller'] } },
+    { rival: 'ooma-bonewhisper', cpuSetup: { allies: ['dire-wolf-of-the-fang'] } },
+    { rival: 'morgrath-lich-abbot', cpuSetup: { allies: ['virus-of-the-silent-trail'] } },
+    { rival: 'caelus-the-usurper', cpuSetup: { extraHealth: 5 } },
+    { rival: 'chancellor-brassmaw', cpuSetup: { weapon: 'scepter-of-flame' }, playerSetup: { handSize: 6 } },
+    { rival: 'nyx-hollowsong', cpuSetup: { weapon: 'lantern-staff-of-renewal', extraHealth: 5 } }
   ]
 })

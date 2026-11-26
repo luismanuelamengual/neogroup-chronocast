@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Bounty Hunter of the Silent Trail',
   text: 'When it dies: deal 3 damage to a random enemy ally.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'rare',
   price: 360,
   cost: 2,

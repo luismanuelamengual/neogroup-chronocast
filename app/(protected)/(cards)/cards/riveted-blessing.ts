@@ -6,7 +6,7 @@ export default defineCard({
   name: 'Riveted Blessing',
   text: 'Attach to an ally of yours: it gains +1 attack and +3 health.',
   faction: 'clockwork',
-  restriction: { factions: ['clockwork'] },
+  restriction: { factions: ['clockwork'], sides: ['dawn'] },
   rarity: 'common',
   price: 50,
   cost: 2,

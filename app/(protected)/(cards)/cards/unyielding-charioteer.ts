@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Unyielding Charioteer',
   text: 'When it enters: draw the first Legionnaire of your deck.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'] },
+  restriction: { factions: ['bronze'], sides: ['dawn'] },
   rarity: 'uncommon',
   price: 160,
   cost: 3,

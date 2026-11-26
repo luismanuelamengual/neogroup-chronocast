@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When an enemy ally is summoned: deal 11 damage to it.',
   flavor: 'The pack drives, the net catches.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   price: 65,
   cost: 4,

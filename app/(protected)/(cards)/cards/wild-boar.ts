@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it attacks: deal 2 damage to the enemy hero.',
   flavor: 'Charges first, thinks never.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: {},
   rarity: 'common',
   price: 55,
   cost: 3,

@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Deal 4 lightning damage to an enemy ally. Fast.',
   flavor: 'Thunder arrives a little late.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'common',
   element: 'lightning',
   price: 40,

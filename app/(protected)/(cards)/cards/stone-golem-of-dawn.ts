@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Stone Golem of Dawn',
   text: 'When it enters: you gain 1 Chronos this phase.',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   element: 'earth',
   resist: ['earth'],

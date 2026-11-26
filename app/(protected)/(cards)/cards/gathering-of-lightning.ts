@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Summon an Arcane Familiar.',
   flavor: 'Every storm starts with a single spark.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'mythic',
   price: 4160,
   cost: 3,

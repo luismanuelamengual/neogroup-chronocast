@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'One bolt, one lesson.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: {},
   rarity: 'common',
   price: 55,
   cost: 3,

@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Virus of Neon',
   text: 'When it enters: your hero gains 1 energy.',
   faction: 'neon',
-  restriction: { factions: ['neon'] },
+  restriction: { factions: ['neon'], sides: ['dawn'] },
   rarity: 'common',
   element: 'acid',
   price: 55,

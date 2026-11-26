@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Every stone grows teeth.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'rare',
   price: 480,
   cost: 4,

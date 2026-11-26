@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Deal 11 damage to an enemy slot.',
   flavor: 'Carved from a tree that was struck by lightning.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: {},
   rarity: 'common',
   price: 65,
   cost: 4,

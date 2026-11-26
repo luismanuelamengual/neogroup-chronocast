@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Its gaze passes through walls.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'common',
   element: 'arcane',
   resist: ['fire'],

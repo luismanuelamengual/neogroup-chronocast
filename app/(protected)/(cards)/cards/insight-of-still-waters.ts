@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Draw a card.',
   flavor: 'Calm water shows the clearest future.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   price: 40,
   cost: 1,

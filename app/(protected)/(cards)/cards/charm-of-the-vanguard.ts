@@ -6,7 +6,7 @@ export default defineCard({
   name: 'Charm of the Vanguard',
   text: 'Attach to an ally of yours: it gains +1 attack and +4 health.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   price: 55,
   cost: 3,

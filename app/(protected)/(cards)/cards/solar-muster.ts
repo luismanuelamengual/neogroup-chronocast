@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Summon 2 Hoplite Conscripts.',
   flavor: 'They rise with the sun and fight until it sets.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'] },
+  restriction: { factions: ['bronze'], sides: ['dawn'] },
   rarity: 'uncommon',
   price: 180,
   cost: 4,

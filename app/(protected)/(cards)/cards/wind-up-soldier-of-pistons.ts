@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Wind-Up Soldier of Pistons',
   text: 'When it enters: your hero heals 4.',
   faction: 'clockwork',
-  restriction: { factions: ['clockwork'] },
+  restriction: { factions: ['clockwork'], sides: ['eclipse'] },
   rarity: 'common',
   resist: ['acid'],
   weak: ['lightning'],

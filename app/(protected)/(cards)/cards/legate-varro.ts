@@ -8,7 +8,6 @@ export default defineCard({
   text: 'Testudo (4): until the end of the next phase, your allies take 2 less damage and you deal 2 more damage to the enemy hero and allies. Instant.',
   flavor: 'He has held the line in more centuries than he can count.',
   faction: 'bronze',
-  heroClass: 'warrior',
   side: 'dawn',
   restriction: { heroes: ['legate-varro'] },
   rarity: 'common',

@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it attacks: it gains +1 attack.',
   flavor: 'They move as one, and fall as none.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'rare',
   price: 420,
   cost: 3,

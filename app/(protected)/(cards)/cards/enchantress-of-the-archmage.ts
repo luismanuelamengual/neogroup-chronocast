@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Enchantress of the Archmage',
   text: 'When it dies: deal 4 fire damage to a random enemy ally.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'] },
+  restriction: { factions: ['arcane'], sides: ['dawn'] },
   rarity: 'common',
   element: 'fire',
   resist: ['arcane'],

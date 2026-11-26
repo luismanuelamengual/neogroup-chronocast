@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Devout Haruspex',
   text: 'When it enters: draw the first Oracle of your deck.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'rare',
   resist: ['light'],
   price: 360,

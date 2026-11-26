@@ -8,7 +8,7 @@ export default defineCard({
   text: 'At the start of each phase: your hero heals 3. (3 uses)',
   flavor: 'Its shadow points to the end.',
   faction: 'void',
-  restriction: { factions: ['void'] },
+  restriction: { factions: ['void'], sides: ['dawn'] },
   rarity: 'common',
   price: 55,
   cost: 3,

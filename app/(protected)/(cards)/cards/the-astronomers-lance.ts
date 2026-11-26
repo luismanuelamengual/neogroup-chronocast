@@ -7,7 +7,7 @@ export default defineCard({
   name: "The Astronomer's Lance",
   text: 'Deal 10 arcane damage to an enemy slot and draw a card.',
   faction: 'arcane',
-  restriction: { heroes: ['hollow-astronomer'] },
+  restriction: { factions: ['arcane'], sides: ['eclipse'] },
   rarity: 'epic',
   element: 'arcane',
   price: 1200,

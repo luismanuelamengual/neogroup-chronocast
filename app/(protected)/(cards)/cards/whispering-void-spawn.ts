@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Whispering Void Spawn',
   text: 'When it enters: deal 1 shadow damage to the enemy hero for each Horror of yours. When it dies: summon a Risen Skeleton.',
   faction: 'void',
-  restriction: { factions: ['void'] },
+  restriction: { factions: ['void'], sides: ['eclipse'] },
   rarity: 'exotic',
   element: 'shadow',
   resist: ['shadow'],

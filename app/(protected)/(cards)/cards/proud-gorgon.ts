@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Proud Gorgon',
   text: 'When it enters: summon a Hoplite Conscript. When it attacks: your hero heals 2.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'] },
+  restriction: { factions: ['bronze'], sides: ['eclipse'] },
   rarity: 'exotic',
   resist: ['earth'],
   weak: ['acid'],

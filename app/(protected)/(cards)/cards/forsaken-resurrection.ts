@@ -8,7 +8,7 @@ export default defineCard({
   text: 'A random ally of your discard pile returns to play. Slow.',
   flavor: 'Back from the dead, and not happy about it.',
   faction: 'void',
-  restriction: { factions: ['void'] },
+  restriction: { factions: ['void'], sides: ['dawn'] },
   rarity: 'uncommon',
   price: 160,
   cost: 3,

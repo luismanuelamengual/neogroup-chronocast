@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When another Enforcer of yours enters: your hero heals 2.',
   flavor: 'Every blow aimed at you hits him first.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'rare',
   price: 480,
   cost: 4,

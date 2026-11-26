@@ -8,7 +8,7 @@ export default defineCard({
   text: 'An ally of yours gains +6 attack this phase. Instant.',
   flavor: 'Cold as marble, hard as an emperor.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'] },
+  restriction: { factions: ['bronze'], sides: ['eclipse'] },
   rarity: 'common',
   price: 50,
   cost: 2,

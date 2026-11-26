@@ -7,7 +7,7 @@ export default defineCard({
   text: 'Attach to an ally of yours: it gains +2 health.',
   flavor: 'Worn with pride, shining with purpose.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   price: 40,
   cost: 1,

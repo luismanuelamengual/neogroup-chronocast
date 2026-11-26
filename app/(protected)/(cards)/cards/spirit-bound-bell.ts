@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Its toll calls the dead to their posts.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: {},
   rarity: 'common',
   element: 'sonic',
   price: 50,

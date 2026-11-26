@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Subtle it is not.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: {},
   rarity: 'common',
   price: 70,
   cost: 5,

@@ -6,7 +6,7 @@ export default defineCard({
   name: 'Implant of Spirits',
   text: 'Attach to an ally of yours: it gains +2 attack and +5 health.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: {},
   rarity: 'uncommon',
   price: 180,
   cost: 4,

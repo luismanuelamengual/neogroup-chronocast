@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Devout Pythia',
   text: 'When it enters: your allies heal 4.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   resist: ['light'],
   price: 70,

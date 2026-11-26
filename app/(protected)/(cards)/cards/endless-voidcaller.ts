@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Endless Voidcaller',
   text: 'When another Cultist of yours enters: it gains +1 attack and +1 health.',
   faction: 'void',
-  restriction: { factions: ['void'] },
+  restriction: { factions: ['void'], sides: ['eclipse'] },
   rarity: 'rare',
   price: 300,
   cost: 1,

@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Warm to the touch, even in winter.',
   faction: 'neutral',
-  restriction: { classes: ['mystic'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   price: 70,
   cost: 5,

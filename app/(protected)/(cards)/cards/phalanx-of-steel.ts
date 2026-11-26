@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Phalanx of Steel',
   text: 'When it enters: if you have another Legionnaire, draw a card.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: {},
   rarity: 'uncommon',
   price: 140,
   cost: 2,

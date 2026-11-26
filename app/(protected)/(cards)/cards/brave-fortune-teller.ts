@@ -8,7 +8,7 @@ export default defineCard({
   text: 'After it takes damage: it gains +2 attack.',
   flavor: 'She read her own death and laughed at it.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'rare',
   price: 420,
   cost: 3,

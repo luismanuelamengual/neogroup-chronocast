@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it attacks: it gains +1 attack.',
   flavor: 'He has held the line since before you were born.',
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   price: 65,
   cost: 4,

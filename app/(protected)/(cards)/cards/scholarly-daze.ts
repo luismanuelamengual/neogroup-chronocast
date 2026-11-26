@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Stun an enemy ally. Fast.',
   flavor: 'A lecture so dense it stuns.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'uncommon',
   price: 140,
   cost: 2,

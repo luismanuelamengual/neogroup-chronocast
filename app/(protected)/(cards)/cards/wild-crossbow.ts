@@ -7,7 +7,7 @@ export default defineCard({
   text: '',
   flavor: 'Strung with jungle vine and bad temper.',
   faction: 'neutral',
-  restriction: { classes: ['hunter'] },
+  restriction: {},
   rarity: 'common',
   price: 70,
   cost: 5,

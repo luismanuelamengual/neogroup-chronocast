@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Your weapon and armor gain +2 durability each. Draw a card.',
   flavor: "No one touches the warlord's people.",
   faction: 'neutral',
-  restriction: { classes: ['warrior'] },
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   price: 55,
   cost: 3,

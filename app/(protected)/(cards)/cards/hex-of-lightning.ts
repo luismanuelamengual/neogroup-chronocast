@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Stun an enemy ally. Fast.',
   flavor: 'Curse the sky, and it curses back.',
   faction: 'neutral',
-  restriction: { classes: ['mage'] },
+  restriction: {},
   rarity: 'common',
   price: 40,
   cost: 1,
