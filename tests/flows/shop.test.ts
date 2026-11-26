@@ -52,18 +52,18 @@ describe('the shop', () => {
 
     const { state, cards } = await buyPack(ana, 'traveler', 42)
 
-    expect(state.gold).toBe(700)
+    expect(state.gold).toBe(500)
     expect(cards).toHaveLength(8)
     expect(total(state.collection)).toBe(8)
     expect(await getCollection(ana)).toEqual(state.collection)
   })
 
   it('refuses a pack without enough gold, and an unknown pack, without changing anything', async () => {
-    await setGold(ana, 299)
+    await setGold(ana, 499)
 
     await expect(buyPack(ana, 'traveler')).rejects.toMatchObject({ messageKey: 'errors.notEnoughGold' })
     await expect(buyPack(ana, 'golden')).rejects.toMatchObject({ messageKey: 'errors.unknownPack' })
-    expect(await getShopState(ana)).toMatchObject({ gold: 299, collection: {} })
+    expect(await getShopState(ana)).toMatchObject({ gold: 499, collection: {} })
   })
 
   it('counts guardian and eternal packs without a legendary for the guarantee, not the others', async () => {
