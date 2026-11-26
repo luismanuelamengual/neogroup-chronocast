@@ -14,6 +14,7 @@ import { DeckList } from '@/app/(protected)/(engine)/models/DeckList'
 import { MatchResult } from '@/app/(protected)/(engine)/models/MatchState'
 import { QUICK_MATCH_XP } from '@/app/(protected)/(progression)/data/levels'
 import { grantXp } from '@/app/(protected)/(progression)/services/levels'
+import { levelForXp } from '@/app/(protected)/(progression)/utils/levels'
 import { dayStart } from '@/app/(protected)/(pvp)/utils/rewards'
 import { QUICK_MATCH_GOLD } from '@/app/(protected)/(shop)/data/gold'
 import { earnGold } from '@/app/(protected)/(shop)/services/shop'
@@ -55,9 +56,15 @@ async function prizesToday(userId: number, now: number): Promise<number> {
     .length
 }
 
+/** The player's level, from its XP (as the shop reads it). */
+async function playerLevel(userId: number): Promise<number> {
+  return levelForXp(Number((await DB.table('users').where('id', userId).first())?.xp ?? 0))
+}
+
 /**
  * Deals a quick match: the server picks the seed and the computer's random
- * hero and deck (the same rival again for a rematch of one of the player's
+ * hero and deck, limited to the heroes and rarities the player's level opened
+ * in the shop (the same rival again for a rematch of one of the player's
  * quick matches) and keeps them with a copy of the player's deck, so the
  * result can only be claimed for the match it dealt. Any earlier unclaimed
  * quick match of the player is closed.
@@ -80,7 +87,7 @@ export async function startQuickMatch(
       : null
   const rival: DeckList = previous
     ? (JSON.parse(String(column(previous, 'deckB'))) as DeckList)
-    : randomRival(deck.heroId, randomInt(2 ** 31))
+    : randomRival(deck.heroId, randomInt(2 ** 31), await playerLevel(userId))
   const seed = randomInt(2 ** 31)
 
   await DB.table('matches')
