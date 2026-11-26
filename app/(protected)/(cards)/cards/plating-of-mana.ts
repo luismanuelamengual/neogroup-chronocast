@@ -3,10 +3,11 @@ import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
 export default defineCard({
   id: 'plating-of-mana',
   type: 'attachment',
+  subtype: 'implant',
   name: 'Plating of Mana',
   text: 'Attach to an ally of yours: it gains +3 attack and +5 health.',
-  faction: 'neutral',
-  restriction: {},
+  faction: 'neon',
+  restriction: { factions: ['neon'] },
   rarity: 'uncommon',
   price: 180,
   cost: 4,

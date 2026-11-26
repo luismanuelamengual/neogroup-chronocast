@@ -4,11 +4,12 @@ import { returnAt } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'wandering-stasis',
   type: 'ability',
+  subtype: 'spell',
   name: 'Wandering Stasis',
   text: "Return an enemy ally to its owner's hand. Fast.",
   flavor: 'Time pauses to look around.',
-  faction: 'neutral',
-  restriction: {},
+  faction: 'arcane',
+  restriction: { factions: ['arcane'] },
   rarity: 'rare',
   price: 360,
   cost: 2,
@@ -20,6 +21,6 @@ export default defineCard({
   ai: { value: 3, tags: ['removal'] },
   art: {
     subject:
-      'Wandering Stasis: a clock frozen inside a floating crystal, its hands stopped, over rooftops at night, framed by drifting embers, amber accents, time rift wanderer style'
+      'Wandering Stasis: a clock frozen inside a floating crystal, its hands stopped, over rooftops at night, framed by drifting embers, amber accents, medieval magic order style'
   }
 })

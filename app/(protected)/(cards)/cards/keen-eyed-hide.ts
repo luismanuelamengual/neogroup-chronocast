@@ -3,6 +3,7 @@ import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
 export default defineCard({
   id: 'keen-eyed-hide',
   type: 'armor',
+  subtype: 'leather',
   name: 'Keen-Eyed Hide',
   text: '',
   flavor: 'Tanned by a hunter who never missed.',

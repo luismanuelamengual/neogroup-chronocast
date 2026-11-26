@@ -4,6 +4,7 @@ import { damage, tribeAllies } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'nocturnal-shot',
   type: 'ability',
+  subtype: 'ritual',
   name: 'Nocturnal Shot',
   text: 'Deal 5 shadow damage to an enemy slot, +2 for each Drifter of yours.',
   faction: 'neutral',

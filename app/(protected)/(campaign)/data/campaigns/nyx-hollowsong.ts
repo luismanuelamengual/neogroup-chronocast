@@ -16,7 +16,7 @@ export default defineCampaign({
     { rival: 'ooma-bonewhisper', cpuSetup: { allies: ['dire-wolf-of-the-fang'] } },
     { rival: 'morgrath-lich-abbot', cpuSetup: { allies: ['virus-of-the-silent-trail'] } },
     { rival: 'queen-static', cpuSetup: { extraHealth: 5 } },
-    { rival: 'chancellor-brassmaw', cpuSetup: { weapon: 'scepter-of-flame' }, playerSetup: { handSize: 6 } },
+    { rival: 'chancellor-brassmaw', cpuSetup: { weapon: 'pickaxe-of-borrowed-hours' }, playerSetup: { handSize: 6 } },
     { rival: 'malachar-the-unmade', cpuSetup: { weapon: 'longbow-of-the-silent-trail', extraHealth: 5 } }
   ]
 })

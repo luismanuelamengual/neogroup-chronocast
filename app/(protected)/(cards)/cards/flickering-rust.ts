@@ -4,10 +4,11 @@ import { damageAlly } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'flickering-rust',
   type: 'attachment',
+  subtype: 'curse',
   name: 'Flickering Rust',
   text: 'Attach to an enemy ally: each time it attacks, it takes 3 acid damage.',
-  faction: 'neutral',
-  restriction: {},
+  faction: 'void',
+  restriction: { factions: ['void'] },
   rarity: 'rare',
   element: 'acid',
   price: 360,

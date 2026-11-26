@@ -4,6 +4,7 @@ import { damage } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'barrage-of-chrome',
   type: 'ability',
+  subtype: 'program',
   name: 'Barrage of Chrome',
   text: 'Deal 8 lightning damage to an enemy slot.',
   flavor: 'Bullets cost money. Chrome costs more.',

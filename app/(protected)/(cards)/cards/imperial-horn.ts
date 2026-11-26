@@ -4,6 +4,7 @@ import { summonCard } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'imperial-horn',
   type: 'ability',
+  subtype: 'tactic',
   name: 'Imperial Horn',
   text: 'Summon a Hoplite Conscript.',
   flavor: 'When it sounds, the empire marches.',

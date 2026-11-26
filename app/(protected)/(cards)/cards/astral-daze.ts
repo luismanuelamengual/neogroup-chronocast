@@ -4,10 +4,11 @@ import { damageEnemyHero, freeze } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'astral-daze',
   type: 'ability',
+  subtype: 'spell',
   name: 'Astral Daze',
   text: 'Freeze an enemy ally and deal 5 arcane damage to the enemy hero.',
-  faction: 'neutral',
-  restriction: {},
+  faction: 'arcane',
+  restriction: { factions: ['arcane'] },
   rarity: 'uncommon',
   element: 'arcane',
   price: 200,

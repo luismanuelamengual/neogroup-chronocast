@@ -128,6 +128,22 @@ describe('decks', () => {
     })
   })
 
+  it('takes out of a saved deck the cards its hero can no longer use, and keeps them in the collection', async () => {
+    // A card that moved to another faction (docs/FACTIONS.md) and was in the deck from before.
+    await addCards(ana, { 'flickering-mantle': 2 })
+    await DB.table('deck_cards').insert({ deckId: starterId, cardId: 'flickering-mantle', count: 2 })
+
+    const deck = await getDeck(ana, starterId)
+
+    expect(deck.cards['flickering-mantle']).toBeUndefined()
+    expect(deck.cards).toEqual(countCards(starterDeck(VARRO).cards))
+    expect(
+      (await DB.table('deck_cards').where('deckId', starterId).where('cardId', 'flickering-mantle').get()).length
+    ).toBe(0)
+    expect((await getCollection(ana))['flickering-mantle']).toBe(2)
+    expect((await listDecks(ana))[0]).toMatchObject({ size: 40, playable: true })
+  })
+
   it("never touches another player's decks", async () => {
     await expect(getDeck(beto, starterId)).rejects.toMatchObject({ messageKey: 'errors.deckNotFound' })
     await expect(deleteDeck(beto, starterId)).rejects.toMatchObject({ messageKey: 'errors.deckNotFound' })

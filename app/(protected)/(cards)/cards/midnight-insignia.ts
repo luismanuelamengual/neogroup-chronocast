@@ -3,6 +3,7 @@ import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
 export default defineCard({
   id: 'midnight-insignia',
   type: 'attachment',
+  subtype: 'implant',
   name: 'Midnight Insignia',
   text: 'Attach to an ally of yours: it gains +1 attack and +3 health.',
   faction: 'neon',

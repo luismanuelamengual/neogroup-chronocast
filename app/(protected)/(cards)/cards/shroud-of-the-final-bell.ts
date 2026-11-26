@@ -4,6 +4,7 @@ import { damageEnemyHero } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'shroud-of-the-final-bell',
   type: 'armor',
+  subtype: 'shroud',
   name: 'Shroud of the Final Bell',
   text: 'At the start of each phase: deal 2 time damage to the enemy hero.',
   flavor: 'Whoever wears it lives every hour as the last.',

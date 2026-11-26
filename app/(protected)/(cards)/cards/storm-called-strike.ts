@@ -4,10 +4,11 @@ import { damage, tribeAllies } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'storm-called-strike',
   type: 'ability',
+  subtype: 'gadget',
   name: 'Storm-Called Strike',
   text: 'Deal 2 lightning damage to an enemy slot, +2 for each Inventor of yours.',
-  faction: 'neutral',
-  restriction: {},
+  faction: 'clockwork',
+  restriction: { factions: ['clockwork'] },
   rarity: 'common',
   element: 'lightning',
   price: 50,

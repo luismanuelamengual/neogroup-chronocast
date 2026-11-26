@@ -4,11 +4,12 @@ import { isHost } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'hex-of-the-oracle',
   type: 'attachment',
+  subtype: 'curse',
   name: 'Hex of the Oracle',
   text: 'Attach to an enemy ally: every damage it takes is 3 higher.',
   flavor: 'She saw your weakness long ago.',
-  faction: 'bronze',
-  restriction: { factions: ['bronze'], sides: ['eclipse'] },
+  faction: 'void',
+  restriction: { factions: ['void'], sides: ['eclipse'] },
   rarity: 'rare',
   price: 360,
   cost: 2,
@@ -19,6 +20,6 @@ export default defineCard({
   ai: { value: 3, tags: ['removal'] },
   art: {
     subject:
-      'Hex of the Oracle: an enchanted hex made of chrome with neon light strips, on a mossy rock, seen from above, scarlet accents, ancient bronze-age empire style'
+      'Hex of the Oracle: an enchanted hex made of chrome with neon light strips, on a mossy rock, seen from above, scarlet accents, dark end-of-time void style'
   }
 })

@@ -4,6 +4,7 @@ import { returnAt } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'hex-of-the-enchanted-wood',
   type: 'ability',
+  subtype: 'spell',
   name: 'Hex of the Enchanted Wood',
   text: "Return an enemy ally to its owner's hand. Fast.",
   flavor: 'The trees remember who cut them.',

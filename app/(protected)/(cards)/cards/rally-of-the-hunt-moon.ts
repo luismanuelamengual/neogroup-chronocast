@@ -4,6 +4,7 @@ import { buffAt } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'rally-of-the-hunt-moon',
   type: 'ability',
+  subtype: 'instinct',
   name: 'Rally of the Hunt Moon',
   text: 'An ally of yours gains +3 attack and +4 health. Instant.',
   flavor: 'Under the hunting moon, the tribe is one.',

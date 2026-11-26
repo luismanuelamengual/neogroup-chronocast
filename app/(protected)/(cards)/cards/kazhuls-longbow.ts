@@ -4,6 +4,7 @@ import { damageRandomAlly } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'kazhuls-longbow',
   type: 'weapon',
+  subtype: 'bow',
   name: "Kazhul's Longbow",
   text: 'When it is equipped: deal 4 fire damage to a random enemy ally.',
   faction: 'primal',

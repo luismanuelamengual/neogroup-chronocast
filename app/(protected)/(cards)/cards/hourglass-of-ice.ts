@@ -4,6 +4,7 @@ import { gainChronos } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'hourglass-of-ice',
   type: 'ability',
+  subtype: 'gadget',
   name: 'Hourglass of Ice',
   text: 'You gain 4 Chronos this phase. Instant.',
   flavor: 'Time freezes, one grain at a time.',

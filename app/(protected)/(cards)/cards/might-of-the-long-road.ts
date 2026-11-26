@@ -4,11 +4,12 @@ import { buffAt } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'might-of-the-long-road',
   type: 'ability',
+  subtype: 'instinct',
   name: 'Might of the Long Road',
   text: 'An ally of yours gains +3 attack and +4 health. Instant.',
   flavor: 'Every mile walked makes the arm stronger.',
-  faction: 'neutral',
-  restriction: {},
+  faction: 'primal',
+  restriction: { factions: ['primal'] },
   rarity: 'epic',
   price: 1000,
   cost: 2,
@@ -20,6 +21,6 @@ export default defineCard({
   ai: { value: 3, tags: ['buff'] },
   art: {
     subject:
-      'Might of the Long Road: a huge glowing fist-shaped aura of raw power, in a snowy pass, centered and seen from slightly below, teal accents, time rift wanderer style'
+      'Might of the Long Road: a huge glowing fist-shaped aura of raw power, in a snowy pass, centered and seen from slightly below, teal accents, prehistoric jungle era style'
   }
 })

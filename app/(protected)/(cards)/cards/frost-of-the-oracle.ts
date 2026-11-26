@@ -4,6 +4,7 @@ import { stunAt } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'frost-of-the-oracle',
   type: 'ability',
+  subtype: 'tactic',
   name: 'Frost of the Oracle',
   text: 'Stun an enemy ally for two phases. Fast.',
   flavor: 'She saw the winter coming and sent it ahead.',

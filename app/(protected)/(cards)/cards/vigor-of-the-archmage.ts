@@ -4,6 +4,7 @@ import { buffAt } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'vigor-of-the-archmage',
   type: 'ability',
+  subtype: 'spell',
   name: 'Vigor of the Archmage',
   text: 'An ally of yours gains +4 attack and +5 health.',
   flavor: 'The archmage shares a spark of his endless energy.',

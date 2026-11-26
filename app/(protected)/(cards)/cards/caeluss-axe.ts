@@ -4,6 +4,7 @@ import { healHero } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'caeluss-axe',
   type: 'weapon',
+  subtype: 'axe',
   name: "Caelus's Axe",
   text: 'When it is equipped: your hero heals 5.',
   flavor: 'Taken from a king. Kept by a usurper.',

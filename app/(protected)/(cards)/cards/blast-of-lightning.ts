@@ -4,6 +4,7 @@ import { damage } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'blast-of-lightning',
   type: 'ability',
+  subtype: 'spell',
   name: 'Blast of Lightning',
   text: 'Deal 4 lightning damage to an enemy ally. Fast.',
   flavor: 'Thunder arrives a little late.',

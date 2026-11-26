@@ -4,6 +4,7 @@ import { damage } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'stray-strike',
   type: 'ability',
+  subtype: 'tactic',
   name: 'Stray Strike',
   text: 'Deal 8 damage to an enemy ally.',
   flavor: 'Aimed at nobody. Hit somebody.',

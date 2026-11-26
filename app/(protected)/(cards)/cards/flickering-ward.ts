@@ -3,6 +3,7 @@ import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
 export default defineCard({
   id: 'flickering-ward',
   type: 'armor',
+  subtype: 'robe',
   name: 'Flickering Ward',
   text: '',
   flavor: 'It blinks just before the blow lands.',

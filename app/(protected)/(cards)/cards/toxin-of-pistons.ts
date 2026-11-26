@@ -4,6 +4,7 @@ import { poison } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'toxin-of-pistons',
   type: 'ability',
+  subtype: 'gadget',
   name: 'Toxin of Pistons',
   text: 'Poison an enemy ally (2).',
   flavor: 'Machine oil was never meant to be drunk.',

@@ -6,8 +6,8 @@ export default defineCard({
   type: 'artifact',
   name: 'Clock of Dusk',
   text: 'At the start of each phase: your hero gains 1 energy. (3 uses)',
-  faction: 'neutral',
-  restriction: { sides: ['eclipse'] },
+  faction: 'clockwork',
+  restriction: { factions: ['clockwork'], sides: ['eclipse'] },
   rarity: 'uncommon',
   price: 140,
   cost: 2,
@@ -19,6 +19,6 @@ export default defineCard({
   ai: { value: 2, tags: ['energy'] },
   art: {
     subject:
-      'Clock of Dusk: an ancient clock made of gilded marble, standing on a windy cliff, centered and seen from slightly below, tangerine accents, time rift wanderer style'
+      'Clock of Dusk: an ancient clock made of gilded marble, standing on a windy cliff, centered and seen from slightly below, tangerine accents, steampunk steam era style'
   }
 })

@@ -4,6 +4,7 @@ import { draw, repairArmor } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'flickering-stance',
   type: 'ability',
+  subtype: 'gadget',
   name: 'Flickering Stance',
   text: 'Your armor gains +2 durability. Draw a card.',
   flavor: 'Here, there, nowhere.',

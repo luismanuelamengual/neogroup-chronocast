@@ -4,6 +4,7 @@ import { draw } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'hollow-vision',
   type: 'ability',
+  subtype: 'ritual',
   name: 'Hollow Vision',
   text: 'Draw 2 cards.',
   flavor: 'It shows what is missing.',

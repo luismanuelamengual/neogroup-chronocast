@@ -7,8 +7,8 @@ export default defineCard({
   name: 'Wired Tripwire',
   text: 'When an enemy ally is summoned: freeze it.',
   flavor: 'One wire, one hundred volts.',
-  faction: 'neon',
-  restriction: { factions: ['neon'], sides: ['eclipse'] },
+  faction: 'primal',
+  restriction: { factions: ['primal'], sides: ['eclipse'] },
   rarity: 'common',
   price: 65,
   cost: 4,
@@ -22,6 +22,6 @@ export default defineCard({
   ai: { value: 4, tags: ['trap'] },
   art: {
     subject:
-      'Wired Tripwire: a thin glinting tripwire stretched low between rocks, bursting toward the viewer, indigo accents, neon cyberpunk future style'
+      'Wired Tripwire: a thin glinting tripwire stretched low between rocks, bursting toward the viewer, indigo accents, prehistoric jungle era style'
   }
 })

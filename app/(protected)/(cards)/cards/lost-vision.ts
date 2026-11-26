@@ -4,6 +4,7 @@ import { draw } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'lost-vision',
   type: 'ability',
+  subtype: 'program',
   name: 'Lost Vision',
   text: 'Draw 2 cards.',
   flavor: 'A glimpse of a century nobody lived.',

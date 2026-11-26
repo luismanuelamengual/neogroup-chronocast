@@ -16,7 +16,7 @@ export default defineCampaign({
     { rival: 'ooma-bonewhisper', cpuSetup: { allies: ['dire-wolf-of-the-fang'] } },
     { rival: 'malachar-the-unmade', cpuSetup: { allies: ['timeless-fortune-teller'] } },
     { rival: 'queen-static', cpuSetup: { extraHealth: 5 } },
-    { rival: 'caelus-the-usurper', cpuSetup: { weapon: 'bloodied-glaive' }, playerSetup: { handSize: 6 } },
-    { rival: 'ada-copperwick', cpuSetup: { weapon: 'frozen-wand', extraHealth: 5 } }
+    { rival: 'caelus-the-usurper', cpuSetup: { weapon: 'warpick-of-the-warlord' }, playerSetup: { handSize: 6 } },
+    { rival: 'ada-copperwick', cpuSetup: { weapon: 'pickaxe-of-borrowed-hours', extraHealth: 5 } }
   ]
 })

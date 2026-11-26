@@ -4,6 +4,7 @@ import { damage } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'lance-of-runes',
   type: 'ability',
+  subtype: 'spell',
   name: 'Lance of Runes',
   text: 'Deal 9 arcane damage to an enemy ally.',
   flavor: 'Each rune adds a reason to hurt.',

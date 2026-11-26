@@ -4,9 +4,10 @@ import { healHero } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'ryns-mace',
   type: 'weapon',
-  name: "Ryn's Mace",
+  subtype: 'energy',
+  name: "Ryn's Plasma Baton",
   text: 'When it is equipped: your hero heals 5.',
-  flavor: 'It crackles with every swing.',
+  flavor: 'It hums with every swing.',
   faction: 'neon',
   restriction: { factions: ['neon'], sides: ['dawn'] },
   rarity: 'epic',
@@ -21,6 +22,6 @@ export default defineCard({
   ai: { value: 5 },
   art: {
     subject:
-      "Ryn's Mace: a single mace made of copper with green patina, floating above a marble pedestal, seen from above, rose pink accents, neon cyberpunk future style"
+      "Ryn's Plasma Baton: a single riot baton with a humming rose-pink plasma core and copper grip, floating above a marble pedestal, seen from above, rose pink accents, neon cyberpunk future style"
   }
 })

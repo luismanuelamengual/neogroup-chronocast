@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { heal, weakenAllAllies } from '@/app/(protected)/(engine)/effects'
+import { healHero, isCursed, weakenAllAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'nyx-hollowsong',
   type: 'hero',
   name: 'Nyx Hollowsong',
-  text: 'Total Weakening (5): every enemy ally gets -2 attack. At the end of each phase, your hero heals 2.',
+  text: 'Total Weakening (5): every enemy ally gets -2 attack. When an enemy ally with a curse dies, your hero heals 3.',
   flavor: 'Her song reaches the dead. They always come back to listen.',
   faction: 'void',
   side: 'dawn',
@@ -22,8 +22,10 @@ export default defineCard({
       weakenAllAllies(ctx, ctx.opponent, 2)
     }
   },
-  onPhaseEnd(ctx) {
-    heal(ctx, { player: ctx.owner, slot: 'hero' }, 2)
+  onEnemyAllyDeath(ctx, unit) {
+    if (isCursed(unit)) {
+      healHero(ctx, 3)
+    }
   },
   ai: { value: 0 },
   art: {

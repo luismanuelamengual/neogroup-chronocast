@@ -5,6 +5,7 @@ import {
   FATIGUE_STEP,
   MAX_ENERGY,
   MAX_HAND,
+  PREY_PHASES,
   SUPPORT_SLOTS
 } from '@/app/(protected)/(engine)/data/rules'
 import { CardDefinition, TrapEvent, TrapTrigger } from '@/app/(protected)/(engine)/models/CardDefinition'
@@ -70,6 +71,8 @@ const MAX_FLUSH_ROUNDS = 50
 export class MatchEngine {
   readonly events: MatchEvent[] = []
   private pending: PendingDamage[] = []
+  /** What runs once the pending damage landed (`afterDamage`). */
+  private deferred: (() => void)[] = []
   /** The uid in each ally slot when the current speed bracket started (null outside a bracket). */
   private snapshot: Record<PlayerId, (number | null)[]> | null = null
 
@@ -137,8 +140,59 @@ export class MatchEngine {
       .filter((slot) => slot >= 0)
   }
 
+  /** Its own keywords, and the ones the cards in play of its side lend it (`auraKeywords`). */
   hasKeyword(unit: Unit, keyword: Keyword): boolean {
-    return unit.keywords.includes(keyword)
+    return unit.keywords.includes(keyword) || this.auraKeywords(unit).includes(keyword)
+  }
+
+  /** The keywords the cards in play of an ally's side lend it (`auraKeywords`). */
+  auraKeywords(unit: Unit): Keyword[] {
+    const found = this.findUnit(unit.uid)
+
+    if (!found) {
+      return []
+    }
+
+    const keywords: Keyword[] = []
+
+    for (const card of this.inPlay(found.player)) {
+      const aura = getCard(card.cardId).auraKeywords
+
+      if (aura) {
+        keywords.push(...aura(this.context(found.player, card), found.unit))
+      }
+    }
+
+    return keywords
+  }
+
+  /** The spell power of a side (docs/FACTIONS.md): the `spellPower` of every card it has in play. */
+  spellPower(player: PlayerId): number {
+    return this.inPlay(player).reduce((total, card) => total + (getCard(card.cardId).spellPower ?? 0), 0)
+  }
+
+  /** Whether an ally is the Prey of `player` now. */
+  isPreyOf(unit: Unit, player: PlayerId): boolean {
+    return !!unit.prey && unit.prey.by === player && unit.prey.untilPhase >= this.state.phase
+  }
+
+  /** Marks an ally as the Prey of `by` until the end of the next phase. */
+  markPrey(uid: number, by: PlayerId): boolean {
+    const found = this.findUnit(uid)
+
+    if (!found || found.unit.health <= 0) {
+      return false
+    }
+
+    found.unit.prey = { by, untilPhase: this.state.phase + PREY_PHASES }
+    this.emit({ type: 'status', target: { player: found.player, slot: found.slot }, status: 'prey', amount: 1 })
+
+    return true
+  }
+
+  /** An artifact or a face-down trap switched off by an enemy hack. */
+  isDisabled(card: CardInstance): boolean {
+    return (card.disabledUntilPhase ?? 0) >= this.state.phase
   }
 
   attackOf(unit: Unit): number {
@@ -306,6 +360,19 @@ export class MatchEngine {
 
       this.processDeaths()
     }
+
+    const deferred = this.deferred
+
+    this.deferred = []
+
+    for (const run of deferred) {
+      run()
+    }
+  }
+
+  /** Runs `effect` once the pending damage of the current bracket landed (a freeze that must not double it). */
+  afterDamage(effect: () => void): void {
+    this.deferred.push(effect)
   }
 
   /**
@@ -516,6 +583,13 @@ export class MatchEngine {
 
         state.allies[slot] = null
         this.emit({ type: 'death', player, cardId: unit.cardId, slot })
+
+        const rival = opponentOf(player)
+
+        for (const card of this.inPlay(rival)) {
+          getCard(card.cardId).onEnemyAllyDeath?.(this.context(rival, card), unit)
+        }
+
         this.dropAttachments(player, unit)
         getCard(unit.cardId).onDeath?.(this.context(player, unit))
 
@@ -574,7 +648,113 @@ export class MatchEngine {
       side.artifacts = side.artifacts.filter((card) => card.uid !== artifactUid)
       side.discard.push({ uid: artifact.uid, cardId: artifact.cardId })
       this.emit({ type: 'artifactSpent', player, cardId: artifact.cardId })
+      this.artifactLeft(player, artifact)
     }
+  }
+
+  /** An artifact of `player` left play (destroyed or out of uses): the `onArtifactLeave` of its side's cards. */
+  artifactLeft(player: PlayerId, artifact: CardInstance): void {
+    for (const card of this.inPlay(player)) {
+      getCard(card.cardId).onArtifactLeave?.(this.context(player, card), artifact)
+    }
+  }
+
+  /** Artifacts of a player with uses (`charges`) gain `amount` more: one (its uid) or all of them. Returns how many. */
+  recharge(player: PlayerId, which: number | 'all', amount: number): number {
+    let count = 0
+
+    for (const artifact of this.player(player).artifacts) {
+      if (artifact.charges == null || amount <= 0 || (which !== 'all' && artifact.uid !== which)) {
+        continue
+      }
+
+      artifact.charges += amount
+      this.emit({ type: 'recharge', player, cardId: artifact.cardId, amount })
+      count++
+    }
+
+    return count
+  }
+
+  /** The card of `player`'s support slots with that uid: an artifact or a face-down trap (null: none). */
+  supportCard(player: PlayerId, uid: number | undefined): { kind: 'artifact' | 'trap'; card: CardInstance } | null {
+    const side = this.player(player)
+    const artifact = side.artifacts.find((card) => card.uid === uid)
+
+    if (artifact) {
+      return { kind: 'artifact', card: artifact }
+    }
+
+    const trap = side.traps.find((card) => card.uid === uid)
+
+    return trap ? { kind: 'trap', card: trap } : null
+  }
+
+  /** Destroys a card of the support slots (an artifact or a trap). False when it is no longer there. */
+  destroySupport(player: PlayerId, uid: number): boolean {
+    const found = this.supportCard(player, uid)
+
+    if (!found) {
+      return false
+    }
+
+    const side = this.player(player)
+
+    if (found.kind === 'trap') {
+      side.traps = side.traps.filter((card) => card.uid !== uid)
+      side.discard.push(found.card)
+      this.emit({ type: 'gearDestroyed', player, cardId: found.card.cardId, kind: 'trap' })
+
+      return true
+    }
+
+    return this.destroyArtifactsWhere((card, owner) => owner === player && card.uid === uid) > 0
+  }
+
+  /**
+   * Switches off a card of the support slots (an artifact or a face-down trap) for the rest of this phase
+   * and `phases` more. False when it is no longer there.
+   */
+  disableSupport(player: PlayerId, uid: number, phases: number): boolean {
+    const found = this.supportCard(player, uid)
+
+    if (!found) {
+      return false
+    }
+
+    const untilPhase = this.state.phase + phases
+
+    found.card.disabledUntilPhase = Math.max(found.card.disabledUntilPhase ?? 0, untilPhase)
+    this.emit({ type: 'disabled', player, cardId: found.card.cardId, untilPhase })
+
+    return true
+  }
+
+  /**
+   * Consume X: banishes `count` cards of a discard pile, from the top, the allies last (rituals that bring
+   * one back keep them). False, and nothing banished, when the pile has fewer.
+   */
+  consume(player: PlayerId, count: number): boolean {
+    const side = this.player(player)
+
+    if (count <= 0) {
+      return true
+    }
+
+    if (side.discard.length < count) {
+      return false
+    }
+
+    const order = side.discard
+      .map((card, index) => ({ card, index, ally: getCard(card.cardId).type === 'ally' }))
+      .sort((a, b) => Number(a.ally) - Number(b.ally) || b.index - a.index)
+      .slice(0, count)
+    const banished = new Set(order.map(({ card }) => card.uid))
+
+    side.discard = side.discard.filter((card) => !banished.has(card.uid))
+    this.emit({ type: 'consume', player, count })
+
+    return true
   }
 
   // ─── Breaking the rival's gear ───────────────────────────────────────────
@@ -772,6 +952,7 @@ export class MatchEngine {
     side.artifacts = side.artifacts.filter((card) => card.uid !== artifact.uid)
     side.discard.push({ uid: artifact.uid, cardId: artifact.cardId })
     this.emit({ type: 'gearDestroyed', player, cardId: artifact.cardId, kind: 'artifact' })
+    this.artifactLeft(player, artifact)
 
     return true
   }
@@ -787,6 +968,7 @@ export class MatchEngine {
         side.artifacts = side.artifacts.filter((card) => card.uid !== artifact.uid)
         side.discard.push({ uid: artifact.uid, cardId: artifact.cardId })
         this.emit({ type: 'gearDestroyed', player, cardId: artifact.cardId, kind: 'artifact' })
+        this.artifactLeft(player, artifact)
         count++
       }
     }
@@ -952,6 +1134,10 @@ export class MatchEngine {
       }
 
       for (const unit of this.allies(id)) {
+        if (unit.prey && unit.prey.untilPhase < this.state.phase) {
+          delete unit.prey
+        }
+
         if (unit.veil && unit.veil.untilPhase < this.state.phase) {
           if (unit.veil.stealth) {
             unit.keywords = unit.keywords.filter((keyword) => keyword !== 'stealth')
@@ -1212,7 +1398,7 @@ export class MatchEngine {
   /** Sets off the first trap of `owner` that answers `trigger`. Returns whether it cancelled what the enemy was doing. */
   triggerTrap(owner: PlayerId, trigger: TrapTrigger, unit?: SlotRef): boolean {
     const state = this.player(owner)
-    const index = state.traps.findIndex((trap) => getCard(trap.cardId).trigger === trigger)
+    const index = state.traps.findIndex((trap) => getCard(trap.cardId).trigger === trigger && !this.isDisabled(trap))
 
     if (index < 0) {
       return false
@@ -1226,6 +1412,10 @@ export class MatchEngine {
     getCard(trap.cardId).onTrigger?.(this.context(owner, trap, unit ? [unit] : []), event)
     state.discard.push(trap)
 
+    for (const card of this.inPlay(owner)) {
+      getCard(card.cardId).onTrapTriggered?.(this.context(owner, card), getCard(trap.cardId))
+    }
+
     return cancelled
   }
 
@@ -1235,7 +1425,8 @@ export class MatchEngine {
     owner: PlayerId,
     self: { uid: number; cardId: string },
     targets: SlotRef[] = [],
-    choice?: string
+    choice?: string,
+    options: { spell?: boolean } = {}
   ): EffectContext {
     return {
       engine: this,
@@ -1244,8 +1435,40 @@ export class MatchEngine {
       self: { uid: self.uid, cardId: self.cardId },
       targets,
       ...(choice != null ? { choice } : {}),
+      ...(options.spell ? { spell: true } : {}),
       random: () => this.random()
     }
+  }
+
+  /** `player` played a card (it already did its thing): the `onOwnerPlay` of every other card of its side in play. */
+  ownerPlayed(player: PlayerId, card: { uid: number; cardId: string }): void {
+    const definition = getCard(card.cardId)
+
+    for (const other of this.inPlay(player)) {
+      if (other.uid !== card.uid) {
+        getCard(other.cardId).onOwnerPlay?.(this.context(player, other), definition)
+      }
+    }
+  }
+
+  /** The extra damage the cards in play of the attacker's side give an attack (`attackBonus`). */
+  attackBonus(attacker: SlotRef, target: SlotRef): number {
+    let bonus = 0
+
+    for (const card of this.inPlay(attacker.player)) {
+      const aura = getCard(card.cardId).attackBonus
+
+      if (aura) {
+        bonus += aura(this.context(attacker.player, card), attacker, target)
+      }
+    }
+
+    return bonus
+  }
+
+  /** The extra damage the cards in play of `player` give its attacks against a Prey (`preyBonus`). */
+  preyBonus(player: PlayerId): number {
+    return this.inPlay(player).reduce((total, card) => total + (getCard(card.cardId).preyBonus ?? 0), 0)
   }
 
   /**
@@ -1269,7 +1492,8 @@ export class MatchEngine {
       cards.push(state.location)
     }
 
-    cards.push(...state.artifacts)
+    // A hacked artifact does nothing while it is switched off.
+    cards.push(...state.artifacts.filter((card) => !this.isDisabled(card)))
 
     const attachments = PLAYER_IDS.flatMap((side) =>
       this.allies(side).flatMap((unit) => (unit.attachments ?? []).filter((card) => (card.owner ?? side) === player))

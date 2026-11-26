@@ -8,6 +8,7 @@ const MAX_DRAW = 3
 export default defineCard({
   id: 'form-ranks',
   type: 'ability',
+  subtype: 'tactic',
   name: 'Form Ranks',
   text: 'Draw a card for each pair of allies of yours next to each other (up to 3).',
   flavor: 'Shoulder to shoulder, the legion thinks as one.',

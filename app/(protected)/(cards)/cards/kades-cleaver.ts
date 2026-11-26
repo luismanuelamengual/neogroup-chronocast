@@ -4,7 +4,8 @@ import { healHero } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'kades-cleaver',
   type: 'weapon',
-  name: "Kade's Cleaver",
+  subtype: 'energy',
+  name: "Kade's Plasma Cleaver",
   text: 'When it is equipped: your hero heals 5.',
   flavor: 'Order, one cut at a time.',
   faction: 'neon',
@@ -21,6 +22,6 @@ export default defineCard({
   ai: { value: 5 },
   art: {
     subject:
-      "Kade's Cleaver: a single cleaver made of ivory and jade, in a beam of light from above, diagonal dynamic composition, amber accents, neon cyberpunk future style"
+      "Kade's Plasma Cleaver: a single heavy cleaver with a glowing plasma edge made of ivory and jade, in a beam of light from above, diagonal dynamic composition, amber accents, neon cyberpunk future style"
   }
 })

@@ -3,6 +3,7 @@ import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
 export default defineCard({
   id: 'kite-shield-of-iron',
   type: 'armor',
+  subtype: 'shield',
   name: 'Kite Shield of Iron',
   text: '',
   flavor: 'Plain iron. Plainly unbreakable.',

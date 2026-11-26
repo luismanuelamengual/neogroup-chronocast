@@ -3,6 +3,7 @@ import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
 export default defineCard({
   id: 'timeless-rune',
   type: 'attachment',
+  subtype: 'rune',
   name: 'Timeless Rune',
   text: 'Attach to an ally of yours: it gains +1 attack and +4 health.',
   faction: 'neutral',

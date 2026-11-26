@@ -3,6 +3,7 @@ import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
 export default defineCard({
   id: 'spirit-bound-bell',
   type: 'weapon',
+  subtype: 'orb',
   name: 'Spirit-Bound Bell',
   text: '',
   flavor: 'Its toll calls the dead to their posts.',

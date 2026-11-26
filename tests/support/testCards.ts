@@ -7,7 +7,7 @@ import { CardInstance, MatchState, Unit } from '@/app/(protected)/(engine)/model
 import { emptyTimeline, PlannedAction, Timeline } from '@/app/(protected)/(engine)/models/PlannedAction'
 import { PlayerId } from '@/app/(protected)/(engine)/models/PlayerId'
 import { createMatch } from '@/app/(protected)/(engine)/utils/createMatch'
-import { registerCards } from '@/app/(protected)/(engine)/utils/registry'
+import { getCard, registerCards } from '@/app/(protected)/(engine)/utils/registry'
 
 /** Small cards to test the rules one at a time, without depending on the real catalog. */
 const base = {
@@ -71,12 +71,31 @@ export const TEST_CARDS: CardDefinition[] = [
       }
     }
   }),
-  defineCard({ ...base, id: 'test-sword', type: 'weapon', name: 'Test Sword', cost: 1, attack: 10, durability: 2 }),
-  defineCard({ ...base, id: 'test-plate', type: 'armor', name: 'Test Plate', cost: 1, armor: 3, durability: 2 }),
+  defineCard({
+    ...base,
+    id: 'test-sword',
+    type: 'weapon',
+    subtype: 'sword',
+    name: 'Test Sword',
+    cost: 1,
+    attack: 10,
+    durability: 2
+  }),
+  defineCard({
+    ...base,
+    id: 'test-plate',
+    type: 'armor',
+    subtype: 'plate',
+    name: 'Test Plate',
+    cost: 1,
+    armor: 3,
+    durability: 2
+  }),
   defineCard({
     ...base,
     id: 'test-zap',
     type: 'ability',
+    subtype: 'spell',
     name: 'Test Zap',
     cost: 1,
     targets: ['enemySlot'],
@@ -99,6 +118,7 @@ export const TEST_CARDS: CardDefinition[] = [
     ...base,
     id: 'test-blade',
     type: 'attachment',
+    subtype: 'charm',
     name: 'Test Blade',
     cost: 1,
     attack: 5,
@@ -109,6 +129,7 @@ export const TEST_CARDS: CardDefinition[] = [
     ...base,
     id: 'test-ward',
     type: 'attachment',
+    subtype: 'charm',
     name: 'Test Ward',
     cost: 1,
     targets: ['friendlyAlly'],
@@ -122,6 +143,7 @@ export const TEST_CARDS: CardDefinition[] = [
     ...base,
     id: 'test-curse',
     type: 'attachment',
+    subtype: 'charm',
     name: 'Test Curse',
     cost: 1,
     attack: -4,
@@ -162,6 +184,7 @@ export const TEST_CARDS: CardDefinition[] = [
     ...base,
     id: 'test-shackle',
     type: 'attachment',
+    subtype: 'charm',
     name: 'Test Shackle',
     cost: 1,
     disarms: true,
@@ -171,6 +194,7 @@ export const TEST_CARDS: CardDefinition[] = [
     ...base,
     id: 'test-hush',
     type: 'attachment',
+    subtype: 'charm',
     name: 'Test Hush',
     cost: 1,
     silences: true,
@@ -180,6 +204,7 @@ export const TEST_CARDS: CardDefinition[] = [
     ...base,
     id: 'test-barbs',
     type: 'attachment',
+    subtype: 'charm',
     name: 'Test Barbs',
     cost: 1,
     targets: ['enemyAlly'],
@@ -215,7 +240,7 @@ export function testMatch(seed = 1): MatchState {
 
 /** Puts an ally on the board, ready to act this phase. Returns it. */
 export function place(state: MatchState, player: PlayerId, cardId: string, slot: number): Unit {
-  const definition = TEST_CARDS.find((card) => card.id === cardId)!
+  const definition = getCard(cardId)
   const unit: Unit = {
     uid: state.nextUid++,
     cardId,

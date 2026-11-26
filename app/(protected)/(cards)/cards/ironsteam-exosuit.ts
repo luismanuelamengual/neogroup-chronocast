@@ -4,6 +4,7 @@ import { gainChronos } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'ironsteam-exosuit',
   type: 'armor',
+  subtype: 'exosuit',
   name: 'Ironsteam Exosuit',
   text: 'At the start of each phase: you gain 1 Chronos this phase.',
   faction: 'clockwork',

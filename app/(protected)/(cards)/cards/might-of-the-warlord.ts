@@ -4,6 +4,7 @@ import { buffThisPhaseAt } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'might-of-the-warlord',
   type: 'ability',
+  subtype: 'tactic',
   name: 'Might of the Warlord',
   text: 'An ally of yours gains +4 attack this phase. Instant.',
   flavor: 'His strength flows into every soldier.',

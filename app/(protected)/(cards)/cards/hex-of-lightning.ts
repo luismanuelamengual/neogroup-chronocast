@@ -4,6 +4,7 @@ import { stunAt } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'hex-of-lightning',
   type: 'ability',
+  subtype: 'program',
   name: 'Hex of Lightning',
   text: 'Stun an enemy ally. Fast.',
   flavor: 'Curse the sky, and it curses back.',

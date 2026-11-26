@@ -328,6 +328,44 @@ export const en: Messages = {
       attachment: 'Attachment',
       artifact: 'Artifact'
     },
+    subtypes: {
+      bow: 'Bow',
+      crossbow: 'Crossbow',
+      blowgun: 'Blowgun',
+      sling: 'Sling',
+      harpoon: 'Harpoon',
+      sword: 'Sword',
+      axe: 'Axe',
+      spear: 'Spear',
+      mace: 'Mace',
+      staff: 'Staff',
+      wand: 'Wand',
+      orb: 'Orb',
+      tool: 'Tool',
+      energy: 'Energy',
+      scythe: 'Scythe',
+      dagger: 'Dagger',
+      leather: 'Leather',
+      plate: 'Plate',
+      shield: 'Shield',
+      helm: 'Helm',
+      robe: 'Robe',
+      circlet: 'Circlet',
+      exosuit: 'Exosuit',
+      suit: 'Suit',
+      shroud: 'Shroud',
+      instinct: 'Instinct',
+      tactic: 'Tactic',
+      spell: 'Spell',
+      gadget: 'Gadget',
+      program: 'Program',
+      ritual: 'Ritual',
+      mount: 'Mount',
+      charm: 'Charm',
+      rune: 'Rune',
+      implant: 'Implant',
+      curse: 'Curse'
+    },
     rarities: {
       common: 'Common',
       uncommon: 'Uncommon',
@@ -401,6 +439,7 @@ export const en: Messages = {
     search: 'Search',
     all: 'All',
     allTypes: 'All types',
+    allSubtypes: 'All subtypes',
     allFactions: 'All factions',
     allSides: 'All sides',
     allRarities: 'All rarities',
@@ -542,6 +581,8 @@ export const en: Messages = {
     stunned: 'Stunned',
     frozen: 'Frozen',
     statusNotes: {
+      prey: "🎯 Prey: the hunter's ranged attacks deal it +3 {until}",
+      disabled: '⛔ Switched off by a hack',
       poison: '☠️ Poisoned: loses {amount} when the phase starts',
       burn: '🔥 Burning: loses {amount} a phase ({phases} more phases)',
       frozen: "❄️ Frozen: can't attack, move or use abilities {until}",
@@ -591,7 +632,9 @@ export const en: Messages = {
     attached: {
       weapon: "Hero's weapon\n🗡️ {attack} attack · {durability} uses",
       armor: "Hero's armor\n🛡️ -{reduction} damage per hit · {durability} hits",
-      ally: 'Attached to the ally'
+      ally: 'Attached to the ally',
+      artifact: 'Artifact in play',
+      trap: 'Face-down trap'
     },
     rivalHand: 'Rival hand',
     zones: {
@@ -609,7 +652,8 @@ export const en: Messages = {
       move: 'Choose where to move it.',
       summon: 'Choose a free slot to summon it.',
       target: 'Choose the target.',
-      attached: 'Tap the hero or the ally that has the attached card.'
+      attached: 'Tap the hero or the ally that has the attached card.',
+      support: 'Tap the hero of the side that has the artifact or the trap.'
     },
     buttons: {
       attack: 'Attack',
@@ -664,6 +708,9 @@ export const en: Messages = {
       frozen: 'It is frozen',
       noChoice: 'There is no card for it to take',
       nothingToDestroy: 'There is nothing in play for it to destroy',
+      notEnoughDiscard: 'Not enough cards in your discard pile to Consume',
+      disabled: 'It is switched off by a hack',
+      noSupport: 'There are no artifacts or traps to choose',
       timelineFull: 'The timeline already has 6 actions'
     },
     floats: {

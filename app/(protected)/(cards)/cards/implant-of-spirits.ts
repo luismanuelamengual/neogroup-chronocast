@@ -3,10 +3,11 @@ import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
 export default defineCard({
   id: 'implant-of-spirits',
   type: 'attachment',
+  subtype: 'implant',
   name: 'Implant of Spirits',
   text: 'Attach to an ally of yours: it gains +2 attack and +5 health.',
-  faction: 'neutral',
-  restriction: {},
+  faction: 'neon',
+  restriction: { factions: ['neon'] },
   rarity: 'uncommon',
   price: 180,
   cost: 4,

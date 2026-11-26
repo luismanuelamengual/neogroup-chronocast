@@ -19,11 +19,11 @@ const STARTER_LISTS: Record<string, [string, number][]> = {
     ['frost-of-the-oracle', 2],
     ['sharp-crossbow', 2],
     ['cleaver-of-valor', 1],
-    ['flickering-mantle', 2],
+    ['blessed-halo', 2],
     ['flickering-ward', 1],
     ['leech-of-lost-time', 2],
     ['clever-scroll', 2],
-    ['lantern-of-the-wanderer', 1],
+    ['dawn-sigil', 1],
     ['courage-of-the-last-stand', 1]
   ],
   'ilyra-starweaver': [
@@ -41,9 +41,9 @@ const STARTER_LISTS: Record<string, [string, number][]> = {
     ['orb-of-storms', 1],
     ['flickering-ward', 2],
     ['flickering-mantle', 1],
-    ['gentle-ward', 2],
+    ['tracking-countermeasure', 2],
     ['hourglass-shard-of-borrowed-hours', 2],
-    ['brand-of-the-comet', 1],
+    ['serene-rune', 1],
     ['stray-strike', 1]
   ],
   'kora-wildfang': [
@@ -54,8 +54,8 @@ const STARTER_LISTS: Record<string, [string, number][]> = {
     ['wandering-wanderer', 3],
     ['thundering-sabertooth', 2],
     ['faithful-cartographer', 2],
-    ['rally-of-the-hawk', 3],
-    ['rally-of-light', 3],
+    ['armored-fury', 3],
+    ['empowerment-of-the-dawnbell', 3],
     ['tracking-horn', 2],
     ['keen-eyed-crossbow', 2],
     ['sharp-crossbow', 1],
@@ -63,8 +63,8 @@ const STARTER_LISTS: Record<string, [string, number][]> = {
     ['flickering-ward', 1],
     ['leech-of-lost-time', 2],
     ['blessed-idol', 2],
-    ['lantern-of-the-wanderer', 1],
-    ['timeless-tick', 1]
+    ['dawn-sigil', 1],
+    ['hunters-snare', 1]
   ]
 }
 

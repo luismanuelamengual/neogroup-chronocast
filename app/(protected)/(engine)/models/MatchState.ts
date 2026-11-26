@@ -14,6 +14,11 @@ export interface CardInstance {
   charges?: number
   /** An artifact: its ability was already used this phase. */
   abilityUsedThisPhase?: boolean
+  /**
+   * An artifact or a face-down trap switched off by an enemy (a hack): while the phase is not past this one,
+   * its effects and its ability don't work and a trap doesn't go off.
+   */
+  disabledUntilPhase?: number
 }
 
 /** Lasting status effects on a hero or an ally. */
@@ -57,6 +62,13 @@ export interface Unit extends Afflictions {
    * is not past `untilPhase`.
    */
   veil?: { attack: number; stealth: boolean; untilPhase: number }
+  /**
+   * Marked as Prey by `by` (docs/FACTIONS.md): the ranged attacks of that player deal it PREY_DAMAGE more
+   * while the phase is not past `untilPhase`.
+   */
+  prey?: { by: PlayerId; untilPhase: number }
+  /** It attacked at least once since it entered (an aura can hide it only until it attacks). */
+  hasAttacked?: boolean
 }
 
 /**

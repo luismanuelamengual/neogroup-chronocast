@@ -4,6 +4,7 @@ import { draw, healHero } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'glitched-plan',
   type: 'ability',
+  subtype: 'program',
   name: 'Glitched Plan',
   text: 'Draw a card and your hero heals 3.',
   flavor: 'It worked in the simulation.',

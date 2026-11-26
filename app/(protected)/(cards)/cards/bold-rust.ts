@@ -4,6 +4,7 @@ import { wearArmor, wearWeapon } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'bold-rust',
   type: 'ability',
+  subtype: 'gadget',
   name: 'Bold Rust',
   text: 'The enemy weapon and armor lose 1 durability each. Fast.',
   faction: 'neutral',

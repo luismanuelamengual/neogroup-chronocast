@@ -26,7 +26,8 @@ function useCardWidth(count: number): number {
 /** A card the player can pick: `key` is what `onPick` gets back. */
 export interface PickOption {
   key: string
-  cardId: string
+  /** Null: a face-down card (a rival's trap). */
+  cardId: string | null
   /** Copies of it (shown when more than one). */
   copies?: number
   /** A short line under the card (what it is, its numbers). */

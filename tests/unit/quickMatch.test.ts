@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest'
 import {
   QUICK_MATCH_HEROES,
-  RANDOM_DECK_SIZE,
   quickMatchHeroes,
+  RANDOM_DECK_SIZE,
   randomDeck,
   randomRival
 } from '@/app/(protected)/(battle)/utils/randomDeck'
@@ -10,8 +10,8 @@ import { chooseTimeline } from '@/app/(protected)/(engine)/ai/chooseTimeline'
 import { createMatch } from '@/app/(protected)/(engine)/utils/createMatch'
 import { validateDeck } from '@/app/(protected)/(engine)/utils/deckRules'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
-import { rarityLevel } from '@/app/(protected)/(progression)/utils/levels'
 import { resolvePhase } from '@/app/(protected)/(engine)/utils/resolvePhase'
+import { rarityLevel } from '@/app/(protected)/(progression)/utils/levels'
 
 /** The cards of a random deck besides the hero: 39 to 59 (a deck of 40 to 60). */
 function expectSize(cards: number) {

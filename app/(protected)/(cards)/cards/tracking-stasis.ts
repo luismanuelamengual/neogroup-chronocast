@@ -4,6 +4,7 @@ import { freeze } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'tracking-stasis',
   type: 'ability',
+  subtype: 'spell',
   name: 'Tracking Stasis',
   text: 'Freeze an enemy ally.',
   flavor: 'Stop right there. The hunt is over.',

@@ -4,6 +4,7 @@ import { damage, draw } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'vorhals-spike',
   type: 'ability',
+  subtype: 'ritual',
   name: "Vorhal's Spike",
   text: 'Deal 10 time damage to an enemy slot and draw a card.',
   faction: 'void',

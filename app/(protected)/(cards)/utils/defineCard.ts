@@ -2,6 +2,7 @@ import { PRICE_RANGES } from '@/app/(protected)/(cards)/data/rarities'
 import { HERO_ABILITY_MIN_COST, HERO_MAX_HEALTH, HERO_MIN_HEALTH } from '@/app/(protected)/(engine)/data/rules'
 import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition'
 import { RESTRICTION_CRITERIA, restrictionCriteria } from '@/app/(protected)/(engine)/models/Restriction'
+import { hasSubtype, isSubtypeOf } from '@/app/(protected)/(engine)/models/Subtype'
 
 /**
  * Declares a card: checks its shape (a clear error at load time instead of a
@@ -58,6 +59,16 @@ export function cardProblems(card: CardDefinition): string[] {
     if (values && (values.length === 0 || new Set(values).size !== values.length)) {
       problems.push(`the "${criterion}" of the restriction lists at least one value, each one once`)
     }
+  }
+
+  if (hasSubtype(card.type)) {
+    if (card.subtype == null) {
+      problems.push(`a ${card.type} needs "subtype"`)
+    } else if (!isSubtypeOf(card.type, card.subtype)) {
+      problems.push(`"${card.subtype}" is not a subtype of ${card.type}`)
+    }
+  } else if (card.subtype != null) {
+    problems.push(`a ${card.type} has no subtype`)
   }
 
   switch (card.type) {

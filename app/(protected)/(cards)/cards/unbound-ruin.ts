@@ -4,6 +4,7 @@ import { destroyAt } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'unbound-ruin',
   type: 'ability',
+  subtype: 'ritual',
   name: 'Unbound Ruin',
   text: 'Destroy an enemy ally. Slow.',
   flavor: 'Nothing holds it back anymore.',

@@ -6,8 +6,8 @@ export default defineCard({
   type: 'artifact',
   name: 'Restless Banner',
   text: 'At the start of each phase: deal 3 damage to a random enemy ally. (3 uses)',
-  faction: 'neutral',
-  restriction: {},
+  faction: 'bronze',
+  restriction: { factions: ['bronze'] },
   rarity: 'uncommon',
   price: 140,
   cost: 2,
@@ -19,6 +19,6 @@ export default defineCard({
   ai: { value: 2, tags: ['removal'] },
   art: {
     subject:
-      'Restless Banner: an ancient banner made of dark yew wood and brass fittings, standing among ancient trees, swirling around the center, crimson accents, time rift wanderer style'
+      'Restless Banner: an ancient banner made of dark yew wood and brass fittings, standing among ancient trees, swirling around the center, crimson accents, ancient bronze-age empire style'
   }
 })

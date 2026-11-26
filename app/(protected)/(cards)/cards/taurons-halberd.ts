@@ -4,6 +4,7 @@ import { healHero } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'taurons-halberd',
   type: 'weapon',
+  subtype: 'spear',
   name: "Tauron's Halberd",
   text: 'When it is equipped: your hero heals 5.',
   flavor: 'Forged in the heart of the labyrinth.',

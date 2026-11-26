@@ -332,6 +332,44 @@ export const es = {
       attachment: 'Adjunto',
       artifact: 'Artefacto'
     },
+    subtypes: {
+      bow: 'Arco',
+      crossbow: 'Ballesta',
+      blowgun: 'Cerbatana',
+      sling: 'Honda',
+      harpoon: 'Arpón',
+      sword: 'Espada',
+      axe: 'Hacha',
+      spear: 'Lanza',
+      mace: 'Maza',
+      staff: 'Bastón',
+      wand: 'Varita',
+      orb: 'Orbe',
+      tool: 'Herramienta',
+      energy: 'Energía',
+      scythe: 'Guadaña',
+      dagger: 'Daga',
+      leather: 'Cuero',
+      plate: 'Placas',
+      shield: 'Escudo',
+      helm: 'Yelmo',
+      robe: 'Túnica',
+      circlet: 'Diadema',
+      exosuit: 'Exotraje',
+      suit: 'Traje',
+      shroud: 'Mortaja',
+      instinct: 'Instinto',
+      tactic: 'Táctica',
+      spell: 'Hechizo',
+      gadget: 'Artilugio',
+      program: 'Programa',
+      ritual: 'Ritual',
+      mount: 'Montura',
+      charm: 'Amuleto',
+      rune: 'Runa',
+      implant: 'Implante',
+      curse: 'Maldición'
+    },
     rarities: {
       common: 'Común',
       uncommon: 'Poco común',
@@ -405,6 +443,7 @@ export const es = {
     search: 'Buscar',
     all: 'Todas',
     allTypes: 'Todos los tipos',
+    allSubtypes: 'Todos los subtipos',
     allFactions: 'Todas las facciones',
     allSides: 'Todos los bandos',
     allRarities: 'Todas las rarezas',
@@ -547,6 +586,8 @@ export const es = {
     stunned: 'Aturdido',
     frozen: 'Congelado',
     statusNotes: {
+      prey: '🎯 Presa: los ataques a distancia del cazador le hacen +3 {until}',
+      disabled: '⛔ Desactivado por un hackeo',
       poison: '☠️ Envenenado: pierde {amount} al empezar la fase',
       burn: '🔥 Quemándose: pierde {amount} por fase ({phases} fases más)',
       frozen: '❄️ Congelado: no puede atacar, moverse ni usar habilidades {until}',
@@ -596,7 +637,9 @@ export const es = {
     attached: {
       weapon: 'Arma del héroe\n🗡️ {attack} de ataque · {durability} usos',
       armor: 'Armadura del héroe\n🛡️ -{reduction} de daño por golpe · {durability} golpes',
-      ally: 'Adjunta al aliado'
+      ally: 'Adjunta al aliado',
+      artifact: 'Artefacto en juego',
+      trap: 'Trampa boca abajo'
     },
     rivalHand: 'Mano del rival',
     zones: {
@@ -614,7 +657,8 @@ export const es = {
       move: 'Elegí a dónde moverlo.',
       summon: 'Elegí un slot libre para invocarlo.',
       target: 'Elegí el objetivo.',
-      attached: 'Tocá al héroe o al aliado que tiene la carta adjunta.'
+      attached: 'Tocá al héroe o al aliado que tiene la carta adjunta.',
+      support: 'Tocá al héroe del lado que tiene el artefacto o la trampa.'
     },
     buttons: {
       attack: 'Atacar',
@@ -669,6 +713,9 @@ export const es = {
       frozen: 'Está congelado',
       noChoice: 'No hay ninguna carta para tomar',
       nothingToDestroy: 'No hay nada en juego para destruir',
+      notEnoughDiscard: 'No hay suficientes cartas en tu pila para Consumir',
+      disabled: 'Está desactivado por un hackeo',
+      noSupport: 'No hay artefactos ni trampas para elegir',
       timelineFull: 'La línea de tiempo ya tiene 6 acciones'
     },
     floats: {

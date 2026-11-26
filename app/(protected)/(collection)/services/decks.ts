@@ -5,6 +5,7 @@ import { ActiveDeck, DeckDto, DeckInput, DeckSummary } from '@/app/(protected)/(
 import { getCollection, lastDeckId } from '@/app/(protected)/(collection)/services/collection'
 import { deckProblems, expandCards } from '@/app/(protected)/(collection)/utils/deckProblems'
 import { DeckList } from '@/app/(protected)/(engine)/models/DeckList'
+import { canUseCard } from '@/app/(protected)/(engine)/utils/deckRules'
 import { getCard, hasCard } from '@/app/(protected)/(engine)/utils/registry'
 import { ApiException } from '@/app/models/ApiException'
 import { column } from '@/app/utils/rows'
@@ -38,23 +39,47 @@ async function loadDecks(userId: number, deckId?: number): Promise<DeckDto[]> {
       rows.map((row) => Number(row.id))
     )
     .get()
+  const decks: DeckDto[] = []
 
-  return rows.map((row) => {
+  for (const row of rows) {
     const id = Number(row.id)
+    const heroId = String(column(row, 'heroId'))
     const cards: Record<string, number> = {}
 
     for (const card of cardRows.filter((candidate) => Number(column(candidate, 'deckId')) === id)) {
       cards[String(column(card, 'cardId'))] = Number(column(card, 'count'))
     }
 
-    return {
-      id,
-      name: String(row.name),
-      heroId: String(column(row, 'heroId')),
-      cards,
-      updatedAt: toIso(column(row, 'updatedAt'))
-    }
-  })
+    await dropUnusableCards(id, heroId, cards)
+    decks.push({ id, name: String(row.name), heroId, cards, updatedAt: toIso(column(row, 'updatedAt')) })
+  }
+
+  return decks
+}
+
+/**
+ * Takes out of a saved deck the cards its hero can no longer use (a card that
+ * changed faction, docs/FACTIONS.md): they leave the deck, in `cards` and in
+ * the database, and stay in the collection. Unknown cards and a deck whose
+ * hero is unknown are left alone.
+ */
+async function dropUnusableCards(deckId: number, heroId: string, cards: Record<string, number>): Promise<void> {
+  if (!hasCard(heroId) || getCard(heroId).type !== 'hero') {
+    return
+  }
+
+  const hero = getCard(heroId)
+  const unusable = Object.keys(cards).filter((cardId) => hasCard(cardId) && !canUseCard(hero, getCard(cardId)))
+
+  if (unusable.length === 0) {
+    return
+  }
+
+  for (const cardId of unusable) {
+    delete cards[cardId]
+  }
+
+  await DB.table('deck_cards').where('deckId', deckId).whereIn('cardId', unusable).delete()
 }
 
 export function toDeckList(deck: Pick<DeckDto, 'heroId' | 'cards'>): DeckList {

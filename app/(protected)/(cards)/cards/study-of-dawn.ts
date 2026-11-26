@@ -4,6 +4,7 @@ import { draw, healHero } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'study-of-dawn',
   type: 'ability',
+  subtype: 'program',
   name: 'Study of Dawn',
   text: 'Draw a card and your hero heals 3.',
   flavor: 'Learn from the light before it rises.',

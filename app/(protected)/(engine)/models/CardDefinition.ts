@@ -4,12 +4,13 @@ import { Element } from '@/app/(protected)/(engine)/models/Element'
 import { Faction } from '@/app/(protected)/(engine)/models/Faction'
 import { Keyword } from '@/app/(protected)/(engine)/models/Keyword'
 import { FailReason } from '@/app/(protected)/(engine)/models/MatchEvent'
-import { Unit } from '@/app/(protected)/(engine)/models/MatchState'
+import { CardInstance, Unit } from '@/app/(protected)/(engine)/models/MatchState'
 import { Rarity } from '@/app/(protected)/(engine)/models/Rarity'
 import { Restriction } from '@/app/(protected)/(engine)/models/Restriction'
 import { Side } from '@/app/(protected)/(engine)/models/Side'
 import { SlotRef } from '@/app/(protected)/(engine)/models/SlotRef'
 import { Speed } from '@/app/(protected)/(engine)/models/Speed'
+import { Subtype } from '@/app/(protected)/(engine)/models/Subtype'
 import { TargetKind } from '@/app/(protected)/(engine)/models/TargetKind'
 import { Tribe } from '@/app/(protected)/(engine)/models/Tribe'
 
@@ -32,6 +33,10 @@ export interface ActiveAbility {
   canActivate?(ctx: EffectContext): FailReason | null
   /** Hints for the AI, like the ones of a card (`heal`, `removal`, `revive`, `buffAll`...): when using it is worth it. */
   ai?: { tags?: string[] }
+  /** It is a spell (a hero's ability that is one): its damage adds the owner's spell power. */
+  spell?: boolean
+  /** Consume X: banishes X cards of the owner's discard pile when it is used (it can't be used without them). */
+  consume?: number
   activate(ctx: EffectContext): void
 }
 
@@ -64,6 +69,11 @@ export interface CardDefinition {
   /** The file name, in kebab-case. It never changes: collections and decks store it. */
   id: string
   type: CardType
+  /**
+   * Weapons, armors, abilities and attachments (required for them): their kind
+   * (a bow, a spell...), one of the subtypes of their type (models/Subtype.ts).
+   */
+  subtype?: Subtype
   name: string
   /** Rules text shown on the card (the keywords are added to it automatically). */
   text: string
@@ -112,6 +122,22 @@ export interface CardDefinition {
   trigger?: TrapTrigger
   /** Artifacts: uses before it is discarded (spent with `spendCharge`); none: it stays for good. */
   charges?: number
+  /**
+   * Spell power X (docs/FACTIONS.md): weapons, armors, allies and heroes in play add it to the damage of their
+   * owner's spells (abilities of subtype `spell`).
+   */
+  spellPower?: number
+  /**
+   * Consume X: playing it banishes X cards of the owner's discard pile (the top ones, allies last). It can't be
+   * played while the pile has fewer, and nothing is paid then.
+   */
+  consume?: number
+  /** Any card in play: the attacks of its owner deal this much more to a Prey. */
+  preyBonus?: number
+  /** Any card in play: the owner's ice spells also freeze what they damage. */
+  freezingSpells?: boolean
+  /** Attachments: the attacks of the ally it is on are of this element. */
+  attackElement?: Element
   /** Hints for the computer player. */
   ai?: { value: number; tags?: string[] }
   /** The subject of its illustration (the art prompt adds the style and the faction look). */
@@ -123,7 +149,7 @@ export interface CardDefinition {
   onEnter?(ctx: EffectContext): void
   /** Any card in play: when another ally of its owner enters. */
   onAllyEnter?(ctx: EffectContext, ally: Unit): void
-  /** Allies: when it attacks. */
+  /** Allies: when it attacks. Weapons: when the hero attacks with it. */
   onAttack?(ctx: EffectContext, target: SlotRef): void
   /** Allies: after it takes damage. */
   onDamaged?(ctx: EffectContext, amount: number): void
@@ -145,6 +171,21 @@ export interface CardDefinition {
   onHostDeath?(ctx: EffectContext, host: Unit): void
   /** Attachments: each time the ally it is attached to attacks (before the hit). */
   onHostAttack?(ctx: EffectContext, host: Unit): void
+  /** Any card in play: when its owner plays a card (after the card did its thing; not for itself). */
+  onOwnerPlay?(ctx: EffectContext, card: CardDefinition): void
+  /** Any card in play: when a trap of its owner goes off (after the trap did its thing). */
+  onTrapTriggered?(ctx: EffectContext, trap: CardDefinition): void
+  /** Any card in play: when an artifact of its owner leaves play (destroyed, or out of uses). */
+  onArtifactLeave?(ctx: EffectContext, artifact: CardInstance): void
+  /** Any card in play: when an ally of the rival dies (its attachments are still on it, so `isCursed` works). */
+  onEnemyAllyDeath?(ctx: EffectContext, unit: Unit): void
+  /**
+   * Any card in play: extra damage for an attack of its owner (its hero's or an ally's, `attacker`) aimed at
+   * `target` (an aura; 0 for none).
+   */
+  attackBonus?(ctx: EffectContext, attacker: SlotRef, target: SlotRef): number
+  /** Any card in play: keywords it lends to an ally of its owner while it is in play (an aura). */
+  auraKeywords?(ctx: EffectContext, unit: Unit): Keyword[]
   /** Attachments: the ally it is attached to can't attack. */
   disarms?: boolean
   /** Attachments: the ally it is attached to can't use its ability. */

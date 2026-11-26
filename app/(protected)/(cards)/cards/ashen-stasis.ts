@@ -4,6 +4,7 @@ import { returnAt } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'ashen-stasis',
   type: 'ability',
+  subtype: 'ritual',
   name: 'Ashen Stasis',
   text: "Return an enemy ally to its owner's hand. Fast.",
   flavor: 'Frozen in ash, like the cities of old.',

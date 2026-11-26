@@ -4,6 +4,7 @@ import { freeze } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'wise-stasis',
   type: 'ability',
+  subtype: 'spell',
   name: 'Wise Stasis',
   text: 'Freeze an enemy ally.',
   flavor: 'The wise know when to stop the clock.',

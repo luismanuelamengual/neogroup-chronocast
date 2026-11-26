@@ -3,10 +3,11 @@ import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
 export default defineCard({
   id: 'brand-of-the-comet',
   type: 'attachment',
+  subtype: 'curse',
   name: 'Brand of the Comet',
   text: "Attach to an enemy ally: it can't use its ability and has -1 attack.",
-  faction: 'neutral',
-  restriction: {},
+  faction: 'void',
+  restriction: { factions: ['void'] },
   rarity: 'uncommon',
   price: 160,
   cost: 3,

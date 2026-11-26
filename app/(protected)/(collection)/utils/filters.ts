@@ -3,6 +3,7 @@ import { CardType } from '@/app/(protected)/(engine)/models/CardType'
 import { Faction } from '@/app/(protected)/(engine)/models/Faction'
 import { Rarity } from '@/app/(protected)/(engine)/models/Rarity'
 import { Side } from '@/app/(protected)/(engine)/models/Side'
+import { Subtype } from '@/app/(protected)/(engine)/models/Subtype'
 import { canUseCard, cardSide } from '@/app/(protected)/(engine)/utils/deckRules'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
 import { Translator } from '@/app/i18n/translate'
@@ -11,6 +12,8 @@ import { Translator } from '@/app/i18n/translate'
 export interface CardFilter {
   search: string
   type: CardType | ''
+  /** A subtype of the chosen type (a bow, a spell...); only offered once a type with subtypes is chosen. */
+  subtype: Subtype | ''
   faction: Faction | ''
   /** Dawn, Eclipse or neutral. */
   side: Side | 'neutral' | ''
@@ -25,6 +28,7 @@ export interface CardFilter {
 export const EMPTY_FILTER: CardFilter = {
   search: '',
   type: '',
+  subtype: '',
   faction: '',
   side: '',
   rarity: '',
@@ -51,6 +55,7 @@ export function matchesFilter(card: CardDefinition, filter: CardFilter, owned: n
   return (
     (!search || card.name.toLowerCase().includes(search) || card.text.toLowerCase().includes(search)) &&
     (!filter.type || card.type === filter.type) &&
+    (!filter.subtype || card.subtype === filter.subtype) &&
     (!filter.faction || card.faction === filter.faction) &&
     (!filter.side || cardSide(card) === filter.side) &&
     (!filter.rarity || card.rarity === filter.rarity) &&

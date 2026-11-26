@@ -7,8 +7,8 @@ export default defineCard({
   name: 'Sundial of the Last Hour',
   text: 'At the start of each phase: your hero heals 3. (3 uses)',
   flavor: 'Its shadow points to the end.',
-  faction: 'void',
-  restriction: { factions: ['void'], sides: ['dawn'] },
+  faction: 'clockwork',
+  restriction: { factions: ['clockwork'], sides: ['dawn'] },
   rarity: 'common',
   price: 55,
   cost: 3,
@@ -20,6 +20,6 @@ export default defineCard({
   ai: { value: 3, tags: ['heal'] },
   art: {
     subject:
-      'Sundial of the Last Hour: an ancient sundial made of rusted iron and chains, standing on a floating rock, centered and seen from slightly below, tangerine accents, dark end-of-time void style'
+      'Sundial of the Last Hour: an ancient sundial made of rusted iron and chains, standing on a floating rock, centered and seen from slightly below, tangerine accents, steampunk steam era style'
   }
 })

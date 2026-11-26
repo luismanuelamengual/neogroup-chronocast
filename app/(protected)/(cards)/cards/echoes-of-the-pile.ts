@@ -10,6 +10,7 @@ const MAX_DRAW = 3
 export default defineCard({
   id: 'echoes-of-the-pile',
   type: 'ability',
+  subtype: 'ritual',
   name: 'Echoes of the Pile',
   text: 'Draw a card for each 3 allies in your discard pile (up to 3).',
   flavor: 'The dead talk. The Void only has to listen.',

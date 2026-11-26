@@ -4,10 +4,11 @@ import { damage, tribeAllies } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'spike-of-the-ambush',
   type: 'ability',
+  subtype: 'program',
   name: 'Spike of the Ambush',
   text: 'Deal 3 damage to an enemy slot, +2 for each Netrunner of yours.',
-  faction: 'neutral',
-  restriction: { sides: ['eclipse'] },
+  faction: 'neon',
+  restriction: { factions: ['neon'], sides: ['eclipse'] },
   rarity: 'rare',
   price: 360,
   cost: 2,

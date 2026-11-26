@@ -4,6 +4,7 @@ import { draw } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'endless-plan',
   type: 'ability',
+  subtype: 'ritual',
   name: 'Endless Plan',
   text: 'Draw a card.',
   flavor: 'Step one: wait. Step two: wait longer.',

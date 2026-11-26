@@ -7,8 +7,8 @@ export default defineCard({
   name: 'Cursed Trap',
   text: 'When an enemy ally is summoned: freeze it.',
   flavor: 'Whoever set it did not survive it either.',
-  faction: 'void',
-  restriction: { factions: ['void'], sides: ['eclipse'] },
+  faction: 'primal',
+  restriction: { factions: ['primal'], sides: ['eclipse'] },
   rarity: 'uncommon',
   price: 140,
   cost: 2,
@@ -22,6 +22,6 @@ export default defineCard({
   ai: { value: 2, tags: ['trap'] },
   art: {
     subject:
-      'Cursed Trap: a rusty iron jaw trap half buried in sand, swirling around the center, cobalt blue accents, dark end-of-time void style'
+      'Cursed Trap: a rusty iron jaw trap half buried in sand, swirling around the center, cobalt blue accents, prehistoric jungle era style'
   }
 })

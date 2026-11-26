@@ -4,10 +4,11 @@ import { healHero, reviveFromDiscard } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'gentle-return',
   type: 'ability',
+  subtype: 'ritual',
   name: 'Gentle Return',
   text: 'A random ally of your discard pile returns to play and your hero heals 4. Slow.',
-  faction: 'neutral',
-  restriction: { sides: ['dawn'] },
+  faction: 'void',
+  restriction: { factions: ['void'], sides: ['dawn'] },
   rarity: 'common',
   price: 65,
   cost: 4,

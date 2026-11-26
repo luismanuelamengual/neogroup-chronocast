@@ -4,10 +4,11 @@ import { draw, returnAt } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'lucky-stasis',
   type: 'ability',
+  subtype: 'spell',
   name: 'Lucky Stasis',
   text: "Return an enemy ally to its owner's hand and draw a card. Fast.",
-  faction: 'neutral',
-  restriction: {},
+  faction: 'arcane',
+  restriction: { factions: ['arcane'] },
   rarity: 'common',
   price: 55,
   cost: 3,
@@ -20,6 +21,6 @@ export default defineCard({
   ai: { value: 3, tags: ['draw', 'removal'] },
   art: {
     subject:
-      'Lucky Stasis: a clock frozen inside a floating crystal, its hands stopped, in a ruined temple, seen from above, crimson accents, time rift wanderer style'
+      'Lucky Stasis: a clock frozen inside a floating crystal, its hands stopped, in a ruined temple, seen from above, crimson accents, medieval magic order style'
   }
 })

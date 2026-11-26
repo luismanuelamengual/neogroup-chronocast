@@ -4,6 +4,7 @@ import { damage, tribeAllies } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'blast-of-the-jungle',
   type: 'ability',
+  subtype: 'instinct',
   name: 'Blast of the Jungle',
   text: 'Deal 10 earth damage to an enemy slot, +2 for each Beast of yours.',
   faction: 'primal',

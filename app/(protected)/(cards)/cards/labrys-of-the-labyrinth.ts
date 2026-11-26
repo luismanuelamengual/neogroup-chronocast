@@ -4,6 +4,7 @@ import { stunRandomAlly } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'labrys-of-the-labyrinth',
   type: 'weapon',
+  subtype: 'axe',
   name: 'Labrys of the Labyrinth',
   text: 'When it is equipped: stun a random enemy ally.',
   flavor: 'Two blades, one way out.',

@@ -4,6 +4,7 @@ import { damageRandomAlly } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'storm-plate',
   type: 'armor',
+  subtype: 'suit',
   name: 'Storm Plate',
   text: 'At the start of each phase: deal 2 lightning damage to a random enemy ally.',
   faction: 'neon',

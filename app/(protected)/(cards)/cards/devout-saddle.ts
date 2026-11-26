@@ -3,10 +3,11 @@ import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
 export default defineCard({
   id: 'devout-saddle',
   type: 'attachment',
+  subtype: 'mount',
   name: 'Devout Saddle',
   text: 'Attach to an ally of yours: it gains +1 attack and +3 health.',
-  faction: 'neutral',
-  restriction: { sides: ['dawn'] },
+  faction: 'primal',
+  restriction: { factions: ['primal'], sides: ['dawn'] },
   rarity: 'epic',
   price: 1000,
   cost: 2,

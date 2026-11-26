@@ -4,6 +4,7 @@ import { damage } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'flickering-bolt',
   type: 'ability',
+  subtype: 'spell',
   name: 'Flickering Bolt',
   text: 'Deal 4 arcane damage to an enemy slot. Fast.',
   flavor: 'It blinks out and in, then through.',

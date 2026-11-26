@@ -16,7 +16,7 @@ export default defineCampaign({
     { rival: 'ooma-bonewhisper', cpuSetup: { allies: ['dire-wolf-of-the-fang'] } },
     { rival: 'ada-copperwick', cpuSetup: { allies: ['timeless-fortune-teller'] } },
     { rival: 'queen-static', cpuSetup: { extraHealth: 5 } },
-    { rival: 'caelus-the-usurper', cpuSetup: { weapon: 'bloodied-glaive' }, playerSetup: { handSize: 6 } },
+    { rival: 'caelus-the-usurper', cpuSetup: { weapon: 'warpick-of-the-warlord' }, playerSetup: { handSize: 6 } },
     { rival: 'chancellor-brassmaw', cpuSetup: { allies: ['brass-steam-knight'] } }
   ]
 })

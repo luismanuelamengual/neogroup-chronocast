@@ -4,6 +4,7 @@ import { damage } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'astral-bolt',
   type: 'ability',
+  subtype: 'spell',
   name: 'Astral Bolt',
   text: 'Deal 6 arcane damage to an enemy slot. Fast.',
   flavor: 'A falling star, aimed.',

@@ -3,6 +3,7 @@ import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
 export default defineCard({
   id: 'riveted-blessing',
   type: 'attachment',
+  subtype: 'charm',
   name: 'Riveted Blessing',
   text: 'Attach to an ally of yours: it gains +1 attack and +3 health.',
   faction: 'clockwork',

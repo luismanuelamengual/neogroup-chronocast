@@ -4,6 +4,7 @@ import { damageRandomAlly } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'gorraks-recurve-bow',
   type: 'weapon',
+  subtype: 'bow',
   name: "Gorrak's Recurve Bow",
   text: 'When it is equipped: deal 4 earth damage to a random enemy ally.',
   faction: 'primal',

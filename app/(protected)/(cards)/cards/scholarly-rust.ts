@@ -4,10 +4,11 @@ import { wearArmor, wearWeapon } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'scholarly-rust',
   type: 'ability',
+  subtype: 'gadget',
   name: 'Scholarly Rust',
   text: 'The enemy weapon and armor lose 2 durability each. Fast.',
-  faction: 'neutral',
-  restriction: {},
+  faction: 'clockwork',
+  restriction: { factions: ['clockwork'] },
   rarity: 'epic',
   price: 1000,
   cost: 2,

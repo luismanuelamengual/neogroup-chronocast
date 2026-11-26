@@ -8,8 +8,9 @@ export interface SlotRef {
   slot: SlotIndex
   /**
    * A card attached to that place (its uid): the hero's weapon or armor, or a
-   * card attached to the ally. Only the target kinds that aim at an attached
-   * card set it (`enemyGear`, `enemyAttachment`).
+   * card attached to the ally; with the hero, also an artifact or a trap of
+   * that player. Only the target kinds that aim at an attached or support
+   * card set it (`enemyGear`, `enemyAttachment`, `enemyArtifact`, `friendlyArtifact`).
    */
   attached?: number
 }

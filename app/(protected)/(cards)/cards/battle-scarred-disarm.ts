@@ -4,10 +4,11 @@ import { wearArmor, wearWeapon } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'battle-scarred-disarm',
   type: 'ability',
+  subtype: 'gadget',
   name: 'Battle-Scarred Disarm',
   text: 'The enemy weapon and armor lose 2 durability each. Fast.',
-  faction: 'neutral',
-  restriction: { sides: ['eclipse'] },
+  faction: 'clockwork',
+  restriction: { factions: ['clockwork'], sides: ['eclipse'] },
   rarity: 'rare',
   price: 360,
   cost: 2,

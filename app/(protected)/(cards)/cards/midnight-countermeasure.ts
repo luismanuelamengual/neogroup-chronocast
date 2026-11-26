@@ -6,8 +6,8 @@ export default defineCard({
   type: 'trap',
   name: 'Midnight Countermeasure',
   text: 'When the enemy uses an ability: draw a card and deal 4 shadow damage to the enemy hero.',
-  faction: 'neon',
-  restriction: { factions: ['neon'], sides: ['eclipse'] },
+  faction: 'primal',
+  restriction: { factions: ['primal'], sides: ['eclipse'] },
   rarity: 'legendary',
   element: 'shadow',
   price: 2080,
@@ -21,6 +21,6 @@ export default defineCard({
   ai: { value: 4, tags: ['trap'] },
   art: {
     subject:
-      'Midnight Countermeasure: a hidden pressure plate wired with glowing filaments, wrapped in swirling black smoke, close-up filling the frame, saffron yellow accents, neon cyberpunk future style'
+      'Midnight Countermeasure: a hidden pressure plate wired with glowing filaments, wrapped in swirling black smoke, close-up filling the frame, saffron yellow accents, prehistoric jungle era style'
   }
 })

@@ -16,6 +16,11 @@ export interface EffectContext {
   targets: SlotRef[]
   /** The card chosen when it was programmed (an ability with `choice`). */
   choice?: string
+  /**
+   * The logic of a spell is running (an ability of subtype `spell`, or a hero's ability that is one): its
+   * damage adds the owner's spell power (docs/FACTIONS.md).
+   */
+  spell?: boolean
   /** Seeded random number in [0, 1): the same match always plays the same. */
   random(): number
 }

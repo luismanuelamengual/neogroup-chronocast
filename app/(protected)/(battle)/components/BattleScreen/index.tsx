@@ -47,7 +47,7 @@ import {
 import { PlannedAction } from '@/app/(protected)/(engine)/models/PlannedAction'
 import { PlayerId } from '@/app/(protected)/(engine)/models/PlayerId'
 import { SlotRef } from '@/app/(protected)/(engine)/models/SlotRef'
-import { aimsAtAttached, TargetKind } from '@/app/(protected)/(engine)/models/TargetKind'
+import { aimsAtAttached, SUPPORT_TARGETS, TargetKind } from '@/app/(protected)/(engine)/models/TargetKind'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
 import { useCardName } from '@/app/i18n/cards/useCardName'
 import { useT } from '@/app/i18n/I18nProvider'
@@ -459,6 +459,10 @@ export default function BattleScreen({
       notes.push(t('battle.statusNotes.veil', { amount: unit.veil.attack, until: until(unit.veil.untilPhase) }))
     }
 
+    if (unit.prey && unit.prey.untilPhase >= board.phase) {
+      notes.push(t('battle.statusNotes.prey', { until: until(unit.prey.untilPhase) }))
+    }
+
     if (definition.attack != null && unit.attack !== definition.attack) {
       notes.push(
         t('battle.statusNotes.attackChange', {
@@ -609,9 +613,20 @@ export default function BattleScreen({
     }
   }
 
-  /** The card a target that aims at an attached card points to, with what it is (for the choice). */
-  const attachedCard = (ref: SlotRef): { cardId: string; note: string } | null => {
+  /** The card a target that aims at an attached (or support) card points to, with what it is (for the choice). */
+  const attachedCard = (ref: SlotRef): { cardId: string | null; note: string } | null => {
     const side = board.players[ref.player]
+    const artifact = ref.slot === 'hero' ? (side.artifacts ?? []).find((card) => card.uid === ref.attached) : null
+    const trap = ref.slot === 'hero' ? side.traps.find((card) => card.uid === ref.attached) : null
+
+    if (artifact) {
+      return { cardId: artifact.cardId, note: t('battle.attached.artifact') }
+    }
+
+    if (trap) {
+      // The rival's traps stay face down.
+      return { cardId: ref.player === me ? trap.cardId : null, note: t('battle.attached.trap') }
+    }
 
     if (ref.slot === 'hero') {
       const { weapon, armor } = side.hero
@@ -657,7 +672,8 @@ export default function BattleScreen({
   }
 
   /** Why a target kind has nothing to aim at: no attached card, or no valid place. */
-  const noTarget = (kind: TargetKind) => (aimsAtAttached(kind) ? 'noAttached' : 'invalidTarget')
+  const noTarget = (kind: TargetKind) =>
+    SUPPORT_TARGETS.includes(kind) ? 'noSupport' : aimsAtAttached(kind) ? 'noAttached' : 'invalidTarget'
 
   /** A face-up support card: an artifact opens with its ability (when it has one); a trap is only looked at. */
   const onSupportClick = (player: PlayerId, card: CardInstance) => {
@@ -953,7 +969,7 @@ export default function BattleScreen({
     const kind = nextTargetKind(selection)
 
     if (kind && aimsAtAttached(kind)) {
-      aimHint = t('battle.hints.attached')
+      aimHint = SUPPORT_TARGETS.includes(kind) ? t('battle.hints.support') : t('battle.hints.attached')
     }
   }
 
@@ -1032,6 +1048,11 @@ export default function BattleScreen({
               )}
               {entry?.card.charges !== undefined && (
                 <span className="battle-screen__attached-badge">⏳{entry.card.charges}</span>
+              )}
+              {entry && (entry.card.disabledUntilPhase ?? 0) >= board.phase && (
+                <span className="battle-screen__status" title={t('battle.statusNotes.disabled')}>
+                  ⛔
+                </span>
               )}
             </button>
           )
@@ -1420,22 +1441,23 @@ function UnitCard({ unit, width, phase }: { unit: Unit; width: number; phase: nu
         {unit.health}
       </span>
       {(stunned || fresh) && !frozen && <span className="battle-screen__status">{stunned ? '💫' : '💤'}</span>}
-      <StatusBadges subject={unit} phase={phase} />
+      <StatusBadges subject={unit} phase={phase} prey={!!unit.prey && unit.prey.untilPhase >= phase} />
     </MiniCard>
   )
 }
 
 /** Poison, burn and freeze on a hero or an ally, as small badges over its card. */
-function StatusBadges({ subject, phase }: { subject: Afflictions; phase: number }) {
+function StatusBadges({ subject, phase, prey = false }: { subject: Afflictions; phase: number; prey?: boolean }) {
   const frozen = (subject.frozenUntilPhase ?? 0) >= phase
   const burning = !!subject.burn && !!subject.burnPhases
 
-  if (!subject.poison && !burning && !frozen) {
+  if (!subject.poison && !burning && !frozen && !prey) {
     return null
   }
 
   return (
     <span className="battle-screen__afflictions">
+      {prey && <span className="prey">🎯</span>}
       {!!subject.poison && <span className="poison">☠️{subject.poison}</span>}
       {burning && <span className="burn">🔥{subject.burn}</span>}
       {frozen && <span className="freeze">❄️</span>}

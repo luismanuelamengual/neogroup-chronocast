@@ -4,10 +4,11 @@ import { damageAlly } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'volatile-mark',
   type: 'attachment',
+  subtype: 'curse',
   name: 'Volatile Mark',
   text: 'Attach to an enemy ally: each time it attacks, it takes 2 ice damage.',
-  faction: 'neutral',
-  restriction: { sides: ['eclipse'] },
+  faction: 'void',
+  restriction: { factions: ['void'], sides: ['eclipse'] },
   rarity: 'uncommon',
   element: 'ice',
   price: 120,

@@ -3,6 +3,7 @@ import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
 export default defineCard({
   id: 'hungry-blessing',
   type: 'attachment',
+  subtype: 'charm',
   name: 'Hungry Blessing',
   text: 'Attach to an ally of yours: it gains +1 attack and +3 health.',
   faction: 'primal',

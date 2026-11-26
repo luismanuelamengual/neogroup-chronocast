@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damage, veilAllies } from '@/app/(protected)/(engine)/effects'
+import { isEnhanced, veilAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'vex-nightwire',
   type: 'hero',
   name: 'Vex Nightwire',
-  text: 'Ghost Protocol (4): your allies gain stealth and +2 attack until the end of the next phase. At the end of each phase, deal 1 shadow damage to the enemy hero.',
+  text: 'Ghost Protocol (4): your allies gain stealth and +2 attack until the end of the next phase. Your Enhanced allies (with an implant) are Quick.',
   flavor: 'She hunts targets nobody else can find.',
   faction: 'neon',
   side: 'dawn',
@@ -23,8 +23,8 @@ export default defineCard({
       veilAllies(ctx, ctx.owner, 2)
     }
   },
-  onPhaseEnd(ctx) {
-    damage(ctx, { player: ctx.opponent, slot: 'hero' }, 1)
+  auraKeywords(ctx, unit) {
+    return isEnhanced(unit) ? ['quick'] : []
   },
   ai: { value: 0 },
   art: {

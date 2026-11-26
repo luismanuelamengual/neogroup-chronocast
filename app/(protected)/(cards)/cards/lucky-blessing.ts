@@ -4,11 +4,12 @@ import { healHero } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'lucky-blessing',
   type: 'ability',
+  subtype: 'instinct',
   name: 'Lucky Blessing',
   text: 'Your hero heals 12.',
   flavor: 'Luck is a skill, if you ask the lucky.',
-  faction: 'neutral',
-  restriction: {},
+  faction: 'primal',
+  restriction: { factions: ['primal'] },
   rarity: 'common',
   price: 55,
   cost: 3,
@@ -18,6 +19,6 @@ export default defineCard({
   ai: { value: 3, tags: ['heal'] },
   art: {
     subject:
-      'Lucky Blessing: a halo of soft light over an empty altar, over a desert of red dunes, centered and seen from slightly below, cobalt blue accents, time rift wanderer style'
+      'Lucky Blessing: a halo of soft light over an empty altar, over a desert of red dunes, centered and seen from slightly below, cobalt blue accents, prehistoric jungle era style'
   }
 })

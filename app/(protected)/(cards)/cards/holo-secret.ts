@@ -4,6 +4,7 @@ import { draw } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'holo-secret',
   type: 'ability',
+  subtype: 'program',
   name: 'Holo Secret',
   text: 'Draw 2 cards.',
   flavor: 'Encrypted twice, whispered once.',

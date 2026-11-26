@@ -7,6 +7,8 @@ import { ELEMENT_ICONS, SIDE_ICONS } from '@/app/(protected)/(battle)/utils/icon
 import { useCardArt } from '@/app/(protected)/(cards)/stores/cardArt'
 import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition'
 import { Element } from '@/app/(protected)/(engine)/models/Element'
+import { Keyword } from '@/app/(protected)/(engine)/models/Keyword'
+import { isQuickWeapon, isRangedWeapon } from '@/app/(protected)/(engine)/models/Subtype'
 import { cardSide } from '@/app/(protected)/(engine)/utils/deckRules'
 import { translateCard } from '@/app/i18n/cards'
 import { useI18n } from '@/app/i18n/I18nProvider'
@@ -25,7 +27,10 @@ const TYPE_GLYPHS: Record<CardDefinition['type'], string> = {
   artifact: '🏺'
 }
 
-/** "☀️ Ally - Bronze": the side's icon and the type, then the faction, each one unless it is neutral. */
+/**
+ * "☀️ Weapon · Bow - Primal": the side's icon and the type (with its subtype, when it has one), then the
+ * faction, each one unless it is neutral. One line of fixed height: a long one ends in an ellipsis.
+ */
 function typeLine(card: CardDefinition, t: Translator): ReactNode {
   const side = cardSide(card)
   const faction = card.faction !== 'neutral' ? ` - ${t(`game.factions.${card.faction}`)}` : ''
@@ -53,6 +58,7 @@ function typeLine(card: CardDefinition, t: Translator): ReactNode {
         </svg>
       )}
       {t(`game.types.${card.type}`)}
+      {card.subtype && ` · ${t(`game.subtypes.${card.subtype}`)}`}
       {faction}
     </>
   )
@@ -68,7 +74,12 @@ function keywordsLine(card: CardDefinition, t: Translator): string {
   // Abilities and the rest say it in their text; allies and weapons attack with it.
   const attacks = card.type === 'ally' || card.type === 'weapon'
   const element = card.element && attacks ? [`${elementList([card.element], t)}.`] : []
-  const keywords = (card.keywords ?? []).map(
+  // A bow and its kin attack at range, an energy weapon quick: shown like their keywords.
+  const implied: Keyword[] = [
+    ...(isRangedWeapon(card) ? (['ranged'] as const) : []),
+    ...(isQuickWeapon(card) ? (['quick'] as const) : [])
+  ]
+  const keywords = [...new Set([...implied, ...(card.keywords ?? [])])].map(
     (keyword) => `${t(`game.keywords.${keyword}`)}${keyword === 'thorns' ? ` ${card.thorns}` : ''}.`
   )
   const resist = card.resist?.length ? [`${t('game.resists', { elements: elementList(card.resist, t) })}.`] : []

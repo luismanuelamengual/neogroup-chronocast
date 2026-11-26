@@ -4,6 +4,7 @@ import { healHero } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'amber-eyed-blessing',
   type: 'ability',
+  subtype: 'instinct',
   name: 'Amber-Eyed Blessing',
   text: 'Your hero heals 15.',
   flavor: 'The old spirits watch through amber eyes.',

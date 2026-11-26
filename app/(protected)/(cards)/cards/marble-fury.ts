@@ -4,6 +4,7 @@ import { buffThisPhaseAt } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'marble-fury',
   type: 'ability',
+  subtype: 'tactic',
   name: 'Marble Fury',
   text: 'An ally of yours gains +6 attack this phase. Instant.',
   flavor: 'Cold as marble, hard as an emperor.',

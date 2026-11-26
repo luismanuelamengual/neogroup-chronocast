@@ -4,6 +4,7 @@ import { healHero } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'gideons-hammer',
   type: 'weapon',
+  subtype: 'tool',
   name: "Gideon's Hammer",
   text: 'When it is equipped: your hero heals 5.',
   flavor: 'Steam-powered and opinionated.',

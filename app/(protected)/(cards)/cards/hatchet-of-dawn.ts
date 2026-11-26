@@ -3,6 +3,7 @@ import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
 export default defineCard({
   id: 'hatchet-of-dawn',
   type: 'weapon',
+  subtype: 'axe',
   name: 'Hatchet of Dawn',
   text: '',
   flavor: 'It chops through the last shadows of night.',

@@ -4,6 +4,7 @@ import { returnAt } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'snare-of-embers',
   type: 'ability',
+  subtype: 'spell',
   name: 'Snare of Embers',
   text: "Return an enemy ally to its owner's hand. Fast.",
   flavor: 'Hot coals hide under the leaves.',

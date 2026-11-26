@@ -3,6 +3,7 @@ import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
 export default defineCard({
   id: 'leech-of-lost-time',
   type: 'attachment',
+  subtype: 'curse',
   name: 'Leech of Lost Time',
   text: "Attach to an enemy ally: it can't use its ability and has -1 attack.",
   faction: 'neutral',

@@ -4,6 +4,7 @@ import { buffThisPhaseAt } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'rally-of-the-volcano',
   type: 'ability',
+  subtype: 'instinct',
   name: 'Rally of the Volcano',
   text: 'An ally of yours gains +4 attack this phase. Instant.',
   flavor: 'The mountain roars and the tribe answers.',

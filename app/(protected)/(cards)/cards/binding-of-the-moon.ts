@@ -4,6 +4,7 @@ import { stunAt } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'binding-of-the-moon',
   type: 'ability',
+  subtype: 'spell',
   name: 'Binding of the Moon',
   text: 'Stun an enemy ally. Fast.',
   flavor: 'Moonlight is softer than chains, and stronger.',

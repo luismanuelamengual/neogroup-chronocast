@@ -4,10 +4,11 @@ import { damageEnemyHero, freeze } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'hex-of-the-hunt',
   type: 'ability',
+  subtype: 'spell',
   name: 'Hex of the Hunt',
   text: 'Freeze an enemy ally and deal 3 arcane damage to the enemy hero.',
-  faction: 'neutral',
-  restriction: { sides: ['eclipse'] },
+  faction: 'arcane',
+  restriction: { factions: ['arcane'], sides: ['eclipse'] },
   rarity: 'uncommon',
   element: 'arcane',
   price: 160,

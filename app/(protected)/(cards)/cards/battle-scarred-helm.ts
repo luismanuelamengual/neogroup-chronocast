@@ -3,6 +3,7 @@ import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
 export default defineCard({
   id: 'battle-scarred-helm',
   type: 'armor',
+  subtype: 'helm',
   name: 'Battle-Scarred Helm',
   text: '',
   flavor: 'Every dent is a story it survived.',

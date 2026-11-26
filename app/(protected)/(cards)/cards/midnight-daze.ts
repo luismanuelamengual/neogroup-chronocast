@@ -4,6 +4,7 @@ import { stunAt } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'midnight-daze',
   type: 'ability',
+  subtype: 'program',
   name: 'Midnight Daze',
   text: 'Stun an enemy ally. Fast.',
   flavor: 'Too many lights, too little time.',

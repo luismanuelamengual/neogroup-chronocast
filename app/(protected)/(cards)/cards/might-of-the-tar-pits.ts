@@ -4,6 +4,7 @@ import { buffAt } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'might-of-the-tar-pits',
   type: 'ability',
+  subtype: 'instinct',
   name: 'Might of the Tar Pits',
   text: 'An ally of yours gains +3 attack and +4 health.',
   flavor: 'Strength from the deep black earth.',

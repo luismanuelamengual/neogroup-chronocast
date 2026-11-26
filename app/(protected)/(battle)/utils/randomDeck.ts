@@ -4,6 +4,7 @@ import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition
 import { CardType } from '@/app/(protected)/(engine)/models/CardType'
 import { DeckList } from '@/app/(protected)/(engine)/models/DeckList'
 import { Rarity } from '@/app/(protected)/(engine)/models/Rarity'
+import { SUBTYPE_FACTION } from '@/app/(protected)/(engine)/models/Subtype'
 import { canUseCard } from '@/app/(protected)/(engine)/utils/deckRules'
 import { nextRandom } from '@/app/(protected)/(engine)/utils/random'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
@@ -56,6 +57,18 @@ function affinityWeight(hero: CardDefinition, card: CardDefinition): number {
   const weight = Math.max(...weights)
 
   return weight > 0 ? weight : hero.faction === card.faction ? 1.5 : 1
+}
+
+/**
+ * The subtypes the hero's faction favors come up more (its bows, its spells...: docs/FACTIONS.md), and the basic
+ * neutral cards of another faction's subtype a bit less, so each faction's deck has its own shape.
+ */
+function subtypeWeight(hero: CardDefinition, card: CardDefinition): number {
+  if (!card.subtype) {
+    return 1
+  }
+
+  return SUBTYPE_FACTION[card.subtype] === hero.faction ? 1.6 : 0.7
 }
 
 /** Whether a player of this level has opened the card's rarity in the shop (RARITY_LEVELS). */
@@ -153,7 +166,7 @@ export function randomDeck(heroId: string, seed: number, level: number = Infinit
           // More copies of a card already in the deck add little variety: new cards first.
           const fresh = counts.has(card.id) ? 0.4 : 1
 
-          return RARITY_WEIGHT[card.rarity] * affinityWeight(hero, card) * fit * fresh
+          return RARITY_WEIGHT[card.rarity] * affinityWeight(hero, card) * subtypeWeight(hero, card) * fit * fresh
         },
         random
       )

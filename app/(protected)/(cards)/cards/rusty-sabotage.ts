@@ -4,6 +4,7 @@ import { wearArmor } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'rusty-sabotage',
   type: 'ability',
+  subtype: 'gadget',
   name: 'Rusty Sabotage',
   text: 'The enemy armor loses 3 durability. Fast.',
   flavor: 'A little water in the gears goes a long way.',

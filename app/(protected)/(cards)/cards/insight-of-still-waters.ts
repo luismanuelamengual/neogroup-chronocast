@@ -4,6 +4,7 @@ import { draw } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'insight-of-still-waters',
   type: 'ability',
+  subtype: 'program',
   name: 'Insight of Still Waters',
   text: 'Draw a card.',
   flavor: 'Calm water shows the clearest future.',

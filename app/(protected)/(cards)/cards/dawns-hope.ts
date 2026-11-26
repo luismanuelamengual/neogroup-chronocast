@@ -7,6 +7,7 @@ const MAX_DRAW = 3
 export default defineCard({
   id: 'dawns-hope',
   type: 'ability',
+  subtype: 'program',
   name: "Dawn's Hope",
   text: 'Draw cards until you have as many as the enemy (up to 3). If you draw none, your hero heals 6.',
   flavor: 'The darkest hour is the one right before the light.',

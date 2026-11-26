@@ -4,6 +4,7 @@ import { gainChronos } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'riveted-tick',
   type: 'ability',
+  subtype: 'gadget',
   name: 'Riveted Tick',
   text: 'You gain 4 Chronos this phase. Instant.',
   flavor: 'Every rivet, a second saved.',

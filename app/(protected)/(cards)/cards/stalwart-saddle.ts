@@ -3,10 +3,11 @@ import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
 export default defineCard({
   id: 'stalwart-saddle',
   type: 'attachment',
+  subtype: 'mount',
   name: 'Stalwart Saddle',
   text: 'Attach to an ally of yours: it gains +2 attack and +5 health.',
-  faction: 'neutral',
-  restriction: { sides: ['dawn'] },
+  faction: 'primal',
+  restriction: { factions: ['primal'], sides: ['dawn'] },
   rarity: 'uncommon',
   price: 180,
   cost: 4,

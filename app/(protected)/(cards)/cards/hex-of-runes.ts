@@ -4,6 +4,7 @@ import { draw, returnAt } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'hex-of-runes',
   type: 'ability',
+  subtype: 'spell',
   name: 'Hex of Runes',
   text: "Return an enemy ally to its owner's hand and draw a card. Fast.",
   faction: 'arcane',

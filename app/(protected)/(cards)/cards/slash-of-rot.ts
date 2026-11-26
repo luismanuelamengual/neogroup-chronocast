@@ -4,6 +4,7 @@ import { damage } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'slash-of-rot',
   type: 'ability',
+  subtype: 'ritual',
   name: 'Slash of Rot',
   text: 'Deal 15 shadow damage to an enemy ally.',
   flavor: 'Even the wound decays.',

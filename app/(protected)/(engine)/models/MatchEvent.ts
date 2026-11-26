@@ -35,12 +35,16 @@ export type FailReason =
   | 'noChoice'
   /** There is nothing in play for it to destroy. */
   | 'nothingToDestroy'
+  /** Its cost asks to banish more cards than the discard pile has (Consume X). */
+  | 'notEnoughDiscard'
+  /** An enemy hack switched off this artifact for now. */
+  | 'disabled'
 
 /** A card of the hero or of the support slots that can be broken. */
 export type GearKind = 'weapon' | 'armor' | 'artifact' | 'trap' | 'attachment'
 
 /** A lasting status effect. */
-export type StatusKind = 'poison' | 'burn' | 'freeze'
+export type StatusKind = 'poison' | 'burn' | 'freeze' | 'prey'
 
 /**
  * What happened while a phase started or resolved, in order: the battle screen
@@ -66,6 +70,12 @@ export type MatchEvent =
   | { type: 'location'; player: PlayerId; cardId: string }
   | { type: 'trapSet'; player: PlayerId }
   | { type: 'trapTriggered'; player: PlayerId; cardId: string }
+  /** An artifact or a face-down trap of `player` switched off until the end of `untilPhase`. */
+  | { type: 'disabled'; player: PlayerId; cardId: string; untilPhase: number }
+  /** Cards of `player`'s discard pile banished to pay a Consume cost. */
+  | { type: 'consume'; player: PlayerId; count: number }
+  /** Artifacts of `player` that gained uses. */
+  | { type: 'recharge'; player: PlayerId; cardId: string; amount: number }
   | { type: 'attack'; attacker: SlotRef; target: SlotRef }
   | { type: 'miss'; attacker: SlotRef; target: SlotRef }
   | { type: 'damage'; target: SlotRef; amount: number; absorbed: number; status?: StatusKind; element?: Element }

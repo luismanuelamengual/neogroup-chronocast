@@ -4,6 +4,7 @@ import { healHero } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'varros-glaive',
   type: 'weapon',
+  subtype: 'spear',
   name: "Varro's Glaive",
   text: 'When it is equipped: your hero heals 5.',
   flavor: "The legate's word, made steel.",

@@ -3,10 +3,11 @@ import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
 export default defineCard({
   id: 'charm-of-the-vanguard',
   type: 'attachment',
+  subtype: 'charm',
   name: 'Charm of the Vanguard',
   text: 'Attach to an ally of yours: it gains +1 attack and +4 health.',
-  faction: 'neutral',
-  restriction: { sides: ['dawn'] },
+  faction: 'bronze',
+  restriction: { factions: ['bronze'], sides: ['dawn'] },
   rarity: 'common',
   price: 55,
   cost: 3,

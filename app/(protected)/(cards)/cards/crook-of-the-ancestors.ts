@@ -4,10 +4,11 @@ import { damageRandomAlly } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'crook-of-the-ancestors',
   type: 'weapon',
+  subtype: 'staff',
   name: 'Crook of the Ancestors',
   text: 'When it is equipped: deal 4 light damage to a random enemy ally.',
-  faction: 'neutral',
-  restriction: { sides: ['dawn'] },
+  faction: 'arcane',
+  restriction: { factions: ['arcane'], sides: ['dawn'] },
   rarity: 'rare',
   element: 'light',
   price: 420,

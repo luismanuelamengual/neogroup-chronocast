@@ -6,8 +6,8 @@ export default defineCard({
   type: 'trap',
   name: 'Decoy of the Undercity',
   text: 'When the enemy uses an ability: draw a card and deal 5 lightning damage to the enemy hero.',
-  faction: 'neon',
-  restriction: { factions: ['neon'], sides: ['dawn'] },
+  faction: 'primal',
+  restriction: { factions: ['primal'], sides: ['dawn'] },
   rarity: 'rare',
   element: 'lightning',
   price: 420,
@@ -21,6 +21,6 @@ export default defineCard({
   ai: { value: 4, tags: ['trap'] },
   art: {
     subject:
-      'Decoy of the Undercity: a straw decoy dummy standing in a misty clearing, crackling with forked lightning, bursting toward the viewer, crimson accents, neon cyberpunk future style'
+      'Decoy of the Undercity: a straw decoy dummy standing in a misty clearing, crackling with forked lightning, bursting toward the viewer, crimson accents, prehistoric jungle era style'
   }
 })

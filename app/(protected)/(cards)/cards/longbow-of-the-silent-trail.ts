@@ -3,6 +3,7 @@ import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
 export default defineCard({
   id: 'longbow-of-the-silent-trail',
   type: 'weapon',
+  subtype: 'bow',
   name: 'Longbow of the Silent Trail',
   text: '',
   flavor: 'The arrow arrives before the sound.',

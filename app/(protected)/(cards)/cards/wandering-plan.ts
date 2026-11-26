@@ -4,6 +4,7 @@ import { draw } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'wandering-plan',
   type: 'ability',
+  subtype: 'program',
   name: 'Wandering Plan',
   text: 'Draw 2 cards.',
   flavor: 'The plan changes every era.',

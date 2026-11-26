@@ -45,6 +45,8 @@ export function refsFor(state: MatchState, player: PlayerId, kind: TargetKind): 
       return SLOTS.map((slot) => ({ player, slot }))
     case 'enemyGear':
     case 'enemyAttachment':
+    case 'enemyArtifact':
+    case 'friendlyArtifact':
       return attachedOptions(state, player, kind).map((option) => option.ref)
   }
 }

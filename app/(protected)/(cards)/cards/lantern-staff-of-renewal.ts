@@ -3,6 +3,7 @@ import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
 export default defineCard({
   id: 'lantern-staff-of-renewal',
   type: 'weapon',
+  subtype: 'staff',
   name: 'Lantern Staff of Renewal',
   text: '',
   flavor: 'Its light remembers how things used to be.',

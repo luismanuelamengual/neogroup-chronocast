@@ -4,6 +4,7 @@ import { buffThisPhaseAt } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'might-of-iron',
   type: 'ability',
+  subtype: 'tactic',
   name: 'Might of Iron',
   text: 'An ally of yours gains +8 attack this phase. Instant.',
   flavor: 'Strength forged, not born.',

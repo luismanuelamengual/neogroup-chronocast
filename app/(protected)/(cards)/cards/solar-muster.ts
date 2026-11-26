@@ -4,6 +4,7 @@ import { summonCard } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'solar-muster',
   type: 'ability',
+  subtype: 'tactic',
   name: 'Solar Muster',
   text: 'Summon 2 Hoplite Conscripts.',
   flavor: 'They rise with the sun and fight until it sets.',

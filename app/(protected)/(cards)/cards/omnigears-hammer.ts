@@ -4,6 +4,7 @@ import { healHero } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'omnigears-hammer',
   type: 'weapon',
+  subtype: 'tool',
   name: "Omnigear's Hammer",
   text: 'When it is equipped: your hero heals 5.',
   flavor: 'Calibrated to the nanometer, swung with fury.',

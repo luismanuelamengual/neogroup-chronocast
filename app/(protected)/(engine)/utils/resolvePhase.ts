@@ -2,9 +2,10 @@ import {
   ACTIONS_PER_PHASE,
   ALLY_SLOTS,
   MAX_SACRIFICES_PER_PHASE,
-  PHASE_LIMIT
+  PHASE_LIMIT,
+  PREY_DAMAGE
 } from '@/app/(protected)/(engine)/data/rules'
-import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition'
+import { ActiveAbility, CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition'
 import { Element } from '@/app/(protected)/(engine)/models/Element'
 import { FailReason, MatchEvent } from '@/app/(protected)/(engine)/models/MatchEvent'
 import { CardInstance, MatchState, Unit } from '@/app/(protected)/(engine)/models/MatchState'
@@ -12,6 +13,7 @@ import { PlannedAction, Timeline, WAIT } from '@/app/(protected)/(engine)/models
 import { opponentOf, PLAYER_IDS, PlayerId } from '@/app/(protected)/(engine)/models/PlayerId'
 import { SlotRef } from '@/app/(protected)/(engine)/models/SlotRef'
 import { Speed, SPEEDS } from '@/app/(protected)/(engine)/models/Speed'
+import { isQuickWeapon, isRangedWeapon } from '@/app/(protected)/(engine)/models/Subtype'
 import { TargetKind } from '@/app/(protected)/(engine)/models/TargetKind'
 import { cardCost } from '@/app/(protected)/(engine)/utils/boons'
 import { MatchEngine } from '@/app/(protected)/(engine)/utils/engine'
@@ -163,8 +165,9 @@ export function actionSpeed(engine: MatchEngine, player: PlayerId, action: Plann
 
     case 'heroAttack': {
       const weapon = engine.player(player).hero.weapon
+      const definition = weapon && getCard(weapon.card.cardId)
 
-      return (weapon && getCard(weapon.card.cardId).speed) || 'normal'
+      return definition?.speed || (definition && isQuickWeapon(definition) ? 'fast' : 'normal')
     }
 
     case 'heroAbility':
@@ -234,6 +237,12 @@ function validTargets(engine: MatchEngine, player: PlayerId, kinds: TargetKind[]
         return enemy && target.slot === 'hero' && !!engine.attachedAt(target)
       case 'enemyAttachment':
         return enemy && !hidden && !!engine.attachedAt(target)
+      case 'enemyArtifact':
+        return enemy && target.slot === 'hero' && !!engine.supportCard(target.player, target.attached)
+      case 'friendlyArtifact':
+        return (
+          !enemy && target.slot === 'hero' && engine.supportCard(target.player, target.attached)?.kind === 'artifact'
+        )
     }
   })
 }
@@ -285,7 +294,25 @@ function sacrifice(engine: MatchEngine, player: PlayerId, uid: number): FailReas
   return null
 }
 
+/** Plays a card of the hand (or the discard pile, with `resurge`); then the cards in play of its side react to it. */
 function play(
+  engine: MatchEngine,
+  player: PlayerId,
+  uid: number,
+  slot: number | undefined,
+  targets: SlotRef[]
+): FailReason | null {
+  const card = findPlayable(engine, player, uid)
+  const reason = playCard(engine, player, uid, slot, targets)
+
+  if (!reason && card) {
+    engine.ownerPlayed(player, card)
+  }
+
+  return reason
+}
+
+function playCard(
   engine: MatchEngine,
   player: PlayerId,
   uid: number,
@@ -306,10 +333,16 @@ function play(
     return 'notEnoughChronos'
   }
 
+  // Consume X: the discard pile must have them (the card itself is not there yet).
+  if ((definition.consume ?? 0) > side.discard.filter((candidate) => candidate.uid !== uid).length) {
+    return 'notEnoughDiscard'
+  }
+
   const pay = () => {
     removeCard(engine, player, uid)
     side.chronos -= cost
     engine.emit({ type: 'play', player, cardId: definition.id })
+    engine.consume(player, definition.consume ?? 0)
   }
 
   switch (definition.type) {
@@ -339,7 +372,7 @@ function play(
         return 'cancelled'
       }
 
-      definition.onPlay?.(engine.context(player, card, targets))
+      definition.onPlay?.(engine.context(player, card, targets, undefined, { spell: definition.subtype === 'spell' }))
       side.discard.push(card)
 
       return null
@@ -481,10 +514,11 @@ function strike(engine: MatchEngine, striker: Striker, target: SlotRef): void {
     striker.unitUid == null
       ? engine.damageHero(striker.ref.player, amount, { player: enemy, element })
       : engine.damageUnit(striker.unitUid, amount, { player: enemy, element })
+  const bonus = engine.attackBonus(striker.ref, aimed)
 
   if (aimed.slot === 'hero') {
     engine.emit({ type: 'attack', attacker: striker.ref, target: aimed })
-    engine.damageHero(enemy, striker.amount, source)
+    engine.damageHero(enemy, striker.amount + bonus, source)
 
     return
   }
@@ -501,8 +535,13 @@ function strike(engine: MatchEngine, striker: Striker, target: SlotRef): void {
     return
   }
 
+  // A Prey takes more from the ranged attacks of the one who marked it, and from its hunting cards.
+  const prey = engine.isPreyOf(unit, striker.ref.player)
+    ? (striker.ranged ? PREY_DAMAGE : 0) + engine.preyBonus(striker.ref.player)
+    : 0
+
   engine.emit({ type: 'attack', attacker: striker.ref, target: aimed })
-  engine.damageUnit(unit.uid, striker.amount, source)
+  engine.damageUnit(unit.uid, striker.amount + bonus + prey, source)
 
   if (!striker.ranged && engine.hasKeyword(unit, 'retaliate')) {
     hitAttacker(engine.attackOf(unit), getCard(unit.cardId).element)
@@ -574,6 +613,7 @@ function allyAttack(engine: MatchEngine, player: PlayerId, uid: number, target: 
   }
 
   unit.keywords = unit.keywords.filter((keyword) => keyword !== 'stealth')
+  unit.hasAttacked = true
 
   for (const attachment of unit.attachments ?? []) {
     getCard(attachment.cardId).onHostAttack?.(engine.context(attachment.owner ?? player, attachment), unit)
@@ -591,7 +631,10 @@ function allyAttack(engine: MatchEngine, player: PlayerId, uid: number, target: 
       poison: engine.hasKeyword(unit, 'poison'),
       lifesteal: engine.hasKeyword(unit, 'lifesteal'),
       cleave: engine.hasKeyword(unit, 'cleave'),
-      element: getCard(unit.cardId).element
+      // An attachment can change the element of its ally's attacks.
+      element:
+        (unit.attachments ?? []).map((attachment) => getCard(attachment.cardId).attackElement).find(Boolean) ??
+        getCard(unit.cardId).element
     },
     target
   )
@@ -619,21 +662,23 @@ function heroAttack(engine: MatchEngine, player: PlayerId, target: SlotRef): Fai
   }
 
   const weapon = hero.weapon
-  const keywords = getCard(weapon.card.cardId).keywords ?? []
+  const definition = getCard(weapon.card.cardId)
+  const keywords = definition.keywords ?? []
 
   hero.attackedThisPhase = true
+  definition.onAttack?.(engine.context(player, weapon.card), target)
   strike(
     engine,
     {
       ref: { player, slot: 'hero' },
       amount: weapon.attack,
       unitUid: null,
-      ranged: keywords.includes('ranged'),
+      ranged: keywords.includes('ranged') || isRangedWeapon(definition),
       flying: keywords.includes('flying'),
       poison: keywords.includes('poison'),
       lifesteal: keywords.includes('lifesteal'),
       cleave: keywords.includes('cleave'),
-      element: getCard(weapon.card.cardId).element
+      element: definition.element
     },
     target
   )
@@ -673,14 +718,19 @@ function heroAbility(engine: MatchEngine, player: PlayerId, targets: SlotRef[], 
     return 'invalidTarget'
   }
 
-  const ctx = engine.context(player, side.hero, targets, choice)
-  const blocked = (ability.choice && choice == null ? 'noChoice' : null) ?? ability.canActivate?.(ctx) ?? null
+  const ctx = engine.context(player, side.hero, targets, choice, { spell: ability.spell })
+  const blocked =
+    (ability.choice && choice == null ? 'noChoice' : null) ??
+    consumeShort(engine, player, ability) ??
+    ability.canActivate?.(ctx) ??
+    null
 
   if (blocked) {
     return blocked
   }
 
   engine.gainEnergy(player, -ability.cost, false)
+  engine.consume(player, ability.consume ?? 0)
   side.hero.abilityUsedThisPhase = true
 
   if (engine.triggerTrap(opponentOf(player), 'enemyAbility')) {
@@ -737,12 +787,19 @@ function allyAbility(engine: MatchEngine, player: PlayerId, uid: number, targets
     return 'invalidTarget'
   }
 
+  const short = consumeShort(engine, player, ability)
+
+  if (short) {
+    return short
+  }
+
   if (energy) {
     engine.gainEnergy(player, -ability.cost, false)
   } else {
     side.chronos -= ability.cost
   }
 
+  engine.consume(player, ability.consume ?? 0)
   unit.abilityUsedThisPhase = true
 
   if (engine.triggerTrap(opponentOf(player), 'enemyAbility')) {
@@ -777,6 +834,10 @@ function artifactAbility(engine: MatchEngine, player: PlayerId, uid: number, tar
     return 'abilityUsed'
   }
 
+  if (engine.isDisabled(artifact)) {
+    return 'disabled'
+  }
+
   const energy = ability.resource === 'energy'
 
   if (energy ? (side.energy ?? 0) < ability.cost : side.chronos < ability.cost) {
@@ -788,7 +849,7 @@ function artifactAbility(engine: MatchEngine, player: PlayerId, uid: number, tar
   }
 
   const ctx = engine.context(player, artifact, targets)
-  const blocked = ability.canActivate?.(ctx) ?? null
+  const blocked = consumeShort(engine, player, ability) ?? ability.canActivate?.(ctx) ?? null
 
   if (blocked) {
     return blocked
@@ -800,6 +861,7 @@ function artifactAbility(engine: MatchEngine, player: PlayerId, uid: number, tar
     side.chronos -= ability.cost
   }
 
+  engine.consume(player, ability.consume ?? 0)
   artifact.abilityUsedThisPhase = true
 
   if (engine.triggerTrap(opponentOf(player), 'enemyAbility')) {
@@ -809,6 +871,11 @@ function artifactAbility(engine: MatchEngine, player: PlayerId, uid: number, tar
   ability.activate(ctx)
 
   return null
+}
+
+/** 'notEnoughDiscard' when an ability with Consume X finds fewer than X cards in the discard pile. */
+function consumeShort(engine: MatchEngine, player: PlayerId, ability: ActiveAbility): FailReason | null {
+  return (ability.consume ?? 0) > engine.player(player).discard.length ? 'notEnoughDiscard' : null
 }
 
 function move(engine: MatchEngine, player: PlayerId, uid: number, toSlot: number): FailReason | null {

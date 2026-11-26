@@ -4,10 +4,11 @@ import { draw, returnAt } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'snare-of-the-ambush',
   type: 'ability',
+  subtype: 'spell',
   name: 'Snare of the Ambush',
   text: "Return an enemy ally to its owner's hand and draw a card. Fast.",
-  faction: 'neutral',
-  restriction: { sides: ['eclipse'] },
+  faction: 'arcane',
+  restriction: { factions: ['arcane'], sides: ['eclipse'] },
   rarity: 'rare',
   price: 540,
   cost: 5,

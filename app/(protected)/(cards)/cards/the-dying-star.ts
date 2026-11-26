@@ -4,6 +4,7 @@ import { damage, slotsNextTo } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'the-dying-star',
   type: 'ability',
+  subtype: 'spell',
   name: 'The Dying Star',
   text: 'Deal 8 arcane damage to an enemy slot and 3 to the slots next to it.',
   flavor: 'One less.',

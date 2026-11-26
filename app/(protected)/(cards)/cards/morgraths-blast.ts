@@ -4,6 +4,7 @@ import { damage, draw } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'morgraths-blast',
   type: 'ability',
+  subtype: 'spell',
   name: "Morgrath's Blast",
   text: 'Deal 10 shadow damage to an enemy slot and draw a card.',
   faction: 'arcane',

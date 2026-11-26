@@ -4,6 +4,7 @@ import { buffThisPhaseAt } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'rally-of-the-labyrinth',
   type: 'ability',
+  subtype: 'tactic',
   name: 'Rally of the Labyrinth',
   text: 'An ally of yours gains +4 attack this phase. Instant.',
   flavor: 'Lost in the maze, found in the fight.',

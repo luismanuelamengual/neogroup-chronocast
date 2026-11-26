@@ -4,6 +4,7 @@ import { damage, draw } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'adas-strike',
   type: 'ability',
+  subtype: 'gadget',
   name: "Ada's Strike",
   text: 'Deal 10 damage to an enemy slot and draw a card.',
   flavor: 'Measured twice, struck once.',

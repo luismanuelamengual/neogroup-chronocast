@@ -4,11 +4,12 @@ import { buffThisPhaseAt } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'might-of-lost-time',
   type: 'ability',
+  subtype: 'tactic',
   name: 'Might of Lost Time',
   text: 'An ally of yours gains +12 attack this phase. Instant.',
   flavor: 'Power borrowed from forgotten heroes.',
-  faction: 'neutral',
-  restriction: {},
+  faction: 'bronze',
+  restriction: { factions: ['bronze'] },
   rarity: 'common',
   price: 70,
   cost: 5,
@@ -20,6 +21,6 @@ export default defineCard({
   ai: { value: 5, tags: ['buff'] },
   art: {
     subject:
-      'Might of Lost Time: a huge glowing fist-shaped aura of raw power, in a dark forest clearing, diagonal dynamic composition, emerald accents, time rift wanderer style'
+      'Might of Lost Time: a huge glowing fist-shaped aura of raw power, in a dark forest clearing, diagonal dynamic composition, emerald accents, ancient bronze-age empire style'
   }
 })

@@ -4,7 +4,8 @@ import { STARTER_HERO_IDS, starterDeck } from '@/app/(protected)/(cards)/data/st
 import { MatchState } from '@/app/(protected)/(engine)/models/MatchState'
 import { emptyTimeline, PlannedAction, Timeline } from '@/app/(protected)/(engine)/models/PlannedAction'
 import { createMatch } from '@/app/(protected)/(engine)/utils/createMatch'
-import { resolvePhase } from '@/app/(protected)/(engine)/utils/resolvePhase'
+import { MatchEngine } from '@/app/(protected)/(engine)/utils/engine'
+import { actionSpeed, resolvePhase } from '@/app/(protected)/(engine)/utils/resolvePhase'
 import { HIDDEN_CARD, redactState } from '@/app/(protected)/(pvp)/utils/redact'
 import { sanitizeTimeline } from '@/app/(protected)/(pvp)/utils/sanitizeTimeline'
 
@@ -56,24 +57,54 @@ function card(state: MatchState, cardId: string) {
 }
 
 describe("the heroes' abilities", () => {
-  it('Morgrath brings back the ally on top of the discard pile', () => {
-    const state = match('morgrath-lich-abbot')
+  it('Morgrath freezes the enemy allies with 4 health or less and deals them 4 shadow damage (a spell)', () => {
+    const state = match('morgrath-lich-abbot', { b: ['faithful-wanderer', 'hoplite-conscript'] })
 
-    state.players.a.discard = [card(state, 'spark-of-dusk'), card(state, 'faithful-wanderer')]
+    state.players.b.allies[0]!.health = 6
+    state.players.b.allies[1]!.health = 4
 
     const { state: next, fails } = run(state, plan(ability()))
 
     expect(fails).toEqual([])
-    expect(next.players.a.allies.filter(Boolean).map((unit) => unit!.cardId)).toEqual(['faithful-wanderer'])
-    expect(next.players.a.discard.map((entry) => entry.cardId)).toEqual(['spark-of-dusk'])
+    // The Wanderer (6 health) is spared; the Conscript (4) is frozen and dies (4 shadow).
+    expect(next.players.b.allies[0]!.frozenUntilPhase ?? 0).toBe(0)
+    expect(next.players.b.allies.filter(Boolean).map((unit) => unit!.cardId)).not.toContain('hoplite-conscript')
   })
 
-  it('Morgrath with no ally in the discard pile fails without spending energy', () => {
-    const state = match('morgrath-lich-abbot')
-    const { state: next, fails } = run(state, plan(ability()))
+  it("Morgrath's ability is a spell: it adds the spell power", () => {
+    const state = match('morgrath-lich-abbot', { a: ['tower-apprentice'], b: ['faithful-wanderer'] })
 
-    expect(fails).toEqual(['noChoice'])
-    expect(next.players.a.energy).toBe(10)
+    state.players.b.allies[0]!.health = 4
+    state.players.b.allies[0]!.maxHealth = 20
+
+    const { state: next } = run(state, plan(ability()))
+
+    // 4 + 1 of spell power kill it even if the start of the next phase spares it.
+    expect(next.players.b.allies[0]).toBeNull()
+  })
+
+  it('Kora marks the ally she hits as Prey, and gains 1 energy when a trap of hers goes off', () => {
+    const state = match('kora-wildfang', { b: ['faithful-wanderer'] })
+    const { state: next, fails } = run(state, plan({ kind: 'heroAbility', targets: [{ player: 'b', slot: 0 }] }))
+
+    expect(fails).toEqual([])
+    expect(next.players.b.allies[0]!.prey).toMatchObject({ by: 'a' })
+
+    const trapped = match('kora-wildfang')
+    const ally = card(trapped, 'faithful-wanderer')
+
+    trapped.players.a.energy = 5
+    trapped.players.a.traps.push(card(trapped, 'cursed-trap'))
+    trapped.players.b.hand.push(ally)
+
+    const summoned = resolvePhase(trapped, {
+      a: emptyTimeline(),
+      b: plan({ kind: 'play', cardUid: ally.uid, slot: 0 })
+    }).state
+
+    expect(summoned.players.a.traps).toEqual([])
+    // 5, +1 of the trap, +1 of the new phase.
+    expect(summoned.players.a.energy).toBe(7)
   })
 
   it('Kora deals 6 damage and draws a card', () => {
@@ -120,6 +151,16 @@ describe("the heroes' abilities", () => {
     expect(twice.state.players.a.energy).toBe(10)
   })
 
+  it('Caelus gives his allies +1 attack each phase only while he has a weapon', () => {
+    const bare = match('caelus-the-usurper', { a: ['faithful-wanderer'] })
+    const armed = match('caelus-the-usurper', { a: ['faithful-wanderer'] })
+
+    armed.players.a.hero.weapon = { card: card(armed, 'centurions-gladius'), attack: 3, durability: 3 }
+
+    expect(run(bare).state.players.a.allies[0]!.attack).toBe(4)
+    expect(run(armed).state.players.a.allies[0]!.attack).toBe(5)
+  })
+
   it("Caelus's Tribute takes 1 Chronos capacity from the rival and gives it to him", () => {
     const idle = run(match('caelus-the-usurper')).state
     const { state: next, fails } = run(match('caelus-the-usurper'), plan(ability()))
@@ -127,6 +168,89 @@ describe("the heroes' abilities", () => {
     expect(fails).toEqual([])
     expect(next.players.a.chronosCapacity).toBe(idle.players.a.chronosCapacity + 1)
     expect(next.players.b.chronosCapacity).toBe(idle.players.b.chronosCapacity - 1)
+  })
+
+  it('Nyx heals 3 when an enemy ally with a curse dies', () => {
+    const state = match('nyx-hollowsong', { b: ['faithful-wanderer'] })
+    const curse = card(state, 'iron-mark')
+
+    state.players.a.hero.health = 40
+    state.players.b.allies[0]!.attachments = [{ ...curse, owner: 'a' }]
+    state.players.b.allies[0]!.health = 1
+    state.players.a.hero.weapon = { card: card(state, 'centurions-gladius'), attack: 3, durability: 3 }
+
+    const { state: next } = run(state, plan({ kind: 'heroAttack', target: { player: 'b', slot: 0 } }))
+
+    expect(next.players.b.allies[0]).toBeNull()
+    expect(next.players.a.hero.health).toBe(43)
+  })
+
+  it('Ilyra has spell power +1: her spells deal 1 more damage', () => {
+    const state = match('ilyra-starweaver')
+    const bolt = card(state, 'astral-bolt')
+
+    state.players.a.hand.push(bolt)
+
+    const health = state.players.b.hero.health
+    const { state: next } = run(
+      state,
+      plan({ kind: 'play', cardUid: bolt.uid, targets: [{ player: 'b', slot: 'hero' }] })
+    )
+
+    expect(next.players.b.hero.health).toBe(health - 7)
+  })
+
+  it('Brassmaw heals 1 for each artifact of his at the end of the phase, up to 3', () => {
+    const state = match('chancellor-brassmaw')
+
+    state.players.a.hero.health = 40
+
+    for (let i = 0; i < 4; i++) {
+      state.players.a.artifacts.push(card(state, 'altar-of-lost-time'))
+    }
+
+    expect(run(state).state.players.a.hero.health).toBe(43)
+  })
+
+  it("Vex's Enhanced allies (with an implant) are quick", () => {
+    const state = match('vex-nightwire', { a: ['faithful-wanderer', 'spark-of-dusk'] })
+    const implant = card(state, 'neural-implant')
+
+    state.players.a.allies[1]!.attachments = [{ ...card(state, 'plating-of-mana'), owner: 'a' }]
+    state.players.a.hand.push(implant)
+
+    const engine = new MatchEngine(state)
+    const [plain, enhanced] = state.players.a.allies
+
+    expect(
+      actionSpeed(engine, 'a', { kind: 'allyAttack', allyUid: plain!.uid, target: { player: 'b', slot: 'hero' } })
+    ).toBe('normal')
+    expect(
+      actionSpeed(engine, 'a', { kind: 'allyAttack', allyUid: enhanced!.uid, target: { player: 'b', slot: 'hero' } })
+    ).toBe('fast')
+  })
+
+  it("Varro's Legionnaires deal 1 more damage while he has a weapon and an armor", () => {
+    const attackWith = (panoply: boolean) => {
+      const state = match('legate-varro', { a: ['hoplite-conscript'] })
+
+      if (panoply) {
+        state.players.a.hero.weapon = { card: card(state, 'centurions-gladius'), attack: 3, durability: 3 }
+        state.players.a.hero.armor = { card: card(state, 'legion-shield'), reduction: 2, durability: 4 }
+      }
+
+      const health = state.players.b.hero.health
+      const uid = state.players.a.allies[0]!.uid
+
+      return (
+        health -
+        run(state, plan({ kind: 'allyAttack', allyUid: uid, target: { player: 'b', slot: 'hero' } })).state.players.b
+          .hero.health
+      )
+    }
+
+    expect(attackWith(false)).toBe(1)
+    expect(attackWith(true)).toBe(2)
   })
 
   it('Nyx gives every enemy ally -2 attack', () => {

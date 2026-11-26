@@ -26,6 +26,12 @@ export const MAX_ENERGY = 10
 /** The cheapest a hero's ability can be, in energy: it can't be used every phase, so it hits hard (the more it costs, the stronger). */
 export const HERO_ABILITY_MIN_COST = 3
 
+/** Extra damage a Prey takes from the ranged attacks of the player who marked it (docs/FACTIONS.md). */
+export const PREY_DAMAGE = 3
+
+/** Phases a Prey stays marked after the current one. */
+export const PREY_PHASES = 1
+
 /** Default phases a burn lasts. */
 export const BURN_PHASES = 3
 

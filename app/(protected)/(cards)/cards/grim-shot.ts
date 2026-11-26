@@ -4,6 +4,7 @@ import { damage, tribeAllies } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'grim-shot',
   type: 'ability',
+  subtype: 'ritual',
   name: 'Grim Shot',
   text: 'Deal 2 shadow damage to an enemy slot, +2 for each Horror of yours.',
   faction: 'void',

@@ -3,6 +3,7 @@ import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
 export default defineCard({
   id: 'plate-of-steel',
   type: 'armor',
+  subtype: 'plate',
   name: 'Plate of Steel',
   text: '',
   flavor: 'Old steel, older promises.',

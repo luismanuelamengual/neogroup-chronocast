@@ -4,6 +4,7 @@ import { damage } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'frozen-bolt',
   type: 'ability',
+  subtype: 'spell',
   name: 'Frozen Bolt',
   text: 'Deal 11 ice damage to an enemy slot.',
   flavor: 'It stops the target, then the heart.',

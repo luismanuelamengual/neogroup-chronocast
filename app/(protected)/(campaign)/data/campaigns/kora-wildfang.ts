@@ -17,6 +17,6 @@ export default defineCampaign({
     { rival: 'caelus-the-usurper', cpuSetup: { allies: ['loyal-gorgon'] } },
     { rival: 'malachar-the-unmade', cpuSetup: { extraHealth: 5 } },
     { rival: 'morgrath-lich-abbot', cpuSetup: { weapon: 'focus-of-lightning' }, playerSetup: { handSize: 6 } },
-    { rival: 'ooma-bonewhisper', cpuSetup: { weapon: 'scepter-of-flame', extraHealth: 5 } }
+    { rival: 'ooma-bonewhisper', cpuSetup: { weapon: 'focus-of-lightning' } }
   ]
 })

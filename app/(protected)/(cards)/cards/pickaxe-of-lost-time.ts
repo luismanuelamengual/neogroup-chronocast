@@ -4,11 +4,12 @@ import { healHero } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'pickaxe-of-lost-time',
   type: 'weapon',
+  subtype: 'tool',
   name: 'Pickaxe of Lost Time',
   text: 'When it is equipped: your hero heals 6.',
   flavor: 'It mines the hours nobody uses.',
-  faction: 'neutral',
-  restriction: {},
+  faction: 'clockwork',
+  restriction: { factions: ['clockwork'] },
   rarity: 'mythic',
   element: 'time',
   price: 4240,
@@ -21,6 +22,6 @@ export default defineCard({
   ai: { value: 7 },
   art: {
     subject:
-      'Pickaxe of Lost Time: a single pickaxe made of rough stone and sinew, surrounded by floating clock hands and glowing sand, on a workbench with tools, bursting toward the viewer, scarlet accents, time rift wanderer style'
+      'Pickaxe of Lost Time: a single pickaxe made of rough stone and sinew, surrounded by floating clock hands and glowing sand, on a workbench with tools, bursting toward the viewer, scarlet accents, steampunk steam era style'
   }
 })

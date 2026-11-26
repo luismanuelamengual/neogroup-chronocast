@@ -4,6 +4,7 @@ import { draw, stunAt } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'binding-of-the-legion',
   type: 'ability',
+  subtype: 'tactic',
   name: 'Binding of the Legion',
   text: 'Stun an enemy ally for two phases and draw a card. Fast.',
   flavor: 'Shields close in. No way out.',

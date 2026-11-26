@@ -4,6 +4,7 @@ import { damage, draw } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'malachars-blast',
   type: 'ability',
+  subtype: 'ritual',
   name: "Malachar's Blast",
   text: 'Deal 10 shadow damage to an enemy slot and draw a card.',
   faction: 'void',

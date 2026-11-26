@@ -32,7 +32,9 @@ export default function CardDetail({ cardId, owned, onClose, children }: CardDet
         <div className="card-detail__info">
           <h2>{cardName(card)}</h2>
           <p>
-            {t(`game.types.${card.type}`)} · {t(`game.rarities.${card.rarity}`)} · {t(`game.factions.${card.faction}`)}
+            {t(`game.types.${card.type}`)}
+            {card.subtype && ` · ${t(`game.subtypes.${card.subtype}`)}`} · {t(`game.rarities.${card.rarity}`)} ·{' '}
+            {t(`game.factions.${card.faction}`)}
           </p>
           <p className={owned > 0 ? 'owned' : 'missing'}>
             {owned > 0 ? t('collection.owned', { count: owned }) : t('collection.notOwned')}

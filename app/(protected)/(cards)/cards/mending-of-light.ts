@@ -4,6 +4,7 @@ import { healHero } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'mending-of-light',
   type: 'ability',
+  subtype: 'instinct',
   name: 'Mending of Light',
   text: 'Your hero heals 9.',
   flavor: 'Light fills the cracks first.',

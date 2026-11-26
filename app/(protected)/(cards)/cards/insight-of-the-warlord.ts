@@ -4,10 +4,11 @@ import { seekTribe } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'insight-of-the-warlord',
   type: 'ability',
+  subtype: 'tactic',
   name: 'Insight of the Warlord',
   text: 'Draw the first Legionnaire of your deck and draw the first Legionnaire of your deck.',
-  faction: 'neutral',
-  restriction: { sides: ['eclipse'] },
+  faction: 'bronze',
+  restriction: { factions: ['bronze'], sides: ['eclipse'] },
   rarity: 'uncommon',
   price: 180,
   cost: 4,

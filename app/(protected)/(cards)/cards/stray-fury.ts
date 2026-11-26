@@ -4,11 +4,12 @@ import { buffAt } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'stray-fury',
   type: 'ability',
+  subtype: 'instinct',
   name: 'Stray Fury',
   text: 'An ally of yours gains +3 attack and +4 health. Instant.',
   flavor: 'A rage that wandered in from another era.',
-  faction: 'neutral',
-  restriction: {},
+  faction: 'primal',
+  restriction: { factions: ['primal'] },
   rarity: 'rare',
   price: 360,
   cost: 2,
@@ -20,6 +21,6 @@ export default defineCard({
   ai: { value: 3, tags: ['buff'] },
   art: {
     subject:
-      'Stray Fury: a roaring red storm of rage swirling around a cracked war axe, over burning grassland, diagonal dynamic composition, crimson accents, time rift wanderer style'
+      'Stray Fury: a roaring red storm of rage swirling around a cracked war axe, over burning grassland, diagonal dynamic composition, crimson accents, prehistoric jungle era style'
   }
 })

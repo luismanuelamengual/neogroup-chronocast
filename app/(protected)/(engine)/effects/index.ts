@@ -2,6 +2,7 @@ import { ALLY_SLOTS } from '@/app/(protected)/(engine)/data/rules'
 import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition'
 import { EffectContext } from '@/app/(protected)/(engine)/models/EffectContext'
 import { Element } from '@/app/(protected)/(engine)/models/Element'
+import { Keyword } from '@/app/(protected)/(engine)/models/Keyword'
 import { BoonKind, CardInstance, Unit } from '@/app/(protected)/(engine)/models/MatchState'
 import { PLAYER_IDS, PlayerId } from '@/app/(protected)/(engine)/models/PlayerId'
 import { SlotRef } from '@/app/(protected)/(engine)/models/SlotRef'
@@ -19,15 +20,55 @@ export function elementOf(ctx: EffectContext, element?: Element | null): Element
   return element === null ? undefined : (element ?? getCard(ctx.self.cardId).element)
 }
 
+/**
+ * The damage of a card's logic: a spell (docs/FACTIONS.md) adds its owner's
+ * spell power. Nothing to add to 0 damage (an effect that deals none).
+ */
+function spellDamage(ctx: EffectContext, amount: number): number {
+  return ctx.spell && amount > 0 ? amount + ctx.engine.spellPower(ctx.owner) : amount
+}
+
+/** An ice spell of an owner with `freezingSpells` in play also freezes what it damaged. */
+function spellFreeze(ctx: EffectContext, target: SlotRef, element: Element | undefined): void {
+  if (
+    ctx.spell &&
+    element === 'ice' &&
+    ctx.engine.inPlay(ctx.owner).some((card) => getCard(card.cardId).freezingSpells)
+  ) {
+    // Once the damage landed (frozen first, ice would deal it double), wherever the ally is then.
+    const unit = target.slot === 'hero' ? null : ctx.engine.targetUnit(target)
+
+    ctx.engine.afterDamage(() => {
+      const ref = unit ? slotOf(ctx, unit) : target
+
+      if (ref) {
+        ctx.engine.afflict(ref, 'freeze', 1)
+      }
+    })
+  }
+}
+
 /** Damage to a slot (an empty one does nothing), of the card's element unless another is given. */
 export function damage(ctx: EffectContext, target: SlotRef, amount: number, element?: Element | null): void {
-  ctx.engine.damage(target, amount, { player: ctx.owner, element: elementOf(ctx, element) })
+  const kind = elementOf(ctx, element)
+
+  if (ctx.engine.damage(target, spellDamage(ctx, amount), { player: ctx.owner, element: kind })) {
+    spellFreeze(ctx, target, kind)
+  }
 }
 
 /** Damage to every ally of a side. */
 export function damageAllAllies(ctx: EffectContext, player: PlayerId, amount: number, element?: Element | null): void {
+  const kind = elementOf(ctx, element)
+
   for (const unit of ctx.engine.allies(player)) {
-    ctx.engine.damageUnit(unit.uid, amount, { player: ctx.owner, element: elementOf(ctx, element) })
+    ctx.engine.damageUnit(unit.uid, spellDamage(ctx, amount), { player: ctx.owner, element: kind })
+
+    const ref = slotOf(ctx, unit)
+
+    if (ref) {
+      spellFreeze(ctx, ref, kind)
+    }
   }
 }
 
@@ -151,7 +192,14 @@ export function cardOf(unit: Unit): CardDefinition {
 
 /** Damage to an ally, wherever it is now. */
 export function damageAlly(ctx: EffectContext, unit: Unit, amount: number, element?: Element | null): void {
-  ctx.engine.damageUnit(unit.uid, amount, { player: ctx.owner, element: elementOf(ctx, element) })
+  const kind = elementOf(ctx, element)
+  const ref = slotOf(ctx, unit)
+
+  ctx.engine.damageUnit(unit.uid, spellDamage(ctx, amount), { player: ctx.owner, element: kind })
+
+  if (ref) {
+    spellFreeze(ctx, ref, kind)
+  }
 }
 
 /** Damage to a random ally of a side (none when it has no allies). */
@@ -735,4 +783,164 @@ export function mindControl(ctx: EffectContext, controlled: SlotRef, target: Slo
   ctx.engine.stun(unit.uid, 1)
 
   return true
+}
+
+// ─── The factions' mechanics (docs/FACTIONS.md) ──────────────────────────────
+
+/** Spell power of a side: what its spells add to their damage. */
+export function spellPowerOf(ctx: EffectContext, player: PlayerId): number {
+  return ctx.engine.spellPower(player)
+}
+
+/** Whether a card is a spell (an ability of subtype `spell`). */
+export function isSpell(card: CardDefinition): boolean {
+  return card.type === 'ability' && card.subtype === 'spell'
+}
+
+/** Marks the ally in a slot as Prey of the owner (until the end of the next phase). False when there is none. */
+export function markPrey(ctx: EffectContext, target: SlotRef | undefined): boolean {
+  const unit = target ? unitAt(ctx, target) : null
+
+  return !!unit && ctx.engine.markPrey(unit.uid, ctx.owner)
+}
+
+/** Marks an ally as Prey of the owner. */
+export function markPreyAlly(ctx: EffectContext, unit: Unit): boolean {
+  return ctx.engine.markPrey(unit.uid, ctx.owner)
+}
+
+/** Whether an ally is the owner's Prey now. */
+export function isPrey(ctx: EffectContext, unit: Unit): boolean {
+  return ctx.engine.isPreyOf(unit, ctx.owner)
+}
+
+/** Panoply: the hero of `player` has a weapon and an armor equipped. */
+export function hasPanoply(ctx: EffectContext, player: PlayerId = ctx.owner): boolean {
+  const hero = ctx.engine.player(player).hero
+
+  return !!hero.weapon && !!hero.armor
+}
+
+/** How many artifacts a side has in play. */
+export function artifactCount(ctx: EffectContext, player: PlayerId = ctx.owner): number {
+  return ctx.engine.player(player).artifacts.length
+}
+
+/**
+ * Recharge: artifacts of the owner that have uses gain `amount` more: one
+ * (its uid) or all of them. Returns how many gained.
+ */
+export function recharge(ctx: EffectContext, which: number | 'all', amount: number): number {
+  return ctx.engine.recharge(ctx.owner, which, amount)
+}
+
+/** A random artifact of the owner that has uses gains `amount` more. False when it has none. */
+export function rechargeRandom(ctx: EffectContext, amount: number): boolean {
+  const artifacts = ctx.engine.player(ctx.owner).artifacts.filter((card) => card.charges != null)
+
+  if (artifacts.length === 0) {
+    return false
+  }
+
+  return recharge(ctx, artifacts[Math.floor(ctx.random() * artifacts.length)].uid, amount) > 0
+}
+
+/** The subtypes of the cards attached to an ally. */
+function attachedSubtypes(unit: Unit): string[] {
+  return (unit.attachments ?? []).flatMap((card) => {
+    const subtype = getCard(card.cardId).subtype
+
+    return subtype ? [subtype] : []
+  })
+}
+
+/** Enhanced: the ally has at least one implant attached. */
+export function isEnhanced(unit: Unit): boolean {
+  return attachedSubtypes(unit).includes('implant')
+}
+
+/** Cursed: the ally has a curse attached. */
+export function isCursed(unit: Unit): boolean {
+  return attachedSubtypes(unit).includes('curse')
+}
+
+/** The enhanced allies of a side. */
+export function enhancedAllies(ctx: EffectContext, player: PlayerId): Unit[] {
+  return alliesOf(ctx, player).filter(isEnhanced)
+}
+
+/**
+ * The support card a target (`enemyArtifact`, `friendlyArtifact`) points to:
+ * an artifact or a face-down trap, with its card. Null when it is gone.
+ */
+export function supportAt(
+  ctx: EffectContext,
+  target: SlotRef | undefined
+): { kind: 'artifact' | 'trap'; card: CardInstance; definition: CardDefinition } | null {
+  const found = target ? ctx.engine.supportCard(target.player, target.attached) : null
+
+  return found ? { ...found, definition: getCard(found.card.cardId) } : null
+}
+
+/** Destroys the support card a target points to. False when it is gone. */
+export function destroySupportAt(ctx: EffectContext, target: SlotRef | undefined): boolean {
+  return !!target && target.attached != null && ctx.engine.destroySupport(target.player, target.attached)
+}
+
+/**
+ * Hack: switches off the support card a target points to (an artifact or a
+ * face-down trap) for the rest of this phase and `phases` more. False when it is gone.
+ */
+export function disableSupportAt(ctx: EffectContext, target: SlotRef | undefined, phases: number): boolean {
+  return !!target && target.attached != null && ctx.engine.disableSupport(target.player, target.attached, phases)
+}
+
+/** Consume X: banishes X cards of the owner's discard pile (allies last). False, and nothing banished, with fewer. */
+export function consume(ctx: EffectContext, count: number): boolean {
+  return ctx.engine.consume(ctx.owner, count)
+}
+
+/** Seeks the first card of a type of the deck (see `seek`). */
+export function seekType(ctx: EffectContext, player: PlayerId, type: CardDefinition['type']): boolean {
+  return seek(ctx, player, (card) => card.type === type)
+}
+
+/** Seeks the first card of a subtype of the deck (see `seek`). */
+export function seekSubtype(ctx: EffectContext, player: PlayerId, subtype: string): boolean {
+  return seek(ctx, player, (card) => card.subtype === subtype)
+}
+
+/** Takes a card of a subtype from the discard pile back to the hand (the last one to get there). False: none. */
+export function recoverSubtype(ctx: EffectContext, player: PlayerId, subtype: string): boolean {
+  const side = ctx.engine.player(player)
+
+  for (let index = side.discard.length - 1; index >= 0; index--) {
+    if (getCard(side.discard[index].cardId).subtype === subtype) {
+      const [card] = side.discard.splice(index, 1)
+
+      ctx.engine.addToHand(player, card)
+      ctx.engine.emit({ type: 'returnToHand', player, cardId: card.cardId })
+
+      return true
+    }
+  }
+
+  return false
+}
+
+/** The hero's armor and weapon gain durability (each one it has). */
+export function repairGear(ctx: EffectContext, player: PlayerId, amount: number): void {
+  repairWeapon(ctx, player, amount)
+  repairArmor(ctx, player, amount)
+}
+
+/** The ally whose logic runs gains a keyword for good (none if it already has it). */
+export function grantKeyword(ctx: EffectContext, unit: Unit, keyword: Keyword): void {
+  if (!unit.keywords.includes(keyword)) {
+    unit.keywords.push(keyword)
+  }
+
+  if (keyword === 'shield') {
+    unit.shield = true
+  }
 }

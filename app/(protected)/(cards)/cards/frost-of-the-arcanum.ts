@@ -4,6 +4,7 @@ import { freeze } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'frost-of-the-arcanum',
   type: 'ability',
+  subtype: 'spell',
   name: 'Frost of the Arcanum',
   text: 'Freeze an enemy ally.',
   flavor: 'Ice written in the language of magic.',

@@ -4,10 +4,11 @@ import { damageEnemyHero, freeze } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'frost-of-the-hawk',
   type: 'ability',
+  subtype: 'spell',
   name: 'Frost of the Hawk',
   text: 'Freeze an enemy ally and deal 3 ice damage to the enemy hero.',
-  faction: 'neutral',
-  restriction: {},
+  faction: 'arcane',
+  restriction: { factions: ['arcane'] },
   rarity: 'common',
   element: 'ice',
   price: 55,

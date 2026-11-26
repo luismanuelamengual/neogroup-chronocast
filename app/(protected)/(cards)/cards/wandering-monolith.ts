@@ -6,8 +6,8 @@ export default defineCard({
   type: 'artifact',
   name: 'Wandering Monolith',
   text: 'At the start of each phase: your hero heals 3. (3 uses)',
-  faction: 'neutral',
-  restriction: {},
+  faction: 'clockwork',
+  restriction: { factions: ['clockwork'] },
   rarity: 'uncommon',
   price: 140,
   cost: 2,
@@ -19,6 +19,6 @@ export default defineCard({
   ai: { value: 2, tags: ['defense'] },
   art: {
     subject:
-      'Wandering Monolith: an ancient monolith made of carved obsidian, standing in a ruined temple, close-up filling the frame, violet accents, time rift wanderer style'
+      'Wandering Monolith: an ancient monolith made of carved obsidian, standing in a ruined temple, close-up filling the frame, violet accents, steampunk steam era style'
   }
 })

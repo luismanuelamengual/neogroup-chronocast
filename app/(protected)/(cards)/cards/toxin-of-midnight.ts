@@ -4,6 +4,7 @@ import { poison } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'toxin-of-midnight',
   type: 'ability',
+  subtype: 'program',
   name: 'Toxin of Midnight',
   text: 'Poison an enemy ally (3).',
   flavor: 'Brewed in neon, served cold.',

@@ -4,11 +4,12 @@ import { healHero } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'pickaxe-of-borrowed-hours',
   type: 'weapon',
+  subtype: 'tool',
   name: 'Pickaxe of Borrowed Hours',
   text: 'When it is equipped: your hero heals 4.',
   flavor: 'It digs through time instead of stone.',
-  faction: 'neutral',
-  restriction: {},
+  faction: 'clockwork',
+  restriction: { factions: ['clockwork'] },
   rarity: 'exotic',
   element: 'time',
   price: 3080,
@@ -21,6 +22,6 @@ export default defineCard({
   ai: { value: 4 },
   art: {
     subject:
-      'Pickaxe of Borrowed Hours: a single pickaxe made of chrome with neon light strips, surrounded by floating clock hands and glowing sand, on a fur rug, close-up filling the frame, gold accents, time rift wanderer style'
+      'Pickaxe of Borrowed Hours: a single pickaxe made of chrome with neon light strips, surrounded by floating clock hands and glowing sand, on a fur rug, close-up filling the frame, gold accents, steampunk steam era style'
   }
 })

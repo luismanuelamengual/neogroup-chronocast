@@ -4,6 +4,7 @@ import { draw, repairWeapon } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'aegis-of-the-first-fire',
   type: 'ability',
+  subtype: 'instinct',
   name: 'Aegis of the First Fire',
   text: 'Your weapon gains +3 durability. Draw a card.',
   flavor: 'The first fire still protects its children.',

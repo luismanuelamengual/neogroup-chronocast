@@ -3,6 +3,7 @@ import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
 export default defineCard({
   id: 'harpoon-of-the-ambush',
   type: 'weapon',
+  subtype: 'harpoon',
   name: 'Harpoon of the Ambush',
   text: '',
   flavor: 'Thrown from the reeds, felt in the bones.',

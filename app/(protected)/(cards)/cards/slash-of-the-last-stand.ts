@@ -4,6 +4,7 @@ import { damage } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'slash-of-the-last-stand',
   type: 'ability',
+  subtype: 'tactic',
   name: 'Slash of the Last Stand',
   text: 'Deal 6 damage to an enemy slot.',
   flavor: 'One more swing. Always one more.',

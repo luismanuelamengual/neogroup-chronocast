@@ -4,6 +4,7 @@ import { buffThisPhaseAt } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'courage-of-spirits',
   type: 'ability',
+  subtype: 'tactic',
   name: 'Courage of Spirits',
   text: 'An ally of yours gains +8 attack this phase. Instant.',
   flavor: 'The spirits whisper: do not run.',

@@ -4,6 +4,7 @@ import { damageRandomAlly } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'koras-blowgun',
   type: 'weapon',
+  subtype: 'blowgun',
   name: "Kora's Blowgun",
   text: 'When it is equipped: deal 4 wind damage to a random enemy ally.',
   faction: 'primal',

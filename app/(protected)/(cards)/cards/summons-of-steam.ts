@@ -4,6 +4,7 @@ import { summonCard } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'summons-of-steam',
   type: 'ability',
+  subtype: 'gadget',
   name: 'Summons of Steam',
   text: 'Summon a Cog Drone.',
   flavor: 'The whistle blows. Something answers.',

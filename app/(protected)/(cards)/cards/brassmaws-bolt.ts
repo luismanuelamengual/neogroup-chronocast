@@ -4,6 +4,7 @@ import { damage, draw } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'brassmaws-bolt',
   type: 'ability',
+  subtype: 'gadget',
   name: "Brassmaw's Bolt",
   text: 'Deal 10 sonic damage to an enemy slot and draw a card.',
   faction: 'clockwork',

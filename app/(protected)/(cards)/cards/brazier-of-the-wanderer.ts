@@ -6,8 +6,8 @@ export default defineCard({
   type: 'artifact',
   name: 'Brazier of the Wanderer',
   text: 'At the start of each phase: deal 1 damage to the enemy hero. (3 uses)',
-  faction: 'neutral',
-  restriction: {},
+  faction: 'clockwork',
+  restriction: { factions: ['clockwork'] },
   rarity: 'common',
   price: 40,
   cost: 1,
@@ -19,6 +19,6 @@ export default defineCard({
   ai: { value: 1, tags: ['aggro'] },
   art: {
     subject:
-      'Brazier of the Wanderer: an ancient brazier made of blue steel with silver runes, standing in a ruined temple, dramatic backlight, magenta accents, time rift wanderer style'
+      'Brazier of the Wanderer: an ancient brazier made of blue steel with silver runes, standing in a ruined temple, dramatic backlight, magenta accents, steampunk steam era style'
   }
 })

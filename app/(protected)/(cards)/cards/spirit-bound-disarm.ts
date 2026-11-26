@@ -4,10 +4,11 @@ import { wearArmor, wearWeapon } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'spirit-bound-disarm',
   type: 'ability',
+  subtype: 'gadget',
   name: 'Spirit-Bound Disarm',
   text: 'The enemy weapon and armor lose 2 durability each. Fast.',
-  faction: 'neutral',
-  restriction: {},
+  faction: 'clockwork',
+  restriction: { factions: ['clockwork'] },
   rarity: 'common',
   price: 50,
   cost: 2,

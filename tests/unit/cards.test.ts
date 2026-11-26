@@ -12,6 +12,13 @@ import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition
 import { MatchState } from '@/app/(protected)/(engine)/models/MatchState'
 import { emptyTimeline, PlannedAction, Timeline } from '@/app/(protected)/(engine)/models/PlannedAction'
 import { SlotRef } from '@/app/(protected)/(engine)/models/SlotRef'
+import {
+  ALL_SUBTYPES,
+  favoredSubtypes,
+  isSubtypeOf,
+  SUBTYPE_FACTION,
+  SUBTYPED_CARD_TYPES
+} from '@/app/(protected)/(engine)/models/Subtype'
 import { TargetKind } from '@/app/(protected)/(engine)/models/TargetKind'
 import { createMatch } from '@/app/(protected)/(engine)/utils/createMatch'
 import { canUseCard, validateDeck } from '@/app/(protected)/(engine)/utils/deckRules'
@@ -127,12 +134,12 @@ describe('the card catalog', () => {
     }
   })
 
-  it('the catalog has the 729 collectible cards of the plan, by rarity (docs/PLAN.md, sections 5 and 8.1)', () => {
+  it('the catalog has the 766 collectible cards of the plan, by rarity (docs/PLAN.md sections 5 and 8.1, docs/FACTIONS.md)', () => {
     // The retired types (locations, for now) count: they are still part of the plan.
     const collectible = ALL_CARDS.filter((card) => !card.boss && !card.token)
     const count = (rarity: string) => collectible.filter((card) => card.rarity === rarity).length
 
-    expect(collectible.length).toBe(729)
+    expect(collectible.length).toBe(766)
     expect(HEROES.length).toBe(12)
     expect([
       count('common'),
@@ -142,7 +149,7 @@ describe('the card catalog', () => {
       count('legendary'),
       count('exotic'),
       count('mythic')
-    ]).toEqual([264, 181, 129, 78, 57, 14, 6])
+    ]).toEqual([274, 197, 139, 79, 57, 14, 6])
   })
 
   it('leaves the retired types out of what players can own (the campaign rewards stay)', () => {
@@ -187,6 +194,10 @@ function sandbox(heroId = STARTER_HERO_IDS[0]): MatchState {
 
   state.players.a.hand = []
   state.players.a.allies[0]!.enteredPhase = 0
+  // An artifact on each side (for the cards that aim at one) and a discard pile to Consume from.
+  state.players.a.artifacts.push({ uid: state.nextUid++, cardId: 'brazier-of-the-wanderer', charges: 3 })
+  state.players.b.artifacts.push({ uid: state.nextUid++, cardId: 'brazier-of-the-wanderer', charges: 3 })
+  state.players.a.discard.push(...state.players.a.deck.splice(0, 6))
 
   return state
 }
@@ -208,6 +219,10 @@ function targetsFor(state: MatchState, kinds: TargetKind[] = []): SlotRef[] {
       case 'enemyGear':
       case 'enemyAttachment':
         return { player: 'b', slot: 'hero', attached: state.players.b.hero.weapon!.card.uid }
+      case 'enemyArtifact':
+        return { player: 'b', slot: 'hero', attached: state.players.b.artifacts[0].uid }
+      case 'friendlyArtifact':
+        return { player: 'a', slot: 'hero', attached: state.players.a.artifacts[0].uid }
     }
   })
 }
@@ -292,4 +307,70 @@ describe('every card works in a match', () => {
       expect(failures(state, timeline)).toEqual([])
     })
   }
+})
+
+describe('the personality of the factions (docs/FACTIONS.md)', () => {
+  const FACTION_LIST = ['primal', 'bronze', 'arcane', 'clockwork', 'neon', 'void'] as const
+
+  it('every faction has a few cards of its favored subtypes of each type, and each subtype is mostly its own', () => {
+    for (const faction of FACTION_LIST) {
+      const favored = favoredSubtypes(faction)
+
+      for (const type of SUBTYPED_CARD_TYPES) {
+        if (!favored.some((subtype) => isSubtypeOf(type, subtype))) {
+          continue
+        }
+
+        const own = CARDS.filter(
+          (card) => card.type === type && card.faction === faction && favored.includes(card.subtype!)
+        )
+
+        expect(own.length, `${faction} ${type}`).toBeGreaterThanOrEqual(type === 'ability' ? 15 : 2)
+      }
+    }
+
+    for (const subtype of ALL_SUBTYPES) {
+      const cards = CARDS.filter((card) => card.subtype === subtype)
+      const owner = cards.filter((card) => card.faction === SUBTYPE_FACTION[subtype]).length
+
+      for (const faction of FACTION_LIST.filter((candidate) => candidate !== SUBTYPE_FACTION[subtype])) {
+        expect(
+          cards.filter((card) => card.faction === faction).length,
+          `${subtype}: ${faction} has as many as its owner`
+        ).toBeLessThan(Math.max(owner, 1))
+        expect(cards.filter((card) => card.faction === faction).length, `${subtype}: ${faction}`).toBeLessThanOrEqual(2)
+      }
+    }
+  })
+
+  it("the payoffs of a faction's mechanic only exist in that faction", () => {
+    const owners: [string, (card: CardDefinition) => boolean][] = [
+      ['primal', (card) => !!card.preyBonus || !!card.onTrapTriggered],
+      ['bronze', (card) => /Panoply/.test(card.text)],
+      ['arcane', (card) => !!card.spellPower || !!card.freezingSpells || !!card.onOwnerPlay],
+      ['clockwork', (card) => !!card.onArtifactLeave],
+      ['neon', (card) => !!card.auraKeywords || /Enhanced/.test(card.text)],
+      ['void', (card) => !!card.consume || !!card.onEnemyAllyDeath]
+    ]
+
+    for (const [faction, isPayoff] of owners) {
+      const payoffs = ALL_CARDS.filter(isPayoff)
+
+      expect(payoffs.length, faction).toBeGreaterThan(0)
+
+      for (const card of payoffs) {
+        expect(card.faction, card.id).toBe(faction)
+      }
+    }
+  })
+
+  it('the basic neutral set keeps a few cards of each type with subtypes, about a fifth of them', () => {
+    for (const type of SUBTYPED_CARD_TYPES) {
+      const all = CARDS.filter((card) => card.type === type)
+      const neutral = all.filter((card) => card.faction === 'neutral')
+
+      expect(neutral.length, type).toBeGreaterThanOrEqual(3)
+      expect(neutral.length / all.length, type).toBeLessThanOrEqual(0.25)
+    }
+  })
 })

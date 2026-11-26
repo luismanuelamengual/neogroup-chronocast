@@ -4,6 +4,7 @@ import { gainEnergy } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'hourglass-of-storms',
   type: 'ability',
+  subtype: 'gadget',
   name: 'Hourglass of Storms',
   text: 'Your hero gains 1 energy. Instant.',
   flavor: 'Its sand is made of lightning.',

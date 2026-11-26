@@ -4,6 +4,7 @@ import { healHero, seekTribe } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'unbroken-plan',
   type: 'ability',
+  subtype: 'program',
   name: 'Unbroken Plan',
   text: 'Draw the first Drifter of your deck and your hero heals 3.',
   flavor: 'The plan survived contact with the enemy.',

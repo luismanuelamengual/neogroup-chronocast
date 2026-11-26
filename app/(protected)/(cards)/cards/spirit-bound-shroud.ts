@@ -3,6 +3,7 @@ import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
 export default defineCard({
   id: 'spirit-bound-shroud',
   type: 'armor',
+  subtype: 'shroud',
   name: 'Spirit-Bound Shroud',
   text: '',
   flavor: 'The ancestors keep watch from its folds.',

@@ -4,6 +4,7 @@ import { damage, draw } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'the-astronomers-lance',
   type: 'ability',
+  subtype: 'spell',
   name: "The Astronomer's Lance",
   text: 'Deal 10 arcane damage to an enemy slot and draw a card.',
   faction: 'arcane',

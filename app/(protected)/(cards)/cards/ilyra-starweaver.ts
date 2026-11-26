@@ -5,7 +5,7 @@ export default defineCard({
   id: 'ilyra-starweaver',
   type: 'hero',
   name: 'Ilyra Starweaver',
-  text: 'Twin Bolts (3): deal 7 arcane damage to 2 different enemy slots.',
+  text: 'Twin Bolts (3): deal 7 arcane damage to 2 different enemy slots. Spell power +1 (your spells deal 1 more damage).',
   flavor: 'She reads the future in the constellations, then rewrites it.',
   faction: 'arcane',
   side: 'dawn',
@@ -14,6 +14,7 @@ export default defineCard({
   element: 'arcane',
   cost: 0,
   health: 60,
+  spellPower: 1,
   ability: {
     name: 'Twin Bolts',
     text: 'Deal 7 arcane damage to 2 different enemy slots.',

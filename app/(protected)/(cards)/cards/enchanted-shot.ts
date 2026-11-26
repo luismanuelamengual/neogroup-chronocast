@@ -4,6 +4,7 @@ import { damage } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'enchanted-shot',
   type: 'ability',
+  subtype: 'spell',
   name: 'Enchanted Shot',
   text: 'Deal 12 arcane damage to an enemy ally.',
   flavor: 'The arrow knows the way.',

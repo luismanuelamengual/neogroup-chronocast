@@ -4,6 +4,7 @@ import { damage, draw } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'shadow-tithe',
   type: 'ability',
+  subtype: 'ritual',
   name: 'Shadow Tithe',
   text: 'Your hero takes 6 shadow damage. Draw 2 cards.',
   flavor: 'The Eclipse always collects. In blood, if you are short on coin.',

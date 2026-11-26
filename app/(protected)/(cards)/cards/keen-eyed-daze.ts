@@ -4,10 +4,11 @@ import { draw, returnAt } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'keen-eyed-daze',
   type: 'ability',
+  subtype: 'spell',
   name: 'Keen-Eyed Daze',
   text: "Return an enemy ally to its owner's hand and draw a card. Fast.",
-  faction: 'neutral',
-  restriction: {},
+  faction: 'arcane',
+  restriction: { factions: ['arcane'] },
   rarity: 'uncommon',
   price: 180,
   cost: 4,

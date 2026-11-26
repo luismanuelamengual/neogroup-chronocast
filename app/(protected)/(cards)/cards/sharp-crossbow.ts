@@ -3,6 +3,7 @@ import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
 export default defineCard({
   id: 'sharp-crossbow',
   type: 'weapon',
+  subtype: 'crossbow',
   name: 'Sharp Crossbow',
   text: '',
   flavor: 'One bolt, one lesson.',

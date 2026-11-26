@@ -4,6 +4,7 @@ import { CardInstance, MatchState, Unit } from '@/app/(protected)/(engine)/model
 import { PlannedAction, Timeline, WAIT } from '@/app/(protected)/(engine)/models/PlannedAction'
 import { opponentOf, PlayerId } from '@/app/(protected)/(engine)/models/PlayerId'
 import { SlotRef } from '@/app/(protected)/(engine)/models/SlotRef'
+import { isRangedWeapon } from '@/app/(protected)/(engine)/models/Subtype'
 import { TargetKind } from '@/app/(protected)/(engine)/models/TargetKind'
 import { attachedOptions } from '@/app/(protected)/(engine)/utils/attachedTargets'
 import { cardCost } from '@/app/(protected)/(engine)/utils/boons'
@@ -277,7 +278,8 @@ export function planTimeline(state: MatchState, player: PlayerId, style: PlanSty
                 player,
                 side.hero.weapon.attack,
                 side.hero.health,
-                (getCard(side.hero.weapon.card.cardId).keywords ?? []).includes('ranged')
+                (getCard(side.hero.weapon.card.cardId).keywords ?? []).includes('ranged') ||
+                  isRangedWeapon(getCard(side.hero.weapon.card.cardId))
               )
       })
     }
@@ -383,6 +385,18 @@ function worthCasting(
     return side.allies.filter(Boolean).length >= 2
   }
 
+  if (tags.includes('recharge')) {
+    return (side.artifacts ?? []).some((artifact) => artifact.charges != null)
+  }
+
+  if (tags.includes('panoply')) {
+    return !!side.hero.weapon && !!side.hero.armor
+  }
+
+  if (tags.includes('sacrifice')) {
+    return side.allies.some(Boolean)
+  }
+
   if (!card.targets?.length && tags.includes('removal')) {
     return enemyAllies >= 2
   }
@@ -449,10 +463,44 @@ function chooseTargets(state: MatchState, player: PlayerId, kinds: TargetKind[])
         targets.push(best)
         break
       }
+
+      case 'enemyArtifact':
+
+      case 'friendlyArtifact': {
+        const best = bestSupport(state, player, kind)
+
+        if (!best) {
+          return null
+        }
+
+        targets.push(best)
+        break
+      }
     }
   }
 
   return targets
+}
+
+/**
+ * The support card to aim at: the rival's most expensive artifact (its traps
+ * after them), or, of its own, the artifact about to run out of uses (else the
+ * most expensive one: scrapping it gives more).
+ */
+function bestSupport(state: MatchState, player: PlayerId, kind: TargetKind): SlotRef | null {
+  const options = attachedOptions(state, player, kind)
+
+  const score = (option: (typeof options)[number]) => {
+    const cost = getCard(option.card.cardId).cost
+
+    if (kind === 'enemyArtifact') {
+      return (option.kind === 'artifact' ? 10 : 0) + cost
+    }
+
+    return (option.card.charges === 1 ? 10 : 0) + cost
+  }
+
+  return [...options].sort((a, b) => score(b) - score(a))[0]?.ref ?? null
 }
 
 /**

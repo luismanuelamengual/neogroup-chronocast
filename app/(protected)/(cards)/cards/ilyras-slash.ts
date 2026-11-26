@@ -4,6 +4,7 @@ import { damage, draw } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'ilyras-slash',
   type: 'ability',
+  subtype: 'spell',
   name: "Ilyra's Slash",
   text: 'Deal 10 arcane damage to an enemy slot and draw a card.',
   faction: 'arcane',

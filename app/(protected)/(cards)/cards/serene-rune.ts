@@ -3,10 +3,11 @@ import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
 export default defineCard({
   id: 'serene-rune',
   type: 'attachment',
+  subtype: 'rune',
   name: 'Serene Rune',
   text: 'Attach to an ally of yours: it gains +2 attack and +4 health.',
-  faction: 'neutral',
-  restriction: { sides: ['dawn'] },
+  faction: 'arcane',
+  restriction: { factions: ['arcane'], sides: ['dawn'] },
   rarity: 'common',
   price: 55,
   cost: 3,

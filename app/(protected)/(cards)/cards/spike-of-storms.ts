@@ -4,6 +4,7 @@ import { damage } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'spike-of-storms',
   type: 'ability',
+  subtype: 'spell',
   name: 'Spike of Storms',
   text: 'Deal 11 lightning damage to an enemy ally.',
   flavor: 'Lightning that decided to stay.',

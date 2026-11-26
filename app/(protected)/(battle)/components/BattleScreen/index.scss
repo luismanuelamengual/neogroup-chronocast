@@ -278,7 +278,9 @@
 
     // An artifact aiming its ability.
     &.selected {
-      box-shadow: 0 0 0 3px white, 0 0 0 6px var(--color-violet);
+      box-shadow:
+        0 0 0 3px white,
+        0 0 0 6px var(--color-violet);
       transform: translateY(-3px);
     }
 
@@ -432,6 +434,11 @@
 
     .freeze {
       background-color: #5ab8f0;
+    }
+
+    // Prey: marked by a hunter.
+    .prey {
+      background-color: #c0392b;
     }
   }
 

@@ -6,6 +6,7 @@ import { CARD_TYPES, CardType } from '@/app/(protected)/(engine)/models/CardType
 import { FACTIONS } from '@/app/(protected)/(engine)/models/Faction'
 import { RARITIES, Rarity } from '@/app/(protected)/(engine)/models/Rarity'
 import { SIDES } from '@/app/(protected)/(engine)/models/Side'
+import { hasSubtype, SUBTYPES } from '@/app/(protected)/(engine)/models/Subtype'
 import { useCardName } from '@/app/i18n/cards/useCardName'
 import { useT } from '@/app/i18n/I18nProvider'
 
@@ -47,11 +48,27 @@ export default function CardFilters({
         onChange={(event) => set('search', event.target.value)}
       />
       {shown('type') && (
-        <select value={filter.type} onChange={(event) => set('type', event.target.value as CardFilter['type'])}>
+        <select
+          value={filter.type}
+          onChange={(event) => onChange({ ...filter, type: event.target.value as CardFilter['type'], subtype: '' })}
+        >
           <option value="">{t('collection.allTypes')}</option>
           {types.map((type) => (
             <option key={type} value={type}>
               {t(`game.types.${type}`)}
+            </option>
+          ))}
+        </select>
+      )}
+      {shown('subtype') && filter.type && hasSubtype(filter.type) && (
+        <select
+          value={filter.subtype}
+          onChange={(event) => set('subtype', event.target.value as CardFilter['subtype'])}
+        >
+          <option value="">{t('collection.allSubtypes')}</option>
+          {SUBTYPES[filter.type].map((subtype) => (
+            <option key={subtype} value={subtype}>
+              {t(`game.subtypes.${subtype}`)}
             </option>
           ))}
         </select>

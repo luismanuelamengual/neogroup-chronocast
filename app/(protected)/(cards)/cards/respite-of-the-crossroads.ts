@@ -4,6 +4,7 @@ import { healHero } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'respite-of-the-crossroads',
   type: 'ability',
+  subtype: 'instinct',
   name: 'Respite of the Crossroads',
   text: 'Your hero heals 6.',
   flavor: 'Every road ends at a campfire.',

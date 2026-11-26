@@ -17,6 +17,6 @@ export default defineCampaign({
     { rival: 'queen-static', cpuSetup: { allies: ['midnight-mech'] } },
     { rival: 'caelus-the-usurper', cpuSetup: { extraHealth: 5 } },
     { rival: 'malachar-the-unmade', cpuSetup: { weapon: 'longbow-of-the-silent-trail' }, playerSetup: { handSize: 6 } },
-    { rival: 'chancellor-brassmaw', cpuSetup: { weapon: 'scepter-of-flame', extraHealth: 5 } }
+    { rival: 'chancellor-brassmaw', cpuSetup: { weapon: 'pickaxe-of-borrowed-hours', extraHealth: 5 } }
   ]
 })

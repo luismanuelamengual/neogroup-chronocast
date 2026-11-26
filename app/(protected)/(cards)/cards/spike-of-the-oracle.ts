@@ -4,6 +4,7 @@ import { damage } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'spike-of-the-oracle',
   type: 'ability',
+  subtype: 'tactic',
   name: 'Spike of the Oracle',
   text: 'Deal 8 light damage to an enemy slot.',
   flavor: 'She foresaw where to strike.',

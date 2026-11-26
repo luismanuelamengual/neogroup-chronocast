@@ -4,6 +4,7 @@ import { gainEnergy } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'patented-tick',
   type: 'ability',
+  subtype: 'gadget',
   name: 'Patented Tick',
   text: 'Your hero gains 3 energy. Instant.',
   flavor: 'Patent pending since 1887.',

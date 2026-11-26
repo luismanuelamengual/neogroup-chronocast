@@ -16,7 +16,7 @@ export default defineCampaign({
     { rival: 'malachar-the-unmade', cpuSetup: { allies: ['crawler-of-the-grave'] } },
     { rival: 'queen-static', cpuSetup: { allies: ['midnight-mech'] } },
     { rival: 'caelus-the-usurper', cpuSetup: { extraHealth: 5 } },
-    { rival: 'chancellor-brassmaw', cpuSetup: { weapon: 'scepter-of-flame' }, playerSetup: { handSize: 6 } },
+    { rival: 'chancellor-brassmaw', cpuSetup: { weapon: 'pickaxe-of-borrowed-hours' }, playerSetup: { handSize: 6 } },
     { rival: 'kora-wildfang', cpuSetup: { weapon: 'keen-eyed-crossbow', extraHealth: 5 } }
   ]
 })

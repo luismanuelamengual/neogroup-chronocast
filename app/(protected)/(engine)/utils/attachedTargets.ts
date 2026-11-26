@@ -8,16 +8,22 @@ export interface AttachedOption {
   /** The place, with the card's uid in `attached`. */
   ref: SlotRef
   card: CardInstance
-  kind: 'weapon' | 'armor' | 'attachment'
+  kind: 'weapon' | 'armor' | 'attachment' | 'artifact' | 'trap'
 }
 
 /**
  * The attached cards that fit a target kind (`enemyGear`, `enemyAttachment`)
  * for `player`: the rival hero's weapon and armor, and (for `enemyAttachment`)
- * the cards attached to its allies that aren't hidden by stealth. Empty for
- * the other kinds. The engine checks them again when the action resolves.
+ * the cards attached to its allies that aren't hidden by stealth; for
+ * `enemyArtifact`, the rival's artifacts and face-down traps, and for
+ * `friendlyArtifact` the player's own artifacts (aimed at through their
+ * hero). Empty for the other kinds. The engine checks them again when the action resolves.
  */
 export function attachedOptions(state: MatchState, player: PlayerId, kind: TargetKind): AttachedOption[] {
+  if (kind === 'enemyArtifact' || kind === 'friendlyArtifact') {
+    return supportOptions(state, player, kind)
+  }
+
   if (kind !== 'enemyGear' && kind !== 'enemyAttachment') {
     return []
   }
@@ -48,6 +54,29 @@ export function attachedOptions(state: MatchState, player: PlayerId, kind: Targe
         options.push({ ref: { player: enemy, slot, attached: card.uid }, card, kind: 'attachment' })
       }
     })
+  }
+
+  return options
+}
+
+/** The support cards a target kind of the support slots can aim at (through the hero of their side). */
+function supportOptions(
+  state: MatchState,
+  player: PlayerId,
+  kind: 'enemyArtifact' | 'friendlyArtifact'
+): AttachedOption[] {
+  const owner = kind === 'enemyArtifact' ? opponentOf(player) : player
+  const side = state.players[owner]
+  const options: AttachedOption[] = (side.artifacts ?? []).map((card) => ({
+    ref: { player: owner, slot: 'hero', attached: card.uid },
+    card,
+    kind: 'artifact'
+  }))
+
+  if (kind === 'enemyArtifact') {
+    for (const card of side.traps) {
+      options.push({ ref: { player: owner, slot: 'hero', attached: card.uid }, card, kind: 'trap' })
+    }
   }
 
   return options

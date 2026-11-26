@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageRandomAlly, reviveTopAlly, topDiscardAlly } from '@/app/(protected)/(engine)/effects'
+import { alliesOf, damageAlly, damageRandomAlly, freeze, slotOf } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'morgrath-lich-abbot',
   type: 'hero',
   name: 'Morgrath, the Lich Abbot',
-  text: 'Unholy Rising (4): the ally on top of your discard pile returns to play. At the start of each phase, deal 3 shadow damage to a random enemy ally.',
+  text: 'Grave Frost (4), a spell: freeze every enemy ally with 4 health or less and deal 4 shadow damage to each of them. At the start of each phase, deal 3 shadow damage to a random enemy ally.',
   flavor: 'He prayed for eternal life. Something answered.',
   faction: 'arcane',
   side: 'eclipse',
@@ -15,19 +15,20 @@ export default defineCard({
   cost: 0,
   health: 65,
   ability: {
-    name: 'Unholy Rising',
-    text: 'The ally on top of your discard pile returns to play.',
+    name: 'Grave Frost',
+    text: 'A spell: freeze every enemy ally with 4 health or less and deal 4 shadow damage to each of them.',
     cost: 4,
-    ai: { tags: ['revive'] },
-    canActivate(ctx) {
-      if (!topDiscardAlly(ctx, ctx.owner)) {
-        return 'noChoice'
-      }
-
-      return ctx.engine.freeSlots(ctx.owner).length > 0 ? null : 'slotsFull'
-    },
+    spell: true,
+    ai: { tags: ['removal'] },
     activate(ctx) {
-      reviveTopAlly(ctx, ctx.owner)
+      for (const unit of alliesOf(ctx, ctx.opponent).filter((candidate) => candidate.health <= 4)) {
+        const ref = slotOf(ctx, unit)
+
+        if (ref) {
+          freeze(ctx, ref)
+          damageAlly(ctx, unit, 4)
+        }
+      }
     }
   },
   onPhaseStart(ctx) {

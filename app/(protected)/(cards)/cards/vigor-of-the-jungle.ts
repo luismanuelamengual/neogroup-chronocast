@@ -4,6 +4,7 @@ import { buffThisPhaseAt } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'vigor-of-the-jungle',
   type: 'ability',
+  subtype: 'instinct',
   name: 'Vigor of the Jungle',
   text: 'An ally of yours gains +8 attack this phase. Instant.',
   flavor: 'Grow wild, grow strong.',

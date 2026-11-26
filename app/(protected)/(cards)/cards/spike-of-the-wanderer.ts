@@ -4,6 +4,7 @@ import { damage } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'spike-of-the-wanderer',
   type: 'ability',
+  subtype: 'tactic',
   name: 'Spike of the Wanderer',
   text: 'Deal 11 damage to an enemy slot.',
   flavor: 'The Rift grows thorns of its own.',

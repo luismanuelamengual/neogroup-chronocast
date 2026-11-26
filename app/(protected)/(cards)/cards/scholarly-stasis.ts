@@ -4,10 +4,11 @@ import { damageEnemyHero, freeze } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'scholarly-stasis',
   type: 'ability',
+  subtype: 'gadget',
   name: 'Scholarly Stasis',
   text: 'Freeze an enemy ally and deal 2 time damage to the enemy hero.',
-  faction: 'neutral',
-  restriction: {},
+  faction: 'clockwork',
+  restriction: { factions: ['clockwork'] },
   rarity: 'rare',
   element: 'time',
   price: 360,

@@ -3,6 +3,7 @@ import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
 export default defineCard({
   id: 'towering-mace',
   type: 'weapon',
+  subtype: 'mace',
   name: 'Towering Mace',
   text: '',
   flavor: 'Built for giants. Swung by the stubborn.',

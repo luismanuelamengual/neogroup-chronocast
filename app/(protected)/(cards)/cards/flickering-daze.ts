@@ -4,10 +4,11 @@ import { damageEnemyHero, freeze } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'flickering-daze',
   type: 'ability',
+  subtype: 'spell',
   name: 'Flickering Daze',
   text: 'Freeze an enemy ally and deal 2 ice damage to the enemy hero.',
-  faction: 'neutral',
-  restriction: {},
+  faction: 'arcane',
+  restriction: { factions: ['arcane'] },
   rarity: 'epic',
   element: 'ice',
   price: 1000,

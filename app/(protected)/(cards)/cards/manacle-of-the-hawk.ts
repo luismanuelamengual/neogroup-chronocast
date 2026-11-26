@@ -4,10 +4,11 @@ import { damageAlly } from '@/app/(protected)/(engine)/effects'
 export default defineCard({
   id: 'manacle-of-the-hawk',
   type: 'attachment',
+  subtype: 'curse',
   name: 'Manacle of the Hawk',
   text: 'Attach to an enemy ally: each time it attacks, it takes 5 wind damage.',
-  faction: 'neutral',
-  restriction: {},
+  faction: 'void',
+  restriction: { factions: ['void'] },
   rarity: 'common',
   element: 'wind',
   price: 65,

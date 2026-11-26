@@ -5,7 +5,7 @@ export default defineCard({
   id: 'caelus-the-usurper',
   type: 'hero',
   name: 'Caelus the Usurper',
-  text: 'Tribute (5): the rival loses 1 Chronos capacity and you gain it. At the start of each phase, your allies gain +1 attack.',
+  text: 'Tribute (5): the rival loses 1 Chronos capacity and you gain it. At the start of each phase, if your hero has a weapon, your allies gain +1 attack.',
   flavor: 'He stole a crown from a Rome that never was, and wants the real one.',
   faction: 'bronze',
   side: 'eclipse',
@@ -23,6 +23,10 @@ export default defineCard({
     }
   },
   onPhaseStart(ctx) {
+    if (!ctx.engine.player(ctx.owner).hero.weapon) {
+      return
+    }
+
     for (const unit of alliesOf(ctx, ctx.owner)) {
       buff(ctx, unit, 1, 0)
     }

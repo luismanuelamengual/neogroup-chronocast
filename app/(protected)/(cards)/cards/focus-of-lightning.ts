@@ -3,6 +3,7 @@ import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
 export default defineCard({
   id: 'focus-of-lightning',
   type: 'weapon',
+  subtype: 'orb',
   name: 'Focus of Lightning',
   text: '',
   flavor: 'Hold it tight and hope.',
