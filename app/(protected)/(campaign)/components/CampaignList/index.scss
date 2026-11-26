@@ -55,14 +55,19 @@
     background: white;
     box-shadow: var(--frame-shadow);
 
-    // A hero the player does not own: its campaign is blurred, with a padlock (like the locked cards of the shop).
+    // A hero the player does not own: translucent and blurred (its details stay hidden),
+    // with the padlock and the hero it needs in the center.
     &.locked {
+      position: relative;
+      overflow: hidden;
       border-top-color: var(--color-outline);
-      background: var(--color-cream);
+      background: rgba(255, 255, 255, 0.35);
+      box-shadow: none;
 
-      .campaign-list__veil {
-        filter: blur(5px) grayscale(0.6);
-        opacity: 0.7;
+      .campaign-list__hero,
+      .campaign-list__info {
+        filter: blur(7px) grayscale(0.6);
+        opacity: 0.45;
         pointer-events: none;
         user-select: none;
       }
@@ -89,27 +94,6 @@
     position: relative;
     align-self: start;
     zoom: 0.59;
-  }
-
-  &__lock {
-    position: absolute;
-    z-index: 3;
-    top: 50%;
-    left: 50%;
-    display: grid;
-    place-items: center;
-    width: 84px;
-    height: 84px;
-    border: 3px solid var(--color-outline);
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.92);
-    box-shadow: 0 4px 0 var(--color-outline);
-    transform: translate(-50%, -50%);
-
-    > span {
-      font-size: 2.8rem;
-      line-height: 1;
-    }
   }
 
   &__info {
@@ -167,11 +151,38 @@
   }
 
   &__locked {
+    position: absolute;
+    z-index: 3;
+    inset: 0;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     align-items: center;
-    gap: 8px;
-    margin-top: auto;
-    font-family: var(--font-display);
+    justify-content: center;
+    gap: 6px;
+    padding: 12px;
+    text-align: center;
+
+    > span {
+      display: grid;
+      place-items: center;
+      width: 64px;
+      height: 64px;
+      border: 3px solid var(--color-outline);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 4px 0 var(--color-outline);
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    > b {
+      padding: 4px 12px;
+      border: 2px solid var(--color-outline);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.92);
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 400;
+    }
   }
 }
