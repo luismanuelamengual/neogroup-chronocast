@@ -49,23 +49,22 @@ const HERO_DECK_LISTS: Record<string, [string, number][]> = {
   ],
   'chancellor-brassmaw': [
     ['brass-steam-knight', 3],
-    ['clockwork-hound-of-coal', 3],
+    ['sharp-boar', 3],
+    ['old-chrononaut', 3],
     ['wind-up-soldier-of-pistons', 3],
     ['experimental-aeronaut', 3],
     ['overclocked-piston-titan', 3],
     ['wandering-ferryman', 2],
     ['dreadnought-of-the-workshop', 2],
     ['borrowed-hour-of-lost-time', 3],
-    ['storm-called-strike', 3],
     ['spike-of-storms', 2],
     ['spirit-bound-bell', 2],
     ['focus-of-lightning', 1],
     ['flickering-ward', 2],
     ['battle-scarred-helm', 1],
     ['lantern-of-flame', 2],
-    ['hourglass-shard-of-borrowed-hours', 2],
-    ['tonic-of-the-wanderer', 1],
-    ['rusty-sabotage', 1]
+    ['brazier-of-the-wanderer', 2],
+    ['steam-turret', 2]
   ],
   'malachar-the-unmade': [
     ['tower-apprentice', 3],

@@ -21,7 +21,7 @@ export default defineCard({
     activate(ctx) {
       // Only for the rest of this phase (0 more phases).
       addBoon(ctx, ctx.owner, 'guard', 2, 0)
-      addBoon(ctx, ctx.owner, 'empower', 3, 0)
+      addBoon(ctx, ctx.owner, 'empower', 2, 0)
     }
   },
   attackBonus(ctx, attacker) {
