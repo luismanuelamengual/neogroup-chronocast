@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'neon',
   side: 'eclipse',
   restriction: { heroes: ['queen-static'] },
-  rarity: 'legendary',
+  rarity: 'epic',
   element: 'lightning',
   cost: 0,
   health: 61,

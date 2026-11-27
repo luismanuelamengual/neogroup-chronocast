@@ -7,7 +7,7 @@ export default defineCard({
   subtype: 'spell',
   name: "Morgrath's Blast",
   text: 'Deal 10 shadow damage to an enemy slot and draw a card.',
-  faction: 'arcane',
+  faction: 'void',
   restriction: { heroes: ['morgrath-lich-abbot'] },
   rarity: 'epic',
   element: 'shadow',
@@ -22,6 +22,6 @@ export default defineCard({
   ai: { value: 5 },
   art: {
     subject:
-      "Morgrath's Blast: a violent explosion of energy, wrapped in swirling black smoke, in a misty valley, framed by drifting embers, violet accents, medieval magic order style"
+      "Morgrath's Blast: a violent explosion of sickly green soul-fire, wrapped in swirling black smoke, in a misty valley, framed by drifting embers, sickly green accents, dark end-of-time void style"
   }
 })

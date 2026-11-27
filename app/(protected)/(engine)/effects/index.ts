@@ -639,6 +639,34 @@ export function topDiscardAlly(ctx: EffectContext, player: PlayerId): CardInstan
   return null
 }
 
+/** The last ally of a player that died on the board and is still in the discard pile. */
+export function lastDefeatedAlly(ctx: EffectContext, player: PlayerId): CardInstance | null {
+  const discard = ctx.engine.player(player).discard
+
+  for (let i = discard.length - 1; i >= 0; i--) {
+    if (discard[i].defeated && getCard(discard[i].cardId).type === 'ally') {
+      return discard[i]
+    }
+  }
+
+  return null
+}
+
+/** Brings back to the board the last ally of the player that died on the board. */
+export function reviveLastDefeated(ctx: EffectContext, player: PlayerId): Unit | null {
+  const card = lastDefeatedAlly(ctx, player)
+
+  if (!card || ctx.engine.freeSlots(player).length === 0) {
+    return null
+  }
+
+  const side = ctx.engine.player(player)
+
+  side.discard = side.discard.filter((candidate) => candidate.uid !== card.uid)
+
+  return ctx.engine.summon(player, card)
+}
+
 /** Brings back to the board the ally on top of the discard pile. */
 export function reviveTopAlly(ctx: EffectContext, player: PlayerId): Unit | null {
   const card = topDiscardAlly(ctx, player)

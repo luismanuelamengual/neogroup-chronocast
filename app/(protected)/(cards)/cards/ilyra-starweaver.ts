@@ -5,7 +5,7 @@ export default defineCard({
   id: 'ilyra-starweaver',
   type: 'hero',
   name: 'Ilyra Starweaver',
-  text: 'Twin Bolts (3): deal 7 arcane damage to 2 different enemy slots. Spell power +1 (your spells deal 1 more damage).',
+  text: 'Starfall (3): deal 5 arcane damage to 3 different enemy slots. Spell power +1 (your spells deal 1 more damage).',
   flavor: 'She reads the future in the constellations, then rewrites it.',
   faction: 'arcane',
   side: 'dawn',
@@ -16,18 +16,19 @@ export default defineCard({
   health: 60,
   spellPower: 1,
   ability: {
-    name: 'Twin Bolts',
-    text: 'Deal 7 arcane damage to 2 different enemy slots.',
+    name: 'Starfall',
+    text: 'Deal 5 arcane damage to 3 different enemy slots.',
     cost: 3,
-    targets: ['enemySlot', 'enemySlot'],
+    targets: ['enemySlot', 'enemySlot', 'enemySlot'],
     canActivate(ctx) {
-      const [first, second] = ctx.targets
+      const slots = new Set(ctx.targets.map((target) => `${target.player}:${target.slot}`))
 
-      return first.player === second.player && first.slot === second.slot ? 'invalidTarget' : null
+      return slots.size < ctx.targets.length ? 'invalidTarget' : null
     },
     activate(ctx) {
-      damage(ctx, ctx.targets[0], 7)
-      damage(ctx, ctx.targets[1], 7)
+      for (const target of ctx.targets) {
+        damage(ctx, target, 5)
+      }
     }
   },
   ai: { value: 0 },

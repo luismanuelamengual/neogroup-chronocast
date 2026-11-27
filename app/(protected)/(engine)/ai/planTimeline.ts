@@ -423,10 +423,12 @@ function chooseTargets(state: MatchState, player: PlayerId, kinds: TargetKind[])
         break
 
       case 'enemySlot': {
-        // Several targets of the same ability go to different slots: the strongest allies, then the hero.
+        // Several targets of the same ability go to different slots: the strongest allies, then the hero,
+        // then (when there are not enough) the empty slots.
         const options: SlotRef[] = [
           ...enemies.sort((a, b) => b.unit.attack - a.unit.attack).map(({ ref }) => ref),
-          { player: enemy, slot: 'hero' }
+          { player: enemy, slot: 'hero' },
+          ...emptySlots(state, enemy)
         ]
         const free = options.find(
           (ref) => !targets.some((taken) => taken.player === ref.player && taken.slot === ref.slot)
@@ -558,4 +560,9 @@ function bestAttached(state: MatchState, player: PlayerId, kind: TargetKind): Sl
 
 function allyRefs(state: MatchState, player: PlayerId): { ref: SlotRef; unit: Unit }[] {
   return state.players[player].allies.flatMap((unit, slot) => (unit ? [{ ref: { player, slot }, unit }] : []))
+}
+
+/** The empty ally slots of a side (a last resort for abilities that hit several different slots). */
+function emptySlots(state: MatchState, player: PlayerId): SlotRef[] {
+  return state.players[player].allies.flatMap((unit, slot) => (unit ? [] : [{ player, slot }]))
 }

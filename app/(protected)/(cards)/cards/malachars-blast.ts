@@ -7,7 +7,7 @@ export default defineCard({
   subtype: 'ritual',
   name: "Malachar's Blast",
   text: 'Deal 10 shadow damage to an enemy slot and draw a card.',
-  faction: 'void',
+  faction: 'arcane',
   restriction: { heroes: ['malachar-the-unmade'] },
   rarity: 'epic',
   element: 'shadow',
@@ -22,6 +22,6 @@ export default defineCard({
   ai: { value: 5 },
   art: {
     subject:
-      "Malachar's Blast: a violent explosion of energy, wrapped in swirling black smoke, in a snowy pass, seen from above, scarlet accents, dark end-of-time void style"
+      "Malachar's Blast: a violent explosion of violet arcane energy, wrapped in swirling violet runes and silver sparks, in a snowy pass, seen from above, violet accents, medieval magic order style"
   }
 })

@@ -284,8 +284,8 @@ function sacrifice(engine: MatchEngine, player: PlayerId, uid: number): FailReas
     return 'noCard'
   }
 
+  // The card turned into Chronos leaves the match: it doesn't go to the discard pile.
   side.hand = side.hand.filter((candidate) => candidate.uid !== uid)
-  side.discard.push(card)
   side.sacrificesThisPhase++
   side.chronosCapacity++
   side.chronos++
@@ -612,7 +612,11 @@ function allyAttack(engine: MatchEngine, player: PlayerId, uid: number, target: 
     return 'cancelled'
   }
 
-  unit.keywords = unit.keywords.filter((keyword) => keyword !== 'stealth')
+  // Attacking reveals it, unless its stealth comes from a veil that still lasts (Vex's Ghost Protocol).
+  if (!engine.isVeiled(unit)) {
+    unit.keywords = unit.keywords.filter((keyword) => keyword !== 'stealth')
+  }
+
   unit.hasAttacked = true
 
   for (const attachment of unit.attachments ?? []) {

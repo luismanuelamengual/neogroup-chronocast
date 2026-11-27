@@ -1160,9 +1160,9 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'hydra-of-the-senate': { name: 'Hidra del Senado', text: 'Al entrar: tu héroe se cura 5.' },
   'ilyra-starweaver': {
     name: 'Ilyra Starweaver',
-    text: 'Rayos Gemelos (3): hacé 7 de daño de arcano a 2 slots enemigos distintos. Poder mágico +1 (tus hechizos hacen 1 de daño más).',
+    text: 'Lluvia de Estrellas (3): hacé 5 de daño de arcano a 3 slots enemigos distintos. Poder mágico +1 (tus hechizos hacen 1 de daño más).',
     flavor: 'Lee el futuro en las constelaciones, y después lo reescribe.',
-    ability: { name: 'Rayos Gemelos', text: 'Hacé 7 de daño de arcano a 2 slots enemigos distintos.' }
+    ability: { name: 'Lluvia de Estrellas', text: 'Hacé 5 de daño de arcano a 3 slots enemigos distintos.' }
   },
   'ilyras-slash': { name: 'Tajo de Ilyra', text: 'Hacé 10 de daño de arcano a un slot enemigo y robá una carta.' },
   'imperial-arsenal': {
@@ -1447,11 +1447,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'malachar-the-unmade': {
     name: 'Malachar el Deshecho',
-    text: 'Plaga del Vacío (4): envenená 5 a cada aliado enemigo. Hasta el final de la próxima fase, tus aliados cuestan 1 Crono menos. Al empezar cada fase, si tu descarte tiene 8 cartas o más, hacé 2 de daño de sombra al héroe enemigo.',
+    text: 'Escarcha del Deshecho (6), un hechizo: congelá a cada aliado enemigo. Cuando jugás un hechizo, hacé 1 de daño de sombra al héroe enemigo.',
     flavor: 'Se deshizo a sí mismo para ver qué hay más allá del tiempo.',
     ability: {
-      name: 'Plaga del Vacío',
-      text: 'Envenená 5 a cada aliado enemigo. Hasta el final de la próxima fase, tus aliados cuestan 1 Crono menos.'
+      name: 'Escarcha del Deshecho',
+      text: 'Un hechizo: congelá a cada aliado enemigo.'
     }
   },
   'malachars-blast': {
@@ -1592,11 +1592,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'moonlit-wisp': { name: 'Fuego Fatuo Lunar', text: 'Al entrar: robá una carta.' },
   'morgrath-lich-abbot': {
     name: 'Morgrath, el Abad Liche',
-    text: 'Escarcha de Tumba (4), un hechizo: congelá a cada aliado enemigo con 4 de vida o menos y hacele 4 de daño de sombra. Al empezar cada fase, hacé 3 de daño de sombra a un aliado enemigo al azar.',
+    text: 'Alzamiento Impío (4): el último aliado tuyo que fue derrotado vuelve al juego. Cuando muere otro aliado tuyo, hacé 2 de daño de sombra a un aliado enemigo al azar.',
     flavor: 'Rezó por la vida eterna. Algo le contestó.',
     ability: {
-      name: 'Escarcha de Tumba',
-      text: 'Un hechizo: congelá a cada aliado enemigo con 4 de vida o menos y hacele 4 de daño de sombra.'
+      name: 'Alzamiento Impío',
+      text: 'El último aliado tuyo que fue derrotado vuelve al juego.'
     }
   },
   'morgraths-blast': {
@@ -2804,11 +2804,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'vex-nightwire': {
     name: 'Vex Nightwire',
-    text: 'Protocolo Fantasma (4): tus aliados ganan Sigilo y +2 de ataque hasta el final de la próxima fase. Tus aliados Mejorados (con un implante) son Rápidos.',
+    text: 'Protocolo Fantasma (4): tus aliados ganan Sigilo y +2 de ataque hasta el final de la próxima fase (no pierden el Sigilo al atacar). Tus aliados Mejorados (con un implante) son Rápidos.',
     flavor: 'Caza blancos que nadie más puede encontrar.',
     ability: {
       name: 'Protocolo Fantasma',
-      text: 'Tus aliados ganan Sigilo y +2 de ataque hasta el final de la próxima fase.'
+      text: 'Tus aliados ganan Sigilo y +2 de ataque hasta el final de la próxima fase (no pierden el Sigilo al atacar).'
     }
   },
   'vexs-sling': {

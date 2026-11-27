@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'clockwork',
   side: 'eclipse',
   restriction: { heroes: ['chancellor-brassmaw'] },
-  rarity: 'legendary',
+  rarity: 'uncommon',
   element: 'sonic',
   cost: 0,
   health: 65,

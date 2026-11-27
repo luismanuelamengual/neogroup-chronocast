@@ -6,7 +6,7 @@ export default defineCard({
   type: 'ally',
   name: "Morgrath's Satyr",
   text: 'When it enters: it gains +1 attack and +1 health for each other Fae of yours. When it dies: deal 6 shadow damage to a random enemy ally.',
-  faction: 'arcane',
+  faction: 'void',
   restriction: { heroes: ['morgrath-lich-abbot'] },
   rarity: 'legendary',
   element: 'shadow',
@@ -29,6 +29,6 @@ export default defineCard({
   ai: { value: 7, tags: ['buff', 'removal', 'tribe'] },
   art: {
     subject:
-      "Morgrath's Satyr: a satyr with bark-brown skin with leafy hair and moth wings, rearing up, magenta accents, medieval magic order style"
+      "Morgrath's Satyr: a satyr with bark-brown skin with leafy hair and moth wings, with withered moth wings, rearing up among glowing green grave mist, sickly green accents, dark end-of-time void style"
   }
 })

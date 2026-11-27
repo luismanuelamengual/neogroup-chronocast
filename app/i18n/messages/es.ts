@@ -533,7 +533,7 @@ export const es = {
       phases:
         'La partida se juega por fases. En cada una programás 6 acciones en tu línea de tiempo (a la derecha) mientras la CPU programa las suyas. Después se resuelven juntas, paso por paso.',
       chronos:
-        'Las cartas cuestan Cronos (⌛). Para tener más, tocá una carta y elegí "Generar Cronos": la descartás y ganás +1 de capacidad para siempre. Una vez por fase.',
+        'Las cartas cuestan Cronos (⌛). Para tener más, tocá una carta y elegí "Generar Cronos": la desterrás (no va a tu pila de descarte) y ganás +1 de capacidad para siempre. Una vez por fase.',
       summon:
         'Con Cronos podés jugar un aliado: tocá la carta y después un slot libre. El aliado ataca desde la fase siguiente (💤).',
       ready: 'Cuando termines, tocá Listo. Si se acaban los 90 segundos, se juega lo que hayas programado.',

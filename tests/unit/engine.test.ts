@@ -111,8 +111,10 @@ describe('Chronos', () => {
     expect(fails(events)).toEqual(['a:1:sacrificeLimit'])
     expect(next.players.a.chronosCapacity).toBe(1)
     expect(next.players.a.chronos).toBe(1) // refilled at the start of phase 2
-    expect(next.players.a.discard.map((card) => card.uid)).toContain(first.uid)
-    expect(next.players.a.discard.map((card) => card.uid)).not.toContain(second.uid)
+    // The card turned into Chronos leaves the match (it doesn't go to the discard pile); the second stays in hand.
+    expect(next.players.a.discard.map((card) => card.uid)).not.toContain(first.uid)
+    expect(next.players.a.hand.map((card) => card.uid)).not.toContain(first.uid)
+    expect(next.players.a.hand.map((card) => card.uid)).toContain(second.uid)
   })
 
   it('a card that costs more than the Chronos left fails', () => {

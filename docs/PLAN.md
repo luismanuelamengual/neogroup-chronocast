@@ -101,7 +101,7 @@ Cada una de las 6 acciones de la línea de tiempo es una de estas:
 
 | Acción                     | Qué hace                                                                                                                                   | Costo                                      |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------ |
-| **Generar Cronos**         | Descarta una carta de la mano a la pila y suma **+1 de capacidad de Cronos para siempre**. Máximo 1 por fase (`MAX_SACRIFICES_PER_PHASE`). | —                                          |
+| **Generar Cronos**         | Destierra una carta de la mano (no va a la pila de descarte) y suma **+1 de capacidad de Cronos para siempre**. Máximo 1 por fase (`MAX_SACRIFICES_PER_PHASE`). | —                                          |
 | **Jugar una carta**        | Invoca un aliado en un slot, lanza una habilidad, adjunta un arma o armadura al héroe, usa un objeto, pone una ubicación o una trampa.     | Su costo en Cronos                         |
 | **Atacar con un aliado**   | El aliado ataca a un slot rival (el del héroe o el de un aliado). Una vez por fase por aliado.                                             | —                                          |
 | **Atacar con el héroe**    | Solo con un arma adjunta. Una vez por fase.                                                                                                | 1 de durabilidad del arma                  |
@@ -611,7 +611,7 @@ Módulo `(shop)`, con tres pestañas: **Sobres**, **Cartas** y **Vender**. Preci
 | Mítica     | 4.000 – 4.400             | 4.800                 | Nivel 100        |
 
 - No se paga nada por desbloquear: alcanza con llegar al nivel. Los sobres pueden traer cualquier rareza a cualquier nivel.
-- También se venden los héroes jugables (no los jefes), uno por jugador, al precio de su rareza (columna "Héroe"; hoy solo hay héroes comunes, raros, épicos y legendarios); su rareza también tiene que estar desbloqueada. No salen en sobres ni se venden.
+- También se venden los héroes jugables (no los jefes), uno por jugador, al precio de su rareza (columna "Héroe"; hoy solo hay héroes comunes, poco comunes, épicos y legendarios: 3 por rareza); su rareza también tiene que estar desbloqueada. No salen en sobres ni se venden.
 - La pestaña Cartas muestra **todo** el catálogo a la venta con filtros (facción, bando, tipo, costo, rareza, "usables con mi héroe"): primero las rarezas desbloqueadas y después las bloqueadas, difuminadas y con un candado que dice "Se desbloquea en nivel X". Las bloqueadas son un misterio: no se pueden abrir en detalle (están bien difuminadas) y la búsqueda por nombre o texto no las encuentra.
 - Las cartas premio de las campañas no se venden sueltas.
 

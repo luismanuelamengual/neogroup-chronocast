@@ -13,7 +13,7 @@ export default defineCampaign({
     { rival: 'vex-nightwire', cpuSetup: { extraHealth: 5 } },
     { rival: 'nyx-hollowsong', cpuSetup: { extraHealth: 5 } },
     { rival: 'ada-copperwick', cpuSetup: { allies: ['timeless-fortune-teller'] } },
-    { rival: 'malachar-the-unmade', cpuSetup: { allies: ['crawler-of-the-grave'] } },
+    { rival: 'malachar-the-unmade', cpuSetup: { allies: ['pegasus-of-the-tower'] } },
     { rival: 'queen-static', cpuSetup: { allies: ['midnight-mech'] } },
     { rival: 'caelus-the-usurper', cpuSetup: { extraHealth: 5 } },
     { rival: 'chancellor-brassmaw', cpuSetup: { weapon: 'pickaxe-of-borrowed-hours' }, playerSetup: { handSize: 6 } },

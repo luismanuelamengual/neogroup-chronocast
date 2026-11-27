@@ -26,7 +26,7 @@ const ARTS: Record<string, string> = {
   arcane: 'archmage-of-the-spire',
   clockwork: 'ada-copperwick-portrait',
   neon: 'queen-static-portrait',
-  void: 'malachar-the-unmade-portrait'
+  void: 'morgrath-lich-abbot-portrait'
 }
 
 interface PackShopProps {

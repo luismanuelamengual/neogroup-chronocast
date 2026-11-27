@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'primal',
   side: 'eclipse',
   restriction: { heroes: ['ooma-bonewhisper'] },
-  rarity: 'epic',
+  rarity: 'uncommon',
   cost: 0,
   health: 53,
   ability: {

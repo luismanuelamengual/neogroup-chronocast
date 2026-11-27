@@ -8,7 +8,7 @@ export default defineCard({
   name: 'Brother Ossian',
   text: 'At the end of each phase: deal 2 shadow damage to a random enemy ally and your hero heals 2.',
   flavor: 'He kept praying after he died. Out of habit.',
-  faction: 'arcane',
+  faction: 'void',
   restriction: { heroes: ['morgrath-lich-abbot'] },
   rarity: 'legendary',
   element: 'shadow',
@@ -25,6 +25,6 @@ export default defineCard({
   ai: { value: 5, tags: ['heal', 'removal'] },
   art: {
     subject:
-      'a skeletal monk in a hooded brown robe with violet ghost-fire in his eyes, holding a rosary of bones in a candlelit ruined abbey'
+      'a skeletal monk in a hooded brown robe with green ghost-fire in his eyes, holding a rosary of bones in a candlelit ruined abbey'
   }
 })

@@ -149,7 +149,7 @@ describe('the card catalog', () => {
       count('legendary'),
       count('exotic'),
       count('mythic')
-    ]).toEqual([274, 197, 139, 79, 57, 14, 6])
+    ]).toEqual([274, 200, 137, 80, 55, 14, 6])
   })
 
   it('leaves the retired types out of what players can own (the campaign rewards stay)', () => {
@@ -287,13 +287,13 @@ describe('every card works in a match', () => {
       const timeline = emptyTimeline()
       const side = state.players.a
 
-      // What some abilities take: a weapon, an ally in the discard pile and in the hand, an artifact in the deck.
+      // What some abilities take: a weapon, a defeated ally in the discard pile, an ally in the hand, an artifact in the deck.
       side.hero.weapon = {
         card: { uid: state.nextUid++, cardId: 'cutlass-of-the-long-road' },
         attack: 4,
         durability: 3
       }
-      side.discard.push({ uid: state.nextUid++, cardId: 'faithful-wanderer' })
+      side.discard.push({ uid: state.nextUid++, cardId: 'faithful-wanderer', defeated: true })
       side.hand.push({ uid: state.nextUid++, cardId: 'faithful-wanderer' })
       side.deck.unshift({ uid: state.nextUid++, cardId: 'brazier-of-the-wanderer' })
 

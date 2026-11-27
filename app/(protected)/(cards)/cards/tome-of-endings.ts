@@ -7,7 +7,7 @@ export default defineCard({
   reward: true,
   name: 'Tome of Endings',
   text: 'Deal 5 shadow damage to every enemy ally, a random ally of your discard pile returns to play and draw 2 cards.',
-  faction: 'void',
+  faction: 'arcane',
   restriction: { heroes: ['malachar-the-unmade'] },
   rarity: 'mythic',
   element: 'shadow',
@@ -21,6 +21,6 @@ export default defineCard({
   ai: { value: 7, tags: ['draw', 'removal', 'revive'] },
   art: {
     subject:
-      'Tome of Endings: a small tome made of dark yew wood and brass fittings, wrapped in swirling black smoke, on a fur rug, bursting toward the viewer, teal accents'
+      'Tome of Endings: a small tome made of dark yew wood and brass fittings, wrapped in swirling violet runes and silver sparks, on a fur rug, bursting toward the viewer, violet accents'
   }
 })

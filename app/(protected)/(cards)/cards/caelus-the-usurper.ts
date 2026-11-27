@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'bronze',
   side: 'eclipse',
   restriction: { heroes: ['caelus-the-usurper'] },
-  rarity: 'legendary',
+  rarity: 'epic',
   element: 'light',
   cost: 0,
   health: 53,

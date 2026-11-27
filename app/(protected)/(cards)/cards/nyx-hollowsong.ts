@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'void',
   side: 'dawn',
   restriction: { heroes: ['nyx-hollowsong'] },
-  rarity: 'rare',
+  rarity: 'epic',
   cost: 0,
   health: 55,
   ability: {

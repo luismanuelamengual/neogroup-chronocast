@@ -528,7 +528,7 @@ export const en: Messages = {
       phases:
         'The match is played in phases. In each one you program 6 actions on your timeline (on the right) while the CPU programs its own. Then they resolve together, step by step.',
       chronos:
-        'Cards cost Chronos (⌛). To get more, tap a card and choose "Generate Chronos": you discard it and gain +1 capacity for good. Once per phase.',
+        'Cards cost Chronos (⌛). To get more, tap a card and choose "Generate Chronos": you banish it (it does not go to your discard pile) and gain +1 capacity for good. Once per phase.',
       summon:
         'With Chronos you can play an ally: tap the card and then a free slot. The ally attacks from the next phase on (💤).',
       ready: 'When you are done, tap Ready. If the 90 seconds run out, whatever you programmed is played.',

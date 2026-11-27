@@ -2,7 +2,7 @@ import { Rarity } from '@/app/(protected)/(engine)/models/Rarity'
 
 /**
  * Price of a playable hero in the shop, by its rarity: a hero opens a whole
- * new way to play. Today there are only common, rare, epic and legendary
+ * new way to play. Today there are only common, uncommon, epic and legendary
  * heroes; the other rarities keep a price in between for when there are.
  * Boss heroes are never sold. Like the cards, its rarity opens with the
  * player's level (RARITY_LEVELS).

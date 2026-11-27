@@ -57,30 +57,36 @@ function card(state: MatchState, cardId: string) {
 }
 
 describe("the heroes' abilities", () => {
-  it('Morgrath freezes the enemy allies with 4 health or less and deals them 4 shadow damage (a spell)', () => {
-    const state = match('morgrath-lich-abbot', { b: ['faithful-wanderer', 'hoplite-conscript'] })
+  it('Malachar freezes every enemy ally for the rest of the phase and all of the next one (a spell)', () => {
+    const state = match('malachar-the-unmade', { b: ['faithful-wanderer', 'hoplite-conscript'] })
+    const [wanderer, conscript] = state.players.b.allies
+    const attack: PlannedAction = { kind: 'allyAttack', allyUid: wanderer!.uid, target: { player: 'a', slot: 'hero' } }
+    const failsOf = (events: { type: string; reason?: string }[]) =>
+      events.flatMap((event) => (event.type === 'fail' ? [event.reason] : []))
+    // The Wanderer tries to attack after the ability (next step): it's frozen.
+    const first = resolvePhase(state, { a: plan(ability()), b: plan({ kind: 'wait' }, attack) })
 
-    state.players.b.allies[0]!.health = 6
-    state.players.b.allies[1]!.health = 4
+    expect(failsOf(first.events)).toEqual(['frozen'])
+    // No damage.
+    expect(first.state.players.b.allies[0]!.health).toBe(wanderer!.health)
+    expect(first.state.players.b.allies[1]!.health).toBe(conscript!.health)
 
-    const { state: next, fails } = run(state, plan(ability()))
+    // Still frozen all of the next phase; it thaws when the one after starts.
+    const second = resolvePhase(first.state, { a: emptyTimeline(), b: plan(attack) })
 
-    expect(fails).toEqual([])
-    // The Wanderer (6 health) is spared; the Conscript (4) is frozen and dies (4 shadow).
-    expect(next.players.b.allies[0]!.frozenUntilPhase ?? 0).toBe(0)
-    expect(next.players.b.allies.filter(Boolean).map((unit) => unit!.cardId)).not.toContain('hoplite-conscript')
+    expect(failsOf(second.events)).toEqual(['frozen'])
+
+    const third = resolvePhase(second.state, { a: emptyTimeline(), b: plan(attack) })
+
+    expect(failsOf(third.events)).toEqual([])
+    expect(third.events.some((event) => event.type === 'attack')).toBe(true)
   })
 
-  it("Morgrath's ability is a spell: it adds the spell power", () => {
-    const state = match('morgrath-lich-abbot', { a: ['tower-apprentice'], b: ['faithful-wanderer'] })
+  it('Malachar needs 6 energy for Unmaking Frost', () => {
+    const state = match('malachar-the-unmade', { b: ['faithful-wanderer'] })
 
-    state.players.b.allies[0]!.health = 4
-    state.players.b.allies[0]!.maxHealth = 20
-
-    const { state: next } = run(state, plan(ability()))
-
-    // 4 + 1 of spell power kill it even if the start of the next phase spares it.
-    expect(next.players.b.allies[0]).toBeNull()
+    state.players.a.energy = 5
+    expect(run(state, plan(ability())).fails).not.toEqual([])
   })
 
   it('Kora marks the ally she hits as Prey, and gains 1 energy when a trap of hers goes off', () => {
@@ -118,8 +124,8 @@ describe("the heroes' abilities", () => {
     expect(next.players.a.hand).toHaveLength(2)
   })
 
-  it('Ilyra deals 7 arcane damage to two different enemy slots, never twice to the same one', () => {
-    const state = match('ilyra-starweaver', { b: ['faithful-wanderer'] })
+  it('Ilyra deals 5 arcane damage to three different enemy slots, never twice to the same one', () => {
+    const state = match('ilyra-starweaver', { b: ['faithful-wanderer', 'faithful-wanderer'] })
     const health = state.players.b.hero.health
     const { state: next, fails } = run(
       state,
@@ -127,20 +133,23 @@ describe("the heroes' abilities", () => {
         kind: 'heroAbility',
         targets: [
           { player: 'b', slot: 'hero' },
-          { player: 'b', slot: 0 }
+          { player: 'b', slot: 0 },
+          { player: 'b', slot: 1 }
         ]
       })
     )
 
     expect(fails).toEqual([])
-    expect(next.players.b.hero.health).toBe(health - 7)
-    expect(next.players.b.allies[0]!.health).toBe(9 - 7)
+    expect(next.players.b.hero.health).toBe(health - 5)
+    expect(next.players.b.allies[0]!.health).toBe(9 - 5)
+    expect(next.players.b.allies[1]!.health).toBe(9 - 5)
 
     const twice = run(
       match('ilyra-starweaver', { b: ['faithful-wanderer'] }),
       plan({
         kind: 'heroAbility',
         targets: [
+          { player: 'b', slot: 'hero' },
           { player: 'b', slot: 0 },
           { player: 'b', slot: 0 }
         ]
@@ -319,6 +328,27 @@ describe("the heroes' abilities", () => {
     expect(second.players.a.allies[0]!.veil).toBeUndefined()
   })
 
+  it("the stealth of Vex's Ghost Protocol isn't lost by attacking, but sonic damage still breaks it", () => {
+    const state = match('vex-nightwire', { a: ['spark-of-dusk'] })
+    const ally = state.players.a.allies[0]!
+    const {
+      state: next,
+      events,
+      fails
+    } = run(state, plan(ability(), { kind: 'allyAttack', allyUid: ally.uid, target: { player: 'b', slot: 'hero' } }))
+
+    expect(fails).toEqual([])
+    expect(events.some((event) => event.type === 'attack')).toBe(true)
+    // It attacked in phase 1 and stays hidden for phase 2.
+    expect(next.players.a.allies[0]!.keywords).toContain('stealth')
+
+    const engine = new MatchEngine(next)
+
+    engine.damageUnit(next.players.a.allies[0]!.uid, 1, { player: 'b', element: 'sonic' })
+    engine.flush()
+    expect(next.players.a.allies[0]!.keywords).not.toContain('stealth')
+  })
+
   it("Varro's allies take 2 less damage and his side deals 2 more, until the end of the next phase", () => {
     const state = match('legate-varro', { a: ['faithful-wanderer'], b: ['faithful-wanderer'] })
     const attack = (from: 'a' | 'b'): PlannedAction => ({
@@ -335,21 +365,119 @@ describe("the heroes' abilities", () => {
     expect(run(first).state.players.a.boons).toEqual([])
   })
 
-  it('Malachar poisons every enemy ally, and his allies cost 1 Chronos less until the end of the next phase', () => {
-    const state = match('malachar-the-unmade', { b: ['spark-of-dusk', 'faithful-wanderer'] })
-    const first = run(state, plan(ability())).state
+  it('Malachar deals 1 shadow damage to the enemy hero each time he plays a spell', () => {
+    const state = match('malachar-the-unmade')
+    const spell = card(state, 'flickering-bolt')
 
-    expect(first.players.b.allies.filter(Boolean).every((unit) => (unit!.poison ?? 0) > 0)).toBe(true)
+    state.players.a.hand.push(spell)
+    state.players.a.chronos = 10
 
-    const ally = card(first, 'faithful-wanderer')
+    const health = state.players.b.hero.health
+    const { state: next, fails } = run(
+      state,
+      plan({ kind: 'play', cardUid: spell.uid, targets: [{ player: 'b', slot: 'hero' }] })
+    )
 
-    first.players.a.hand.push(ally)
-    first.players.a.chronos = 2
+    expect(fails).toEqual([])
+    expect(next.players.b.hero.health).toBeLessThan(health - 1)
+  })
 
-    const second = run(first, plan({ kind: 'play', cardUid: ally.uid, slot: 0 }))
+  it('Morgrath brings back the last ally that was defeated, and banishes nothing', () => {
+    const state = match('morgrath-lich-abbot')
 
-    expect(second.fails).toEqual([])
-    expect(second.state.players.a.allies[0]?.cardId).toBe('faithful-wanderer')
+    state.players.a.discard.push(
+      { ...card(state, 'faithful-wanderer'), defeated: true },
+      { ...card(state, 'hoplite-conscript'), defeated: true },
+      card(state, 'flickering-bolt'),
+      // On top, but discarded from the hand: it was never defeated.
+      card(state, 'old-chrononaut')
+    )
+
+    const { state: next, fails } = run(state, plan(ability()))
+
+    expect(fails).toEqual([])
+    expect(next.players.a.allies.filter(Boolean).map((unit) => unit!.cardId)).toEqual(['hoplite-conscript'])
+    expect(next.players.a.discard.map((entry) => entry.cardId)).toEqual([
+      'faithful-wanderer',
+      'flickering-bolt',
+      'old-chrononaut'
+    ])
+  })
+
+  it('an ally that dies on the board goes to the discard pile as defeated, and Morgrath raises it', () => {
+    const state = match('morgrath-lich-abbot', { a: ['hoplite-conscript'] })
+    const bolt = card(state, 'astral-bolt')
+
+    state.players.a.allies[0]!.health = 1
+    state.players.b.hand.push(bolt)
+    state.players.b.chronos = 10
+
+    const { state: died } = resolvePhase(state, {
+      a: emptyTimeline(),
+      b: plan({ kind: 'play', cardUid: bolt.uid, targets: [{ player: 'a', slot: 0 }] })
+    })
+
+    expect(died.players.a.discard).toContainEqual(
+      expect.objectContaining({ cardId: 'hoplite-conscript', defeated: true })
+    )
+
+    died.players.a.energy = 10
+
+    const { state: next, fails } = run(died, plan(ability()))
+
+    expect(fails).toEqual([])
+    expect(next.players.a.allies.filter(Boolean).map((unit) => unit!.cardId)).toEqual(['hoplite-conscript'])
+  })
+
+  it("Morgrath can't raise an ally that was only discarded or turned into Chronos", () => {
+    const state = match('morgrath-lich-abbot')
+    const fodder = card(state, 'old-chrononaut')
+
+    state.players.a.discard.push(
+      card(state, 'faithful-wanderer'),
+      card(state, 'hoplite-conscript'),
+      card(state, 'flickering-bolt'),
+      card(state, 'astral-bolt')
+    )
+    state.players.a.hand.push(fodder)
+
+    const { state: next, fails } = run(state, plan({ kind: 'sacrifice', cardUid: fodder.uid }, ability()))
+
+    expect(fails).toEqual(['noChoice'])
+    expect(next.players.a.discard.map((entry) => entry.cardId)).not.toContain('old-chrononaut')
+    expect(next.players.a.allies.filter(Boolean)).toEqual([])
+  })
+
+  it("Morgrath can't raise without a defeated ally or a free slot", () => {
+    const empty = match('morgrath-lich-abbot')
+
+    expect(run(empty, plan(ability())).fails).toEqual(['noChoice'])
+
+    const full = match('morgrath-lich-abbot', {
+      a: ['faithful-wanderer', 'faithful-wanderer', 'faithful-wanderer', 'faithful-wanderer', 'faithful-wanderer']
+    })
+
+    full.players.a.discard.push({ ...card(full, 'hoplite-conscript'), defeated: true })
+    expect(run(full, plan(ability())).fails).toEqual(['slotsFull'])
+  })
+
+  it('Morgrath deals 2 shadow damage to a random enemy ally when another ally of his dies', () => {
+    const state = match('morgrath-lich-abbot', { a: ['faithful-wanderer'], b: ['moonlit-basilisk'] })
+    // The rival's Astral Bolt (6 arcane damage) kills Morgrath's Wanderer.
+    const bolt = card(state, 'astral-bolt')
+
+    state.players.a.allies[0]!.health = 1
+    state.players.b.hand.push(bolt)
+    state.players.b.chronos = 10
+
+    const before = state.players.b.allies[0]!.health
+    const result = resolvePhase(state, {
+      a: emptyTimeline(),
+      b: plan({ kind: 'play', cardUid: bolt.uid, targets: [{ player: 'a', slot: 0 }] })
+    })
+
+    expect(result.state.players.a.allies[0]).toBeNull()
+    expect(result.state.players.b.allies[0]!.health).toBe(before - 2)
   })
 
   it('online, a player sees the artifacts of their own deck but not its order or the other cards', () => {

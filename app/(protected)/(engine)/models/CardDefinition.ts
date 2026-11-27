@@ -179,6 +179,8 @@ export interface CardDefinition {
   onArtifactLeave?(ctx: EffectContext, artifact: CardInstance): void
   /** Any card in play: when an ally of the rival dies (its attachments are still on it, so `isCursed` works). */
   onEnemyAllyDeath?(ctx: EffectContext, unit: Unit): void
+  /** Any card in play: when another ally of its owner dies (its attachments are still on it). */
+  onOwnAllyDeath?(ctx: EffectContext, unit: Unit): void
   /**
    * Any card in play: extra damage for an attack of its owner (its hero's or an ally's, `attacker`) aimed at
    * `target` (an aura; 0 for none).

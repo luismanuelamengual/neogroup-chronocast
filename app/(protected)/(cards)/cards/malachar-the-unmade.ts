@@ -1,13 +1,13 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { addBoon, damage, discardSize, poisonAllAllies } from '@/app/(protected)/(engine)/effects'
+import { alliesOf, damage, freeze, isSpell, slotOf } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'malachar-the-unmade',
   type: 'hero',
   name: 'Malachar the Unmade',
-  text: 'Plague of the Void (4): poison 5 every enemy ally. Until the end of the next phase, your allies cost 1 Chronos less. At the start of each phase, if your discard pile has 8 or more cards, deal 2 shadow damage to the enemy hero.',
+  text: 'Unmaking Frost (6), a spell: freeze every enemy ally. When you play a spell, deal 1 shadow damage to the enemy hero.',
   flavor: 'He unmade himself to see what lies beyond time.',
-  faction: 'void',
+  faction: 'arcane',
   side: 'eclipse',
   restriction: { heroes: ['malachar-the-unmade'] },
   rarity: 'legendary',
@@ -15,23 +15,29 @@ export default defineCard({
   cost: 0,
   health: 55,
   ability: {
-    name: 'Plague of the Void',
-    text: 'Poison 5 every enemy ally. Until the end of the next phase, your allies cost 1 Chronos less.',
-    cost: 4,
-    ai: { tags: ['allyDiscount'] },
+    name: 'Unmaking Frost',
+    text: 'A spell: freeze every enemy ally.',
+    cost: 6,
+    spell: true,
+    ai: { tags: ['removal'] },
     activate(ctx) {
-      poisonAllAllies(ctx, ctx.opponent, 5)
-      addBoon(ctx, ctx.owner, 'allyDiscount', 1)
+      for (const unit of alliesOf(ctx, ctx.opponent)) {
+        const ref = slotOf(ctx, unit)
+
+        if (ref) {
+          freeze(ctx, ref)
+        }
+      }
     }
   },
-  onPhaseStart(ctx) {
-    if (discardSize(ctx, ctx.owner) >= 8) {
-      damage(ctx, { player: ctx.opponent, slot: 'hero' }, 2)
+  onOwnerPlay(ctx, card) {
+    if (isSpell(card)) {
+      damage(ctx, { player: ctx.opponent, slot: 'hero' }, 1)
     }
   },
   ai: { value: 0 },
   art: {
     subject:
-      'a dark sorcerer whose body dissolves into black particles and green void energy, a hollow crown floating above his head among floating ruins'
+      'a dark sorcerer whose body unravels into glowing violet runes and silver starlight sparks, a hollow crown of floating arcane sigils above his head, in a ruined star-lit observatory'
   }
 })

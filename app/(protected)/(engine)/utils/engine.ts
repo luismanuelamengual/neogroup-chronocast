@@ -199,6 +199,11 @@ export class MatchEngine {
     return Math.max(0, unit.attack + unit.tempAttack + veilAttack(this.state, unit))
   }
 
+  /** Hidden by a hero's ability (a veil that gave it stealth) that still lasts: attacking doesn't reveal it. */
+  isVeiled(unit: Unit): boolean {
+    return !!unit.veil?.stealth && unit.veil.untilPhase >= this.state.phase
+  }
+
   /** Stunned or frozen: it can't act. */
   isStunned(unit: Unit): boolean {
     return unit.stunnedUntilPhase >= this.state.phase || this.isFrozen(unit)
@@ -590,6 +595,10 @@ export class MatchEngine {
           getCard(card.cardId).onEnemyAllyDeath?.(this.context(rival, card), unit)
         }
 
+        for (const card of this.inPlay(player)) {
+          getCard(card.cardId).onOwnAllyDeath?.(this.context(player, card), unit)
+        }
+
         this.dropAttachments(player, unit)
         getCard(unit.cardId).onDeath?.(this.context(player, unit))
 
@@ -597,7 +606,7 @@ export class MatchEngine {
           this.addToHand(player, { uid: this.newUid(), cardId: unit.cardId, echoUsed: true })
           this.emit({ type: 'returnToHand', player, cardId: unit.cardId })
         } else {
-          state.discard.push({ uid: unit.uid, cardId: unit.cardId })
+          state.discard.push({ uid: unit.uid, cardId: unit.cardId, defeated: true })
         }
       }
     }

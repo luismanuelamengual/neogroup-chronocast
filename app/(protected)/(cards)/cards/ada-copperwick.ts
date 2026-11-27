@@ -10,7 +10,7 @@ export default defineCard({
   faction: 'clockwork',
   side: 'dawn',
   restriction: { heroes: ['ada-copperwick'] },
-  rarity: 'epic',
+  rarity: 'legendary',
   cost: 0,
   health: 58,
   ability: {

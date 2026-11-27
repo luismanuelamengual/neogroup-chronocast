@@ -1,13 +1,13 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { alliesOf, damageAlly, damageRandomAlly, freeze, slotOf } from '@/app/(protected)/(engine)/effects'
+import { damageRandomAlly, lastDefeatedAlly, reviveLastDefeated } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'morgrath-lich-abbot',
   type: 'hero',
   name: 'Morgrath, the Lich Abbot',
-  text: 'Grave Frost (4), a spell: freeze every enemy ally with 4 health or less and deal 4 shadow damage to each of them. At the start of each phase, deal 3 shadow damage to a random enemy ally.',
+  text: 'Unholy Rising (4): the last ally of yours that was defeated returns to play. When another ally of yours dies, deal 2 shadow damage to a random enemy ally.',
   flavor: 'He prayed for eternal life. Something answered.',
-  faction: 'arcane',
+  faction: 'void',
   side: 'eclipse',
   restriction: { heroes: ['morgrath-lich-abbot'] },
   rarity: 'legendary',
@@ -15,28 +15,27 @@ export default defineCard({
   cost: 0,
   health: 65,
   ability: {
-    name: 'Grave Frost',
-    text: 'A spell: freeze every enemy ally with 4 health or less and deal 4 shadow damage to each of them.',
+    name: 'Unholy Rising',
+    text: 'The last ally of yours that was defeated returns to play.',
     cost: 4,
-    spell: true,
-    ai: { tags: ['removal'] },
-    activate(ctx) {
-      for (const unit of alliesOf(ctx, ctx.opponent).filter((candidate) => candidate.health <= 4)) {
-        const ref = slotOf(ctx, unit)
-
-        if (ref) {
-          freeze(ctx, ref)
-          damageAlly(ctx, unit, 4)
-        }
+    ai: { tags: ['revive'] },
+    canActivate(ctx) {
+      if (!lastDefeatedAlly(ctx, ctx.owner)) {
+        return 'noChoice'
       }
+
+      return ctx.engine.freeSlots(ctx.owner).length > 0 ? null : 'slotsFull'
+    },
+    activate(ctx) {
+      reviveLastDefeated(ctx, ctx.owner)
     }
   },
-  onPhaseStart(ctx) {
-    damageRandomAlly(ctx, ctx.opponent, 3)
+  onOwnAllyDeath(ctx) {
+    damageRandomAlly(ctx, ctx.opponent, 2)
   },
   ai: { value: 0 },
   art: {
     subject:
-      'an undead abbot in tattered monk robes with a glowing violet skull face holding a dark grimoire in a ruined abbey'
+      'an undead abbot in tattered monk robes with a glowing sickly green skull face and green soul-fire in his eye sockets, holding a dark grimoire as ghostly green souls rise from the graves of a ruined abbey'
   }
 })

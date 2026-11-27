@@ -8,6 +8,8 @@ export interface CardInstance {
   cardId: string
   /** An `echo` card that already came back to the hand once. */
   echoUsed?: boolean
+  /** In a discard pile: an ally that got there by dying on the board (not discarded from the hand). */
+  defeated?: boolean
   /** An attachment: who played it (it can be on a rival's ally; it goes to this player's discard pile). */
   owner?: PlayerId
   /** An artifact: uses left (it is discarded at 0). */
@@ -59,7 +61,7 @@ export interface Unit extends Afflictions {
   attachments?: CardInstance[]
   /**
    * A hero's ability hid it: +`attack` and `stealth` (when `stealth`, the ability gave it) while the phase
-   * is not past `untilPhase`.
+   * is not past `untilPhase`. That stealth isn't lost by attacking (sonic damage still breaks it).
    */
   veil?: { attack: number; stealth: boolean; untilPhase: number }
   /**
