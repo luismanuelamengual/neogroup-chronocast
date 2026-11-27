@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { destroyArtifact } from '@/app/(protected)/(engine)/effects'
+import { cleanse, healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'pilgrim-of-dawn',
   type: 'ally',
   name: 'Pilgrim of Dawn',
-  text: 'When it enters: destroy the priciest enemy artifact.',
+  text: 'When it enters: your hero loses its poison and burn and heals 4.',
   faction: 'neutral',
   restriction: { sides: ['dawn'] },
   rarity: 'common',
@@ -15,7 +15,8 @@ export default defineCard({
   attack: 3,
   health: 7,
   onEnter(ctx) {
-    destroyArtifact(ctx, ctx.opponent)
+    cleanse(ctx, { player: ctx.owner, slot: 'hero' })
+    healHero(ctx, 4)
   },
   ai: { value: 3, tags: ['antiGear'] },
   art: {

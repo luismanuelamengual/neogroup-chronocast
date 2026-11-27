@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { heal, neighbors, slotOf } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'augur-of-the-laurel',
   type: 'ally',
   name: 'Augur of the Laurel',
-  text: 'At the start of each phase: your hero heals 2.',
+  text: 'At the start of each phase: the allies next to it heal 2.',
   faction: 'bronze',
   restriction: { factions: ['bronze'] },
   rarity: 'common',
@@ -17,7 +17,13 @@ export default defineCard({
   attack: 1,
   health: 7,
   onPhaseStart(ctx) {
-    healHero(ctx, 2)
+    for (const unit of neighbors(ctx)) {
+      const ref = slotOf(ctx, unit)
+
+      if (ref) {
+        heal(ctx, ref, 2)
+      }
+    }
   },
   ai: { value: 2, tags: ['defense'] },
   art: {

@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { freeze, randomAlly, slotOf } from '@/app/(protected)/(engine)/effects'
+import { alliesOf, freezeAlly } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'firedrake-of-the-arcanum',
   type: 'ally',
   name: 'Firedrake of the Arcanum',
-  text: 'When it enters: freeze a random enemy ally.',
+  text: 'When it enters: freeze the enemy ally with the most attack.',
   faction: 'neutral',
   restriction: {},
   rarity: 'common',
@@ -19,11 +19,10 @@ export default defineCard({
   attack: 4,
   health: 8,
   onEnter(ctx) {
-    const victim = randomAlly(ctx, ctx.opponent)
-    const ref = victim && slotOf(ctx, victim)
+    const strongest = alliesOf(ctx, ctx.opponent).sort((a, b) => ctx.engine.attackOf(b) - ctx.engine.attackOf(a))[0]
 
-    if (ref) {
-      freeze(ctx, ref)
+    if (strongest) {
+      freezeAlly(ctx, strongest)
     }
   },
   ai: { value: 4, tags: ['removal'] },

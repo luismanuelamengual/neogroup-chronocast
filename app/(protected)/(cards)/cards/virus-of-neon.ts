@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { gainEnergy } from '@/app/(protected)/(engine)/effects'
+import { enhancedAllies, gainEnergy } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'virus-of-neon',
   type: 'ally',
   name: 'Virus of Neon',
-  text: 'When it enters: your hero gains 1 energy.',
+  text: 'When it enters: your hero gains 1 energy for each Enhanced ally of yours.',
   faction: 'neon',
   restriction: { factions: ['neon'], sides: ['dawn'] },
   rarity: 'common',
@@ -17,7 +17,7 @@ export default defineCard({
   attack: 3,
   health: 8,
   onEnter(ctx) {
-    gainEnergy(ctx, ctx.owner, 1)
+    gainEnergy(ctx, ctx.owner, enhancedAllies(ctx, ctx.owner).length)
   },
   ai: { value: 3, tags: ['energy'] },
   art: {

@@ -1,15 +1,15 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw, stunAt } from '@/app/(protected)/(engine)/effects'
+import { drainEnergy, stunAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'blazing-daze',
   type: 'ability',
   subtype: 'program',
   name: 'Blazing Daze',
-  text: 'Stun an enemy ally for two phases and draw a card. Fast.',
+  text: 'Stun an enemy ally for two phases. The enemy hero loses 2 energy. Fast.',
   flavor: 'Too bright to think.',
   faction: 'neon',
-  restriction: { factions: ['neon'], sides: ['eclipse'] },
+  restriction: { factions: ['neon'] },
   rarity: 'uncommon',
   price: 180,
   cost: 4,
@@ -17,7 +17,7 @@ export default defineCard({
   targets: ['enemyAlly'],
   onPlay(ctx) {
     stunAt(ctx, ctx.targets[0], 1)
-    draw(ctx, ctx.owner, 1)
+    drainEnergy(ctx, ctx.opponent, 2)
   },
   ai: { value: 4, tags: ['draw', 'removal'] },
   art: {

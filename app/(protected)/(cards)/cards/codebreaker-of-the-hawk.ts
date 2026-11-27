@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Codebreaker of the Hawk',
   text: 'When it enters: draw the first Netrunner of your deck. Its ability is paid with energy (⚡).',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['eclipse'] },
   rarity: 'uncommon',
   element: 'wind',
   price: 140,

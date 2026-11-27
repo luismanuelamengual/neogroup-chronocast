@@ -1,11 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { alliesOf, buffThisPhase } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'breastplate-of-rage',
   type: 'armor',
   subtype: 'plate',
   name: 'Breastplate of Rage',
-  text: '',
+  text: 'When it is equipped: your allies gain +1 attack this phase.',
   flavor: 'Forged hot, worn hotter.',
   faction: 'bronze',
   restriction: { factions: ['bronze'], sides: ['eclipse'] },
@@ -14,6 +15,11 @@ export default defineCard({
   cost: 2,
   armor: 2,
   durability: 3,
+  onPlay(ctx) {
+    for (const unit of alliesOf(ctx, ctx.owner)) {
+      buffThisPhase(ctx, unit, 1)
+    }
+  },
   ai: { value: 2 },
   art: {
     subject:

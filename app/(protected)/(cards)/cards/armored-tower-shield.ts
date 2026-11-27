@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healAllAllies } from '@/app/(protected)/(engine)/effects'
+import { isAllyOf, unitAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'armored-tower-shield',
   type: 'armor',
   subtype: 'shield',
   name: 'Armored Tower Shield',
-  text: 'When it is equipped: your allies heal 2.',
+  text: 'Every damage your allies with Guardian take is 1 lower.',
   flavor: 'A wall you can carry.',
   faction: 'bronze',
   restriction: { factions: ['bronze'] },
@@ -15,8 +15,10 @@ export default defineCard({
   cost: 2,
   armor: 2,
   durability: 5,
-  onPlay(ctx) {
-    healAllAllies(ctx, ctx.owner, 2)
+  modifyDamage(ctx, target, amount) {
+    const unit = target.slot !== 'hero' && isAllyOf(ctx, target, ctx.owner) ? unitAt(ctx, target) : null
+
+    return unit?.keywords.includes('guardian') ? Math.max(0, amount - 1) : amount
   },
   ai: { value: 4 },
   art: {

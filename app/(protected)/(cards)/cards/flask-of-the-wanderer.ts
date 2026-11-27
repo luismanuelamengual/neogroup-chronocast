@@ -1,20 +1,20 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw, healHero } from '@/app/(protected)/(engine)/effects'
+import { healHero, seekType } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'flask-of-the-wanderer',
   type: 'item',
   name: 'Flask of the Wanderer',
-  text: 'Your hero heals 13 and draw a card.',
+  text: 'Your hero heals 6. Draw the first artifact of your deck.',
   flavor: 'Never empty, never the same drink twice.',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['dawn'] },
   rarity: 'rare',
   price: 420,
   cost: 3,
   onPlay(ctx) {
-    healHero(ctx, 13)
-    draw(ctx, ctx.owner, 1)
+    healHero(ctx, 6)
+    seekType(ctx, ctx.owner, 'artifact')
   },
   ai: { value: 4, tags: ['draw', 'heal'] },
   art: {

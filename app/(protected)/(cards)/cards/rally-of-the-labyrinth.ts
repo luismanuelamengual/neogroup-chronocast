@@ -1,22 +1,27 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffThisPhaseAt } from '@/app/(protected)/(engine)/effects'
+import { alliesOf, buffThisPhase } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'rally-of-the-labyrinth',
   type: 'ability',
   subtype: 'tactic',
   name: 'Rally of the Labyrinth',
-  text: 'An ally of yours gains +4 attack this phase. Instant.',
+  text: 'Your ally with the least attack gains +5 attack this phase. Instant.',
   flavor: 'Lost in the maze, found in the fight.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'], sides: ['eclipse'] },
+  restriction: { factions: ['bronze'] },
   rarity: 'uncommon',
   price: 120,
   cost: 1,
   speed: 'instant',
-  targets: ['friendlyAlly'],
   onPlay(ctx) {
-    buffThisPhaseAt(ctx, ctx.targets[0], 4)
+    const [weakest] = alliesOf(ctx, ctx.owner).sort(
+      (one, other) => ctx.engine.attackOf(one) - ctx.engine.attackOf(other)
+    )
+
+    if (weakest) {
+      buffThisPhase(ctx, weakest, 5)
+    }
   },
   ai: { value: 1, tags: ['buff'] },
   art: {

@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageRandomAlly } from '@/app/(protected)/(engine)/effects'
+import { draw, enhancedAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'vexs-sling',
   type: 'weapon',
   subtype: 'energy',
   name: "Vex's Nightwire Blaster",
-  text: 'When it is equipped: deal 4 shadow damage to a random enemy ally.',
+  text: 'When your hero attacks with it: if you have 2 or more Enhanced allies, draw a card.',
   faction: 'neon',
   restriction: { heroes: ['vex-nightwire'] },
   rarity: 'epic',
@@ -16,8 +16,10 @@ export default defineCard({
   keywords: ['unique'],
   attack: 5,
   durability: 4,
-  onPlay(ctx) {
-    damageRandomAlly(ctx, ctx.opponent, 4)
+  onAttack(ctx) {
+    if (enhancedAllies(ctx, ctx.owner).length >= 2) {
+      draw(ctx, ctx.owner, 1)
+    }
   },
   ai: { value: 5 },
   art: {

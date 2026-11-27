@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damage, draw } from '@/app/(protected)/(engine)/effects'
+import { damage, draw, unitAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'malachars-blast',
   type: 'ability',
   subtype: 'ritual',
   name: "Malachar's Blast",
-  text: 'Deal 10 shadow damage to an enemy slot and draw a card.',
+  text: 'Deal 10 shadow damage to an enemy slot; if it kills an ally, draw 2 cards.',
   faction: 'arcane',
   restriction: { heroes: ['malachar-the-unmade'] },
   rarity: 'epic',
@@ -16,8 +16,13 @@ export default defineCard({
   keywords: ['unique'],
   targets: ['enemySlot'],
   onPlay(ctx) {
-    damage(ctx, ctx.targets[0], 10)
-    draw(ctx, ctx.owner, 1)
+    const victim = unitAt(ctx, ctx.targets[0])
+
+    damage(ctx, ctx.targets[0], 10, 'shadow')
+
+    if (victim && !ctx.engine.findUnit(victim.uid)) {
+      draw(ctx, ctx.owner, 2)
+    }
   },
   ai: { value: 5 },
   art: {

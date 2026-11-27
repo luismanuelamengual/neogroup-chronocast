@@ -6,7 +6,10 @@ con cartas nuevas. Se respeta la identidad de robo ya implementada (Bronce: alia
 Arcana: 2 hechizos en la fase; Primigenia: al matar; Relojería: destruir artefactos propios;
 Neón: mazo rival; Vacío: muertes de aliados propios).
 
-Decisiones del usuario: Neón = hackers (implantes + programas). Mover el equipo a su facción
+Decisiones del usuario: Neón = hackers (implantes + programas). **Neón es la facción de los
+adjuntos** (27/11/2026): implantes, mejoras y partes robóticas son su eje, igual que los
+artefactos lo son de Relojería. Es la facción con más adjuntos del juego, y sus cartas premian
+tener aliados Mejorados. Mover el equipo a su facción
 dejando un set básico neutral. Las cartas que dejan de ser usables se sacan solas de los mazos
 guardados (siguen en la colección).
 

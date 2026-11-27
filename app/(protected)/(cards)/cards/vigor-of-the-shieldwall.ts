@@ -1,21 +1,21 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffAt } from '@/app/(protected)/(engine)/effects'
+import { buffAllies, draw } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'vigor-of-the-shieldwall',
   type: 'ability',
   subtype: 'instinct',
   name: 'Vigor of the Shieldwall',
-  text: 'An ally of yours gains +5 attack and +7 health.',
+  text: 'Your allies gain +1 attack and +2 health. Draw a card for each trap you have set.',
   flavor: 'Lock shields, breathe together, stand together.',
   faction: 'primal',
-  restriction: { factions: ['primal'], sides: ['dawn'] },
+  restriction: { factions: ['primal'] },
   rarity: 'uncommon',
   price: 180,
   cost: 4,
-  targets: ['friendlyAlly'],
   onPlay(ctx) {
-    buffAt(ctx, ctx.targets[0], 5, 7)
+    buffAllies(ctx, ctx.owner, 1, 2)
+    draw(ctx, ctx.owner, ctx.engine.player(ctx.owner).traps.length)
   },
   ai: { value: 4, tags: ['buff'] },
   art: {

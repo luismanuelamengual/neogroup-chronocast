@@ -1,14 +1,14 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageRandomAlly } from '@/app/(protected)/(engine)/effects'
+import { damageAllAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'elk-of-the-wilds',
   type: 'ally',
   name: 'Elk of the Wilds',
-  text: 'When it dies: deal 7 damage to a random enemy ally.',
+  text: 'When it dies: deal 2 damage to every enemy ally.',
   flavor: 'King of the forest, crowned in antlers.',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   price: 80,
   cost: 6,
@@ -16,7 +16,7 @@ export default defineCard({
   attack: 8,
   health: 9,
   onDeath(ctx) {
-    damageRandomAlly(ctx, ctx.opponent, 7)
+    damageAllAllies(ctx, ctx.opponent, 2)
   },
   ai: { value: 6, tags: ['removal'] },
   art: {

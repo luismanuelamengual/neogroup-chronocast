@@ -8,7 +8,7 @@ export default defineCard({
   text: 'At the start of each phase, if you have at least one ally: your hero heals 2.',
   flavor: 'Together we stand. Alone we fall.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'], sides: ['dawn'] },
+  restriction: { factions: ['bronze'] },
   rarity: 'common',
   price: 60,
   cost: 3,

@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageRandomAlly, spendCharge } from '@/app/(protected)/(engine)/effects'
+import { damageRandomAlly, spellPowerOf, spendCharge } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'ethereal-beacon',
   type: 'artifact',
   name: 'Ethereal Beacon',
-  text: 'At the start of each phase: deal 2 arcane damage to a random enemy ally. (4 uses)',
+  text: 'At the start of each phase: deal 2 arcane damage, plus your spell power, to a random enemy ally. (4 uses)',
   faction: 'arcane',
   restriction: { factions: ['arcane'] },
   rarity: 'rare',
@@ -14,7 +14,7 @@ export default defineCard({
   cost: 1,
   charges: 4,
   onPhaseStart(ctx) {
-    damageRandomAlly(ctx, ctx.opponent, 2)
+    damageRandomAlly(ctx, ctx.opponent, 2 + spellPowerOf(ctx, ctx.owner))
     spendCharge(ctx)
   },
   ai: { value: 2, tags: ['removal'] },

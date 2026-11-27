@@ -1,22 +1,27 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw, returnAt } from '@/app/(protected)/(engine)/effects'
+import { freeze, returnAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'keen-eyed-daze',
   type: 'ability',
   subtype: 'spell',
   name: 'Keen-Eyed Daze',
-  text: "Return an enemy ally to its owner's hand and draw a card. Fast.",
+  text: "Return an enemy ally to its owner's hand and freeze another one. Fast.",
   faction: 'arcane',
   restriction: { factions: ['arcane'] },
   rarity: 'uncommon',
   price: 180,
   cost: 4,
   speed: 'fast',
-  targets: ['enemyAlly'],
+  targets: ['enemyAlly', 'enemyAlly'],
   onPlay(ctx) {
-    returnAt(ctx, ctx.targets[0])
-    draw(ctx, ctx.owner, 1)
+    const [bounced, frozen] = ctx.targets
+
+    returnAt(ctx, bounced)
+
+    if (frozen) {
+      freeze(ctx, frozen)
+    }
   },
   ai: { value: 4, tags: ['draw', 'removal'] },
   art: {

@@ -1,22 +1,24 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageRandomAlly } from '@/app/(protected)/(engine)/effects'
+import { alliesOf, healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'crook-of-the-ancestors',
   type: 'weapon',
   subtype: 'staff',
   name: 'Crook of the Ancestors',
-  text: 'When it is equipped: deal 4 light damage to a random enemy ally.',
+  text: 'When your hero attacks with it: your hero heals 2 for each frozen enemy ally.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'], sides: ['dawn'] },
+  restriction: { factions: ['arcane'] },
   rarity: 'rare',
-  element: 'light',
   price: 420,
   cost: 3,
   attack: 4,
   durability: 4,
-  onPlay(ctx) {
-    damageRandomAlly(ctx, ctx.opponent, 4)
+  onAttack(ctx) {
+    healHero(
+      ctx,
+      2 * alliesOf(ctx, ctx.opponent).filter((unit) => (unit.frozenUntilPhase ?? 0) >= ctx.engine.state.phase).length
+    )
   },
   ai: { value: 4 },
   art: {

@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { seek } from '@/app/(protected)/(engine)/effects'
+import { boostWeapon } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'brave-squire',
   type: 'ally',
   name: 'Brave Squire',
-  text: 'When it enters: draw the first weapon of your deck.',
+  text: 'When it enters: your weapon gains +2 attack.',
   flavor: 'Too young to know fear, old enough to fight it.',
   faction: 'neutral',
   restriction: { sides: ['dawn'] },
@@ -15,7 +15,7 @@ export default defineCard({
   attack: 7,
   health: 12,
   onEnter(ctx) {
-    seek(ctx, ctx.owner, (card) => card.type === 'weapon')
+    boostWeapon(ctx, ctx.owner, 2, 0)
   },
   ai: { value: 6, tags: ['draw'] },
   art: {

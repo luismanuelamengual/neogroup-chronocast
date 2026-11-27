@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { freeze } from '@/app/(protected)/(engine)/effects'
+import { cardOf, freeze, unitAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'weary-stasis',
   type: 'ability',
   subtype: 'spell',
   name: 'Weary Stasis',
-  text: 'Freeze an enemy ally.',
+  text: 'Freeze an enemy ally that costs 2 or less.',
   flavor: 'Even time needs to rest.',
   faction: 'arcane',
   restriction: { factions: ['arcane'] },
@@ -15,7 +15,11 @@ export default defineCard({
   cost: 0,
   targets: ['enemyAlly'],
   onPlay(ctx) {
-    freeze(ctx, ctx.targets[0])
+    const unit = unitAt(ctx, ctx.targets[0])
+
+    if (unit && cardOf(unit).cost <= 2) {
+      freeze(ctx, ctx.targets[0])
+    }
   },
   ai: { value: 1, tags: ['removal'] },
   art: {

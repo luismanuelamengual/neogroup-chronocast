@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageRandomAlly } from '@/app/(protected)/(engine)/effects'
+import { damage, damageRandomAlly } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'scavenger-of-storms',
   type: 'ally',
   name: 'Scavenger of Storms',
-  text: 'When it enters: deal 4 lightning damage to a random enemy ally.',
+  text: 'When it enters: deal 2 lightning damage to the enemy hero and to a random enemy ally.',
   faction: 'neutral',
   restriction: {},
   rarity: 'common',
@@ -16,7 +16,8 @@ export default defineCard({
   attack: 3,
   health: 6,
   onEnter(ctx) {
-    damageRandomAlly(ctx, ctx.opponent, 4)
+    damage(ctx, { player: ctx.opponent, slot: 'hero' }, 2, 'lightning')
+    damageRandomAlly(ctx, ctx.opponent, 2, 'lightning')
   },
   ai: { value: 3, tags: ['removal'] },
   art: {

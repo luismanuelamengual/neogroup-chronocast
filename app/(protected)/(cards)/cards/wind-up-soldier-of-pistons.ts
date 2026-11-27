@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { artifactCount, damageRandomAlly } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'wind-up-soldier-of-pistons',
   type: 'ally',
   name: 'Wind-Up Soldier of Pistons',
-  text: 'When it enters: your hero heals 4.',
+  text: 'When it enters: deal 1 damage to a random enemy ally for each artifact of yours.',
   faction: 'clockwork',
   restriction: { factions: ['clockwork'], sides: ['eclipse'] },
   rarity: 'common',
@@ -19,7 +19,7 @@ export default defineCard({
   attack: 4,
   health: 6,
   onEnter(ctx) {
-    healHero(ctx, 4)
+    damageRandomAlly(ctx, ctx.opponent, artifactCount(ctx))
   },
   ai: { value: 3, tags: ['defense'] },
   art: {

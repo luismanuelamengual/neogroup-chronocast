@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { draw, isPrey, unitAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'young-tyrant',
   type: 'ally',
   name: 'Young Tyrant',
-  text: 'When it attacks: your hero heals 2.',
+  text: 'When it attacks a Prey: draw a card.',
   flavor: 'A king in the making, a tyrant already.',
   faction: 'primal',
   restriction: { factions: ['primal'], sides: ['dawn'] },
@@ -16,8 +16,12 @@ export default defineCard({
   tribe: 'saurian',
   attack: 3,
   health: 3,
-  onAttack(ctx) {
-    healHero(ctx, 2)
+  onAttack(ctx, target) {
+    const unit = unitAt(ctx, target)
+
+    if (unit && isPrey(ctx, unit)) {
+      draw(ctx, ctx.owner, 1)
+    }
   },
   ai: { value: 1, tags: ['aggro', 'heal'] },
   art: {

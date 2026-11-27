@@ -1,10 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { rechargeRandom } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'wind-up-mechanic',
   type: 'ally',
   name: 'Wind-Up Mechanic',
-  text: '',
+  text: 'At the end of each phase: a random artifact of yours with uses gains 1 use.',
   flavor: 'Turn the key and step back.',
   faction: 'clockwork',
   restriction: { factions: ['clockwork'], sides: ['dawn'] },
@@ -16,6 +17,9 @@ export default defineCard({
   thorns: 4,
   attack: 6,
   health: 8,
+  onPhaseEnd(ctx) {
+    rechargeRandom(ctx, 1)
+  },
   ai: { value: 4 },
   art: {
     subject:

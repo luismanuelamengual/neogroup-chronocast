@@ -1,11 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { buff } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'nameless-saddle',
   type: 'attachment',
   subtype: 'mount',
   name: 'Nameless Saddle',
-  text: 'Attach to an ally of yours: it gains +2 attack and +3 health.',
+  text: 'Attach to an ally of yours: it gains +2 attack and +3 health. When that ally attacks: it gains +1 attack.',
   faction: 'primal',
   restriction: { factions: ['primal'], sides: ['dawn'] },
   rarity: 'uncommon',
@@ -14,6 +15,9 @@ export default defineCard({
   attack: 2,
   health: 3,
   targets: ['friendlyAlly'],
+  onHostAttack(ctx, unit) {
+    buff(ctx, unit, 1, 0)
+  },
   ai: { value: 2, tags: ['buff'] },
   art: {
     subject:

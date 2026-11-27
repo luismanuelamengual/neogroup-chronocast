@@ -1,15 +1,15 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { alliesOf, freezeAlly } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'devout-bell',
   type: 'weapon',
   subtype: 'orb',
   name: 'Devout Bell',
-  text: 'When it is equipped: your hero heals 4.',
+  text: 'When it is equipped: freeze the enemy ally with the most attack.',
   flavor: 'Each toll is a vow kept.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'], sides: ['dawn'] },
+  restriction: { factions: ['arcane'] },
   rarity: 'rare',
   element: 'sonic',
   price: 360,
@@ -17,7 +17,13 @@ export default defineCard({
   attack: 3,
   durability: 3,
   onPlay(ctx) {
-    healHero(ctx, 4)
+    const [strongest] = alliesOf(ctx, ctx.opponent).sort(
+      (one, other) => ctx.engine.attackOf(other) - ctx.engine.attackOf(one)
+    )
+
+    if (strongest) {
+      freezeAlly(ctx, strongest)
+    }
   },
   ai: { value: 3 },
   art: {

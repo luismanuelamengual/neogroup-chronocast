@@ -9,7 +9,7 @@ export default defineCard({
   text: 'Burn an enemy slot (4).',
   flavor: 'Subtlety was never the point.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'], sides: ['eclipse'] },
+  restriction: { factions: ['arcane'] },
   rarity: 'uncommon',
   price: 160,
   cost: 3,

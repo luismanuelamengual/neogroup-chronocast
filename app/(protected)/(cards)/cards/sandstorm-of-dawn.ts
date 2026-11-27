@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { freezeAlly, randomAlly } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'sandstorm-of-dawn',
   type: 'ally',
   name: 'Sandstorm of Dawn',
-  text: 'When it enters: your hero heals 7.',
+  text: 'When it enters: freeze a random enemy ally for 2 phases.',
   faction: 'neutral',
   restriction: { sides: ['dawn'] },
   rarity: 'rare',
@@ -18,7 +18,11 @@ export default defineCard({
   attack: 7,
   health: 9,
   onEnter(ctx) {
-    healHero(ctx, 7)
+    const unit = randomAlly(ctx, ctx.opponent)
+
+    if (unit) {
+      freezeAlly(ctx, unit, 2)
+    }
   },
   ai: { value: 6, tags: ['defense'] },
   art: {

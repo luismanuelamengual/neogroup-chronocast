@@ -1,22 +1,23 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffThisPhaseAt } from '@/app/(protected)/(engine)/effects'
+import { buffThisPhase, tribeAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'stalwart-battle-cry',
   type: 'ability',
   subtype: 'tactic',
   name: 'Stalwart Battle Cry',
-  text: 'An ally of yours gains +8 attack this phase. Instant.',
+  text: 'Your Colossi gain +3 attack this phase. Instant.',
   flavor: 'A shout that steadies a hundred hands.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'], sides: ['dawn'] },
+  restriction: { factions: ['bronze'] },
   rarity: 'uncommon',
   price: 160,
   cost: 3,
   speed: 'instant',
-  targets: ['friendlyAlly'],
   onPlay(ctx) {
-    buffThisPhaseAt(ctx, ctx.targets[0], 8)
+    for (const unit of tribeAllies(ctx, ctx.owner, 'colossus')) {
+      buffThisPhase(ctx, unit, 3)
+    }
   },
   ai: { value: 3, tags: ['buff'] },
   art: {

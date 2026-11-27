@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageRandomAlly } from '@/app/(protected)/(engine)/effects'
+import { poison, randomAlly, slotOf } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'bounty-hunter-of-the-silent-trail',
   type: 'ally',
   name: 'Bounty Hunter of the Silent Trail',
-  text: 'When it dies: deal 3 damage to a random enemy ally.',
+  text: 'When it dies: poison a random enemy ally (3).',
   faction: 'neutral',
   restriction: { sides: ['eclipse'] },
   rarity: 'rare',
@@ -15,7 +15,12 @@ export default defineCard({
   attack: 3,
   health: 6,
   onDeath(ctx) {
-    damageRandomAlly(ctx, ctx.opponent, 3)
+    const unit = randomAlly(ctx, ctx.opponent)
+    const ref = unit ? slotOf(ctx, unit) : null
+
+    if (ref) {
+      poison(ctx, ref, 3)
+    }
   },
   ai: { value: 3, tags: ['removal'] },
   art: {

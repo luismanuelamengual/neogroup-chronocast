@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { buffSelf, damage } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'spark-of-dusk',
   type: 'ally',
   name: 'Spark of Dusk',
-  text: 'At the start of each phase: your hero heals 2.',
+  text: 'At the start of each phase: your hero takes 1 shadow damage and it gains +1 attack.',
   faction: 'neutral',
   restriction: { sides: ['eclipse'] },
   rarity: 'rare',
@@ -18,7 +18,8 @@ export default defineCard({
   attack: 9,
   health: 12,
   onPhaseStart(ctx) {
-    healHero(ctx, 2)
+    damage(ctx, { player: ctx.owner, slot: 'hero' }, 1, 'shadow')
+    buffSelf(ctx, 1, 0)
   },
   ai: { value: 7, tags: ['heal'] },
   art: {

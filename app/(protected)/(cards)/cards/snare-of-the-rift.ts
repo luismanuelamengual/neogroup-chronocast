@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw, stunAt } from '@/app/(protected)/(engine)/effects'
+import { alliesOf, stun } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'snare-of-the-rift',
   type: 'ability',
   subtype: 'program',
   name: 'Snare of the Rift',
-  text: 'Stun an enemy ally for two phases and draw a card. Fast.',
+  text: 'Stun every enemy ally that has an attachment. Fast.',
   flavor: 'A trap set in one century, sprung in another.',
   faction: 'neon',
   restriction: { factions: ['neon'] },
@@ -14,10 +14,12 @@ export default defineCard({
   price: 180,
   cost: 4,
   speed: 'fast',
-  targets: ['enemyAlly'],
   onPlay(ctx) {
-    stunAt(ctx, ctx.targets[0], 1)
-    draw(ctx, ctx.owner, 1)
+    for (const unit of alliesOf(ctx, ctx.opponent)) {
+      if (unit.attachments?.length) {
+        stun(ctx, unit)
+      }
+    }
   },
   ai: { value: 4, tags: ['draw', 'removal'] },
   art: {

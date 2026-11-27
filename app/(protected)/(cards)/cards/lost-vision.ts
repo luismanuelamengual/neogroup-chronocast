@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw } from '@/app/(protected)/(engine)/effects'
+import { discardRandom, draw } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'lost-vision',
   type: 'ability',
   subtype: 'program',
   name: 'Lost Vision',
-  text: 'Draw 2 cards.',
+  text: 'Draw 3 cards, then discard a random card.',
   flavor: 'A glimpse of a century nobody lived.',
   faction: 'neutral',
   restriction: {},
@@ -14,7 +14,8 @@ export default defineCard({
   price: 55,
   cost: 3,
   onPlay(ctx) {
-    draw(ctx, ctx.owner, 2)
+    draw(ctx, ctx.owner, 3)
+    discardRandom(ctx, ctx.owner)
   },
   ai: { value: 3, tags: ['draw'] },
   art: {

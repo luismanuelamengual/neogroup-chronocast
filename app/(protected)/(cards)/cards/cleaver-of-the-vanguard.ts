@@ -1,22 +1,22 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { repairArmor } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'cleaver-of-the-vanguard',
   type: 'weapon',
   subtype: 'axe',
   name: 'Cleaver of the Vanguard',
-  text: 'When it is equipped: your hero heals 5.',
+  text: 'When your hero attacks with it: your armor gains +1 durability.',
   flavor: 'First into the fray, first out of it with trophies.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'], sides: ['dawn'] },
+  restriction: { factions: ['bronze'] },
   rarity: 'exotic',
   price: 3160,
   cost: 3,
   attack: 4,
   durability: 4,
-  onPlay(ctx) {
-    healHero(ctx, 5)
+  onAttack(ctx) {
+    repairArmor(ctx, ctx.owner, 1)
   },
   ai: { value: 5 },
   art: {

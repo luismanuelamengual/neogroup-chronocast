@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw, healHero } from '@/app/(protected)/(engine)/effects'
+import { healHero, seekType } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'old-blessing',
   type: 'ability',
   subtype: 'instinct',
   name: 'Old Blessing',
-  text: 'Your hero heals 13 and draw a card.',
+  text: 'Your hero heals 6. Draw the first trap of your deck.',
   flavor: 'Older than the gods who gave it.',
   faction: 'primal',
   restriction: { factions: ['primal'] },
@@ -14,8 +14,8 @@ export default defineCard({
   price: 1100,
   cost: 3,
   onPlay(ctx) {
-    healHero(ctx, 13)
-    draw(ctx, ctx.owner, 1)
+    healHero(ctx, 6)
+    seekType(ctx, ctx.owner, 'trap')
   },
   ai: { value: 4, tags: ['draw', 'heal'] },
   art: {

@@ -1,19 +1,24 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageEnemyHero, spendCharge } from '@/app/(protected)/(engine)/effects'
+import { alliesOf, buff, spendCharge } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'furious-banner',
   type: 'artifact',
   name: 'Furious Banner',
-  text: 'At the start of each phase: deal 2 damage to the enemy hero. (3 uses)',
+  text: 'At the start of each phase: your allies with Guardian gain +1 attack. (3 uses)',
   faction: 'bronze',
-  restriction: { factions: ['bronze'], sides: ['eclipse'] },
+  restriction: { factions: ['bronze'] },
   rarity: 'common',
   price: 65,
   cost: 4,
   charges: 3,
   onPhaseStart(ctx) {
-    damageEnemyHero(ctx, 2)
+    for (const unit of alliesOf(ctx, ctx.owner)) {
+      if (unit.keywords.includes('guardian')) {
+        buff(ctx, unit, 1, 0)
+      }
+    }
+
     spendCharge(ctx)
   },
   ai: { value: 4, tags: ['aggro'] },

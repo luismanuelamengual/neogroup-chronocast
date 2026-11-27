@@ -1,22 +1,23 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageEnemyHero, freeze } from '@/app/(protected)/(engine)/effects'
+import { alliesOf, freezeAlly } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'astral-daze',
   type: 'ability',
   subtype: 'spell',
   name: 'Astral Daze',
-  text: 'Freeze an enemy ally and deal 5 arcane damage to the enemy hero.',
+  text: 'Freeze every enemy ally that has 5 attack or more.',
   faction: 'arcane',
   restriction: { factions: ['arcane'] },
   rarity: 'uncommon',
-  element: 'arcane',
   price: 200,
   cost: 5,
-  targets: ['enemyAlly'],
   onPlay(ctx) {
-    freeze(ctx, ctx.targets[0])
-    damageEnemyHero(ctx, 5)
+    for (const unit of alliesOf(ctx, ctx.opponent)) {
+      if (ctx.engine.attackOf(unit) >= 5) {
+        freezeAlly(ctx, unit)
+      }
+    }
   },
   ai: { value: 5, tags: ['aggro', 'removal'] },
   art: {

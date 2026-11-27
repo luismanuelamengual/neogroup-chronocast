@@ -1,21 +1,22 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffAt } from '@/app/(protected)/(engine)/effects'
+import { buffAt, damage } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'dreaming-fury',
   type: 'ability',
   subtype: 'instinct',
   name: 'Dreaming Fury',
-  text: 'An ally of yours gains +5 attack and +7 health.',
+  text: 'An ally of yours gains +5 attack and +7 health. Your hero takes 5 shadow damage.',
   flavor: 'A rage born in a nightmare.',
-  faction: 'primal',
-  restriction: { factions: ['primal'] },
+  faction: 'neutral',
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   price: 65,
   cost: 4,
   targets: ['friendlyAlly'],
   onPlay(ctx) {
     buffAt(ctx, ctx.targets[0], 5, 7)
+    damage(ctx, { player: ctx.owner, slot: 'hero' }, 5, 'shadow')
   },
   ai: { value: 4, tags: ['buff'] },
   art: {

@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageRandomAlly } from '@/app/(protected)/(engine)/effects'
+import { damageAlly, markPreyAlly, randomAlly } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'maw-the-elder-rex',
   type: 'ally',
   name: 'Maw, the Elder Rex',
-  text: 'When it enters: deal 6 earth damage to a random enemy ally.',
+  text: 'When it enters: a random enemy ally becomes your Prey and takes 6 earth damage.',
   flavor: 'Older than the jungle, and hungrier.',
   faction: 'primal',
   restriction: { factions: ['primal'], sides: ['dawn'] },
@@ -19,7 +19,12 @@ export default defineCard({
   attack: 8,
   health: 14,
   onEnter(ctx) {
-    damageRandomAlly(ctx, ctx.opponent, 6)
+    const prey = randomAlly(ctx, ctx.opponent)
+
+    if (prey) {
+      markPreyAlly(ctx, prey)
+      damageAlly(ctx, prey, 6, 'earth')
+    }
   },
   ai: { value: 6, tags: ['removal'] },
   art: {

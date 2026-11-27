@@ -11,7 +11,7 @@ export default defineCard({
   text: 'At the start of each phase: if you have 3 or more allies, draw a card. (3 uses)',
   flavor: 'It drinks the sun and gives back courage.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'], sides: ['dawn'] },
+  restriction: { factions: ['bronze'] },
   rarity: 'uncommon',
   price: 140,
   cost: 2,

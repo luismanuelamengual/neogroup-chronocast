@@ -1,19 +1,20 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero, spendCharge } from '@/app/(protected)/(engine)/effects'
+import { spendCharge, wearArmor, wearWeapon } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'clock-of-embers',
   type: 'artifact',
   name: 'Clock of Embers',
-  text: 'At the start of each phase: your hero heals 3. (3 uses)',
+  text: 'At the start of each phase: the enemy weapon and armor lose 1 durability each. (3 uses)',
   faction: 'clockwork',
-  restriction: { factions: ['clockwork'], sides: ['eclipse'] },
+  restriction: { factions: ['clockwork'] },
   rarity: 'uncommon',
   price: 140,
   cost: 2,
   charges: 3,
   onPhaseStart(ctx) {
-    healHero(ctx, 3)
+    wearWeapon(ctx, ctx.opponent, 1)
+    wearArmor(ctx, ctx.opponent, 1)
     spendCharge(ctx)
   },
   ai: { value: 2, tags: ['defense'] },

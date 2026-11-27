@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Destroy the enemy weapon or armor, your choice. Fast.',
   flavor: 'Read it backwards for the real spell.',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['eclipse'] },
   rarity: 'uncommon',
   price: 180,
   cost: 4,

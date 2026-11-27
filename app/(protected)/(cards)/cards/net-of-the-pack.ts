@@ -1,14 +1,14 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damage } from '@/app/(protected)/(engine)/effects'
+import { buff, damage, tribeAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'net-of-the-pack',
   type: 'trap',
   name: 'Net of the Pack',
-  text: 'When an enemy ally is summoned: deal 11 damage to it.',
+  text: 'When an enemy ally is summoned: deal 6 damage to it and your Beasts gain +1 attack.',
   flavor: 'The pack drives, the net catches.',
   faction: 'primal',
-  restriction: { factions: ['primal'], sides: ['eclipse'] },
+  restriction: { factions: ['primal'] },
   rarity: 'common',
   price: 65,
   cost: 4,
@@ -16,7 +16,11 @@ export default defineCard({
   trigger: 'enemySummon',
   onTrigger(ctx, event) {
     if (event.unit) {
-      damage(ctx, event.unit, 11)
+      damage(ctx, event.unit, 6)
+    }
+
+    for (const unit of tribeAllies(ctx, ctx.owner, 'beast')) {
+      buff(ctx, unit, 1, 0)
     }
   },
   ai: { value: 4, tags: ['trap'] },

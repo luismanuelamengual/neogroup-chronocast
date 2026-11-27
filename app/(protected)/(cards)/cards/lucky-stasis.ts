@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw, returnAt } from '@/app/(protected)/(engine)/effects'
+import { draw, returnAt, unitAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'lucky-stasis',
   type: 'ability',
   subtype: 'spell',
   name: 'Lucky Stasis',
-  text: "Return an enemy ally to its owner's hand and draw a card. Fast.",
+  text: "Return a frozen enemy ally to its owner's hand and draw 2 cards. Fast.",
   faction: 'arcane',
   restriction: { factions: ['arcane'] },
   rarity: 'common',
@@ -15,8 +15,12 @@ export default defineCard({
   speed: 'fast',
   targets: ['enemyAlly'],
   onPlay(ctx) {
-    returnAt(ctx, ctx.targets[0])
-    draw(ctx, ctx.owner, 1)
+    const unit = unitAt(ctx, ctx.targets[0])
+
+    if (unit && (unit.frozenUntilPhase ?? 0) >= ctx.engine.state.phase) {
+      returnAt(ctx, ctx.targets[0])
+      draw(ctx, ctx.owner, 2)
+    }
   },
   ai: { value: 3, tags: ['draw', 'removal'] },
   art: {

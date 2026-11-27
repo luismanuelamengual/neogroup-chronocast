@@ -1,13 +1,13 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero, stunAt } from '@/app/(protected)/(engine)/effects'
+import { heal, slotOf, stunAt, tribeAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'clever-chrononaut',
   type: 'ally',
   name: 'Clever Chrononaut',
-  text: 'At the start of each phase: your hero heals 2. Its ability is paid with energy (⚡).',
+  text: 'At the start of each phase: your other Drifters heal 2. Its ability is paid with energy (⚡).',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['dawn'] },
   rarity: 'uncommon',
   price: 220,
   cost: 6,
@@ -26,7 +26,13 @@ export default defineCard({
     }
   },
   onPhaseStart(ctx) {
-    healHero(ctx, 2)
+    for (const unit of tribeAllies(ctx, ctx.owner, 'drifter', true)) {
+      const ref = slotOf(ctx, unit)
+
+      if (ref) {
+        heal(ctx, ref, 2)
+      }
+    }
   },
   ai: { value: 6, tags: ['ability', 'energy', 'heal'] },
   art: {

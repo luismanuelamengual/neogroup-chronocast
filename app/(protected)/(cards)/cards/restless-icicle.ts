@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { destroyArtifact } from '@/app/(protected)/(engine)/effects'
+import { alliesOf, freezeAlly } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'restless-icicle',
   type: 'ally',
   name: 'Restless Icicle',
-  text: 'When it enters: destroy the priciest enemy artifact.',
+  text: 'When it enters: freeze every enemy ally with 3 attack or less.',
   faction: 'neutral',
   restriction: {},
   rarity: 'common',
@@ -19,7 +19,11 @@ export default defineCard({
   attack: 4,
   health: 8,
   onEnter(ctx) {
-    destroyArtifact(ctx, ctx.opponent)
+    for (const unit of alliesOf(ctx, ctx.opponent)) {
+      if (ctx.engine.attackOf(unit) <= 3) {
+        freezeAlly(ctx, unit)
+      }
+    }
   },
   ai: { value: 4, tags: ['antiGear'] },
   art: {

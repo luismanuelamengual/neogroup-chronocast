@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffAt } from '@/app/(protected)/(engine)/effects'
+import { buff, grantKeyword, unitAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'might-of-the-long-road',
   type: 'ability',
   subtype: 'instinct',
   name: 'Might of the Long Road',
-  text: 'An ally of yours gains +3 attack and +4 health. Instant.',
+  text: 'An ally of yours gains +3 attack, +4 health and Charge. Instant.',
   flavor: 'Every mile walked makes the arm stronger.',
   faction: 'primal',
   restriction: { factions: ['primal'] },
@@ -16,7 +16,12 @@ export default defineCard({
   speed: 'instant',
   targets: ['friendlyAlly'],
   onPlay(ctx) {
-    buffAt(ctx, ctx.targets[0], 3, 4)
+    const unit = unitAt(ctx, ctx.targets[0])
+
+    if (unit) {
+      buff(ctx, unit, 3, 4)
+      grantKeyword(ctx, unit, 'charge')
+    }
   },
   ai: { value: 3, tags: ['buff'] },
   art: {

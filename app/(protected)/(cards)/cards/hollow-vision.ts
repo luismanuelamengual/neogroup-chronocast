@@ -6,7 +6,7 @@ export default defineCard({
   type: 'ability',
   subtype: 'ritual',
   name: 'Hollow Vision',
-  text: 'Draw 2 cards.',
+  text: 'Consume 2 (banish 2 cards of your discard pile). Draw 3 cards.',
   flavor: 'It shows what is missing.',
   faction: 'void',
   restriction: { factions: ['void'] },
@@ -14,8 +14,9 @@ export default defineCard({
   price: 160,
   cost: 3,
   onPlay(ctx) {
-    draw(ctx, ctx.owner, 2)
+    draw(ctx, ctx.owner, 3)
   },
+  consume: 2,
   ai: { value: 3, tags: ['draw'] },
   art: {
     subject:

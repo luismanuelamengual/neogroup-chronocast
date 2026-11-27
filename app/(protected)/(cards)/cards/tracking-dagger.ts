@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageRandomAlly } from '@/app/(protected)/(engine)/effects'
+import { poison } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'tracking-dagger',
   type: 'weapon',
   subtype: 'dagger',
   name: 'Tracking Dagger',
-  text: 'When it is equipped: deal 4 damage to a random enemy ally.',
+  text: 'When your hero attacks an ally with it: poison that ally (3).',
   flavor: 'It points toward its last victim.',
   faction: 'void',
   restriction: { factions: ['void'] },
@@ -15,8 +15,10 @@ export default defineCard({
   cost: 3,
   attack: 4,
   durability: 4,
-  onPlay(ctx) {
-    damageRandomAlly(ctx, ctx.opponent, 4)
+  onAttack(ctx, target) {
+    if (target.slot !== 'hero') {
+      poison(ctx, target, 3)
+    }
   },
   ai: { value: 4 },
   art: {

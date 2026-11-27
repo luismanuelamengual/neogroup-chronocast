@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffAt } from '@/app/(protected)/(engine)/effects'
+import { buff, isTribe, unitAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'empowerment-of-the-warlord',
   type: 'ability',
   subtype: 'instinct',
   name: 'Empowerment of the Warlord',
-  text: 'An ally of yours gains +2 attack and +2 health.',
+  text: 'An ally of yours gains +1 attack and +1 health (+3 and +3 if it is a Caveborn).',
   flavor: 'His shout is worth a hundred swords.',
   faction: 'primal',
   restriction: { factions: ['primal'], sides: ['eclipse'] },
@@ -15,7 +15,13 @@ export default defineCard({
   cost: 1,
   targets: ['friendlyAlly'],
   onPlay(ctx) {
-    buffAt(ctx, ctx.targets[0], 2, 2)
+    const unit = unitAt(ctx, ctx.targets[0])
+
+    if (unit) {
+      const bonus = isTribe(unit, 'caveborn') ? 3 : 1
+
+      buff(ctx, unit, bonus, bonus)
+    }
   },
   ai: { value: 2, tags: ['buff'] },
   art: {

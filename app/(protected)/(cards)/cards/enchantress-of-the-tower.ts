@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw } from '@/app/(protected)/(engine)/effects'
+import { draw, spellPowerOf } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'enchantress-of-the-tower',
   type: 'ally',
   name: 'Enchantress of the Tower',
-  text: 'When it enters: draw a card.',
+  text: 'When it enters: if you have spell power, draw a card.',
   flavor: 'Her songs bind stone and starlight.',
   faction: 'arcane',
   restriction: { factions: ['arcane'], sides: ['dawn'] },
@@ -18,7 +18,9 @@ export default defineCard({
   attack: 3,
   health: 3,
   onEnter(ctx) {
-    draw(ctx, ctx.owner, 1)
+    if (spellPowerOf(ctx, ctx.owner) > 0) {
+      draw(ctx, ctx.owner, 1)
+    }
   },
   ai: { value: 2, tags: ['draw'] },
   art: {

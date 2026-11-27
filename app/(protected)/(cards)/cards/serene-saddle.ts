@@ -8,7 +8,7 @@ export default defineCard({
   name: 'Serene Saddle',
   text: 'Attach to an ally of yours: it gains +1 attack and +4 health. When that ally dies: draw a card.',
   faction: 'primal',
-  restriction: { factions: ['primal'], sides: ['dawn'] },
+  restriction: { factions: ['primal'] },
   rarity: 'epic',
   price: 1100,
   cost: 3,

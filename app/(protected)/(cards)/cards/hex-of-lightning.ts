@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { stunAt } from '@/app/(protected)/(engine)/effects'
+import { damage, stunAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'hex-of-lightning',
   type: 'ability',
   subtype: 'program',
   name: 'Hex of Lightning',
-  text: 'Stun an enemy ally. Fast.',
+  text: 'Stun an enemy ally and deal 2 lightning damage to it. Fast.',
   flavor: 'Curse the sky, and it curses back.',
   faction: 'neutral',
   restriction: {},
@@ -17,6 +17,7 @@ export default defineCard({
   targets: ['enemyAlly'],
   onPlay(ctx) {
     stunAt(ctx, ctx.targets[0])
+    damage(ctx, ctx.targets[0], 2, 'lightning')
   },
   ai: { value: 1, tags: ['removal'] },
   art: {

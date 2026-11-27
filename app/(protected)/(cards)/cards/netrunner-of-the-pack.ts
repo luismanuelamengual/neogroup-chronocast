@@ -1,10 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { drainEnergy, tribeAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'netrunner-of-the-pack',
   type: 'ally',
   name: 'Netrunner of the Pack',
-  text: '',
+  text: 'When it enters: the enemy hero loses 1 energy for each Netrunner of yours.',
   flavor: 'She hunts in packets, not packs.',
   faction: 'neutral',
   restriction: { sides: ['eclipse'] },
@@ -15,6 +16,9 @@ export default defineCard({
   keywords: ['quick'],
   attack: 6,
   health: 11,
+  onEnter(ctx) {
+    drainEnergy(ctx, ctx.opponent, tribeAllies(ctx, ctx.owner, 'netrunner').length)
+  },
   ai: { value: 5 },
   art: {
     subject:

@@ -1,15 +1,14 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageRandomAlly } from '@/app/(protected)/(engine)/effects'
+import { alliesOf, freezeAlly } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'enchantress-of-the-archmage',
   type: 'ally',
   name: 'Enchantress of the Archmage',
-  text: 'When it dies: deal 4 fire damage to a random enemy ally.',
+  text: 'When it dies: freeze every enemy ally.',
   faction: 'arcane',
   restriction: { factions: ['arcane'], sides: ['dawn'] },
   rarity: 'common',
-  element: 'fire',
   resist: ['arcane'],
   price: 55,
   cost: 3,
@@ -18,7 +17,9 @@ export default defineCard({
   attack: 3,
   health: 7,
   onDeath(ctx) {
-    damageRandomAlly(ctx, ctx.opponent, 4)
+    for (const unit of alliesOf(ctx, ctx.opponent)) {
+      freezeAlly(ctx, unit)
+    }
   },
   ai: { value: 3, tags: ['removal'] },
   art: {

@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { destroyArtifact } from '@/app/(protected)/(engine)/effects'
+import { burn } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'ember-of-the-rift',
   type: 'ally',
   name: 'Ember of the Rift',
-  text: 'When it enters: destroy the priciest enemy artifact.',
+  text: 'When it enters: burn the enemy hero (3).',
   faction: 'neutral',
   restriction: {},
   rarity: 'rare',
@@ -19,7 +19,7 @@ export default defineCard({
   attack: 4,
   health: 5,
   onEnter(ctx) {
-    destroyArtifact(ctx, ctx.opponent)
+    burn(ctx, { player: ctx.opponent, slot: 'hero' }, 3)
   },
   ai: { value: 4, tags: ['antiGear'] },
   art: {

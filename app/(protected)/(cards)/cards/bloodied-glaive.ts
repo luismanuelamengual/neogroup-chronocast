@@ -1,22 +1,24 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { discardSize, healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'bloodied-glaive',
   type: 'weapon',
   subtype: 'scythe',
   name: 'Bloodied Glaive',
-  text: 'When it is equipped: your hero heals 4.',
+  text: 'When your hero attacks with it: if your discard pile has 10 or more cards, your hero heals 3.',
   flavor: 'Cleaned once. Never again.',
   faction: 'void',
-  restriction: { factions: ['void'], sides: ['eclipse'] },
+  restriction: { factions: ['void'] },
   rarity: 'uncommon',
   price: 140,
   cost: 2,
   attack: 3,
   durability: 2,
-  onPlay(ctx) {
-    healHero(ctx, 4)
+  onAttack(ctx) {
+    if (discardSize(ctx, ctx.owner) >= 10) {
+      healHero(ctx, 3)
+    }
   },
   ai: { value: 2 },
   art: {

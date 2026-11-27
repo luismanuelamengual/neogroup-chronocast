@@ -6,16 +6,16 @@ export default defineCard({
   type: 'ability',
   subtype: 'tactic',
   name: 'Blast of Thorns',
-  text: 'Deal 8 damage to an enemy slot.',
+  text: 'Deal 2 damage to an enemy slot for each durability point of your armor (up to 10).',
   flavor: 'The forest throws back.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'], sides: ['eclipse'] },
+  restriction: { factions: ['bronze'] },
   rarity: 'uncommon',
   price: 160,
   cost: 3,
   targets: ['enemySlot'],
   onPlay(ctx) {
-    damage(ctx, ctx.targets[0], 8)
+    damage(ctx, ctx.targets[0], Math.min(10, 2 * (ctx.engine.player(ctx.owner).hero.armor?.durability ?? 0)))
   },
   ai: { value: 3, tags: ['removal'] },
   art: {

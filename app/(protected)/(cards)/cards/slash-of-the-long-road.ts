@@ -6,16 +6,16 @@ export default defineCard({
   type: 'ability',
   subtype: 'tactic',
   name: 'Slash of the Long Road',
-  text: 'Deal 11 damage to an enemy slot.',
+  text: "Deal damage to an enemy ally equal to your weapon's attack +3.",
   flavor: 'A cut that crosses three centuries.',
   faction: 'bronze',
   restriction: { factions: ['bronze'] },
   rarity: 'common',
   price: 65,
   cost: 4,
-  targets: ['enemySlot'],
+  targets: ['enemyAlly'],
   onPlay(ctx) {
-    damage(ctx, ctx.targets[0], 11)
+    damage(ctx, ctx.targets[0], (ctx.engine.player(ctx.owner).hero.weapon?.attack ?? 0) + 3)
   },
   ai: { value: 4, tags: ['removal'] },
   art: {

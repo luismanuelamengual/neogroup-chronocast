@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { reviveFromDiscard } from '@/app/(protected)/(engine)/effects'
+import { seekTribe } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'pixie-of-the-ancestors',
   type: 'ally',
   name: 'Pixie of the Ancestors',
-  text: 'When it dies: a random ally of your discard pile returns to play.',
+  text: 'When it dies: draw the first Fae of your deck.',
   faction: 'neutral',
   restriction: { sides: ['dawn'] },
   rarity: 'common',
@@ -18,7 +18,7 @@ export default defineCard({
   attack: 4,
   health: 11,
   onDeath(ctx) {
-    reviveFromDiscard(ctx, ctx.owner)
+    seekTribe(ctx, ctx.owner, 'fae')
   },
   ai: { value: 5, tags: ['revive'] },
   art: {

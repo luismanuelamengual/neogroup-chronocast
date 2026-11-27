@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damage, draw } from '@/app/(protected)/(engine)/effects'
+import { alliesOf, damage, draw } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'ilyras-slash',
   type: 'ability',
   subtype: 'spell',
   name: "Ilyra's Slash",
-  text: 'Deal 10 arcane damage to an enemy slot and draw a card.',
+  text: 'Deal 6 arcane damage to an enemy slot, +2 for each frozen enemy ally, and draw a card.',
   faction: 'arcane',
   restriction: { heroes: ['ilyra-starweaver'] },
   rarity: 'epic',
@@ -16,7 +16,11 @@ export default defineCard({
   keywords: ['unique'],
   targets: ['enemySlot'],
   onPlay(ctx) {
-    damage(ctx, ctx.targets[0], 10)
+    const frozen = alliesOf(ctx, ctx.opponent).filter(
+      (unit) => (unit.frozenUntilPhase ?? 0) >= ctx.engine.state.phase
+    ).length
+
+    damage(ctx, ctx.targets[0], 6 + 2 * frozen, 'arcane')
     draw(ctx, ctx.owner, 1)
   },
   ai: { value: 5 },

@@ -9,7 +9,7 @@ export default defineCard({
   text: 'When it is equipped: stun a random enemy ally.',
   flavor: 'Two blades, one way out.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'], sides: ['dawn'] },
+  restriction: { factions: ['bronze'] },
   rarity: 'legendary',
   price: 2320,
   cost: 4,

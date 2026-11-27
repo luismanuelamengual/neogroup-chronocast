@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When an enemy ally is summoned: deal 7 acid damage to it.',
   flavor: 'Snap, sting, sleep.',
   faction: 'primal',
-  restriction: { factions: ['primal'], sides: ['eclipse'] },
+  restriction: { factions: ['primal'] },
   rarity: 'common',
   element: 'acid',
   price: 50,

@@ -6,7 +6,7 @@ export default defineCard({
   type: 'ability',
   subtype: 'tactic',
   name: 'Slash of the Last Stand',
-  text: 'Deal 6 damage to an enemy slot.',
+  text: 'Deal 6 damage to an enemy slot, or 9 if your hero has a weapon.',
   flavor: 'One more swing. Always one more.',
   faction: 'neutral',
   restriction: { sides: ['dawn'] },
@@ -15,7 +15,7 @@ export default defineCard({
   cost: 2,
   targets: ['enemySlot'],
   onPlay(ctx) {
-    damage(ctx, ctx.targets[0], 6)
+    damage(ctx, ctx.targets[0], ctx.engine.player(ctx.owner).hero.weapon ? 9 : 6)
   },
   ai: { value: 2, tags: ['removal'] },
   art: {

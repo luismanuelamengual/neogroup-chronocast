@@ -1,21 +1,22 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { freeze } from '@/app/(protected)/(engine)/effects'
+import { freeze, healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'frost-of-grace',
   type: 'ability',
   subtype: 'spell',
   name: 'Frost of Grace',
-  text: 'Freeze an enemy ally.',
+  text: 'Freeze an enemy ally. Your hero heals 3.',
   flavor: 'A gentle cold that stops the fever of war.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'], sides: ['dawn'] },
+  restriction: { factions: ['arcane'] },
   rarity: 'rare',
   price: 300,
   cost: 1,
   targets: ['enemyAlly'],
   onPlay(ctx) {
     freeze(ctx, ctx.targets[0])
+    healHero(ctx, 3)
   },
   ai: { value: 2, tags: ['removal'] },
   art: {

@@ -9,7 +9,7 @@ export default defineCard({
   text: 'An ally of yours gains +4 attack this phase. Instant.',
   flavor: 'Brave hearts swing harder.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'], sides: ['dawn'] },
+  restriction: { factions: ['bronze'] },
   rarity: 'epic',
   price: 900,
   cost: 1,

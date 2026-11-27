@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { buffSelf, damage, self, slotOf } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'overclocked-piston-titan',
   type: 'ally',
   name: 'Overclocked Piston Titan',
-  text: 'At the start of each phase: your hero heals 2.',
+  text: 'At the end of each phase: it takes 2 damage and gains +2 attack.',
   faction: 'clockwork',
   restriction: { factions: ['clockwork'], sides: ['eclipse'] },
   rarity: 'common',
@@ -17,8 +17,14 @@ export default defineCard({
   keywords: ['shield'],
   attack: 4,
   health: 9,
-  onPhaseStart(ctx) {
-    healHero(ctx, 2)
+  onPhaseEnd(ctx) {
+    const unit = self(ctx)
+    const ref = unit ? slotOf(ctx, unit) : null
+
+    if (ref) {
+      damage(ctx, ref, 2)
+      buffSelf(ctx, 2, 0)
+    }
   },
   ai: { value: 4, tags: ['defense'] },
   art: {

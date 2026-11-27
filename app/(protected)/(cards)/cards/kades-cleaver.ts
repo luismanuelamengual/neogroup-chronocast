@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { buffThisPhase, tribeAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'kades-cleaver',
   type: 'weapon',
   subtype: 'energy',
   name: "Kade's Plasma Cleaver",
-  text: 'When it is equipped: your hero heals 5.',
+  text: 'When your hero attacks with it: your Enforcers gain +1 attack this phase.',
   flavor: 'Order, one cut at a time.',
   faction: 'neon',
   restriction: { factions: ['neon'], sides: ['eclipse'] },
@@ -16,8 +16,10 @@ export default defineCard({
   keywords: ['unique'],
   attack: 5,
   durability: 4,
-  onPlay(ctx) {
-    healHero(ctx, 5)
+  onAttack(ctx) {
+    for (const unit of tribeAllies(ctx, ctx.owner, 'enforcer')) {
+      buffThisPhase(ctx, unit, 1)
+    }
   },
   ai: { value: 5 },
   art: {

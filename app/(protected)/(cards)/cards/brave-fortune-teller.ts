@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffSelf } from '@/app/(protected)/(engine)/effects'
+import { healAllAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'brave-fortune-teller',
   type: 'ally',
   name: 'Brave Fortune Teller',
-  text: 'After it takes damage: it gains +2 attack.',
+  text: 'After it takes damage: your allies heal 2.',
   flavor: 'She read her own death and laughed at it.',
   faction: 'neutral',
   restriction: { sides: ['dawn'] },
@@ -15,7 +15,7 @@ export default defineCard({
   attack: 5,
   health: 7,
   onDamaged(ctx) {
-    buffSelf(ctx, 2, 0)
+    healAllAllies(ctx, ctx.owner, 2)
   },
   ai: { value: 4, tags: ['buff'] },
   art: {

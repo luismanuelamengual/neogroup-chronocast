@@ -1,11 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { isPrey, repairWeapon, unitAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'longbow-of-the-hawk',
   type: 'weapon',
   subtype: 'bow',
   name: 'Longbow of the Hawk',
-  text: '',
+  text: 'When your hero attacks a Prey with it: it gains +1 durability.',
   flavor: 'It sees farther than its archer.',
   faction: 'primal',
   restriction: { factions: ['primal'] },
@@ -16,6 +17,13 @@ export default defineCard({
   keywords: ['poison'],
   attack: 2,
   durability: 2,
+  onAttack(ctx, target) {
+    const unit = unitAt(ctx, target)
+
+    if (unit && isPrey(ctx, unit)) {
+      repairWeapon(ctx, ctx.owner, 1)
+    }
+  },
   ai: { value: 2 },
   art: {
     subject:

@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it dies: if an enemy ally killed it, that ally is destroyed; if the enemy hero did, deal 2 fire damage to it.',
   flavor: 'Kill it and it takes you along.',
   faction: 'primal',
-  restriction: { factions: ['primal'], sides: ['eclipse'] },
+  restriction: { factions: ['primal'] },
   rarity: 'uncommon',
   price: 160,
   cost: 4,

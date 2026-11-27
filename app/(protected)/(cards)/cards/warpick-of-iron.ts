@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw } from '@/app/(protected)/(engine)/effects'
+import { destroyArmor } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'warpick-of-iron',
   type: 'weapon',
   subtype: 'tool',
   name: 'Warpick of Iron',
-  text: 'When it is equipped: draw a card.',
+  text: 'When it is equipped: destroy the enemy armor.',
   flavor: 'Made to open helmets like nutshells.',
   faction: 'clockwork',
   restriction: { factions: ['clockwork'] },
@@ -16,7 +16,7 @@ export default defineCard({
   attack: 5,
   durability: 4,
   onPlay(ctx) {
-    draw(ctx, ctx.owner, 1)
+    destroyArmor(ctx, ctx.opponent)
   },
   ai: { value: 5 },
   art: {

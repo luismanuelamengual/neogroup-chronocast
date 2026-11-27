@@ -223,7 +223,7 @@ describe("the heroes' abilities", () => {
   })
 
   it("Vex's Enhanced allies (with an implant) are quick", () => {
-    const state = match('vex-nightwire', { a: ['faithful-wanderer', 'spark-of-dusk'] })
+    const state = match('vex-nightwire', { a: ['faithful-wanderer', 'lost-chrononaut'] })
     const implant = card(state, 'neural-implant')
 
     state.players.a.allies[1]!.attachments = [{ ...card(state, 'plating-of-mana'), owner: 'a' }]
@@ -264,7 +264,7 @@ describe("the heroes' abilities", () => {
   })
 
   it('Nyx gives every enemy ally -2 attack', () => {
-    const state = match('nyx-hollowsong', { b: ['faithful-wanderer', 'spark-of-dusk'] })
+    const state = match('nyx-hollowsong', { b: ['faithful-wanderer', 'lost-chrononaut'] })
     const attacks = state.players.b.allies.slice(0, 2).map((unit) => unit!.attack)
     const { state: next, fails } = run(state, plan(ability()))
 
@@ -313,7 +313,7 @@ describe("the heroes' abilities", () => {
   })
 
   it('Vex hides his hero and his allies until the end of the phase: the rival can not attack them nor target them', () => {
-    const state = match('vex-nightwire', { a: ['spark-of-dusk'], b: ['faithful-wanderer'] })
+    const state = match('vex-nightwire', { a: ['lost-chrononaut'], b: ['faithful-wanderer'] })
     const [first, second] = [card(state, 'astral-bolt'), card(state, 'astral-bolt')]
 
     state.players.b.hand.push(first, second)
@@ -342,7 +342,7 @@ describe("the heroes' abilities", () => {
   })
 
   it("the stealth of Vex's Ghost Protocol isn't lost by attacking, but sonic damage still breaks it", () => {
-    const state = match('vex-nightwire', { a: ['spark-of-dusk'] })
+    const state = match('vex-nightwire', { a: ['lost-chrononaut'] })
     const ally = state.players.a.allies[0]!
     const bolt = card(state, 'astral-bolt')
 
@@ -362,7 +362,7 @@ describe("the heroes' abilities", () => {
     expect(result.events.some((event) => event.type === 'attack')).toBe(true)
     expect(result.events.flatMap((event) => (event.type === 'fail' ? [event.reason] : []))).toEqual(['invalidTarget'])
 
-    const hidden = match('vex-nightwire', { a: ['spark-of-dusk'] })
+    const hidden = match('vex-nightwire', { a: ['lost-chrononaut'] })
     const unit = hidden.players.a.allies[0]!
 
     hidden.players.a.hero.veil = { untilPhase: hidden.phase }
@@ -379,7 +379,7 @@ describe("the heroes' abilities", () => {
   })
 
   it("the computer doesn't aim at a hidden hero nor at hidden allies (it holds)", () => {
-    const state = match('ada-copperwick', { a: ['faithful-wanderer'], b: ['spark-of-dusk'] })
+    const state = match('ada-copperwick', { a: ['faithful-wanderer'], b: ['lost-chrononaut'] })
 
     state.players.b.hero.veil = { untilPhase: state.phase }
     state.players.b.allies[0]!.keywords.push('stealth')

@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw } from '@/app/(protected)/(engine)/effects'
+import { grantKeyword, tribeAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'augmented-thug',
   type: 'ally',
   name: 'Augmented Thug',
-  text: 'When it enters: draw a card.',
+  text: 'When it enters: your other Enforcers gain Stealth.',
   flavor: 'More chrome than brains.',
   faction: 'neon',
   restriction: { factions: ['neon'], sides: ['eclipse'] },
@@ -17,7 +17,9 @@ export default defineCard({
   attack: 1,
   health: 6,
   onEnter(ctx) {
-    draw(ctx, ctx.owner, 1)
+    for (const unit of tribeAllies(ctx, ctx.owner, 'enforcer', true)) {
+      grantKeyword(ctx, unit, 'stealth')
+    }
   },
   ai: { value: 2, tags: ['draw'] },
   art: {

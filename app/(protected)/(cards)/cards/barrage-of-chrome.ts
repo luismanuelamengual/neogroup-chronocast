@@ -1,22 +1,22 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damage } from '@/app/(protected)/(engine)/effects'
+import { damage, enhancedAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'barrage-of-chrome',
   type: 'ability',
   subtype: 'program',
   name: 'Barrage of Chrome',
-  text: 'Deal 8 lightning damage to an enemy slot.',
+  text: 'Deal 3 lightning damage to an enemy slot for each Enhanced ally of yours.',
   flavor: 'Bullets cost money. Chrome costs more.',
   faction: 'neon',
-  restriction: { factions: ['neon'], sides: ['dawn'] },
+  restriction: { factions: ['neon'] },
   rarity: 'common',
   element: 'lightning',
   price: 55,
   cost: 3,
   targets: ['enemySlot'],
   onPlay(ctx) {
-    damage(ctx, ctx.targets[0], 8)
+    damage(ctx, ctx.targets[0], 3 * enhancedAllies(ctx, ctx.owner).length, 'lightning')
   },
   ai: { value: 3, tags: ['removal'] },
   art: {

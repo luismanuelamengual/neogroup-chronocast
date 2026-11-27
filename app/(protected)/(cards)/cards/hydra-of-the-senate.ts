@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { summonCard } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'hydra-of-the-senate',
   type: 'ally',
   name: 'Hydra of the Senate',
-  text: 'When it enters: your hero heals 5.',
+  text: 'When it dies: summon 2 Hoplite Conscripts.',
   faction: 'bronze',
   restriction: { factions: ['bronze'], sides: ['eclipse'] },
   rarity: 'common',
@@ -17,8 +17,9 @@ export default defineCard({
   keywords: ['ranged'],
   attack: 3,
   health: 7,
-  onEnter(ctx) {
-    healHero(ctx, 5)
+  onDeath(ctx) {
+    summonCard(ctx, ctx.owner, 'hoplite-conscript')
+    summonCard(ctx, ctx.owner, 'hoplite-conscript')
   },
   ai: { value: 3, tags: ['defense'] },
   art: {

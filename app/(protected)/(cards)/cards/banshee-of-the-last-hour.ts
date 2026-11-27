@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffSelf, discardSize } from '@/app/(protected)/(engine)/effects'
+import { damageEnemyHero, discardSize } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'banshee-of-the-last-hour',
   type: 'ally',
   name: 'Banshee of the Last Hour',
-  text: 'When it enters: if your discard pile has 6 or more cards, it gains +2 attack and +2 health.',
+  text: 'When it enters: deal 1 shadow damage to the enemy hero for every 3 cards in your discard pile.',
   faction: 'void',
   restriction: { factions: ['void'], sides: ['dawn'] },
   rarity: 'common',
@@ -18,9 +18,7 @@ export default defineCard({
   attack: 4,
   health: 11,
   onEnter(ctx) {
-    if (discardSize(ctx, ctx.owner) >= 6) {
-      buffSelf(ctx, 2, 2)
-    }
+    damageEnemyHero(ctx, Math.floor(discardSize(ctx, ctx.owner) / 3), 'shadow')
   },
   ai: { value: 5, tags: ['buff'] },
   art: {

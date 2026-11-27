@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffThisPhaseAt } from '@/app/(protected)/(engine)/effects'
+import { buffThisPhase, unitAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'rally-of-the-arcanum',
   type: 'ability',
   subtype: 'tactic',
   name: 'Rally of the Arcanum',
-  text: 'An ally of yours gains +6 attack this phase. Instant.',
+  text: 'An ally of yours that has an attachment gains +6 attack this phase. Instant.',
   flavor: 'Mages to the tower! Bring your books!',
   faction: 'bronze',
   restriction: { factions: ['bronze'] },
@@ -16,7 +16,11 @@ export default defineCard({
   speed: 'instant',
   targets: ['friendlyAlly'],
   onPlay(ctx) {
-    buffThisPhaseAt(ctx, ctx.targets[0], 6)
+    const unit = unitAt(ctx, ctx.targets[0])
+
+    if (unit?.attachments?.length) {
+      buffThisPhase(ctx, unit, 6)
+    }
   },
   ai: { value: 3, tags: ['buff'] },
   art: {

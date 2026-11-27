@@ -1,20 +1,25 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { freezeAlly, host } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'relentless-rune',
   type: 'attachment',
   subtype: 'rune',
   name: 'Relentless Rune',
-  text: 'Attach to an ally of yours: it gains +1 attack and +3 health.',
+  text: 'Attach to an enemy ally: at the start of each phase, freeze it.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'], sides: ['eclipse'] },
+  restriction: { factions: ['arcane'] },
   rarity: 'common',
   price: 50,
-  cost: 2,
-  keywords: ['guardian'],
-  attack: 1,
-  health: 3,
-  targets: ['friendlyAlly'],
+  cost: 4,
+  targets: ['enemyAlly'],
+  onPhaseStart(ctx) {
+    const found = host(ctx)
+
+    if (found) {
+      freezeAlly(ctx, found.unit)
+    }
+  },
   ai: { value: 2, tags: ['buff'] },
   art: {
     subject:

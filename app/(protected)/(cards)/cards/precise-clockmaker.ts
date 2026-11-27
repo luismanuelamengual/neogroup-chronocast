@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { gainChronos } from '@/app/(protected)/(engine)/effects'
+import { artifactCount, gainChronos } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'precise-clockmaker',
   type: 'ally',
   name: 'Precise Clockmaker',
-  text: 'When it enters: you gain 1 Chronos this phase.',
+  text: 'When it enters: you gain 1 Chronos this phase for each artifact of yours.',
   flavor: 'She is never late. She does not allow it.',
   faction: 'clockwork',
   restriction: { factions: ['clockwork'], sides: ['dawn'] },
@@ -16,7 +16,7 @@ export default defineCard({
   attack: 6,
   health: 12,
   onEnter(ctx) {
-    gainChronos(ctx, ctx.owner, 1)
+    gainChronos(ctx, ctx.owner, artifactCount(ctx))
   },
   ai: { value: 6, tags: ['ramp'] },
   art: {

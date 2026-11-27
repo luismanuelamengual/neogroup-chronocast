@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageEnemyHero, draw } from '@/app/(protected)/(engine)/effects'
+import { alliesOf, damageAlly, isPrey } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'pit-of-spirits',
   type: 'trap',
   name: 'Pit of Spirits',
-  text: 'When the enemy uses an ability: draw a card and deal 5 light damage to the enemy hero.',
+  text: 'When the enemy uses an ability: deal 5 light damage to every enemy ally that is your Prey.',
   faction: 'primal',
   restriction: { factions: ['primal'] },
   rarity: 'common',
@@ -15,8 +15,11 @@ export default defineCard({
   speed: 'instant',
   trigger: 'enemyAbility',
   onTrigger(ctx) {
-    draw(ctx, ctx.owner, 1)
-    damageEnemyHero(ctx, 5)
+    for (const unit of alliesOf(ctx, ctx.opponent)) {
+      if (isPrey(ctx, unit)) {
+        damageAlly(ctx, unit, 5, 'light')
+      }
+    }
   },
   ai: { value: 3, tags: ['trap'] },
   art: {

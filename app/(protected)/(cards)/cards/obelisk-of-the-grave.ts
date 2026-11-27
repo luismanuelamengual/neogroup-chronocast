@@ -5,14 +5,14 @@ export default defineCard({
   id: 'obelisk-of-the-grave',
   type: 'artifact',
   name: 'Obelisk of the Grave',
-  text: 'At the start of each phase: your hero heals 3. (4 uses)',
+  text: 'When an ally of yours dies: your hero heals 3. (4 uses)',
   faction: 'void',
-  restriction: { factions: ['void'], sides: ['eclipse'] },
+  restriction: { factions: ['void'] },
   rarity: 'rare',
   price: 360,
   cost: 2,
   charges: 4,
-  onPhaseStart(ctx) {
+  onOwnAllyDeath(ctx) {
     healHero(ctx, 3)
     spendCharge(ctx)
   },

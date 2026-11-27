@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { stunAt } from '@/app/(protected)/(engine)/effects'
+import { slotsNextTo, stunAt, unitAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'frost-of-the-oracle',
   type: 'ability',
   subtype: 'tactic',
   name: 'Frost of the Oracle',
-  text: 'Stun an enemy ally for two phases. Fast.',
+  text: 'Stun an enemy ally and a random ally next to it. Fast.',
   flavor: 'She saw the winter coming and sent it ahead.',
   faction: 'bronze',
   restriction: { factions: ['bronze'] },
@@ -16,7 +16,14 @@ export default defineCard({
   speed: 'fast',
   targets: ['enemyAlly'],
   onPlay(ctx) {
-    stunAt(ctx, ctx.targets[0], 1)
+    const target = ctx.targets[0]
+    const next = slotsNextTo(ctx, target).filter((ref) => unitAt(ctx, ref))
+
+    stunAt(ctx, target)
+
+    if (next.length > 0) {
+      stunAt(ctx, next[Math.floor(ctx.random() * next.length)])
+    }
   },
   ai: { value: 3, tags: ['removal'] },
   art: {

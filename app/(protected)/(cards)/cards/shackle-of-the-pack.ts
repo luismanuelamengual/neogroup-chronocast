@@ -1,23 +1,24 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw, stunAt } from '@/app/(protected)/(engine)/effects'
+import { damageRandomAlly, drainEnergy, energyOf } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'shackle-of-the-pack',
   type: 'ability',
   subtype: 'program',
   name: 'Shackle of the Pack',
-  text: 'Stun an enemy ally for two phases and draw a card. Fast.',
+  text: 'Drain all the energy of the enemy hero: deal 2 lightning damage to a random enemy ally for each point drained.',
   flavor: 'The pack never lets go.',
   faction: 'neon',
-  restriction: { factions: ['neon'], sides: ['eclipse'] },
+  restriction: { factions: ['neon'] },
   rarity: 'uncommon',
   price: 180,
   cost: 4,
-  speed: 'fast',
-  targets: ['enemyAlly'],
   onPlay(ctx) {
-    stunAt(ctx, ctx.targets[0], 1)
-    draw(ctx, ctx.owner, 1)
+    const drained = drainEnergy(ctx, ctx.opponent, energyOf(ctx, ctx.opponent))
+
+    for (let hit = 0; hit < drained; hit++) {
+      damageRandomAlly(ctx, ctx.opponent, 2, 'lightning')
+    }
   },
   ai: { value: 4, tags: ['draw', 'removal'] },
   art: {

@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { destroyWeapon } from '@/app/(protected)/(engine)/effects'
+import { destroySupportAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'towering-disarm',
   type: 'ability',
   subtype: 'gadget',
   name: 'Towering Disarm',
-  text: 'Destroy the enemy weapon. Fast.',
+  text: 'Destroy an enemy artifact or face-down trap. Fast.',
   flavor: 'Drop it. Now.',
   faction: 'clockwork',
   restriction: { factions: ['clockwork'] },
@@ -15,8 +15,9 @@ export default defineCard({
   cost: 3,
   speed: 'fast',
   onPlay(ctx) {
-    destroyWeapon(ctx, ctx.opponent)
+    destroySupportAt(ctx, ctx.targets[0])
   },
+  targets: ['enemyArtifact'],
   ai: { value: 3, tags: ['antiGear'] },
   art: {
     subject:

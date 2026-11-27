@@ -1,23 +1,24 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageRandomAlly } from '@/app/(protected)/(engine)/effects'
+import { buff, tribeAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'kazhuls-longbow',
   type: 'weapon',
   subtype: 'bow',
   name: "Kazhul's Longbow",
-  text: 'When it is equipped: deal 4 fire damage to a random enemy ally.',
+  text: 'When your hero attacks with it: your Caveborn gain +1 attack.',
   faction: 'primal',
   restriction: { factions: ['primal'], sides: ['eclipse'] },
   rarity: 'epic',
-  element: 'fire',
   price: 1100,
   cost: 3,
   keywords: ['ranged', 'unique'],
   attack: 5,
   durability: 4,
-  onPlay(ctx) {
-    damageRandomAlly(ctx, ctx.opponent, 4)
+  onAttack(ctx) {
+    for (const unit of tribeAllies(ctx, ctx.owner, 'caveborn')) {
+      buff(ctx, unit, 1, 0)
+    }
   },
   ai: { value: 5 },
   art: {

@@ -1,10 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { buff, tribeAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'relentless-hitman',
   type: 'ally',
   name: 'Relentless Hitman',
-  text: '',
+  text: 'When it dies: your other Enforcers gain +2 attack.',
   flavor: 'He never misses a deadline.',
   faction: 'neutral',
   restriction: { sides: ['eclipse'] },
@@ -15,6 +16,11 @@ export default defineCard({
   keywords: ['guardian'],
   attack: 3,
   health: 11,
+  onDeath(ctx) {
+    for (const unit of tribeAllies(ctx, ctx.owner, 'enforcer', true)) {
+      buff(ctx, unit, 2, 0)
+    }
+  },
   ai: { value: 3 },
   art: {
     subject:

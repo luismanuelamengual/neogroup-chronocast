@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageEnemyHero } from '@/app/(protected)/(engine)/effects'
+import { buff, enhancedAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'glitched-glitch',
   type: 'ally',
   name: 'Glitched Glitch',
-  text: 'When it attacks: deal 2 lightning damage to the enemy hero.',
+  text: 'When it attacks: a random Enhanced ally of yours gains +1 attack and +1 health.',
   faction: 'neon',
   restriction: { factions: ['neon'], sides: ['dawn'] },
   rarity: 'common',
@@ -17,7 +17,11 @@ export default defineCard({
   attack: 3,
   health: 10,
   onAttack(ctx) {
-    damageEnemyHero(ctx, 2)
+    const candidates = enhancedAllies(ctx, ctx.owner)
+
+    if (candidates.length > 0) {
+      buff(ctx, candidates[Math.floor(ctx.random() * candidates.length)], 1, 1)
+    }
   },
   ai: { value: 4, tags: ['aggro'] },
   art: {

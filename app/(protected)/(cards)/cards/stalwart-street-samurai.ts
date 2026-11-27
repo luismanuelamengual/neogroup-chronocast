@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { buff, heal, slotOf, tribeAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'stalwart-street-samurai',
   type: 'ally',
   name: 'Stalwart Street Samurai',
-  text: 'When it enters: your hero heals 8.',
+  text: 'When it enters: your other Enforcers heal 6 and gain +1 attack.',
   flavor: 'Neon blade, old code.',
   faction: 'neutral',
   restriction: { sides: ['dawn'] },
@@ -16,7 +16,15 @@ export default defineCard({
   attack: 9,
   health: 11,
   onEnter(ctx) {
-    healHero(ctx, 8)
+    for (const unit of tribeAllies(ctx, ctx.owner, 'enforcer', true)) {
+      const ref = slotOf(ctx, unit)
+
+      if (ref) {
+        heal(ctx, ref, 6)
+      }
+
+      buff(ctx, unit, 1, 0)
+    }
   },
   ai: { value: 7, tags: ['defense'] },
   art: {

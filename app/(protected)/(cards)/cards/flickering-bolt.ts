@@ -6,7 +6,7 @@ export default defineCard({
   type: 'ability',
   subtype: 'spell',
   name: 'Flickering Bolt',
-  text: 'Deal 4 arcane damage to an enemy slot. Fast.',
+  text: 'Deal 3 arcane damage to an enemy slot and 3 to the enemy hero. Fast.',
   flavor: 'It blinks out and in, then through.',
   faction: 'neutral',
   restriction: {},
@@ -17,7 +17,11 @@ export default defineCard({
   speed: 'fast',
   targets: ['enemySlot'],
   onPlay(ctx) {
-    damage(ctx, ctx.targets[0], 4)
+    damage(ctx, ctx.targets[0], 3)
+
+    if (ctx.targets[0].slot !== 'hero') {
+      damage(ctx, { player: ctx.opponent, slot: 'hero' }, 3)
+    }
   },
   ai: { value: 1, tags: ['removal'] },
   art: {

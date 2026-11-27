@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damage } from '@/app/(protected)/(engine)/effects'
+import { damage, unitAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'lance-of-mana',
   type: 'ability',
   subtype: 'spell',
   name: 'Lance of Mana',
-  text: 'Deal 9 arcane damage to an enemy slot.',
+  text: 'Deal 9 arcane damage to a frozen enemy ally, or 3 to one that is not.',
   flavor: 'Raw magic, thrown like a spear.',
   faction: 'arcane',
   restriction: { factions: ['arcane'] },
@@ -14,9 +14,13 @@ export default defineCard({
   element: 'arcane',
   price: 420,
   cost: 3,
-  targets: ['enemySlot'],
+  targets: ['enemyAlly'],
   onPlay(ctx) {
-    damage(ctx, ctx.targets[0], 9)
+    const unit = unitAt(ctx, ctx.targets[0])
+
+    if (unit) {
+      damage(ctx, ctx.targets[0], (unit.frozenUntilPhase ?? 0) >= ctx.engine.state.phase ? 9 : 3, 'arcane')
+    }
   },
   ai: { value: 4, tags: ['removal'] },
   art: {

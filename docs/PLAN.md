@@ -36,15 +36,15 @@ Este documento es el plan completo. Todavía no hay código: cada sección dice 
 
 El nombre **ChronoCast** sugiere magia del tiempo, y la mecánica central (programar el futuro y verlo desarrollarse) encaja con eso. Propuesta de mundo: la **Grieta del Tiempo** mezcló todas las eras y sus campeones pelean por controlarla. Cada facción es una era:
 
-| Facción (id) | Nombre en pantalla | Era                 | Color dominante              | Identidad de juego                                                   |
-| ------------ | ------------------ | ------------------- | ---------------------------- | -------------------------------------------------------------------- |
-| `primal`     | Primigenia         | Prehistoria         | Verde lima / naranja         | Bestias grandes, crecer (+ataque/+vida), curación                    |
-| `bronze`     | Imperio de Bronce  | Antigüedad          | Rojo / dorado                | Protectores, formaciones (bonos por aliados vecinos)                 |
-| `arcane`     | Orden Arcana       | Medioevo mágico     | Azul / violeta               | Habilidades, daño directo, control (aturdir, silenciar)              |
-| `clockwork`  | Engranaje          | Era del vapor       | Cobre / amarillo             | Objetos, construcciones, generación extra de Cronos                  |
-| `neon`       | Neón               | Futuro              | Cian / magenta               | Velocidad (acciones Rápidas e Instantáneas), trampas, robo de cartas |
-| `void`       | Vacío              | Fin de los tiempos  | Violeta oscuro / verde ácido | La pila de descarte: sacrificar y revivir aliados                    |
-| `neutral`    | Errantes           | Viajeros del tiempo | Blanco / turquesa            | Cartas que entran en el mazo de cualquier héroe                      |
+| Facción (id) | Nombre en pantalla | Era                 | Color dominante              | Identidad de juego                                                                                                                                                                                            |
+| ------------ | ------------------ | ------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `primal`     | Primigenia         | Prehistoria         | Verde lima / naranja         | Bestias grandes, crecer (+ataque/+vida), curación                                                                                                                                                             |
+| `bronze`     | Imperio de Bronce  | Antigüedad          | Rojo / dorado                | Protectores, formaciones (bonos por aliados vecinos)                                                                                                                                                          |
+| `arcane`     | Orden Arcana       | Medioevo mágico     | Azul / violeta               | Habilidades, daño directo, control (aturdir, silenciar)                                                                                                                                                       |
+| `clockwork`  | Engranaje          | Era del vapor       | Cobre / amarillo             | Objetos, construcciones, generación extra de Cronos                                                                                                                                                           |
+| `neon`       | Neón               | Futuro              | Cian / magenta               | **Adjuntos** (implantes, mejoras, partes robóticas): la facción que más adjuntos usa, como Engranaje con los artefactos. Además hackeo, velocidad (acciones Rápidas e Instantáneas), trampas y robo de cartas |
+| `void`       | Vacío              | Fin de los tiempos  | Violeta oscuro / verde ácido | La pila de descarte: sacrificar y revivir aliados                                                                                                                                                             |
+| `neutral`    | Errantes           | Viajeros del tiempo | Blanco / turquesa            | Cartas que entran en el mazo de cualquier héroe                                                                                                                                                               |
 
 **Mover aliados entre slots para esquivar es una mecánica general**, disponible para todas las facciones (sección 2.4). Ninguna facción es "la del movimiento"; algunas cartas de cualquier facción pueden premiarlo o abaratarlo.
 
@@ -99,16 +99,16 @@ Si después del paso 6 los dos héroes siguen en pie, empieza una nueva fase. Ga
 
 Cada una de las 6 acciones de la línea de tiempo es una de estas:
 
-| Acción                     | Qué hace                                                                                                                                   | Costo                                      |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------ |
+| Acción                     | Qué hace                                                                                                                                                        | Costo                                      |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
 | **Generar Cronos**         | Destierra una carta de la mano (no va a la pila de descarte) y suma **+1 de capacidad de Cronos para siempre**. Máximo 1 por fase (`MAX_SACRIFICES_PER_PHASE`). | —                                          |
-| **Jugar una carta**        | Invoca un aliado en un slot, lanza una habilidad, adjunta un arma o armadura al héroe, usa un objeto, pone una ubicación o una trampa.     | Su costo en Cronos                         |
-| **Atacar con un aliado**   | El aliado ataca a un slot rival (el del héroe o el de un aliado). Una vez por fase por aliado.                                             | —                                          |
-| **Atacar con el héroe**    | Solo con un arma adjunta. Una vez por fase.                                                                                                | 1 de durabilidad del arma                  |
-| **Habilidad del héroe**    | La activa del héroe. Una vez por fase, pero cuesta **3 de energía o más** (`HERO_ABILITY_MIN_COST`): no se usa en cada fase y es fuerte.   | Su costo en **energía**                    |
-| **Habilidad de un aliado** | Los aliados que tienen una activa.                                                                                                         | Cronos, o energía si la carta lo dice (⚡) |
-| **Mover un aliado**        | **Para todas las facciones.** A un slot vacío, o intercambio con un aliado vecino. Es la forma de esquivar ataques.                        | —                                          |
-| **Esperar**                | Nada. Algunas cartas premian esperar.                                                                                                      | —                                          |
+| **Jugar una carta**        | Invoca un aliado en un slot, lanza una habilidad, adjunta un arma o armadura al héroe, usa un objeto, pone una ubicación o una trampa.                          | Su costo en Cronos                         |
+| **Atacar con un aliado**   | El aliado ataca a un slot rival (el del héroe o el de un aliado). Una vez por fase por aliado.                                                                  | —                                          |
+| **Atacar con el héroe**    | Solo con un arma adjunta. Una vez por fase.                                                                                                                     | 1 de durabilidad del arma                  |
+| **Habilidad del héroe**    | La activa del héroe. Una vez por fase, pero cuesta **3 de energía o más** (`HERO_ABILITY_MIN_COST`): no se usa en cada fase y es fuerte.                        | Su costo en **energía**                    |
+| **Habilidad de un aliado** | Los aliados que tienen una activa.                                                                                                                              | Cronos, o energía si la carta lo dice (⚡) |
+| **Mover un aliado**        | **Para todas las facciones.** A un slot vacío, o intercambio con un aliado vecino. Es la forma de esquivar ataques.                                             | —                                          |
+| **Esperar**                | Nada. Algunas cartas premian esperar.                                                                                                                           | —                                          |
 
 Con la capacidad permanente y 1 descarte por fase, en la fase _n_ se tienen hasta _n_ Cronos: la partida tiene curva y las cartas caras llegan más tarde.
 
@@ -311,6 +311,24 @@ Un héroe puede usar la carta si cumple **todos** los criterios que la carta lis
 
 `canUseCard(hero, card)` en `(engine)/utils/deckRules.ts` es la única función que decide esto, y la usan el editor de mazos, la colección (filtro "usables con este héroe"), el starter, la tienda (marca de "no la puede usar tu héroe") y el servidor antes de una partida.
 
+### 4.3 Pool de cartas de cada héroe
+
+Cada héroe puede usar **entre 260 y 300 cartas**, repartidas en tres capas de tamaño parecido (`(cards)/data/heroPools.ts`, `poolLayer` y `heroPoolLayers` en `(cards)/utils/heroPool.ts`):
+
+| Capa      | Qué cartas son                                                                                        | Por héroe |
+| --------- | ----------------------------------------------------------------------------------------------------- | --------- |
+| `neutral` | Sin restricción: las usa cualquier héroe                                                              | 90 a 110  |
+| `side`    | Solo piden bando (`{ sides: [...] }`): las usan los 6 héroes del Alba o del Eclipse                   | 80 a 100  |
+| `faction` | Piden facción o héroe: las compartidas por la facción, las de facción y bando (tribus) y las de firma | 80 a 100  |
+
+El objetivo de diseño es ~100 neutrales, ~90 de bando y ~90 de facción (72 compartidas por los dos héroes de la facción, ~15 de su tribu y ~3 de firma). `tests/unit/heroPools.test.ts` falla si algún héroe sale de esos rangos.
+
+Cada bando tiene su personalidad en las cartas que solo piden bando: el **Alba** cura, protege (Protector, Represalia, limpiar veneno y quemadura) y da segundas oportunidades (revivir, recuperar aliados de la pila); el **Eclipse** paga con la vida de su héroe para ganar poder (energía, Chronos, cartas), envenena, quema y hace descartar al rival.
+
+### 4.4 Cada carta tiene un efecto propio
+
+Dos cartas no pueden hacer lo mismo: si sus textos (y el de su habilidad) solo cambian en los números o en el elemento, son la misma carta. Las resistencias y debilidades no cuentan como efecto. Cambiar solo el disparador de un efecto genérico ("al entrar" contra "al atacar") tampoco alcanza: tiene que haber una condición o un giro que las haga jugar distinto. Se permiten como mucho 12 cartas sin efecto, todas neutrales (las cartas base). Lo controla `tests/unit/heroPools.test.ts`.
+
 ---
 
 ## 5. Rarezas
@@ -449,18 +467,18 @@ El catálogo se rehízo desde cero tomando `docs/data.json` (Shadow Era) solo co
 
 ### 8.1 Reparto
 
-| Grupo                   | Cartas  | Composición                                                                             |
-| ----------------------- | ------- | --------------------------------------------------------------------------------------- |
-| Héroes (todos jugables) | 12      | 1 del Alba y 1 del Eclipse por facción (tabla 4.1)                                      |
-| Exclusivas de héroe     | 60      | Las de los 12 héroes y las de los 12 héroes retirados, que pasaron a su facción y bando |
-| Por bando (antes clase) | 320     | Alba, Eclipse o neutrales según su tema (sección 4.1.1)                                 |
-| Por facción (6 grupos)  | 216     | 25 aliados (3 tribus), 5 a 8 habilidades y algunos artefactos, adjuntos y trampas       |
-| Neutrales               | 112     | 48 aliados, 28 habilidades, 12 objetos, 10 artefactos, 6 adjuntos, armas y armaduras    |
-| **Total coleccionable** | **720** | Más 9 fichas que solo aparecen invocadas                                                |
+| Grupo                   | Cartas  | Composición                                                                                            |
+| ----------------------- | ------- | ------------------------------------------------------------------------------------------------------ |
+| Héroes (todos jugables) | 12      | 1 del Alba y 1 del Eclipse por facción (tabla 4.1)                                                     |
+| Exclusivas de héroe     | 34      | Las firmas de los 12 héroes (2 o 3 cada uno) y algunos premios de campaña                              |
+| Por facción (6 grupos)  | 615     | Por facción: 72 compartidas por sus dos héroes y ~15 de la tribu de cada bando (sección 4.3)           |
+| Por bando               | 170     | 84 del Alba (curación, protección, segundas oportunidades) y 86 del Eclipse (sangre, veneno, descarte) |
+| Neutrales               | 95      | El set básico: a lo sumo 12 sin efecto (armas, armaduras y 3 aliados), el resto con efecto propio      |
+| **Total coleccionable** | **926** | Más las fichas que solo aparecen invocadas                                                             |
 
-Rarezas: 260 comunes, 178 poco comunes, 127 raras, 78 épicas, 57 legendarias, 14 exóticas y 6 míticas.
+Rarezas: 313 comunes, 252 poco comunes, 181 raras, 97 épicas, 63 legendarias, 14 exóticas y 6 míticas.
 
-En total quedan 230 cartas del Alba, 231 del Eclipse y 280 neutrales (con los héroes). Los 12 héroes retirados (Nysa, Tauron, Aldric, el Astrónomo Hueco, Gorrak, Kazhul, Gideon, Omnigear, Ryn, el Supervisor Kade, Vorhal y Xul'thar) se borraron con sus campañas; sus cartas exclusivas quedaron como cartas de su facción y bando, y sus premios de campaña se venden en la tienda y salen en sobres.
+Los 12 héroes retirados (Nysa, Tauron, Aldric, el Astrónomo Hueco, Gorrak, Kazhul, Gideon, Omnigear, Ryn, el Supervisor Kade, Vorhal y Xul'thar) se borraron con sus campañas; sus cartas exclusivas quedaron como cartas de su facción y bando, y sus premios de campaña se venden en la tienda y salen en sobres.
 
 ### 8.2 Mecánicas de Shadow Era que se adaptaron a las fases
 

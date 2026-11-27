@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageEnemyHero } from '@/app/(protected)/(engine)/effects'
+import { draw, isEnhanced, self } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'holo-mech',
   type: 'ally',
   name: 'Holo Mech',
-  text: 'When it attacks: deal 3 sonic damage to the enemy hero.',
+  text: 'When it attacks: if it is Enhanced, draw a card.',
   faction: 'neon',
   restriction: { factions: ['neon'] },
   rarity: 'uncommon',
@@ -18,7 +18,11 @@ export default defineCard({
   attack: 6,
   health: 10,
   onAttack(ctx) {
-    damageEnemyHero(ctx, 3)
+    const unit = self(ctx)
+
+    if (unit && isEnhanced(unit)) {
+      draw(ctx, ctx.owner, 1)
+    }
   },
   ai: { value: 5, tags: ['aggro'] },
   art: {

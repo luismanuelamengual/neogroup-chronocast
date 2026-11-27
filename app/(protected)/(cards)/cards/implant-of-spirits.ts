@@ -1,11 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { addCardToHand } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'implant-of-spirits',
   type: 'attachment',
   subtype: 'implant',
   name: 'Implant of Spirits',
-  text: 'Attach to an ally of yours: it gains +2 attack and +5 health.',
+  text: 'Attach to an ally of yours: it gains +2 attack and Lifesteal. When it dies, this implant returns to your hand.',
   faction: 'neon',
   restriction: { factions: ['neon'] },
   rarity: 'uncommon',
@@ -13,8 +14,10 @@ export default defineCard({
   cost: 4,
   keywords: ['lifesteal'],
   attack: 2,
-  health: 5,
   targets: ['friendlyAlly'],
+  onHostDeath(ctx) {
+    addCardToHand(ctx, ctx.owner, 'implant-of-spirits')
+  },
   ai: { value: 4, tags: ['buff'] },
   art: {
     subject:

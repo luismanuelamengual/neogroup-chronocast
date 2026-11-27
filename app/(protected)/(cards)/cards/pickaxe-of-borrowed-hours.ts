@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { gainChronos } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'pickaxe-of-borrowed-hours',
   type: 'weapon',
   subtype: 'tool',
   name: 'Pickaxe of Borrowed Hours',
-  text: 'When it is equipped: your hero heals 4.',
+  text: 'When your hero attacks with it: you gain 1 Chronos this phase.',
   flavor: 'It digs through time instead of stone.',
   faction: 'clockwork',
   restriction: { factions: ['clockwork'] },
@@ -16,8 +16,8 @@ export default defineCard({
   cost: 2,
   attack: 3,
   durability: 3,
-  onPlay(ctx) {
-    healHero(ctx, 4)
+  onAttack(ctx) {
+    gainChronos(ctx, ctx.owner, 1)
   },
   ai: { value: 4 },
   art: {

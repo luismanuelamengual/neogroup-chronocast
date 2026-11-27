@@ -1,20 +1,19 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageEnemyHero, spendCharge } from '@/app/(protected)/(engine)/effects'
+import { seekSubtype, spendCharge } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'encrypted-monolith',
   type: 'artifact',
   name: 'Encrypted Monolith',
-  text: 'At the start of each phase: deal 2 earth damage to the enemy hero. (3 uses)',
+  text: 'At the start of each phase: draw the first implant of your deck. (2 uses)',
   faction: 'neon',
-  restriction: { factions: ['neon'], sides: ['dawn'] },
+  restriction: { factions: ['neon'] },
   rarity: 'uncommon',
-  element: 'earth',
   price: 160,
   cost: 3,
-  charges: 3,
+  charges: 2,
   onPhaseStart(ctx) {
-    damageEnemyHero(ctx, 2)
+    seekSubtype(ctx, ctx.owner, 'implant')
     spendCharge(ctx)
   },
   ai: { value: 3, tags: ['aggro'] },

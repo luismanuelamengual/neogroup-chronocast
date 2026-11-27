@@ -1,19 +1,19 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero, spendCharge } from '@/app/(protected)/(engine)/effects'
+import { spendCharge, summonCard } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'lantern-of-the-foundry',
   type: 'artifact',
   name: 'Lantern of the Foundry',
-  text: 'At the start of each phase: your hero heals 3. (3 uses)',
+  text: 'At the start of each phase: summon a Cog Drone. (2 uses)',
   faction: 'clockwork',
-  restriction: { factions: ['clockwork'], sides: ['dawn'] },
+  restriction: { factions: ['clockwork'] },
   rarity: 'common',
   price: 55,
   cost: 3,
-  charges: 3,
+  charges: 2,
   onPhaseStart(ctx) {
-    healHero(ctx, 3)
+    summonCard(ctx, ctx.owner, 'cog-drone')
     spendCharge(ctx)
   },
   ai: { value: 3, tags: ['defense'] },

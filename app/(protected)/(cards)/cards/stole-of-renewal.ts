@@ -1,11 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { heal, isSpell, randomAlly, slotOf } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'stole-of-renewal',
   type: 'armor',
   subtype: 'robe',
   name: 'Stole of Renewal',
-  text: '',
+  text: 'Channel: when you cast a spell, a random ally of yours heals 3.',
   flavor: 'Each wound it touches forgets itself.',
   faction: 'arcane',
   restriction: { factions: ['arcane'], sides: ['dawn'] },
@@ -14,6 +15,14 @@ export default defineCard({
   cost: 4,
   armor: 3,
   durability: 4,
+  onOwnerPlay(ctx, card) {
+    const unit = isSpell(card) ? randomAlly(ctx, ctx.owner) : null
+    const ref = unit ? slotOf(ctx, unit) : null
+
+    if (ref) {
+      heal(ctx, ref, 3)
+    }
+  },
   ai: { value: 5 },
   art: {
     subject:

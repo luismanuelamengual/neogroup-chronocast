@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { buff, tribeAllies, unitAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'caeluss-axe',
   type: 'weapon',
   subtype: 'axe',
   name: "Caelus's Axe",
-  text: 'When it is equipped: your hero heals 5.',
+  text: 'When an attack of your hero with it kills an ally: your Colossi gain +1 attack and +1 health.',
   flavor: 'Taken from a king. Kept by a usurper.',
   faction: 'bronze',
   restriction: { heroes: ['caelus-the-usurper'] },
@@ -16,8 +16,18 @@ export default defineCard({
   keywords: ['unique'],
   attack: 5,
   durability: 4,
-  onPlay(ctx) {
-    healHero(ctx, 5)
+  onAttack(ctx, target) {
+    const victim = unitAt(ctx, target)
+
+    if (victim) {
+      ctx.engine.afterDamage(() => {
+        if (!ctx.engine.findUnit(victim.uid)) {
+          for (const unit of tribeAllies(ctx, ctx.owner, 'colossus')) {
+            buff(ctx, unit, 1, 1)
+          }
+        }
+      })
+    }
   },
   ai: { value: 5 },
   art: {

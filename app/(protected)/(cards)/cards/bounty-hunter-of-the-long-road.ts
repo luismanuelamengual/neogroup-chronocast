@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { destroyArtifact } from '@/app/(protected)/(engine)/effects'
+import { destroyArmor } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'bounty-hunter-of-the-long-road',
   type: 'ally',
   name: 'Bounty Hunter of the Long Road',
-  text: 'When it enters: destroy the priciest enemy artifact.',
+  text: 'When it enters: destroy the enemy armor.',
   faction: 'neutral',
   restriction: {},
   rarity: 'rare',
@@ -15,7 +15,7 @@ export default defineCard({
   attack: 3,
   health: 10,
   onEnter(ctx) {
-    destroyArtifact(ctx, ctx.opponent)
+    destroyArmor(ctx, ctx.opponent)
   },
   ai: { value: 4, tags: ['antiGear'] },
   art: {

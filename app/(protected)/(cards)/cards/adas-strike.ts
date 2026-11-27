@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damage, draw } from '@/app/(protected)/(engine)/effects'
+import { artifactCount, damage, draw } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'adas-strike',
   type: 'ability',
   subtype: 'gadget',
   name: "Ada's Strike",
-  text: 'Deal 10 damage to an enemy slot and draw a card.',
+  text: 'Deal 3 damage to an enemy slot for each artifact of yours, and draw a card.',
   flavor: 'Measured twice, struck once.',
   faction: 'clockwork',
   restriction: { heroes: ['ada-copperwick'] },
@@ -16,7 +16,7 @@ export default defineCard({
   keywords: ['unique'],
   targets: ['enemySlot'],
   onPlay(ctx) {
-    damage(ctx, ctx.targets[0], 10)
+    damage(ctx, ctx.targets[0], 3 * artifactCount(ctx))
     draw(ctx, ctx.owner, 1)
   },
   ai: { value: 5 },

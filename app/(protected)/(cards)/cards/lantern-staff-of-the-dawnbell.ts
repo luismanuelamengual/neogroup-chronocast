@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { grantKeyword, tribeAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'lantern-staff-of-the-dawnbell',
   type: 'weapon',
   subtype: 'staff',
   name: 'Lantern Staff of the Dawnbell',
-  text: 'When it is equipped: your hero heals 6.',
+  text: 'When it is equipped: your Magi gain Lifesteal.',
   flavor: 'It lights the path to morning.',
   faction: 'arcane',
   restriction: { factions: ['arcane'], sides: ['dawn'] },
@@ -17,7 +17,9 @@ export default defineCard({
   attack: 4,
   durability: 3,
   onPlay(ctx) {
-    healHero(ctx, 6)
+    for (const unit of tribeAllies(ctx, ctx.owner, 'magus')) {
+      grantKeyword(ctx, unit, 'lifesteal')
+    }
   },
   ai: { value: 4 },
   art: {

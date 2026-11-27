@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { stunAt } from '@/app/(protected)/(engine)/effects'
+import { destroyAttachedAt, stunAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'scholarly-daze',
   type: 'ability',
   subtype: 'program',
   name: 'Scholarly Daze',
-  text: 'Stun an enemy ally. Fast.',
+  text: 'Destroy an enemy attachment, weapon or armor; if it was on an ally, stun that ally. Fast.',
   flavor: 'A lecture so dense it stuns.',
   faction: 'neon',
   restriction: { factions: ['neon'] },
@@ -14,9 +14,13 @@ export default defineCard({
   price: 140,
   cost: 2,
   speed: 'fast',
-  targets: ['enemyAlly'],
+  targets: ['enemyAttachment'],
   onPlay(ctx) {
-    stunAt(ctx, ctx.targets[0])
+    const target = ctx.targets[0]
+
+    if (target && destroyAttachedAt(ctx, target) && target.slot !== 'hero') {
+      stunAt(ctx, { player: target.player, slot: target.slot })
+    }
   },
   ai: { value: 2, tags: ['removal'] },
   art: {

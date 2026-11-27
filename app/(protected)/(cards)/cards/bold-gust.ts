@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { destroyArtifact } from '@/app/(protected)/(engine)/effects'
+import { randomAlly, returnToHand } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'bold-gust',
   type: 'ally',
   name: 'Bold Gust',
-  text: 'When it enters: destroy the priciest enemy artifact.',
+  text: "When it enters: return a random enemy ally to its owner's hand.",
   faction: 'neutral',
   restriction: {},
   rarity: 'common',
@@ -18,7 +18,11 @@ export default defineCard({
   attack: 8,
   health: 10,
   onEnter(ctx) {
-    destroyArtifact(ctx, ctx.opponent)
+    const unit = randomAlly(ctx, ctx.opponent)
+
+    if (unit) {
+      returnToHand(ctx, unit)
+    }
   },
   ai: { value: 6, tags: ['antiGear'] },
   art: {

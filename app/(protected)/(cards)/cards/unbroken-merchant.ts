@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffSelf } from '@/app/(protected)/(engine)/effects'
+import { draw, unitAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'unbroken-merchant',
   type: 'ally',
   name: 'Unbroken Merchant',
-  text: 'When it attacks: it gains +1 attack.',
+  text: 'When it kills an ally: draw a card.',
   flavor: 'Robbed nine times. Still open for business.',
   faction: 'neutral',
   restriction: {},
@@ -15,8 +15,16 @@ export default defineCard({
   keywords: ['cleave'],
   attack: 4,
   health: 4,
-  onAttack(ctx) {
-    buffSelf(ctx, 1, 0)
+  onAttack(ctx, target) {
+    const victim = unitAt(ctx, target)
+
+    if (victim) {
+      ctx.engine.afterDamage(() => {
+        if (!ctx.engine.findUnit(victim.uid)) {
+          draw(ctx, ctx.owner, 1)
+        }
+      })
+    }
   },
   ai: { value: 3, tags: ['buff'] },
   art: {

@@ -5,7 +5,7 @@ export default defineCard({
   id: 'glyptodon-of-the-volcano',
   type: 'ally',
   name: 'Glyptodon of the Volcano',
-  text: 'When it enters: summon a Sabertooth Cub.',
+  text: 'When it dies: summon two Sabertooth Cubs.',
   flavor: 'A walking fortress with a warm heart.',
   faction: 'primal',
   restriction: { factions: ['primal'] },
@@ -16,7 +16,8 @@ export default defineCard({
   tribe: 'beast',
   attack: 8,
   health: 12,
-  onEnter(ctx) {
+  onDeath(ctx) {
+    summonCard(ctx, ctx.owner, 'sabertooth-cub')
     summonCard(ctx, ctx.owner, 'sabertooth-cub')
   },
   ai: { value: 7, tags: ['summon'] },

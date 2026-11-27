@@ -1,22 +1,27 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffThisPhaseAt } from '@/app/(protected)/(engine)/effects'
+import { buffThisPhase, grantKeyword, unitAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'rally-of-the-volcano',
   type: 'ability',
   subtype: 'instinct',
   name: 'Rally of the Volcano',
-  text: 'An ally of yours gains +4 attack this phase. Instant.',
+  text: 'An ally of yours gains +4 attack this phase and Quick. Instant.',
   flavor: 'The mountain roars and the tribe answers.',
-  faction: 'primal',
-  restriction: { factions: ['primal'], sides: ['eclipse'] },
+  faction: 'neutral',
+  restriction: { sides: ['eclipse'] },
   rarity: 'epic',
   price: 900,
   cost: 1,
   speed: 'instant',
   targets: ['friendlyAlly'],
   onPlay(ctx) {
-    buffThisPhaseAt(ctx, ctx.targets[0], 4)
+    const unit = unitAt(ctx, ctx.targets[0])
+
+    if (unit) {
+      buffThisPhase(ctx, unit, 4)
+      grantKeyword(ctx, unit, 'quick')
+    }
   },
   ai: { value: 2, tags: ['buff'] },
   art: {

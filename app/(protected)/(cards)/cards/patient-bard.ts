@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { seek } from '@/app/(protected)/(engine)/effects'
+import { seekType } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'patient-bard',
   type: 'ally',
   name: 'Patient Bard',
-  text: 'When it enters: draw the first trap of your deck.',
+  text: 'When it enters: draw the first attachment of your deck.',
   flavor: 'He waits for the perfect moment to sing.',
   faction: 'neutral',
   restriction: {},
@@ -16,7 +16,7 @@ export default defineCard({
   attack: 3,
   health: 10,
   onEnter(ctx) {
-    seek(ctx, ctx.owner, (card) => card.type === 'trap')
+    seekType(ctx, ctx.owner, 'attachment')
   },
   ai: { value: 4, tags: ['draw'] },
   art: {

@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { wearArmor, wearWeapon } from '@/app/(protected)/(engine)/effects'
+import { repairWeapon, wearWeapon } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'spirit-bound-disarm',
   type: 'ability',
   subtype: 'gadget',
   name: 'Spirit-Bound Disarm',
-  text: 'The enemy weapon and armor lose 2 durability each. Fast.',
+  text: 'The enemy weapon loses 2 durability and yours gains 2. Fast.',
   faction: 'clockwork',
   restriction: { factions: ['clockwork'] },
   rarity: 'common',
@@ -15,7 +15,7 @@ export default defineCard({
   speed: 'fast',
   onPlay(ctx) {
     wearWeapon(ctx, ctx.opponent, 2)
-    wearArmor(ctx, ctx.opponent, 2)
+    repairWeapon(ctx, ctx.owner, 2)
   },
   ai: { value: 2, tags: ['antiGear'] },
   art: {

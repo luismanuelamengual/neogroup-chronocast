@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { gainEnergy } from '@/app/(protected)/(engine)/effects'
+import { damage, gainEnergy } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'shadow-well',
   type: 'ability',
   subtype: 'ritual',
   name: 'Shadow Well',
-  text: 'Your hero gains 4 energy. Instant.',
+  text: 'Your hero takes 4 shadow damage and gains 4 energy. Instant.',
   flavor: 'Drink deep. Pay later.',
   faction: 'neutral',
   restriction: { sides: ['eclipse'] },
@@ -15,6 +15,7 @@ export default defineCard({
   cost: 3,
   speed: 'instant',
   onPlay(ctx) {
+    damage(ctx, { player: ctx.owner, slot: 'hero' }, 4, 'shadow')
     gainEnergy(ctx, ctx.owner, 4)
   },
   ai: { value: 2, tags: ['energy'] },

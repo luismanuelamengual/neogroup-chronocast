@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffThisPhaseAt } from '@/app/(protected)/(engine)/effects'
+import { alliesOf, buffThisPhase } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'map-of-the-wanderer',
   type: 'item',
   name: 'Map of the Wanderer',
-  text: 'An ally of yours gains +8 attack this phase. Instant.',
+  text: 'Your allies with 3 attack or less gain +3 attack this phase. Instant.',
   flavor: 'It always points to where you are not.',
   faction: 'neutral',
   restriction: {},
@@ -13,9 +13,12 @@ export default defineCard({
   price: 55,
   cost: 3,
   speed: 'instant',
-  targets: ['friendlyAlly'],
   onPlay(ctx) {
-    buffThisPhaseAt(ctx, ctx.targets[0], 8)
+    for (const unit of alliesOf(ctx, ctx.owner)) {
+      if (ctx.engine.attackOf(unit) <= 3) {
+        buffThisPhase(ctx, unit, 3)
+      }
+    }
   },
   ai: { value: 3, tags: ['buff'] },
   art: {

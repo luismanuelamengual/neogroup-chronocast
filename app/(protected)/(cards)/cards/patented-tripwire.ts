@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When an enemy ally is summoned: deal 7 damage to it.',
   flavor: 'Model 7. Models 1 to 6 caught their inventors.',
   faction: 'primal',
-  restriction: { factions: ['primal'], sides: ['eclipse'] },
+  restriction: { factions: ['primal'] },
   rarity: 'common',
   price: 50,
   cost: 2,

@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { wearWeapon } from '@/app/(protected)/(engine)/effects'
+import { wearArmor } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'mercenary-of-the-crossroads',
   type: 'ally',
   name: 'Mercenary of the Crossroads',
-  text: 'When it enters: the enemy weapon loses 1 durability.',
+  text: 'When it enters: the enemy armor loses 2 durability.',
   flavor: 'Loyal to whoever pays, in whatever century.',
   faction: 'neutral',
   restriction: {},
@@ -16,7 +16,7 @@ export default defineCard({
   attack: 6,
   health: 11,
   onEnter(ctx) {
-    wearWeapon(ctx, ctx.opponent, 1)
+    wearArmor(ctx, ctx.opponent, 2)
   },
   ai: { value: 5, tags: ['antiGear'] },
   art: {

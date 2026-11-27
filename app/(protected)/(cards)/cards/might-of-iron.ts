@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffThisPhaseAt } from '@/app/(protected)/(engine)/effects'
+import { buffThisPhase, grantKeyword, unitAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'might-of-iron',
   type: 'ability',
   subtype: 'tactic',
   name: 'Might of Iron',
-  text: 'An ally of yours gains +8 attack this phase. Instant.',
+  text: 'An ally of yours gains +4 attack this phase and Cleave. Instant.',
   flavor: 'Strength forged, not born.',
   faction: 'neutral',
   restriction: {},
@@ -16,7 +16,12 @@ export default defineCard({
   speed: 'instant',
   targets: ['friendlyAlly'],
   onPlay(ctx) {
-    buffThisPhaseAt(ctx, ctx.targets[0], 8)
+    const unit = unitAt(ctx, ctx.targets[0])
+
+    if (unit) {
+      buffThisPhase(ctx, unit, 4)
+      grantKeyword(ctx, unit, 'cleave')
+    }
   },
   ai: { value: 3, tags: ['buff'] },
   art: {

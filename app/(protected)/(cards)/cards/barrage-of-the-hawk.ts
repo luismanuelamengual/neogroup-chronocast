@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damage } from '@/app/(protected)/(engine)/effects'
+import { damage, draw, unitAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'barrage-of-the-hawk',
   type: 'ability',
   subtype: 'spell',
   name: 'Barrage of the Hawk',
-  text: 'Deal 6 wind damage to an enemy ally. Fast.',
+  text: 'Deal 6 wind damage to an enemy ally. Fast. If it dies, draw a card.',
   flavor: 'The hawk calls, and the arrows follow.',
   faction: 'arcane',
   restriction: { factions: ['arcane'] },
@@ -17,7 +17,13 @@ export default defineCard({
   speed: 'fast',
   targets: ['enemyAlly'],
   onPlay(ctx) {
+    const uid = unitAt(ctx, ctx.targets[0])?.uid
+
     damage(ctx, ctx.targets[0], 6)
+
+    if (uid && !ctx.engine.findUnit(uid)) {
+      draw(ctx, ctx.owner, 1)
+    }
   },
   ai: { value: 2, tags: ['removal'] },
   art: {

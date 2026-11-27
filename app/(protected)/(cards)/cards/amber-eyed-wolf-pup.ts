@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffSelf } from '@/app/(protected)/(engine)/effects'
+import { markPreyAlly, randomAlly } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'amber-eyed-wolf-pup',
   type: 'ally',
   name: 'Amber-Eyed Wolf Pup',
-  text: 'When it enters: it gains +1 attack and +2 health.',
+  text: 'When it enters: a random enemy ally becomes your Prey.',
   flavor: 'Its eyes glow before its teeth do.',
   faction: 'primal',
   restriction: { factions: ['primal'] },
@@ -16,7 +16,11 @@ export default defineCard({
   attack: 6,
   health: 10,
   onEnter(ctx) {
-    buffSelf(ctx, 1, 2)
+    const prey = randomAlly(ctx, ctx.opponent)
+
+    if (prey) {
+      markPreyAlly(ctx, prey)
+    }
   },
   ai: { value: 5, tags: ['buff'] },
   art: {

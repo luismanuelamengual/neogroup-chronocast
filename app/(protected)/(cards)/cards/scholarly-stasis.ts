@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageEnemyHero, freeze } from '@/app/(protected)/(engine)/effects'
+import { freeze, recharge } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'scholarly-stasis',
   type: 'ability',
   subtype: 'gadget',
   name: 'Scholarly Stasis',
-  text: 'Freeze an enemy ally and deal 2 time damage to the enemy hero.',
+  text: 'Freeze an enemy ally and your artifacts gain 1 use.',
   faction: 'clockwork',
   restriction: { factions: ['clockwork'] },
   rarity: 'rare',
@@ -16,7 +16,7 @@ export default defineCard({
   targets: ['enemyAlly'],
   onPlay(ctx) {
     freeze(ctx, ctx.targets[0])
-    damageEnemyHero(ctx, 2)
+    recharge(ctx, 'all', 1)
   },
   ai: { value: 3, tags: ['aggro', 'removal'] },
   art: {

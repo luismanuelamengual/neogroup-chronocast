@@ -1,14 +1,14 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { freeze } from '@/app/(protected)/(engine)/effects'
+import { damage, freeze } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'arcane-mine',
   type: 'trap',
   name: 'Arcane Mine',
-  text: 'When an enemy ally is summoned: freeze it.',
+  text: 'When an enemy ally is summoned: deal 3 arcane damage to it and freeze it.',
   flavor: 'Step lightly. Read the runes. Too late.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'], sides: ['eclipse'] },
+  restriction: { factions: ['arcane'] },
   rarity: 'uncommon',
   price: 140,
   cost: 2,
@@ -16,6 +16,7 @@ export default defineCard({
   trigger: 'enemySummon',
   onTrigger(ctx, event) {
     if (event.unit) {
+      damage(ctx, event.unit, 3, 'arcane')
       freeze(ctx, event.unit)
     }
   },

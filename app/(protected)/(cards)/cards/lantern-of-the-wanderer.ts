@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero, spendCharge } from '@/app/(protected)/(engine)/effects'
+import { repairWeapon, spendCharge } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'lantern-of-the-wanderer',
   type: 'artifact',
   name: 'Lantern of the Wanderer',
-  text: 'At the start of each phase: your hero heals 3. (3 uses)',
+  text: 'At the start of each phase: your weapon gains +1 durability. (3 uses)',
   faction: 'clockwork',
   restriction: { factions: ['clockwork'] },
   rarity: 'uncommon',
@@ -13,7 +13,7 @@ export default defineCard({
   cost: 3,
   charges: 3,
   onPhaseStart(ctx) {
-    healHero(ctx, 3)
+    repairWeapon(ctx, ctx.owner, 1)
     spendCharge(ctx)
   },
   ai: { value: 3, tags: ['defense'] },

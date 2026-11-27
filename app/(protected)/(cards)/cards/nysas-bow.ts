@@ -1,23 +1,26 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageRandomAlly } from '@/app/(protected)/(engine)/effects'
+import { draw, isPrey, unitAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'nysas-bow',
   type: 'weapon',
   subtype: 'bow',
   name: "Nysa's Bow",
-  text: 'When it is equipped: deal 4 wind damage to a random enemy ally.',
+  text: 'When your hero attacks a Prey with it: draw a card.',
   faction: 'primal',
-  restriction: { factions: ['primal'], sides: ['dawn'] },
+  restriction: { factions: ['primal'] },
   rarity: 'epic',
-  element: 'wind',
   price: 1100,
   cost: 3,
   keywords: ['ranged', 'unique'],
   attack: 5,
   durability: 4,
-  onPlay(ctx) {
-    damageRandomAlly(ctx, ctx.opponent, 4)
+  onAttack(ctx, target) {
+    const unit = unitAt(ctx, target)
+
+    if (unit && isPrey(ctx, unit)) {
+      draw(ctx, ctx.owner, 1)
+    }
   },
   ai: { value: 5 },
   art: {

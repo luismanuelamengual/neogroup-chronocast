@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw } from '@/app/(protected)/(engine)/effects'
+import { enhancedAllies, grantKeyword } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'ghost-of-the-mainframe',
   type: 'ally',
   name: 'Ghost of the Mainframe',
-  text: 'When it enters: draw a card.',
+  text: 'When it enters: a random Enhanced ally of yours gains Stealth.',
   flavor: 'It lives where the code forgot to look.',
   faction: 'neon',
   restriction: { factions: ['neon'], sides: ['dawn'] },
@@ -17,7 +17,11 @@ export default defineCard({
   attack: 4,
   health: 8,
   onEnter(ctx) {
-    draw(ctx, ctx.owner, 1)
+    const candidates = enhancedAllies(ctx, ctx.owner)
+
+    if (candidates.length > 0) {
+      grantKeyword(ctx, candidates[Math.floor(ctx.random() * candidates.length)], 'stealth')
+    }
   },
   ai: { value: 4, tags: ['draw'] },
   art: {

@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffThisPhaseAt } from '@/app/(protected)/(engine)/effects'
+import { alliesOf, buffThisPhaseAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'courage-of-spirits',
   type: 'ability',
   subtype: 'tactic',
   name: 'Courage of Spirits',
-  text: 'An ally of yours gains +8 attack this phase. Instant.',
+  text: 'An ally of yours gains +2 attack this phase for each ally of yours. Instant.',
   flavor: 'The spirits whisper: do not run.',
   faction: 'neutral',
   restriction: {},
@@ -16,7 +16,7 @@ export default defineCard({
   speed: 'instant',
   targets: ['friendlyAlly'],
   onPlay(ctx) {
-    buffThisPhaseAt(ctx, ctx.targets[0], 8)
+    buffThisPhaseAt(ctx, ctx.targets[0], 2 * alliesOf(ctx, ctx.owner).length)
   },
   ai: { value: 3, tags: ['buff'] },
   art: {

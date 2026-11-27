@@ -1468,7 +1468,21 @@ export class MatchEngine {
     const event: TrapEvent = { trigger, unit, cancel: () => (cancelled = true) }
 
     this.emit({ type: 'trapTriggered', player: owner, cardId: trap.cardId })
+
+    // The trap aims at the ally that set it off, even if it entered after the bracket started (an enemy summon).
+    const snapshot = this.snapshot
+
+    if (snapshot && unit && unit.slot !== 'hero') {
+      const uid = this.unitAt(unit.player, unit.slot)?.uid ?? null
+
+      this.snapshot = {
+        ...snapshot,
+        [unit.player]: snapshot[unit.player].map((other, slot) => (slot === unit.slot ? uid : other))
+      }
+    }
+
     getCard(trap.cardId).onTrigger?.(this.context(owner, trap, unit ? [unit] : []), event)
+    this.snapshot = snapshot
     state.discard.push(trap)
 
     for (const card of this.inPlay(owner)) {

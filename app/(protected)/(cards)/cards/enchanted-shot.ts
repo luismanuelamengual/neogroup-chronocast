@@ -1,15 +1,15 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damage } from '@/app/(protected)/(engine)/effects'
+import { damage, freeze, unitAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'enchanted-shot',
   type: 'ability',
   subtype: 'spell',
   name: 'Enchanted Shot',
-  text: 'Deal 12 arcane damage to an enemy ally.',
+  text: 'Deal 12 arcane damage to an enemy ally. If it survives, freeze it.',
   flavor: 'The arrow knows the way.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'], sides: ['dawn'] },
+  restriction: { factions: ['arcane'] },
   rarity: 'rare',
   element: 'arcane',
   price: 480,
@@ -17,6 +17,10 @@ export default defineCard({
   targets: ['enemyAlly'],
   onPlay(ctx) {
     damage(ctx, ctx.targets[0], 12)
+
+    if (unitAt(ctx, ctx.targets[0])) {
+      freeze(ctx, ctx.targets[0])
+    }
   },
   ai: { value: 5, tags: ['removal'] },
   art: {

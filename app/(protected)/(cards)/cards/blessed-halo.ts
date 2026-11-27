@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { alliesOf, healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'blessed-halo',
   type: 'armor',
   subtype: 'helm',
   name: 'Blessed Halo',
-  text: 'When it is equipped: your hero heals 4.',
+  text: 'When it is equipped: your hero heals 2 for each ally of yours.',
   flavor: 'Heavier than it looks, lighter than it feels.',
   faction: 'bronze',
   restriction: { factions: ['bronze'], sides: ['dawn'] },
@@ -16,7 +16,7 @@ export default defineCard({
   armor: 2,
   durability: 3,
   onPlay(ctx) {
-    healHero(ctx, 4)
+    healHero(ctx, 2 * alliesOf(ctx, ctx.owner).length)
   },
   ai: { value: 2 },
   art: {

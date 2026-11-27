@@ -9,7 +9,7 @@ export default defineCard({
   text: 'Summon a Sabertooth Cub.',
   flavor: 'The night has ears, and it listens.',
   faction: 'primal',
-  restriction: { factions: ['primal'], sides: ['eclipse'] },
+  restriction: { factions: ['primal'] },
   rarity: 'common',
   price: 50,
   cost: 2,

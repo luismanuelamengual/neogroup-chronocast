@@ -1,10 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { buff, tribeAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'victorious-minotaur',
   type: 'ally',
   name: 'Victorious Minotaur',
-  text: '',
+  text: 'After it takes damage: your other Colossi gain +1 attack.',
   flavor: 'It found the way out of the labyrinth. Then went back in.',
   faction: 'bronze',
   restriction: { factions: ['bronze'], sides: ['eclipse'] },
@@ -17,6 +18,11 @@ export default defineCard({
   keywords: ['guardian', 'retaliate'],
   attack: 2,
   health: 8,
+  onDamaged(ctx) {
+    for (const unit of tribeAllies(ctx, ctx.owner, 'colossus', true)) {
+      buff(ctx, unit, 1, 0)
+    }
+  },
   ai: { value: 2 },
   art: {
     subject:

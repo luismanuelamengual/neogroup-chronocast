@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { buffThisPhase, neighbors } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'imperial-haruspex',
   type: 'ally',
   name: 'Imperial Haruspex',
-  text: 'When it attacks: your hero heals 2.',
+  text: 'When it attacks: the allies next to it gain +1 attack this phase.',
   faction: 'bronze',
   restriction: { factions: ['bronze'] },
   rarity: 'common',
@@ -16,7 +16,9 @@ export default defineCard({
   attack: 7,
   health: 9,
   onAttack(ctx) {
-    healHero(ctx, 2)
+    for (const unit of neighbors(ctx)) {
+      buffThisPhase(ctx, unit, 1)
+    }
   },
   ai: { value: 5, tags: ['defense'] },
   art: {

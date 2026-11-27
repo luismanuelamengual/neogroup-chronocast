@@ -1,14 +1,14 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { freeze } from '@/app/(protected)/(engine)/effects'
+import { draw, freeze } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'wired-tripwire',
   type: 'trap',
   name: 'Wired Tripwire',
-  text: 'When an enemy ally is summoned: freeze it.',
+  text: 'When an enemy ally is summoned: freeze it and draw a card.',
   flavor: 'One wire, one hundred volts.',
   faction: 'primal',
-  restriction: { factions: ['primal'], sides: ['eclipse'] },
+  restriction: { factions: ['primal'] },
   rarity: 'common',
   price: 65,
   cost: 4,
@@ -18,6 +18,8 @@ export default defineCard({
     if (event.unit) {
       freeze(ctx, event.unit)
     }
+
+    draw(ctx, ctx.owner, 1)
   },
   ai: { value: 4, tags: ['trap'] },
   art: {

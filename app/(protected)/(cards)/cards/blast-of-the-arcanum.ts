@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damage } from '@/app/(protected)/(engine)/effects'
+import { damage, unitAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'blast-of-the-arcanum',
   type: 'ability',
   subtype: 'spell',
   name: 'Blast of the Arcanum',
-  text: 'Deal 9 arcane damage to an enemy slot.',
+  text: 'Deal 9 arcane damage to an enemy slot. If the ally there is frozen, deal 18 instead.',
   flavor: 'The library had a strict silence policy.',
   faction: 'arcane',
   restriction: { factions: ['arcane'] },
@@ -16,7 +16,9 @@ export default defineCard({
   cost: 3,
   targets: ['enemySlot'],
   onPlay(ctx) {
-    damage(ctx, ctx.targets[0], 9)
+    const unit = unitAt(ctx, ctx.targets[0])
+
+    damage(ctx, ctx.targets[0], unit && ctx.engine.isFrozen(unit) ? 18 : 9)
   },
   ai: { value: 4, tags: ['removal'] },
   art: {

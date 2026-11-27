@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { gainEnergy } from '@/app/(protected)/(engine)/effects'
+import { draw } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'magma-brute-of-mana',
   type: 'ally',
   name: 'Magma Brute of Mana',
-  text: 'At the start of each phase: your hero gains 1 energy.',
+  text: 'At the start of each phase: if you have no cards in hand, draw a card.',
   faction: 'neutral',
   restriction: {},
   rarity: 'common',
@@ -19,7 +19,9 @@ export default defineCard({
   attack: 3,
   health: 6,
   onPhaseStart(ctx) {
-    gainEnergy(ctx, ctx.owner, 1)
+    if (ctx.engine.player(ctx.owner).hand.length === 0) {
+      draw(ctx, ctx.owner, 1)
+    }
   },
   ai: { value: 3, tags: ['energy'] },
   art: {

@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damage } from '@/app/(protected)/(engine)/effects'
+import { damage, returnAt, unitAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'spike-of-the-hawk',
   type: 'ability',
   subtype: 'spell',
   name: 'Spike of the Hawk',
-  text: 'Deal 9 wind damage to an enemy slot.',
+  text: "Deal 5 wind damage to an enemy ally; if it has Flying, return it to its owner's hand.",
   flavor: 'Swift as the hawk that guides it.',
   faction: 'arcane',
   restriction: { factions: ['arcane'] },
@@ -14,9 +14,15 @@ export default defineCard({
   element: 'wind',
   price: 1100,
   cost: 3,
-  targets: ['enemySlot'],
+  targets: ['enemyAlly'],
   onPlay(ctx) {
-    damage(ctx, ctx.targets[0], 9)
+    const unit = unitAt(ctx, ctx.targets[0])
+
+    damage(ctx, ctx.targets[0], 5, 'wind')
+
+    if (unit?.keywords.includes('flying') && unitAt(ctx, ctx.targets[0])) {
+      returnAt(ctx, ctx.targets[0])
+    }
   },
   ai: { value: 4, tags: ['removal'] },
   art: {

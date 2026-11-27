@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { gainChronos } from '@/app/(protected)/(engine)/effects'
+import { repairArmor } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'stone-golem-of-dawn',
   type: 'ally',
   name: 'Stone Golem of Dawn',
-  text: 'When it enters: you gain 1 Chronos this phase.',
+  text: 'When it enters: your armor gains +2 durability.',
   faction: 'neutral',
   restriction: { sides: ['dawn'] },
   rarity: 'common',
@@ -18,7 +18,7 @@ export default defineCard({
   attack: 5,
   health: 6,
   onEnter(ctx) {
-    gainChronos(ctx, ctx.owner, 1)
+    repairArmor(ctx, ctx.owner, 2)
   },
   ai: { value: 3, tags: ['ramp'] },
   art: {

@@ -1,19 +1,20 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { cleanse, healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'respite-of-the-crossroads',
   type: 'ability',
   subtype: 'instinct',
   name: 'Respite of the Crossroads',
-  text: 'Your hero heals 6.',
+  text: 'Your hero heals 6 and loses its poison and burn.',
   flavor: 'Every road ends at a campfire.',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   price: 40,
   cost: 1,
   onPlay(ctx) {
+    cleanse(ctx, { player: ctx.owner, slot: 'hero' })
     healHero(ctx, 6)
   },
   ai: { value: 1, tags: ['heal'] },

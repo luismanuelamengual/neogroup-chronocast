@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffThisPhaseAt } from '@/app/(protected)/(engine)/effects'
+import { alliesOf, buffThisPhase } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'might-of-lost-time',
   type: 'ability',
   subtype: 'tactic',
   name: 'Might of Lost Time',
-  text: 'An ally of yours gains +12 attack this phase. Instant.',
+  text: 'Your allies gain +3 attack this phase. Instant.',
   flavor: 'Power borrowed from forgotten heroes.',
   faction: 'bronze',
   restriction: { factions: ['bronze'] },
@@ -14,9 +14,10 @@ export default defineCard({
   price: 70,
   cost: 5,
   speed: 'instant',
-  targets: ['friendlyAlly'],
   onPlay(ctx) {
-    buffThisPhaseAt(ctx, ctx.targets[0], 12)
+    for (const unit of alliesOf(ctx, ctx.owner)) {
+      buffThisPhase(ctx, unit, 3)
+    }
   },
   ai: { value: 5, tags: ['buff'] },
   art: {

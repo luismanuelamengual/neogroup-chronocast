@@ -1,10 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { buff, tribeAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'radiant-zombie',
   type: 'ally',
   name: 'Radiant Zombie',
-  text: '',
+  text: 'When it enters: your other Undead gain +2 health.',
   flavor: 'Blessed by mistake.',
   faction: 'neutral',
   restriction: { sides: ['dawn'] },
@@ -17,6 +18,11 @@ export default defineCard({
   keywords: ['shield'],
   attack: 4,
   health: 9,
+  onEnter(ctx) {
+    for (const unit of tribeAllies(ctx, ctx.owner, 'undead', true)) {
+      buff(ctx, unit, 0, 2)
+    }
+  },
   ai: { value: 3 },
   art: {
     subject:

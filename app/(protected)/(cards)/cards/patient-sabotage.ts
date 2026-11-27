@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { wearArmor, wearWeapon } from '@/app/(protected)/(engine)/effects'
+import { artifactCount, wearWeapon } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'patient-sabotage',
   type: 'ability',
   subtype: 'gadget',
   name: 'Patient Sabotage',
-  text: 'The enemy weapon and armor lose 2 durability each. Fast.',
+  text: 'The enemy weapon loses 1 durability for each artifact of yours. Fast.',
   faction: 'clockwork',
   restriction: { factions: ['clockwork'] },
   rarity: 'common',
@@ -14,8 +14,7 @@ export default defineCard({
   cost: 2,
   speed: 'fast',
   onPlay(ctx) {
-    wearWeapon(ctx, ctx.opponent, 2)
-    wearArmor(ctx, ctx.opponent, 2)
+    wearWeapon(ctx, ctx.opponent, artifactCount(ctx))
   },
   ai: { value: 2, tags: ['antiGear'] },
   art: {

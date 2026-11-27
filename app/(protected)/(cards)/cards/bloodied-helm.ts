@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healAllAllies } from '@/app/(protected)/(engine)/effects'
+import { buff, heal, slotOf, tribeAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'bloodied-helm',
   type: 'armor',
   subtype: 'helm',
   name: 'Bloodied Helm',
-  text: 'When it is equipped: your allies heal 2.',
+  text: 'When it is equipped: your Colossi heal 4 and gain +1 attack.',
   flavor: "Not all of the blood is the wearer's.",
   faction: 'bronze',
   restriction: { factions: ['bronze'], sides: ['eclipse'] },
@@ -16,7 +16,15 @@ export default defineCard({
   armor: 3,
   durability: 4,
   onPlay(ctx) {
-    healAllAllies(ctx, ctx.owner, 2)
+    for (const unit of tribeAllies(ctx, ctx.owner, 'colossus')) {
+      const ref = slotOf(ctx, unit)
+
+      if (ref) {
+        heal(ctx, ref, 4)
+      }
+
+      buff(ctx, unit, 1, 0)
+    }
   },
   ai: { value: 5 },
   art: {

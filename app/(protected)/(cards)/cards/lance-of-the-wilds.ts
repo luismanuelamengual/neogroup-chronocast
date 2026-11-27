@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damage } from '@/app/(protected)/(engine)/effects'
+import { damage, hasPanoply } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'lance-of-the-wilds',
   type: 'ability',
   subtype: 'tactic',
   name: 'Lance of the Wilds',
-  text: 'Deal 11 damage to an enemy slot.',
+  text: 'Deal 4 damage to an enemy slot, or 9 with Panoply.',
   flavor: 'Carved from a tree that was struck by lightning.',
   faction: 'bronze',
   restriction: { factions: ['bronze'] },
@@ -15,7 +15,7 @@ export default defineCard({
   cost: 4,
   targets: ['enemySlot'],
   onPlay(ctx) {
-    damage(ctx, ctx.targets[0], 11)
+    damage(ctx, ctx.targets[0], hasPanoply(ctx) ? 9 : 4)
   },
   ai: { value: 4, tags: ['removal'] },
   art: {

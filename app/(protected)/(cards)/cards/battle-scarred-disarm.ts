@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { wearArmor, wearWeapon } from '@/app/(protected)/(engine)/effects'
+import { damageEnemyHero, wearArmor } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'battle-scarred-disarm',
   type: 'ability',
   subtype: 'gadget',
   name: 'Battle-Scarred Disarm',
-  text: 'The enemy weapon and armor lose 2 durability each. Fast.',
+  text: 'The enemy armor loses 2 durability and the enemy hero takes 3 damage. Fast.',
   faction: 'clockwork',
   restriction: { factions: ['clockwork'], sides: ['eclipse'] },
   rarity: 'rare',
@@ -14,8 +14,8 @@ export default defineCard({
   cost: 2,
   speed: 'fast',
   onPlay(ctx) {
-    wearWeapon(ctx, ctx.opponent, 2)
     wearArmor(ctx, ctx.opponent, 2)
+    damageEnemyHero(ctx, 3)
   },
   ai: { value: 3, tags: ['antiGear'] },
   art: {

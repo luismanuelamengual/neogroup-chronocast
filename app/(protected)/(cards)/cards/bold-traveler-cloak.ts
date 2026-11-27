@@ -6,7 +6,7 @@ export default defineCard({
   type: 'armor',
   subtype: 'leather',
   name: 'Bold Traveler Cloak',
-  text: 'When it is equipped: your hero heals 6.',
+  text: 'When a trap of yours goes off: your hero heals 4.',
   flavor: 'It has seen every era and complained in each one.',
   faction: 'primal',
   restriction: { factions: ['primal'] },
@@ -15,8 +15,8 @@ export default defineCard({
   cost: 4,
   armor: 3,
   durability: 4,
-  onPlay(ctx) {
-    healHero(ctx, 6)
+  onTrapTriggered(ctx) {
+    healHero(ctx, 4)
   },
   ai: { value: 5 },
   art: {

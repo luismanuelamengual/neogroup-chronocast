@@ -1,13 +1,13 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageAllAllies } from '@/app/(protected)/(engine)/effects'
+import { damage, damageRandomAlly } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'storm-called-cartographer',
   type: 'ally',
   name: 'Storm-Called Cartographer',
-  text: 'When it dies: deal 1 lightning damage to every enemy ally.',
+  text: 'When it dies: deal 2 lightning damage to the enemy hero and to a random enemy ally.',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['eclipse'] },
   rarity: 'uncommon',
   element: 'lightning',
   price: 140,
@@ -15,7 +15,8 @@ export default defineCard({
   attack: 3,
   health: 6,
   onDeath(ctx) {
-    damageAllAllies(ctx, ctx.opponent, 1)
+    damage(ctx, { player: ctx.opponent, slot: 'hero' }, 2, 'lightning')
+    damageRandomAlly(ctx, ctx.opponent, 2, 'lightning')
   },
   ai: { value: 2, tags: ['removal'] },
   art: {

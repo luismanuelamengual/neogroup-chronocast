@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Its ability is paid with energy (⚡).',
   flavor: 'He was buried with his sword, and kept it.',
   faction: 'void',
-  restriction: { factions: ['void'], sides: ['eclipse'] },
+  restriction: { factions: ['void'] },
   rarity: 'common',
   price: 60,
   cost: 3,

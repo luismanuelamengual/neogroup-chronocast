@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffThisPhaseAt } from '@/app/(protected)/(engine)/effects'
+import { buffThisPhaseAt, draw } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'rally-of-lost-time',
   type: 'ability',
   subtype: 'tactic',
   name: 'Rally of Lost Time',
-  text: 'An ally of yours gains +4 attack this phase. Instant.',
+  text: 'An ally of yours gains +2 attack this phase. Draw a card. Instant.',
   flavor: 'Soldiers from every era answer the call.',
   faction: 'bronze',
   restriction: { factions: ['bronze'] },
@@ -16,7 +16,8 @@ export default defineCard({
   speed: 'instant',
   targets: ['friendlyAlly'],
   onPlay(ctx) {
-    buffThisPhaseAt(ctx, ctx.targets[0], 4)
+    buffThisPhaseAt(ctx, ctx.targets[0], 2)
+    draw(ctx, ctx.owner, 1)
   },
   ai: { value: 1, tags: ['buff'] },
   art: {

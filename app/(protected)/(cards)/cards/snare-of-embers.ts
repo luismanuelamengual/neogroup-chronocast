@@ -1,22 +1,27 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { returnAt } from '@/app/(protected)/(engine)/effects'
+import { alliesOf, returnToHand } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'snare-of-embers',
   type: 'ability',
   subtype: 'spell',
   name: 'Snare of Embers',
-  text: "Return an enemy ally to its owner's hand. Fast.",
+  text: "Return the enemy ally with the most attack to its owner's hand. Slow.",
   flavor: 'Hot coals hide under the leaves.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'], sides: ['eclipse'] },
+  restriction: { factions: ['arcane'] },
   rarity: 'common',
   price: 50,
   cost: 2,
-  speed: 'fast',
-  targets: ['enemyAlly'],
+  speed: 'slow',
   onPlay(ctx) {
-    returnAt(ctx, ctx.targets[0])
+    const [strongest] = alliesOf(ctx, ctx.opponent).sort(
+      (one, other) => ctx.engine.attackOf(other) - ctx.engine.attackOf(one)
+    )
+
+    if (strongest) {
+      returnToHand(ctx, strongest)
+    }
   },
   ai: { value: 2, tags: ['removal'] },
   art: {

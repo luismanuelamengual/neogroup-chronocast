@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { summonCard } from '@/app/(protected)/(engine)/effects'
+import { seekType } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'old-cartographer',
   type: 'ally',
   name: 'Old Cartographer',
-  text: 'When it dies: summon a Rift Spark.',
+  text: 'When it dies: draw the first ally of your deck.',
   flavor: 'He drew the Rift before it opened.',
   faction: 'neutral',
   restriction: {},
@@ -16,7 +16,7 @@ export default defineCard({
   attack: 4,
   health: 6,
   onDeath(ctx) {
-    summonCard(ctx, ctx.owner, 'rift-spark')
+    seekType(ctx, ctx.owner, 'ally')
   },
   ai: { value: 4, tags: ['summon'] },
   art: {

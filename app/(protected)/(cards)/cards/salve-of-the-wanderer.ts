@@ -1,20 +1,22 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { cleanse, heal } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'salve-of-the-wanderer',
   type: 'item',
   name: 'Salve of the Wanderer',
-  text: 'Your hero heals 6.',
+  text: 'An ally of yours heals 6 and loses its poison and burn.',
   flavor: 'Smells like five centuries of herbs.',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   price: 40,
   cost: 1,
   onPlay(ctx) {
-    healHero(ctx, 6)
+    cleanse(ctx, ctx.targets[0])
+    heal(ctx, ctx.targets[0], 6)
   },
+  targets: ['friendlyAlly'],
   ai: { value: 1, tags: ['heal'] },
   art: {
     subject:

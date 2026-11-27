@@ -6,16 +6,17 @@ export default defineCard({
   type: 'ability',
   subtype: 'ritual',
   name: 'Venom of the Hunt',
-  text: 'Poison an enemy ally (3).',
+  text: 'Poison an enemy ally (3) and the enemy hero (3).',
   flavor: 'One drop for the prey, two for the proud.',
   faction: 'void',
-  restriction: { factions: ['void'], sides: ['eclipse'] },
+  restriction: { factions: ['void'] },
   rarity: 'common',
   price: 50,
   cost: 2,
   targets: ['enemyAlly'],
   onPlay(ctx) {
     poison(ctx, ctx.targets[0], 3)
+    poison(ctx, { player: ctx.opponent, slot: 'hero' }, 3)
   },
   ai: { value: 2, tags: ['removal'] },
   art: {

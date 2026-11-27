@@ -1,10 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { grantKeyword, neighbors } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'loyal-charioteer',
   type: 'ally',
   name: 'Loyal Charioteer',
-  text: '',
+  text: 'When it enters: the allies next to it gain Guardian.',
   flavor: 'The horses trust him. So does the legion.',
   faction: 'bronze',
   restriction: { factions: ['bronze'], sides: ['dawn'] },
@@ -15,6 +16,11 @@ export default defineCard({
   keywords: ['guardian', 'retaliate'],
   attack: 2,
   health: 8,
+  onEnter(ctx) {
+    for (const unit of neighbors(ctx)) {
+      grantKeyword(ctx, unit, 'guardian')
+    }
+  },
   ai: { value: 2 },
   art: {
     subject:

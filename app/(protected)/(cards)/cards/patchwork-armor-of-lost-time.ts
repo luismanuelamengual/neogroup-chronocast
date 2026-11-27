@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw } from '@/app/(protected)/(engine)/effects'
+import { repairArmor } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'patchwork-armor-of-lost-time',
   type: 'armor',
   subtype: 'exosuit',
   name: 'Patchwork Armor of Lost Time',
-  text: 'When it is equipped: draw a card.',
+  text: 'When an artifact of yours leaves play: this armor gains +1 durability.',
   flavor: 'A Roman plate, a samurai sleeve, a future buckle.',
   faction: 'clockwork',
   restriction: { factions: ['clockwork'] },
@@ -15,8 +15,8 @@ export default defineCard({
   cost: 2,
   armor: 2,
   durability: 5,
-  onPlay(ctx) {
-    draw(ctx, ctx.owner, 1)
+  onArtifactLeave(ctx) {
+    repairArmor(ctx, ctx.owner, 1)
   },
   ai: { value: 4 },
   art: {

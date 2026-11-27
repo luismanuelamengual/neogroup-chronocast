@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { reviveFromDiscard } from '@/app/(protected)/(engine)/effects'
+import { buffAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'luminous-squire',
   type: 'ally',
   name: 'Luminous Squire',
-  text: 'When it dies: a random ally of your discard pile returns to play.',
+  text: 'When it dies: your allies gain +1 attack and +1 health.',
   faction: 'neutral',
   restriction: { sides: ['dawn'] },
   rarity: 'uncommon',
@@ -15,7 +15,7 @@ export default defineCard({
   attack: 3,
   health: 3,
   onDeath(ctx) {
-    reviveFromDiscard(ctx, ctx.owner)
+    buffAllies(ctx, ctx.owner, 1, 1)
   },
   ai: { value: 2, tags: ['revive'] },
   art: {

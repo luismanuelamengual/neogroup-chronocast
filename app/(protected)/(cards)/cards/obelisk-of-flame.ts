@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageEnemyHero, spendCharge } from '@/app/(protected)/(engine)/effects'
+import { burn, randomAlly, slotOf, spendCharge } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'obelisk-of-flame',
   type: 'artifact',
   name: 'Obelisk of Flame',
-  text: 'At the start of each phase: deal 2 fire damage to the enemy hero. (3 uses)',
+  text: 'At the start of each phase: burn a random enemy ally (2). (3 uses)',
   faction: 'neutral',
   restriction: { sides: ['eclipse'] },
   rarity: 'common',
@@ -14,7 +14,13 @@ export default defineCard({
   cost: 4,
   charges: 3,
   onPhaseStart(ctx) {
-    damageEnemyHero(ctx, 2)
+    const unit = randomAlly(ctx, ctx.opponent)
+    const ref = unit ? slotOf(ctx, unit) : null
+
+    if (ref) {
+      burn(ctx, ref, 2)
+    }
+
     spendCharge(ctx)
   },
   ai: { value: 4, tags: ['aggro'] },

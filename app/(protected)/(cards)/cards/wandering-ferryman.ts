@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw } from '@/app/(protected)/(engine)/effects'
+import { addCardToHand } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'wandering-ferryman',
   type: 'ally',
   name: 'Wandering Ferryman',
-  text: 'When it dies: draw a card.',
+  text: 'When it dies: put a copy of it in your hand.',
   flavor: 'He rows across rivers of time.',
   faction: 'neutral',
   restriction: {},
@@ -17,7 +17,7 @@ export default defineCard({
   attack: 4,
   health: 8,
   onDeath(ctx) {
-    draw(ctx, ctx.owner, 1)
+    addCardToHand(ctx, ctx.owner, 'wandering-ferryman')
   },
   ai: { value: 4, tags: ['draw'] },
   art: {

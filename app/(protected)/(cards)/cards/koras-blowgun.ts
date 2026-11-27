@@ -1,23 +1,25 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageRandomAlly } from '@/app/(protected)/(engine)/effects'
+import { markPrey, poison } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'koras-blowgun',
   type: 'weapon',
   subtype: 'blowgun',
   name: "Kora's Blowgun",
-  text: 'When it is equipped: deal 4 wind damage to a random enemy ally.',
+  text: 'When your hero attacks with it: the ally it hits becomes your Prey and gets 2 poison.',
   faction: 'primal',
   restriction: { heroes: ['kora-wildfang'] },
   rarity: 'epic',
-  element: 'wind',
   price: 1100,
   cost: 3,
   keywords: ['ranged', 'unique'],
   attack: 5,
   durability: 4,
-  onPlay(ctx) {
-    damageRandomAlly(ctx, ctx.opponent, 4)
+  onAttack(ctx, target) {
+    if (target.slot !== 'hero') {
+      markPrey(ctx, target)
+      poison(ctx, target, 2)
+    }
   },
   ai: { value: 5 },
   art: {

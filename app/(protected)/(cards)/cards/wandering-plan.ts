@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw } from '@/app/(protected)/(engine)/effects'
+import { alliesOf, draw } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'wandering-plan',
   type: 'ability',
   subtype: 'program',
   name: 'Wandering Plan',
-  text: 'Draw 2 cards.',
+  text: 'Draw a card for each enemy ally (up to 3).',
   flavor: 'The plan changes every era.',
   faction: 'neutral',
   restriction: {},
@@ -14,7 +14,7 @@ export default defineCard({
   price: 55,
   cost: 3,
   onPlay(ctx) {
-    draw(ctx, ctx.owner, 2)
+    draw(ctx, ctx.owner, Math.min(3, alliesOf(ctx, ctx.opponent).length))
   },
   ai: { value: 3, tags: ['draw'] },
   art: {

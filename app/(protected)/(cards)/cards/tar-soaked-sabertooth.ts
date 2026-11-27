@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { heal, isPrey, self, slotOf, unitAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'tar-soaked-sabertooth',
   type: 'ally',
   name: 'Tar-Soaked Sabertooth',
-  text: 'When it attacks: your hero heals 3.',
+  text: 'When it attacks a Prey: it heals 4.',
   flavor: 'Climbed out of the tar pits, angrier than ever.',
   faction: 'primal',
   restriction: { factions: ['primal'] },
@@ -17,8 +17,14 @@ export default defineCard({
   keywords: ['guardian', 'retaliate'],
   attack: 3,
   health: 10,
-  onAttack(ctx) {
-    healHero(ctx, 3)
+  onAttack(ctx, target) {
+    const unit = unitAt(ctx, target)
+    const me = self(ctx)
+    const ref = me ? slotOf(ctx, me) : null
+
+    if (ref && unit && isPrey(ctx, unit)) {
+      heal(ctx, ref, 4)
+    }
   },
   ai: { value: 3, tags: ['heal'] },
   art: {

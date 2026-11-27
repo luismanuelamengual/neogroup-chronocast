@@ -1,13 +1,14 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { damageEnemyHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'shade-of-dying-stars',
   type: 'ally',
   name: 'Shade of Dying Stars',
-  text: '',
+  text: 'When an enemy ally dies: deal 1 shadow damage to the enemy hero.',
   flavor: 'It wears the light of stars already gone.',
   faction: 'void',
-  restriction: { factions: ['void'], sides: ['eclipse'] },
+  restriction: { factions: ['void'] },
   rarity: 'common',
   element: 'arcane',
   resist: ['shadow'],
@@ -17,6 +18,9 @@ export default defineCard({
   tribe: 'horror',
   attack: 6,
   health: 12,
+  onEnemyAllyDeath(ctx) {
+    damageEnemyHero(ctx, 1, 'shadow')
+  },
   ai: { value: 5 },
   art: {
     subject:

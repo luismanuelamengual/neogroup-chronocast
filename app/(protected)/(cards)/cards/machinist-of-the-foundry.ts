@@ -1,10 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { grantKeyword, tribeAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'machinist-of-the-foundry',
   type: 'ally',
   name: 'Machinist of the Foundry',
-  text: '',
+  text: 'When it enters: your other Inventors gain Shield.',
   flavor: 'If it ticks, she can fix it.',
   faction: 'clockwork',
   restriction: { factions: ['clockwork'], sides: ['dawn'] },
@@ -15,6 +16,11 @@ export default defineCard({
   keywords: ['shield'],
   attack: 5,
   health: 7,
+  onEnter(ctx) {
+    for (const unit of tribeAllies(ctx, ctx.owner, 'inventor', true)) {
+      grantKeyword(ctx, unit, 'shield')
+    }
+  },
   ai: { value: 3 },
   art: {
     subject:

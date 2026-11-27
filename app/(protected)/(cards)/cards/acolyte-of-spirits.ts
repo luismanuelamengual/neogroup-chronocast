@@ -1,13 +1,14 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffAllies } from '@/app/(protected)/(engine)/effects'
+import { healHero } from '@/app/(protected)/(engine)/effects'
+import { getCard } from '@/app/(protected)/(engine)/utils/registry'
 
 export default defineCard({
   id: 'acolyte-of-spirits',
   type: 'ally',
   name: 'Acolyte of Spirits',
-  text: 'When it enters: your other allies gain +2 health.',
+  text: 'When it enters: your hero heals 2 for each ally in your discard pile (up to 12).',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['dawn'] },
   rarity: 'uncommon',
   resist: ['light'],
   price: 220,
@@ -17,7 +18,9 @@ export default defineCard({
   attack: 7,
   health: 13,
   onEnter(ctx) {
-    buffAllies(ctx, ctx.owner, 0, 2, true)
+    const fallen = ctx.engine.player(ctx.owner).discard.filter((card) => getCard(card.cardId).type === 'ally').length
+
+    healHero(ctx, Math.min(12, 2 * fallen))
   },
   ai: { value: 7, tags: ['buff'] },
   art: {

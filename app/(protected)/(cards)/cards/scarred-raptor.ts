@@ -1,10 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { markPreyAlly, randomAlly } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'scarred-raptor',
   type: 'ally',
   name: 'Scarred Raptor',
-  text: '',
+  text: 'When it dies: a random enemy ally becomes your Prey.',
   flavor: 'Every scar taught it a new trick.',
   faction: 'primal',
   restriction: { factions: ['primal'], sides: ['dawn'] },
@@ -15,6 +16,13 @@ export default defineCard({
   tribe: 'saurian',
   attack: 3,
   health: 7,
+  onDeath(ctx) {
+    const prey = randomAlly(ctx, ctx.opponent)
+
+    if (prey) {
+      markPreyAlly(ctx, prey)
+    }
+  },
   ai: { value: 2 },
   art: {
     subject:

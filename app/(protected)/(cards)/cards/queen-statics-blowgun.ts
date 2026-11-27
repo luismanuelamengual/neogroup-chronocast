@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageRandomAlly } from '@/app/(protected)/(engine)/effects'
+import { drainEnergy } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'queen-statics-blowgun',
   type: 'weapon',
   subtype: 'energy',
   name: "Queen Static's Arc Pistol",
-  text: 'When it is equipped: deal 4 lightning damage to a random enemy ally.',
+  text: 'When your hero attacks with it: the enemy hero loses 1 energy.',
   faction: 'neon',
   restriction: { heroes: ['queen-static'] },
   rarity: 'epic',
@@ -16,8 +16,8 @@ export default defineCard({
   keywords: ['unique'],
   attack: 5,
   durability: 4,
-  onPlay(ctx) {
-    damageRandomAlly(ctx, ctx.opponent, 4)
+  onAttack(ctx) {
+    drainEnergy(ctx, ctx.opponent, 1)
   },
   ai: { value: 5 },
   art: {

@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw } from '@/app/(protected)/(engine)/effects'
+import { alliesOf, draw } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'bounty-hunter-of-borrowed-hours',
   type: 'ally',
   name: 'Bounty Hunter of Borrowed Hours',
-  text: 'When it enters: draw a card.',
+  text: 'When it enters: draw a card if the enemy has more allies than you.',
   flavor: 'She collects debts in minutes and seconds.',
   faction: 'neutral',
   restriction: {},
@@ -17,7 +17,9 @@ export default defineCard({
   attack: 3,
   health: 3,
   onEnter(ctx) {
-    draw(ctx, ctx.owner, 1)
+    if (alliesOf(ctx, ctx.opponent).length > alliesOf(ctx, ctx.owner).length) {
+      draw(ctx, ctx.owner, 1)
+    }
   },
   ai: { value: 2, tags: ['draw'] },
   art: {

@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damage } from '@/app/(protected)/(engine)/effects'
+import { damage, slotsNextTo } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'faithful-bomb',
   type: 'item',
   name: 'Faithful Bomb',
-  text: 'Deal 4 damage to an enemy slot.',
+  text: 'Deal 4 damage to an enemy slot and 2 to the allies next to it.',
   flavor: 'It has never let its owner down. Yet.',
   faction: 'neutral',
   restriction: {},
@@ -15,6 +15,10 @@ export default defineCard({
   targets: ['enemySlot'],
   onPlay(ctx) {
     damage(ctx, ctx.targets[0], 4)
+
+    for (const ref of slotsNextTo(ctx, ctx.targets[0])) {
+      damage(ctx, ref, 2)
+    }
   },
   ai: { value: 1, tags: ['removal'] },
   art: {

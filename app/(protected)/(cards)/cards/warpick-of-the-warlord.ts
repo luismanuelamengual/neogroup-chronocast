@@ -1,22 +1,22 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { repairArmor } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'warpick-of-the-warlord',
   type: 'weapon',
   subtype: 'mace',
   name: 'Warpick of the Warlord',
-  text: 'When it is equipped: your hero heals 3.',
+  text: 'When it is equipped: your armor gains +2 durability.',
   flavor: 'It has broken crowns.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'], sides: ['eclipse'] },
+  restriction: { factions: ['bronze'] },
   rarity: 'uncommon',
   price: 120,
   cost: 1,
   attack: 2,
   durability: 2,
   onPlay(ctx) {
-    healHero(ctx, 3)
+    repairArmor(ctx, ctx.owner, 2)
   },
   ai: { value: 1 },
   art: {

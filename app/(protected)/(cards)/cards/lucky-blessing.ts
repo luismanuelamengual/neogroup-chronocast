@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { draw, healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'lucky-blessing',
   type: 'ability',
   subtype: 'instinct',
   name: 'Lucky Blessing',
-  text: 'Your hero heals 12.',
+  text: 'Your hero heals 12. If you have a trap set, draw a card.',
   flavor: 'Luck is a skill, if you ask the lucky.',
   faction: 'primal',
   restriction: { factions: ['primal'] },
@@ -15,6 +15,10 @@ export default defineCard({
   cost: 3,
   onPlay(ctx) {
     healHero(ctx, 12)
+
+    if (ctx.engine.player(ctx.owner).traps.length > 0) {
+      draw(ctx, ctx.owner, 1)
+    }
   },
   ai: { value: 3, tags: ['heal'] },
   art: {

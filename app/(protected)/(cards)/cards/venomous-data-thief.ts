@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { summonCard } from '@/app/(protected)/(engine)/effects'
+import { poisonAllAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'venomous-data-thief',
   type: 'ally',
   name: 'Venomous Data Thief',
-  text: 'When it enters: summon a Sabertooth Cub.',
+  text: 'When it enters: poison every enemy ally (1).',
   flavor: 'Steals your secrets and leaves a bite.',
   faction: 'neutral',
   restriction: { sides: ['eclipse'] },
@@ -17,7 +17,7 @@ export default defineCard({
   attack: 4,
   health: 9,
   onEnter(ctx) {
-    summonCard(ctx, ctx.owner, 'sabertooth-cub')
+    poisonAllAllies(ctx, ctx.opponent, 1)
   },
   ai: { value: 4, tags: ['summon'] },
   art: {

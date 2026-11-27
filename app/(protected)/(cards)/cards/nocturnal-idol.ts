@@ -1,21 +1,20 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageEnemyHero, spendCharge } from '@/app/(protected)/(engine)/effects'
+import { consume, damageEnemyHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'nocturnal-idol',
   type: 'artifact',
   name: 'Nocturnal Idol',
-  text: 'At the start of each phase: deal 2 shadow damage to the enemy hero. (3 uses)',
+  text: 'At the start of each phase: Consume 1; if you do, deal 3 shadow damage to the enemy hero.',
   faction: 'void',
-  restriction: { factions: ['void'], sides: ['eclipse'] },
+  restriction: { factions: ['void'] },
   rarity: 'uncommon',
-  element: 'shadow',
   price: 160,
   cost: 3,
-  charges: 3,
   onPhaseStart(ctx) {
-    damageEnemyHero(ctx, 2)
-    spendCharge(ctx)
+    if (consume(ctx, 1)) {
+      damageEnemyHero(ctx, 3, 'shadow')
+    }
   },
   ai: { value: 3, tags: ['aggro'] },
   art: {

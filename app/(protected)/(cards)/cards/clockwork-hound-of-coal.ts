@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { seekType } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'clockwork-hound-of-coal',
   type: 'ally',
   name: 'Clockwork Hound of Coal',
-  text: 'At the start of each phase: your hero heals 2.',
+  text: 'When it dies: draw the first artifact of your deck.',
   faction: 'clockwork',
   restriction: { factions: ['clockwork'], sides: ['eclipse'] },
   rarity: 'common',
@@ -17,8 +17,8 @@ export default defineCard({
   keywords: ['shield'],
   attack: 1,
   health: 7,
-  onPhaseStart(ctx) {
-    healHero(ctx, 2)
+  onDeath(ctx) {
+    seekType(ctx, ctx.owner, 'artifact')
   },
   ai: { value: 2, tags: ['defense'] },
   art: {

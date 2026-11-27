@@ -1,14 +1,14 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageEnemyHero } from '@/app/(protected)/(engine)/effects'
+import { drainEnergy } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'wild-boar',
   type: 'ally',
   name: 'Wild Boar',
-  text: 'When it attacks: deal 2 damage to the enemy hero.',
+  text: 'When it attacks: the enemy hero loses 1 energy.',
   flavor: 'Charges first, thinks never.',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   price: 55,
   cost: 3,
@@ -17,7 +17,7 @@ export default defineCard({
   attack: 3,
   health: 7,
   onAttack(ctx) {
-    damageEnemyHero(ctx, 2)
+    drainEnergy(ctx, ctx.opponent, 1)
   },
   ai: { value: 3, tags: ['aggro'] },
   art: {

@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageEnemyHero } from '@/app/(protected)/(engine)/effects'
+import { damageEnemyHero, drainEnergy } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'courier-of-the-mainframe',
   type: 'ally',
   name: 'Courier of the Mainframe',
-  text: 'When it attacks: deal 3 sonic damage to the enemy hero.',
+  text: 'When it attacks: the enemy hero loses 1 energy; if it had none, deal 3 damage to it.',
   faction: 'neon',
   restriction: { factions: ['neon'], sides: ['eclipse'] },
   rarity: 'uncommon',
@@ -16,7 +16,9 @@ export default defineCard({
   attack: 8,
   health: 12,
   onAttack(ctx) {
-    damageEnemyHero(ctx, 3)
+    if (drainEnergy(ctx, ctx.opponent, 1) === 0) {
+      damageEnemyHero(ctx, 3)
+    }
   },
   ai: { value: 6, tags: ['aggro'] },
   art: {

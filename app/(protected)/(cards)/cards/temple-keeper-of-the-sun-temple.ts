@@ -1,10 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { neighbors, unitAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'temple-keeper-of-the-sun-temple',
   type: 'ally',
   name: 'Temple Keeper of the Sun Temple',
-  text: '',
+  text: 'Every damage the allies next to it take is 2 lower.',
   flavor: 'The sun rises when she says so.',
   faction: 'bronze',
   restriction: { factions: ['bronze'] },
@@ -17,6 +18,11 @@ export default defineCard({
   keywords: ['guardian'],
   attack: 7,
   health: 15,
+  modifyDamage(ctx, target, amount) {
+    const unit = unitAt(ctx, target)
+
+    return unit && neighbors(ctx).some((other) => other.uid === unit.uid) ? Math.max(0, amount - 2) : amount
+  },
   ai: { value: 6 },
   art: {
     subject:

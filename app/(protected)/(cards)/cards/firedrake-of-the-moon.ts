@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buff, isTribe } from '@/app/(protected)/(engine)/effects'
+import { damageRandomAlly, isTribe } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'firedrake-of-the-moon',
   type: 'ally',
   name: 'Firedrake of the Moon',
-  text: 'When another Drake of yours enters: it gains +1 attack and +1 health.',
+  text: 'When another Drake of yours enters: deal 2 fire damage to a random enemy ally.',
   faction: 'arcane',
   restriction: { factions: ['arcane'], sides: ['eclipse'] },
   rarity: 'uncommon',
@@ -20,7 +20,7 @@ export default defineCard({
   health: 6,
   onAllyEnter(ctx, ally) {
     if (isTribe(ally, 'drake')) {
-      buff(ctx, ally, 1, 1)
+      damageRandomAlly(ctx, ctx.opponent, 2, 'fire')
     }
   },
   ai: { value: 3, tags: ['buff', 'tribe'] },

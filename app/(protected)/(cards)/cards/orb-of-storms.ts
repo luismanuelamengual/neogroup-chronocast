@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw } from '@/app/(protected)/(engine)/effects'
+import { damageRandomAlly } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'orb-of-storms',
   type: 'weapon',
   subtype: 'orb',
   name: 'Orb of Storms',
-  text: 'When it is equipped: draw a card.',
+  text: 'When your hero attacks with it: deal 2 lightning damage to a random enemy ally.',
   flavor: 'A storm in a jar, minus the jar.',
   faction: 'arcane',
   restriction: { factions: ['arcane'] },
@@ -16,8 +16,8 @@ export default defineCard({
   cost: 3,
   attack: 4,
   durability: 3,
-  onPlay(ctx) {
-    draw(ctx, ctx.owner, 1)
+  onAttack(ctx) {
+    damageRandomAlly(ctx, ctx.opponent, 2, 'lightning')
   },
   ai: { value: 3 },
   art: {

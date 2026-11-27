@@ -9,7 +9,7 @@ export default defineCard({
   text: 'At the start of each phase: deal 2 time damage to the enemy hero.',
   flavor: 'Whoever wears it lives every hour as the last.',
   faction: 'void',
-  restriction: { factions: ['void'], sides: ['eclipse'] },
+  restriction: { factions: ['void'] },
   rarity: 'legendary',
   price: 2320,
   element: 'time',

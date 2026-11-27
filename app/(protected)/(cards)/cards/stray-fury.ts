@@ -6,7 +6,7 @@ export default defineCard({
   type: 'ability',
   subtype: 'instinct',
   name: 'Stray Fury',
-  text: 'An ally of yours gains +3 attack and +4 health. Instant.',
+  text: 'An ally of yours gains +2 attack and +2 health for each trap you have set.',
   flavor: 'A rage that wandered in from another era.',
   faction: 'primal',
   restriction: { factions: ['primal'] },
@@ -16,7 +16,9 @@ export default defineCard({
   speed: 'instant',
   targets: ['friendlyAlly'],
   onPlay(ctx) {
-    buffAt(ctx, ctx.targets[0], 3, 4)
+    const traps = ctx.engine.player(ctx.owner).traps.length
+
+    buffAt(ctx, ctx.targets[0], 2 * traps, 2 * traps)
   },
   ai: { value: 3, tags: ['buff'] },
   art: {

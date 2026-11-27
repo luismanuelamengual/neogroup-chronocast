@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffSelf } from '@/app/(protected)/(engine)/effects'
+import { buffSelf, damage } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'phalanx-of-the-warlord',
   type: 'ally',
   name: 'Phalanx of the Warlord',
-  text: 'When it attacks: it gains +1 attack.',
+  text: 'When it attacks: it gains +2 attack and your hero takes 1 shadow damage.',
   flavor: 'They move as one, and fall as none.',
   faction: 'neutral',
   restriction: { sides: ['eclipse'] },
@@ -16,7 +16,8 @@ export default defineCard({
   attack: 5,
   health: 8,
   onAttack(ctx) {
-    buffSelf(ctx, 1, 0)
+    buffSelf(ctx, 2, 0)
+    damage(ctx, { player: ctx.owner, slot: 'hero' }, 1, 'shadow')
   },
   ai: { value: 4, tags: ['buff'] },
   art: {

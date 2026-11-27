@@ -9,7 +9,7 @@ export default defineCard({
   text: 'Destroy an enemy ally. Slow.',
   flavor: 'Nothing holds it back anymore.',
   faction: 'void',
-  restriction: { factions: ['void'], sides: ['eclipse'] },
+  restriction: { factions: ['void'] },
   rarity: 'uncommon',
   price: 180,
   cost: 4,

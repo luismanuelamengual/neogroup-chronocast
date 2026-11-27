@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healAllAllies } from '@/app/(protected)/(engine)/effects'
+import { heal, slotOf, tribeAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'old-tusk',
   type: 'ally',
   reward: true,
   name: 'Old Tusk',
-  text: 'When it enters: your allies heal 3.',
+  text: 'At the start of each phase: your other Beasts heal 3.',
   flavor: "Ooma's oldest companion, and her heaviest.",
   faction: 'primal',
   restriction: { heroes: ['ooma-bonewhisper'] },
@@ -16,8 +16,14 @@ export default defineCard({
   keywords: ['guardian', 'retaliate'],
   attack: 5,
   health: 13,
-  onEnter(ctx) {
-    healAllAllies(ctx, ctx.owner, 3)
+  onPhaseStart(ctx) {
+    for (const unit of tribeAllies(ctx, ctx.owner, 'beast', true)) {
+      const ref = slotOf(ctx, unit)
+
+      if (ref) {
+        heal(ctx, ref, 3)
+      }
+    }
   },
   ai: { value: 5, tags: ['heal'] },
   art: {

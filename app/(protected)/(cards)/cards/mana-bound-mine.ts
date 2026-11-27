@@ -1,22 +1,26 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageEnemyHero, draw } from '@/app/(protected)/(engine)/effects'
+import { draw, freezeAlly, randomAlly } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'mana-bound-mine',
   type: 'trap',
   name: 'Mana-Bound Mine',
-  text: 'When the enemy uses an ability: draw a card and deal 5 arcane damage to the enemy hero.',
+  text: 'When the enemy uses an ability: freeze a random enemy ally and draw a card.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'], sides: ['eclipse'] },
+  restriction: { factions: ['arcane'] },
   rarity: 'common',
-  element: 'arcane',
   price: 55,
   cost: 3,
   speed: 'instant',
   trigger: 'enemyAbility',
   onTrigger(ctx) {
+    const unit = randomAlly(ctx, ctx.opponent)
+
+    if (unit) {
+      freezeAlly(ctx, unit)
+    }
+
     draw(ctx, ctx.owner, 1)
-    damageEnemyHero(ctx, 5)
   },
   ai: { value: 3, tags: ['trap'] },
   art: {

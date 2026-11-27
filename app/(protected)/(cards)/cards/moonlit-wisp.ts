@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw } from '@/app/(protected)/(engine)/effects'
+import { alliesOf, cardOf, returnToHand } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'moonlit-wisp',
   type: 'ally',
   name: 'Moonlit Wisp',
-  text: 'When it enters: draw a card.',
+  text: "When it enters: return a random enemy ally that costs 2 or less to its owner's hand.",
   faction: 'arcane',
   restriction: { factions: ['arcane'] },
   rarity: 'common',
@@ -18,7 +18,11 @@ export default defineCard({
   attack: 1,
   health: 6,
   onEnter(ctx) {
-    draw(ctx, ctx.owner, 1)
+    const cheap = alliesOf(ctx, ctx.opponent).filter((unit) => cardOf(unit).cost <= 2)
+
+    if (cheap.length > 0) {
+      returnToHand(ctx, cheap[Math.floor(ctx.random() * cheap.length)])
+    }
   },
   ai: { value: 2, tags: ['draw'] },
   art: {

@@ -1,22 +1,26 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageEnemyHero, freeze } from '@/app/(protected)/(engine)/effects'
+import { destroy, freeze, unitAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'flickering-daze',
   type: 'ability',
   subtype: 'spell',
   name: 'Flickering Daze',
-  text: 'Freeze an enemy ally and deal 2 ice damage to the enemy hero.',
+  text: 'Freeze an enemy ally. If it was already frozen, destroy it.',
   faction: 'arcane',
   restriction: { factions: ['arcane'] },
   rarity: 'epic',
-  element: 'ice',
   price: 1000,
   cost: 2,
   targets: ['enemyAlly'],
   onPlay(ctx) {
-    freeze(ctx, ctx.targets[0])
-    damageEnemyHero(ctx, 2)
+    const unit = unitAt(ctx, ctx.targets[0])
+
+    if (unit && (unit.frozenUntilPhase ?? 0) >= ctx.engine.state.phase) {
+      destroy(ctx, unit)
+    } else {
+      freeze(ctx, ctx.targets[0])
+    }
   },
   ai: { value: 3, tags: ['aggro', 'removal'] },
   art: {

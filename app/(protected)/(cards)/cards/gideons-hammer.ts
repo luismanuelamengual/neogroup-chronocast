@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { buff, tribeAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'gideons-hammer',
   type: 'weapon',
   subtype: 'tool',
   name: "Gideon's Hammer",
-  text: 'When it is equipped: your hero heals 5.',
+  text: 'When your hero attacks with it: your Inventors gain +1 attack and +1 health.',
   flavor: 'Steam-powered and opinionated.',
   faction: 'clockwork',
   restriction: { factions: ['clockwork'], sides: ['dawn'] },
@@ -16,8 +16,10 @@ export default defineCard({
   keywords: ['unique'],
   attack: 5,
   durability: 4,
-  onPlay(ctx) {
-    healHero(ctx, 5)
+  onAttack(ctx) {
+    for (const unit of tribeAllies(ctx, ctx.owner, 'inventor')) {
+      buff(ctx, unit, 1, 1)
+    }
   },
   ai: { value: 5 },
   art: {

@@ -1,21 +1,22 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffAt } from '@/app/(protected)/(engine)/effects'
+import { buffAt, damage } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'courage-of-iron',
   type: 'ability',
   subtype: 'instinct',
   name: 'Courage of Iron',
-  text: 'An ally of yours gains +3 attack and +4 health.',
+  text: 'An ally of yours gains +5 attack and takes 3 shadow damage.',
   flavor: 'Iron does not bend. Neither will you.',
-  faction: 'primal',
-  restriction: { factions: ['primal'] },
+  faction: 'neutral',
+  restriction: { sides: ['eclipse'] },
   rarity: 'uncommon',
   price: 140,
   cost: 2,
   targets: ['friendlyAlly'],
   onPlay(ctx) {
-    buffAt(ctx, ctx.targets[0], 3, 4)
+    buffAt(ctx, ctx.targets[0], 5, 0)
+    damage(ctx, ctx.targets[0], 3, 'shadow')
   },
   ai: { value: 2, tags: ['buff'] },
   art: {

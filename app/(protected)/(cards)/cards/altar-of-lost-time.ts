@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { isAllyOf } from '@/app/(protected)/(engine)/effects'
+import { isAllyOf, isTribe, unitAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'altar-of-lost-time',
   type: 'artifact',
   name: 'Altar of Lost Time',
-  text: 'Every damage your allies take is 1 lower.',
+  text: 'Every damage your Skyships take is 2 lower.',
   flavor: 'Offerings to hours that never happened.',
   faction: 'clockwork',
   restriction: { factions: ['clockwork'] },
@@ -13,7 +13,9 @@ export default defineCard({
   price: 55,
   cost: 3,
   modifyDamage(ctx, target, amount) {
-    return isAllyOf(ctx, target, ctx.owner) && target.slot !== 'hero' ? Math.max(0, amount - 1) : amount
+    const unit = target.slot !== 'hero' && isAllyOf(ctx, target, ctx.owner) ? unitAt(ctx, target) : null
+
+    return unit && isTribe(unit, 'skyship') ? Math.max(0, amount - 2) : amount
   },
   ai: { value: 3, tags: ['defense'] },
   art: {

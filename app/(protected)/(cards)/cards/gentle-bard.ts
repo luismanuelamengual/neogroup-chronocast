@@ -1,10 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'gentle-bard',
   type: 'ally',
   name: 'Gentle Bard',
-  text: '',
+  text: 'At the end of each phase: your hero heals 2.',
   flavor: 'His songs mend what swords cannot.',
   faction: 'neutral',
   restriction: { sides: ['dawn'] },
@@ -13,6 +14,9 @@ export default defineCard({
   cost: 3,
   attack: 5,
   health: 8,
+  onPhaseEnd(ctx) {
+    healHero(ctx, 2)
+  },
   ai: { value: 3 },
   art: {
     subject:

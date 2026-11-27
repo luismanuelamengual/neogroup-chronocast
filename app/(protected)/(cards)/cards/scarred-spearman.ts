@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffSelf } from '@/app/(protected)/(engine)/effects'
+import { buffThisPhase, heal, self, slotOf } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'scarred-spearman',
   type: 'ally',
   name: 'Scarred Spearman',
-  text: 'After it takes damage: it gains +2 attack.',
+  text: 'When a trap of yours goes off: it gains +2 attack this phase and heals 4.',
   faction: 'primal',
   restriction: { factions: ['primal'], sides: ['eclipse'] },
   rarity: 'uncommon',
@@ -16,8 +16,14 @@ export default defineCard({
   keywords: ['guardian', 'retaliate'],
   attack: 6,
   health: 14,
-  onDamaged(ctx) {
-    buffSelf(ctx, 2, 0)
+  onTrapTriggered(ctx) {
+    const me = self(ctx)
+    const ref = me ? slotOf(ctx, me) : null
+
+    if (me && ref) {
+      buffThisPhase(ctx, me, 2)
+      heal(ctx, ref, 4)
+    }
   },
   ai: { value: 6, tags: ['buff'] },
   art: {

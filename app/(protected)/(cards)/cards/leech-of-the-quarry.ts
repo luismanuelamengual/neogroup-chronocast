@@ -8,7 +8,7 @@ export default defineCard({
   text: "Attach to an enemy ally: it can't attack.",
   flavor: 'It drinks while you run.',
   faction: 'void',
-  restriction: { factions: ['void'], sides: ['eclipse'] },
+  restriction: { factions: ['void'] },
   rarity: 'rare',
   price: 420,
   cost: 3,

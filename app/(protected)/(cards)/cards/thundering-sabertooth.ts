@@ -5,7 +5,7 @@ export default defineCard({
   id: 'thundering-sabertooth',
   type: 'ally',
   name: 'Thundering Sabertooth',
-  text: 'When it enters: summon a Sabertooth Cub.',
+  text: 'When it enters: summon a Sabertooth Cub for each trap you have set.',
   flavor: 'You hear it before the end.',
   faction: 'primal',
   restriction: { factions: ['primal'] },
@@ -16,7 +16,9 @@ export default defineCard({
   attack: 6,
   health: 8,
   onEnter(ctx) {
-    summonCard(ctx, ctx.owner, 'sabertooth-cub')
+    for (let count = ctx.engine.player(ctx.owner).traps.length; count > 0; count--) {
+      summonCard(ctx, ctx.owner, 'sabertooth-cub')
+    }
   },
   ai: { value: 5, tags: ['summon'] },
   art: {

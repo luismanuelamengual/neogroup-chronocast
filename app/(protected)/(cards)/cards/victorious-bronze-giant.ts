@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { destroyWeapon, hasPanoply } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'victorious-bronze-giant',
   type: 'ally',
   name: 'Victorious Bronze Giant',
-  text: 'When it enters: your hero heals 8.',
+  text: 'When it enters: with Panoply, destroy the enemy weapon.',
   faction: 'bronze',
   restriction: { factions: ['bronze'], sides: ['eclipse'] },
   rarity: 'rare',
@@ -18,7 +18,9 @@ export default defineCard({
   attack: 7,
   health: 14,
   onEnter(ctx) {
-    healHero(ctx, 8)
+    if (hasPanoply(ctx)) {
+      destroyWeapon(ctx, ctx.opponent)
+    }
   },
   ai: { value: 7, tags: ['defense'] },
   art: {

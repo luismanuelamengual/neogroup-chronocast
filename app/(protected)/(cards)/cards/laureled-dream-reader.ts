@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw } from '@/app/(protected)/(engine)/effects'
+import { draw, hasPanoply } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'laureled-dream-reader',
   type: 'ally',
   name: 'Laureled Dream Reader',
-  text: 'When it enters: draw a card.',
+  text: 'When it enters: with Panoply, draw 2 cards.',
   flavor: "She reads the empire's dreams and edits the bad ones.",
   faction: 'bronze',
   restriction: { factions: ['bronze'] },
@@ -18,7 +18,9 @@ export default defineCard({
   attack: 4,
   health: 11,
   onEnter(ctx) {
-    draw(ctx, ctx.owner, 1)
+    if (hasPanoply(ctx)) {
+      draw(ctx, ctx.owner, 2)
+    }
   },
   ai: { value: 5, tags: ['draw'] },
   art: {

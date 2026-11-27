@@ -6,15 +6,17 @@ export default defineCard({
   type: 'ability',
   subtype: 'instinct',
   name: 'Respite of Renewal',
-  text: 'Your hero heals 9.',
+  text: 'Your hero heals 9, or 18 if it has less than half its health.',
   flavor: 'Rest now. The war will wait.',
-  faction: 'primal',
-  restriction: { factions: ['primal'], sides: ['dawn'] },
+  faction: 'neutral',
+  restriction: { sides: ['dawn'] },
   rarity: 'uncommon',
   price: 140,
   cost: 2,
   onPlay(ctx) {
-    healHero(ctx, 9)
+    const hero = ctx.engine.player(ctx.owner).hero
+
+    healHero(ctx, hero.health * 2 < hero.maxHealth ? 18 : 9)
   },
   ai: { value: 2, tags: ['heal'] },
   art: {

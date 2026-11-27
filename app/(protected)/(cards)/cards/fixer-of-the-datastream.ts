@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageEnemyHero } from '@/app/(protected)/(engine)/effects'
+import { destroyAttachedAt, unitAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'fixer-of-the-datastream',
   type: 'ally',
   name: 'Fixer of the Datastream',
-  text: 'When it attacks: deal 3 sonic damage to the enemy hero.',
+  text: 'When it attacks an ally: first destroy every card attached to it.',
   faction: 'neon',
   restriction: { factions: ['neon'], sides: ['eclipse'] },
   rarity: 'uncommon',
@@ -16,8 +16,10 @@ export default defineCard({
   keywords: ['stealth'],
   attack: 5,
   health: 10,
-  onAttack(ctx) {
-    damageEnemyHero(ctx, 3)
+  onAttack(ctx, target) {
+    for (const attachment of [...(unitAt(ctx, target)?.attachments ?? [])]) {
+      destroyAttachedAt(ctx, { ...target, attached: attachment.uid })
+    }
   },
   ai: { value: 5, tags: ['aggro'] },
   art: {

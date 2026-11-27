@@ -8,7 +8,7 @@ export default defineCard({
   text: 'At the start of each phase: it heals 2.',
   flavor: 'Wounds close under a crooked moon.',
   faction: 'primal',
-  restriction: { factions: ['primal'], sides: ['eclipse'] },
+  restriction: { factions: ['primal'] },
   rarity: 'common',
   price: 60,
   cost: 3,

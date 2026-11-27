@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { buff, tribeAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'rod-of-ruin',
   type: 'weapon',
   subtype: 'orb',
   name: 'Rod of Ruin',
-  text: 'When it is equipped: your hero heals 7.',
+  text: 'When it is equipped: your Drakes gain +2 attack and +2 health.',
   flavor: 'Everything it touches gets older.',
   faction: 'arcane',
   restriction: { factions: ['arcane'], sides: ['eclipse'] },
@@ -16,7 +16,9 @@ export default defineCard({
   attack: 6,
   durability: 4,
   onPlay(ctx) {
-    healHero(ctx, 7)
+    for (const unit of tribeAllies(ctx, ctx.owner, 'drake')) {
+      buff(ctx, unit, 2, 2)
+    }
   },
   ai: { value: 5 },
   art: {

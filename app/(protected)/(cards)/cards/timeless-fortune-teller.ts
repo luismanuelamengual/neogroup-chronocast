@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { gainChronos } from '@/app/(protected)/(engine)/effects'
+import { alliesOf, gainChronos } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'timeless-fortune-teller',
   type: 'ally',
   name: 'Timeless Fortune Teller',
-  text: 'When it enters: you gain 1 Chronos this phase.',
+  text: 'When it enters: you gain 1 Chronos this phase for each other ally of yours.',
   faction: 'neutral',
   restriction: {},
   rarity: 'common',
@@ -17,7 +17,7 @@ export default defineCard({
   attack: 2,
   health: 3,
   onEnter(ctx) {
-    gainChronos(ctx, ctx.owner, 1)
+    gainChronos(ctx, ctx.owner, alliesOf(ctx, ctx.owner).filter((unit) => unit.uid !== ctx.self.uid).length)
   },
   ai: { value: 1, tags: ['aggro', 'ramp'] },
   art: {

@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { heal, slotOf, tribeAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'satyr-of-renewal',
   type: 'ally',
   name: 'Satyr of Renewal',
-  text: 'At the start of each phase: your hero heals 2.',
+  text: 'At the start of each phase: your Fae heal 2.',
   faction: 'neutral',
   restriction: { sides: ['dawn'] },
   rarity: 'common',
@@ -17,7 +17,13 @@ export default defineCard({
   attack: 3,
   health: 5,
   onPhaseStart(ctx) {
-    healHero(ctx, 2)
+    for (const unit of tribeAllies(ctx, ctx.owner, 'fae')) {
+      const ref = slotOf(ctx, unit)
+
+      if (ref) {
+        heal(ctx, ref, 2)
+      }
+    }
   },
   ai: { value: 2, tags: ['heal'] },
   art: {

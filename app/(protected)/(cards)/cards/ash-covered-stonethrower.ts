@@ -1,10 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { alliesOf, damageAlly, isPrey } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'ash-covered-stonethrower',
   type: 'ally',
   name: 'Ash-Covered Stonethrower',
-  text: '',
+  text: 'At the start of each phase: deal 2 earth damage to every enemy ally that is your Prey.',
   flavor: 'The volcano taught him to throw.',
   faction: 'primal',
   restriction: { factions: ['primal'], sides: ['eclipse'] },
@@ -16,6 +17,13 @@ export default defineCard({
   tribe: 'caveborn',
   attack: 4,
   health: 13,
+  onPhaseStart(ctx) {
+    for (const unit of alliesOf(ctx, ctx.opponent)) {
+      if (isPrey(ctx, unit)) {
+        damageAlly(ctx, unit, 2, 'earth')
+      }
+    }
+  },
   ai: { value: 4 },
   art: {
     subject:

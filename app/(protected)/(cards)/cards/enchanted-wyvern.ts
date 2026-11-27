@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw } from '@/app/(protected)/(engine)/effects'
+import { seekTribe } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'enchanted-wyvern',
   type: 'ally',
   name: 'Enchanted Wyvern',
-  text: 'When it enters: draw a card.',
+  text: 'When it enters: draw the first Drake of your deck.',
   faction: 'arcane',
   restriction: { factions: ['arcane'], sides: ['eclipse'] },
   rarity: 'rare',
@@ -18,7 +18,7 @@ export default defineCard({
   attack: 4,
   health: 9,
   onEnter(ctx) {
-    draw(ctx, ctx.owner, 1)
+    seekTribe(ctx, ctx.owner, 'drake')
   },
   ai: { value: 5, tags: ['draw'] },
   art: {

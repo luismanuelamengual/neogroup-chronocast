@@ -1,11 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { unitAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'cutlass-of-the-long-road',
   type: 'weapon',
   subtype: 'sword',
   name: 'Cutlass of the Long Road',
-  text: '',
+  text: "Your hero's attacks with it deal 3 more damage to allies with Guardian.",
   flavor: 'It has crossed more borders than maps.',
   faction: 'bronze',
   restriction: { factions: ['bronze'] },
@@ -14,6 +15,13 @@ export default defineCard({
   cost: 3,
   attack: 4,
   durability: 4,
+  attackBonus(ctx, attacker, target) {
+    return attacker.player === ctx.owner &&
+      attacker.slot === 'hero' &&
+      unitAt(ctx, target)?.keywords.includes('guardian')
+      ? 3
+      : 0
+  },
   ai: { value: 4 },
   art: {
     subject:

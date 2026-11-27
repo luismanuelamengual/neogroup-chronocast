@@ -11,7 +11,7 @@ export default defineCard({
   text: 'When it enters: it gains +1 attack and +1 health for every 3 cards in your discard pile (up to +5).',
   flavor: 'A small piece of the hunger. Still bigger than you.',
   faction: 'void',
-  restriction: { factions: ['void'], sides: ['eclipse'] },
+  restriction: { factions: ['void'] },
   rarity: 'legendary',
   price: 2320,
   element: 'acid',

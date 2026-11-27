@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damage } from '@/app/(protected)/(engine)/effects'
+import { damageAllAllies, damageEnemyHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'spike-of-the-comet',
   type: 'ability',
   subtype: 'spell',
   name: 'Spike of the Comet',
-  text: 'Deal 9 arcane damage to an enemy slot.',
+  text: 'Deal 2 arcane damage to every enemy ally and to the enemy hero.',
   flavor: 'Fallen from the sky, still burning.',
   faction: 'arcane',
   restriction: { factions: ['arcane'] },
@@ -14,9 +14,9 @@ export default defineCard({
   element: 'arcane',
   price: 1100,
   cost: 3,
-  targets: ['enemySlot'],
   onPlay(ctx) {
-    damage(ctx, ctx.targets[0], 9)
+    damageAllAllies(ctx, ctx.opponent, 2, 'arcane')
+    damageEnemyHero(ctx, 2, 'arcane')
   },
   ai: { value: 4, tags: ['removal'] },
   art: {

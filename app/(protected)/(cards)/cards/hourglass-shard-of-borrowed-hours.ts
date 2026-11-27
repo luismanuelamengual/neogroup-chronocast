@@ -5,7 +5,7 @@ export default defineCard({
   id: 'hourglass-shard-of-borrowed-hours',
   type: 'item',
   name: 'Hourglass Shard of Borrowed Hours',
-  text: 'You gain 4 Chronos this phase. Instant.',
+  text: 'You gain 1 Chronos this phase for each card in your hand (up to 4). Instant.',
   flavor: 'A splinter of time, sharp at both ends.',
   faction: 'neutral',
   restriction: {},
@@ -14,7 +14,7 @@ export default defineCard({
   cost: 2,
   speed: 'instant',
   onPlay(ctx) {
-    gainChronos(ctx, ctx.owner, 4)
+    gainChronos(ctx, ctx.owner, Math.min(4, ctx.engine.player(ctx.owner).hand.length))
   },
   ai: { value: 2, tags: ['ramp'] },
   art: {

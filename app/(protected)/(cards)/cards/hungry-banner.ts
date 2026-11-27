@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Hungry Banner',
   text: 'At the start of each phase: deal 3 ice damage to a random enemy ally. (3 uses)',
   faction: 'primal',
-  restriction: { factions: ['primal'], sides: ['eclipse'] },
+  restriction: { factions: ['primal'] },
   rarity: 'uncommon',
   element: 'ice',
   price: 160,

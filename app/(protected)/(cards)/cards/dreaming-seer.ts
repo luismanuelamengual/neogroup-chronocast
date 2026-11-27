@@ -1,13 +1,13 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { draw } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'dreaming-seer',
   type: 'ally',
   name: 'Dreaming Seer',
-  text: 'At the start of each phase: your hero heals 2.',
+  text: 'At the start of each phase: draw a card if you have fewer cards in hand than the enemy.',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['dawn'] },
   rarity: 'uncommon',
   resist: ['light'],
   price: 160,
@@ -17,7 +17,9 @@ export default defineCard({
   attack: 5,
   health: 6,
   onPhaseStart(ctx) {
-    healHero(ctx, 2)
+    if (ctx.engine.player(ctx.owner).hand.length < ctx.engine.player(ctx.opponent).hand.length) {
+      draw(ctx, ctx.owner, 1)
+    }
   },
   ai: { value: 3, tags: ['heal'] },
   art: {

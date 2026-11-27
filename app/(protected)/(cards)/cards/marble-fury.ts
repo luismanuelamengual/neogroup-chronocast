@@ -1,22 +1,26 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffThisPhaseAt } from '@/app/(protected)/(engine)/effects'
+import { buffThisPhase, unitAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'marble-fury',
   type: 'ability',
   subtype: 'tactic',
   name: 'Marble Fury',
-  text: 'An ally of yours gains +6 attack this phase. Instant.',
+  text: 'An ally of yours that has Guardian gains +7 attack this phase. Instant.',
   flavor: 'Cold as marble, hard as an emperor.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'], sides: ['eclipse'] },
+  restriction: { factions: ['bronze'] },
   rarity: 'common',
   price: 50,
   cost: 2,
   speed: 'instant',
   targets: ['friendlyAlly'],
   onPlay(ctx) {
-    buffThisPhaseAt(ctx, ctx.targets[0], 6)
+    const unit = unitAt(ctx, ctx.targets[0])
+
+    if (unit?.keywords.includes('guardian')) {
+      buffThisPhase(ctx, unit, 7)
+    }
   },
   ai: { value: 2, tags: ['buff'] },
   art: {

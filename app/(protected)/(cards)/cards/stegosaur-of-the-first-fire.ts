@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffSelf } from '@/app/(protected)/(engine)/effects'
+import { buffSelf, isPrey, unitAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'stegosaur-of-the-first-fire',
   type: 'ally',
   name: 'Stegosaur of the First Fire',
-  text: 'When it enters: it gains +1 attack and +2 health.',
+  text: 'When it attacks a Prey: it gains +2 attack and +2 health.',
   faction: 'primal',
   restriction: { factions: ['primal'], sides: ['dawn'] },
   rarity: 'common',
@@ -17,8 +17,12 @@ export default defineCard({
   keywords: ['charge'],
   attack: 4,
   health: 12,
-  onEnter(ctx) {
-    buffSelf(ctx, 1, 2)
+  onAttack(ctx, target) {
+    const unit = unitAt(ctx, target)
+
+    if (unit && isPrey(ctx, unit)) {
+      buffSelf(ctx, 2, 2)
+    }
   },
   ai: { value: 5, tags: ['buff'] },
   art: {

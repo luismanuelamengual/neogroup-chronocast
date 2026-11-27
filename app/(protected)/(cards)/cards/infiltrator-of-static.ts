@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageEnemyHero } from '@/app/(protected)/(engine)/effects'
+import { buffThisPhase, self, unitAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'infiltrator-of-static',
   type: 'ally',
   name: 'Infiltrator of Static',
-  text: 'When it attacks: deal 3 lightning damage to the enemy hero.',
+  text: 'When it attacks an ally that has an attachment: it gains +4 attack this phase.',
   faction: 'neon',
   restriction: { factions: ['neon'], sides: ['dawn'] },
   rarity: 'uncommon',
@@ -16,8 +16,12 @@ export default defineCard({
   keywords: ['stealth'],
   attack: 5,
   health: 10,
-  onAttack(ctx) {
-    damageEnemyHero(ctx, 3)
+  onAttack(ctx, target) {
+    const unit = self(ctx)
+
+    if (unit && unitAt(ctx, target)?.attachments?.length) {
+      buffThisPhase(ctx, unit, 4)
+    }
   },
   ai: { value: 5, tags: ['aggro'] },
   art: {

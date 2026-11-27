@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { summonCard } from '@/app/(protected)/(engine)/effects'
+import { destroyWeapon } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'infiltrator-of-the-ambush',
   type: 'ally',
   name: 'Infiltrator of the Ambush',
-  text: 'When it enters: summon a Sabertooth Cub.',
+  text: 'When it enters: destroy the enemy weapon.',
   flavor: 'By the time you see her, it is over.',
   faction: 'neutral',
   restriction: { sides: ['eclipse'] },
@@ -16,7 +16,7 @@ export default defineCard({
   attack: 4,
   health: 12,
   onEnter(ctx) {
-    summonCard(ctx, ctx.owner, 'sabertooth-cub')
+    destroyWeapon(ctx, ctx.opponent)
   },
   ai: { value: 5, tags: ['summon'] },
   art: {

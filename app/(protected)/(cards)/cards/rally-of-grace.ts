@@ -1,21 +1,23 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffAt } from '@/app/(protected)/(engine)/effects'
+import { buffAt, slotsNextTo } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'rally-of-grace',
   type: 'ability',
   subtype: 'tactic',
   name: 'Rally of Grace',
-  text: 'An ally of yours gains +4 attack and +5 health.',
+  text: 'The allies next to an ally of yours gain +1 attack and +3 health.',
   flavor: 'Gather in the light.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'], sides: ['dawn'] },
+  restriction: { factions: ['bronze'] },
   rarity: 'uncommon',
   price: 160,
   cost: 3,
   targets: ['friendlyAlly'],
   onPlay(ctx) {
-    buffAt(ctx, ctx.targets[0], 4, 5)
+    for (const ref of slotsNextTo(ctx, ctx.targets[0])) {
+      buffAt(ctx, ref, 1, 3)
+    }
   },
   ai: { value: 3, tags: ['buff'] },
   art: {

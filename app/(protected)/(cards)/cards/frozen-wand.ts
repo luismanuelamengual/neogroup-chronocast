@@ -1,11 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { freeze } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'frozen-wand',
   type: 'weapon',
   subtype: 'wand',
   name: 'Frozen Wand',
-  text: '',
+  text: 'When your hero attacks an ally with it: freeze that ally.',
   flavor: 'Point it at summer and watch it end.',
   faction: 'arcane',
   restriction: { factions: ['arcane'] },
@@ -15,6 +16,11 @@ export default defineCard({
   cost: 4,
   attack: 5,
   durability: 3,
+  onAttack(ctx, target) {
+    if (target.slot !== 'hero') {
+      freeze(ctx, target)
+    }
+  },
   ai: { value: 4 },
   art: {
     subject:

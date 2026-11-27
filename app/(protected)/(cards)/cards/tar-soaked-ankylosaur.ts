@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffSelf } from '@/app/(protected)/(engine)/effects'
+import { heal, slotOf, tribeAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'tar-soaked-ankylosaur',
   type: 'ally',
   name: 'Tar-Soaked Ankylosaur',
-  text: 'When it enters: it gains +1 attack and +2 health.',
+  text: 'When it enters: your other Saurians heal 4.',
   faction: 'primal',
   restriction: { factions: ['primal'], sides: ['dawn'] },
   rarity: 'common',
@@ -17,7 +17,13 @@ export default defineCard({
   attack: 5,
   health: 9,
   onEnter(ctx) {
-    buffSelf(ctx, 1, 2)
+    for (const unit of tribeAllies(ctx, ctx.owner, 'saurian', true)) {
+      const ref = slotOf(ctx, unit)
+
+      if (ref) {
+        heal(ctx, ref, 4)
+      }
+    }
   },
   ai: { value: 4, tags: ['buff'] },
   art: {

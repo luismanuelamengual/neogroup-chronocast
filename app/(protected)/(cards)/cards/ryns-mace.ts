@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { grantKeyword, tribeAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'ryns-mace',
   type: 'weapon',
   subtype: 'energy',
   name: "Ryn's Plasma Baton",
-  text: 'When it is equipped: your hero heals 5.',
+  text: 'When your hero attacks with it: a random Netrunner of yours gains Stealth.',
   flavor: 'It hums with every swing.',
   faction: 'neon',
   restriction: { factions: ['neon'], sides: ['dawn'] },
@@ -16,8 +16,12 @@ export default defineCard({
   keywords: ['unique'],
   attack: 5,
   durability: 4,
-  onPlay(ctx) {
-    healHero(ctx, 5)
+  onAttack(ctx) {
+    const candidates = tribeAllies(ctx, ctx.owner, 'netrunner')
+
+    if (candidates.length > 0) {
+      grantKeyword(ctx, candidates[Math.floor(ctx.random() * candidates.length)], 'stealth')
+    }
   },
   ai: { value: 5 },
   art: {

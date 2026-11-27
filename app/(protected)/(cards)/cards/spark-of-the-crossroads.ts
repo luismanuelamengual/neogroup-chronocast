@@ -1,10 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { gainChronos } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'spark-of-the-crossroads',
   type: 'ally',
   name: 'Spark of the Crossroads',
-  text: '',
+  text: 'When it dies: you gain 2 Chronos this phase.',
   flavor: 'Born where all roads meet.',
   faction: 'neutral',
   restriction: {},
@@ -18,6 +19,9 @@ export default defineCard({
   keywords: ['guardian'],
   attack: 2,
   health: 8,
+  onDeath(ctx) {
+    gainChronos(ctx, ctx.owner, 2)
+  },
   ai: { value: 2 },
   art: {
     subject:

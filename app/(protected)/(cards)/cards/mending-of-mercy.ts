@@ -1,20 +1,21 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { healAllAllies, healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'mending-of-mercy',
   type: 'ability',
   subtype: 'instinct',
   name: 'Mending of Mercy',
-  text: 'Your hero heals 12.',
+  text: 'Your hero and your allies heal 5.',
   flavor: 'Mercy heals the giver too.',
-  faction: 'primal',
-  restriction: { factions: ['primal'], sides: ['dawn'] },
+  faction: 'neutral',
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   price: 55,
   cost: 3,
   onPlay(ctx) {
-    healHero(ctx, 12)
+    healHero(ctx, 5)
+    healAllAllies(ctx, ctx.owner, 5)
   },
   ai: { value: 3, tags: ['heal'] },
   art: {

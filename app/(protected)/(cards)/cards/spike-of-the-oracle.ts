@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damage } from '@/app/(protected)/(engine)/effects'
+import { damage, tribeAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'spike-of-the-oracle',
   type: 'ability',
   subtype: 'tactic',
   name: 'Spike of the Oracle',
-  text: 'Deal 8 light damage to an enemy slot.',
+  text: 'Deal 2 light damage to an enemy slot, +2 for each Oracle of yours.',
   flavor: 'She foresaw where to strike.',
   faction: 'bronze',
   restriction: { factions: ['bronze'] },
@@ -16,7 +16,7 @@ export default defineCard({
   cost: 3,
   targets: ['enemySlot'],
   onPlay(ctx) {
-    damage(ctx, ctx.targets[0], 8)
+    damage(ctx, ctx.targets[0], 2 + 2 * tribeAllies(ctx, ctx.owner, 'oracle').length, 'light')
   },
   ai: { value: 3, tags: ['removal'] },
   art: {

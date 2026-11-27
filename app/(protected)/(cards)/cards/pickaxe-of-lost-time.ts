@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { artifactCount } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'pickaxe-of-lost-time',
   type: 'weapon',
   subtype: 'tool',
   name: 'Pickaxe of Lost Time',
-  text: 'When it is equipped: your hero heals 6.',
+  text: "Your hero's attacks with it deal 2 more damage for each artifact of yours (up to +6).",
   flavor: 'It mines the hours nobody uses.',
   faction: 'clockwork',
   restriction: { factions: ['clockwork'] },
@@ -16,8 +16,8 @@ export default defineCard({
   cost: 4,
   attack: 5,
   durability: 4,
-  onPlay(ctx) {
-    healHero(ctx, 6)
+  attackBonus(ctx, attacker) {
+    return attacker.player === ctx.owner && attacker.slot === 'hero' ? Math.min(6, 2 * artifactCount(ctx)) : 0
   },
   ai: { value: 7 },
   art: {

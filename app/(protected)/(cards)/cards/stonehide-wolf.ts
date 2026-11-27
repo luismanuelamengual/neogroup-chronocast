@@ -8,7 +8,7 @@ export default defineCard({
   text: 'It takes no damage from attacks (only effects can hurt it).',
   flavor: 'Claws and blades slide off its hide.',
   faction: 'primal',
-  restriction: { factions: ['primal'], sides: ['eclipse'] },
+  restriction: { factions: ['primal'] },
   rarity: 'rare',
   price: 420,
   cost: 4,

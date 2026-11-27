@@ -1,15 +1,15 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw } from '@/app/(protected)/(engine)/effects'
+import { isSpell, seek } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'scepter-of-flame',
   type: 'weapon',
   subtype: 'orb',
   name: 'Scepter of Flame',
-  text: 'When it is equipped: draw a card.',
+  text: 'When it is equipped: draw the first spell of your deck.',
   flavor: 'Wave it, and the world gets warmer.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'], sides: ['eclipse'] },
+  restriction: { factions: ['arcane'] },
   rarity: 'uncommon',
   element: 'fire',
   price: 120,
@@ -18,7 +18,7 @@ export default defineCard({
   attack: 1,
   durability: 2,
   onPlay(ctx) {
-    draw(ctx, ctx.owner, 1)
+    seek(ctx, ctx.owner, isSpell)
   },
   ai: { value: 1 },
   art: {

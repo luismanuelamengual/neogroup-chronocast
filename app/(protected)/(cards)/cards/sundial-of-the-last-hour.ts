@@ -1,20 +1,20 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero, spendCharge } from '@/app/(protected)/(engine)/effects'
+import { gainChronosCapacity, spendCharge } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'sundial-of-the-last-hour',
   type: 'artifact',
   name: 'Sundial of the Last Hour',
-  text: 'At the start of each phase: your hero heals 3. (3 uses)',
+  text: 'At the start of each phase: you gain 1 Chronos capacity. (2 uses)',
   flavor: 'Its shadow points to the end.',
   faction: 'clockwork',
-  restriction: { factions: ['clockwork'], sides: ['dawn'] },
+  restriction: { factions: ['clockwork'] },
   rarity: 'common',
   price: 55,
   cost: 3,
-  charges: 3,
+  charges: 2,
   onPhaseStart(ctx) {
-    healHero(ctx, 3)
+    gainChronosCapacity(ctx, ctx.owner, 1)
     spendCharge(ctx)
   },
   ai: { value: 3, tags: ['heal'] },

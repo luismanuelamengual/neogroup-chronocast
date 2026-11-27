@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { drainEnergy } from '@/app/(protected)/(engine)/effects'
+import { buffSelf, isEnhanced, self } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'midnight-chrome-brawler',
   type: 'ally',
   name: 'Midnight Chrome Brawler',
-  text: 'When it enters: the enemy hero loses 1 energy.',
+  text: 'After it takes damage: if it is Enhanced, it gains +2 attack.',
   faction: 'neon',
   restriction: { factions: ['neon'] },
   rarity: 'common',
@@ -17,8 +17,12 @@ export default defineCard({
   keywords: ['retaliate'],
   attack: 5,
   health: 6,
-  onEnter(ctx) {
-    drainEnergy(ctx, ctx.opponent, 1)
+  onDamaged(ctx) {
+    const unit = self(ctx)
+
+    if (unit && isEnhanced(unit)) {
+      buffSelf(ctx, 2, 0)
+    }
   },
   ai: { value: 3, tags: ['control'] },
   art: {

@@ -1,10 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { seekType } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'faithful-cartographer',
   type: 'ally',
   name: 'Faithful Cartographer',
-  text: '',
+  text: 'When it enters: draw the first artifact of your deck and the first item.',
   flavor: 'She maps the roads that do not exist yet.',
   faction: 'neutral',
   restriction: {},
@@ -14,6 +15,10 @@ export default defineCard({
   keywords: ['ranged'],
   attack: 6,
   health: 11,
+  onEnter(ctx) {
+    seekType(ctx, ctx.owner, 'artifact')
+    seekType(ctx, ctx.owner, 'item')
+  },
   ai: { value: 5 },
   art: {
     subject:

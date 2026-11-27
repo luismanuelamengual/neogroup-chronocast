@@ -1,15 +1,14 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageRandomAlly } from '@/app/(protected)/(engine)/effects'
+import { alliesOf, draw } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'enchanted-cryomancer',
   type: 'ally',
   name: 'Enchanted Cryomancer',
-  text: 'When it enters: deal 4 ice damage to a random enemy ally.',
+  text: 'When it enters: if an enemy ally is frozen, draw a card.',
   faction: 'arcane',
   restriction: { factions: ['arcane'], sides: ['dawn'] },
   rarity: 'common',
-  element: 'ice',
   resist: ['arcane'],
   price: 55,
   cost: 3,
@@ -18,7 +17,9 @@ export default defineCard({
   attack: 3,
   health: 6,
   onEnter(ctx) {
-    damageRandomAlly(ctx, ctx.opponent, 4)
+    if (alliesOf(ctx, ctx.opponent).some((unit) => (unit.frozenUntilPhase ?? 0) >= ctx.engine.state.phase)) {
+      draw(ctx, ctx.owner, 1)
+    }
   },
   ai: { value: 3, tags: ['removal'] },
   art: {

@@ -1,22 +1,22 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damage } from '@/app/(protected)/(engine)/effects'
+import { damage, tribeAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'lance-of-runes',
   type: 'ability',
   subtype: 'spell',
   name: 'Lance of Runes',
-  text: 'Deal 9 arcane damage to an enemy ally.',
+  text: 'Deal 3 arcane damage to an enemy ally, +2 for each Magus of yours.',
   flavor: 'Each rune adds a reason to hurt.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'], sides: ['dawn'] },
+  restriction: { factions: ['arcane'] },
   rarity: 'rare',
   element: 'arcane',
   price: 420,
   cost: 3,
   targets: ['enemyAlly'],
   onPlay(ctx) {
-    damage(ctx, ctx.targets[0], 9)
+    damage(ctx, ctx.targets[0], 3 + 2 * tribeAllies(ctx, ctx.owner, 'magus').length, 'arcane')
   },
   ai: { value: 4, tags: ['removal'] },
   art: {

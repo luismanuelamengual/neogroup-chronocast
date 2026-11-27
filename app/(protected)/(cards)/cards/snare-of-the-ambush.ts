@@ -1,22 +1,23 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw, returnAt } from '@/app/(protected)/(engine)/effects'
+import { alliesOf, returnToHand } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'snare-of-the-ambush',
   type: 'ability',
   subtype: 'spell',
   name: 'Snare of the Ambush',
-  text: "Return an enemy ally to its owner's hand and draw a card. Fast.",
+  text: "Return every enemy ally with Flying to its owner's hand.",
   faction: 'arcane',
-  restriction: { factions: ['arcane'], sides: ['eclipse'] },
+  restriction: { factions: ['arcane'] },
   rarity: 'rare',
   price: 540,
   cost: 5,
-  speed: 'fast',
-  targets: ['enemyAlly'],
   onPlay(ctx) {
-    returnAt(ctx, ctx.targets[0])
-    draw(ctx, ctx.owner, 1)
+    for (const unit of alliesOf(ctx, ctx.opponent)) {
+      if (unit.keywords.includes('flying')) {
+        returnToHand(ctx, unit)
+      }
+    }
   },
   ai: { value: 6, tags: ['draw', 'removal'] },
   art: {

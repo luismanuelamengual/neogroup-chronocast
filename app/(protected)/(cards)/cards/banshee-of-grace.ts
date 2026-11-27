@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { healAllAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'banshee-of-grace',
   type: 'ally',
   name: 'Banshee of Grace',
-  text: 'At the start of each phase: your hero heals 2.',
+  text: 'When it dies: your allies heal 6.',
   faction: 'neutral',
   restriction: { sides: ['dawn'] },
   rarity: 'rare',
@@ -17,8 +17,8 @@ export default defineCard({
   keywords: ['shield'],
   attack: 8,
   health: 13,
-  onPhaseStart(ctx) {
-    healHero(ctx, 2)
+  onDeath(ctx) {
+    healAllAllies(ctx, ctx.owner, 6)
   },
   ai: { value: 7, tags: ['heal'] },
   art: {

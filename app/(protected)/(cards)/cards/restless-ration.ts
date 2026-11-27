@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffThisPhaseAt } from '@/app/(protected)/(engine)/effects'
+import { buffAt, heal } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'restless-ration',
   type: 'item',
   name: 'Restless Ration',
-  text: 'An ally of yours gains +6 attack this phase. Instant.',
+  text: 'An ally of yours gains +3 attack and heals 5. Instant.',
   flavor: 'Food from the future. Tastes like the past.',
   faction: 'neutral',
   restriction: {},
@@ -15,7 +15,8 @@ export default defineCard({
   speed: 'instant',
   targets: ['friendlyAlly'],
   onPlay(ctx) {
-    buffThisPhaseAt(ctx, ctx.targets[0], 6)
+    buffAt(ctx, ctx.targets[0], 3, 0)
+    heal(ctx, ctx.targets[0], 5)
   },
   ai: { value: 2, tags: ['buff'] },
   art: {

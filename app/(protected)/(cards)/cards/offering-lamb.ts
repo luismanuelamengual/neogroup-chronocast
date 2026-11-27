@@ -9,7 +9,7 @@ export default defineCard({
   text: 'Sacrifice an ally of yours: draw as many cards as its cost (up to 3).',
   flavor: 'The gods are fed. The pages turn.',
   faction: 'void',
-  restriction: { factions: ['void'], sides: ['eclipse'] },
+  restriction: { factions: ['void'] },
   rarity: 'common',
   price: 60,
   cost: 2,

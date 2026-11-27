@@ -1,21 +1,23 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buff, isTribe } from '@/app/(protected)/(engine)/effects'
+import { draw, isTribe, spendCharge } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'totem-of-coal',
   type: 'artifact',
   name: 'Totem of Coal',
-  text: 'When a Inventor of yours enters: it gains +1 attack and +2 health.',
+  text: 'When a Skyship of yours enters: draw a card. (3 uses)',
   faction: 'clockwork',
-  restriction: { factions: ['clockwork'], sides: ['eclipse'] },
+  restriction: { factions: ['clockwork'] },
   rarity: 'common',
   price: 65,
   cost: 4,
   onAllyEnter(ctx, ally) {
-    if (isTribe(ally, 'inventor')) {
-      buff(ctx, ally, 1, 2)
+    if (isTribe(ally, 'skyship')) {
+      draw(ctx, ctx.owner, 1)
+      spendCharge(ctx)
     }
   },
+  charges: 3,
   ai: { value: 4, tags: ['buff', 'tribe'] },
   art: {
     subject:

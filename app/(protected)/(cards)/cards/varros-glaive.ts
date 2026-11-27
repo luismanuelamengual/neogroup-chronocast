@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { buff, tribeAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'varros-glaive',
   type: 'weapon',
   subtype: 'spear',
   name: "Varro's Glaive",
-  text: 'When it is equipped: your hero heals 5.',
+  text: 'When it is equipped: your Legionnaires gain +1 attack and +1 health.',
   flavor: "The legate's word, made steel.",
   faction: 'bronze',
   restriction: { heroes: ['legate-varro'] },
@@ -17,7 +17,9 @@ export default defineCard({
   attack: 5,
   durability: 4,
   onPlay(ctx) {
-    healHero(ctx, 5)
+    for (const unit of tribeAllies(ctx, ctx.owner, 'legionnaire')) {
+      buff(ctx, unit, 1, 1)
+    }
   },
   ai: { value: 5 },
   art: {

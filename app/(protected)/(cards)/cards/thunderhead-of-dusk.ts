@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw } from '@/app/(protected)/(engine)/effects'
+import { damage, draw } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'thunderhead-of-dusk',
   type: 'ally',
   name: 'Thunderhead of Dusk',
-  text: 'When it enters: draw a card.',
+  text: 'When it enters: your hero takes 3 shadow damage and you draw 2 cards.',
   faction: 'neutral',
   restriction: { sides: ['eclipse'] },
   rarity: 'common',
@@ -19,7 +19,8 @@ export default defineCard({
   attack: 5,
   health: 6,
   onEnter(ctx) {
-    draw(ctx, ctx.owner, 1)
+    damage(ctx, { player: ctx.owner, slot: 'hero' }, 3, 'shadow')
+    draw(ctx, ctx.owner, 2)
   },
   ai: { value: 4, tags: ['draw'] },
   art: {

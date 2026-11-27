@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageAlly } from '@/app/(protected)/(engine)/effects'
+import { healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'manacle-of-the-hawk',
   type: 'attachment',
   subtype: 'curse',
   name: 'Manacle of the Hawk',
-  text: 'Attach to an enemy ally: each time it attacks, it takes 5 wind damage.',
+  text: 'Attach to an enemy ally: each time it attacks, your hero heals 3.',
   faction: 'void',
   restriction: { factions: ['void'] },
   rarity: 'common',
@@ -14,8 +14,8 @@ export default defineCard({
   price: 65,
   cost: 4,
   targets: ['enemyAlly'],
-  onHostAttack(ctx, host) {
-    damageAlly(ctx, host, 5)
+  onHostAttack(ctx) {
+    healHero(ctx, 3)
   },
   ai: { value: 4, tags: ['removal'] },
   art: {

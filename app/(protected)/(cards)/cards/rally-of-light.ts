@@ -1,22 +1,23 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffThisPhaseAt } from '@/app/(protected)/(engine)/effects'
+import { buffThisPhase, tribeAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'rally-of-light',
   type: 'ability',
   subtype: 'tactic',
   name: 'Rally of Light',
-  text: 'An ally of yours gains +10 attack this phase. Instant.',
+  text: 'Your Legionnaires gain +3 attack this phase. Instant.',
   flavor: 'Gather, children of the dawn.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'], sides: ['dawn'] },
+  restriction: { factions: ['bronze'] },
   rarity: 'uncommon',
   price: 180,
   cost: 4,
   speed: 'instant',
-  targets: ['friendlyAlly'],
   onPlay(ctx) {
-    buffThisPhaseAt(ctx, ctx.targets[0], 10)
+    for (const unit of tribeAllies(ctx, ctx.owner, 'legionnaire')) {
+      buffThisPhase(ctx, unit, 3)
+    }
   },
   ai: { value: 4, tags: ['buff'] },
   art: {

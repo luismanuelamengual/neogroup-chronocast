@@ -1,14 +1,14 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { freeze } from '@/app/(protected)/(engine)/effects'
+import { damage, slotsNextTo } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'net-of-the-volcano',
   type: 'trap',
   name: 'Net of the Volcano',
-  text: 'When an enemy ally is summoned: freeze it.',
+  text: 'When an enemy ally is summoned: deal 4 fire damage to it and to the allies next to it.',
   flavor: 'Woven with lava and patience.',
   faction: 'primal',
-  restriction: { factions: ['primal'], sides: ['eclipse'] },
+  restriction: { factions: ['primal'] },
   rarity: 'exotic',
   price: 3080,
   cost: 2,
@@ -16,7 +16,11 @@ export default defineCard({
   trigger: 'enemySummon',
   onTrigger(ctx, event) {
     if (event.unit) {
-      freeze(ctx, event.unit)
+      damage(ctx, event.unit, 4, 'fire')
+
+      for (const ref of slotsNextTo(ctx, event.unit)) {
+        damage(ctx, ref, 4, 'fire')
+      }
     }
   },
   ai: { value: 4, tags: ['trap'] },

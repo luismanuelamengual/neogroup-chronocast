@@ -1,19 +1,21 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { gainEnergy } from '@/app/(protected)/(engine)/effects'
+import { artifactCount, gainEnergy } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'altar-of-pistons',
   type: 'artifact',
   name: 'Altar of Pistons',
-  text: 'At the start of each phase: your hero gains 1 energy.',
+  text: 'At the start of each phase: if you have 3 or more artifacts, your hero gains 2 energy.',
   flavor: 'Offerings of oil to the god of machines.',
   faction: 'clockwork',
-  restriction: { factions: ['clockwork'], sides: ['dawn'] },
+  restriction: { factions: ['clockwork'] },
   rarity: 'epic',
   price: 900,
   cost: 1,
   onPhaseStart(ctx) {
-    gainEnergy(ctx, ctx.owner, 1)
+    if (artifactCount(ctx) >= 3) {
+      gainEnergy(ctx, ctx.owner, 2)
+    }
   },
   ai: { value: 2, tags: ['energy'] },
   art: {

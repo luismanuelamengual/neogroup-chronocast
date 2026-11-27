@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healAllAllies, healHero } from '@/app/(protected)/(engine)/effects'
+import { buff, heal, slotOf, spendCharge, tribeAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'aldrics-beacon',
   type: 'artifact',
   name: "Aldric's Beacon",
-  text: 'At the start of each phase: your hero heals 3 and your allies heal 2.',
+  text: 'At the start of each phase: your Magi heal 2 and gain +1 attack. (3 uses)',
   faction: 'arcane',
   restriction: { factions: ['arcane'], sides: ['dawn'] },
   rarity: 'epic',
@@ -13,9 +13,19 @@ export default defineCard({
   cost: 3,
   keywords: ['unique'],
   onPhaseStart(ctx) {
-    healHero(ctx, 3)
-    healAllAllies(ctx, ctx.owner, 2)
+    for (const unit of tribeAllies(ctx, ctx.owner, 'magus')) {
+      const ref = slotOf(ctx, unit)
+
+      if (ref) {
+        heal(ctx, ref, 2)
+      }
+
+      buff(ctx, unit, 1, 0)
+    }
+
+    spendCharge(ctx)
   },
+  charges: 3,
   ai: { value: 5 },
   art: {
     subject:

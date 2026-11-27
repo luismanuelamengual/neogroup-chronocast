@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { gainEnergy } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'furious-chrononaut',
   type: 'ally',
   name: 'Furious Chrononaut',
-  text: 'When it dies: your hero heals 3.',
+  text: 'When it dies: your hero gains 2 energy.',
   flavor: 'He has been angry since the Bronze Age.',
   faction: 'neutral',
   restriction: { sides: ['eclipse'] },
@@ -16,7 +16,7 @@ export default defineCard({
   attack: 2,
   health: 8,
   onDeath(ctx) {
-    healHero(ctx, 3)
+    gainEnergy(ctx, ctx.owner, 2)
   },
   ai: { value: 2, tags: ['defense'] },
   art: {

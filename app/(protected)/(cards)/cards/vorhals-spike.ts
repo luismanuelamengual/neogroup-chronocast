@@ -1,14 +1,14 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damage, draw } from '@/app/(protected)/(engine)/effects'
+import { consume, damage, draw } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'vorhals-spike',
   type: 'ability',
   subtype: 'ritual',
   name: "Vorhal's Spike",
-  text: 'Deal 10 time damage to an enemy slot and draw a card.',
+  text: 'Deal 10 time damage to an enemy slot. Consume 2; if you do, draw 2 cards.',
   faction: 'void',
-  restriction: { factions: ['void'], sides: ['eclipse'] },
+  restriction: { factions: ['void'] },
   rarity: 'epic',
   element: 'time',
   price: 1200,
@@ -17,7 +17,10 @@ export default defineCard({
   targets: ['enemySlot'],
   onPlay(ctx) {
     damage(ctx, ctx.targets[0], 10)
-    draw(ctx, ctx.owner, 1)
+
+    if (consume(ctx, 2)) {
+      draw(ctx, ctx.owner, 2)
+    }
   },
   ai: { value: 5 },
   art: {

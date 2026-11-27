@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffSelf } from '@/app/(protected)/(engine)/effects'
+import { buff, tribeAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'standard-bearer-of-the-last-stand',
   type: 'ally',
   name: 'Standard-Bearer of the Last Stand',
-  text: 'When it attacks: it gains +1 attack.',
+  text: 'When it attacks: your other Legionnaires gain +1 attack.',
   flavor: 'As long as the banner stands, so do we.',
   faction: 'neutral',
   restriction: { sides: ['dawn'] },
@@ -17,7 +17,9 @@ export default defineCard({
   attack: 5,
   health: 9,
   onAttack(ctx) {
-    buffSelf(ctx, 1, 0)
+    for (const unit of tribeAllies(ctx, ctx.owner, 'legionnaire', true)) {
+      buff(ctx, unit, 1, 0)
+    }
   },
   ai: { value: 4, tags: ['buff'] },
   art: {

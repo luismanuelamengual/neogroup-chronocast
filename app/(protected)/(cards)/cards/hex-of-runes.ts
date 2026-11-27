@@ -8,7 +8,7 @@ export default defineCard({
   name: 'Hex of Runes',
   text: "Return an enemy ally to its owner's hand and draw a card. Fast.",
   faction: 'arcane',
-  restriction: { factions: ['arcane'], sides: ['eclipse'] },
+  restriction: { factions: ['arcane'] },
   rarity: 'epic',
   price: 1300,
   cost: 5,

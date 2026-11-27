@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Lamplighter of the Crossroads',
   text: 'When it dies: summon a Rift Spark. When it enters: your hero heals 4.',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['dawn'] },
   rarity: 'epic',
   price: 1000,
   cost: 2,

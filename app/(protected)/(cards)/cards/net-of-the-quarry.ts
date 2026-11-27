@@ -1,14 +1,14 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damage } from '@/app/(protected)/(engine)/effects'
+import { damage, draw } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'net-of-the-quarry',
   type: 'trap',
   name: 'Net of the Quarry',
-  text: 'When an enemy ally is summoned: deal 5 damage to it.',
+  text: 'When an enemy ally is summoned: deal 3 damage to it and draw a card.',
   flavor: 'What falls in, stays in.',
   faction: 'primal',
-  restriction: { factions: ['primal'], sides: ['eclipse'] },
+  restriction: { factions: ['primal'] },
   rarity: 'epic',
   price: 900,
   cost: 1,
@@ -16,8 +16,10 @@ export default defineCard({
   trigger: 'enemySummon',
   onTrigger(ctx, event) {
     if (event.unit) {
-      damage(ctx, event.unit, 5)
+      damage(ctx, event.unit, 3)
     }
+
+    draw(ctx, ctx.owner, 1)
   },
   ai: { value: 2, tags: ['trap'] },
   art: {

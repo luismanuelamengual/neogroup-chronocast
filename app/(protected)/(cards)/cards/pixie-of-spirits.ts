@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Pixie of Spirits',
   text: 'When it enters: deal 1 light damage to the enemy hero for each Fae of yours.',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['dawn'] },
   rarity: 'uncommon',
   element: 'light',
   resist: ['arcane'],

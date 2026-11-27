@@ -1,21 +1,26 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw } from '@/app/(protected)/(engine)/effects'
+import { mindControl } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'study-of-flame',
   type: 'ability',
   subtype: 'program',
   name: 'Study of Flame',
-  text: 'Draw 2 cards.',
+  text: 'Hack an enemy ally: it attacks another enemy ally, and then it is stunned.',
   flavor: 'Page one: do not touch. Page two: too late.',
   faction: 'neon',
-  restriction: { factions: ['neon'], sides: ['eclipse'] },
+  restriction: { factions: ['neon'] },
   rarity: 'rare',
   price: 420,
   cost: 3,
   onPlay(ctx) {
-    draw(ctx, ctx.owner, 2)
+    const [controlled, target] = ctx.targets
+
+    if (controlled && target) {
+      mindControl(ctx, controlled, target)
+    }
   },
+  targets: ['enemyAlly', 'enemyAlly'],
   ai: { value: 4, tags: ['draw'] },
   art: {
     subject:

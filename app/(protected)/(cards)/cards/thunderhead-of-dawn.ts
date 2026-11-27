@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { gainChronos } from '@/app/(protected)/(engine)/effects'
+import { gainEnergy, healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'thunderhead-of-dawn',
   type: 'ally',
   name: 'Thunderhead of Dawn',
-  text: 'When it enters: you gain 1 Chronos this phase.',
+  text: 'When it enters: your hero heals 4 and gains 1 energy.',
   faction: 'neutral',
   restriction: { sides: ['dawn'] },
   rarity: 'uncommon',
@@ -18,7 +18,8 @@ export default defineCard({
   attack: 6,
   health: 11,
   onEnter(ctx) {
-    gainChronos(ctx, ctx.owner, 1)
+    healHero(ctx, 4)
+    gainEnergy(ctx, ctx.owner, 1)
   },
   ai: { value: 5, tags: ['ramp'] },
   art: {

@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { gainChronos } from '@/app/(protected)/(engine)/effects'
+import { damage, discardRandom } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'pilgrim-of-dusk',
   type: 'ally',
   name: 'Pilgrim of Dusk',
-  text: 'When it enters: you gain 1 Chronos this phase.',
+  text: 'When it enters: the enemy discards a random card and your hero takes 3 shadow damage.',
   faction: 'neutral',
   restriction: { sides: ['eclipse'] },
   rarity: 'common',
@@ -16,7 +16,8 @@ export default defineCard({
   attack: 3,
   health: 3,
   onEnter(ctx) {
-    gainChronos(ctx, ctx.owner, 1)
+    discardRandom(ctx, ctx.opponent)
+    damage(ctx, { player: ctx.owner, slot: 'hero' }, 3, 'shadow')
   },
   ai: { value: 2, tags: ['ramp'] },
   art: {

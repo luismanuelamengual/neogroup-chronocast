@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageEnemyHero } from '@/app/(protected)/(engine)/effects'
+import { enhancedAllies, heal, slotOf } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'overdriven-sentry-bot',
   type: 'ally',
   name: 'Overdriven Sentry Bot',
-  text: 'At the end of each phase: deal 1 sonic damage to the enemy hero.',
+  text: 'At the end of each phase: your Enhanced allies heal 2.',
   faction: 'neon',
   restriction: { factions: ['neon'] },
   rarity: 'uncommon',
@@ -18,7 +18,13 @@ export default defineCard({
   attack: 9,
   health: 11,
   onPhaseEnd(ctx) {
-    damageEnemyHero(ctx, 1)
+    for (const unit of enhancedAllies(ctx, ctx.owner)) {
+      const ref = slotOf(ctx, unit)
+
+      if (ref) {
+        heal(ctx, ref, 2)
+      }
+    }
   },
   ai: { value: 7, tags: ['aggro'] },
   art: {

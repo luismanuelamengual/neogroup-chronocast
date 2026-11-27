@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw, sacrificeAlly } from '@/app/(protected)/(engine)/effects'
+import { discardSize, draw } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'crawler-of-the-grave',
   type: 'ally',
   name: 'Crawler of the Grave',
-  text: 'When it enters: sacrifice your weakest other ally: if you do, draw 2 cards.',
+  text: 'When it enters: if your discard pile has 6 or more cards, draw a card.',
   faction: 'void',
   restriction: { factions: ['void'], sides: ['eclipse'] },
   rarity: 'common',
@@ -17,8 +17,8 @@ export default defineCard({
   attack: 3,
   health: 5,
   onEnter(ctx) {
-    if (sacrificeAlly(ctx)) {
-      draw(ctx, ctx.owner, 2)
+    if (discardSize(ctx, ctx.owner) >= 6) {
+      draw(ctx, ctx.owner, 1)
     }
   },
   ai: { value: 2, tags: ['draw', 'sacrifice'] },

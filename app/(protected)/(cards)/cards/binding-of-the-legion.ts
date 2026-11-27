@@ -1,23 +1,26 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw, stunAt } from '@/app/(protected)/(engine)/effects'
+import { buff, stunAt, tribeAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'binding-of-the-legion',
   type: 'ability',
   subtype: 'tactic',
   name: 'Binding of the Legion',
-  text: 'Stun an enemy ally for two phases and draw a card. Fast.',
+  text: 'Stun an enemy ally. Your Legionnaires gain +1 attack and +1 health. Fast.',
   flavor: 'Shields close in. No way out.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'], sides: ['dawn'] },
+  restriction: { factions: ['bronze'] },
   rarity: 'rare',
   price: 540,
   cost: 5,
   speed: 'fast',
   targets: ['enemyAlly'],
   onPlay(ctx) {
-    stunAt(ctx, ctx.targets[0], 1)
-    draw(ctx, ctx.owner, 1)
+    stunAt(ctx, ctx.targets[0])
+
+    for (const unit of tribeAllies(ctx, ctx.owner, 'legionnaire')) {
+      buff(ctx, unit, 1, 1)
+    }
   },
   ai: { value: 6, tags: ['draw', 'removal'] },
   art: {

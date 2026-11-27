@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buff, isTribe } from '@/app/(protected)/(engine)/effects'
+import { grantKeyword, isTribe } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'infiltrator-of-midnight',
   type: 'ally',
   name: 'Infiltrator of Midnight',
-  text: 'When another Netrunner of yours enters: it gains +1 attack and +1 health.',
+  text: 'When another Netrunner of yours enters: it gains Quick.',
   faction: 'neon',
   restriction: { factions: ['neon'], sides: ['dawn'] },
   rarity: 'rare',
@@ -17,7 +17,7 @@ export default defineCard({
   health: 5,
   onAllyEnter(ctx, ally) {
     if (isTribe(ally, 'netrunner')) {
-      buff(ctx, ally, 1, 1)
+      grantKeyword(ctx, ally, 'quick')
     }
   },
   ai: { value: 3, tags: ['buff', 'tribe'] },

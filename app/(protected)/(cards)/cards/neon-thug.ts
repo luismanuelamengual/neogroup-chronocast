@@ -1,10 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { damageRandomAlly, isEnhanced, self } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'neon-thug',
   type: 'ally',
   name: 'Neon Thug',
-  text: '',
+  text: 'At the start of each phase: if it is Enhanced, deal 2 damage to a random enemy ally.',
   flavor: 'Rent is due. So are your teeth.',
   faction: 'neon',
   restriction: { factions: ['neon'], sides: ['eclipse'] },
@@ -15,6 +16,13 @@ export default defineCard({
   keywords: ['retaliate'],
   attack: 4,
   health: 10,
+  onPhaseStart(ctx) {
+    const unit = self(ctx)
+
+    if (unit && isEnhanced(unit)) {
+      damageRandomAlly(ctx, ctx.opponent, 2)
+    }
+  },
   ai: { value: 3 },
   art: {
     subject:

@@ -1,21 +1,21 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw, healHero } from '@/app/(protected)/(engine)/effects'
+import { alliesOf, draw, healHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'bold-blessing',
   type: 'ability',
   subtype: 'instinct',
   name: 'Bold Blessing',
-  text: 'Your hero heals 16 and draw a card.',
+  text: 'Your hero heals 10. Draw a card for each Guardian ally of yours.',
   flavor: 'Fortune favors the loud.',
-  faction: 'primal',
-  restriction: { factions: ['primal'] },
+  faction: 'neutral',
+  restriction: { sides: ['dawn'] },
   rarity: 'legendary',
   price: 2240,
   cost: 4,
   onPlay(ctx) {
-    healHero(ctx, 16)
-    draw(ctx, ctx.owner, 1)
+    healHero(ctx, 10)
+    draw(ctx, ctx.owner, alliesOf(ctx, ctx.owner).filter((unit) => unit.keywords.includes('guardian')).length)
   },
   ai: { value: 6, tags: ['draw', 'heal'] },
   art: {

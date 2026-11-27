@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Its ability is paid with energy (⚡).',
   flavor: 'One look, and the bravest guard steps aside.',
   faction: 'void',
-  restriction: { factions: ['void'], sides: ['eclipse'] },
+  restriction: { factions: ['void'] },
   rarity: 'uncommon',
   price: 160,
   cost: 3,

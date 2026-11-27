@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffAllies } from '@/app/(protected)/(engine)/effects'
+import { alliesOf, grantKeyword, heal, slotOf } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'hallowed-deserter',
   type: 'ally',
   name: 'Hallowed Deserter',
-  text: 'When it enters: your other allies gain +2 health.',
+  text: 'When it enters: your other allies heal 3 and gain Retaliate.',
   faction: 'neutral',
   restriction: { sides: ['dawn'] },
   rarity: 'uncommon',
@@ -16,7 +16,17 @@ export default defineCard({
   attack: 4,
   health: 9,
   onEnter(ctx) {
-    buffAllies(ctx, ctx.owner, 0, 2, true)
+    for (const unit of alliesOf(ctx, ctx.owner)) {
+      if (unit.uid !== ctx.self.uid) {
+        const ref = slotOf(ctx, unit)
+
+        if (ref) {
+          heal(ctx, ref, 3)
+        }
+
+        grantKeyword(ctx, unit, 'retaliate')
+      }
+    }
   },
   ai: { value: 4, tags: ['buff'] },
   art: {

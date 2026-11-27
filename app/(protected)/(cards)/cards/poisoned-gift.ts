@@ -9,7 +9,7 @@ export default defineCard({
   text: 'Each player draws 3 cards.',
   flavor: 'Everyone gets a present. Not everyone wants it.',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['eclipse'] },
   rarity: 'uncommon',
   price: 160,
   cost: 2,

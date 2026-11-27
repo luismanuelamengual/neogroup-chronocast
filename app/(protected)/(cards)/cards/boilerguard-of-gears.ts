@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero, stunAt } from '@/app/(protected)/(engine)/effects'
+import { heal, slotOf, stunAt, tribeAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'boilerguard-of-gears',
   type: 'ally',
   name: 'Boilerguard of Gears',
-  text: 'At the start of each phase: your hero heals 2. Its ability is paid with energy (⚡).',
+  text: 'At the start of each phase: your other Automatons heal 2. Its ability is paid with energy (⚡).',
   faction: 'clockwork',
   restriction: { factions: ['clockwork'], sides: ['eclipse'] },
   rarity: 'rare',
@@ -28,7 +28,13 @@ export default defineCard({
     }
   },
   onPhaseStart(ctx) {
-    healHero(ctx, 2)
+    for (const unit of tribeAllies(ctx, ctx.owner, 'automaton', true)) {
+      const ref = slotOf(ctx, unit)
+
+      if (ref) {
+        heal(ctx, ref, 2)
+      }
+    }
   },
   ai: { value: 7, tags: ['ability', 'defense', 'energy'] },
   art: {

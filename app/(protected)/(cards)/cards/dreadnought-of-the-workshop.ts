@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { artifactCount, damageRandomAlly } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'dreadnought-of-the-workshop',
   type: 'ally',
   name: 'Dreadnought of the Workshop',
-  text: 'At the start of each phase: your hero heals 2.',
+  text: 'At the start of each phase: if you have 3 or more artifacts, deal 2 damage to a random enemy ally.',
   faction: 'clockwork',
   restriction: { factions: ['clockwork'] },
   rarity: 'uncommon',
@@ -16,7 +16,9 @@ export default defineCard({
   attack: 6,
   health: 11,
   onPhaseStart(ctx) {
-    healHero(ctx, 2)
+    if (artifactCount(ctx) >= 3) {
+      damageRandomAlly(ctx, ctx.opponent, 2)
+    }
   },
   ai: { value: 5, tags: ['defense'] },
   art: {

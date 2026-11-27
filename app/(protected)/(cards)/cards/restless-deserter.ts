@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw } from '@/app/(protected)/(engine)/effects'
+import { gainEnergy } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'restless-deserter',
   type: 'ally',
   name: 'Restless Deserter',
-  text: 'When it enters: draw a card.',
+  text: 'When it enters: your hero gains 1 energy.',
   flavor: 'He left the war. The war did not leave him.',
   faction: 'neutral',
   restriction: {},
@@ -16,7 +16,7 @@ export default defineCard({
   attack: 3,
   health: 10,
   onEnter(ctx) {
-    draw(ctx, ctx.owner, 1)
+    gainEnergy(ctx, ctx.owner, 1)
   },
   ai: { value: 4, tags: ['draw'] },
   art: {

@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { markPrey } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'feral-healer',
   type: 'ally',
   name: 'Feral Healer',
-  text: 'When it attacks: your hero heals 3.',
+  text: 'When it attacks: the ally it attacks becomes your Prey.',
   faction: 'primal',
   restriction: { factions: ['primal'], sides: ['eclipse'] },
   rarity: 'common',
@@ -16,8 +16,8 @@ export default defineCard({
   keywords: ['charge'],
   attack: 3,
   health: 8,
-  onAttack(ctx) {
-    healHero(ctx, 3)
+  onAttack(ctx, target) {
+    markPrey(ctx, target)
   },
   ai: { value: 3, tags: ['heal'] },
   art: {

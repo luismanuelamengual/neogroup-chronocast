@@ -9,7 +9,7 @@ export default defineCard({
   text: 'Summon a Cog Drone.',
   flavor: 'The whistle blows. Something answers.',
   faction: 'clockwork',
-  restriction: { factions: ['clockwork'], sides: ['dawn'] },
+  restriction: { factions: ['clockwork'] },
   rarity: 'common',
   price: 55,
   cost: 3,

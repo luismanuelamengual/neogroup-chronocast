@@ -1,22 +1,21 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageEnemyHero, draw } from '@/app/(protected)/(engine)/effects'
+import { draw, repairGear } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'unyielding-trap',
   type: 'trap',
   name: 'Unyielding Trap',
-  text: 'When the enemy uses an ability: draw a card and deal 4 light damage to the enemy hero.',
+  text: 'When the enemy uses an ability: your weapon and armor gain +2 durability each, and you draw a card.',
   faction: 'bronze',
   restriction: { factions: ['bronze'] },
   rarity: 'epic',
-  element: 'light',
   price: 1000,
   cost: 2,
   speed: 'instant',
   trigger: 'enemyAbility',
   onTrigger(ctx) {
+    repairGear(ctx, ctx.owner, 2)
     draw(ctx, ctx.owner, 1)
-    damageEnemyHero(ctx, 4)
   },
   ai: { value: 3, tags: ['trap'] },
   art: {

@@ -1,10 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { damageRandomAlly } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'timeless-tide',
   type: 'ally',
   name: 'Timeless Tide',
-  text: '',
+  text: 'At the end of each phase: deal 2 damage to a random enemy ally.',
   flavor: 'It rises in every century at once.',
   faction: 'neutral',
   restriction: {},
@@ -18,6 +19,9 @@ export default defineCard({
   keywords: ['ranged'],
   attack: 7,
   health: 9,
+  onPhaseEnd(ctx) {
+    damageRandomAlly(ctx, ctx.opponent, 2)
+  },
   ai: { value: 5 },
   art: {
     subject:

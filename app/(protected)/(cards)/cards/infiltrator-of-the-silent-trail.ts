@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageRandomAlly } from '@/app/(protected)/(engine)/effects'
+import { drainEnergy } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'infiltrator-of-the-silent-trail',
   type: 'ally',
   name: 'Infiltrator of the Silent Trail',
-  text: 'When it dies: deal 3 damage to a random enemy ally.',
+  text: 'When it dies: the enemy hero loses 2 energy.',
   flavor: 'Not a leaf moves when she passes.',
   faction: 'neutral',
   restriction: { sides: ['eclipse'] },
@@ -16,7 +16,7 @@ export default defineCard({
   attack: 2,
   health: 8,
   onDeath(ctx) {
-    damageRandomAlly(ctx, ctx.opponent, 3)
+    drainEnergy(ctx, ctx.opponent, 2)
   },
   ai: { value: 2, tags: ['removal'] },
   art: {

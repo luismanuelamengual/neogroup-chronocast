@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw, healHero } from '@/app/(protected)/(engine)/effects'
+import { draw, healAllAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'study-of-dawn',
   type: 'ability',
   subtype: 'program',
   name: 'Study of Dawn',
-  text: 'Draw a card and your hero heals 3.',
+  text: 'Draw a card. Your allies heal 3.',
   flavor: 'Learn from the light before it rises.',
   faction: 'neutral',
   restriction: { sides: ['dawn'] },
@@ -15,7 +15,7 @@ export default defineCard({
   cost: 2,
   onPlay(ctx) {
     draw(ctx, ctx.owner, 1)
-    healHero(ctx, 3)
+    healAllAllies(ctx, ctx.owner, 3)
   },
   ai: { value: 2, tags: ['draw', 'heal'] },
   art: {

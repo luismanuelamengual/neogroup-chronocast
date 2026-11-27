@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Patient Sabertooth',
   text: 'When it enters: summon a Sabertooth Cub. When it dies: deal 8 damage to a random enemy ally.',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['eclipse'] },
   rarity: 'legendary',
   price: 2400,
   cost: 7,

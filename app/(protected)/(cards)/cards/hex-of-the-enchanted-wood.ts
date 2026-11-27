@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { returnAt } from '@/app/(protected)/(engine)/effects'
+import { draw, returnAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'hex-of-the-enchanted-wood',
   type: 'ability',
   subtype: 'spell',
   name: 'Hex of the Enchanted Wood',
-  text: "Return an enemy ally to its owner's hand. Fast.",
+  text: "Return an enemy ally to its owner's hand. Fast. Draw a card.",
   flavor: 'The trees remember who cut them.',
   faction: 'arcane',
   restriction: { factions: ['arcane'] },
@@ -17,6 +17,7 @@ export default defineCard({
   targets: ['enemyAlly'],
   onPlay(ctx) {
     returnAt(ctx, ctx.targets[0])
+    draw(ctx, ctx.owner, 1)
   },
   ai: { value: 2, tags: ['removal'] },
   art: {

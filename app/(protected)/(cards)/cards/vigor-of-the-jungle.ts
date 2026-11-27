@@ -1,22 +1,22 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffThisPhaseAt } from '@/app/(protected)/(engine)/effects'
+import { alliesOf, buffThisPhaseAt, isPrey } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'vigor-of-the-jungle',
   type: 'ability',
   subtype: 'instinct',
   name: 'Vigor of the Jungle',
-  text: 'An ally of yours gains +8 attack this phase. Instant.',
+  text: 'An ally of yours gains +4 attack this phase, or +8 if an enemy ally is your Prey. Instant.',
   flavor: 'Grow wild, grow strong.',
   faction: 'primal',
-  restriction: { factions: ['primal'], sides: ['dawn'] },
+  restriction: { factions: ['primal'] },
   rarity: 'rare',
   price: 420,
   cost: 3,
   speed: 'instant',
   targets: ['friendlyAlly'],
   onPlay(ctx) {
-    buffThisPhaseAt(ctx, ctx.targets[0], 8)
+    buffThisPhaseAt(ctx, ctx.targets[0], alliesOf(ctx, ctx.opponent).some((unit) => isPrey(ctx, unit)) ? 8 : 4)
   },
   ai: { value: 4, tags: ['buff'] },
   art: {

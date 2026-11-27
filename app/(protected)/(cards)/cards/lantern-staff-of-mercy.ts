@@ -1,22 +1,27 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { heal, randomAlly, slotOf } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'lantern-staff-of-mercy',
   type: 'weapon',
   subtype: 'staff',
   name: 'Lantern Staff of Mercy',
-  text: 'When it is equipped: your hero heals 5.',
+  text: 'When your hero attacks with it: a random ally of yours heals 4.',
   flavor: 'Its light finds the lost and the hurt.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'], sides: ['dawn'] },
+  restriction: { factions: ['arcane'] },
   rarity: 'rare',
   price: 420,
   cost: 3,
   attack: 4,
   durability: 4,
-  onPlay(ctx) {
-    healHero(ctx, 5)
+  onAttack(ctx) {
+    const unit = randomAlly(ctx, ctx.owner)
+    const ref = unit ? slotOf(ctx, unit) : null
+
+    if (ref) {
+      heal(ctx, ref, 4)
+    }
   },
   ai: { value: 4 },
   art: {

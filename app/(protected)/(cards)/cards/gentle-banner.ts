@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Gentle Banner',
   text: 'When a Oracle of yours enters: it gains +1 attack and +2 health.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'], sides: ['dawn'] },
+  restriction: { factions: ['bronze'] },
   rarity: 'common',
   price: 65,
   cost: 4,

@@ -1,14 +1,14 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffSelf } from '@/app/(protected)/(engine)/effects'
+import { poison } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'unbroken-hitman',
   type: 'ally',
   name: 'Unbroken Hitman',
-  text: 'When it attacks: it gains +1 attack.',
+  text: 'When it attacks: poison the ally it attacks (2).',
   flavor: 'Shot twice. Still working.',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['eclipse'] },
   rarity: 'rare',
   price: 540,
   cost: 5,
@@ -17,8 +17,10 @@ export default defineCard({
   thorns: 4,
   attack: 6,
   health: 11,
-  onAttack(ctx) {
-    buffSelf(ctx, 1, 0)
+  onAttack(ctx, target) {
+    if (target.slot !== 'hero') {
+      poison(ctx, target, 2)
+    }
   },
   ai: { value: 6, tags: ['buff'] },
   art: {

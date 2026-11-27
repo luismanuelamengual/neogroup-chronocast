@@ -1,22 +1,21 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw, stunAt } from '@/app/(protected)/(engine)/effects'
+import { draw, suppressKeywordsAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'frost-of-the-pack',
   type: 'ability',
   subtype: 'program',
   name: 'Frost of the Pack',
-  text: 'Stun an enemy ally for two phases and draw a card. Fast.',
+  text: 'An enemy ally loses Stealth, Quick and Retaliate for two phases. Draw a card.',
   flavor: 'Wolves run faster on frozen ground.',
   faction: 'neon',
-  restriction: { factions: ['neon'], sides: ['eclipse'] },
+  restriction: { factions: ['neon'] },
   rarity: 'rare',
   price: 420,
   cost: 3,
-  speed: 'fast',
   targets: ['enemyAlly'],
   onPlay(ctx) {
-    stunAt(ctx, ctx.targets[0], 1)
+    suppressKeywordsAt(ctx, ctx.targets[0], ['stealth', 'quick', 'retaliate'], 1)
     draw(ctx, ctx.owner, 1)
   },
   ai: { value: 4, tags: ['draw', 'removal'] },

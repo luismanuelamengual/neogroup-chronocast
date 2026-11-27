@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { buffSelf, damage } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'bloodied-hitman',
   type: 'ally',
   name: 'Bloodied Hitman',
-  text: 'When it enters: your hero heals 7.',
+  text: 'When it enters: your hero takes 4 shadow damage and it gains +4 attack.',
   flavor: 'He prices by the scar.',
   faction: 'neutral',
   restriction: { sides: ['eclipse'] },
@@ -16,7 +16,8 @@ export default defineCard({
   attack: 6,
   health: 11,
   onEnter(ctx) {
-    healHero(ctx, 7)
+    damage(ctx, { player: ctx.owner, slot: 'hero' }, 4, 'shadow')
+    buffSelf(ctx, 4, 0)
   },
   ai: { value: 6, tags: ['defense'] },
   art: {

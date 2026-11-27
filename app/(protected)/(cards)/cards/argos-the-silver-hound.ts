@@ -1,22 +1,21 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageRandomAlly } from '@/app/(protected)/(engine)/effects'
+import { boostWeapon } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'argos-the-silver-hound',
   type: 'ally',
   name: 'Argos, the Silver Hound',
-  text: 'When it enters: deal 3 wind damage to a random enemy ally.',
+  text: 'When it enters: your weapon gains +1 attack and +1 durability.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'], sides: ['dawn'] },
+  restriction: { factions: ['bronze'] },
   rarity: 'rare',
   price: 420,
-  element: 'wind',
   cost: 3,
   keywords: ['quick'],
   attack: 4,
   health: 6,
   onEnter(ctx) {
-    damageRandomAlly(ctx, ctx.opponent, 3)
+    boostWeapon(ctx, ctx.owner, 1, 1)
   },
   ai: { value: 5, tags: ['removal'] },
   art: {

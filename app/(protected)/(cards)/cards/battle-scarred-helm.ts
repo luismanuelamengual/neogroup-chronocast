@@ -5,7 +5,7 @@ export default defineCard({
   type: 'armor',
   subtype: 'helm',
   name: 'Battle-Scarred Helm',
-  text: '',
+  text: 'Every damage your hero takes is 1 lower, but your allies take 1 more.',
   flavor: 'Every dent is a story it survived.',
   faction: 'neutral',
   restriction: { sides: ['eclipse'] },
@@ -14,6 +14,13 @@ export default defineCard({
   cost: 3,
   armor: 2,
   durability: 5,
+  modifyDamage(ctx, target, amount) {
+    if (target.player !== ctx.owner || amount <= 0) {
+      return amount
+    }
+
+    return target.slot === 'hero' ? Math.max(0, amount - 1) : amount + 1
+  },
   ai: { value: 3 },
   art: {
     subject:

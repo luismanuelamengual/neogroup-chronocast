@@ -1,22 +1,21 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'halberd-of-valor',
   type: 'weapon',
   subtype: 'spear',
   name: 'Halberd of Valor',
-  text: 'When it is equipped: draw a card.',
+  text: "Your hero's attacks with it deal 3 more damage to allies.",
   flavor: 'Long reach, longer legend.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'], sides: ['dawn'] },
+  restriction: { factions: ['bronze'] },
   rarity: 'uncommon',
   price: 120,
   cost: 1,
   attack: 2,
   durability: 2,
-  onPlay(ctx) {
-    draw(ctx, ctx.owner, 1)
+  attackBonus(ctx, attacker, target) {
+    return attacker.player === ctx.owner && attacker.slot === 'hero' && target.slot !== 'hero' ? 3 : 0
   },
   ai: { value: 1 },
   art: {

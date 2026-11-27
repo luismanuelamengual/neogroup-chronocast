@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Every damage it takes is 2 lower.',
   flavor: 'Stone skin, burning heart.',
   faction: 'void',
-  restriction: { factions: ['void'], sides: ['eclipse'] },
+  restriction: { factions: ['void'] },
   rarity: 'common',
   price: 60,
   cost: 3,

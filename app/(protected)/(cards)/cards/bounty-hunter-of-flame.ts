@@ -1,10 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { alliesOf, burn, slotOf } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'bounty-hunter-of-flame',
   type: 'ally',
   name: 'Bounty Hunter of Flame',
-  text: '',
+  text: 'When it enters: burn every enemy ally (1).',
   flavor: 'Wanted: anyone flammable.',
   faction: 'neutral',
   restriction: { sides: ['eclipse'] },
@@ -14,6 +15,15 @@ export default defineCard({
   cost: 5,
   attack: 6,
   health: 12,
+  onEnter(ctx) {
+    for (const unit of alliesOf(ctx, ctx.opponent)) {
+      const ref = slotOf(ctx, unit)
+
+      if (ref) {
+        burn(ctx, ref, 1)
+      }
+    }
+  },
   ai: { value: 5 },
   art: {
     subject:

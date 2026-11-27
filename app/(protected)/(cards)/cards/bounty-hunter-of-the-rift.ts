@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Bounty Hunter of the Rift',
   text: 'When it enters: your hero heals 5. Its ability is paid with energy (⚡).',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['dawn'] },
   rarity: 'uncommon',
   element: 'time',
   price: 160,

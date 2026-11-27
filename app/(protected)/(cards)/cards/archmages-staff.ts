@@ -1,11 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { isSpell, seek } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'archmages-staff',
   type: 'weapon',
   subtype: 'staff',
   name: "Archmage's Staff",
-  text: 'Spell power +2 (your spells deal 2 more damage).',
+  text: 'Spell power +2. When it is equipped: draw the first spell of your deck.',
   faction: 'arcane',
   restriction: { factions: ['arcane'] },
   rarity: 'rare',
@@ -14,6 +15,9 @@ export default defineCard({
   attack: 3,
   durability: 4,
   spellPower: 2,
+  onPlay(ctx) {
+    seek(ctx, ctx.owner, isSpell)
+  },
   ai: { value: 4, tags: ['spellPower'] },
   art: {
     subject:

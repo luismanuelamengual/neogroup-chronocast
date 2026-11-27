@@ -1,21 +1,26 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffAt } from '@/app/(protected)/(engine)/effects'
+import { buff, grantKeyword, unitAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'might-of-the-tar-pits',
   type: 'ability',
   subtype: 'instinct',
   name: 'Might of the Tar Pits',
-  text: 'An ally of yours gains +3 attack and +4 health.',
+  text: 'An ally of yours gains +2 attack and Stealth.',
   flavor: 'Strength from the deep black earth.',
-  faction: 'primal',
-  restriction: { factions: ['primal'], sides: ['eclipse'] },
+  faction: 'neutral',
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   price: 50,
   cost: 2,
   targets: ['friendlyAlly'],
   onPlay(ctx) {
-    buffAt(ctx, ctx.targets[0], 3, 4)
+    const unit = unitAt(ctx, ctx.targets[0])
+
+    if (unit) {
+      buff(ctx, unit, 2, 0)
+      grantKeyword(ctx, unit, 'stealth')
+    }
   },
   ai: { value: 2, tags: ['buff'] },
   art: {

@@ -1,23 +1,24 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageRandomAlly } from '@/app/(protected)/(engine)/effects'
+import { buff, tribeAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'gorraks-recurve-bow',
   type: 'weapon',
   subtype: 'bow',
   name: "Gorrak's Recurve Bow",
-  text: 'When it is equipped: deal 4 earth damage to a random enemy ally.',
+  text: 'When it is equipped: your Saurians gain +1 attack and +2 health.',
   faction: 'primal',
   restriction: { factions: ['primal'], sides: ['dawn'] },
   rarity: 'epic',
-  element: 'earth',
   price: 1100,
   cost: 3,
   keywords: ['ranged', 'unique'],
   attack: 5,
   durability: 4,
   onPlay(ctx) {
-    damageRandomAlly(ctx, ctx.opponent, 4)
+    for (const unit of tribeAllies(ctx, ctx.owner, 'saurian')) {
+      buff(ctx, unit, 1, 2)
+    }
   },
   ai: { value: 5 },
   art: {

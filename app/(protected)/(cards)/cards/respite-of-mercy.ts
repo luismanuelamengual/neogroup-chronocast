@@ -1,21 +1,28 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { grantKeyword, heal, unitAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'respite-of-mercy',
   type: 'ability',
   subtype: 'instinct',
   name: 'Respite of Mercy',
-  text: 'Your hero heals 9.',
+  text: 'An ally of yours heals 12 and gains Retaliate.',
   flavor: 'A breath between battles is a gift.',
-  faction: 'primal',
-  restriction: { factions: ['primal'], sides: ['dawn'] },
+  faction: 'neutral',
+  restriction: { sides: ['dawn'] },
   rarity: 'common',
   price: 50,
   cost: 2,
   onPlay(ctx) {
-    healHero(ctx, 9)
+    heal(ctx, ctx.targets[0], 12)
+
+    const unit = unitAt(ctx, ctx.targets[0])
+
+    if (unit) {
+      grantKeyword(ctx, unit, 'retaliate')
+    }
   },
+  targets: ['friendlyAlly'],
   ai: { value: 2, tags: ['heal'] },
   art: {
     subject:

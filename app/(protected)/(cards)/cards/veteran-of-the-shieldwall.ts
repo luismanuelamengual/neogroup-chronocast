@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffSelf } from '@/app/(protected)/(engine)/effects'
+import { heal, self, slotOf } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'veteran-of-the-shieldwall',
   type: 'ally',
   name: 'Veteran of the Shieldwall',
-  text: 'When it attacks: it gains +1 attack.',
+  text: 'When it attacks: it heals 3.',
   flavor: 'He has held the line since before you were born.',
   faction: 'neutral',
   restriction: { sides: ['dawn'] },
@@ -17,7 +17,12 @@ export default defineCard({
   attack: 3,
   health: 11,
   onAttack(ctx) {
-    buffSelf(ctx, 1, 0)
+    const me = self(ctx)
+    const ref = me ? slotOf(ctx, me) : null
+
+    if (ref) {
+      heal(ctx, ref, 3)
+    }
   },
   ai: { value: 4, tags: ['buff'] },
   art: {

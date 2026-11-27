@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it attacks an ally and the ally survives: that ally loses all its attack.',
   flavor: 'She does not kill the beast. She breaks it.',
   faction: 'primal',
-  restriction: { factions: ['primal'], sides: ['dawn'] },
+  restriction: { factions: ['primal'] },
   rarity: 'rare',
   price: 420,
   cost: 5,

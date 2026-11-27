@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Exhume (3⚡): the last ally of your discard pile goes on top of your deck.',
   flavor: 'The king sleeps. His guards do not.',
   faction: 'void',
-  restriction: { factions: ['void'], sides: ['eclipse'] },
+  restriction: { factions: ['void'] },
   rarity: 'uncommon',
   price: 160,
   cost: 2,

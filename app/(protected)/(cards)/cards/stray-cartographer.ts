@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { gainChronos } from '@/app/(protected)/(engine)/effects'
+import { seekType } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'stray-cartographer',
   type: 'ally',
   name: 'Stray Cartographer',
-  text: 'When it enters: you gain 1 Chronos this phase.',
+  text: 'When it enters: draw the first item of your deck.',
   flavor: 'Her maps are wrong, but they are wrong beautifully.',
   faction: 'neutral',
   restriction: {},
@@ -15,7 +15,7 @@ export default defineCard({
   attack: 2,
   health: 5,
   onEnter(ctx) {
-    gainChronos(ctx, ctx.owner, 1)
+    seekType(ctx, ctx.owner, 'item')
   },
   ai: { value: 2, tags: ['aggro', 'ramp'] },
   art: {

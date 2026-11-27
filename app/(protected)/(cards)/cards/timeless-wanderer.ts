@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Timeless Wanderer',
   text: 'At the start of each phase: your hero heals 2. Its ability is paid with energy (⚡).',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['dawn'] },
   rarity: 'uncommon',
   element: 'time',
   price: 180,

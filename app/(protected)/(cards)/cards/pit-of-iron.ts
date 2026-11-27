@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { freeze } from '@/app/(protected)/(engine)/effects'
+import { damage, stunAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'pit-of-iron',
   type: 'trap',
   name: 'Pit of Iron',
-  text: 'When an enemy ally is summoned: freeze it.',
+  text: 'When an enemy ally is summoned: stun it and deal 3 earth damage to it.',
   flavor: 'The bottom is further than it looks.',
   faction: 'primal',
   restriction: { factions: ['primal'] },
@@ -16,7 +16,8 @@ export default defineCard({
   trigger: 'enemySummon',
   onTrigger(ctx, event) {
     if (event.unit) {
-      freeze(ctx, event.unit)
+      stunAt(ctx, event.unit)
+      damage(ctx, event.unit, 3, 'earth')
     }
   },
   ai: { value: 4, tags: ['trap'] },

@@ -1,22 +1,22 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healAllAllies } from '@/app/(protected)/(engine)/effects'
+import { repairArmor } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'silk-wrap-of-ruin',
   type: 'armor',
   subtype: 'shroud',
   name: 'Silk Wrap of Ruin',
-  text: 'When it is equipped: your allies heal 2.',
+  text: 'When an ally of yours dies: this armor gains +1 durability.',
   flavor: 'Soft as silk, cold as an ending.',
   faction: 'void',
-  restriction: { factions: ['void'], sides: ['eclipse'] },
+  restriction: { factions: ['void'] },
   rarity: 'uncommon',
   price: 140,
   cost: 2,
   armor: 2,
   durability: 3,
-  onPlay(ctx) {
-    healAllAllies(ctx, ctx.owner, 2)
+  onOwnAllyDeath(ctx) {
+    repairArmor(ctx, ctx.owner, 1)
   },
   ai: { value: 2 },
   art: {

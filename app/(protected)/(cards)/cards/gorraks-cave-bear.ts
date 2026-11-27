@@ -7,7 +7,7 @@ export default defineCard({
   name: "Gorrak's Cave Bear",
   text: 'When another Beast of yours enters: your hero heals 2. At the start of each phase: it gains +1 attack and +1 health.',
   faction: 'primal',
-  restriction: { factions: ['primal'], sides: ['dawn'] },
+  restriction: { factions: ['primal'] },
   rarity: 'legendary',
   price: 2320,
   cost: 5,

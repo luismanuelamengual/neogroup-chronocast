@@ -1,21 +1,20 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageEnemyHero, draw } from '@/app/(protected)/(engine)/effects'
+import { drainEnergy } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'tracking-countermeasure',
   type: 'trap',
   name: 'Tracking Countermeasure',
-  text: 'When the enemy uses an ability: draw a card and deal 4 damage to the enemy hero.',
+  text: 'When the enemy uses an ability: the enemy hero loses 3 energy.',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   price: 50,
   cost: 2,
   speed: 'instant',
   trigger: 'enemyAbility',
   onTrigger(ctx) {
-    draw(ctx, ctx.owner, 1)
-    damageEnemyHero(ctx, 4)
+    drainEnergy(ctx, ctx.opponent, 3)
   },
   ai: { value: 2, tags: ['trap'] },
   art: {

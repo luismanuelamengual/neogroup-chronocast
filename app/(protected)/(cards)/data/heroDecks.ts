@@ -69,7 +69,7 @@ const HERO_DECK_LISTS: Record<string, [string, number][]> = {
   ],
   'malachar-the-unmade': [
     ['tower-apprentice', 3],
-    ['dreaming-seer', 3],
+    ['bone-rattler', 3],
     ['relentless-hitman', 3],
     ['old-chrononaut', 3],
     ['dilophosaur-of-the-silent-trail', 2],
@@ -84,7 +84,7 @@ const HERO_DECK_LISTS: Record<string, [string, number][]> = {
     ['frozen-ward', 1],
     ['arcane-mine', 2],
     ['blast-of-lightning', 2],
-    ['rift-touched-idol', 1],
+    ['obelisk-of-flame', 1],
     ['open-grimoire', 1]
   ],
   'morgrath-lich-abbot': [
@@ -104,7 +104,7 @@ const HERO_DECK_LISTS: Record<string, [string, number][]> = {
     ['spirit-bound-shroud', 1],
     ['restless-ration', 1],
     ['crimson-moon', 2],
-    ['rift-touched-idol', 1],
+    ['obelisk-of-flame', 1],
     ['bloodied-echo', 2]
   ],
   'nyx-hollowsong': [
@@ -142,7 +142,7 @@ const HERO_DECK_LISTS: Record<string, [string, number][]> = {
     ['longbow-of-the-silent-trail', 1],
     ['cloak-of-the-quarry', 2],
     ['spirit-bound-shroud', 1],
-    ['rift-touched-idol', 4],
+    ['obelisk-of-flame', 4],
     ['faithful-bomb', 1],
     ['spike-of-the-hunt', 1]
   ],
@@ -163,7 +163,7 @@ const HERO_DECK_LISTS: Record<string, [string, number][]> = {
     ['battle-scarred-helm', 1],
     ['crimson-moon', 2],
     ['obelisk-of-flame', 2],
-    ['rift-touched-idol', 1],
+    ['bloodclock', 1],
     ['glitched-plan', 1]
   ],
   'vex-nightwire': [

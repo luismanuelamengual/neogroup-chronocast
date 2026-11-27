@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero, isTribe } from '@/app/(protected)/(engine)/effects'
+import { grantKeyword, isTribe } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'bodyguard-of-the-vanguard',
   type: 'ally',
   name: 'Bodyguard of the Vanguard',
-  text: 'When another Enforcer of yours enters: your hero heals 2.',
+  text: 'When another Enforcer of yours enters: it gains Guardian.',
   flavor: 'Every blow aimed at you hits him first.',
   faction: 'neutral',
   restriction: { sides: ['dawn'] },
@@ -18,7 +18,7 @@ export default defineCard({
   health: 12,
   onAllyEnter(ctx, ally) {
     if (isTribe(ally, 'enforcer')) {
-      healHero(ctx, 2)
+      grantKeyword(ctx, ally, 'guardian')
     }
   },
   ai: { value: 5, tags: ['heal'] },

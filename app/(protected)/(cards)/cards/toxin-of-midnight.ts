@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { poison } from '@/app/(protected)/(engine)/effects'
+import { poison, tribeAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'toxin-of-midnight',
   type: 'ability',
   subtype: 'program',
   name: 'Toxin of Midnight',
-  text: 'Poison an enemy ally (3).',
+  text: 'Poison an enemy ally (2), +2 for each Enforcer of yours.',
   flavor: 'Brewed in neon, served cold.',
   faction: 'neon',
   restriction: { factions: ['neon'], sides: ['eclipse'] },
@@ -15,7 +15,7 @@ export default defineCard({
   cost: 2,
   targets: ['enemyAlly'],
   onPlay(ctx) {
-    poison(ctx, ctx.targets[0], 3)
+    poison(ctx, ctx.targets[0], 2 + 2 * tribeAllies(ctx, ctx.owner, 'enforcer').length)
   },
   ai: { value: 2, tags: ['removal'] },
   art: {

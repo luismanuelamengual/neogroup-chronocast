@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffThisPhaseAt } from '@/app/(protected)/(engine)/effects'
+import { buffThisPhaseAt, damage } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'might-of-the-warlord',
   type: 'ability',
   subtype: 'tactic',
   name: 'Might of the Warlord',
-  text: 'An ally of yours gains +4 attack this phase. Instant.',
+  text: 'An ally of yours gains +5 attack this phase and takes 2 shadow damage. Instant.',
   flavor: 'His strength flows into every soldier.',
   faction: 'neutral',
   restriction: { sides: ['eclipse'] },
@@ -16,7 +16,8 @@ export default defineCard({
   speed: 'instant',
   targets: ['friendlyAlly'],
   onPlay(ctx) {
-    buffThisPhaseAt(ctx, ctx.targets[0], 4)
+    buffThisPhaseAt(ctx, ctx.targets[0], 5)
+    damage(ctx, ctx.targets[0], 2, 'shadow')
   },
   ai: { value: 1, tags: ['buff'] },
   art: {

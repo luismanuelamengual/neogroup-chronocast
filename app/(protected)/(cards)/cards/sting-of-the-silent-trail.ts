@@ -1,21 +1,22 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { poison } from '@/app/(protected)/(engine)/effects'
+import { alliesOf } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'sting-of-the-silent-trail',
   type: 'ability',
   subtype: 'ritual',
   name: 'Sting of the Silent Trail',
-  text: 'Poison an enemy ally (3).',
+  text: 'Double the poison of every enemy ally.',
   flavor: 'You will not hear it. You will feel it.',
   faction: 'void',
-  restriction: { factions: ['void'], sides: ['eclipse'] },
+  restriction: { factions: ['void'] },
   rarity: 'mythic',
   price: 4080,
   cost: 2,
-  targets: ['enemyAlly'],
   onPlay(ctx) {
-    poison(ctx, ctx.targets[0], 3)
+    for (const unit of alliesOf(ctx, ctx.opponent)) {
+      unit.poison = (unit.poison ?? 0) * 2
+    }
   },
   ai: { value: 5, tags: ['removal'] },
   art: {

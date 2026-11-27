@@ -1,21 +1,23 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { artifactCount, buffAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'riveted-blessing',
   type: 'attachment',
   subtype: 'charm',
   name: 'Riveted Blessing',
-  text: 'Attach to an ally of yours: it gains +1 attack and +3 health.',
+  text: 'Attach to an ally of yours: it gains +1 attack and +2 health for each artifact of yours.',
   faction: 'clockwork',
-  restriction: { factions: ['clockwork'], sides: ['dawn'] },
+  restriction: { factions: ['clockwork'] },
   rarity: 'common',
   price: 50,
   cost: 2,
-  keywords: ['thorns'],
-  thorns: 4,
-  attack: 1,
-  health: 3,
   targets: ['friendlyAlly'],
+  onPlay(ctx) {
+    const count = artifactCount(ctx)
+
+    buffAt(ctx, ctx.targets[0], count, 2 * count)
+  },
   ai: { value: 2, tags: ['buff'] },
   art: {
     subject:

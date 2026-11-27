@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw } from '@/app/(protected)/(engine)/effects'
+import { burn } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'orb-of-flame',
   type: 'weapon',
   subtype: 'orb',
   name: 'Orb of Flame',
-  text: 'When it is equipped: draw a card.',
+  text: 'When your hero attacks with it: burn the target (2).',
   flavor: 'A small sun that obeys.',
   faction: 'arcane',
   restriction: { factions: ['arcane'], sides: ['eclipse'] },
@@ -17,8 +17,8 @@ export default defineCard({
   keywords: ['ranged'],
   attack: 3,
   durability: 3,
-  onPlay(ctx) {
-    draw(ctx, ctx.owner, 1)
+  onAttack(ctx, target) {
+    burn(ctx, target, 2)
   },
   ai: { value: 3 },
   art: {

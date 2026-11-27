@@ -6,7 +6,7 @@ export default defineCard({
   type: 'ability',
   subtype: 'instinct',
   name: 'Tracking Horn',
-  text: 'Summon a Sabertooth Cub.',
+  text: 'Summon a Sabertooth Cub and a Raptor Hatchling.',
   flavor: 'One blast and the pack knows the way.',
   faction: 'primal',
   restriction: { factions: ['primal'] },
@@ -15,6 +15,7 @@ export default defineCard({
   cost: 3,
   onPlay(ctx) {
     summonCard(ctx, ctx.owner, 'sabertooth-cub')
+    summonCard(ctx, ctx.owner, 'raptor-hatchling')
   },
   ai: { value: 3, tags: ['summon'] },
   art: {

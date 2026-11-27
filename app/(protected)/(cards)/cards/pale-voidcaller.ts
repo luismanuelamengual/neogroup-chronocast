@@ -1,13 +1,14 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { buffSelf, consume } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'pale-voidcaller',
   type: 'ally',
   name: 'Pale Voidcaller',
-  text: '',
+  text: 'When it enters: Consume 3; if you do, it gains +4 attack and +4 health.',
   flavor: 'When she speaks, the dark answers.',
   faction: 'void',
-  restriction: { factions: ['void'], sides: ['eclipse'] },
+  restriction: { factions: ['void'] },
   rarity: 'common',
   price: 80,
   cost: 6,
@@ -15,6 +16,11 @@ export default defineCard({
   keywords: ['echo'],
   attack: 8,
   health: 13,
+  onEnter(ctx) {
+    if (consume(ctx, 3)) {
+      buffSelf(ctx, 4, 4)
+    }
+  },
   ai: { value: 6 },
   art: {
     subject:

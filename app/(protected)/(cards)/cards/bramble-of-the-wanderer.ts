@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw } from '@/app/(protected)/(engine)/effects'
+import { seekTribe } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'bramble-of-the-wanderer',
   type: 'ally',
   name: 'Bramble of the Wanderer',
-  text: 'When it dies: draw a card.',
+  text: 'When it dies: draw the first Elemental of your deck.',
   faction: 'neutral',
   restriction: {},
   rarity: 'common',
@@ -18,7 +18,7 @@ export default defineCard({
   attack: 3,
   health: 10,
   onDeath(ctx) {
-    draw(ctx, ctx.owner, 1)
+    seekTribe(ctx, ctx.owner, 'elemental')
   },
   ai: { value: 3, tags: ['draw'] },
   art: {

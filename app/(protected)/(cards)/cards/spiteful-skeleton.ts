@@ -8,7 +8,7 @@ export default defineCard({
   text: 'When it dies: deal 3 shadow damage to whoever killed it.',
   flavor: 'It holds a grudge longer than it held a life.',
   faction: 'void',
-  restriction: { factions: ['void'], sides: ['eclipse'] },
+  restriction: { factions: ['void'] },
   rarity: 'common',
   price: 60,
   cost: 2,

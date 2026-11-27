@@ -1,21 +1,22 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { burn } from '@/app/(protected)/(engine)/effects'
+import { allyRefs, burn } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'dreaming-pyre',
   type: 'ability',
   subtype: 'spell',
   name: 'Dreaming Pyre',
-  text: 'Burn an enemy slot (3).',
+  text: 'Burn every enemy ally (1) for 3 phases.',
   flavor: 'It burns with the colors of dreams.',
   faction: 'arcane',
   restriction: { factions: ['arcane'] },
   rarity: 'legendary',
   price: 2080,
   cost: 2,
-  targets: ['enemySlot'],
   onPlay(ctx) {
-    burn(ctx, ctx.targets[0], 3)
+    for (const ref of allyRefs(ctx, ctx.opponent)) {
+      burn(ctx, ref, 1, 3)
+    }
   },
   ai: { value: 4, tags: ['removal'] },
   art: {

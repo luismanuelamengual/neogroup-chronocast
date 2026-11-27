@@ -1,22 +1,20 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw, repairArmor, repairWeapon } from '@/app/(protected)/(engine)/effects'
+import { boostWeapon } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'guard-of-the-warlord',
   type: 'ability',
   subtype: 'gadget',
   name: 'Guard of the Warlord',
-  text: 'Your weapon and armor gain +2 durability each. Draw a card.',
+  text: 'Your weapon gains +2 attack and +2 durability.',
   flavor: "No one touches the warlord's people.",
   faction: 'clockwork',
-  restriction: { factions: ['clockwork'], sides: ['eclipse'] },
+  restriction: { factions: ['clockwork'] },
   rarity: 'common',
   price: 55,
   cost: 3,
   onPlay(ctx) {
-    repairWeapon(ctx, ctx.owner, 2)
-    repairArmor(ctx, ctx.owner, 2)
-    draw(ctx, ctx.owner, 1)
+    boostWeapon(ctx, ctx.owner, 2, 2)
   },
   ai: { value: 3, tags: ['repair', 'draw'] },
   art: {

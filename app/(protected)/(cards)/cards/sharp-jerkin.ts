@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw } from '@/app/(protected)/(engine)/effects'
+import { seekType } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'sharp-jerkin',
   type: 'armor',
   subtype: 'suit',
   name: 'Sharp Jerkin',
-  text: 'When it is equipped: draw a card.',
+  text: 'When it is equipped: draw the first attachment of your deck.',
   flavor: 'Hug at your own risk.',
   faction: 'neon',
   restriction: { factions: ['neon'] },
@@ -16,7 +16,7 @@ export default defineCard({
   armor: 4,
   durability: 4,
   onPlay(ctx) {
-    draw(ctx, ctx.owner, 1)
+    seekType(ctx, ctx.owner, 'attachment')
   },
   ai: { value: 6 },
   art: {

@@ -8,7 +8,7 @@ export default defineCard({
   text: 'Its ability is paid with energy (⚡).',
   flavor: 'Every vine in the valley answers to her.',
   faction: 'primal',
-  restriction: { factions: ['primal'], sides: ['dawn'] },
+  restriction: { factions: ['primal'] },
   rarity: 'uncommon',
   price: 160,
   cost: 3,

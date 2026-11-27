@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damage, draw } from '@/app/(protected)/(engine)/effects'
+import { damage, recharge } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'brassmaws-bolt',
   type: 'ability',
   subtype: 'gadget',
   name: "Brassmaw's Bolt",
-  text: 'Deal 10 sonic damage to an enemy slot and draw a card.',
+  text: 'Deal 6 sonic damage to an enemy slot, and your artifacts with uses gain 1 use.',
   faction: 'clockwork',
   restriction: { heroes: ['chancellor-brassmaw'] },
   rarity: 'epic',
@@ -16,8 +16,8 @@ export default defineCard({
   keywords: ['unique'],
   targets: ['enemySlot'],
   onPlay(ctx) {
-    damage(ctx, ctx.targets[0], 10)
-    draw(ctx, ctx.owner, 1)
+    damage(ctx, ctx.targets[0], 6, 'sonic')
+    recharge(ctx, 'all', 1)
   },
   ai: { value: 5 },
   art: {

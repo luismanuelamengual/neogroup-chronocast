@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageEnemyHero } from '@/app/(protected)/(engine)/effects'
+import { damageRandomAlly, spellPowerOf } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'arcane-runecarver',
   type: 'ally',
   name: 'Arcane Runecarver',
-  text: 'At the start of each phase: deal 1 arcane damage to the enemy hero.',
+  text: 'At the start of each phase: deal 1 arcane damage, plus your spell power, to a random enemy ally.',
   faction: 'arcane',
   restriction: { factions: ['arcane'], sides: ['dawn'] },
   rarity: 'common',
@@ -18,7 +18,7 @@ export default defineCard({
   attack: 3,
   health: 7,
   onPhaseStart(ctx) {
-    damageEnemyHero(ctx, 1)
+    damageRandomAlly(ctx, ctx.opponent, 1 + spellPowerOf(ctx, ctx.owner), 'arcane')
   },
   ai: { value: 3, tags: ['aggro'] },
   art: {

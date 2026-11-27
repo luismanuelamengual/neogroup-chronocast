@@ -1,15 +1,14 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageEnemyHero } from '@/app/(protected)/(engine)/effects'
+import { damageRandomAlly, isSpell } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'crystal-wisp',
   type: 'ally',
   name: 'Crystal Wisp',
-  text: 'At the start of each phase: deal 1 fire damage to the enemy hero.',
+  text: 'Channel: when you cast a spell, deal 1 fire damage to a random enemy ally.',
   faction: 'arcane',
   restriction: { factions: ['arcane'] },
   rarity: 'uncommon',
-  element: 'fire',
   resist: ['arcane'],
   weak: ['shadow'],
   price: 200,
@@ -18,8 +17,10 @@ export default defineCard({
   keywords: ['shield'],
   attack: 6,
   health: 10,
-  onPhaseStart(ctx) {
-    damageEnemyHero(ctx, 1)
+  onOwnerPlay(ctx, card) {
+    if (isSpell(card)) {
+      damageRandomAlly(ctx, ctx.opponent, 1, 'fire')
+    }
   },
   ai: { value: 5, tags: ['aggro'] },
   art: {

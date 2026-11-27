@@ -1,20 +1,24 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { destroyWeapon } from '@/app/(protected)/(engine)/effects'
+import { destroyWeapon, gainEnergy } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'map-of-the-long-road',
   type: 'item',
   name: 'Map of the Long Road',
-  text: 'Destroy the enemy weapon. Fast.',
+  text: 'Destroy the enemy weapon. Your hero gains 1 energy for each point of attack it had. Fast.',
   flavor: 'The roads move. The map moves with them.',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['eclipse'] },
   rarity: 'common',
   price: 70,
   cost: 5,
   speed: 'fast',
   onPlay(ctx) {
-    destroyWeapon(ctx, ctx.opponent)
+    const weapon = ctx.engine.player(ctx.opponent).hero.weapon
+
+    if (weapon && destroyWeapon(ctx, ctx.opponent)) {
+      gainEnergy(ctx, ctx.owner, weapon.attack)
+    }
   },
   ai: { value: 5, tags: ['antiGear'] },
   art: {

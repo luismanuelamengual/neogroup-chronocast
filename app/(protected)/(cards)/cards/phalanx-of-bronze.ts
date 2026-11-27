@@ -1,10 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { neighbors, unitAt } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'phalanx-of-bronze',
   type: 'ally',
   name: 'Phalanx of Bronze',
-  text: '',
+  text: 'Its attacks deal 2 more damage for each ally next to it.',
   flavor: 'One shield is a wall. Twelve are an empire.',
   faction: 'bronze',
   restriction: { factions: ['bronze'], sides: ['dawn'] },
@@ -14,6 +15,9 @@ export default defineCard({
   tribe: 'legionnaire',
   attack: 6,
   health: 9,
+  attackBonus(ctx, attacker) {
+    return unitAt(ctx, attacker)?.uid === ctx.self.uid ? 2 * neighbors(ctx).length : 0
+  },
   ai: { value: 4 },
   art: {
     subject:

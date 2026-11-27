@@ -9,7 +9,7 @@ export default defineCard({
   text: 'Your allies heal 4. Draw a card.',
   flavor: 'Every scar has a story worth telling.',
   faction: 'primal',
-  restriction: { factions: ['primal'], sides: ['dawn'] },
+  restriction: { factions: ['primal'] },
   rarity: 'common',
   price: 60,
   cost: 2,

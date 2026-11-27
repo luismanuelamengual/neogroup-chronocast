@@ -7,7 +7,7 @@ export default defineCard({
   name: 'Wandering Gust',
   text: 'When it enters: your hero heals 5. When it dies: draw a card.',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['dawn'] },
   rarity: 'legendary',
   element: 'wind',
   resist: ['wind'],

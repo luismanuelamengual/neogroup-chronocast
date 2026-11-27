@@ -1,22 +1,20 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageEnemyHero, freeze } from '@/app/(protected)/(engine)/effects'
+import { freeze } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'binding-of-the-pack',
   type: 'ability',
   subtype: 'spell',
   name: 'Binding of the Pack',
-  text: 'Freeze an enemy ally and deal 5 ice damage to the enemy hero.',
+  text: 'Freeze an enemy ally for 3 phases.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'], sides: ['eclipse'] },
+  restriction: { factions: ['arcane'] },
   rarity: 'uncommon',
-  element: 'ice',
   price: 200,
   cost: 5,
   targets: ['enemyAlly'],
   onPlay(ctx) {
-    freeze(ctx, ctx.targets[0])
-    damageEnemyHero(ctx, 5)
+    freeze(ctx, ctx.targets[0], 3)
   },
   ai: { value: 5, tags: ['aggro', 'removal'] },
   art: {

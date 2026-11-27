@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero, spendCharge } from '@/app/(protected)/(engine)/effects'
+import { buffAllies, spendCharge } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'blessed-idol',
   type: 'artifact',
   name: 'Blessed Idol',
-  text: 'At the start of each phase: your hero heals 3. (3 uses)',
+  text: 'At the start of each phase: your allies gain +1 health. (3 uses)',
   flavor: 'Touched by a thousand pilgrims.',
   faction: 'neutral',
   restriction: { sides: ['dawn'] },
@@ -14,7 +14,7 @@ export default defineCard({
   cost: 2,
   charges: 3,
   onPhaseStart(ctx) {
-    healHero(ctx, 3)
+    buffAllies(ctx, ctx.owner, 0, 1)
     spendCharge(ctx)
   },
   ai: { value: 2, tags: ['heal'] },

@@ -1,10 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { seekTribe } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'faithful-wanderer',
   type: 'ally',
   name: 'Faithful Wanderer',
-  text: '',
+  text: 'When it enters: draw the first Drifter of your deck.',
   flavor: 'Lost in time, never in purpose.',
   faction: 'neutral',
   restriction: {},
@@ -15,6 +16,9 @@ export default defineCard({
   keywords: ['ranged'],
   attack: 4,
   health: 9,
+  onEnter(ctx) {
+    seekTribe(ctx, ctx.owner, 'drifter')
+  },
   ai: { value: 3 },
   art: {
     subject:

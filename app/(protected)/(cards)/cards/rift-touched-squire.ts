@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { draw } from '@/app/(protected)/(engine)/effects'
+import { discardRandom } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'rift-touched-squire',
   type: 'ally',
   name: 'Rift-Touched Squire',
-  text: 'When it dies: draw a card.',
+  text: 'When it dies: the enemy discards a random card.',
   flavor: 'He serves a knight from another century.',
   faction: 'neutral',
   restriction: {},
@@ -17,7 +17,7 @@ export default defineCard({
   attack: 5,
   health: 6,
   onDeath(ctx) {
-    draw(ctx, ctx.owner, 1)
+    discardRandom(ctx, ctx.opponent)
   },
   ai: { value: 4, tags: ['draw'] },
   art: {

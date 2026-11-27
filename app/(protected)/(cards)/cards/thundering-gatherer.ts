@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { buffSelf } from '@/app/(protected)/(engine)/effects'
+import { draw } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'thundering-gatherer',
   type: 'ally',
   name: 'Thundering Gatherer',
-  text: 'When it enters: it gains +1 attack and +2 health.',
+  text: 'When a trap of yours goes off: draw a card.',
   faction: 'primal',
   restriction: { factions: ['primal'], sides: ['eclipse'] },
   rarity: 'common',
@@ -16,8 +16,8 @@ export default defineCard({
   keywords: ['charge'],
   attack: 6,
   health: 8,
-  onEnter(ctx) {
-    buffSelf(ctx, 1, 2)
+  onTrapTriggered(ctx) {
+    draw(ctx, ctx.owner, 1)
   },
   ai: { value: 5, tags: ['buff'] },
   art: {

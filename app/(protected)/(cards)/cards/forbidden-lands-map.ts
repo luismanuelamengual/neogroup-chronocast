@@ -9,7 +9,7 @@ export default defineCard({
   text: 'If the rival has as much Chronos capacity as you or more, it loses 1. Draw a card.',
   flavor: 'Here be monsters. Here be you.',
   faction: 'void',
-  restriction: { factions: ['void'], sides: ['eclipse'] },
+  restriction: { factions: ['void'] },
   rarity: 'uncommon',
   price: 160,
   cost: 3,

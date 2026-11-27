@@ -1,14 +1,14 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { heal, randomAlly, slotOf } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'restless-wanderer',
   type: 'ally',
   name: 'Restless Wanderer',
-  text: 'At the start of each phase: your hero heals 2.',
+  text: 'At the start of each phase: a random ally of yours heals 3.',
   flavor: 'Sleeping is for people with only one century.',
   faction: 'neutral',
-  restriction: {},
+  restriction: { sides: ['dawn'] },
   rarity: 'rare',
   price: 480,
   cost: 4,
@@ -16,7 +16,12 @@ export default defineCard({
   attack: 6,
   health: 7,
   onPhaseStart(ctx) {
-    healHero(ctx, 2)
+    const unit = randomAlly(ctx, ctx.owner)
+    const ref = unit ? slotOf(ctx, unit) : null
+
+    if (ref) {
+      heal(ctx, ref, 3)
+    }
   },
   ai: { value: 5, tags: ['heal'] },
   art: {

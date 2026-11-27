@@ -5,7 +5,7 @@ export default defineCard({
   id: 'wild-tyrant',
   type: 'ally',
   name: 'Wild Tyrant',
-  text: 'When it enters: summon a Sabertooth Cub.',
+  text: 'When it enters: summon a Raptor Hatchling.',
   flavor: 'The jungle trembles when it wakes.',
   faction: 'neutral',
   restriction: {},
@@ -17,7 +17,7 @@ export default defineCard({
   attack: 3,
   health: 7,
   onEnter(ctx) {
-    summonCard(ctx, ctx.owner, 'sabertooth-cub')
+    summonCard(ctx, ctx.owner, 'raptor-hatchling')
   },
   ai: { value: 3, tags: ['summon'] },
   art: {

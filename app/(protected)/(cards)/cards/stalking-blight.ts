@@ -1,21 +1,26 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { poison } from '@/app/(protected)/(engine)/effects'
+import { alliesOf, isCursed, poison, slotOf } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'stalking-blight',
   type: 'ability',
   subtype: 'ritual',
   name: 'Stalking Blight',
-  text: 'Poison an enemy ally (2).',
+  text: 'Poison every enemy ally that has a curse (3).',
   flavor: 'It follows you home.',
   faction: 'void',
-  restriction: { factions: ['void'], sides: ['eclipse'] },
+  restriction: { factions: ['void'] },
   rarity: 'uncommon',
   price: 120,
   cost: 1,
-  targets: ['enemyAlly'],
   onPlay(ctx) {
-    poison(ctx, ctx.targets[0], 2)
+    for (const unit of alliesOf(ctx, ctx.opponent)) {
+      const ref = slotOf(ctx, unit)
+
+      if (ref && isCursed(unit)) {
+        poison(ctx, ref, 3)
+      }
+    }
   },
   ai: { value: 1, tags: ['removal'] },
   art: {

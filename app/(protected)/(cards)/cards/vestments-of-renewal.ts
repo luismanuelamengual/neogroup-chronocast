@@ -1,12 +1,12 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healAllAllies } from '@/app/(protected)/(engine)/effects'
+import { buff, tribeAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'vestments-of-renewal',
   type: 'armor',
   subtype: 'robe',
   name: 'Vestments of Renewal',
-  text: 'When it is equipped: your allies heal 2.',
+  text: 'When it is equipped: your Fae gain +1 attack and +2 health.',
   flavor: 'Worn by healers who never sleep.',
   faction: 'arcane',
   restriction: { factions: ['arcane'], sides: ['dawn'] },
@@ -16,7 +16,9 @@ export default defineCard({
   armor: 1,
   durability: 4,
   onPlay(ctx) {
-    healAllAllies(ctx, ctx.owner, 2)
+    for (const unit of tribeAllies(ctx, ctx.owner, 'fae')) {
+      buff(ctx, unit, 1, 2)
+    }
   },
   ai: { value: 2 },
   art: {

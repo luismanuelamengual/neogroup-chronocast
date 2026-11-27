@@ -1,10 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
+import { freeze } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'ethereal-cockatrice',
   type: 'ally',
   name: 'Ethereal Cockatrice',
-  text: '',
+  text: 'When it attacks: freeze the ally it attacks.',
   flavor: 'Half there, fully dangerous.',
   faction: 'neutral',
   restriction: {},
@@ -17,6 +18,11 @@ export default defineCard({
   tribe: 'drake',
   attack: 7,
   health: 10,
+  onAttack(ctx, target) {
+    if (target.slot !== 'hero') {
+      freeze(ctx, target)
+    }
+  },
   ai: { value: 5 },
   art: {
     subject:

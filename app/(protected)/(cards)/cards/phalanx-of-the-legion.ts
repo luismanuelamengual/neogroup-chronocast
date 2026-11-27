@@ -1,11 +1,11 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { healHero } from '@/app/(protected)/(engine)/effects'
+import { healHero, tribeAllies } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'phalanx-of-the-legion',
   type: 'ally',
   name: 'Phalanx of the Legion',
-  text: 'When it enters: your hero heals 9.',
+  text: 'When it enters: your hero heals 3 for each Legionnaire of yours.',
   flavor: "The legion's spine, the enemy's wall.",
   faction: 'bronze',
   restriction: { factions: ['bronze'], sides: ['dawn'] },
@@ -17,7 +17,7 @@ export default defineCard({
   attack: 6,
   health: 14,
   onEnter(ctx) {
-    healHero(ctx, 9)
+    healHero(ctx, 3 * tribeAllies(ctx, ctx.owner, 'legionnaire').length)
   },
   ai: { value: 7, tags: ['defense'] },
   art: {

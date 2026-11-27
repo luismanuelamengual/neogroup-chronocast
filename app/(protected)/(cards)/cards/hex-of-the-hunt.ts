@@ -1,22 +1,23 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageEnemyHero, freeze } from '@/app/(protected)/(engine)/effects'
+import { alliesOf, damageAlly } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'hex-of-the-hunt',
   type: 'ability',
   subtype: 'spell',
   name: 'Hex of the Hunt',
-  text: 'Freeze an enemy ally and deal 3 arcane damage to the enemy hero.',
+  text: 'Deal 4 ice damage to every frozen enemy ally.',
   faction: 'arcane',
-  restriction: { factions: ['arcane'], sides: ['eclipse'] },
+  restriction: { factions: ['arcane'] },
   rarity: 'uncommon',
-  element: 'arcane',
   price: 160,
   cost: 3,
-  targets: ['enemyAlly'],
   onPlay(ctx) {
-    freeze(ctx, ctx.targets[0])
-    damageEnemyHero(ctx, 3)
+    for (const unit of alliesOf(ctx, ctx.opponent)) {
+      if ((unit.frozenUntilPhase ?? 0) >= ctx.engine.state.phase) {
+        damageAlly(ctx, unit, 4, 'ice')
+      }
+    }
   },
   ai: { value: 3, tags: ['aggro', 'removal'] },
   art: {

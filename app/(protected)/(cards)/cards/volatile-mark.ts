@@ -1,21 +1,20 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { damageAlly } from '@/app/(protected)/(engine)/effects'
+import { damageEnemyHero } from '@/app/(protected)/(engine)/effects'
 
 export default defineCard({
   id: 'volatile-mark',
   type: 'attachment',
   subtype: 'curse',
   name: 'Volatile Mark',
-  text: 'Attach to an enemy ally: each time it attacks, it takes 2 ice damage.',
+  text: 'Attach to an enemy ally: when it dies, deal 4 shadow damage to the enemy hero.',
   faction: 'void',
-  restriction: { factions: ['void'], sides: ['eclipse'] },
+  restriction: { factions: ['void'] },
   rarity: 'uncommon',
-  element: 'ice',
   price: 120,
   cost: 1,
   targets: ['enemyAlly'],
-  onHostAttack(ctx, host) {
-    damageAlly(ctx, host, 2)
+  onHostDeath(ctx) {
+    damageEnemyHero(ctx, 4, 'shadow')
   },
   ai: { value: 1, tags: ['removal'] },
   art: {

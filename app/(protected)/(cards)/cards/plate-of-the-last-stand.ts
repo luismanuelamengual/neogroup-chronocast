@@ -6,17 +6,19 @@ export default defineCard({
   type: 'armor',
   subtype: 'plate',
   name: 'Plate of the Last Stand',
-  text: 'When it is equipped: draw a card.',
+  text: 'When it is equipped: if your hero has a weapon, draw 2 cards.',
   flavor: 'Worn by those who will not take a step back.',
   faction: 'bronze',
-  restriction: { factions: ['bronze'], sides: ['dawn'] },
+  restriction: { factions: ['bronze'] },
   rarity: 'rare',
   price: 540,
   cost: 5,
   armor: 4,
   durability: 4,
   onPlay(ctx) {
-    draw(ctx, ctx.owner, 1)
+    if (ctx.engine.player(ctx.owner).hero.weapon) {
+      draw(ctx, ctx.owner, 2)
+    }
   },
   ai: { value: 6 },
   art: {
