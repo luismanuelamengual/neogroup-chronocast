@@ -297,6 +297,13 @@ describe('every card works in a match', () => {
       side.hand.push({ uid: state.nextUid++, cardId: 'faithful-wanderer' })
       side.deck.unshift({ uid: state.nextUid++, cardId: 'brazier-of-the-wanderer' })
 
+      // An enemy ally the ability can aim at (some only take cheap ones).
+      const enemy = state.players.b.allies[0]!
+
+      if (hero.ability?.allyFilter && !hero.ability.allyFilter(enemy)) {
+        enemy.cardId = 'faithful-wanderer'
+      }
+
       timeline[0] = {
         kind: 'heroAbility',
         targets: targetsFor(state, hero.ability?.targets),

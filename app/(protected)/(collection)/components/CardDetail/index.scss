@@ -8,6 +8,7 @@
   backdrop-filter: blur(3px);
 
   &__panel {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 18px;
@@ -17,6 +18,30 @@
     border-radius: var(--frame-radius);
     background: white;
     box-shadow: var(--frame-shadow);
+  }
+
+  &__x {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: 2px solid var(--color-outline);
+    border-radius: 50%;
+    background: white;
+    color: var(--color-text);
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  // The title never runs under the ✕.
+  &__x ~ &__info h2 {
+    padding-right: 26px;
   }
 
   &__card {

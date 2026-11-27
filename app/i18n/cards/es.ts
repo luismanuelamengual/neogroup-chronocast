@@ -574,9 +574,12 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'chancellor-brassmaw': {
     name: 'Canciller Bocabronce',
-    text: 'Decreto de Hierro (4): aturdí a un aliado enemigo y hacele 8 de daño de sónico. Al final de cada fase, tu héroe se cura 1 por cada artefacto tuyo (hasta 3).',
+    text: 'Contrato Forzoso (4): tomá el control de un aliado enemigo hasta el final de la próxima fase; después vuelve a su dueño. Cuando muere un aliado bajo contrato, ganás 2 de energía.',
     flavor: 'Es dueño de las fábricas, de la ciudad y de casi todos los relojes.',
-    ability: { name: 'Decreto de Hierro', text: 'Aturdí a un aliado enemigo y hacele 8 de daño de sónico.' }
+    ability: {
+      name: 'Contrato Forzoso',
+      text: 'Tomá el control de un aliado enemigo hasta el final de la próxima fase; después vuelve a su dueño.'
+    }
   },
   'charm-of-the-vanguard': {
     name: 'Dije de la Vanguardia',

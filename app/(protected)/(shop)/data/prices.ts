@@ -18,7 +18,7 @@ export const HERO_PRICES: Record<Rarity, number> = {
 }
 
 /** A card sells for this share of its price, rounded (docs/PLAN.md, section 11.3). */
-export const SELL_RATE = 0.3
+export const SELL_RATE = 0.5
 
 /** Most copies of a card bought at once. */
 export const MAX_BUY_COUNT = 10

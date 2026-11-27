@@ -210,16 +210,93 @@ describe("the heroes' abilities", () => {
     expect(next.players.b.hero.health).toBe(health - 7)
   })
 
-  it('Brassmaw heals 1 for each artifact of his at the end of the phase, up to 3', () => {
-    const state = match('chancellor-brassmaw')
+  it('Brassmaw takes control of an enemy ally: it attacks for him and goes back later', () => {
+    const state = match('chancellor-brassmaw', { b: ['faithful-wanderer'] })
+    const uid = state.players.b.allies[0]!.uid
+    const health = state.players.b.hero.health
+    const first = run(
+      state,
+      plan(
+        { kind: 'heroAbility', targets: [{ player: 'b', slot: 0 }] },
+        { kind: 'allyAttack', allyUid: uid, target: { player: 'b', slot: 'hero' } }
+      )
+    )
 
-    state.players.a.hero.health = 40
+    expect(first.fails).toEqual([])
+    expect(first.state.players.b.allies[0]).toBeNull()
+    expect(first.state.players.a.allies[0]).toMatchObject({ uid, contract: { owner: 'b', untilPhase: 2 } })
+    // It was ready, so it attacks for Brassmaw at once.
+    expect(first.state.players.b.hero.health).toBe(health - 4)
+    expect(first.state.players.a.energy).toBe(10 - 4 + 1)
 
-    for (let i = 0; i < 4; i++) {
-      state.players.a.artifacts.push(card(state, 'altar-of-lost-time'))
+    // Still his all of phase 2; back to its owner when phase 3 starts.
+    const second = run(first.state).state
+
+    expect(second.players.a.allies[0]).toBeNull()
+    expect(second.players.b.allies.find((unit) => unit?.uid === uid)).toBeDefined()
+    expect(second.players.b.allies.find((unit) => unit?.uid === uid)!.contract).toBeUndefined()
+  })
+
+  it('an ally whose contract ends with no free slot at home goes to its owner discard pile', () => {
+    const state = match('chancellor-brassmaw', { b: ['faithful-wanderer', 'hoplite-conscript'] })
+    const uid = state.players.b.allies[0]!.uid
+    const first = run(state, plan({ kind: 'heroAbility', targets: [{ player: 'b', slot: 0 }] })).state
+    const filler = first.players.b.allies.find(Boolean)!
+
+    // The owner fills its 5 slots in the meantime.
+    first.players.b.allies = first.players.b.allies.map(() => ({ ...structuredClone(filler), uid: first.nextUid++ }))
+
+    const second = run(first).state
+
+    expect(second.players.a.allies.some((unit) => unit?.uid === uid)).toBe(false)
+    expect(second.players.b.allies.some((unit) => unit?.uid === uid)).toBe(false)
+    expect(second.players.b.discard).toContainEqual(expect.objectContaining({ uid, defeated: true }))
+  })
+
+  it('an ally that dies under contract goes to its owner discard pile, and Brassmaw gains 2 energy', () => {
+    const state = match('chancellor-brassmaw', { b: ['faithful-wanderer'] })
+    const uid = state.players.b.allies[0]!.uid
+    const bolt = card(state, 'astral-bolt')
+
+    state.players.b.allies[0]!.health = 1
+    state.players.b.hand.push(bolt)
+    state.players.b.chronos = 10
+
+    const { state: next } = resolvePhase(state, {
+      a: plan({ kind: 'heroAbility', targets: [{ player: 'b', slot: 0 }] }),
+      // The owner shoots it once it is on Brassmaw's side.
+      b: plan({ kind: 'wait' }, { kind: 'play', cardUid: bolt.uid, targets: [{ player: 'a', slot: 0 }] })
+    })
+
+    expect(next.players.a.allies.some((unit) => unit?.uid === uid)).toBe(false)
+    expect(next.players.a.discard.some((entry) => entry.uid === uid)).toBe(false)
+    expect(next.players.b.discard).toContainEqual(expect.objectContaining({ uid, defeated: true }))
+    expect(next.players.a.energy).toBe(10 - 4 + 2 + 1)
+  })
+
+  it('Brassmaw can take an enemy ally of any cost, but not with no free slot', () => {
+    const pricey = match('chancellor-brassmaw', { b: ['drake-of-the-tower'] })
+    const taken = run(pricey, plan({ kind: 'heroAbility', targets: [{ player: 'b', slot: 0 }] }))
+
+    expect(taken.fails).toEqual([])
+    expect(taken.state.players.b.allies[0]).toBeNull()
+    expect(taken.state.players.a.allies[0]).toMatchObject({ cardId: 'drake-of-the-tower', contract: { owner: 'b' } })
+
+    const full = match('chancellor-brassmaw', {
+      a: ['hoplite-conscript', 'hoplite-conscript', 'hoplite-conscript', 'hoplite-conscript', 'hoplite-conscript'],
+      b: ['faithful-wanderer']
+    })
+
+    expect(run(full, plan({ kind: 'heroAbility', targets: [{ player: 'b', slot: 0 }] })).fails).toEqual(['slotsFull'])
+  })
+
+  it('the computer aims Forced Contract at the strongest enemy ally, whatever it costs', () => {
+    const state = match('chancellor-brassmaw', { b: ['faithful-wanderer', 'drake-of-the-tower'] })
+    const abilities = planTimeline(state, 'a').filter((action) => action.kind === 'heroAbility')
+
+    for (const action of abilities) {
+      expect(action.kind === 'heroAbility' && action.targets).toEqual([{ player: 'b', slot: 1 }])
     }
-
-    expect(run(state).state.players.a.hero.health).toBe(43)
   })
 
   it("Vex's Enhanced allies (with an implant) are quick", () => {

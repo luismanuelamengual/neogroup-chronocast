@@ -57,6 +57,11 @@ export interface Unit extends Afflictions {
   /** It can't act while the phase is not past this one. */
   stunnedUntilPhase: number
   echoUsed: boolean
+  /**
+   * Under contract: an enemy hero took control of it (it is on that hero's side) while the phase is not past
+   * `untilPhase`; then it goes back to `owner`. Its cards (and its own, when it dies) go to `owner`'s piles.
+   */
+  contract?: { owner: PlayerId; untilPhase: number }
   /** Cards attached to the ally (shown under it; discarded when it leaves the board). */
   attachments?: CardInstance[]
   /**

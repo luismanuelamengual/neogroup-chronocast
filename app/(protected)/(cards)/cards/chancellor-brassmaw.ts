@@ -1,11 +1,14 @@
 import { defineCard } from '@/app/(protected)/(cards)/utils/defineCard'
-import { artifactCount, damage, healHero, stunAt } from '@/app/(protected)/(engine)/effects'
+import { gainEnergy, takeControl, unitAt } from '@/app/(protected)/(engine)/effects'
+
+/** The energy he gains when an ally under contract dies. */
+const ENERGY_ON_DEATH = 2
 
 export default defineCard({
   id: 'chancellor-brassmaw',
   type: 'hero',
   name: 'Chancellor Brassmaw',
-  text: 'Iron Decree (4): stun an enemy ally and deal 8 sonic damage to it. At the end of each phase, your hero heals 1 for each artifact of yours (up to 3).',
+  text: 'Forced Contract (4): take control of an enemy ally until the end of the next phase; then it goes back to its owner. When an ally under contract dies, gain 2 energy.',
   flavor: 'He owns the factories, the city and most of the clocks.',
   faction: 'clockwork',
   side: 'eclipse',
@@ -15,17 +18,26 @@ export default defineCard({
   cost: 0,
   health: 65,
   ability: {
-    name: 'Iron Decree',
-    text: 'Stun an enemy ally and deal 8 sonic damage to it.',
+    name: 'Forced Contract',
+    text: 'Take control of an enemy ally until the end of the next phase; then it goes back to its owner.',
     cost: 4,
     targets: ['enemyAlly'],
+    ai: { tags: ['removal'] },
+    canActivate(ctx) {
+      if (!unitAt(ctx, ctx.targets[0])) {
+        return 'invalidTarget'
+      }
+
+      return ctx.engine.freeSlots(ctx.owner).length > 0 ? null : 'slotsFull'
+    },
     activate(ctx) {
-      stunAt(ctx, ctx.targets[0])
-      damage(ctx, ctx.targets[0], 8)
+      takeControl(ctx, ctx.targets[0])
     }
   },
-  onPhaseEnd(ctx) {
-    healHero(ctx, Math.min(3, artifactCount(ctx)))
+  onOwnAllyDeath(ctx, unit) {
+    if (unit.contract) {
+      gainEnergy(ctx, ctx.owner, ENERGY_ON_DEATH)
+    }
   },
   ai: { value: 0 },
   art: {

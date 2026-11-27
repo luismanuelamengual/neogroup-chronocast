@@ -23,6 +23,7 @@ import { attackLines, heavyHeroHit, refKey, slotEffects } from '@/app/(protected
 import { KEYWORD_ICONS } from '@/app/(protected)/(battle)/utils/icons'
 import { projectPlan, usedCards } from '@/app/(protected)/(battle)/utils/projection'
 import {
+  abilityRefs,
   allyAbility,
   artifactAbility,
   attackRefs,
@@ -328,9 +329,10 @@ export default function BattleScreen({
 
       case 'hero': {
         if (selection.ability) {
-          const kind = heroCard(board, me).ability?.targets?.[selection.ability.length]
+          const heroAbility = heroCard(board, me).ability
+          const kind = heroAbility?.targets?.[selection.ability.length]
 
-          return kind ? valid('target', refsFor(board, me, kind)) : NO_HIGHLIGHTS
+          return kind && heroAbility ? valid('target', abilityRefs(board, me, heroAbility, kind)) : NO_HIGHLIGHTS
         }
 
         return valid('attack', attackRefs(board, me))
@@ -453,6 +455,10 @@ export default function BattleScreen({
 
     if (unit.tempAttack) {
       notes.push(t('battle.statusNotes.tempAttack', { amount: signed(unit.tempAttack) }))
+    }
+
+    if (unit.contract) {
+      notes.push(t('battle.statusNotes.contract', { until: until(unit.contract.untilPhase) }))
     }
 
     if (unit.veil) {
@@ -886,7 +892,12 @@ export default function BattleScreen({
           disabledReason: reason(
             energyShort(ability, true) ??
               (ability.targets?.length
-                ? firstWorking(aim, refsFor(board, me, ability.targets[0]), 'target', noTarget(ability.targets[0]))
+                ? firstWorking(
+                    aim,
+                    abilityRefs(board, me, ability, ability.targets[0]),
+                    'target',
+                    noTarget(ability.targets[0])
+                  )
                 : store.check(direct))
           ),
           onClick: () => (ability.targets?.length ? choose(aim) : choose(null, direct))
@@ -1489,6 +1500,7 @@ function UnitCard({ unit, width, phase }: { unit: Unit; width: number; phase: nu
       </span>
       {(stunned || fresh) && !frozen && <span className="battle-screen__status">{stunned ? '💫' : '💤'}</span>}
       <StatusBadges subject={unit} phase={phase} prey={!!unit.prey && unit.prey.untilPhase >= phase} />
+      {unit.contract && <span className="battle-screen__contract">📜</span>}
     </MiniCard>
   )
 }

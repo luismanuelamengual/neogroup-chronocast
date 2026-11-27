@@ -50,14 +50,6 @@
     font-size: 0.9rem;
   }
 
-  &__price {
-    padding: 0 10px;
-    border: 2px solid var(--color-outline);
-    border-radius: 999px;
-    background: var(--color-gold-light);
-    font-size: 0.95rem;
-  }
-
   // A rarity the player's level has not opened: blurred, with the level that opens it.
   &__card--locked {
     cursor: default;
@@ -68,10 +60,6 @@
 
     &:hover .single-shop__zoom {
       transform: none;
-    }
-
-    .single-shop__price {
-      opacity: 0.7;
     }
   }
 
@@ -103,15 +91,105 @@
     }
   }
 
-  &__owned-hero {
-    color: var(--color-lime-dark) !important;
-    font-weight: 800;
+  &__owned--none {
+    background: var(--color-panel-border, #ddd);
+    opacity: 0.8;
   }
 
-  &__buy {
+  // The filters and, at the right, the small quick sell button.
+  &__bar {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+
+    > .card-filters {
+      flex: 1 1 auto;
+    }
+  }
+
+  &__quick {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-self: stretch;
+    margin: 8px 0 0;
+  }
+
+  // Buy above sell, full width of the panel and big enough for a thumb.
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__why {
+    font-size: 0.8rem;
+  }
+
+  &__confirm {
     display: flex;
     flex-direction: column;
     gap: 6px;
     margin: 6px 0;
+    padding: 8px 10px;
+    border-radius: 10px;
+    background: var(--color-peach);
+
+    p {
+      color: var(--color-magenta-dark) !important;
+    }
+
+    > div {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+  }
+
+  // The quick sell confirmation: what it sells and for how much.
+  &__dialog {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    display: grid;
+    place-items: center;
+    background: rgba(43, 35, 80, 0.35);
+    backdrop-filter: blur(3px);
+  }
+
+  &__dialog-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-width: min(420px, 92vw);
+    padding: 14px 18px;
+    border: var(--frame-border);
+    border-radius: var(--frame-radius);
+    background: white;
+    box-shadow: var(--frame-shadow);
+
+    h2 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+    }
+
+    p {
+      margin: 0;
+      color: var(--color-text-secondary);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    > div {
+      display: flex;
+      gap: 6px;
+      margin-top: 4px;
+    }
   }
 }

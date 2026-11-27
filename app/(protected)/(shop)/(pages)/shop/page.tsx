@@ -6,7 +6,7 @@ import { getShopState } from '@/app/(protected)/(shop)/services/shop'
 import { getT } from '@/app/i18n/server'
 import { User } from '@/app/models/User'
 
-const TABS: ShopTab[] = ['packs', 'cards', 'sell']
+const TABS: ShopTab[] = ['packs', 'cards']
 
 export async function generateMetadata(): Promise<Metadata> {
   return { title: (await getT())('metadata.shop') }
@@ -21,7 +21,8 @@ export default async function ShopPage({ searchParams }: { searchParams: Promise
     redirect('/welcome')
   }
 
-  return (
-    <ShopView initial={await getShopState(userId)} tab={TABS.includes(tab as ShopTab) ? (tab as ShopTab) : 'packs'} />
-  )
+  // The old sell tab now lives in the cards one.
+  const initialTab = tab === 'sell' ? 'cards' : TABS.includes(tab as ShopTab) ? (tab as ShopTab) : 'packs'
+
+  return <ShopView initial={await getShopState(userId)} tab={initialTab} />
 }

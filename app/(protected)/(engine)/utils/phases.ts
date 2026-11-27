@@ -14,6 +14,7 @@ export function startPhase(engine: MatchEngine): void {
   state.step = -1
   engine.emit({ type: 'phaseStart', phase: state.phase })
   engine.expireBoons()
+  engine.endContracts()
 
   for (const id of PLAYER_IDS) {
     const player = engine.player(id)

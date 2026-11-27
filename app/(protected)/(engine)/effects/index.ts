@@ -171,6 +171,13 @@ export function reviveFromDiscard(ctx: EffectContext, player: PlayerId): Unit | 
   return ctx.engine.summon(player, card)
 }
 
+/** Takes control of an enemy ally until the end of the next phase (a contract). False when it can't. */
+export function takeControl(ctx: EffectContext, target: SlotRef | undefined, phases = 1): boolean {
+  const unit = target ? unitAt(ctx, target) : null
+
+  return !!unit && ctx.engine.takeControl(ctx.owner, unit.uid, phases)
+}
+
 /** Returns an ally to its owner's hand. */
 export function returnToHand(ctx: EffectContext, unit: Unit): void {
   const found = ctx.engine.findUnit(unit.uid)
@@ -179,10 +186,14 @@ export function returnToHand(ctx: EffectContext, unit: Unit): void {
     return
   }
 
+  // An ally under contract goes back to its owner's hand.
+  const owner = found.unit.contract?.owner ?? found.player
+
   ctx.engine.player(found.player).allies[found.slot] = null
-  ctx.engine.dropAttachments(found.player, found.unit, false)
-  ctx.engine.addToHand(found.player, { uid: unit.uid, cardId: unit.cardId })
-  ctx.engine.emit({ type: 'returnToHand', player: found.player, cardId: unit.cardId })
+  delete found.unit.contract
+  ctx.engine.dropAttachments(owner, found.unit, false)
+  ctx.engine.addToHand(owner, { uid: unit.uid, cardId: unit.cardId })
+  ctx.engine.emit({ type: 'returnToHand', player: owner, cardId: unit.cardId })
 }
 
 /** The card of an ally on the board (its faction, type, keywords...). */

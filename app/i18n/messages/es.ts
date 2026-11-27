@@ -617,6 +617,7 @@ export const es = {
       boon_allyDiscount: '💰 Los aliados cuestan {amount} Cronos menos {until}',
       veil: '👁️ Oculto: Sigilo y +{amount} de ataque {until}',
       veilStealth: '👁️ Oculto: Sigilo (no se pierde al atacar) {until}',
+      contract: '📜 Bajo contrato {until}: después vuelve a su dueño',
       heroVeil: '👁️ Oculto: no puede ser atacado ni elegido como objetivo por el rival {until}',
       fallen: '💀 Cayó: llegó a 0 de vida'
     },
@@ -746,7 +747,7 @@ export const es = {
     title: 'Tienda',
     back: 'Menú',
     gold: 'Tu oro',
-    tabs: { packs: 'Sobres', cards: 'Cartas', sell: 'Vender' },
+    tabs: { packs: 'Sobres', cards: 'Cartas' },
     packNames: {
       traveler: 'Sobre del Viajero',
       chronicler: 'Sobre del Cronista',
@@ -787,7 +788,9 @@ export const es = {
       lockedLevel: 'Se desbloquea en nivel {level}',
       bought: { one: 'Compraste {card}', other: 'Compraste {count} copias de {card}' },
       heroOwned: 'Ya tenés este héroe',
-      empty: 'Ninguna carta a la venta coincide con los filtros.'
+      notForSale: 'La tienda no vende esta carta',
+      noGold: 'No te alcanza el oro',
+      empty: 'Ninguna carta coincide con los filtros.'
     },
     sell: {
       quick: 'Venta rápida',
@@ -797,20 +800,18 @@ export const es = {
         one: 'Vendés {count} carta por {gold} de oro.',
         other: 'Vendés {count} cartas por {gold} de oro.'
       },
-      quickNothing: 'No tenés copias de sobra.',
-      quickButton: 'Vender las de sobra',
       confirm: 'Sí, vender',
       cancel: 'Cancelar',
       sellOne: 'Vender',
-      sellExtra: 'Vender las {count} de sobra por {gold}',
       confirmValuable: 'Es una carta {rarity}. ¿Seguro que la querés vender?',
       freeCopies: {
         one: 'Podés vender {count} copia: las demás están en tu mazo activo.',
         other: 'Podés vender {count} copias: las demás están en tu mazo activo.'
       },
       sold: { one: 'Vendiste {count} carta por {gold} de oro', other: 'Vendiste {count} cartas por {gold} de oro' },
-      price: 'Se vende a {gold}',
-      empty: 'No tenés cartas para vender.'
+      notSellable: 'Esta carta no se puede vender',
+      noneOwned: 'No tenés copias para vender',
+      allInDeck: 'Todas tus copias están en el mazo activo'
     }
   },
   lobby: {

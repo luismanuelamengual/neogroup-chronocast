@@ -197,10 +197,10 @@ describe('drawing a pack', () => {
 })
 
 describe('prices and selling', () => {
-  it('sells a card for 30 % of its price, rounded', () => {
-    expect(sellPrice({ ...FAKE[0], price: 60 })).toBe(18)
-    expect(sellPrice({ ...FAKE[0], price: 45 })).toBe(14)
-    expect(sellPrice({ ...FAKE[0], price: 5000 })).toBe(1500)
+  it('sells a card for half its price, rounded', () => {
+    expect(sellPrice({ ...FAKE[0], price: 60 })).toBe(30)
+    expect(sellPrice({ ...FAKE[0], price: 45 })).toBe(23)
+    expect(sellPrice({ ...FAKE[0], price: 5000 })).toBe(2500)
   })
 
   it('prices the heroes by rarity, dearer the rarer', () => {

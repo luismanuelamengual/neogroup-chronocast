@@ -35,6 +35,11 @@ export interface ActiveAbility {
   canActivate?(ctx: EffectContext): FailReason | null
   /** Hints for the AI, like the ones of a card (`heal`, `removal`, `revive`, `buffAll`...): when using it is worth it. */
   ai?: { tags?: string[] }
+  /**
+   * The allies it can aim at, when it takes some (`canActivate` refuses the rest): the AI and the battle screen
+   * only offer these.
+   */
+  allyFilter?(unit: Unit): boolean
   /** It is a spell (a hero's ability that is one): its damage adds the owner's spell power. */
   spell?: boolean
   /** Consume X: banishes X cards of the owner's discard pile when it is used (it can't be used without them). */

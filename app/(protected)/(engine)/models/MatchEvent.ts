@@ -95,4 +95,8 @@ export type MatchEvent =
   /** A card of the hand discarded by an effect. */
   | { type: 'discard'; player: PlayerId; cardId: string }
   | { type: 'veil'; player: PlayerId; attack: number; untilPhase: number }
+  /** `player` took control of an ally of `from` (now in `slot` of `player`) until the end of `untilPhase`. */
+  | { type: 'contract'; player: PlayerId; from: PlayerId; cardId: string; slot: number; untilPhase: number }
+  /** A contract ended: the ally went back to `owner` (in `slot`), or to its discard pile with no free slot. */
+  | { type: 'contractEnd'; owner: PlayerId; cardId: string; slot: number | null }
   | { type: 'end'; winner: PlayerId | null; reason: string }

@@ -9,22 +9,20 @@ import { playSfx } from '@/app/(protected)/(art)/utils/sound'
 import GoldAmount from '@/app/(protected)/(shop)/components/GoldAmount'
 import PackOpening, { OpenedPack } from '@/app/(protected)/(shop)/components/PackOpening'
 import PackShop from '@/app/(protected)/(shop)/components/PackShop'
-import SellShop from '@/app/(protected)/(shop)/components/SellShop'
 import SingleShop from '@/app/(protected)/(shop)/components/SingleShop'
 import { ShopState } from '@/app/(protected)/(shop)/models/ShopState'
 import GameButton from '@/app/components/GameButton'
 import { useT } from '@/app/i18n/I18nProvider'
 
-export type ShopTab = 'packs' | 'cards' | 'sell'
+export type ShopTab = 'packs' | 'cards'
 
 const TABS: { key: ShopTab; icon: string }[] = [
   { key: 'packs', icon: '🎁' },
-  { key: 'cards', icon: '🃏' },
-  { key: 'sell', icon: '💰' }
+  { key: 'cards', icon: '🃏' }
 ]
 
 /**
- * The shop (/shop, docs/PLAN.md section 11): packs, single cards and selling,
+ * The shop (/shop, docs/PLAN.md section 11): packs, and single cards to buy and sell,
  * with the player's gold always in sight. Every purchase or sale answers with
  * the shop updated.
  */
@@ -71,7 +69,6 @@ export default function ShopView({ initial, tab: initialTab }: { initial: ShopSt
       </header>
       {tab === 'packs' && <PackShop state={state} onChange={setState} onOpened={setOpened} />}
       {tab === 'cards' && <SingleShop state={state} onChange={setState} />}
-      {tab === 'sell' && <SellShop state={state} onChange={setState} />}
       {opened && (
         <PackOpening
           key={opened.key}

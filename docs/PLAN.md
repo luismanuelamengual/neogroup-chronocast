@@ -596,7 +596,7 @@ Cada batalla que el servidor verifica da **XP**; la XP sube el **nivel** del jug
 
 ## 11. Tienda
 
-Módulo `(shop)`, con tres pestañas: **Sobres**, **Cartas** y **Vender**. Precios y probabilidades en `(shop)/data/` (un solo lugar para ajustar).
+Módulo `(shop)`, con dos pestañas: **Sobres** y **Cartas** (en Cartas se compra y se vende). Precios y probabilidades en `(shop)/data/` (un solo lugar para ajustar).
 
 ### 11.1 Sobres (8 cartas)
 
@@ -630,13 +630,13 @@ Módulo `(shop)`, con tres pestañas: **Sobres**, **Cartas** y **Vender**. Preci
 
 - No se paga nada por desbloquear: alcanza con llegar al nivel. Los sobres pueden traer cualquier rareza a cualquier nivel.
 - También se venden los héroes jugables (no los jefes), uno por jugador, al precio de su rareza (columna "Héroe"; hoy solo hay héroes comunes, poco comunes, épicos y legendarios: 3 por rareza); su rareza también tiene que estar desbloqueada. No salen en sobres ni se venden.
-- La pestaña Cartas muestra **todo** el catálogo a la venta con filtros (facción, bando, tipo, costo, rareza, "usables con mi héroe"): primero las rarezas desbloqueadas y después las bloqueadas, difuminadas y con un candado que dice "Se desbloquea en nivel X". Las bloqueadas son un misterio: no se pueden abrir en detalle (están bien difuminadas) y la búsqueda por nombre o texto no las encuentra.
+- La pestaña Cartas muestra **todo** el catálogo a la venta con filtros (facción, bando, tipo, costo, rareza, "usables con mi héroe"): primero las rarezas desbloqueadas y después las bloqueadas, difuminadas y con un candado que dice "Se desbloquea en nivel X". Las bloqueadas son un misterio: no se pueden abrir en detalle (están bien difuminadas) y la búsqueda por nombre o texto no las encuentra, salvo que el jugador ya tenga copias (de un sobre): entonces se ve normal, pero no se puede comprar hasta desbloquear su rareza. Cada carta muestra cuántas copias tiene el jugador, sin precio; al tocarla aparecen los botones Comprar y Vender, deshabilitados (con el motivo) cuando no se puede.
 - Las cartas premio de las campañas no se venden sueltas.
 
-### 11.3 Vender
+### 11.3 Vender (dentro de la pestaña Cartas)
 
-- **Precio de venta**: el 30 % del precio de esa carta, redondeado (una común de 60 se vende a 18). Pide confirmación si es de épica para arriba. Las copias que usa el mazo activo no se pueden vender: solo las de sobra, para que el mazo activo siga jugable.
-- **Venta rápida**: un botón vende todas las copias que pasan de 4 de cada carta (de 1 si es `unique`), muestra el total antes de confirmar y nunca toca una carta que deje un mazo guardado sin completar.
+- **Precio de venta**: el 50 % del precio de esa carta, redondeado (una común de 60 se vende a 30). Pide confirmación si es de épica para arriba. Las copias que usa el mazo activo no se pueden vender: solo las de sobra, para que el mazo activo siga jugable.
+- **Venta rápida**: un botón chico arriba de la pestaña Cartas vende todas las copias que pasan de 4 de cada carta (de 1 si es `unique`), muestra el total antes de confirmar y nunca toca una carta que deje un mazo guardado sin completar.
 
 ---
 

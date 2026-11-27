@@ -623,6 +623,8 @@ export class MatchEngine {
         state.allies[slot] = null
         this.emit({ type: 'death', player, cardId: unit.cardId, slot })
 
+        // The hooks run for the side that controls it; its cards go to its owner's piles (a contract).
+        const home = unit.contract?.owner ?? player
         const rival = opponentOf(player)
 
         for (const card of this.inPlay(rival)) {
@@ -633,14 +635,14 @@ export class MatchEngine {
           getCard(card.cardId).onOwnAllyDeath?.(this.context(player, card), unit)
         }
 
-        this.dropAttachments(player, unit)
+        this.dropAttachments(home, unit)
         getCard(unit.cardId).onDeath?.(this.context(player, unit), unit)
 
         if (this.hasKeyword(unit, 'echo') && !unit.echoUsed) {
-          this.addToHand(player, { uid: this.newUid(), cardId: unit.cardId, echoUsed: true })
-          this.emit({ type: 'returnToHand', player, cardId: unit.cardId })
+          this.addToHand(home, { uid: this.newUid(), cardId: unit.cardId, echoUsed: true })
+          this.emit({ type: 'returnToHand', player: home, cardId: unit.cardId })
         } else {
-          state.discard.push({ uid: unit.uid, cardId: unit.cardId, defeated: true })
+          this.player(home).discard.push({ uid: unit.uid, cardId: unit.cardId, defeated: true })
         }
       }
     }
@@ -1168,6 +1170,73 @@ export class MatchEngine {
       }
 
       delete side.discardAtPhaseEnd
+    }
+  }
+
+  /**
+   * Takes control of an enemy ally until the end of the next phase (a contract): it moves to a free slot of
+   * `player` as it is (attachments, damage, readiness). False when it isn't an enemy ally or there is no room.
+   */
+  takeControl(player: PlayerId, uid: number, phases = 1): boolean {
+    const found = this.findUnit(uid)
+    const free = this.freeSlots(player)
+
+    if (!found || found.player === player || free.length === 0) {
+      return false
+    }
+
+    const owner = found.unit.contract?.owner ?? found.player
+
+    this.player(found.player).allies[found.slot] = null
+    this.player(player).allies[free[0]] = found.unit
+
+    if (owner === player) {
+      // Taking back one of its own: no contract.
+      delete found.unit.contract
+    } else {
+      found.unit.contract = { owner, untilPhase: this.state.phase + phases }
+    }
+
+    this.emit({
+      type: 'contract',
+      player,
+      from: found.player,
+      cardId: found.unit.cardId,
+      slot: free[0],
+      untilPhase: this.state.phase + phases
+    })
+
+    return true
+  }
+
+  /** The contracts that are past end (at the start of a phase): the allies go back to their owners. */
+  endContracts(): void {
+    for (const id of PLAYER_IDS) {
+      const side = this.player(id)
+
+      for (let slot = 0; slot < ALLY_SLOTS; slot++) {
+        const unit = side.allies[slot]
+
+        if (!unit?.contract || unit.contract.untilPhase >= this.state.phase) {
+          continue
+        }
+
+        const owner = unit.contract.owner
+        const free = this.freeSlots(owner)
+
+        side.allies[slot] = null
+        delete unit.contract
+
+        if (free.length > 0) {
+          this.player(owner).allies[free[0]] = unit
+          this.emit({ type: 'contractEnd', owner, cardId: unit.cardId, slot: free[0] })
+        } else {
+          // No room at home: it is lost (to its owner's discard pile, as defeated; no "when it dies").
+          this.dropAttachments(owner, unit, false)
+          this.player(owner).discard.push({ uid: unit.uid, cardId: unit.cardId, defeated: true })
+          this.emit({ type: 'contractEnd', owner, cardId: unit.cardId, slot: null })
+        }
+      }
     }
   }
 

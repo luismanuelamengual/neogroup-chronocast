@@ -58,6 +58,22 @@ export function refsFor(state: MatchState, player: PlayerId, kind: TargetKind): 
   }
 }
 
+/** The targets of an ability for a target kind: `refsFor`, keeping only the allies its `allyFilter` takes. */
+export function abilityRefs(state: MatchState, player: PlayerId, ability: ActiveAbility, kind: TargetKind): SlotRef[] {
+  const refs = refsFor(state, player, kind)
+  const filter = ability.allyFilter
+
+  if (!filter) {
+    return refs
+  }
+
+  return refs.filter((ref) => {
+    const unit = typeof ref.slot === 'number' ? state.players[ref.player].allies[ref.slot] : null
+
+    return !unit || filter(unit)
+  })
+}
+
 /** Where an attack can be aimed: the enemy hero or any enemy slot (an empty one too: its ally may move there). */
 export function attackRefs(state: MatchState, player: PlayerId): SlotRef[] {
   return refsFor(state, player, 'enemySlot')

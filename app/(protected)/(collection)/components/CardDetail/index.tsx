@@ -15,10 +15,12 @@ interface CardDetailProps {
   onClose: () => void
   /** Extra actions (buy, sell...), above the close button. */
   children?: ReactNode
+  /** Close with a small ✕ at the top right corner instead of a button at the bottom. */
+  cornerClose?: boolean
 }
 
 /** A card in big, with how many the player owns and who can use it. */
-export default function CardDetail({ cardId, owned, onClose, children }: CardDetailProps) {
+export default function CardDetail({ cardId, owned, onClose, children, cornerClose }: CardDetailProps) {
   const t = useT()
   const cardName = useCardName()
   const card = getCard(cardId)
@@ -26,6 +28,11 @@ export default function CardDetail({ cardId, owned, onClose, children }: CardDet
   return (
     <div className="card-detail" onClick={onClose}>
       <div className="card-detail__panel" onClick={(event) => event.stopPropagation()}>
+        {cornerClose && (
+          <button type="button" className="card-detail__x" aria-label={t('common.close')} onClick={onClose}>
+            ✕
+          </button>
+        )}
         <div className="card-detail__card">
           <CardView card={card} />
         </div>
@@ -40,9 +47,11 @@ export default function CardDetail({ cardId, owned, onClose, children }: CardDet
           <h3>{t('collection.whoCanUse')}</h3>
           <p>{card.type === 'hero' ? '—' : restrictionText(card, t)}</p>
           {children}
-          <GameButton color="secondary" size="small" onClick={onClose}>
-            {t('common.close')}
-          </GameButton>
+          {!cornerClose && (
+            <GameButton color="secondary" size="small" onClick={onClose}>
+              {t('common.close')}
+            </GameButton>
+          )}
         </div>
       </div>
     </div>

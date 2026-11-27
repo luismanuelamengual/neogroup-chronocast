@@ -612,6 +612,7 @@ export const en: Messages = {
       boon_allyDiscount: '💰 Allies cost {amount} Chronos less {until}',
       veil: '👁️ Hidden: stealth and +{amount} attack {until}',
       veilStealth: '👁️ Hidden: stealth (attacking does not break it) {until}',
+      contract: '📜 Under contract {until}: then it goes back to its owner',
       heroVeil: '👁️ Hidden: the rival can not attack it nor target it {until}',
       fallen: '💀 Fallen: reached 0 health'
     },
@@ -741,7 +742,7 @@ export const en: Messages = {
     title: 'Shop',
     back: 'Menu',
     gold: 'Your gold',
-    tabs: { packs: 'Packs', cards: 'Cards', sell: 'Sell' },
+    tabs: { packs: 'Packs', cards: 'Cards' },
     packNames: {
       traveler: 'Traveler Pack',
       chronicler: 'Chronicler Pack',
@@ -782,7 +783,9 @@ export const en: Messages = {
       lockedLevel: 'Unlocks at level {level}',
       bought: { one: 'You bought {card}', other: 'You bought {count} copies of {card}' },
       heroOwned: 'You already have this hero',
-      empty: 'No card for sale matches the filters.'
+      notForSale: 'The shop does not sell this card',
+      noGold: 'You do not have enough gold',
+      empty: 'No card matches the filters.'
     },
     sell: {
       quick: 'Quick sell',
@@ -792,20 +795,18 @@ export const en: Messages = {
         one: 'You sell {count} card for {gold} gold.',
         other: 'You sell {count} cards for {gold} gold.'
       },
-      quickNothing: 'You have no spare copies.',
-      quickButton: 'Sell the spare ones',
       confirm: 'Yes, sell',
       cancel: 'Cancel',
       sellOne: 'Sell',
-      sellExtra: 'Sell the {count} spare for {gold}',
       confirmValuable: 'It is a {rarity} card. Are you sure you want to sell it?',
       freeCopies: {
         one: 'You can sell {count} copy: the rest are in your active deck.',
         other: 'You can sell {count} copies: the rest are in your active deck.'
       },
       sold: { one: 'You sold {count} card for {gold} gold', other: 'You sold {count} cards for {gold} gold' },
-      price: 'Sells for {gold}',
-      empty: 'You have no cards to sell.'
+      notSellable: 'This card cannot be sold',
+      noneOwned: 'You have no copies to sell',
+      allInDeck: 'Every copy is in your active deck'
     }
   },
   lobby: {

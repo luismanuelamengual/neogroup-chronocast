@@ -111,7 +111,7 @@ export function planTimeline(state: MatchState, player: PlayerId, style: PlanSty
       !side.hero.abilityUsedThisPhase &&
       worthCasting(state, player, heroAbility)
     ) {
-      const targets = chooseTargets(state, player, heroAbility.targets ?? [])
+      const targets = chooseTargets(state, player, heroAbility.targets ?? [], heroAbility.allyFilter)
       const cardId = heroAbility.choice ? chooseFromDeck(state, player) : undefined
 
       if (targets && (!heroAbility.choice || cardId) && tryAdd({ kind: 'heroAbility', targets, cardId })) {
@@ -405,13 +405,18 @@ function worthCasting(
 }
 
 /** Targets for a card or ability: the strongest enemy ally, or the enemy hero. */
-function chooseTargets(state: MatchState, player: PlayerId, kinds: TargetKind[]): SlotRef[] | null {
+function chooseTargets(
+  state: MatchState,
+  player: PlayerId,
+  kinds: TargetKind[],
+  allyFilter: (unit: Unit) => boolean = () => true
+): SlotRef[] | null {
   const enemy = opponentOf(player)
   const targets: SlotRef[] = []
 
   for (const kind of kinds) {
-    const enemies = allyRefs(state, enemy).filter(({ unit }) => !unit.keywords.includes('stealth'))
-    const friends = allyRefs(state, player)
+    const enemies = allyRefs(state, enemy).filter(({ unit }) => !unit.keywords.includes('stealth') && allyFilter(unit))
+    const friends = allyRefs(state, player).filter(({ unit }) => allyFilter(unit))
 
     switch (kind) {
       case 'enemyAlly':
