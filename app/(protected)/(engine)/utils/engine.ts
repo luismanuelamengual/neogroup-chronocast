@@ -199,6 +199,13 @@ export class MatchEngine {
     return Math.max(0, unit.attack + unit.tempAttack + veilAttack(this.state, unit))
   }
 
+  /** The hero of a side is hidden (stealth from its ability): enemy attacks and targeted effects can't aim at it. */
+  isHeroHidden(player: PlayerId): boolean {
+    const veil = this.player(player).hero.veil
+
+    return !!veil && veil.untilPhase >= this.state.phase
+  }
+
   /** Hidden by a hero's ability (a veil that gave it stealth) that still lasts: attacking doesn't reveal it. */
   isVeiled(unit: Unit): boolean {
     return !!unit.veil?.stealth && unit.veil.untilPhase >= this.state.phase
@@ -508,6 +515,8 @@ export class MatchEngine {
       case 'sonic':
         if (unit) {
           unit.keywords = unit.keywords.filter((keyword) => keyword !== 'stealth')
+        } else if (target.slot === 'hero') {
+          delete this.player(target.player).hero.veil
         }
 
         break
@@ -1094,8 +1103,12 @@ export class MatchEngine {
   }
 
   /** The allies of a side gain `stealth` and +`attack` until the end of the phase `phases` phases from now. */
-  veilAllies(player: PlayerId, attack: number, phases = 1): void {
+  veilAllies(player: PlayerId, attack: number, phases = 1, hero = false): void {
     const untilPhase = this.state.phase + phases
+
+    if (hero) {
+      this.player(player).hero.veil = { untilPhase }
+    }
 
     for (const unit of this.allies(player)) {
       const stealth = !unit.keywords.includes('stealth')
@@ -1140,6 +1153,10 @@ export class MatchEngine {
 
       if (side.boons) {
         side.boons = side.boons.filter((boon) => boon.untilPhase >= this.state.phase)
+      }
+
+      if (side.hero.veil && side.hero.veil.untilPhase < this.state.phase) {
+        delete side.hero.veil
       }
 
       for (const unit of this.allies(id)) {

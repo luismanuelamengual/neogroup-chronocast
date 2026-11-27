@@ -746,9 +746,12 @@ export function playArtifactFromDeck(ctx: EffectContext, player: PlayerId, cardI
   return ctx.engine.playArtifactFromDeck(player, cardId)
 }
 
-/** The allies of a side gain `stealth` and +`attack` until the end of the next phase. */
-export function veilAllies(ctx: EffectContext, player: PlayerId, attack: number): void {
-  ctx.engine.veilAllies(player, attack)
+/**
+ * The allies of a side gain `stealth` and +`attack` for the rest of this phase and `phases` more (attacking
+ * doesn't break it); with `hero`, its hero is hidden too.
+ */
+export function veilAllies(ctx: EffectContext, player: PlayerId, attack: number, phases = 1, hero = false): void {
+  ctx.engine.veilAllies(player, attack, phases, hero)
 }
 
 /** A lasting effect on a whole side until the end of the next phase (`guard`, `empower`, `allyDiscount`). */

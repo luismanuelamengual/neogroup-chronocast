@@ -616,6 +616,8 @@ export const es = {
       boon_empower: '💥 Hace {amount} de daño más al rival {until}',
       boon_allyDiscount: '💰 Los aliados cuestan {amount} Cronos menos {until}',
       veil: '👁️ Oculto: Sigilo y +{amount} de ataque {until}',
+      veilStealth: '👁️ Oculto: Sigilo (no se pierde al atacar) {until}',
+      heroVeil: '👁️ Oculto: no puede ser atacado ni elegido como objetivo por el rival {until}',
       fallen: '💀 Cayó: llegó a 0 de vida'
     },
     attachedPick: {

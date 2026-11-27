@@ -13,6 +13,13 @@ function hidden(unit: Unit | null): boolean {
   return !!unit && unit.keywords.includes('stealth')
 }
 
+/** A hero hidden by its ability: the rival can't attack it nor target it. */
+function heroHidden(state: MatchState, player: PlayerId): boolean {
+  const veil = state.players[player].hero.veil
+
+  return !!veil && veil.untilPhase >= state.phase
+}
+
 /** The same place of the board (whatever attached card each one points to). */
 export function sameRef(a: SlotRef, b: SlotRef): boolean {
   return a.player === b.player && a.slot === b.slot
@@ -31,7 +38,7 @@ export function refsFor(state: MatchState, player: PlayerId, kind: TargetKind): 
   switch (kind) {
     case 'enemySlot':
       return [
-        { player: enemy, slot: 'hero' },
+        ...(heroHidden(state, enemy) ? [] : [{ player: enemy, slot: 'hero' } as SlotRef]),
         ...SLOTS.filter((slot) => !hidden(enemyAllies[slot])).map((slot) => ({ player: enemy, slot }))
       ]
     case 'enemyAlly':

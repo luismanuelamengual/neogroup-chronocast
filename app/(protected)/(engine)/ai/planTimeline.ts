@@ -248,40 +248,38 @@ export function planTimeline(state: MatchState, player: PlayerId, style: PlanSty
     }
   }
 
-  // 5. Attacks: the ready allies (the ones that didn't use their ability) and the hero's weapon.
-  const enemyHero: SlotRef = { player: opponentOf(player), slot: 'hero' }
+  // 5. Attacks: the ready allies (the ones that didn't use their ability) and the hero's weapon. A hidden
+  // enemy hero can't be attacked: then they only go for its allies (or hold).
+  const enemyHero: SlotRef | null = heroHidden(state, opponentOf(player))
+    ? null
+    : { player: opponentOf(player), slot: 'hero' }
 
   if (style.attack !== 'none') {
     for (const unit of ready.filter((candidate) => !acted.has(candidate.uid)).sort((a, b) => b.attack - a.attack)) {
       const target =
-        style.attack === 'face'
-          ? enemyHero
-          : chooseAttackTarget(
-              state,
-              player,
-              unit.attack + unit.tempAttack,
-              unit.health,
-              unit.keywords.includes('ranged')
-            )
+        (style.attack === 'face' ? enemyHero : null) ??
+        chooseAttackTarget(state, player, unit.attack + unit.tempAttack, unit.health, unit.keywords.includes('ranged'))
 
-      tryAdd({ kind: 'allyAttack', allyUid: unit.uid, target })
+      if (target) {
+        tryAdd({ kind: 'allyAttack', allyUid: unit.uid, target })
+      }
     }
 
     if (side.hero.weapon && !side.hero.attackedThisPhase) {
-      tryAdd({
-        kind: 'heroAttack',
-        target:
-          style.attack === 'face'
-            ? enemyHero
-            : chooseAttackTarget(
-                state,
-                player,
-                side.hero.weapon.attack,
-                side.hero.health,
-                (getCard(side.hero.weapon.card.cardId).keywords ?? []).includes('ranged') ||
-                  isRangedWeapon(getCard(side.hero.weapon.card.cardId))
-              )
-      })
+      const target =
+        (style.attack === 'face' ? enemyHero : null) ??
+        chooseAttackTarget(
+          state,
+          player,
+          side.hero.weapon.attack,
+          side.hero.health,
+          (getCard(side.hero.weapon.card.cardId).keywords ?? []).includes('ranged') ||
+            isRangedWeapon(getCard(side.hero.weapon.card.cardId))
+        )
+
+      if (target) {
+        tryAdd({ kind: 'heroAttack', target })
+      }
     }
   }
 
@@ -427,7 +425,7 @@ function chooseTargets(state: MatchState, player: PlayerId, kinds: TargetKind[])
         // then (when there are not enough) the empty slots.
         const options: SlotRef[] = [
           ...enemies.sort((a, b) => b.unit.attack - a.unit.attack).map(({ ref }) => ref),
-          { player: enemy, slot: 'hero' },
+          ...(heroHidden(state, enemy) ? [] : [{ player: enemy, slot: 'hero' } as SlotRef]),
           ...emptySlots(state, enemy)
         ]
         const free = options.find(
@@ -515,7 +513,7 @@ function chooseAttackTarget(
   attack: number,
   health: number,
   ranged: boolean
-): SlotRef {
+): SlotRef | null {
   const enemy = opponentOf(player)
   const strikesBack = (unit: Unit) => !ranged && unit.keywords.includes('retaliate')
   const kills = allyRefs(state, enemy)
@@ -523,7 +521,28 @@ function chooseAttackTarget(
     .filter(({ unit }) => unit.health <= attack && !unit.shield && (!strikesBack(unit) || unit.attack < health))
     .sort((a, b) => b.unit.attack - a.unit.attack)
 
-  return kills[0]?.ref ?? { player: enemy, slot: 'hero' }
+  if (kills[0]) {
+    return kills[0].ref
+  }
+
+  if (!heroHidden(state, enemy)) {
+    return { player: enemy, slot: 'hero' }
+  }
+
+  // The hero is hidden: the strongest ally it can hit (if any).
+  const reachable = allyRefs(state, enemy)
+    .filter(({ unit }) => !unit.keywords.includes('stealth') && (ranged || !unit.keywords.includes('flying')))
+    .filter(({ unit }) => !strikesBack(unit) || unit.attack < health)
+    .sort((a, b) => b.unit.attack - a.unit.attack)
+
+  return reachable[0]?.ref ?? null
+}
+
+/** The hero of a side is hidden by its ability (it can't be attacked nor targeted). */
+function heroHidden(state: MatchState, player: PlayerId): boolean {
+  const veil = state.players[player].hero.veil
+
+  return !!veil && veil.untilPhase >= state.phase
 }
 
 /**

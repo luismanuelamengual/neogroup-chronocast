@@ -1,6 +1,7 @@
 import '@/app/(protected)/(cards)/utils/catalog'
 import { describe, expect, it } from 'vitest'
 import { STARTER_HERO_IDS, starterDeck } from '@/app/(protected)/(cards)/data/starters'
+import { planTimeline } from '@/app/(protected)/(engine)/ai/planTimeline'
 import { MatchState } from '@/app/(protected)/(engine)/models/MatchState'
 import { emptyTimeline, PlannedAction, Timeline } from '@/app/(protected)/(engine)/models/PlannedAction'
 import { createMatch } from '@/app/(protected)/(engine)/utils/createMatch'
@@ -311,42 +312,84 @@ describe("the heroes' abilities", () => {
     expect(next.players.a.energy).toBe(10)
   })
 
-  it("Vex's allies gain stealth and +2 attack until the end of the next phase", () => {
-    const state = match('vex-nightwire', { a: ['spark-of-dusk'] })
-    const first = run(state, plan(ability())).state
-    const unit = () => first.players.a.allies[0]!
+  it('Vex hides his hero and his allies until the end of the phase: the rival can not attack them nor target them', () => {
+    const state = match('vex-nightwire', { a: ['spark-of-dusk'], b: ['faithful-wanderer'] })
+    const [first, second] = [card(state, 'astral-bolt'), card(state, 'astral-bolt')]
 
-    expect(unit().keywords).toContain('stealth')
-    expect(unit().veil).toMatchObject({ attack: 2 })
+    state.players.b.hand.push(first, second)
+    state.players.b.chronos = 10
 
-    // Used in phase 1, it lasts all of phase 2 and ends when phase 3 starts.
-    expect(first.phase).toBe(2)
+    const health = state.players.a.hero.health
+    const result = resolvePhase(state, {
+      a: plan(ability()),
+      b: plan(
+        { kind: 'wait' },
+        { kind: 'allyAttack', allyUid: state.players.b.allies[0]!.uid, target: { player: 'a', slot: 'hero' } },
+        { kind: 'play', cardUid: first.uid, targets: [{ player: 'a', slot: 'hero' }] },
+        { kind: 'play', cardUid: second.uid, targets: [{ player: 'a', slot: 0 }] }
+      )
+    })
+    const fails = result.events.flatMap((event) => (event.type === 'fail' ? [event.reason] : []))
 
-    const second = run(first).state
-
-    expect(second.players.a.allies[0]!.keywords).not.toContain('stealth')
-    expect(second.players.a.allies[0]!.veil).toBeUndefined()
+    expect(result.events.some((event) => event.type === 'miss')).toBe(true)
+    expect(fails).toEqual(['invalidTarget', 'invalidTarget'])
+    expect(result.state.players.a.hero.health).toBe(health)
+    expect(result.state.players.a.energy).toBe(10 - 3 + 1)
+    // It ends with the phase: no +attack, nothing left for the next one.
+    expect(result.state.players.a.hero.veil).toBeUndefined()
+    expect(result.state.players.a.allies[0]!.keywords).not.toContain('stealth')
+    expect(result.state.players.a.allies[0]!.veil).toBeUndefined()
   })
 
   it("the stealth of Vex's Ghost Protocol isn't lost by attacking, but sonic damage still breaks it", () => {
     const state = match('vex-nightwire', { a: ['spark-of-dusk'] })
     const ally = state.players.a.allies[0]!
-    const {
-      state: next,
-      events,
-      fails
-    } = run(state, plan(ability(), { kind: 'allyAttack', allyUid: ally.uid, target: { player: 'b', slot: 'hero' } }))
+    const bolt = card(state, 'astral-bolt')
 
-    expect(fails).toEqual([])
-    expect(events.some((event) => event.type === 'attack')).toBe(true)
-    // It attacked in phase 1 and stays hidden for phase 2.
-    expect(next.players.a.allies[0]!.keywords).toContain('stealth')
+    state.players.b.hand.push(bolt)
+    state.players.b.chronos = 10
 
-    const engine = new MatchEngine(next)
+    const result = resolvePhase(state, {
+      a: plan(ability(), { kind: 'allyAttack', allyUid: ally.uid, target: { player: 'b', slot: 'hero' } }),
+      // After the attack, the ally is still hidden.
+      b: plan(
+        { kind: 'wait' },
+        { kind: 'wait' },
+        { kind: 'play', cardUid: bolt.uid, targets: [{ player: 'a', slot: 0 }] }
+      )
+    })
 
-    engine.damageUnit(next.players.a.allies[0]!.uid, 1, { player: 'b', element: 'sonic' })
+    expect(result.events.some((event) => event.type === 'attack')).toBe(true)
+    expect(result.events.flatMap((event) => (event.type === 'fail' ? [event.reason] : []))).toEqual(['invalidTarget'])
+
+    const hidden = match('vex-nightwire', { a: ['spark-of-dusk'] })
+    const unit = hidden.players.a.allies[0]!
+
+    hidden.players.a.hero.veil = { untilPhase: hidden.phase }
+    unit.keywords.push('stealth')
+    unit.veil = { attack: 0, stealth: true, untilPhase: hidden.phase }
+
+    const engine = new MatchEngine(hidden)
+
+    engine.damageHero('a', 1, { player: 'b', element: 'sonic' })
+    engine.damageUnit(unit.uid, 1, { player: 'b', element: 'sonic' })
     engine.flush()
-    expect(next.players.a.allies[0]!.keywords).not.toContain('stealth')
+    expect(hidden.players.a.hero.veil).toBeUndefined()
+    expect(unit.keywords).not.toContain('stealth')
+  })
+
+  it("the computer doesn't aim at a hidden hero nor at hidden allies (it holds)", () => {
+    const state = match('ada-copperwick', { a: ['faithful-wanderer'], b: ['spark-of-dusk'] })
+
+    state.players.b.hero.veil = { untilPhase: state.phase }
+    state.players.b.allies[0]!.keywords.push('stealth')
+
+    const timeline = planTimeline(state, 'a')
+    const aimed = timeline.flatMap((action) =>
+      'target' in action ? [action.target] : 'targets' in action ? (action.targets ?? []) : []
+    )
+
+    expect(aimed.filter((ref) => ref.player === 'b' && (ref.slot === 'hero' || ref.slot === 0))).toEqual([])
   })
 
   it("Varro's allies take 2 less damage and his side deals 2 more, until the end of the next phase", () => {

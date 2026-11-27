@@ -102,6 +102,11 @@ export interface HeroState extends Afflictions {
   abilityUsedThisPhase: boolean
   /** Reached 0 health during the current step. */
   fallen: boolean
+  /**
+   * A hero's ability hid it (stealth) while the phase is not past `untilPhase`: enemy attacks and enemy
+   * targeted cards and abilities can't aim at it (sonic damage breaks it).
+   */
+  veil?: { untilPhase: number }
 }
 
 export interface PlayerState {

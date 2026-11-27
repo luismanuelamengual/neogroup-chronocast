@@ -611,6 +611,8 @@ export const en: Messages = {
       boon_empower: '💥 Deals {amount} more damage to the rival {until}',
       boon_allyDiscount: '💰 Allies cost {amount} Chronos less {until}',
       veil: '👁️ Hidden: stealth and +{amount} attack {until}',
+      veilStealth: '👁️ Hidden: stealth (attacking does not break it) {until}',
+      heroVeil: '👁️ Hidden: the rival can not attack it nor target it {until}',
       fallen: '💀 Fallen: reached 0 health'
     },
     attachedPick: {

@@ -222,7 +222,9 @@ function validTargets(engine: MatchEngine, player: PlayerId, kinds: TargetKind[]
 
     const enemy = target.player !== player
     const unit = engine.targetUnit(target)
-    const hidden = !!unit && engine.hasKeyword(unit, 'stealth')
+    const hidden = unit
+      ? engine.hasKeyword(unit, 'stealth')
+      : target.slot === 'hero' && enemy && engine.isHeroHidden(target.player)
 
     switch (kind) {
       case 'enemySlot':
@@ -502,6 +504,14 @@ interface Striker {
  */
 function strike(engine: MatchEngine, striker: Striker, target: SlotRef): void {
   const enemy = target.player
+
+  // A hidden hero can't be attacked (not even through its guardian).
+  if (target.slot === 'hero' && engine.isHeroHidden(enemy)) {
+    engine.emit({ type: 'miss', attacker: striker.ref, target })
+
+    return
+  }
+
   const guardian = target.slot === 'hero' && !striker.ranged ? engine.guardianOf(enemy) : null
   const aimed: SlotRef = guardian == null ? target : { player: enemy, slot: guardian }
   const source = {

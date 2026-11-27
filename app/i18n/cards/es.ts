@@ -2804,11 +2804,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'vex-nightwire': {
     name: 'Vex Nightwire',
-    text: 'Protocolo Fantasma (4): tus aliados ganan Sigilo y +2 de ataque hasta el final de la próxima fase (no pierden el Sigilo al atacar). Tus aliados Mejorados (con un implante) son Rápidos.',
+    text: 'Protocolo Fantasma (3): tu héroe y tus aliados ganan Sigilo (el rival no puede atacarlos ni elegirlos como objetivo) hasta el final de esta fase; atacar no lo rompe. Tus aliados Mejorados (con un implante) son Rápidos.',
     flavor: 'Caza blancos que nadie más puede encontrar.',
     ability: {
       name: 'Protocolo Fantasma',
-      text: 'Tus aliados ganan Sigilo y +2 de ataque hasta el final de la próxima fase (no pierden el Sigilo al atacar).'
+      text: 'Tu héroe y tus aliados ganan Sigilo (el rival no puede atacarlos ni elegirlos como objetivo) hasta el final de esta fase; atacar no lo rompe.'
     }
   },
   'vexs-sling': {

@@ -456,7 +456,11 @@ export default function BattleScreen({
     }
 
     if (unit.veil) {
-      notes.push(t('battle.statusNotes.veil', { amount: unit.veil.attack, until: until(unit.veil.untilPhase) }))
+      notes.push(
+        unit.veil.attack > 0
+          ? t('battle.statusNotes.veil', { amount: unit.veil.attack, until: until(unit.veil.untilPhase) })
+          : t('battle.statusNotes.veilStealth', { until: until(unit.veil.untilPhase) })
+      )
     }
 
     if (unit.prey && unit.prey.untilPhase >= board.phase) {
@@ -520,6 +524,10 @@ export default function BattleScreen({
       `❤️ ${Math.max(0, hero.health)}/${hero.maxHealth} · ⚡ ${board.players[player].energy ?? 0}`,
       ...afflictionNotes(hero)
     ]
+
+    if (hero.veil && hero.veil.untilPhase >= board.phase) {
+      notes.push(t('battle.statusNotes.heroVeil', { until: until(hero.veil.untilPhase) }))
+    }
 
     if (hero.weapon) {
       notes.push(
@@ -1082,6 +1090,12 @@ export default function BattleScreen({
             width={metrics.hero}
             className={classNames({ fallen: hero.fallen, frozen: (hero.frozenUntilPhase ?? 0) >= board.phase })}
           >
+            {hero.veil && hero.veil.untilPhase >= board.phase && (
+              // The same stealth mark as the allies'.
+              <span className="battle-screen__keywords">
+                <span>{KEYWORD_ICONS.stealth}</span>
+              </span>
+            )}
             {hero.weapon && (
               <>
                 <span className="battle-screen__badge attack big">{hero.weapon.attack}</span>
