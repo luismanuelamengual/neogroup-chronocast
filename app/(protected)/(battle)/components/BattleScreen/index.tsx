@@ -893,6 +893,39 @@ export default function BattleScreen({
         })
       }
     }
+
+    // The abilities of the hero's weapon and armor (they work like an artifact's).
+    if (planning && spot.player === me) {
+      for (const gear of [hero.weapon?.card, hero.armor?.card]) {
+        const gearAbility = gear ? getCard(gear.cardId).ability : undefined
+
+        if (!gear || !gearAbility) {
+          continue
+        }
+
+        const aim: Selection = { kind: 'artifact', uid: gear.uid, ability: [] }
+        const direct: PlannedAction = { kind: 'artifactAbility', artifactUid: gear.uid, targets: [] }
+
+        spotActions.push({
+          label: `${cardName(gear.cardId)} · ${abilityLabel(gearAbility, false)}`,
+          color: 'secondary',
+          disabledReason: reason(
+            gear.abilityUsedThisPhase
+              ? 'abilityUsed'
+              : (energyShort(gearAbility, false) ??
+                  (gearAbility.targets?.length
+                    ? firstWorking(
+                        aim,
+                        refsFor(board, me, gearAbility.targets[0]),
+                        'target',
+                        noTarget(gearAbility.targets[0])
+                      )
+                    : store.check(direct)))
+          ),
+          onClick: () => (gearAbility.targets?.length ? choose(aim) : choose(null, direct))
+        })
+      }
+    }
   } else if (spot?.kind === 'artifact') {
     const artifact = (board.players[spot.player].artifacts ?? []).find((candidate) => candidate.uid === spot.uid)
     const ability = artifact ? getCard(artifact.cardId).ability : undefined

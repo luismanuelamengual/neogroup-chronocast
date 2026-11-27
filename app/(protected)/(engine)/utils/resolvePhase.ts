@@ -117,6 +117,15 @@ export function resolvePhase(
       engine.dispatch(id, 'onPhaseEnd')
     }
 
+    // The allies doomed this phase die now.
+    for (const id of PLAYER_IDS) {
+      for (const unit of engine.allies(id)) {
+        if (unit.doomed) {
+          engine.destroy(unit.uid)
+        }
+      }
+    }
+
     engine.flush()
     engine.checkVictory()
   }
@@ -180,7 +189,7 @@ export function actionSpeed(engine: MatchEngine, player: PlayerId, action: Plann
     }
 
     case 'artifactAbility': {
-      const artifact = engine.player(player).artifacts.find((card) => card.uid === action.artifactUid)
+      const artifact = abilityCard(engine, player, action.artifactUid)
 
       return (artifact && getCard(artifact.cardId).ability?.speed) || 'normal'
     }
@@ -430,6 +439,14 @@ function playCard(
         return 'invalidTarget'
       }
 
+      // A ward on the ally keeps the rival's attachments away.
+      if (
+        target.player !== player &&
+        (host.attachments ?? []).some((attachment) => getCard(attachment.cardId).wardsAttachments)
+      ) {
+        return 'invalidTarget'
+      }
+
       pay()
       host.attachments = [...(host.attachments ?? []), { uid: card.uid, cardId: card.cardId, owner: player }]
 
@@ -518,12 +535,19 @@ function strike(engine: MatchEngine, striker: Striker, target: SlotRef): void {
     player: striker.ref.player,
     poison: striker.poison,
     lifesteal: striker.lifesteal,
-    element: striker.element
+    element: striker.element,
+    attack: true,
+    attackerUid: striker.unitUid
   }
-  const hitAttacker = (amount: number, element?: Element) =>
+  const hitAttacker = (amount: number, defenderUid: number, element?: Element) =>
     striker.unitUid == null
-      ? engine.damageHero(striker.ref.player, amount, { player: enemy, element })
-      : engine.damageUnit(striker.unitUid, amount, { player: enemy, element })
+      ? engine.damageHero(striker.ref.player, amount, {
+          player: enemy,
+          element,
+          attack: true,
+          attackerUid: defenderUid
+        })
+      : engine.damageUnit(striker.unitUid, amount, { player: enemy, element, attack: true, attackerUid: defenderUid })
   const bonus = engine.attackBonus(striker.ref, aimed)
 
   if (aimed.slot === 'hero') {
@@ -554,11 +578,11 @@ function strike(engine: MatchEngine, striker: Striker, target: SlotRef): void {
   engine.damageUnit(unit.uid, striker.amount + bonus + prey, source)
 
   if (!striker.ranged && engine.hasKeyword(unit, 'retaliate')) {
-    hitAttacker(engine.attackOf(unit), getCard(unit.cardId).element)
+    hitAttacker(engine.attackOf(unit), unit.uid, getCard(unit.cardId).element)
   }
 
   if (unit.thorns > 0 && engine.hasKeyword(unit, 'thorns')) {
-    hitAttacker(unit.thorns)
+    hitAttacker(unit.thorns, unit.uid, getCard(unit.cardId).thornsElement)
   }
 
   if (striker.cleave) {
@@ -623,7 +647,7 @@ function allyAttack(engine: MatchEngine, player: PlayerId, uid: number, target: 
   }
 
   // Attacking reveals it, unless its stealth comes from a veil that still lasts (Vex's Ghost Protocol).
-  if (!engine.isVeiled(unit)) {
+  if (!engine.isVeiled(unit) && !getCard(unit.cardId).persistentStealth) {
     unit.keywords = unit.keywords.filter((keyword) => keyword !== 'stealth')
   }
 
@@ -825,6 +849,16 @@ function allyAbility(engine: MatchEngine, player: PlayerId, uid: number, targets
   return null
 }
 
+/** A card in play whose ability the player can use like an artifact's: an artifact, or the hero's weapon or armor. */
+function abilityCard(engine: MatchEngine, player: PlayerId, uid: number): CardInstance | undefined {
+  const side = engine.player(player)
+
+  return (
+    side.artifacts.find((card) => card.uid === uid) ??
+    [side.hero.weapon?.card, side.hero.armor?.card].find((card) => card?.uid === uid)
+  )
+}
+
 /**
  * The ability of an artifact in play: once per phase, paid with Chronos (or
  * energy with `resource: 'energy'`). Artifacts can't be stunned or silenced,
@@ -832,7 +866,7 @@ function allyAbility(engine: MatchEngine, player: PlayerId, uid: number, targets
  */
 function artifactAbility(engine: MatchEngine, player: PlayerId, uid: number, targets: SlotRef[]): FailReason | null {
   const side = engine.player(player)
-  const artifact = side.artifacts.find((card) => card.uid === uid)
+  const artifact = abilityCard(engine, player, uid)
 
   if (!artifact) {
     return 'noCard'

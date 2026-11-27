@@ -218,8 +218,10 @@ export function planTimeline(state: MatchState, player: PlayerId, style: PlanSty
   // 4b. Artifact abilities: they don't take an ally's attack, so each one that is worth it now is used.
   if (style.ability) {
     const engine = new MatchEngine(state)
+    // The hero's weapon and armor with an ability are used the same way.
+    const gear = [side.hero.weapon?.card, side.hero.armor?.card].filter((card) => card != null)
 
-    for (const artifact of side.artifacts ?? []) {
+    for (const artifact of [...(side.artifacts ?? []), ...gear]) {
       const ability = getCard(artifact.cardId).ability
       const paidWithEnergy = ability?.resource === 'energy'
 

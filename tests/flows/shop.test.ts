@@ -165,7 +165,7 @@ describe('the shop', () => {
 
     const used = (await getShopState(ana)).deckUsage
     const inDeck = Object.keys(used).find((id) => id !== VARRO && used[id] === 3)!
-    const free = CARDS.find((card) => card.type !== 'hero' && !used[card.id])!
+    const free = CARDS.find((card) => card.type !== 'hero' && !used[card.id] && copyLimit(card) >= 4)!
 
     // 3 in the deck + 3 more: the playset of 4 stays, the other 2 go.
     await addCards(ana, { [inDeck]: 3, [free.id]: 6 })

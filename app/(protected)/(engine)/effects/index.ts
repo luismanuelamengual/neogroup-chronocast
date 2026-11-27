@@ -975,3 +975,208 @@ export function grantKeyword(ctx: EffectContext, unit: Unit, keyword: Keyword): 
     unit.shield = true
   }
 }
+
+// ─── Disarm, lost keywords, killers, the discard pile back to play, robbing the rival ─────
+
+/** An ally can't attack until the end of the phase `phases` phases from now (0: this one). It can still use its ability. */
+export function disarmAt(ctx: EffectContext, target: SlotRef | undefined, phases = 1): boolean {
+  const unit = target ? unitAt(ctx, target) : null
+
+  if (!unit) {
+    return false
+  }
+
+  disarmAlly(ctx, unit, phases)
+
+  return true
+}
+
+/** See `disarmAt`. */
+export function disarmAlly(ctx: EffectContext, unit: Unit, phases = 1): void {
+  const found = ctx.engine.findUnit(unit.uid)
+
+  unit.disarmedUntilPhase = Math.max(unit.disarmedUntilPhase ?? 0, ctx.engine.state.phase + phases)
+
+  if (found) {
+    ctx.engine.emit({ type: 'stun', target: { player: found.player, slot: found.slot } })
+  }
+}
+
+/** Every ally on the board, of both sides, can't attack until the end of the phase `phases` phases from now. */
+export function disarmEveryAlly(ctx: EffectContext, phases = 1): void {
+  for (const player of PLAYER_IDS) {
+    for (const unit of alliesOf(ctx, player)) {
+      disarmAlly(ctx, unit, phases)
+    }
+  }
+}
+
+/** An ally loses some keywords until the end of the phase `phases` phases from now (0: this one). */
+export function suppressKeywordsAt(
+  ctx: EffectContext,
+  target: SlotRef | undefined,
+  keywords: Keyword[],
+  phases = 0
+): boolean {
+  const unit = target ? unitAt(ctx, target) : null
+
+  if (!unit) {
+    return false
+  }
+
+  unit.suppressed = { keywords, untilPhase: ctx.engine.state.phase + phases }
+
+  return true
+}
+
+/** Who killed an ally that just died (null: nothing is known, e.g. a status effect). */
+export function killerOf(unit: Unit): Unit['killedBy'] | null {
+  return unit.killedBy ?? null
+}
+
+/** The ally that dealt a damage, when the source says so (null: the hero, an effect, or it is gone). */
+export function attackerOf(
+  ctx: EffectContext,
+  source: { attackerUid?: number | null } | undefined
+): { player: PlayerId; slot: number; unit: Unit } | null {
+  return source?.attackerUid != null ? ctx.engine.findUnit(source.attackerUid) : null
+}
+
+/** The ally dies at the end of the current phase. */
+export function doom(ctx: EffectContext, unit: Unit): void {
+  unit.doomed = true
+}
+
+/** The allies of a discard pile (tokens never come back), from the last one that got there. */
+function discardAllies(
+  ctx: EffectContext,
+  player: PlayerId,
+  matches: (card: CardDefinition) => boolean
+): CardInstance[] {
+  return ctx.engine
+    .player(player)
+    .discard.filter((card) => {
+      const definition = getCard(card.cardId)
+
+      return definition.type === 'ally' && !definition.token && matches(definition)
+    })
+    .reverse()
+}
+
+/**
+ * Allies of the discard pile go back to the deck: on top of it (the next draws), or shuffled into it. `count`
+ * of them, from the last one that got to the pile ('all': every one). Returns how many went.
+ */
+export function alliesToDeck(
+  ctx: EffectContext,
+  player: PlayerId,
+  count: number | 'all',
+  where: 'top' | 'shuffle',
+  matches: (card: CardDefinition) => boolean = () => true
+): number {
+  const side = ctx.engine.player(player)
+  const chosen = discardAllies(ctx, player, matches).slice(0, count === 'all' ? undefined : count)
+
+  if (chosen.length === 0) {
+    return 0
+  }
+
+  const uids = new Set(chosen.map((card) => card.uid))
+
+  side.discard = side.discard.filter((card) => !uids.has(card.uid))
+
+  // The top of the deck is the end of the array: the last ally of the pile ends up on top.
+  for (const card of [...chosen].reverse()) {
+    side.deck.push({ uid: card.uid, cardId: card.cardId })
+  }
+
+  if (where === 'shuffle') {
+    ctx.engine.shuffle(side.deck)
+  }
+
+  return chosen.length
+}
+
+/** The last `count` allies of the discard pile go back to the hand. Returns how many came back. */
+export function alliesToHand(ctx: EffectContext, player: PlayerId, count: number): number {
+  const side = ctx.engine.player(player)
+  const chosen = discardAllies(ctx, player, () => true).slice(0, count)
+
+  for (const card of chosen) {
+    side.discard = side.discard.filter((candidate) => candidate.uid !== card.uid)
+    ctx.engine.addToHand(player, { uid: card.uid, cardId: card.cardId })
+    ctx.engine.emit({ type: 'returnToHand', player, cardId: card.cardId })
+  }
+
+  return chosen.length
+}
+
+/** The last weapon or armor of the discard pile goes back to the hand. False: none. */
+export function recoverGear(ctx: EffectContext, player: PlayerId): boolean {
+  const side = ctx.engine.player(player)
+
+  for (let index = side.discard.length - 1; index >= 0; index--) {
+    const type = getCard(side.discard[index].cardId).type
+
+    if (type === 'weapon' || type === 'armor') {
+      const [card] = side.discard.splice(index, 1)
+
+      ctx.engine.addToHand(player, card)
+      ctx.engine.emit({ type: 'returnToHand', player, cardId: card.cardId })
+
+      return true
+    }
+  }
+
+  return false
+}
+
+/** The top card of the rival's deck goes to the owner's hand. False: the rival's deck is empty. */
+export function drawFromRivalDeck(ctx: EffectContext): boolean {
+  const card = ctx.engine.player(ctx.opponent).deck.pop()
+
+  if (!card) {
+    return false
+  }
+
+  ctx.engine.addToHand(ctx.owner, card)
+  ctx.engine.emit({ type: 'draw', player: ctx.owner, cardUid: card.uid })
+
+  return true
+}
+
+/**
+ * A random card of the rival's hand goes to the owner's hand. Like `discardRandom`, it leaves the cards
+ * already programmed alone only if it runs at the end of a phase: use it from an `afterDamage`, never mid-step.
+ */
+export function stealRandomFromHand(ctx: EffectContext): boolean {
+  const rival = ctx.engine.player(ctx.opponent)
+
+  if (rival.hand.length === 0) {
+    return false
+  }
+
+  const [card] = rival.hand.splice(Math.floor(ctx.random() * rival.hand.length), 1)
+
+  ctx.engine.addToHand(ctx.owner, card)
+  ctx.engine.emit({ type: 'draw', player: ctx.owner, cardUid: card.uid })
+
+  return true
+}
+
+/** Freezes an ally wherever it is now, even one that just entered (which a slot target can't see yet). */
+export function freezeAlly(ctx: EffectContext, unit: Unit, phases = 1): void {
+  const found = ctx.engine.findUnit(unit.uid)
+
+  if (!found || unit.health <= 0) {
+    return
+  }
+
+  unit.frozenUntilPhase = Math.max(unit.frozenUntilPhase ?? 0, ctx.engine.state.phase + phases)
+  ctx.engine.emit({
+    type: 'status',
+    target: { player: found.player, slot: found.slot },
+    status: 'freeze',
+    amount: phases
+  })
+}

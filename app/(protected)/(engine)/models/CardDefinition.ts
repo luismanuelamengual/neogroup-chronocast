@@ -5,6 +5,7 @@ import { Faction } from '@/app/(protected)/(engine)/models/Faction'
 import { Keyword } from '@/app/(protected)/(engine)/models/Keyword'
 import { FailReason } from '@/app/(protected)/(engine)/models/MatchEvent'
 import { CardInstance, Unit } from '@/app/(protected)/(engine)/models/MatchState'
+import { PlayerId } from '@/app/(protected)/(engine)/models/PlayerId'
 import { Rarity } from '@/app/(protected)/(engine)/models/Rarity'
 import { Restriction } from '@/app/(protected)/(engine)/models/Restriction'
 import { Side } from '@/app/(protected)/(engine)/models/Side'
@@ -13,6 +14,7 @@ import { Speed } from '@/app/(protected)/(engine)/models/Speed'
 import { Subtype } from '@/app/(protected)/(engine)/models/Subtype'
 import { TargetKind } from '@/app/(protected)/(engine)/models/TargetKind'
 import { Tribe } from '@/app/(protected)/(engine)/models/Tribe'
+import type { DamageSource } from '@/app/(protected)/(engine)/utils/engine'
 
 /**
  * An active ability: programmed as an action of the timeline, once per phase,
@@ -138,6 +140,14 @@ export interface CardDefinition {
   freezingSpells?: boolean
   /** Attachments: the attacks of the ally it is on are of this element. */
   attackElement?: Element
+  /** Allies: the damage of their thorns is of this element. */
+  thornsElement?: Element
+  /** Allies: their stealth isn't lost by attacking (sonic damage still breaks it). */
+  persistentStealth?: boolean
+  /** Attachments: the rival can't attach cards to the ally it is on. */
+  wardsAttachments?: boolean
+  /** Any card in play (an ally): its owner's artifacts of `minCost` or more cost `amount` Chronos less (never below 0). */
+  artifactDiscount?: { minCost: number; amount: number }
   /** Hints for the computer player. */
   ai?: { value: number; tags?: string[] }
   /** The subject of its illustration (the art prompt adds the style and the faction look). */
@@ -149,12 +159,14 @@ export interface CardDefinition {
   onEnter?(ctx: EffectContext): void
   /** Any card in play: when another ally of its owner enters. */
   onAllyEnter?(ctx: EffectContext, ally: Unit): void
+  /** Any card in play: when any ally enters, of either side (`player` is the ally's side). */
+  onAnyAllyEnter?(ctx: EffectContext, ally: Unit, player: PlayerId): void
   /** Allies: when it attacks. Weapons: when the hero attacks with it. */
   onAttack?(ctx: EffectContext, target: SlotRef): void
   /** Allies: after it takes damage. */
   onDamaged?(ctx: EffectContext, amount: number): void
-  /** Allies: when it dies. */
-  onDeath?(ctx: EffectContext): void
+  /** Allies: when it dies (`unit` is the ally as it died: `killedBy` tells who killed it). */
+  onDeath?(ctx: EffectContext, unit: Unit): void
   /** Any card in play: at the start of each phase. */
   onPhaseStart?(ctx: EffectContext): void
   /** Any card in play: at the end of each phase. */
@@ -166,7 +178,7 @@ export interface CardDefinition {
    * about to land on `target` (return the new amount). Runs before shields
    * and armor; a poisonous hit still destroys.
    */
-  modifyDamage?(ctx: EffectContext, target: SlotRef, amount: number): number
+  modifyDamage?(ctx: EffectContext, target: SlotRef, amount: number, source?: DamageSource): number
   /** Attachments: when the ally it is attached to dies. */
   onHostDeath?(ctx: EffectContext, host: Unit): void
   /** Attachments: each time the ally it is attached to attacks (before the hit). */
@@ -186,6 +198,8 @@ export interface CardDefinition {
    * `target` (an aura; 0 for none).
    */
   attackBonus?(ctx: EffectContext, attacker: SlotRef, target: SlotRef): number
+  /** Any card in play: damage taken away from an attack of the rival (its hero's or an ally's) aimed at `target`. */
+  enemyAttackPenalty?(ctx: EffectContext, attacker: SlotRef, target: SlotRef): number
   /** Any card in play: keywords it lends to an ally of its owner while it is in play (an aura). */
   auraKeywords?(ctx: EffectContext, unit: Unit): Keyword[]
   /** Attachments: the ally it is attached to can't attack. */

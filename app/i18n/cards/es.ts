@@ -2,6 +2,12 @@ import { CardTranslation } from '@/app/i18n/cards'
 
 /** The Spanish texts of every card, by id (docs/PLAN.md, section 7.6). */
 export const CARDS_ES: Record<string, CardTranslation> = {
+  'abyssal-glutton': {
+    name: 'Glotón del Abismo',
+    text: 'Cuando muere cualquier otro aliado: gana +1 de ataque y +1 de vida. Su habilidad se paga con energía (⚡).',
+    flavor: 'Siempre tiene hambre. Siempre.',
+    ability: { name: 'Devorar', text: 'Destruí un aliado enemigo cuyo costo sea menor que la mitad de su ataque.' }
+  },
   'acolyte-of-spirits': { name: 'Acólito de los Espíritus', text: 'Al entrar: tus otros aliados ganan +2 de vida.' },
   'acolyte-of-the-senate': {
     name: 'Acólito del Senado',
@@ -76,6 +82,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Al entrar: gana +1 de ataque y +2 de vida.',
     flavor: 'Sus ojos brillan antes que sus dientes.'
   },
+  'ancestral-sap': {
+    name: 'Savia Ancestral',
+    text: 'Un aliado tuyo gana +10 de vida.',
+    flavor: 'Los árboles más viejos todavía comparten.'
+  },
   'arcane-familiar': { name: 'Familiar Arcano', flavor: 'Un amigo hecho de pura luz de estrellas.' },
   'arcane-mine': {
     name: 'Mina Arcana',
@@ -93,6 +104,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'argos-the-silver-hound': {
     name: 'Argos, el Sabueso Plateado',
     text: 'Al entrar: hacé 3 de daño de viento a un aliado enemigo al azar.'
+  },
+  'armored-dune-worm': {
+    name: 'Gusano Acorazado de las Dunas',
+    text: 'Todo daño que recibe es 3 menor.',
+    flavor: 'Las lanzas se doblan en sus anillos.'
   },
   'armored-fortune-teller': {
     name: 'Adivina Acorazada',
@@ -116,6 +132,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     flavor: 'Un muro que se puede llevar.'
   },
   'ash-covered-stonethrower': { name: 'Lanzapiedras Cubierto de Ceniza', flavor: 'El volcán le enseñó a lanzar.' },
+  'ash-terror': {
+    name: 'Bestia de Ceniza',
+    text: 'Al entrar: hace 4 de daño de fuego a cada otro aliado, también a los tuyos.',
+    flavor: 'Nace gritando, y todo lo que está cerca también.'
+  },
   'ashen-hierophant': {
     name: 'Hierofante Ceniciento',
     text: 'Al morir: tus Cultistas ganan +1 de ataque y +1 de vida. Al entrar: envenená al héroe enemigo (3).'
@@ -314,6 +335,12 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Cuando entra otro Sicario tuyo: tu héroe se cura 2.',
     flavor: 'Cada golpe que te apuntan le llega primero a él.'
   },
+  'bog-warden': {
+    name: 'Vigía de la Ciénaga',
+    text: 'Su habilidad se paga con energía (⚡).',
+    flavor: 'El pantano se queda con lo que toma.',
+    ability: { name: 'Hundir', text: 'Un aliado enemigo pierde todo su ataque.' }
+  },
   'boilerguard-of-gears': {
     name: 'Guardacalderas de Engranajes',
     text: 'Al empezar cada fase: tu héroe se cura 2. Su habilidad se paga con energía (⚡).',
@@ -341,6 +368,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'bone-knight-of-the-void': {
     name: 'Caballero de Hueso del Vacío',
     flavor: 'Juró lealtad a un reino que ya no existe.'
+  },
+  'bone-snare': {
+    name: 'Cepo de Hueso',
+    text: 'Adjuntá a un aliado enemigo: no puede atacar ni usar su habilidad.',
+    flavor: 'Cuanto más se resiste, más aprieta.'
   },
   'borrowed-hour-of-grace': {
     name: 'Hora Prestada de la Gracia',
@@ -436,6 +468,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Cuando entra otro Coloso tuyo: gana +2 de ataque y +2 de vida. Al atacar: tu héroe se cura 2.'
   },
   'camouflaged-brontosaur': { name: 'Brontosaurio Camuflado', text: 'Al atacar: hacé 3 de daño al héroe enemigo.' },
+  'campfire-tales': {
+    name: 'Relatos de Fogata',
+    text: 'Tus aliados se curan 4. Robá una carta.',
+    flavor: 'Cada cicatriz tiene una historia que vale contar.'
+  },
   'cave-bear-of-the-hunt-moon': {
     name: 'Oso Cavernario de la Luna de Caza',
     text: 'Al entrar: tus aliados se curan 3.',
@@ -448,6 +485,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'centurions-gladius': {
     name: 'Gladius del Centurión',
     text: 'Panoplia (tu héroe tiene arma y armadura): sus ataques hacen 2 de daño más.'
+  },
+  'centurions-resolve': {
+    name: 'Temple del Centurión',
+    text: 'Adjuntá a un aliado tuyo: gana +1 de ataque y +2 de vida, y todo daño que recibe es 2 menor.',
+    flavor: 'Aguanten. Aguanten. Aguanten.'
   },
   'chancellor-brassmaw': {
     name: 'Canciller Bocabronce',
@@ -470,6 +512,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'circlet-of-flame': { name: 'Diadema de Llamas', flavor: 'Bajo ella, las ideas arden más fuerte.' },
   'circlet-of-mana': { name: 'Diadema de Maná', flavor: 'Zumba cuando hay hechizos cerca.' },
+  'clan-moon': {
+    name: 'Luna del Clan',
+    text: 'Hasta el final de la fase siguiente: hacés 3 de daño más al héroe y a los aliados enemigos, y tus aliados reciben 3 menos.',
+    flavor: 'Con luna llena, el clan caza como uno solo.'
+  },
   'cleaver-of-the-vanguard': {
     name: 'Cuchilla de la Vanguardia',
     text: 'Al equiparla: tu héroe se cura 5.',
@@ -495,9 +542,19 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'cloak-of-the-quarry': { name: 'Capa de la Presa', flavor: 'La presa nunca la ve venir.' },
   'clock-of-dusk': { name: 'Reloj del Ocaso', text: 'Al empezar cada fase: tu héroe gana 1 de energía. (3 usos)' },
   'clock-of-embers': { name: 'Reloj de Brasas', text: 'Al empezar cada fase: tu héroe se cura 3. (3 usos)' },
+  'clockwork-deluge': {
+    name: 'Diluvio del Reloj',
+    text: 'Ningún aliado, tuyo ni del rival, puede atacar hasta el final de la fase siguiente.',
+    flavor: 'Cuando llueve en la Grieta, todos esperan.'
+  },
   'clockwork-hound-of-coal': {
     name: 'Sabueso Mecánico del Carbón',
     text: 'Al empezar cada fase: tu héroe se cura 2.'
+  },
+  'cobraskin-shroud': {
+    name: 'Vendas de Piel de Cobra',
+    text: 'Al equiparla: los dos jugadores pierden 1 de capacidad de Cronos, y robás una carta.',
+    flavor: 'El veneno está en el tejido.'
   },
   'codebreaker-of-neon': {
     name: 'Descifradora de Neón',
@@ -509,11 +566,22 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     ability: { name: 'Aturdir', text: 'Aturdí a un aliado enemigo.' }
   },
   'cog-drone': { name: 'Dron de Engranajes', flavor: 'Chico, leal y un poco humeante.' },
+  'coldgaze-serpent': {
+    name: 'Sierpe de Mirada Fría',
+    text: 'Su habilidad se paga con energía (⚡).',
+    flavor: 'Una mirada, y el guardia más valiente se hace a un lado.',
+    ability: { name: 'Mirada Fría', text: 'Un aliado enemigo pierde Guardián y Represalia en esta fase.' }
+  },
   'copper-glider': {
     name: 'Planeador de Cobre',
     text: 'Al entrar: invocá un Dron de Engranajes. Al morir: invocá un Dron de Engranajes.'
   },
   'copper-gyrocopter': { name: 'Girocóptero de Cobre', flavor: 'Casi siempre vuela. A veces aterriza a propósito.' },
+  'counterstrike-mesh': {
+    name: 'Malla de Contragolpe',
+    text: 'Cuando el ataque de un aliado enemigo le pega a tu héroe: ese aliado es destruido.',
+    flavor: 'Tocame y vas a ver.'
+  },
   'courage-of-iron': {
     name: 'Coraje de Hierro',
     text: 'Un aliado tuyo gana +3 de ataque y +4 de vida.',
@@ -551,6 +619,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Báculo de los Ancestros',
     text: 'Al equiparla: hacé 4 de daño de luz a un aliado enemigo al azar.'
   },
+  'crooked-moon-wolf': {
+    name: 'Lobo de la Luna Torcida',
+    text: 'Al empezar cada fase: se cura 2.',
+    flavor: 'Bajo una luna torcida, las heridas se cierran.'
+  },
   'crystal-cockatrice': {
     name: 'Cocatriz de Cristal',
     text: 'Al entrar: robá una carta. Al empezar cada fase: hacé 1 de daño de arcano al héroe enemigo.'
@@ -573,6 +646,20 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'cyclops-of-rage': {
     name: 'Cíclope de la Ira',
     text: 'Al entrar: hacé 1 de daño al héroe enemigo por cada Coloso tuyo.'
+  },
+  'dahlia-thornrose': {
+    name: 'Dalia Espinarrosa',
+    text: 'Su habilidad se paga con energía (⚡).',
+    flavor: 'Cada enredadera del valle le responde.',
+    ability: {
+      name: 'Atadura de Espinas',
+      text: 'Un aliado enemigo no puede atacar hasta el final de la fase siguiente.'
+    }
+  },
+  'data-transfer': {
+    name: 'Transferencia de Datos',
+    text: 'Robá la carta de arriba del mazo del rival.',
+    flavor: 'Tus archivos, mi disco.'
   },
   'dawn-almanac': {
     name: 'Almanaque del Amanecer',
@@ -630,9 +717,29 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Lobo Terrible del Primer Fuego',
     text: 'Cuando entra otra Fiera tuya: gana +1 de ataque y +1 de vida.'
   },
+  'disruptor-field': {
+    name: 'Campo Disruptor',
+    text: 'Cuando entra un Autómata tuyo: gana Carga. Interferir (1⚡): un aliado enemigo no puede atacar en esta fase.',
+    flavor: 'Un zumbido, una chispa, y nada se mueve.',
+    ability: { name: 'Interferir', text: 'Un aliado enemigo no puede atacar en esta fase.' }
+  },
   'doomsayer-of-rot': {
     name: 'Agorero de la Podredumbre',
     text: 'Al morir: hacé 2 de daño de sombra al héroe enemigo.'
+  },
+  'dormant-sentinel': {
+    name: 'Centinela Dormido',
+    text: 'Despertar (1⚡): deja los espacios de soporte y pasa a ser un aliado Centinela Despierto (6/10). Cuando ese aliado muere, vuelve como este artefacto.',
+    flavor: 'Duerme con un engranaje abierto.',
+    ability: {
+      name: 'Despertar',
+      text: 'Pasa a ser un aliado Centinela Despierto (6/10). Cuando ese aliado muere, vuelve como este artefacto.'
+    }
+  },
+  'dormant-sentinel-awakened': {
+    name: 'Centinela Despierto',
+    text: 'Al morir: vuelve a tus espacios de soporte como Centinela Dormido.',
+    flavor: 'Solo estaba descansando.'
   },
   'drake-of-the-tower': { name: 'Draco de la Torre', flavor: 'Custodia la torre y se come a las visitas.' },
   'dreadnought-of-the-workshop': {
@@ -683,6 +790,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Alce de lo Salvaje',
     text: 'Al morir: hacé 7 de daño a un aliado enemigo al azar.',
     flavor: 'Rey del bosque, coronado de astas.'
+  },
+  'ember-gargoyle': {
+    name: 'Gárgola de Brasa',
+    text: 'Todo daño que recibe es 2 menor.',
+    flavor: 'Piel de piedra, corazón ardiente.'
   },
   'ember-of-the-rift': { name: 'Ascua de la Grieta', text: 'Al entrar: destruí el artefacto enemigo más caro.' },
   'empowerment-of-the-dawnbell': {
@@ -761,6 +873,12 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Terminal Etérea',
     text: 'Al empezar cada fase: tu héroe se cura 3. (3 usos)',
     flavor: 'Se conecta a bibliotecas que ya no existen.'
+  },
+  'executioners-gauntlets': {
+    name: 'Guanteletes del Verdugo',
+    text: 'Sentencia (3⚡): un aliado enemigo pierde todo su ataque.',
+    flavor: 'Un apretón, y la espada se te cae de la mano.',
+    ability: { name: 'Sentencia', text: 'Un aliado enemigo pierde todo su ataque.' }
   },
   'experimental-aeronaut': { name: 'Aeronauta Experimental', text: 'Al entrar: invocá un Dron de Engranajes.' },
   'fae-channeler': {
@@ -855,10 +973,31 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'flickering-ward': { name: 'Guarda Titilante', flavor: 'Parpadea justo antes de que llegue el golpe.' },
   'focus-of-lightning': { name: 'Foco del Relámpago', flavor: 'Sostenelo fuerte y rezá.' },
+  'forbidden-lands-map': {
+    name: 'Mapa de Tierras Prohibidas',
+    text: 'Si el rival tiene tanta capacidad de Cronos como vos o más, pierde 1. Robá una carta.',
+    flavor: 'Aquí hay monstruos. Aquí estás vos.'
+  },
   'foreman-of-gears': {
     name: 'Capataz de Engranajes',
     text: 'Al entrar: el arma enemiga pierde 1 de durabilidad.',
     flavor: 'Las máquinas trabajan más cuando él grita.'
+  },
+  'forest-wrath-mantle': {
+    name: 'Manto de la Ira del Bosque',
+    text: 'Cuando muere un aliado tuyo: robá una carta.',
+    flavor: 'El bosque llora, y recuerda.'
+  },
+  'forgotten-king-crypt': {
+    name: 'Cripta del Rey Olvidado',
+    text: 'Exhumar (3⚡): el último aliado de tu pila va arriba de tu mazo.',
+    flavor: 'El rey duerme. Sus guardias no.',
+    ability: { name: 'Exhumar', text: 'El último aliado de tu pila va arriba de tu mazo.' }
+  },
+  'forked-lightning': {
+    name: 'Rayo Bifurcado',
+    text: 'Hacé 7 de daño de rayo a 2 slots enemigos distintos.',
+    flavor: '¿Para qué elegir?'
   },
   'form-ranks': {
     name: 'Llamado a Formación',
@@ -943,6 +1082,12 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Invocá un Familiar Arcano.',
     flavor: 'Toda tormenta empieza con una chispa.'
   },
+  'gearwright-artisan': {
+    name: 'Artesano del Engranaje',
+    text: 'Tus artefactos que cuestan 4 o más cuestan 2 menos. Su habilidad se paga con energía (⚡).',
+    flavor: 'Máquinas grandes, cuentas chicas.',
+    ability: { name: 'Encargo', text: 'Robá el primer artefacto de tu mazo que cueste 4 o más.' }
+  },
   'gentle-balm': {
     name: 'Bálsamo Gentil',
     text: 'Tu héroe se cura 16 y robá una carta.',
@@ -1011,6 +1156,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Al atacar: tu héroe se cura 3.',
     flavor: 'No sonríe. Solo lo parece.'
   },
+  'grimoire-of-curses': {
+    name: 'Grimorio de Maldiciones',
+    text: 'Los ataques de los aliados del rival hacen 2 de daño menos.',
+    flavor: 'Cada página es una promesa de desgracia.'
+  },
   'guard-of-the-ancestors': {
     name: 'Guardia de los Ancestros',
     text: 'Tu armadura gana +4 de durabilidad y tu héroe se cura 8. Robá una carta.',
@@ -1063,6 +1213,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Corazón del Volcán',
     text: 'Hacé 3 de daño de fuego a todos los aliados enemigos y 5 de daño de fuego al héroe enemigo.',
     flavor: 'Todavía late, una vez cada cien años.'
+  },
+  'heros-laurel': {
+    name: 'Laurel del Héroe',
+    text: 'Adjuntá a un aliado tuyo: gana +3 de ataque y +3 de vida, y el rival no le puede adjuntar cartas.',
+    flavor: 'Una leyenda empieza cuando la multitud corea.'
   },
   'hex-of-dawn': {
     name: 'Maleficio del Alba',
@@ -1214,6 +1369,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Revelación del Caudillo',
     text: 'Robá el primer Legionario de tu mazo y robá el primer Legionario de tu mazo.'
   },
+  'iris-shadehunter': {
+    name: 'Iris Cazasombras',
+    text: 'Su sigilo no se pierde al atacar.',
+    flavor: 'Solo la vas a ver en los registros.'
+  },
   'iron-gorgon': {
     name: 'Gorgona de Hierro',
     text: 'Al entrar: robá la primera arma de tu mazo. Su habilidad se paga con energía (⚡).',
@@ -1353,6 +1513,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     flavor: 'Lee los sueños del imperio y corrige los malos.'
   },
   'laureled-sentinel': { name: 'Centinela Laureado', text: 'Al entrar: robá el primer Coloso de tu mazo.' },
+  'lava-jackal': {
+    name: 'Chacal de Lava',
+    text: 'Al morir: si lo mató un aliado enemigo, ese aliado es destruido; si lo mató el héroe enemigo, le hace 2 de daño de fuego.',
+    flavor: 'Matalo y te lleva con él.'
+  },
   'learned-cryomancer': {
     name: 'Criomante Erudita',
     text: 'Al entrar: hacé 7 de daño de hielo a un aliado enemigo al azar.'
@@ -1395,6 +1560,16 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'legion-smith': {
     name: 'Herrero de la Legión',
     text: 'Al entrar: tu arma y tu armadura ganan +1 de durabilidad cada una.'
+  },
+  'legion-war-banner': {
+    name: 'Estandarte de la Legión',
+    text: 'Los ataques de tus aliados hacen 2 de daño más. Al jugarlo, si no tenés aliados: robá una carta.',
+    flavor: 'Levantalo, y vendrán.'
+  },
+  'lonely-howl': {
+    name: 'Aullido Solitario',
+    text: 'Al empezar cada fase, si no tenés aliados: tu héroe se cura 4. (6 usos)',
+    flavor: 'Solo, pero nunca en silencio.'
   },
   'longbow-of-the-hawk': { name: 'Arco Largo del Halcón', flavor: 'Ve más lejos que su arquero.' },
   'longbow-of-the-silent-trail': {
@@ -1494,6 +1669,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Marca del Condenado',
     text: 'Adjuntala a un aliado enemigo: al empezar cada fase, hacele 2 de daño de sombra. Cuando muere: invocá un Esqueleto Alzado.'
   },
+  'master-forger': {
+    name: 'Maestro Forjador',
+    text: 'La última arma o armadura de tu pila vuelve a tu mano.',
+    flavor: 'En su fragua, nada roto queda roto.'
+  },
   'maw-the-elder-rex': {
     name: 'Fauces, el Rex Anciano',
     text: 'Al entrar: hacé 6 de daño de tierra a un aliado enemigo al azar.',
@@ -1581,6 +1761,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Un aliado tuyo gana +4 de ataque en esta fase. Instantánea.',
     flavor: 'Los corazones valientes golpean más fuerte.'
   },
+  'molten-slag-automaton': {
+    name: 'Autómata de Escoria Fundida',
+    text: 'Sus espinas son de fuego: queman a quien lo ataca.',
+    flavor: 'Tocalo una vez. Solo una.'
+  },
   'moonlit-basilisk': {
     name: 'Basilisco Lunar',
     text: 'Al morir: hacé 4 de daño de fuego a un aliado enemigo al azar.'
@@ -1641,9 +1826,19 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Corredora de Red de la Jauría',
     flavor: 'Caza en paquetes de datos, no en manadas.'
   },
+  'neural-hijack': {
+    name: 'Secuestro Neural',
+    text: 'Un aliado enemigo ataca a su propio héroe y después es destruido.',
+    flavor: 'Tu soldado. Mis órdenes.'
+  },
   'neural-implant': {
     name: 'Implante Neural',
     text: 'Adjuntalo a un aliado tuyo: gana +1 de ataque, +1 de vida y Rápido.'
+  },
+  'night-prowler-suit': {
+    name: 'Traje de Merodeador Nocturno',
+    text: 'Cuando el ataque de tu héroe le pega al héroe enemigo: sacale una carta al azar de la mano al rival.',
+    flavor: 'Cada bolsillo es una puerta abierta.'
   },
   'nightmare-of-the-abyss': { name: 'Pesadilla del Abismo', text: 'Al entrar: envenená al héroe enemigo (3).' },
   'nightmare-of-the-void': {
@@ -1691,6 +1886,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'obelisk-of-the-grave': {
     name: 'Obelisco de la Tumba',
     text: 'Al empezar cada fase: tu héroe se cura 3. (4 usos)'
+  },
+  'offering-lamb': {
+    name: 'Cordero del Sacrificio',
+    text: 'Sacrificá un aliado tuyo: robá tantas cartas como su costo (hasta 3).',
+    flavor: 'Los dioses comen. Las páginas pasan.'
   },
   'oiled-clockmaker': { name: 'Relojero Aceitado', text: 'Cuando entra otro Inventor tuyo: tu héroe se cura 2.' },
   'oiled-monolith': {
@@ -1755,6 +1955,12 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Al equiparla: robá una carta.',
     flavor: 'Una tormenta en un frasco, sin el frasco.'
   },
+  'ossuary-knight': {
+    name: 'Caballero Osario',
+    text: 'Su habilidad se paga con energía (⚡).',
+    flavor: 'Lo enterraron con su espada, y se la quedó.',
+    ability: { name: 'Furia de Hueso', text: 'Gana +4 de ataque en esta fase.' }
+  },
   'overclock-hacker': {
     name: 'Hacker Sobrecargado',
     text: 'Tus aliados Mejorados (con un implante) tienen Sigilo hasta que atacan.'
@@ -1811,6 +2017,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     flavor: 'Solo bebe de lagos que reflejan las estrellas.'
   },
   'pegasus-of-the-tower': { name: 'Pegaso de la Torre', text: 'Al entrar: robá la primera Hada de tu mazo.' },
+  'phalanx-oath': {
+    name: 'Juramento de la Falange',
+    text: 'Al empezar cada fase, si tenés al menos un aliado: tu héroe se cura 2.',
+    flavor: 'Juntos resistimos. Solos caemos.'
+  },
   'phalanx-of-bronze': { name: 'Falange de Bronce', flavor: 'Un escudo es un muro. Doce son un imperio.' },
   'phalanx-of-steel': { name: 'Falange de Acero', text: 'Al entrar: si tenés otro Legionario, robá una carta.' },
   'phalanx-of-the-legion': {
@@ -1866,6 +2077,12 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Brazo de Plasma',
     text: 'Adjuntalo a un aliado tuyo: gana +3 de ataque y sus ataques hacen daño de rayo.'
   },
+  'plasma-colossus': {
+    name: 'Coloso de Plasma',
+    text: 'Su habilidad se paga con energía (⚡).',
+    flavor: 'Su cañón se calienta como un sol.',
+    ability: { name: 'Cañón de Plasma', text: 'Hacé 8 de daño de fuego a un slot enemigo.' }
+  },
   'plate-of-rage': { name: 'Coraza de la Ira', flavor: 'La furia es el mejor remache.' },
   'plate-of-steel': { name: 'Coraza de Acero', flavor: 'Acero viejo, promesas más viejas.' },
   'plate-of-the-last-stand': {
@@ -1874,6 +2091,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     flavor: 'La usan los que no van a dar un paso atrás.'
   },
   'plating-of-mana': { name: 'Blindaje de Maná', text: 'Adjuntala a un aliado tuyo: gana +3 de ataque y +5 de vida.' },
+  'poisoned-gift': {
+    name: 'Regalo Envenenado',
+    text: 'Cada jugador roba 3 cartas.',
+    flavor: 'Todos reciben un regalo. No todos lo quieren.'
+  },
   'portable-workshop': {
     name: 'Taller Portátil',
     text: 'Al empezar cada fase: robá el primer artefacto de tu mazo. (2 usos)'
@@ -1992,7 +2214,19 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     flavor: 'El valor es contagioso.'
   },
   'raptor-hatchling': { name: 'Cría de Raptor', flavor: 'Nació con hambre.' },
+  'recirculation-core': {
+    name: 'Núcleo de Recirculación',
+    text: 'Reciclar (2⚡): mezclá el último aliado de tu pila en tu mazo, y tu héroe se cura 4.',
+    flavor: 'Nada se pierde. Todo se reconstruye.',
+    ability: { name: 'Reciclar', text: 'Mezclá el último aliado de tu pila en tu mazo, y tu héroe se cura 4.' }
+  },
   'recruit-of-the-warlord': { name: 'Recluta del Caudillo', text: 'Al entrar: robá la primera arma de tu mazo.' },
+  'rejuvenation-pod': {
+    name: 'Cápsula de Rejuvenecimiento',
+    text: 'Cuando entra un Autómata tuyo: gana +2 de vida. Reconstruir (1⚡): mezclá el último Autómata de tu pila en tu mazo.',
+    flavor: 'Entra roto, sale como nuevo.',
+    ability: { name: 'Reconstruir', text: 'Mezclá el último Autómata de tu pila en tu mazo.' }
+  },
   'relentless-fury': {
     name: 'Furia Implacable',
     text: 'Un aliado tuyo gana +4 de ataque en esta fase. Instantánea.',
@@ -2038,6 +2272,16 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Vagabundo Inquieto',
     text: 'Al empezar cada fase: tu héroe se cura 2.',
     flavor: 'Dormir es para los que tienen un solo siglo.'
+  },
+  'retreat-order': {
+    name: '¡Retirada!',
+    text: 'Devolvé un aliado enemigo a la mano de su dueño. Rápida.',
+    flavor: 'Vivir para pelear otra hora.'
+  },
+  'ridge-render': {
+    name: 'Rasgadora del Monte',
+    text: 'Al atacar a un aliado que sobrevive: ese aliado pierde todo su ataque.',
+    flavor: 'No mata a la bestia. La quiebra.'
   },
   'rift-spark': { name: 'Chispa de la Grieta', flavor: 'Un pedacito de la Grieta, muy vivo.' },
   'rift-touched-idol': {
@@ -2239,6 +2483,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Tu héroe recibe 6 de daño de sombra. Robá 2 cartas.',
     flavor: 'El Eclipse siempre cobra. En sangre, si te falta moneda.'
   },
+  'shadow-well': {
+    name: 'Pozo de Sombra',
+    text: 'Tu héroe gana 4 de energía. Instantánea.',
+    flavor: 'Tomá hondo. Pagá después.'
+  },
   'sharp-blessing': { name: 'Bendición Afilada', text: 'Adjuntala a un aliado tuyo: gana +1 de ataque y +4 de vida.' },
   'sharp-boar': {
     name: 'Jabalí Afilado',
@@ -2271,10 +2520,20 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     flavor: 'Entre dos canales, alguien está mirando.'
   },
   'signifer-lucius': { name: 'Signífero Lucio', text: 'Al entrar: tus otros aliados ganan +1 de ataque y +2 de vida.' },
+  'silent-contract': {
+    name: 'Contrato Silencioso',
+    text: 'Un aliado tuyo que no esté aturdido ni congelado destruye a un aliado enemigo, y después queda aturdido en esta fase.',
+    flavor: 'Pagado por adelantado. Hecho en silencio.'
+  },
   'silent-monolith': {
     name: 'Monolito Silencioso',
     text: 'Cada daño que reciben tus aliados es 1 menor.',
     flavor: 'No transmite nada. A todo volumen.'
+  },
+  'silent-winter-scepter': {
+    name: 'Cetro del Invierno Mudo',
+    text: 'Cuando entra cualquier aliado, tuyo o del rival: queda congelado 2 fases.',
+    flavor: 'En su presencia, nada se mueve.'
   },
   'silk-wrap-of-ruin': {
     name: 'Envoltura de Seda de la Ruina',
@@ -2352,6 +2611,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Invocá 2 Conscriptos Hoplitas.',
     flavor: 'Se levantan con el sol y pelean hasta que se pone.'
   },
+  'soulseeker-bow': {
+    name: 'Arco Buscaalmas',
+    text: 'Cuando un ataque de tu héroe con él mata a un aliado: tu héroe se cura 6.',
+    flavor: 'Cada flecha vuelve con algo.'
+  },
   'spark-of-dusk': { name: 'Chispa del Ocaso', text: 'Al empezar cada fase: tu héroe se cura 2.' },
   'spark-of-the-crossroads': { name: 'Chispa de la Encrucijada', flavor: 'Nacida donde se cruzan todos los caminos.' },
   'spider-engine-of-the-foundry': {
@@ -2417,6 +2681,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Sudario Ligado a los Espíritus',
     flavor: 'Los ancestros vigilan desde sus pliegues.'
   },
+  'spiteful-skeleton': {
+    name: 'Esqueleto Rencoroso',
+    text: 'Al morir: hace 3 de daño de sombra a quien lo mató.',
+    flavor: 'Guarda rencor más tiempo del que guardó una vida.'
+  },
   'stalkers-eye': {
     name: 'Ojo del Acechador',
     text: 'Un aliado enemigo queda como tu Presa. Rápida.'
@@ -2449,6 +2718,12 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'standard-bearer-of-the-laurel': {
     name: 'Abanderado del Laurel',
     text: 'Al entrar: tu héroe se cura 7. Al empezar cada fase: tu héroe se cura 2.'
+  },
+  'stardust-drill': {
+    name: 'Taladro de Polvo Estelar',
+    text: 'Su habilidad se paga con energía (⚡).',
+    flavor: 'Perfora el cielo buscando brillitos.',
+    ability: { name: 'Extraer', text: 'Recibe 2 de daño y robás una carta.' }
   },
   'starlit-dragon': { name: 'Dragón Estelar', text: 'Al entrar: aturdí a un aliado enemigo al azar.' },
   'starving-spawn': {
@@ -2489,6 +2764,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'stone-golem-of-mana': {
     name: 'Gólem de Piedra de Maná',
     text: 'Al morir: hacé 1 de daño de tierra a todos los aliados enemigos.'
+  },
+  'stonehide-wolf': {
+    name: 'Lobo Piel de Piedra',
+    text: 'No recibe daño de ataques (solo lo lastiman los efectos).',
+    flavor: 'Garras y espadas resbalan en su piel.'
   },
   'storm-called-cartographer': {
     name: 'Cartógrafa de la Tormenta',
@@ -2532,6 +2812,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Robá 2 cartas.',
     flavor: 'Página uno: no tocar. Página dos: tarde.'
   },
+  'sudden-sprout': {
+    name: 'Brote Espontáneo',
+    text: 'Un aliado tuyo gana +2 de ataque y +2 de vida (+3 y +4 si es un Saurio). Robá una carta.',
+    flavor: 'De la noche a la mañana, la selva se duplica.'
+  },
   'summons-of-steam': {
     name: 'Convocatoria de Vapor',
     text: 'Invocá un Dron de Engranajes.',
@@ -2550,6 +2835,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Reloj de Sol de la Última Hora',
     text: 'Al empezar cada fase: tu héroe se cura 3. (3 usos)',
     flavor: 'Su sombra señala el final.'
+  },
+  'sure-bite': {
+    name: 'Mordida Certera',
+    text: 'Destruí un aliado enemigo que cueste 3 o menos. Rápida.',
+    flavor: 'Presa chica, un mordisco.'
   },
   'swift-pterodon': { name: 'Pterodonte Veloz', flavor: 'El cielo fue suyo primero.' },
   'swift-stonethrower': { name: 'Lanzapiedras Veloz', text: 'Al empezar cada fase: gana +1 de ataque y +1 de vida.' },
@@ -2639,6 +2929,16 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Al entrar: invocá un Cachorro de Dientes de Sable.',
     flavor: 'Lo oís antes del final.'
   },
+  'tide-of-souls': {
+    name: 'Marea de Almas',
+    text: 'Todos los aliados de tu pila vuelven arriba de tu mazo.',
+    flavor: 'Los muertos no se fueron. Están haciendo fila.'
+  },
+  'time-plague': {
+    name: 'Peste del Tiempo',
+    text: 'El rival pierde 2 de capacidad de Cronos (le quedan al menos 2), y vos perdés 1.',
+    flavor: 'El tiempo se pudre para todos. Para algunos, más.'
+  },
   'timeless-fortune-teller': { name: 'Adivina Atemporal', text: 'Al entrar: ganás 1 Cronos en esta fase.' },
   'timeless-gust': { name: 'Ráfaga Atemporal', text: 'Al morir: invocá una Chispa de la Grieta.' },
   'timeless-icicle': {
@@ -2656,6 +2956,12 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     name: 'Vagabundo Atemporal',
     text: 'Al empezar cada fase: tu héroe se cura 2. Su habilidad se paga con energía (⚡).',
     ability: { name: 'Aturdir', text: 'Aturdí a un aliado enemigo.' }
+  },
+  'tin-scout': {
+    name: 'Explorador de Hojalata',
+    text: 'Su habilidad se paga con energía (⚡).',
+    flavor: 'Encuentra a sus hermanos por el tic-tac.',
+    ability: { name: 'Reclutar', text: 'Robá el primer Autómata de tu mazo.' }
   },
   'tireless-zeppelin': {
     name: 'Zepelín Incansable',
@@ -2742,6 +3048,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Destruí a un aliado enemigo. Lenta.',
     flavor: 'Ya nada lo detiene.'
   },
+  'unbroken-bond': {
+    name: 'Lazo Imperecedero',
+    text: 'Los 2 últimos aliados de tu pila vuelven a tu mano. Tus No-muertos ganan +2 de ataque en esta fase.',
+    flavor: 'La muerte es una puerta que abre para los dos lados.'
+  },
   'unbroken-hitman': {
     name: 'Asesino a Sueldo Invicto',
     text: 'Al atacar: gana +1 de ataque.',
@@ -2757,10 +3068,20 @@ export const CARDS_ES: Record<string, CardTranslation> = {
     text: 'Robá el primer Errante de tu mazo y tu héroe se cura 3.',
     flavor: 'El plan sobrevivió al contacto con el enemigo.'
   },
+  'unstable-shard': {
+    name: 'Esquirla Inestable',
+    text: 'Los ataques de tus aliados hacen 3 de daño más. Cuando un aliado tuyo recibe daño: muere.',
+    flavor: 'Poder infinito, paciencia finita.'
+  },
   'unyielding-charioteer': { name: 'Auriga Inquebrantable', text: 'Al entrar: robá el primer Legionario de tu mazo.' },
   'unyielding-trap': {
     name: 'Trampa Inquebrantable',
     text: 'Cuando el rival usa una habilidad: robá una carta y hacé 4 de daño de luz al héroe enemigo.'
+  },
+  'uprooting-dagger': {
+    name: 'Daga del Desarraigo',
+    text: 'Cuando tu héroe golpea a un aliado con ella y no lo mata: ese aliado vuelve a la mano de su dueño.',
+    flavor: 'Te corta del momento.'
   },
   'varros-glaive': {
     name: 'Guja de Varro',
@@ -2819,6 +3140,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   'victorious-minotaur': {
     name: 'Minotauro Victorioso',
     flavor: 'Encontró la salida del laberinto. Y volvió a entrar.'
+  },
+  'victors-rampage': {
+    name: 'Furia del Vencedor',
+    text: 'Cuando muere un aliado enemigo: tu héroe se cura 4. (6 usos)',
+    flavor: 'Cada enemigo caído es un respiro de vida.'
   },
   'vigor-of-dusk': {
     name: 'Vigor del Ocaso',
@@ -2889,12 +3215,24 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'wandering-plan': { name: 'Plan Errante', text: 'Robá 2 cartas.', flavor: 'El plan cambia en cada era.' },
   'wandering-rune': { name: 'Runa Errante', text: 'Adjuntala a un aliado tuyo: gana +1 de ataque y +4 de vida.' },
+  'wandering-sage-staff': {
+    name: 'Báculo del Sabio Errante',
+    text: 'Meditar (1⚡): robá una carta.',
+    flavor: 'Cada nudo de la madera es una lección.',
+    ability: { name: 'Meditar', text: 'Robá una carta.' }
+  },
   'wandering-stasis': {
     name: 'Estasis Errante',
     text: 'Devolvé un aliado enemigo a la mano de su dueño. Rápida.',
     flavor: 'El tiempo se detiene a mirar alrededor.'
   },
   'wandering-wanderer': { name: 'Vagabundo Errante', flavor: 'Ni él sabe adónde va.' },
+  'war-fang-tiger': {
+    name: 'Tigre Colmillo de Guerra',
+    text: 'Su habilidad se paga con energía (⚡).',
+    flavor: 'Gasta su vida entera en un solo salto.',
+    ability: { name: 'Último Salto', text: 'Destruí un aliado enemigo. Al final de esta fase, este aliado muere.' }
+  },
   'warpick-of-iron': {
     name: 'Pico de Guerra de Hierro',
     text: 'Al equiparla: robá una carta.',

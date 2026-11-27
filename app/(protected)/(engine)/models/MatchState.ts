@@ -71,6 +71,14 @@ export interface Unit extends Afflictions {
   prey?: { by: PlayerId; untilPhase: number }
   /** It attacked at least once since it entered (an aura can hide it only until it attacks). */
   hasAttacked?: boolean
+  /** It can't attack while the phase is not past this one (it can still use its ability). */
+  disarmedUntilPhase?: number
+  /** It loses these keywords while the phase is not past `untilPhase`. */
+  suppressed?: { keywords: Keyword[]; untilPhase: number }
+  /** Who dealt the damage that killed it (set when it dies): the side, the ally (null: the hero) and whether it was an attack. */
+  killedBy?: { player: PlayerId; uid: number | null; attack: boolean }
+  /** It dies at the end of the current phase. */
+  doomed?: boolean
 }
 
 /**

@@ -98,9 +98,12 @@ export function heroCard(state: MatchState, player: PlayerId): CardDefinition {
   return getCard(state.players[player].hero.cardId)
 }
 
-/** The ability of one of the player's artifacts in play, if it has one. */
+/** The ability of one of the player's artifacts in play (or of its hero's weapon or armor), if it has one. */
 export function artifactAbility(state: MatchState, player: PlayerId, uid: number): ActiveAbility | undefined {
-  const artifact = (state.players[player].artifacts ?? []).find((candidate) => candidate.uid === uid)
+  const { artifacts, hero } = state.players[player]
+  const artifact =
+    (artifacts ?? []).find((candidate) => candidate.uid === uid) ??
+    [hero.weapon?.card, hero.armor?.card].find((candidate) => candidate?.uid === uid)
 
   return artifact ? getCard(artifact.cardId).ability : undefined
 }

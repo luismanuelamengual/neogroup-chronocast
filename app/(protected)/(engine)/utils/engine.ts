@@ -44,6 +44,10 @@ export interface DamageSource {
   element?: Element
   /** The jump of a lightning damage (it doesn't jump again). */
   chained?: boolean
+  /** Combat damage: an attack, or the strike back of the attacked ally (retaliate, thorns). */
+  attack?: boolean
+  /** The ally that dealt it (null: the hero; absent: not known, an effect). */
+  attackerUid?: number | null
 }
 
 /** A card attached to a hero (its weapon or armor) or to an ally (with the ally), that a target points to. */
@@ -142,6 +146,14 @@ export class MatchEngine {
 
   /** Its own keywords, and the ones the cards in play of its side lend it (`auraKeywords`). */
   hasKeyword(unit: Unit, keyword: Keyword): boolean {
+    if (
+      unit.suppressed &&
+      unit.suppressed.untilPhase >= this.state.phase &&
+      unit.suppressed.keywords.includes(keyword)
+    ) {
+      return false
+    }
+
     return unit.keywords.includes(keyword) || this.auraKeywords(unit).includes(keyword)
   }
 
@@ -222,6 +234,10 @@ export class MatchEngine {
 
   /** An attachment on the ally keeps it from attacking (`disarms`) or from using its ability (`silences`). */
   isRestrained(unit: Unit, rule: 'disarms' | 'silences'): boolean {
+    if (rule === 'disarms' && (unit.disarmedUntilPhase ?? 0) >= this.state.phase) {
+      return true
+    }
+
     return (unit.attachments ?? []).some((card) => getCard(card.cardId)[rule])
   }
 
@@ -355,6 +371,15 @@ export class MatchEngine {
           }
 
           unit.health -= amount
+
+          if (unit.health <= 0 && !unit.killedBy && hit.source) {
+            unit.killedBy = {
+              player: hit.source.player,
+              uid: hit.source.attackerUid ?? null,
+              attack: !!hit.source.attack
+            }
+          }
+
           this.emit({ type: 'damage', target: ref, amount, absorbed: 0, status: hit.source?.status, element })
           this.applyLifesteal(hit.source, hit.amount)
           this.afterElementalHit(ref, unit, amount, hit.source)
@@ -396,11 +421,11 @@ export class MatchEngine {
     const element = source?.element
 
     if (source?.status) {
-      return this.modifiedDamage(target, amount)
+      return this.modifiedDamage(target, amount, source)
     }
 
     if (!element) {
-      return this.boosted(target, this.modifiedDamage(target, amount), source)
+      return this.boosted(target, this.modifiedDamage(target, amount, source), source)
     }
 
     let result = amount
@@ -427,7 +452,7 @@ export class MatchEngine {
       result = Math.ceil(result / 2)
     }
 
-    return this.boosted(target, this.modifiedDamage(target, result), source)
+    return this.boosted(target, this.modifiedDamage(target, result, source), source)
   }
 
   /**
@@ -533,7 +558,7 @@ export class MatchEngine {
   }
 
   /** A damage about to land on `target`, after every `modifyDamage` in play (never below 0). */
-  private modifiedDamage(target: SlotRef, amount: number): number {
+  private modifiedDamage(target: SlotRef, amount: number, source?: DamageSource): number {
     let result = amount
 
     for (const player of PLAYER_IDS) {
@@ -541,7 +566,7 @@ export class MatchEngine {
         const modify = getCard(card.cardId).modifyDamage
 
         if (modify) {
-          result = modify(this.context(player, card), target, result)
+          result = modify(this.context(player, card), target, result, source)
         }
       }
     }
@@ -609,7 +634,7 @@ export class MatchEngine {
         }
 
         this.dropAttachments(player, unit)
-        getCard(unit.cardId).onDeath?.(this.context(player, unit))
+        getCard(unit.cardId).onDeath?.(this.context(player, unit), unit)
 
         if (this.hasKeyword(unit, 'echo') && !unit.echoUsed) {
           this.addToHand(player, { uid: this.newUid(), cardId: unit.cardId, echoUsed: true })
@@ -1387,6 +1412,14 @@ export class MatchEngine {
       }
     }
 
+    for (const side of PLAYER_IDS) {
+      for (const other of this.inPlay(side)) {
+        if (other.uid !== unit.uid) {
+          getCard(other.cardId).onAnyAllyEnter?.(this.context(side, other), unit, player)
+        }
+      }
+    }
+
     this.triggerTrap(opponentOf(player), 'enemySummon', { player, slot: chosen })
 
     return unit
@@ -1486,6 +1519,16 @@ export class MatchEngine {
 
       if (aura) {
         bonus += aura(this.context(attacker.player, card), attacker, target)
+      }
+    }
+
+    const rival = opponentOf(attacker.player)
+
+    for (const card of this.inPlay(rival)) {
+      const penalty = getCard(card.cardId).enemyAttackPenalty
+
+      if (penalty) {
+        bonus -= penalty(this.context(rival, card), attacker, target)
       }
     }
 

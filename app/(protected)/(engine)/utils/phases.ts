@@ -37,6 +37,12 @@ export function startPhase(engine: MatchEngine): void {
     for (const artifact of player.artifacts ?? []) {
       artifact.abilityUsedThisPhase = false
     }
+
+    for (const gear of [player.hero.weapon?.card, player.hero.armor?.card]) {
+      if (gear) {
+        gear.abilityUsedThisPhase = false
+      }
+    }
   }
 
   for (const id of PLAYER_IDS) {
