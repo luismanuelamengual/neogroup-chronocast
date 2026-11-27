@@ -28,8 +28,9 @@ const TYPE_GLYPHS: Record<CardDefinition['type'], string> = {
 }
 
 /**
- * "☀️ Weapon · Bow - Primal": the side's icon and the type (with its subtype, when it has one), then the
- * faction, each one unless it is neutral. One line of fixed height: a long one ends in an ellipsis.
+ * "☀️ Weapon - Primal": the side's icon and the type, then the faction, each one unless it is neutral.
+ * The subtype is left out: the engine uses it, the player gets little from it.
+ * One line of fixed height: a long one ends in an ellipsis.
  */
 function typeLine(card: CardDefinition, t: Translator): ReactNode {
   const side = cardSide(card)
@@ -58,7 +59,6 @@ function typeLine(card: CardDefinition, t: Translator): ReactNode {
         </svg>
       )}
       {t(`game.types.${card.type}`)}
-      {card.subtype && ` · ${t(`game.subtypes.${card.subtype}`)}`}
       {faction}
     </>
   )

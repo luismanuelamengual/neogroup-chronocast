@@ -14,7 +14,7 @@ import path from 'node:path'
 import { CARD_FILES } from '@/app/(protected)/(cards)/cards/index.generated'
 import { cardGroup } from '@/app/(protected)/(cards)/utils/cardGroup'
 import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition'
-import { FACTION_STYLES, SIDE_STYLES } from '@/scripts/art/factions'
+import { FACTION_STYLES } from '@/scripts/art/factions'
 
 export const BASE_PROMPT =
   'Collectible card game illustration, painted cartoon style, very vivid and saturated colors, high contrast, ' +
@@ -72,9 +72,8 @@ export const OBJECT_ONLY =
 export function promptFor(card: CardDefinition, portrait = false): string {
   const framing = portrait ? 'square close-up portrait of the face and shoulders, ' : ''
   const objectOnly = card.type === 'ally' || card.type === 'hero' ? '' : `${OBJECT_ONLY}. `
-  // A neutral card of one side takes the look of its side instead of the neutral one.
-  const sides = card.restriction.sides ?? []
-  const style = card.faction === 'neutral' && sides.length === 1 ? SIDE_STYLES[sides[0]] : FACTION_STYLES[card.faction]
+  // The look comes from the faction only: a card of one side (Dawn or Eclipse) does not get its own touch.
+  const style = FACTION_STYLES[card.faction]
 
   return `${BASE_PROMPT}. ${style}. ${objectOnly}${framing}${card.art.subject}`
 }

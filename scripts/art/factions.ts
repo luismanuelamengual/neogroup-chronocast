@@ -1,5 +1,4 @@
 import { Faction } from '@/app/(protected)/(engine)/models/Faction'
-import { Side } from '@/app/(protected)/(engine)/models/Side'
 
 /**
  * The touch of each era in the art prompts (docs/PLAN.md, section 9.1): its
@@ -20,9 +19,3 @@ export const FACTION_STYLES: Record<Faction, string> = {
     'the Time Rift between eras, floating fragments of different centuries, turquoise rift light, hourglasses and clock motifs'
 }
 
-/** The touch of the cards that belong to one side (Dawn or Eclipse) instead of an era. */
-export const SIDE_STYLES: Record<Side, string> = {
-  dawn: 'the Dawn side of the Time Rift, radiant sunrise light breaking through clouds, warm gold, white and soft rose tones, sun discs and clock motifs',
-  eclipse:
-    'the Eclipse side of the Time Rift, a black sun with a burning corona in a dark sky, deep indigo, ultraviolet and cold silver tones, broken clock motifs'
-}
