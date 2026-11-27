@@ -469,7 +469,7 @@ describe("the heroes' abilities", () => {
     expect(aimed.filter((ref) => ref.player === 'b' && (ref.slot === 'hero' || ref.slot === 0))).toEqual([])
   })
 
-  it("Varro's allies take 2 less damage and his side deals 2 more, until the end of the next phase", () => {
+  it("Varro's allies take 2 less damage and his side deals 2 more, only until the end of this phase", () => {
     const state = match('legate-varro', { a: ['faithful-wanderer'], b: ['faithful-wanderer'] })
     const attack = (from: 'a' | 'b'): PlannedAction => ({
       kind: 'allyAttack',
@@ -481,8 +481,13 @@ describe("the heroes' abilities", () => {
     // 4 attack: 4 + 2 to the rival's ally, 4 - 2 to Varro's.
     expect(first.players.b.allies[0]!.health).toBe(9 - 6)
     expect(first.players.a.allies[0]!.health).toBe(9 - 2)
-    expect(first.players.a.boons?.length).toBe(2)
-    expect(run(first).state.players.a.boons).toEqual([])
+    // Gone when the next phase starts: the same attacks deal their plain 4.
+    expect(first.players.a.boons).toEqual([])
+
+    const second = resolvePhase(first, { a: plan(attack('a')), b: plan(attack('b')) }).state
+
+    expect(second.players.b.allies[0]).toBeNull()
+    expect(second.players.a.allies[0]!.health).toBe(9 - 2 - 4)
   })
 
   it('Malachar deals 1 shadow damage to the enemy hero each time he plays a spell', () => {

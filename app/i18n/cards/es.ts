@@ -1876,11 +1876,11 @@ export const CARDS_ES: Record<string, CardTranslation> = {
   },
   'legate-varro': {
     name: 'Legado Varro',
-    text: 'Testudo (4): hasta el final de la próxima fase, tus aliados reciben 2 de daño menos y vos hacés 2 de daño más al héroe y a los aliados enemigos. Instantánea. Panoplia (tu héroe tiene arma y armadura): los ataques de tus Legionarios hacen 1 de daño más.',
+    text: 'Testudo (4): hasta el final de esta fase, tus aliados reciben 2 de daño menos y vos hacés 2 de daño más al héroe y a los aliados enemigos. Instantánea. Panoplia (tu héroe tiene arma y armadura): los ataques de tus Legionarios hacen 1 de daño más.',
     flavor: 'Aguantó la línea en más siglos de los que puede contar.',
     ability: {
       name: 'Testudo',
-      text: 'Hasta el final de la próxima fase, tus aliados reciben 2 de daño menos y vos hacés 2 de daño más al héroe y a los aliados enemigos.'
+      text: 'Hasta el final de esta fase, tus aliados reciben 2 de daño menos y vos hacés 2 de daño más al héroe y a los aliados enemigos.'
     }
   },
   'legion-shield': {

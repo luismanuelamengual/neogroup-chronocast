@@ -5,7 +5,7 @@ export default defineCard({
   id: 'legate-varro',
   type: 'hero',
   name: 'Legate Varro',
-  text: 'Testudo (4): until the end of the next phase, your allies take 2 less damage and you deal 2 more damage to the enemy hero and allies. Instant. Panoply (your hero has a weapon and an armor): the attacks of your Legionnaires deal 1 more damage.',
+  text: 'Testudo (4): until the end of this phase, your allies take 2 less damage and you deal 2 more damage to the enemy hero and allies. Instant. Panoply (your hero has a weapon and an armor): the attacks of your Legionnaires deal 1 more damage.',
   flavor: 'He has held the line in more centuries than he can count.',
   faction: 'bronze',
   side: 'dawn',
@@ -15,12 +15,13 @@ export default defineCard({
   health: 65,
   ability: {
     name: 'Testudo',
-    text: 'Until the end of the next phase, your allies take 2 less damage and you deal 2 more damage to the enemy hero and allies.',
+    text: 'Until the end of this phase, your allies take 2 less damage and you deal 2 more damage to the enemy hero and allies.',
     cost: 4,
     speed: 'instant',
     activate(ctx) {
-      addBoon(ctx, ctx.owner, 'guard', 2)
-      addBoon(ctx, ctx.owner, 'empower', 2)
+      // Only for the rest of this phase (0 more phases).
+      addBoon(ctx, ctx.owner, 'guard', 2, 0)
+      addBoon(ctx, ctx.owner, 'empower', 3, 0)
     }
   },
   attackBonus(ctx, attacker) {

@@ -765,9 +765,9 @@ export function veilAllies(ctx: EffectContext, player: PlayerId, attack: number,
   ctx.engine.veilAllies(player, attack, phases, hero)
 }
 
-/** A lasting effect on a whole side until the end of the next phase (`guard`, `empower`, `allyDiscount`). */
-export function addBoon(ctx: EffectContext, player: PlayerId, kind: BoonKind, amount: number): void {
-  ctx.engine.addBoon(player, kind, amount)
+/** A lasting effect on a whole side (`guard`, `empower`, `allyDiscount`) for the rest of this phase and `phases` more. */
+export function addBoon(ctx: EffectContext, player: PlayerId, kind: BoonKind, amount: number, phases = 1): void {
+  ctx.engine.addBoon(player, kind, amount, phases)
 }
 
 /** Poisons every ally of a side. */
