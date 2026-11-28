@@ -762,6 +762,8 @@
     }
 
     .timeline-bar__ready {
+      // Always on the right, also while the phase plays out (when the actions left aren't shown).
+      margin-left: auto;
       font-size: 15px;
     }
   }
