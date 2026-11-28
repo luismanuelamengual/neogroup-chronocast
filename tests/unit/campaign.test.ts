@@ -115,8 +115,8 @@ describe('the campaigns', () => {
 
       expect(levels).toEqual([...levels].sort((a, b) => a - b))
       expect(gold).toEqual([...gold].sort((a, b) => a - b))
-      expect(gold[0]).toBe(50)
-      expect(gold[9]).toBe(300)
+      expect(gold[0]).toBe(75)
+      expect(gold[9]).toBe(450)
       expect(campaign.stages.filter((stage) => stage.pack).map((stage) => stage.number)).toEqual([5, 10])
       campaign.stages.forEach((stage) => stage.pack && expect(findPack(stage.pack)).toBeDefined())
     }

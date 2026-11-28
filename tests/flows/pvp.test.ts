@@ -267,7 +267,7 @@ describe('a match', () => {
 
     expect(view.status).toBe('finished')
     expect(view.state!.result).toEqual({ winner: 'a', reason: 'abandon' })
-    expect(view.reward).toMatchObject({ gold: 140, firstWin: true, xp: 100, level: { level: 2, gold: 1000 } })
+    expect(view.reward).toMatchObject({ gold: 160, firstWin: true, xp: 100, level: { level: 2, gold: 1000 } })
     expect((await getMatchState(bob.id, matchId, null, now))!.reward).toMatchObject({ gold: 0 })
   })
 
@@ -282,8 +282,8 @@ describe('a match', () => {
     const winner = await user(ana.id)
 
     expect(Number(winner.rating)).toBe(1215)
-    // 140 of the match and 1,000 of reaching level 2 with its 100 XP.
-    expect(Number(winner.gold)).toBe(140 + 1000)
+    // 160 of the match and 1,000 of reaching level 2 with its 100 XP.
+    expect(Number(winner.gold)).toBe(160 + 1000)
     expect(Number(winner.xp)).toBe(100)
     expect(Number(winner.level)).toBe(2)
     expect(Number(winner.pvpmatches ?? winner.pvpMatches)).toBe(1)
@@ -291,7 +291,7 @@ describe('a match', () => {
 
     // Nothing more after the end.
     await forfeitMatch(ana.id, matchId, T0 + 6000)
-    expect(Number((await user(ana.id)).gold)).toBe(140 + 1000)
+    expect(Number((await user(ana.id)).gold)).toBe(160 + 1000)
     expect(await activeMatchId(ana.id, T0 + 6000)).toBeNull()
   })
 
@@ -302,7 +302,7 @@ describe('a match', () => {
     await forfeitMatch(bob.id, matchId, T0 + 3000)
 
     // 200 XP: level 2 (1,000 of gold), level 3 needs 300.
-    expect(Number((await user(ana.id)).gold)).toBe(140 + 40 + 1000)
+    expect(Number((await user(ana.id)).gold)).toBe(160 + 60 + 1000)
   })
 
   it('private matches keep the rating, pay half and nothing after 3 a day against the same rival', async () => {
@@ -315,7 +315,7 @@ describe('a match', () => {
 
     expect(Number(winner.rating)).toBe(1200)
     // 3 × 50 XP: level 2 (1,000 of gold).
-    expect(Number(winner.gold)).toBe(3 * 20 + 1000)
+    expect(Number(winner.gold)).toBe(3 * 30 + 1000)
     expect(Number(winner.xp)).toBe(3 * 50)
   })
 

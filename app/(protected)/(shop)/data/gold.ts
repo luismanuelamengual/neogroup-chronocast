@@ -8,11 +8,11 @@
 export const STARTING_GOLD = 1000
 
 export const GOLD_REWARDS = {
-  win: 40,
+  win: 60,
   /** Extra for a win, up to this, when the rival had a higher rating. */
-  winBonusMax: 20,
-  draw: 15,
-  loss: 5,
+  winBonusMax: 30,
+  draw: 23,
+  loss: 8,
   abandon: 0,
   firstWinOfDay: 100,
   privateFactor: 0.5,
@@ -26,8 +26,8 @@ export const GOLD_REWARDS = {
  * and only for the first `prizesPerDay` quick matches of the (UTC) day.
  */
 export const QUICK_MATCH_GOLD = {
-  win: 20,
-  draw: 8,
-  loss: 3,
+  win: 30,
+  draw: 12,
+  loss: 5,
   prizesPerDay: 10
 }

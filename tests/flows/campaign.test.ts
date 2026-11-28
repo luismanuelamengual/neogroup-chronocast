@@ -95,7 +95,7 @@ describe('campaigns', () => {
     expect(reward).toEqual({
       stage: 1,
       firstWin: true,
-      gold: 50,
+      gold: 75,
       pack: null,
       rewardCardId: null,
       progress: 1,
@@ -103,7 +103,7 @@ describe('campaigns', () => {
       level: { xp: 100, level: 2, levelsGained: 1, gold: 1000, xpInLevel: 0, xpForNext: 200 }
     })
     // 50 of the battle and 1,000 of reaching level 2 with its 100 XP.
-    expect(await gold(userId)).toBe(before + 50 + 1000)
+    expect(await gold(userId)).toBe(before + 75 + 1000)
     expect((await listCampaigns(userId)).find((campaign) => campaign.heroId === HERO)?.stage).toBe(1)
     await expect(startBattle(userId, HERO, 2, deckId, T0)).resolves.toMatchObject({ stage: 2 })
 
@@ -119,7 +119,7 @@ describe('campaigns', () => {
     const again = await winBattle(userId, deckId, 1)
 
     expect(await finishBattle(userId, again.dealt.ticket, again.record, T0)).toMatchObject({ firstWin: false, xp: 0 })
-    expect(await gold(userId)).toBe(before + 50 + 1000)
+    expect(await gold(userId)).toBe(before + 75 + 1000)
   })
 
   it('rejects a record that does not win the replay, a forged ticket and an expired one', async () => {
@@ -157,7 +157,7 @@ describe('campaigns', () => {
     const reward = await finishBattle(userId, dealt.ticket, record, T0)
     const cardsAfter = Object.values(await getCollection(userId)).reduce((sum, count) => sum + count, 0)
 
-    expect(reward).toMatchObject({ firstWin: true, gold: 120, progress: 5 })
+    expect(reward).toMatchObject({ firstWin: true, gold: 180, progress: 5 })
     expect(reward.pack).toMatchObject({ id: 'chronicler' })
     expect(reward.pack!.cards).toHaveLength(8)
     expect(cardsAfter).toBe(cardsBefore + 8)
@@ -170,7 +170,7 @@ describe('campaigns', () => {
     const reward = await finishBattle(userId, dealt.ticket, record, T0)
     const row = await DB.table('campaign_progress').where('userId', userId).first()
 
-    expect(reward).toMatchObject({ firstWin: true, gold: 300, rewardCardId: 'fang-the-sabertooth', progress: 10 })
+    expect(reward).toMatchObject({ firstWin: true, gold: 450, rewardCardId: 'fang-the-sabertooth', progress: 10 })
     expect(reward.pack).toMatchObject({ id: 'guardian' })
     expect((await getCollection(userId))['fang-the-sabertooth']).toBe(1)
     expect(Number(row!.completedAt)).toBe(T0)

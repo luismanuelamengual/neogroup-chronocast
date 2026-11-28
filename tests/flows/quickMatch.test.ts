@@ -52,7 +52,7 @@ describe('quick matches against the CPU', () => {
   })
 
   it('pays less than a public online match, by result', () => {
-    expect(QUICK_MATCH_GOLD.win).toBeLessThan(40)
+    expect(QUICK_MATCH_GOLD.win).toBeLessThan(60)
     expect(quickMatchGold({ winner: 'a', reason: 'hero' })).toBe(QUICK_MATCH_GOLD.win)
     expect(quickMatchGold({ winner: 'b', reason: 'hero' })).toBe(QUICK_MATCH_GOLD.loss)
     expect(quickMatchGold({ winner: null, reason: 'phaseLimit' })).toBe(QUICK_MATCH_GOLD.draw)

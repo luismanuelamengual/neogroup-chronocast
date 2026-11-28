@@ -9,14 +9,14 @@ export const STAGES_PER_CAMPAIGN = 10
  * and the rewards of the first win.
  */
 export const STAGE_RULES: { aiLevel: number; maxRarity: Rarity; gold: number; pack: string | null }[] = [
-  { aiLevel: 1, maxRarity: 'common', gold: 50, pack: null },
-  { aiLevel: 1, maxRarity: 'common', gold: 60, pack: null },
-  { aiLevel: 2, maxRarity: 'uncommon', gold: 80, pack: null },
-  { aiLevel: 2, maxRarity: 'uncommon', gold: 100, pack: null },
-  { aiLevel: 3, maxRarity: 'rare', gold: 120, pack: 'chronicler' },
-  { aiLevel: 3, maxRarity: 'rare', gold: 150, pack: null },
-  { aiLevel: 4, maxRarity: 'epic', gold: 180, pack: null },
-  { aiLevel: 4, maxRarity: 'epic', gold: 220, pack: null },
-  { aiLevel: 5, maxRarity: 'legendary', gold: 260, pack: null },
-  { aiLevel: 6, maxRarity: 'legendary', gold: 300, pack: 'guardian' }
+  { aiLevel: 1, maxRarity: 'common', gold: 75, pack: null },
+  { aiLevel: 1, maxRarity: 'common', gold: 90, pack: null },
+  { aiLevel: 2, maxRarity: 'uncommon', gold: 120, pack: null },
+  { aiLevel: 2, maxRarity: 'uncommon', gold: 150, pack: null },
+  { aiLevel: 3, maxRarity: 'rare', gold: 180, pack: 'chronicler' },
+  { aiLevel: 3, maxRarity: 'rare', gold: 225, pack: null },
+  { aiLevel: 4, maxRarity: 'epic', gold: 270, pack: null },
+  { aiLevel: 4, maxRarity: 'epic', gold: 330, pack: null },
+  { aiLevel: 5, maxRarity: 'legendary', gold: 390, pack: null },
+  { aiLevel: 6, maxRarity: 'legendary', gold: 450, pack: 'guardian' }
 ]

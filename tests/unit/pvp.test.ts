@@ -130,21 +130,21 @@ describe('the end of a match', () => {
 describe('rewards', () => {
   const base = { ratings: { a: 1200, b: 1200 }, firstWinToday: { a: true, b: true } }
 
-  it('a public win pays 40, the bonus against a higher rating and the first win of the day', () => {
+  it('a public win pays 60, the bonus against a higher rating and the first win of the day', () => {
     const rewards = matchRewards({ ...base, visibility: 'public', result: { winner: 'a', reason: 'hero' } })
 
-    expect(rewards.a).toEqual({ ratingDelta: 15, rating: 1215, gold: 140, firstWin: true, xp: 100, level: null })
-    expect(rewards.b).toEqual({ ratingDelta: -15, rating: 1185, gold: 5, firstWin: false, xp: 30, level: null })
-    expect(winBonus(1200, 1600)).toBe(20)
-    expect(winBonus(1200, 1400)).toBe(10)
+    expect(rewards.a).toEqual({ ratingDelta: 15, rating: 1215, gold: 160, firstWin: true, xp: 100, level: null })
+    expect(rewards.b).toEqual({ ratingDelta: -15, rating: 1185, gold: 8, firstWin: false, xp: 30, level: null })
+    expect(winBonus(1200, 1600)).toBe(30)
+    expect(winBonus(1200, 1400)).toBe(15)
     expect(winBonus(1400, 1200)).toBe(0)
   })
 
-  it('a draw pays 15; whoever quits gets nothing', () => {
+  it('a draw pays 23; whoever quits gets nothing', () => {
     const draw = matchRewards({ ...base, visibility: 'public', result: { winner: null, reason: 'phaseLimit' } })
     const quit = matchRewards({ ...base, visibility: 'public', result: { winner: 'a', reason: 'abandon' } })
 
-    expect(draw.a).toMatchObject({ gold: 15, ratingDelta: 0, xp: 50 })
+    expect(draw.a).toMatchObject({ gold: 23, ratingDelta: 0, xp: 50 })
     expect(quit.b).toMatchObject({ gold: 0, ratingDelta: -15, xp: 0 })
   })
 
@@ -154,7 +154,7 @@ describe('rewards', () => {
     expect(matchRewards({ ...base, visibility: 'private', result }).a).toEqual({
       ratingDelta: 0,
       rating: 1200,
-      gold: 20,
+      gold: 30,
       firstWin: false,
       xp: 50,
       level: null

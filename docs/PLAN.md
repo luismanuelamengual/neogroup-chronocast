@@ -552,15 +552,15 @@ delta    = round(30 × (score − expected))       score: 1 gana, 0.5 empate, 0 
 
 | Resultado (PvP pública)  | Oro                                              |
 | ------------------------ | ------------------------------------------------ |
-| Victoria                 | 40 + hasta 20 extra si el rival tenía más rating |
-| Empate                   | 15                                               |
-| Derrota                  | 5                                                |
+| Victoria                 | 60 + hasta 30 extra si el rival tenía más rating |
+| Empate                   | 23                                               |
+| Derrota                  | 8                                                |
 | Abandono                 | 0                                                |
 | Primera victoria del día | +100                                             |
 
 - Partidas privadas: la mitad, y como máximo 3 con premio por día contra el mismo rival (evita que dos amigos se regalen oro).
-- Partida rápida contra la CPU: 20 por victoria, 8 por empate y 3 por derrota (sin Prestigio ni bonus del día), como máximo 10 partidas con oro por día. El servidor reparte la semilla y el mazo de la CPU y repite la partida antes de pagar (como en la campaña).
-- Campaña: oro la primera vez que se gana cada combate (de 50 a 300 según la dificultad) y 10 % de eso si se repite.
+- Partida rápida contra la CPU: 30 por victoria, 12 por empate y 5 por derrota (sin Prestigio ni bonus del día), como máximo 10 partidas con oro por día. El servidor reparte la semilla y el mazo de la CPU y repite la partida antes de pagar (como en la campaña).
+- Campaña: oro la primera vez que se gana cada combate (de 75 a 450 según la dificultad) y 10 % de eso si se repite.
 - Cuentas nuevas: arrancan con **1.000** de oro (`STARTING_GOLD`).
 - Todo cambio de oro pasa por el servidor, dentro de una transacción.
 
@@ -718,7 +718,7 @@ Contra la CPU la partida corre en el navegador (sin esperas). Al terminar, el cl
 
 ### 13.5 Premios
 
-Oro por cada combate ganado la primera vez (de 50 a 300), un sobre en los combates 5 y 10, y al completar la campaña la **carta exclusiva** del héroe que solo se consigue ahí.
+Oro por cada combate ganado la primera vez (de 75 a 450), un sobre en los combates 5 y 10, y al completar la campaña la **carta exclusiva** del héroe que solo se consigue ahí.
 
 ---
 
