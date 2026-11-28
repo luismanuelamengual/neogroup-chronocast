@@ -880,6 +880,8 @@ export const en: Messages = {
     alreadyWon: 'You already won this battle: playing it again pays nothing.',
     start: 'To battle!',
     stageLocked: 'Win the previous battle to unlock it.',
+    unknownRival: '???',
+    unknownStory: 'Nobody knows who waits on the other side of the rift. Win the previous battle to find out.',
     end: {
       victory: 'Victory!',
       defeat: 'Defeat',

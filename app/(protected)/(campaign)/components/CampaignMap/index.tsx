@@ -17,6 +17,7 @@ import { describeSetup } from '@/app/(protected)/(campaign)/utils/describeSetup'
 import { createCampaignMatch } from '@/app/(protected)/(campaign)/utils/playCampaign'
 import { stageKey, storyKey } from '@/app/(protected)/(campaign)/utils/storyKey'
 import CardView from '@/app/(protected)/(cards)/components/CardView'
+import { CardBack } from '@/app/(protected)/(cards)/components/FlipCard'
 import { canPlayWith } from '@/app/(protected)/(collection)/components/ActiveDeckChip'
 import { ActiveDeck } from '@/app/(protected)/(collection)/models/DeckDto'
 import { MAX_AI_LEVEL } from '@/app/(protected)/(engine)/ai/levels'
@@ -153,7 +154,7 @@ export default function CampaignMap({ campaign: initial, deck }: CampaignMapProp
                     <small>
                       {item.boss ? `👑 ${t('campaign.boss')}` : t('campaign.battle', { number: item.number })}
                     </small>
-                    {t(stageKey(campaign.heroId, item.number, 'name'))}
+                    {open ? t(stageKey(campaign.heroId, item.number, 'name')) : t('campaign.unknownRival')}
                   </span>
                 </button>
               </li>
@@ -162,15 +163,25 @@ export default function CampaignMap({ campaign: initial, deck }: CampaignMapProp
         </ol>
         <section className="campaign-map__stage">
           <div className="campaign-map__rival">
-            <CardView card={getCard(stage.rival)} />
+            {unlocked ? (
+              <CardView card={getCard(stage.rival)} />
+            ) : (
+              // A battle not unlocked yet keeps its rival a mystery: a face-down card.
+              <span className="campaign-map__mystery">
+                <CardBack />
+                <span className="campaign-map__mystery-mark">?</span>
+              </span>
+            )}
           </div>
           <div className="campaign-map__details">
             <small>{stage.boss ? `👑 ${t('campaign.boss')}` : t('campaign.battle', { number: stage.number })}</small>
-            <h2>{t(stageKey(campaign.heroId, stage.number, 'name'))}</h2>
-            <p className="campaign-map__story">{t(stageKey(campaign.heroId, stage.number, 'text'))}</p>
+            <h2>{unlocked ? t(stageKey(campaign.heroId, stage.number, 'name')) : t('campaign.unknownRival')}</h2>
+            <p className="campaign-map__story">
+              {t(unlocked ? stageKey(campaign.heroId, stage.number, 'text') : 'campaign.unknownStory')}
+            </p>
             <dl>
               <dt>{t('campaign.rival')}</dt>
-              <dd>{cardName(stage.rival)}</dd>
+              <dd>{unlocked ? cardName(stage.rival) : t('campaign.unknownRival')}</dd>
               <dt>{t('campaign.difficulty')}</dt>
               <dd className="campaign-map__stars" title={`${stage.aiLevel}/${MAX_AI_LEVEL}`}>
                 {'★'.repeat(stage.aiLevel)}

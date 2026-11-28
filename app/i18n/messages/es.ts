@@ -885,6 +885,8 @@ export const es = {
     alreadyWon: 'Ya ganaste este combate: jugarlo de nuevo no da premios.',
     start: '¡Al combate!',
     stageLocked: 'Ganá el combate anterior para desbloquearlo.',
+    unknownRival: '???',
+    unknownStory: 'Nadie sabe quién espera del otro lado de la grieta. Ganá el combate anterior para descubrirlo.',
     end: {
       victory: '¡Victoria!',
       defeat: 'Derrota',
