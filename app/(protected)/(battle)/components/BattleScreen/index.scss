@@ -114,21 +114,29 @@
     &.theirs {
       grid-area: theirs;
       grid-template-areas:
-        'hero support counters'
+        'hero support .'
         'hero allies piles';
       grid-template-rows: 35% 65%;
       margin-bottom: 2px;
       background-color: rgba(255, 236, 240, 0.5);
+
+      .battle-screen__counters {
+        grid-row: 1;
+      }
     }
 
     &.mine {
       grid-area: mine;
       grid-template-areas:
         'hero allies piles'
-        'hero support counters';
+        'hero support .';
       grid-template-rows: 65% 35%;
       margin-top: 2px;
       background-color: rgba(232, 244, 255, 0.55);
+
+      .battle-screen__counters {
+        grid-row: 2;
+      }
     }
   }
 
@@ -139,6 +147,13 @@
     justify-content: center;
     gap: 6px;
     min-height: 0;
+    // Room on the left for the row's name, so no card goes over it.
+    padding-left: 14px;
+
+    // The slots keep their size: the screen's metrics make the 5 of them fit.
+    > * {
+      flex: none;
+    }
 
     &.allies {
       grid-area: allies;
@@ -574,8 +589,12 @@
   }
 
   // The Chronos and the energy: two gauges at the end of the supports row, on the right.
+  // They also take the room the supports leave free in the middle column (the supports are
+  // narrower than the allies), so they don't widen the right column, which is only as wide as
+  // the deck and the graveyard: otherwise the allies are left without room.
   &__counters {
-    grid-area: counters;
+    grid-column: 2 / -1;
+    justify-self: end;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -590,9 +609,9 @@
     position: relative;
     display: flex;
     align-items: center;
-    height: min(34px, calc(var(--support-w) * 1.1));
-    padding-left: calc(min(34px, calc(var(--support-w) * 1.1)) * 0.5);
-    margin-left: calc(min(34px, calc(var(--support-w) * 1.1)) * 0.5);
+    height: min(32px, var(--support-w));
+    padding-left: calc(min(32px, var(--support-w)) * 0.5);
+    margin-left: calc(min(32px, var(--support-w)) * 0.5);
 
     &.energy {
       --tone: #e09600;
@@ -608,7 +627,7 @@
     z-index: 1;
     display: grid;
     place-items: center;
-    width: min(34px, calc(var(--support-w) * 1.1));
+    width: min(32px, var(--support-w));
     aspect-ratio: 1;
     border: 2px solid white;
     border-radius: 50%;
@@ -627,9 +646,9 @@
     justify-content: center;
     gap: 2px;
     height: 100%;
-    min-width: 44px;
-    padding: 0 9px 0 calc(min(34px, calc(var(--support-w) * 1.1)) * 0.5 + 3px);
-    margin-left: calc(min(34px, calc(var(--support-w) * 1.1)) * -0.5);
+    min-width: 36px;
+    padding: 0 7px 0 calc(min(32px, var(--support-w)) * 0.5 + 3px);
+    margin-left: calc(min(32px, var(--support-w)) * -0.5);
     border: 2px solid var(--tone);
     border-radius: 999px 10px 10px 999px;
     background: linear-gradient(180deg, white, var(--tone-soft));
@@ -656,16 +675,26 @@
     letter-spacing: 0.06em;
     line-height: 1;
     text-transform: uppercase;
+
+    // On a phone the gauge shows only the number: the icon already says what it is.
+    @media (max-height: 560px) {
+      display: none;
+    }
   }
 
   // One pip for each Chronos of the phase, lit while it is left.
   &__counter-pips {
     display: flex;
-    gap: 2px;
+    gap: 1.5px;
+
+    // On a phone there is no room for them across: only "X/Y" is shown.
+    @media (max-height: 560px) {
+      display: none;
+    }
 
     i {
-      width: 5px;
-      height: 5px;
+      width: 4.5px;
+      height: 4.5px;
       border: 1px solid var(--tone);
       border-radius: 50%;
       background-color: white;
@@ -723,6 +752,13 @@
       height: 26px;
       padding-right: 16px;
       font-size: 10px;
+
+      // The room on the right is for the Chronos of a planned action: an empty box or a
+      // rival's hidden one has nothing there, so its content stays centered.
+      &.empty,
+      &.hidden {
+        padding-right: 4px;
+      }
     }
 
     .timeline-bar__ready {
