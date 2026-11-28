@@ -37,3 +37,7 @@ yarn-error.log*
 
 # card art sources (the processed WebP in public/cards/ are committed)
 /art/source/
+
+# Android TWA: the signing key, its passwords and the builds never go to the repository (see android/.gitignore)
+/android/*.keystore
+/android/KEYSTORE-CREDENTIALS.txt

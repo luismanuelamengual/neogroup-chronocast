@@ -219,7 +219,7 @@ Manifest en `/manifest.webmanifest`, service worker de Serwist en `/serwist/sw.j
 
 ### Google Play (Trusted Web Activity)
 
-La app Android es una TWA generada con Bubblewrap en el repo aparte **`neogroup-chronocast-android`** (package `app.chronocast.twa`): su README explica la clave de firma, `bubblewrap update && bubblewrap build` y cómo sacar una versión nueva. Del lado web:
+La app Android es una TWA generada con Bubblewrap en la carpeta **[`android/`](android/README.md)** (package `app.chronocast.twa`): su README explica la clave de firma, `bubblewrap update && bubblewrap build` y cómo sacar una versión nueva. Del lado web:
 
 - `/privacy` y `/delete-account`: públicas con o sin sesión (`OPEN_PATHS` en `auth.config.ts`). El email de contacto sale de `CONTACT_EMAIL` (por defecto `support@chronocast.app`).
 - Borrado de cuenta desde Mi perfil (`POST /api/deleteAccount`).

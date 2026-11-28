@@ -1,6 +1,6 @@
 # Ficha de Google Play y primer release
 
-Todo lo que pide Play Console para publicar ChronoCast, listo para copiar. La app Android (TWA) está en el repo aparte `neogroup-chronocast-android` (ver su README).
+Todo lo que pide Play Console para publicar ChronoCast, listo para copiar. La app Android (TWA) está en la carpeta `android/` (ver [su README](../android/README.md)).
 
 ## Datos de la app
 
@@ -123,7 +123,7 @@ Mayores de 13 años (no está dirigida a niños). Así no aplica la política de
 1. Deploy en Vercel de la versión 1.0.0, con las variables de producción (ver `.env.example`).
 2. Generar las imágenes con `art/catalog.md`, ponerlas en `art/source/cards/` y correr `yarn art`; commitear `public/cards/`.
 3. (Opcional) Música y efectos según `art/music.md`, y `yarn art`.
-4. En `neogroup-chronocast-android`: crear la clave, `bubblewrap update && bubblewrap build` (ver su README).
+4. En `android/`: crear la clave, `bubblewrap update && bubblewrap build` (ver su README).
 5. Configurar `ANDROID_PACKAGE_NAME` y `ANDROID_SHA256_CERT_FINGERPRINTS` en Vercel y revisar `/.well-known/assetlinks.json`.
 6. En Play Console: crear la app, completar la ficha con este documento, la clasificación, la seguridad de los datos y el público objetivo.
 7. Subir el `.aab` a **Prueba interna**, instalar desde Play y probar: login con Google, una partida, abrir un sobre, que abra sin barra de Chrome y en horizontal.

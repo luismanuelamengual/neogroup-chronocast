@@ -1,0 +1,14 @@
+# The signing key and its passwords never go to the repository
+android.keystore
+*.keystore
+KEYSTORE-CREDENTIALS.txt
+
+# Builds
+build/
+app/build/
+.gradle/
+*.apk
+*.aab
+*.idsig
+manifest-checksum.txt
+local.properties
