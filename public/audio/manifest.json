@@ -1,4 +1,15 @@
 {
-  "music": [],
+  "music": [
+    "battle.mp3",
+    "battle.ogg",
+    "boss.mp3",
+    "boss.ogg",
+    "campaign.mp3",
+    "campaign.ogg",
+    "defeat.mp3",
+    "menu.mp3",
+    "menu.ogg",
+    "victory.mp3"
+  ],
   "sfx": []
 }
