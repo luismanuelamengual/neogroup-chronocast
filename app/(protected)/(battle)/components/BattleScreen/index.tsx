@@ -49,6 +49,7 @@ import { PlannedAction } from '@/app/(protected)/(engine)/models/PlannedAction'
 import { PlayerId } from '@/app/(protected)/(engine)/models/PlayerId'
 import { SlotRef } from '@/app/(protected)/(engine)/models/SlotRef'
 import { aimsAtAttached, SUPPORT_TARGETS, TargetKind } from '@/app/(protected)/(engine)/models/TargetKind'
+import { MatchEngine } from '@/app/(protected)/(engine)/utils/engine'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
 import { useCardName } from '@/app/i18n/cards/useCardName'
 import { useT } from '@/app/i18n/I18nProvider'
@@ -417,6 +418,15 @@ export default function BattleScreen({
     lastPhase > board.phase
       ? t('battle.statusNotes.untilPhase', { phase: lastPhase })
       : t('battle.statusNotes.untilEnd')
+  /**
+   * An ally that already acted this phase (attacked as many times as it can, or
+   * used its ability): it can't attack again until the next phase. Drawn translucent.
+   */
+  const allyExhausted = (unit: Unit) =>
+    unit.abilityUsedThisPhase || unit.attacksThisPhase >= (new MatchEngine(board).hasKeyword(unit, 'frenzy') ? 2 : 1)
+  /** An ally summoned this phase without `charge`: it can't attack until the next one. */
+  const allyNotReady = (unit: Unit) =>
+    unit.enteredPhase === board.phase && !new MatchEngine(board).hasKeyword(unit, 'charge')
 
   /** Everything going on with an ally: its stats, what it suffers, and why it can't act. */
   const unitNote = (unit: Unit, player: PlayerId) => {
@@ -450,7 +460,7 @@ export default function BattleScreen({
 
     if (unit.abilityUsedThisPhase) {
       notes.push(t('battle.statusNotes.abilityUsed'))
-    } else if (unit.attacksThisPhase >= (unit.keywords.includes('frenzy') ? 2 : 1)) {
+    } else if (allyExhausted(unit)) {
       notes.push(t('battle.statusNotes.attacked'))
     }
 
@@ -1034,8 +1044,8 @@ export default function BattleScreen({
       {SLOTS.map((slot) => {
         const ref = { player, slot }
         const unit = board.players[player].allies[slot]
-        const real = state.players[player].allies[slot]
-        const ghost = planning && !!unit && real?.uid !== unit.uid
+        // Translucent while it can't attack: it already acted, or it just entered (without charge).
+        const exhausted = !!unit && (allyExhausted(unit) || allyNotReady(unit))
 
         return (
           <BoardSlot
@@ -1045,7 +1055,7 @@ export default function BattleScreen({
             label=""
             highlight={highlightOf(ref)}
             selected={selection?.kind === 'ally' && unit?.uid === selection.uid}
-            ghost={ghost}
+            exhausted={exhausted}
             effects={effects.get(refKey(ref))}
             frameKey={frame.key}
             slotKey={refKey(ref)}
@@ -1082,6 +1092,8 @@ export default function BattleScreen({
               type="button"
               className={classNames('battle-screen__support', {
                 empty: !entry,
+                // An artifact whose ability was already used this phase.
+                exhausted: !!entry && !entry.faceDown && !!entry.card.abilityUsedThisPhase,
                 selected: !!entry && selection?.kind === 'artifact' && selection.uid === entry.card.uid,
                 'ability-ready':
                   planning &&

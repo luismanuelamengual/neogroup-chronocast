@@ -291,6 +291,12 @@
       cursor: default;
     }
 
+    // An artifact whose ability was already used this phase.
+    &.exhausted > * {
+      opacity: 0.55;
+      filter: saturate(0.6);
+    }
+
     // An artifact aiming its ability.
     &.selected {
       box-shadow:

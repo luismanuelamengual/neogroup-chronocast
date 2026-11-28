@@ -13,8 +13,8 @@ interface BoardSlotProps {
   label?: string
   highlight?: SlotHighlight
   selected?: boolean
-  /** Only in the projection (summoned or moved by the plan). */
-  ghost?: boolean
+  /** The ally already acted this phase (attacked or used its ability): drawn translucent. */
+  exhausted?: boolean
   effects?: SlotEffects
   /** Changes with each moment of the resolution, so the animations replay. */
   frameKey?: number
@@ -32,7 +32,7 @@ export default function BoardSlot({
   label,
   highlight,
   selected,
-  ghost,
+  exhausted,
   effects,
   frameKey,
   side,
@@ -45,7 +45,7 @@ export default function BoardSlot({
       type="button"
       className={classNames('board-slot', `side-${side}`, className, highlight && `highlight-${highlight}`, {
         selected,
-        ghost,
+        exhausted,
         empty: !children
       })}
       data-slot={slotKey}

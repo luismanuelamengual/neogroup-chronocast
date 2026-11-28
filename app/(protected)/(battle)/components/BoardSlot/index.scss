@@ -61,8 +61,10 @@
     font-weight: 700;
   }
 
-  &.ghost &__body {
+  // Already acted this phase: it can't attack again until the next one.
+  &.exhausted &__body {
     opacity: 0.55;
+    filter: saturate(0.6);
   }
 
   &.selected &__body {
