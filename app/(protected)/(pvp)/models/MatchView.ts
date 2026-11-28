@@ -35,6 +35,8 @@ export interface SeatInfo {
   name: string
   rating: number
   heroId: string
+  /** The back of its deck's cards (data/cardBacks.ts). */
+  cardBack: string
 }
 
 /**

@@ -6,6 +6,7 @@ import classNames from 'classnames'
 import { useEffect, useRef, useState } from 'react'
 import { useMusic } from '@/app/(protected)/(art)/hooks/useMusic'
 import { playSfx } from '@/app/(protected)/(art)/utils/sound'
+import CardBackShop from '@/app/(protected)/(shop)/components/CardBackShop'
 import GoldAmount from '@/app/(protected)/(shop)/components/GoldAmount'
 import PackOpening, { OpenedPack } from '@/app/(protected)/(shop)/components/PackOpening'
 import PackShop from '@/app/(protected)/(shop)/components/PackShop'
@@ -14,15 +15,16 @@ import { ShopState } from '@/app/(protected)/(shop)/models/ShopState'
 import GameButton from '@/app/components/GameButton'
 import { useT } from '@/app/i18n/I18nProvider'
 
-export type ShopTab = 'packs' | 'cards'
+export type ShopTab = 'packs' | 'cards' | 'backs'
 
 const TABS: { key: ShopTab; icon: string }[] = [
   { key: 'packs', icon: '🎁' },
-  { key: 'cards', icon: '🃏' }
+  { key: 'cards', icon: '🃏' },
+  { key: 'backs', icon: '🎴' }
 ]
 
 /**
- * The shop (/shop, docs/PLAN.md section 11): packs, and single cards to buy and sell,
+ * The shop (/shop, docs/PLAN.md section 11): packs, single cards to buy and sell, and card backs,
  * with the player's gold always in sight. Every purchase or sale answers with
  * the shop updated.
  */
@@ -69,6 +71,7 @@ export default function ShopView({ initial, tab: initialTab }: { initial: ShopSt
       </header>
       {tab === 'packs' && <PackShop state={state} onChange={setState} onOpened={setOpened} />}
       {tab === 'cards' && <SingleShop state={state} onChange={setState} />}
+      {tab === 'backs' && <CardBackShop state={state} onChange={setState} />}
       {opened && (
         <PackOpening
           key={opened.key}

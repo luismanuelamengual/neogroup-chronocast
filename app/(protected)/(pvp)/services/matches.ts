@@ -1,6 +1,8 @@
 import '@/app/(protected)/(cards)/utils/catalog'
 import { DB } from '@neogroup/neorm'
+import { DEFAULT_CARD_BACK } from '@/app/(protected)/(cards)/data/cardBacks'
 import { PLANNING_SECONDS } from '@/app/(protected)/(engine)/data/rules'
+import { DeckList } from '@/app/(protected)/(engine)/models/DeckList'
 import { opponentOf, PLAYER_IDS, PlayerId } from '@/app/(protected)/(engine)/models/PlayerId'
 import { mulligan } from '@/app/(protected)/(engine)/utils/createMatch'
 import { forfeit } from '@/app/(protected)/(engine)/utils/endMatch'
@@ -194,7 +196,7 @@ export function publicName(user: UserRow): string {
   })
 }
 
-function seatInfo(user: UserRow | undefined, heroId: string | null): SeatInfo | null {
+function seatInfo(user: UserRow | undefined, heroId: string | null, deck: DeckList | null): SeatInfo | null {
   if (!user || !heroId) {
     return null
   }
@@ -202,7 +204,8 @@ function seatInfo(user: UserRow | undefined, heroId: string | null): SeatInfo | 
   return {
     name: publicName(user),
     rating: Number(user.rating ?? 1200),
-    heroId
+    heroId,
+    cardBack: deck?.cardBack ?? DEFAULT_CARD_BACK
   }
 }
 
@@ -223,6 +226,7 @@ export async function matchView(match: MatchRow, userId: number, now: number = D
           : 'planning'
   const deadline = stage === 'waiting' ? match.expiresAt : stage === 'over' ? null : match.phaseDeadline
   const heroes = { a: match.heroA, b: match.heroB }
+  const decks = { a: match.deckA, b: match.deckB }
   const reward: PlayerReward | null = match.rewards?.[me] ?? null
 
   return {
@@ -232,8 +236,8 @@ export async function matchView(match: MatchRow, userId: number, now: number = D
     visibility: match.visibility,
     code: match.code,
     me,
-    you: seatInfo(users[me], heroes[me])!,
-    rival: seatInfo(users[rival], heroes[rival]),
+    you: seatInfo(users[me], heroes[me], decks[me])!,
+    rival: seatInfo(users[rival], heroes[rival], decks[rival]),
     stage,
     state: state ? redactState(state, me) : null,
     deadlineIn: deadline == null ? 0 : Math.max(0, deadline - now),

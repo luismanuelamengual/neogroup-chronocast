@@ -15,6 +15,7 @@ import Slider from '@mui/material/Slider'
 import Switch from '@mui/material/Switch'
 import { useEffect, useState } from 'react'
 import {
+  DEFAULT_SOUND_SETTINGS,
   getSoundSettings,
   onSoundSettings,
   playSfx,
@@ -28,9 +29,15 @@ import { useT } from '@/app/i18n/I18nProvider'
 export default function SoundButton({ className }: { className?: string }) {
   const t = useT()
   const [open, setOpen] = useState(false)
-  const [settings, setSettings] = useState<SoundSettings>(getSoundSettings)
+  // Start from the defaults so the server and the first client render match;
+  // the stored preference (localStorage) is applied after hydration.
+  const [settings, setSettings] = useState<SoundSettings>(DEFAULT_SOUND_SETTINGS)
 
-  useEffect(() => onSoundSettings(setSettings), [])
+  useEffect(() => {
+    setSettings(getSoundSettings())
+
+    return onSoundSettings(setSettings)
+  }, [])
 
   const Icon = settings.muted ? VolumeOffIcon : VolumeUpIcon
 

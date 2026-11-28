@@ -4,6 +4,8 @@ export interface DeckDto {
   name: string
   heroId: string
   cards: Record<string, number>
+  /** The back its cards show face down (data/cardBacks.ts). */
+  cardBack: string
   updatedAt: string
 }
 
@@ -32,4 +34,6 @@ export interface DeckInput {
   name: string
   heroId: string
   cards: Record<string, number>
+  /** One of the player's card backs (missing: the default one). */
+  cardBack?: string
 }

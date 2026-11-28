@@ -4,6 +4,7 @@ import { Selection } from '@/app/(protected)/(battle)/models/Selection'
 import { createPracticeMatch } from '@/app/(protected)/(battle)/utils/practice'
 import { padTimeline, projectPlan } from '@/app/(protected)/(battle)/utils/projection'
 import type { BattleRecord } from '@/app/(protected)/(campaign)/utils/playCampaign'
+import { DEFAULT_CARD_BACK } from '@/app/(protected)/(cards)/data/cardBacks'
 import { chooseTimeline } from '@/app/(protected)/(engine)/ai/chooseTimeline'
 import { planTimeline } from '@/app/(protected)/(engine)/ai/planTimeline'
 import { ACTIONS_PER_PHASE, PLANNING_SECONDS } from '@/app/(protected)/(engine)/data/rules'
@@ -42,6 +43,8 @@ interface BattleStore {
   rival: PlayerId
   /** Online: the rival's name (practice: empty, the computer). */
   rivalName: string
+  /** The back of each side's cards (the computer's: the default one). */
+  cardBacks: Record<PlayerId, string>
   mode: BattleMode
   /** The real state of the match (at the start of the phase being programmed). */
   state: MatchState | null
@@ -199,6 +202,7 @@ export const useBattleStore = create<BattleStore>()((set, get) => {
     me: ME,
     rival: RIVAL,
     rivalName: '',
+    cardBacks: { a: DEFAULT_CARD_BACK, b: DEFAULT_CARD_BACK },
     mode: 'idle',
     state: null,
     view: null,
@@ -232,6 +236,7 @@ export const useBattleStore = create<BattleStore>()((set, get) => {
         me: ME,
         rival: RIVAL,
         rivalName: '',
+        cardBacks: { [ME]: deck.cardBack ?? DEFAULT_CARD_BACK, [RIVAL]: DEFAULT_CARD_BACK } as Record<PlayerId, string>,
         online: null,
         version: -1,
         pendingView: null,
@@ -258,6 +263,10 @@ export const useBattleStore = create<BattleStore>()((set, get) => {
         me: view.me,
         rival: opponentOf(view.me),
         rivalName: view.rival?.name ?? '',
+        cardBacks: {
+          [view.me]: view.you.cardBack,
+          [opponentOf(view.me)]: view.rival?.cardBack ?? DEFAULT_CARD_BACK
+        } as Record<PlayerId, string>,
         online,
         version: -1,
         pendingView: null,

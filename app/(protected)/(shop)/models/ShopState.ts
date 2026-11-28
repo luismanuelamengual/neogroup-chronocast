@@ -13,6 +13,8 @@ export interface ShopState {
   packsWithoutLegendary: number
   /** The copies of each card the active deck holds: they cannot be sold. */
   deckUsage: Record<string, number>
+  /** The card backs the player owns (the default one always), in the shop's order. */
+  cardBacks: string[]
 }
 
 export interface PackPurchase {

@@ -3,6 +3,7 @@ import { DB } from '@neogroup/neorm'
 import createTables from '@/database/migrations/001-create-tables'
 
 const TABLES = [
+  'user_card_backs',
   'campaign_progress',
   'matches',
   'deck_cards',

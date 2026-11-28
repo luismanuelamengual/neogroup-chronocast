@@ -17,7 +17,13 @@ const revision = spawnSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf-8' }).
 export const { dynamic, dynamicParams, revalidate, generateStaticParams, GET } = createSerwistRoute({
   additionalPrecacheEntries: [{ url: '/~offline', revision }],
   // The card art and the music are cached as they are used (see sw.ts).
-  globIgnores: ['**/node_modules/**/*', 'public/cards/**/*', 'public/art/**/*', 'public/audio/**/*'],
+  globIgnores: [
+    '**/node_modules/**/*',
+    'public/cards/**/*',
+    'public/backs/**/*',
+    'public/art/**/*',
+    'public/audio/**/*'
+  ],
   swSrc: 'app/(pwa)/services/sw.ts',
   useNativeEsbuild: true
 })

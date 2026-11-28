@@ -1,0 +1,136 @@
+// The card backs tab of the shop (phone in landscape first: small tiles, the preview side by side).
+.card-back-shop {
+  --tier: var(--color-violet);
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  h2 {
+    margin: 0;
+    font-family: var(--font-title);
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+
+  .tier-era {
+    --tier: var(--rarity-uncommon);
+  }
+
+  .tier-rare {
+    --tier: var(--rarity-rare);
+  }
+
+  .tier-epic {
+    --tier: var(--rarity-epic);
+  }
+
+  .tier-legendary {
+    --tier: var(--rarity-legendary);
+  }
+
+  &__intro {
+    margin: 0;
+    color: var(--color-text-secondary);
+    font-weight: 700;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
+    gap: 12px 10px;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-align: center;
+
+    strong {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 400;
+      line-height: 1.15;
+    }
+  }
+
+  &__thumb {
+    position: relative;
+    width: 92px;
+    aspect-ratio: 5 / 7;
+    padding: 0;
+    border: 0;
+    border-radius: 10px;
+    background: none;
+    box-shadow:
+      0 0 0 2px var(--tier),
+      0 6px 14px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+    transition: transform 0.15s;
+
+    --flip-radius: 10px;
+    --flip-glyph: 1.3rem;
+
+    &:hover,
+    &:focus-visible {
+      transform: translateY(-3px);
+    }
+  }
+
+  &__owned {
+    color: var(--color-lime-dark);
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+  }
+
+  // The back shown big: the card on the left, its name and the purchase on the right.
+  &__preview {
+    position: fixed;
+    z-index: 50;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: calc(12px + var(--safe-top)) calc(16px + var(--safe-right)) calc(12px + var(--safe-bottom))
+      calc(16px + var(--safe-left));
+    background: rgba(20, 14, 40, 0.82);
+  }
+
+  &__preview-card {
+    position: relative;
+    height: min(86dvh, 520px);
+    aspect-ratio: 5 / 7;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+
+    --flip-radius: 16px;
+    --flip-glyph: 3rem;
+  }
+
+  &__preview-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    max-width: 260px;
+    padding: 16px;
+    border: 3px solid var(--color-outline);
+    border-radius: 16px;
+    background: white;
+    color: var(--color-text);
+
+    h2 {
+      font-size: 1.4rem;
+    }
+
+    p {
+      margin: 0;
+      color: var(--color-text-secondary);
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+  }
+}

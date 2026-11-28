@@ -154,7 +154,8 @@ export default function BattleScreen({
   const t = useT()
   const cardName = useCardName()
   const store = useBattleStore()
-  const { state, view, timeline, selection, mode, frame, failures, fast, deck, rivalHeroId, me, rival } = store
+  const { state, view, timeline, selection, mode, frame, failures, fast, deck, rivalHeroId, me, rival, cardBacks } =
+    store
   const online = !!store.online
   const metrics = useMetrics()
   const [confirmSurrender, setConfirmSurrender] = useState(false)
@@ -1095,7 +1096,11 @@ export default function BattleScreen({
             >
               {entry && (
                 <CardStack width={metrics.support}>
-                  <MiniCard cardId={entry.faceDown ? null : entry.card.cardId} width={metrics.support} />
+                  <MiniCard
+                    cardId={entry.faceDown ? null : entry.card.cardId}
+                    back={cardBacks[player]}
+                    width={metrics.support}
+                  />
                 </CardStack>
               )}
               {entry?.card.charges !== undefined && (
@@ -1177,10 +1182,11 @@ export default function BattleScreen({
           <CardStack
             className="battle-screen__pile-stack"
             under={side.deck.slice(1).map(() => ({ cardId: null }))}
+            back={cardBacks[player]}
             width={metrics.pile}
           >
             {side.deck.length > 0 ? (
-              <MiniCard cardId={null} width={metrics.pile}>
+              <MiniCard cardId={null} back={cardBacks[player]} width={metrics.pile}>
                 {label('deck', side.deck.length)}
               </MiniCard>
             ) : (
@@ -1293,7 +1299,7 @@ export default function BattleScreen({
           <span className="battle-screen__phase">{t('battle.phase', { phase: board.phase })}</span>
           <div className="battle-screen__rival-hand" aria-label={t('battle.rivalHand')}>
             {board.players[rival].hand.map((card) => (
-              <MiniCard key={card.uid} cardId={null} width={metrics.rivalHand} />
+              <MiniCard key={card.uid} cardId={null} back={cardBacks[rival]} width={metrics.rivalHand} />
             ))}
             <span className="battle-screen__count">{board.players[rival].hand.length}</span>
           </div>

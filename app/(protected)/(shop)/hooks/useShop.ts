@@ -14,11 +14,15 @@ export function useShop() {
     (cardId: string, count = 1) => executeRequest<ShopState>('/buyCard', { cardId, count }),
     [executeRequest]
   )
+  const buyCardBack = useCallback(
+    (backId: string) => executeRequest<ShopState>('/buyCardBack', { backId }),
+    [executeRequest]
+  )
   const sellCards = useCallback(
     (cards: Record<string, number>) => executeRequest<Sale>('/sellCards', { cards }),
     [executeRequest]
   )
   const quickSell = useCallback(() => executeRequest<Sale>('/quickSell', {}), [executeRequest])
 
-  return { buyPack, buyCard, sellCards, quickSell }
+  return { buyPack, buyCard, buyCardBack, sellCards, quickSell }
 }

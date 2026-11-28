@@ -4,13 +4,15 @@
  * art/source/cards/ (named as in art/catalog.csv; .png, .jpg or .webp) is
  * cropped to its frame, shrunk to WebP in public/cards/ and listed in
  * public/cards/manifest.json (with a version, so browsers pick up a new one).
+ * The card backs go the same way from art/source/backs/ to public/backs/
+ * (and public/backs/manifest.json).
  * It prints each image the moment it is processed, with a progress bar at the
  * bottom, and only processes what changed since the last run.
  *
  * Then it copies the music and sound effects (see scripts/art/audio.ts).
  *
  * Usage: yarn art            (every image, then a summary of what is missing by batch)
- *        yarn art --watch    (also stays watching art/source/cards/ and processes each new or changed image)
+ *        yarn art --watch    (also stays watching art/source/cards/ and art/source/backs/ and processes each new or changed image)
  *        yarn art --force    (processes everything again)
  */
 import { createHash } from 'node:crypto'
@@ -22,10 +24,27 @@ import { ArtRow, artRows } from '@/scripts/art/catalog'
 export const SOURCE_DIR = path.join(process.cwd(), 'art', 'source', 'cards')
 export const OUTPUT_DIR = path.join(process.cwd(), 'public', 'cards')
 export const MANIFEST_FILE = path.join(OUTPUT_DIR, 'manifest.json')
+export const BACKS_SOURCE_DIR = path.join(process.cwd(), 'art', 'source', 'backs')
+export const BACKS_OUTPUT_DIR = path.join(process.cwd(), 'public', 'backs')
+
+/** The images of each folder by name, with their version: `cards` (public/cards/) and `backs` (public/backs/). */
+export type Manifests = Record<'cards' | 'backs', Record<string, string>>
+
+/** Where a row's image comes from and goes to. */
+function placeOf(row: ArtRow): { source: string; output: string; manifest: keyof Manifests } {
+  return row.back
+    ? { source: BACKS_SOURCE_DIR, output: BACKS_OUTPUT_DIR, manifest: 'backs' }
+    : { source: SOURCE_DIR, output: OUTPUT_DIR, manifest: 'cards' }
+}
+
 const EXTENSIONS = ['.png', '.jpg', '.jpeg', '.webp']
 
-/** Size of the processed images (the card window is 4:5; the hero portrait, square). */
-export const OUTPUT_SIZE = { card: { width: 640, height: 800 }, portrait: { width: 512, height: 512 } }
+/** Size of the processed images (the card window is 4:5; the hero portrait, square; the card back, 5:7). */
+export const OUTPUT_SIZE = {
+  card: { width: 640, height: 800 },
+  portrait: { width: 512, height: 512 },
+  back: { width: 640, height: 896 }
+}
 
 export type ArtStatus = 'ok' | 'unchanged' | 'missing' | 'error'
 
@@ -34,8 +53,8 @@ export interface ArtResult {
   detail: string
 }
 
-/** The image of a row in art/source/cards/, whatever its extension (null: not there yet). */
-export function sourceOf(row: ArtRow, dir: string = SOURCE_DIR): string | null {
+/** The image of a row in art/source/cards/ (or backs/), whatever its extension (null: not there yet). */
+export function sourceOf(row: ArtRow, dir: string = placeOf(row).source): string | null {
   const base = row.file.replace(/\.png$/, '')
 
   for (const extension of EXTENSIONS) {
@@ -54,27 +73,41 @@ export function outputName(row: ArtRow): string {
   return row.file.replace(/\.png$/, '')
 }
 
-function readManifest(): Record<string, string> {
+function readManifestFile(file: string): Record<string, string> {
   try {
-    return JSON.parse(readFileSync(MANIFEST_FILE, 'utf-8')) as Record<string, string>
+    return JSON.parse(readFileSync(file, 'utf-8')) as Record<string, string>
   } catch {
     return {}
   }
 }
 
-function writeManifest(manifest: Record<string, string>): void {
+function writeManifestFile(file: string, manifest: Record<string, string>): void {
   const sorted = Object.fromEntries(Object.entries(manifest).sort(([a], [b]) => a.localeCompare(b)))
 
-  writeFileSync(MANIFEST_FILE, `${JSON.stringify(sorted, null, 2)}\n`)
+  mkdirSync(path.dirname(file), { recursive: true })
+  writeFileSync(file, `${JSON.stringify(sorted, null, 2)}\n`)
+}
+
+const BACKS_MANIFEST_FILE = path.join(BACKS_OUTPUT_DIR, 'manifest.json')
+
+function readManifests(): Manifests {
+  return { cards: readManifestFile(MANIFEST_FILE), backs: readManifestFile(BACKS_MANIFEST_FILE) }
+}
+
+function writeManifests(manifests: Manifests): void {
+  writeManifestFile(MANIFEST_FILE, manifests.cards)
+  writeManifestFile(BACKS_MANIFEST_FILE, manifests.backs)
 }
 
 const kb = (bytes: number) => `${Math.max(1, Math.round(bytes / 1024))} KB`
 
 /** Processes one image: crop to its frame and WebP. */
-export async function processRow(row: ArtRow, manifest: Record<string, string>, force = false): Promise<ArtResult> {
+export async function processRow(row: ArtRow, manifests: Manifests, force = false): Promise<ArtResult> {
+  const place = placeOf(row)
+  const manifest = manifests[place.manifest]
   const source = sourceOf(row)
   const name = outputName(row)
-  const target = path.join(OUTPUT_DIR, `${name}.webp`)
+  const target = path.join(place.output, `${name}.webp`)
 
   if (!source) {
     delete manifest[name]
@@ -88,14 +121,16 @@ export async function processRow(row: ArtRow, manifest: Record<string, string>, 
 
   try {
     const { default: sharp } = await import('sharp')
-    const size = row.portrait ? OUTPUT_SIZE.portrait : OUTPUT_SIZE.card
+    const size = row.back ? OUTPUT_SIZE.back : row.portrait ? OUTPUT_SIZE.portrait : OUTPUT_SIZE.card
     const image = sharp(source)
     const meta = await image.metadata()
     const output = await image
-      .resize(size.width, size.height, { fit: 'cover', position: 'attention' })
+      // A back is symmetric: it is cropped from its center, not from where the eye goes.
+      .resize(size.width, size.height, { fit: 'cover', position: row.back ? 'centre' : 'attention' })
       .webp({ quality: 82 })
       .toBuffer()
 
+    mkdirSync(place.output, { recursive: true })
     writeFileSync(target, output)
     manifest[name] = createHash('sha1').update(output).digest('hex').slice(0, 8)
 
@@ -140,13 +175,11 @@ function print(text: string, progress?: string): void {
 /** Every image of the catalog, one by one. Returns the results by row. */
 export async function processAll(force = false): Promise<Map<ArtRow, ArtResult>> {
   const rows = artRows()
-  const manifest = readManifest()
+  const manifests = readManifests()
   const results = new Map<ArtRow, ArtResult>()
 
-  mkdirSync(OUTPUT_DIR, { recursive: true })
-
   for (const [index, row] of rows.entries()) {
-    const result = await processRow(row, manifest, force)
+    const result = await processRow(row, manifests, force)
 
     results.set(row, result)
     print(line(index + 1, rows.length, row, result), bar(index + 1, rows.length))
@@ -156,7 +189,7 @@ export async function processAll(force = false): Promise<Map<ArtRow, ArtResult>>
     process.stdout.write('\r\x1b[2K')
   }
 
-  writeManifest(manifest)
+  writeManifests(manifests)
 
   return results
 }
@@ -194,17 +227,21 @@ function summary(results: Map<ArtRow, ArtResult>): void {
   }
 }
 
-/** Watches art/source/cards/ and processes each image as soon as it appears or changes. */
+/** Watches art/source/cards/ and art/source/backs/ and processes each image as soon as it appears or changes. */
 async function watch(): Promise<void> {
   const { watch: chokidar } = await import('chokidar')
+  const dirs = [SOURCE_DIR, BACKS_SOURCE_DIR]
 
-  mkdirSync(SOURCE_DIR, { recursive: true })
-  console.log(`\nWatching ${path.relative(process.cwd(), SOURCE_DIR)}/ (Ctrl+C to stop)...`)
+  dirs.forEach((dir) => mkdirSync(dir, { recursive: true }))
+  console.log(
+    `\nWatching ${dirs.map((dir) => `${path.relative(process.cwd(), dir)}/`).join(' and ')} (Ctrl+C to stop)...`
+  )
 
   const handle = async (file: string) => {
     const base = path.basename(file).replace(/\.(png|jpe?g|webp)$/i, '')
     const rows = artRows()
-    const row = rows.find((candidate) => outputName(candidate) === base)
+    const back = path.dirname(file) === BACKS_SOURCE_DIR
+    const row = rows.find((candidate) => outputName(candidate) === base && !!candidate.back === back)
 
     if (!row) {
       console.log(`${path.basename(file)}: no card uses this name (see art/catalog.csv)`)
@@ -212,14 +249,14 @@ async function watch(): Promise<void> {
       return
     }
 
-    const manifest = readManifest()
-    const result = await processRow(row, manifest, true)
+    const manifests = readManifests()
+    const result = await processRow(row, manifests, true)
 
-    writeManifest(manifest)
+    writeManifests(manifests)
     print(line(rows.indexOf(row) + 1, rows.length, row, result))
   }
 
-  chokidar(SOURCE_DIR, { ignoreInitial: true, awaitWriteFinish: { stabilityThreshold: 300 } })
+  chokidar(dirs, { ignoreInitial: true, awaitWriteFinish: { stabilityThreshold: 300 } })
     .on('add', (file) => void handle(file))
     .on('change', (file) => void handle(file))
 }

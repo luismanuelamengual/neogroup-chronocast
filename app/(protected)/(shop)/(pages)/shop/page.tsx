@@ -6,7 +6,7 @@ import { getShopState } from '@/app/(protected)/(shop)/services/shop'
 import { getT } from '@/app/i18n/server'
 import { User } from '@/app/models/User'
 
-const TABS: ShopTab[] = ['packs', 'cards']
+const TABS: ShopTab[] = ['packs', 'cards', 'backs']
 
 export async function generateMetadata(): Promise<Metadata> {
   return { title: (await getT())('metadata.shop') }

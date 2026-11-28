@@ -13,6 +13,8 @@ const CARD_WIDTH = 220
 interface MiniCardProps {
   /** Null: a face-down card (the rival's hand, deck, traps). */
   cardId: string | null
+  /** The back of a face-down card (data/cardBacks.ts; missing: the default one). */
+  back?: string
   /** Width in px; the height follows the card's proportions. */
   width: number
   className?: string
@@ -24,7 +26,7 @@ interface MiniCardProps {
  * A whole card, illustration included, drawn small: the battle board shows
  * every card this way, with its live values on badges over it.
  */
-export default function MiniCard({ cardId, width, className, children }: MiniCardProps) {
+export default function MiniCard({ cardId, back, width, className, children }: MiniCardProps) {
   return (
     <span
       className={classNames('mini-card', className)}
@@ -35,7 +37,7 @@ export default function MiniCard({ cardId, width, className, children }: MiniCar
           <CardView card={getCard(cardId)} />
         </span>
       ) : (
-        <CardBack />
+        <CardBack back={back} />
       )}
       {children}
     </span>

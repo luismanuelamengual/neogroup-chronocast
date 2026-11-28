@@ -2,4 +2,6 @@
 export interface DeckList {
   heroId: string
   cards: string[]
+  /** The back its cards show face down (data/cardBacks.ts; missing: the default one). */
+  cardBack?: string
 }

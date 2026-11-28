@@ -46,7 +46,7 @@ interface Engine {
 }
 
 const STORAGE_KEY = 'chronocast:sound'
-const DEFAULT_SETTINGS: SoundSettings = { music: 0.6, sfx: 0.8, muted: false }
+export const DEFAULT_SOUND_SETTINGS: SoundSettings = { music: 0.6, sfx: 0.8, muted: false }
 const FADE_S = 1.2
 /** At most this many effects at once (a phone chokes with more). */
 const MAX_VOICES = 14
@@ -84,9 +84,11 @@ function readSettings(): SoundSettings {
   try {
     const stored = typeof localStorage === 'undefined' ? null : localStorage.getItem(STORAGE_KEY)
 
-    return stored ? { ...DEFAULT_SETTINGS, ...(JSON.parse(stored) as Partial<SoundSettings>) } : DEFAULT_SETTINGS
+    return stored
+      ? { ...DEFAULT_SOUND_SETTINGS, ...(JSON.parse(stored) as Partial<SoundSettings>) }
+      : DEFAULT_SOUND_SETTINGS
   } catch {
-    return DEFAULT_SETTINGS
+    return DEFAULT_SOUND_SETTINGS
   }
 }
 

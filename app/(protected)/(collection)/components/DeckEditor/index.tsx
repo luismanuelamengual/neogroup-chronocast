@@ -7,6 +7,8 @@ import { useEffect, useMemo, useState } from 'react'
 import toast from 'react-hot-toast'
 import CardSpotlight, { SpotlightAction } from '@/app/(protected)/(cards)/components/CardSpotlight'
 import CardView from '@/app/(protected)/(cards)/components/CardView'
+import { CardBack } from '@/app/(protected)/(cards)/components/FlipCard'
+import { cardBackNameKey, DEFAULT_CARD_BACK } from '@/app/(protected)/(cards)/data/cardBacks'
 import { useCardArt } from '@/app/(protected)/(cards)/stores/cardArt'
 import { CARDS, HEROES } from '@/app/(protected)/(cards)/utils/catalog'
 import CardFilters from '@/app/(protected)/(collection)/components/CardFilters'
@@ -79,6 +81,8 @@ interface DeckEditorProps {
   /** The hero of the deck (null: a new deck whose hero is not chosen yet). */
   heroId: string | null
   collection: Collection
+  /** The card backs the player owns (the default one always): the deck shows one of them. */
+  cardBacks: string[]
 }
 
 /**
@@ -91,7 +95,7 @@ interface DeckEditorProps {
  * The hero is always the first card: a new or cleared deck only offers the
  * owned heroes, and once one is in, the pool shows the cards that hero can use.
  */
-export default function DeckEditor({ deck, heroId: initialHeroId, collection }: DeckEditorProps) {
+export default function DeckEditor({ deck, heroId: initialHeroId, collection, cardBacks }: DeckEditorProps) {
   const t = useT()
   const router = useRouter()
   const { saveDeck } = useCollection()
@@ -105,6 +109,11 @@ export default function DeckEditor({ deck, heroId: initialHeroId, collection }: 
   const [saving, setSaving] = useState(false)
   const [dirty, setDirty] = useState(!deck)
   const [details, setDetails] = useState(false)
+  const [cardBack, setCardBack] = useState(
+    deck && cardBacks.includes(deck.cardBack) ? deck.cardBack : DEFAULT_CARD_BACK
+  )
+  /** The panel to choose the deck's card back is open. */
+  const [choosingBack, setChoosingBack] = useState(false)
   const [confirmClear, setConfirmClear] = useState(false)
   /** The card shown big (tapped in the deck or the pool), with its add/remove buttons. */
   const [spotlight, setSpotlight] = useState<string | null>(null)
@@ -249,7 +258,7 @@ export default function DeckEditor({ deck, heroId: initialHeroId, collection }: 
     setSaving(true)
 
     try {
-      const saved = await saveDeck({ id: deck?.id, name, heroId, cards })
+      const saved = await saveDeck({ id: deck?.id, name, heroId, cards, cardBack })
 
       setDirty(false)
       toast.success(t('decks.editor.saved'))
@@ -290,11 +299,29 @@ export default function DeckEditor({ deck, heroId: initialHeroId, collection }: 
             ok: size >= MIN_DECK_SIZE && problems.length === 0,
             open: details
           })}
-          onClick={() => setDetails(!details)}
+          onClick={() => {
+            setDetails(!details)
+            setChoosingBack(false)
+          }}
           aria-expanded={details}
         >
           <strong>{t('decks.editor.counter', { count: size, min: MIN_DECK_SIZE })}</strong>
           {hero && <span>{problems.length === 0 ? '✔' : `⚠ ${problems.length}`}</span>}
+        </button>
+        <button
+          type="button"
+          className={classNames('deck-editor__back', { open: choosingBack })}
+          title={t('decks.editor.chooseBack')}
+          aria-expanded={choosingBack}
+          onClick={() => {
+            setChoosingBack(!choosingBack)
+            setDetails(false)
+          }}
+        >
+          <span className="deck-editor__back-thumb">
+            <CardBack back={cardBack} />
+          </span>
+          <span className="deck-editor__back-label">{t('decks.editor.cardBack')}</span>
         </button>
         <GameButton
           size="small"
@@ -307,6 +334,39 @@ export default function DeckEditor({ deck, heroId: initialHeroId, collection }: 
         <GameButton size="small" color="primary" loading={saving} disabled={!canSave || !dirty} onClick={save}>
           {t('decks.editor.save')}
         </GameButton>
+
+        {choosingBack && (
+          <div className="deck-editor__backs">
+            <strong>{t('decks.editor.chooseBack')}</strong>
+            <div className="deck-editor__backs-grid">
+              {cardBacks.map((id) => (
+                <button
+                  key={id}
+                  type="button"
+                  className={classNames('deck-editor__backs-item', { selected: id === cardBack })}
+                  aria-pressed={id === cardBack}
+                  title={t(cardBackNameKey(id))}
+                  onClick={() => {
+                    if (id !== cardBack) {
+                      setCardBack(id)
+                      setDirty(true)
+                    }
+
+                    setChoosingBack(false)
+                  }}
+                >
+                  <span className="deck-editor__backs-thumb">
+                    <CardBack back={id} />
+                  </span>
+                  <small>{t(cardBackNameKey(id))}</small>
+                </button>
+              ))}
+            </div>
+            <GameButton size="small" color="secondary" href="/shop?tab=backs">
+              🎴 {t('decks.editor.moreBacks')}
+            </GameButton>
+          </div>
+        )}
 
         {details && hero && (
           <div className="deck-editor__details">

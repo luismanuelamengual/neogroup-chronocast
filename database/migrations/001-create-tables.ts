@@ -8,6 +8,7 @@ import { DB, Schema } from '@neogroup/neorm'
  *
  *   - users / email_verification_tokens / password_reset_tokens → authentication
  *   - user_cards / decks / deck_cards → the collection and the saved decks
+ *   - user_card_backs → the card backs bought in the shop (`default` is everyone's and is not stored)
  *   - matches → PvP rooms and matches
  *   - campaign_progress → how far each player got in each hero's campaign
  *
@@ -88,6 +89,8 @@ export default {
         table.integer('userId')
         table.string('name', 60)
         table.string('heroId', 80)
+        // The back its cards show face down (app/(protected)/(cards)/data/cardBacks.ts).
+        table.string('cardBack', 40).default('default')
         table.timestamp('createdAt').useCurrent()
         table.timestamp('updatedAt').useCurrent()
 
@@ -103,6 +106,17 @@ export default {
 
         table.unique(['deckId', 'cardId'])
         table.foreign('deckId').references('id').on('decks').cascadeOnDelete()
+      })
+
+      // The card backs each player bought in the shop (data/cardBacks.ts).
+      await Schema.createIfNotExists('user_card_backs', (table) => {
+        table.increments('id')
+        table.integer('userId')
+        table.string('backId', 40)
+        table.timestamp('createdAt').useCurrent()
+
+        table.unique(['userId', 'backId'])
+        table.foreign('userId').references('id').on('users').cascadeOnDelete()
       })
 
       // The players and a copy of their decks, the engine state (JSON), the

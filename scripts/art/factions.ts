@@ -18,4 +18,3 @@ export const FACTION_STYLES: Record<Faction, string> = {
   neutral:
     'the Time Rift between eras, floating fragments of different centuries, turquoise rift light, hourglasses and clock motifs'
 }
-

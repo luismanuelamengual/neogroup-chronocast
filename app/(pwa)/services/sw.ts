@@ -78,11 +78,12 @@ const pageCache: RuntimeCaching[] = [
 // kept once it has been seen or heard, so the cards already seen show offline.
 const gameCache: RuntimeCaching[] = [
   {
-    matcher: ({ url }) => url.pathname === '/cards/manifest.json',
+    matcher: ({ url }) => url.pathname === '/cards/manifest.json' || url.pathname === '/backs/manifest.json',
     handler: new NetworkFirst({ cacheName: 'chronocast-cards-manifest', networkTimeoutSeconds: 3 })
   },
   {
-    matcher: ({ url }) => url.pathname.startsWith('/cards/') || url.pathname.startsWith('/art/'),
+    matcher: ({ url }) =>
+      url.pathname.startsWith('/cards/') || url.pathname.startsWith('/backs/') || url.pathname.startsWith('/art/'),
     handler: new StaleWhileRevalidate({
       cacheName: 'chronocast-art',
       plugins: [new ExpirationPlugin({ maxEntries: 800, maxAgeFrom: 'last-used' })]

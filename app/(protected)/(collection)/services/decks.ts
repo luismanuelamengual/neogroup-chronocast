@@ -1,5 +1,6 @@
 import '@/app/(protected)/(cards)/utils/catalog'
 import { DB } from '@neogroup/neorm'
+import { DEFAULT_CARD_BACK, findCardBack } from '@/app/(protected)/(cards)/data/cardBacks'
 import { Collection } from '@/app/(protected)/(collection)/models/Collection'
 import { ActiveDeck, DeckDto, DeckInput, DeckSummary } from '@/app/(protected)/(collection)/models/DeckDto'
 import { getCollection, lastDeckId } from '@/app/(protected)/(collection)/services/collection'
@@ -7,6 +8,7 @@ import { deckProblems, expandCards } from '@/app/(protected)/(collection)/utils/
 import { DeckList } from '@/app/(protected)/(engine)/models/DeckList'
 import { canUseCard } from '@/app/(protected)/(engine)/utils/deckRules'
 import { getCard, hasCard } from '@/app/(protected)/(engine)/utils/registry'
+import { ownsCardBack } from '@/app/(protected)/(shop)/services/cardBacks'
 import { ApiException } from '@/app/models/ApiException'
 import { column } from '@/app/utils/rows'
 
@@ -50,8 +52,17 @@ async function loadDecks(userId: number, deckId?: number): Promise<DeckDto[]> {
       cards[String(column(card, 'cardId'))] = Number(column(card, 'count'))
     }
 
+    const back = String(column(row, 'cardBack') ?? '')
+
     await dropUnusableCards(id, heroId, cards)
-    decks.push({ id, name: String(row.name), heroId, cards, updatedAt: toIso(column(row, 'updatedAt')) })
+    decks.push({
+      id,
+      name: String(row.name),
+      heroId,
+      cards,
+      cardBack: findCardBack(back) ? back : DEFAULT_CARD_BACK,
+      updatedAt: toIso(column(row, 'updatedAt'))
+    })
   }
 
   return decks
@@ -82,8 +93,8 @@ async function dropUnusableCards(deckId: number, heroId: string, cards: Record<s
   await DB.table('deck_cards').where('deckId', deckId).whereIn('cardId', unusable).delete()
 }
 
-export function toDeckList(deck: Pick<DeckDto, 'heroId' | 'cards'>): DeckList {
-  return { heroId: deck.heroId, cards: expandCards(deck.cards) }
+export function toDeckList(deck: Pick<DeckDto, 'heroId' | 'cards'> & { cardBack?: string }): DeckList {
+  return { heroId: deck.heroId, cards: expandCards(deck.cards), ...(deck.cardBack ? { cardBack: deck.cardBack } : {}) }
 }
 
 /**
@@ -210,6 +221,12 @@ export async function saveDeck(userId: number, input: DeckInput): Promise<DeckDt
     throw new ApiException('errors.invalidHero')
   }
 
+  const cardBack = String(input.cardBack ?? DEFAULT_CARD_BACK)
+
+  if (!(await ownsCardBack(userId, cardBack))) {
+    throw new ApiException('errors.cardBackNotOwned')
+  }
+
   const collection = await getCollection(userId)
   const ownership = deckProblems({ heroId: input.heroId, cards: expandCards(cards) }, collection).filter(
     (problem) => problem.code === 'notOwned' || problem.code === 'heroNotOwned'
@@ -224,10 +241,12 @@ export async function saveDeck(userId: number, input: DeckInput): Promise<DeckDt
   await DB.transaction(async () => {
     if (deckId != null) {
       await getDeck(userId, deckId)
-      await DB.table('decks').where('id', deckId).update({ name, heroId: input.heroId, updatedAt: new Date() })
+      await DB.table('decks')
+        .where('id', deckId)
+        .update({ name, heroId: input.heroId, cardBack, updatedAt: new Date() })
       await DB.table('deck_cards').where('deckId', deckId).delete()
     } else {
-      await DB.table('decks').insert({ userId, name, heroId: input.heroId })
+      await DB.table('decks').insert({ userId, name, heroId: input.heroId, cardBack })
 
       deckId = await lastDeckId(userId)
     }

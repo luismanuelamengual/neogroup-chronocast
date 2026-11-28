@@ -33,7 +33,9 @@ export default function PracticeSetup({ deck: active, tutorial = false }: Practi
   const start = useBattleStore((store) => store.start)
   const leave = useBattleStore((store) => store.leave)
   const ready = canPlayWith(active)
-  const deck: DeckList | null = ready ? { heroId: active.heroId, cards: expandCards(active.cards) } : null
+  const deck: DeckList | null = ready
+    ? { heroId: active.heroId, cards: expandCards(active.cards), cardBack: active.cardBack }
+    : null
   const [rivalHeroId, setRivalHeroId] = useState(
     STARTER_HERO_IDS.find((heroId) => heroId !== deck?.heroId) ?? STARTER_HERO_IDS[0]
   )

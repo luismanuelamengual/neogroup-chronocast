@@ -5,13 +5,14 @@
  * so it never needs to be kept by hand. One batch per group of the catalog
  * (neutral, each faction, each class, each hero with its own cards). Heroes
  * get a second, square image: their portrait on the board. First of all, the
- * card back (batch `ui`).
+ * card backs (batch `backs`, their images in art/source/backs/).
  *
  * Usage: yarn art:catalog
  */
 import { mkdirSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import { CARD_FILES } from '@/app/(protected)/(cards)/cards/index.generated'
+import { CARD_BACKS, DEFAULT_CARD_BACK } from '@/app/(protected)/(cards)/data/cardBacks'
 import { cardGroup } from '@/app/(protected)/(cards)/utils/cardGroup'
 import { CardDefinition } from '@/app/(protected)/(engine)/models/CardDefinition'
 import { FACTION_STYLES } from '@/scripts/art/factions'
@@ -25,19 +26,25 @@ export const BASE_PROMPT =
 export const CARD_SIZE = { width: 1024, height: 1280 }
 
 /**
- * The back of every card (face down in packs, the starter and the rival's
- * hand): one image, symmetric, without the style of any faction.
+ * The default back of every card (face down in packs, the starter and the
+ * rival's hand): simple, with the name of the game. The others, sold in the
+ * shop, have their prompts in art/card-backs.md. Backs are 5:7, the shape of
+ * the card.
  */
 export const CARD_BACK_PROMPT =
-  'Collectible card game card back design, painted cartoon style, very vivid and saturated colors, high contrast, ' +
-  'clean thick outlines, perfectly symmetric ornamental composition centered on the card, vertical framing. ' +
-  'In the center a glowing golden hourglass with violet sand inside a circular clockwork emblem of interlocking ' +
-  'brass gears and a clock dial with roman numerals, radiant light rays behind it. Deep violet and indigo ' +
-  'background with a subtle starry time vortex and faint swirling arcane patterns. Ornate gold filigree border ' +
-  'with small hourglass and gear motifs in the four corners. No text, no letters, no logo, no watermark'
+  'Collectible card game card back design, painted cartoon style, very vivid and saturated colors, high' +
+  ' contrast, clean thick outlines, soft magical lighting, perfectly symmetric ornamental composition c' +
+  'entered on the card, vertical 5:7 framing. In the center a polished golden hourglass with glowing vi' +
+  'olet sand, set inside a round brass clock dial with roman numerals and two small interlocking gears ' +
+  'peeking from behind it, a soft violet glow and a few sparkles around it. Across the lower third a cu' +
+  'rved gold ribbon banner with the word "ChronoCast" in bold rounded fantasy lettering, cream letters ' +
+  'with a dark violet outline, perfectly spelled. Rich deep violet to midnight indigo background with a' +
+  ' faint engraved pattern of concentric clock rings and tiny stars. Elegant gold border with rounded c' +
+  'orners, a thin inner line and a small hourglass ornament at the top and bottom center. Polished and ' +
+  'premium but uncluttered, no other text, no watermark'
 
-/** The file of the card back in art/source/cards/ (and its name in public/cards/manifest.json). */
-export const CARD_BACK_FILE = 'card-back.png'
+export const CARD_BACK_SIZE = { width: 1000, height: 1400 }
+
 export const PORTRAIT_SIZE = { width: 1024, height: 1024 }
 
 export interface ArtRow {
@@ -50,6 +57,8 @@ export interface ArtRow {
   /** The card it belongs to. */
   cardId: string
   portrait: boolean
+  /** A card back (art/source/backs/ → public/backs/): 5:7, the whole card, cropped from its center. */
+  back?: boolean
 }
 
 /** The batch of a card: its group in the catalog, from its restriction (not from its file). */
@@ -106,17 +115,18 @@ export function artRows(): ArtRow[] {
       : [main]
   })
   const rank = (batch: string) => BATCH_ORDER.indexOf(batch.split('-')[0])
-  const back: ArtRow = {
-    batch: 'ui',
-    file: CARD_BACK_FILE,
-    ...CARD_SIZE,
-    prompt: CARD_BACK_PROMPT,
-    cardId: 'card-back',
-    portrait: false
-  }
+  const backs: ArtRow[] = CARD_BACKS.map(({ id }) => ({
+    batch: 'backs',
+    file: `${id}.png`,
+    ...CARD_BACK_SIZE,
+    prompt: id === DEFAULT_CARD_BACK ? CARD_BACK_PROMPT : `See "${id}" in art/card-backs.md`,
+    cardId: id,
+    portrait: false,
+    back: true
+  }))
 
   return [
-    back,
+    ...backs,
     ...rows.sort(
       (a, b) => rank(a.batch) - rank(b.batch) || a.batch.localeCompare(b.batch) || a.file.localeCompare(b.file)
     )

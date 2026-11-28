@@ -86,6 +86,105 @@
     }
   }
 
+  // The deck's card back: a small pill with its thumbnail, opening the panel to choose another.
+  &__back {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 6px;
+    height: 32px;
+    padding: 0 10px 0 4px;
+    border: 2px solid var(--color-outline);
+    border-radius: 999px;
+    background: white;
+    color: var(--color-text);
+    cursor: pointer;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+
+    &.open {
+      background: var(--color-lavender);
+    }
+  }
+
+  &__back-thumb {
+    position: relative;
+    width: 18px;
+    height: 25px;
+
+    --flip-radius: 3px;
+    --flip-glyph: 0.5rem;
+
+    .card-back {
+      border-width: 1px;
+    }
+  }
+
+  &__backs {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    width: min(520px, 92vw);
+    max-height: calc(100dvh - 70px);
+    padding: 10px;
+    overflow-y: auto;
+    border: var(--frame-border);
+    border-radius: var(--frame-radius);
+    background: white;
+    box-shadow: var(--frame-shadow);
+
+    strong {
+      font-family: var(--font-display);
+      font-weight: 400;
+    }
+  }
+
+  &__backs-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  &__backs-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    width: 72px;
+    padding: 4px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    background: none;
+    color: var(--color-text);
+    cursor: pointer;
+    font: inherit;
+
+    small {
+      font-size: 0.68rem;
+      font-weight: 800;
+      line-height: 1.1;
+      text-align: center;
+    }
+
+    &.selected {
+      border-color: var(--color-gold);
+      background: var(--color-cream);
+    }
+  }
+
+  &__backs-thumb {
+    position: relative;
+    width: 56px;
+    aspect-ratio: 5 / 7;
+
+    --flip-radius: 6px;
+    --flip-glyph: 0.9rem;
+  }
+
   &__details {
     position: absolute;
     top: calc(100% + 6px);

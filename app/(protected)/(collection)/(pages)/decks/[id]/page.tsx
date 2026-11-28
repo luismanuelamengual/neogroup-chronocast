@@ -6,6 +6,7 @@ import DeckEditor from '@/app/(protected)/(collection)/components/DeckEditor'
 import { DeckDto } from '@/app/(protected)/(collection)/models/DeckDto'
 import { getCollection } from '@/app/(protected)/(collection)/services/collection'
 import { getDeck } from '@/app/(protected)/(collection)/services/decks'
+import { ownedCardBacks } from '@/app/(protected)/(shop)/services/cardBacks'
 import { getT } from '@/app/i18n/server'
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -26,7 +27,7 @@ export default async function DeckEditorPage({
   const userId = Number((await auth())!.user.id)
   const { id } = await params
   const { hero } = await searchParams
-  const collection = await getCollection(userId)
+  const [collection, cardBacks] = await Promise.all([getCollection(userId), ownedCardBacks(userId)])
   let deck: DeckDto | null = null
 
   if (id !== 'new') {
@@ -39,5 +40,5 @@ export default async function DeckEditorPage({
 
   const heroId = deck?.heroId ?? (hero && collection[hero] ? hero : null)
 
-  return <DeckEditor deck={deck} heroId={heroId} collection={collection} />
+  return <DeckEditor deck={deck} heroId={heroId} collection={collection} cardBacks={cardBacks} />
 }

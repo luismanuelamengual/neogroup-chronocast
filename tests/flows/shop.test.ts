@@ -6,9 +6,10 @@ import { getDeck, listDecks, saveDeck, setActiveDeck } from '@/app/(protected)/(
 import { isUnrestricted } from '@/app/(protected)/(engine)/models/Restriction'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
 import { totalXpForLevel } from '@/app/(protected)/(progression)/utils/levels'
+import { CARD_BACK_PRICES } from '@/app/(protected)/(cards)/data/cardBacks'
 import { HERO_PRICES } from '@/app/(protected)/(shop)/data/prices'
 import { buyPack } from '@/app/(protected)/(shop)/services/packs'
-import { buyCard, getShopState, quickSell, sellCards } from '@/app/(protected)/(shop)/services/shop'
+import { buyCard, buyCardBack, getShopState, quickSell, sellCards } from '@/app/(protected)/(shop)/services/shop'
 import { copyLimit, sellPrice } from '@/app/(protected)/(shop)/utils/prices'
 import { createUser, resetDatabase } from '@/tests/setup/database'
 
@@ -43,7 +44,8 @@ describe('the shop', () => {
       level: 1,
       unlocked: ['common'],
       packsWithoutLegendary: 0,
-      deckUsage: {}
+      deckUsage: {},
+      cardBacks: ['default']
     })
   })
 
@@ -224,5 +226,41 @@ describe('the shop', () => {
     expect(sale.state.deckUsage[cardId]).toBeUndefined()
     expect(decks.find((deck) => deck.id === swapped.id)).toMatchObject({ active: true, playable: true })
     expect(decks.find((deck) => deck.id === deckId)?.playable).toBe(false)
+  })
+
+  it('sells a card back once, at the price of its tier, and only to whom can pay it', async () => {
+    await setGold(ana, CARD_BACK_PRICES.rare - 1)
+    await expect(buyCardBack(ana, 'time-rift')).rejects.toMatchObject({ messageKey: 'errors.notEnoughGold' })
+    expect((await getShopState(ana)).cardBacks).toEqual(['default'])
+
+    await setGold(ana, CARD_BACK_PRICES.rare + CARD_BACK_PRICES.era)
+
+    const state = await buyCardBack(ana, 'time-rift')
+
+    expect(state.gold).toBe(CARD_BACK_PRICES.era)
+    expect(state.cardBacks).toEqual(['default', 'time-rift'])
+    await expect(buyCardBack(ana, 'time-rift')).rejects.toMatchObject({ messageKey: 'errors.cardBackOwned' })
+    await expect(buyCardBack(ana, 'default')).rejects.toMatchObject({ messageKey: 'errors.cardBackNotForSale' })
+    await expect(buyCardBack(ana, 'nope')).rejects.toMatchObject({ messageKey: 'errors.cardBackNotForSale' })
+    expect((await buyCardBack(ana, 'primal')).cardBacks).toEqual(['default', 'primal', 'time-rift'])
+  })
+
+  it('a deck shows the default back until it is saved with another one the player owns', async () => {
+    await chooseStarter(ana, VARRO)
+
+    const [summary] = await listDecks(ana)
+    const deck = await getDeck(ana, summary.id)
+
+    expect(deck.cardBack).toBe('default')
+
+    const input = { id: deck.id, name: deck.name, heroId: deck.heroId, cards: deck.cards, cardBack: 'neon' }
+
+    await expect(saveDeck(ana, input)).rejects.toMatchObject({ messageKey: 'errors.cardBackNotOwned' })
+
+    await setGold(ana, CARD_BACK_PRICES.era)
+    await buyCardBack(ana, 'neon')
+
+    expect((await saveDeck(ana, input)).cardBack).toBe('neon')
+    expect((await getDeck(ana, deck.id)).cardBack).toBe('neon')
   })
 })

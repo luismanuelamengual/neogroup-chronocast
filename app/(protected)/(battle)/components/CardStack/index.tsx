@@ -20,6 +20,8 @@ export interface StackCard {
 }
 
 interface CardStackProps {
+  /** The back of its face-down cards (data/cardBacks.ts; missing: the default one). */
+  back?: string
   /** Width of the cards (px); the height follows the card's proportions. */
   width: number
   /** The cards under the front one, from the bottom one (in the original place) up. */
@@ -36,7 +38,7 @@ interface CardStackProps {
  * graveyard). Only the top STACK_MAX cards are drawn; the room a stack grows into is kept
  * by whoever places it (up to STACK_DEPTH above and to the left).
  */
-export default function CardStack({ width, under = [], children, className }: CardStackProps) {
+export default function CardStack({ back, width, under = [], children, className }: CardStackProps) {
   const layers = under.slice(-(STACK_MAX - 1))
   const shift = (index: number) => -index * STACK_OFFSET
   const front = shift(layers.length)
@@ -49,7 +51,7 @@ export default function CardStack({ width, under = [], children, className }: Ca
           className={classNames('card-stack__under', card.className)}
           style={{ top: shift(index), left: shift(index), zIndex: index }}
         >
-          <MiniCard cardId={card.cardId} width={width} />
+          <MiniCard cardId={card.cardId} back={back} width={width} />
         </span>
       ))}
       <span

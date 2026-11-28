@@ -3,7 +3,8 @@
 import './index.scss'
 import classNames from 'classnames'
 import { CSSProperties, ReactNode } from 'react'
-import { useCardArt } from '@/app/(protected)/(cards)/stores/cardArt'
+import { DEFAULT_CARD_BACK } from '@/app/(protected)/(cards)/data/cardBacks'
+import { useCardBackArt } from '@/app/(protected)/(cards)/stores/cardArt'
 import { Rarity } from '@/app/(protected)/(engine)/models/Rarity'
 
 interface FlipCardProps {
@@ -28,7 +29,7 @@ interface FlipCardProps {
  * A card dealt face down that turns over when tapped, and once face up opens
  * (to see it big) with another tap. It fills its box: the parent sets the
  * width (and the 5:7 shape comes from `--flip-ratio`). The back is the
- * `card-back` image of `yarn art` when there is one, drawn in CSS otherwise.
+ * default card back of `yarn art` (public/backs/) when there is one, drawn in CSS otherwise.
  */
 export default function FlipCard({
   flipped,
@@ -71,9 +72,13 @@ export default function FlipCard({
   )
 }
 
-/** The back of a card: the illustrated one, or its CSS drawing (an hourglass in a clockwork emblem). */
-export function CardBack({ className }: { className?: string }) {
-  const art = useCardArt('card-back')
+/**
+ * The back of a card: the illustrated one (`back`, one of data/cardBacks.ts;
+ * the default one when missing), or its CSS drawing (an hourglass in a
+ * clockwork emblem) while there is no image.
+ */
+export function CardBack({ className, back = DEFAULT_CARD_BACK }: { className?: string; back?: string }) {
+  const art = useCardBackArt(back)
 
   return (
     <span className={classNames('card-back', className, { illustrated: !!art })} aria-hidden="true">

@@ -7,6 +7,7 @@ import { getCard, hasCard } from '@/app/(protected)/(engine)/utils/registry'
 import { levelProgress, rarityLevel, unlockedRarities } from '@/app/(protected)/(progression)/utils/levels'
 import { MAX_BUY_COUNT } from '@/app/(protected)/(shop)/data/prices'
 import { Sale, ShopState } from '@/app/(protected)/(shop)/models/ShopState'
+import { addCardBack, ownedCardBacks } from '@/app/(protected)/(shop)/services/cardBacks'
 import {
   isBuyable,
   isSellable,
@@ -63,10 +64,11 @@ export async function getDeckUsage(userId: number): Promise<Record<string, numbe
 }
 
 export async function getShopState(userId: number): Promise<ShopState> {
-  const [user, collection, deckUsage] = await Promise.all([
+  const [user, collection, deckUsage, cardBacks] = await Promise.all([
     userRow(userId),
     getCollection(userId),
-    getDeckUsage(userId)
+    getDeckUsage(userId),
+    ownedCardBacks(userId)
   ])
   const progress = levelProgress(Number(user.xp ?? 0))
 
@@ -76,7 +78,8 @@ export async function getShopState(userId: number): Promise<ShopState> {
     level: progress.level,
     unlocked: unlockedRarities(progress.level),
     packsWithoutLegendary: Number(column(user, 'packsWithoutLegendary') ?? 0),
-    deckUsage
+    deckUsage,
+    cardBacks
   }
 }
 
@@ -111,6 +114,15 @@ export async function buyCard(userId: number, cardId: string, count: number = 1)
 
     await spendGold(userId, shopPrice(card) * copies)
     await addCards(userId, { [cardId]: copies })
+  })
+
+  return getShopState(userId)
+}
+
+/** Buys a card back (data/cardBacks.ts): once, at the price of its tier. */
+export async function buyCardBack(userId: number, backId: string): Promise<ShopState> {
+  await DB.transaction(async () => {
+    await addCardBack(userId, String(backId), (amount) => spendGold(userId, amount))
   })
 
   return getShopState(userId)
