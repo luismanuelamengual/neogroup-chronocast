@@ -15,6 +15,8 @@ interface BattleEndProps {
   /** An online match: its rewards, and back to Play instead of a rematch. */
   online?: boolean
   reward?: PlayerReward | null
+  /** Only the way back to the main menu (the end of the tutorial). */
+  menuOnly?: boolean
   onRematch: () => void
   onChangeHeroes: () => void
   /** The text of the second button against the computer (default: change heroes). */
@@ -29,6 +31,7 @@ export default function BattleEnd({
   me,
   online = false,
   reward = null,
+  menuOnly = false,
   onRematch,
   onChangeHeroes,
   changeLabel,
@@ -60,7 +63,7 @@ export default function BattleEnd({
         {reward?.level && reward.level.xp > 0 && <LevelGainView gain={reward.level} />}
         {rewardNote && <p className="battle-end__note">{rewardNote}</p>}
         <div className="battle-end__buttons">
-          {online ? (
+          {menuOnly ? null : online ? (
             <GameButton color="primary" onClick={onChangeHeroes}>
               {t('battle.end.lobby')}
             </GameButton>
@@ -74,7 +77,7 @@ export default function BattleEnd({
               </GameButton>
             </>
           )}
-          <GameButton color="secondary" href="/menu">
+          <GameButton color={menuOnly ? 'primary' : 'secondary'} href="/menu">
             {t('battle.end.menu')}
           </GameButton>
         </div>

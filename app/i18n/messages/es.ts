@@ -539,7 +539,8 @@ export const es = {
         'Las cartas cuestan Cronos (⌛). Para tener más, tocá una carta y elegí "Generar Cronos": la desterrás (no va a tu pila de descarte) y ganás +1 de capacidad para siempre. Una vez por fase.',
       summon:
         'Con Cronos podés jugar un aliado: tocá la carta y después un slot libre. El aliado ataca desde la fase siguiente (💤).',
-      ready: 'Cuando termines, tocá Listo. Si se acaban los 90 segundos, se juega lo que hayas programado.',
+      ready:
+        'Cuando termines, tocá Listo. En este tutorial no hay límite de tiempo; en las partidas normales tenés 90 segundos por fase.',
       resolution:
         'Ahora se dan vuelta las dos líneas de tiempo. En cada paso, las acciones van de la más rápida a la más lenta; las de igual velocidad pasan al mismo tiempo.',
       attack:

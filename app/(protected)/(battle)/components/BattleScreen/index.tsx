@@ -2,6 +2,7 @@
 
 import './index.scss'
 import classNames from 'classnames'
+import { useRouter } from 'next/navigation'
 import { CSSProperties, ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 import { MusicId } from '@/app/(protected)/(art)/data/audio'
@@ -15,7 +16,7 @@ import DeckPickOverlay from '@/app/(protected)/(battle)/components/DeckPickOverl
 import MiniCard from '@/app/(protected)/(battle)/components/MiniCard'
 import MulliganOverlay from '@/app/(protected)/(battle)/components/MulliganOverlay'
 import TimelineBar from '@/app/(protected)/(battle)/components/TimelineBar'
-import TutorialCoach from '@/app/(protected)/(battle)/components/TutorialCoach'
+import TutorialCoach, { TUTORIAL_DONE_KEY } from '@/app/(protected)/(battle)/components/TutorialCoach'
 import { Selection } from '@/app/(protected)/(battle)/models/Selection'
 import { useBattleStore } from '@/app/(protected)/(battle)/stores/battle'
 import { playMoment } from '@/app/(protected)/(battle)/utils/battleSounds'
@@ -145,7 +146,7 @@ export default function BattleScreen({
   renderEnd
 }: {
   onChangeHeroes: () => void
-  /** Show the tips of the guided first match. */
+  /** The guided first match: shows the tips, the phases have no time limit and the end only leads to the menu. */
   tutorial?: boolean
   /** The theme of the battle ('boss' against a campaign's boss). */
   music?: MusicId
@@ -158,6 +159,7 @@ export default function BattleScreen({
   const { state, view, timeline, selection, mode, frame, failures, fast, deck, rivalHeroId, me, rival, cardBacks } =
     store
   const online = !!store.online
+  const router = useRouter()
   const metrics = useMetrics()
   const [confirmSurrender, setConfirmSurrender] = useState(false)
   const [spot, setSpot] = useState<Spot | null>(null)
@@ -186,6 +188,13 @@ export default function BattleScreen({
       playMoment(frame.events, useBattleStore.getState().fast)
     }
   }, [frame])
+
+  // The tutorial is over once its match ends (or the player leaves it).
+  useEffect(() => {
+    if (tutorial && winner !== undefined) {
+      localStorage.setItem(TUTORIAL_DONE_KEY, '1')
+    }
+  }, [tutorial, winner])
 
   useEffect(() => {
     if (winner !== undefined) {
@@ -1341,7 +1350,14 @@ export default function BattleScreen({
                 type="button"
                 onClick={() => {
                   store.leave()
-                  onChangeHeroes()
+
+                  if (tutorial) {
+                    // Leaving the tutorial finishes it: straight to the main menu.
+                    localStorage.setItem(TUTORIAL_DONE_KEY, '1')
+                    router.push('/menu')
+                  } else {
+                    onChangeHeroes()
+                  }
                 }}
               >
                 🚪 {t('battle.surrender')}
@@ -1368,6 +1384,7 @@ export default function BattleScreen({
             step={store.step}
             failures={failures}
             deadline={store.deadline}
+            untimed={tutorial && !online}
             onRemove={(index) => {
               playSfx('remove')
               store.unprogram(index)
@@ -1481,6 +1498,7 @@ export default function BattleScreen({
           me={me}
           online={online}
           reward={store.reward}
+          menuOnly={tutorial}
           onRematch={() => deck && store.start(deck, rivalHeroId)}
           onChangeHeroes={() => {
             store.leave()

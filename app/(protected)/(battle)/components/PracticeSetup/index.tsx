@@ -14,6 +14,7 @@ import { expandCards } from '@/app/(protected)/(collection)/utils/deckProblems'
 import { DeckList } from '@/app/(protected)/(engine)/models/DeckList'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
 import GameButton from '@/app/components/GameButton'
+import Loading from '@/app/components/Loading'
 import { useT } from '@/app/i18n/I18nProvider'
 
 interface PracticeSetupProps {
@@ -66,6 +67,11 @@ export default function PracticeSetup({ deck: active, tutorial = false }: Practi
         }}
       />
     )
+  }
+
+  // The tutorial never shows the setup: only a loading screen until its match starts (or while leaving it).
+  if (guided && deck) {
+    return <Loading />
   }
 
   return (

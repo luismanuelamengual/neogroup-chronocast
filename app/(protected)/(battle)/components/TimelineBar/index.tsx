@@ -153,6 +153,19 @@ function Clock({ deadline, running, onExpire }: { deadline: number; running: boo
   )
 }
 
+/** The clock of a phase without a time limit (the tutorial): a full ring, no countdown. */
+function UntimedClock() {
+  return (
+    <span className="timeline-clock">
+      <svg viewBox="0 0 36 36" aria-hidden="true">
+        <circle cx="18" cy="18" r="15.5" className="track" />
+        <circle cx="18" cy="18" r="15.5" className="ring" strokeDasharray="97.4 97.4" />
+      </svg>
+      <span className="timeline-clock__value">∞</span>
+    </span>
+  )
+}
+
 interface TimelineBarProps {
   state: MatchState
   me: PlayerId
@@ -169,6 +182,8 @@ interface TimelineBarProps {
   step: number | null
   failures: Record<PlayerId, (FailReason | null)[]>
   deadline: number
+  /** The phases have no time limit (the tutorial): no countdown, and Ready is never pressed by the clock. */
+  untimed?: boolean
   /** While planning, how many of the 6 actions are still free (null hides the counter). */
   actionsLeft?: number | null
   onRemove: (index: number) => void
@@ -194,6 +209,7 @@ export default function TimelineBar({
   step,
   failures,
   deadline,
+  untimed = false,
   actionsLeft = null,
   onRemove,
   onReady
@@ -206,7 +222,7 @@ export default function TimelineBar({
         <span className={classNames('timeline-bar__rival', { ready: rivalReady })}>
           {rivalLabel}: {rivalReady ? t('battle.rivalReady') : t('battle.rivalThinking')}
         </span>
-        <Clock deadline={deadline} running={planning || waiting} onExpire={onReady} />
+        {untimed ? <UntimedClock /> : <Clock deadline={deadline} running={planning || waiting} onExpire={onReady} />}
       </div>
       <div className="timeline-bar__steps">
         {STEPS.map((index) => (

@@ -534,7 +534,8 @@ export const en: Messages = {
         'Cards cost Chronos (⌛). To get more, tap a card and choose "Generate Chronos": you banish it (it does not go to your discard pile) and gain +1 capacity for good. Once per phase.',
       summon:
         'With Chronos you can play an ally: tap the card and then a free slot. The ally attacks from the next phase on (💤).',
-      ready: 'When you are done, tap Ready. If the 90 seconds run out, whatever you programmed is played.',
+      ready:
+        'When you are done, tap Ready. This tutorial has no time limit; in regular matches you get 90 seconds per phase.',
       resolution:
         'Now both timelines turn over. In each step actions go from the fastest to the slowest; actions of the same speed happen at the same time.',
       attack:
