@@ -7,8 +7,7 @@ import { deckProblems } from '@/app/(protected)/(collection)/utils/deckProblems'
 import { DeckList } from '@/app/(protected)/(engine)/models/DeckList'
 import { createMatch } from '@/app/(protected)/(engine)/utils/createMatch'
 import { CODE_LENGTH, CODE_LETTERS, MULLIGAN_SECONDS, ROOM_TTL_MS } from '@/app/(protected)/(pvp)/data/pvp'
-import { MatchVisibility, RoomSummary } from '@/app/(protected)/(pvp)/models/MatchView'
-import { publicName } from '@/app/(protected)/(pvp)/services/matches'
+import { MatchVisibility } from '@/app/(protected)/(pvp)/models/MatchView'
 import { parseMatch, saveMatch } from '@/app/(protected)/(pvp)/services/matchRows'
 import { ApiException } from '@/app/models/ApiException'
 
@@ -62,7 +61,8 @@ export async function createRoom(
   userId: number,
   visibility: MatchVisibility,
   deckId: number,
-  now: number = Date.now()
+  now: number = Date.now(),
+  ttl: number = ROOM_TTL_MS
 ): Promise<{ id: number; code: string | null }> {
   if (visibility !== 'public' && visibility !== 'private') {
     throw new ApiException('errors.invalidVisibility')
@@ -82,41 +82,12 @@ export async function createRoom(
     heroA: deck.heroId,
     deckA: JSON.stringify(deck),
     version: 0,
-    expiresAt: now + ROOM_TTL_MS
+    expiresAt: now + ttl
   })
 
   const rows = await DB.table('matches').where('playerA', userId).where('status', 'waiting').get()
 
   return { id: Math.max(...rows.map((row) => Number(row.id))), code }
-}
-
-/** The public rooms waiting for a rival, the closest in rating first. */
-export async function listRooms(userId: number, now: number = Date.now()): Promise<RoomSummary[]> {
-  await closeExpiredRooms(now)
-
-  const rooms = (await DB.table('matches').where('status', 'waiting').where('visibility', 'public').get())
-    .map(parseMatch)
-    .filter((room) => room.playerA !== userId)
-
-  if (rooms.length === 0) {
-    return []
-  }
-
-  const users = await DB.table('users')
-    .whereIn('id', [userId, ...rooms.map((room) => room.playerA)])
-    .get()
-  const userOf = (id: number) => users.find((user) => Number(user.id) === id) ?? { id }
-  const mine = Number(userOf(userId).rating ?? 1200)
-
-  return rooms
-    .map((room) => ({
-      id: room.id,
-      host: publicName(userOf(room.playerA)),
-      rating: Number(userOf(room.playerA).rating ?? 1200),
-      heroId: room.heroA,
-      expiresIn: Math.max(0, (room.expiresAt ?? now) - now)
-    }))
-    .sort((a, b) => Math.abs(a.rating - mine) - Math.abs(b.rating - mine) || a.id - b.id)
 }
 
 /** Takes the seat of the rival in a room and starts the match (the mulligan first). */
@@ -171,23 +142,4 @@ export async function joinRoom(
   }
 
   return { id: room.id }
-}
-
-/** Quick match: joins the public room closest in rating, or opens one. */
-export async function quickMatch(
-  userId: number,
-  deckId: number,
-  now: number = Date.now()
-): Promise<{ id: number; joined: boolean }> {
-  for (const room of await listRooms(userId, now)) {
-    try {
-      return { ...(await joinRoom(userId, { matchId: room.id }, deckId, now)), joined: true }
-    } catch (error) {
-      if (!(error instanceof ApiException) || error.messageKey !== 'errors.roomTaken') {
-        throw error
-      }
-    }
-  }
-
-  return { id: (await createRoom(userId, 'public', deckId, now)).id, joined: false }
 }

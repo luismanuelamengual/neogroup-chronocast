@@ -5,14 +5,13 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import BattleScreen from '@/app/(protected)/(battle)/components/BattleScreen'
 import { useBattleStore } from '@/app/(protected)/(battle)/stores/battle'
-import WaitingRoom from '@/app/(protected)/(pvp)/components/WaitingRoom'
 import { usePvp } from '@/app/(protected)/(pvp)/hooks/usePvp'
 import { MatchView } from '@/app/(protected)/(pvp)/models/MatchView'
 import { pollingChannel } from '@/app/(protected)/(pvp)/utils/matchChannel'
 
 /**
- * A PvP match on screen: the waiting room until a rival joins, then the battle
- * screen in online mode. The server is the authority (docs/PLAN.md, section
+ * A PvP match on screen: the battle screen in online mode (a room still
+ * waiting for a rival goes back to the matchmaking). The server is the authority (docs/PLAN.md, section
  * 12.2): this screen sends the mulligan and the timelines, and learns about
  * the rest through the match channel.
  */
@@ -67,20 +66,15 @@ export default function OnlineMatch({ initial }: { initial: MatchView }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initial.id])
 
+  useEffect(() => {
+    if (waiting) {
+      router.replace(waiting.status === 'waiting' ? '/online' : '/play')
+    }
+  }, [waiting, router])
+
   if (waiting) {
-    return (
-      <WaitingRoom
-        view={waiting}
-        onCancel={async () => {
-          try {
-            setWaiting(await pvp.forfeitMatch(waiting.id))
-          } catch {
-            // The error is already shown as a toast.
-          }
-        }}
-      />
-    )
+    return null
   }
 
-  return <BattleScreen onChangeHeroes={() => router.push('/lobby')} />
+  return <BattleScreen onChangeHeroes={() => router.push('/play')} />
 }

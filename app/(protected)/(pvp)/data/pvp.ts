@@ -3,6 +3,18 @@
 /** A room without a rival closes after this long. */
 export const ROOM_TTL_MS = 10 * 60 * 1000
 
+/** Matchmaking: the search for a rival closes after this long without one (back to the Play menu). */
+export const SEARCH_TIMEOUT_MS = 60 * 1000
+
+/**
+ * Matchmaking: how far apart in Prestige two players may be. It starts at
+ * ±`start` and widens `step` every `stepMs` (±100 at first, ±700 at the end of the minute).
+ */
+export const PRESTIGE_WINDOW = { start: 100, step: 100, stepMs: 10 * 1000 }
+
+/** How often the "searching" screen asks the server for a rival. */
+export const SEARCH_POLL_MS = 2000
+
 /** Seconds to choose the cards to replace of the opening hand. */
 export const MULLIGAN_SECONDS = 30
 
@@ -11,9 +23,6 @@ export const DEADLINE_GRACE_MS = 3000
 
 /** How often the screen asks for news of the match. */
 export const POLL_MS = 1500
-
-/** How often the lobby refreshes the list of rooms. */
-export const ROOMS_POLL_MS = 5000
 
 /** Letters of the codes of private rooms (no I, O nor similar ones, to read them aloud). */
 export const CODE_LETTERS = 'ABCDEFGHJKLMNPQRSTUVWXYZ'

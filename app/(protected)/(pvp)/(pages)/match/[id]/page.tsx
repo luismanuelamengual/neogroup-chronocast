@@ -10,7 +10,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return { title: (await getT())('metadata.match') }
 }
 
-/** A PvP match (/match/<id>): the waiting room while there is no rival, then the battle. */
+/** A PvP match (/match/<id>): the battle (a room still waiting goes back to the matchmaking). */
 export default async function MatchPage({ params }: { params: Promise<{ id: string }> }) {
   const userId = Number((await auth())!.user.id)
   const { id } = await params
@@ -19,7 +19,7 @@ export default async function MatchPage({ params }: { params: Promise<{ id: stri
     return <OnlineMatch initial={(await getMatchState(userId, Number(id), null))!} />
   } catch (error) {
     if (error instanceof ApiException) {
-      redirect('/lobby')
+      redirect('/play')
     }
 
     throw error

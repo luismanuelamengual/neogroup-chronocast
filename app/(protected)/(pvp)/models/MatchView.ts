@@ -66,11 +66,6 @@ export interface MatchView {
   reward: PlayerReward | null
 }
 
-/** A public room in the lobby. */
-export interface RoomSummary {
-  id: number
-  host: string
-  rating: number
-  heroId: string
-  expiresIn: number
-}
+/** Where the matchmaking of a player stands: still looking (ms left, the Prestige window now), the match found, or over. */
+export type SearchStatus =
+  { status: 'searching'; expiresIn: number; window: number } | { status: 'found'; id: number } | { status: 'timeout' }

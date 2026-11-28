@@ -12,7 +12,7 @@ import { useI18n } from '@/app/i18n/I18nProvider'
 interface BattleEndProps {
   state: MatchState
   me: PlayerId
-  /** An online match: its rewards, and back to the lobby instead of a rematch. */
+  /** An online match: its rewards, and back to Play instead of a rematch. */
   online?: boolean
   reward?: PlayerReward | null
   onRematch: () => void

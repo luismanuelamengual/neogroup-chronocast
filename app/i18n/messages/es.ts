@@ -241,7 +241,7 @@ export const es = {
       },
       online: {
         title: 'Partida online',
-        text: 'Contra otro jugador: partida rápida, salas públicas o privadas. Suma Prestigio.'
+        text: 'Contra otro jugador con un Prestigio parecido, emparejado automáticamente. Suma Prestigio.'
       },
       quick: {
         title: 'Partida rápida',
@@ -742,7 +742,7 @@ export const es = {
       rematch: 'Revancha',
       changeHeroes: 'Cambiar héroes',
       menu: 'Menú',
-      lobby: 'Volver a las salas',
+      lobby: 'Volver a Jugar',
       firstWin: '¡Primera victoria del día!'
     }
   },
@@ -842,34 +842,14 @@ export const es = {
   lobby: {
     title: 'Partida online',
     back: 'Jugar',
-    activeMatch: 'Tenés una partida en curso.',
-    resume: 'Volver a la partida',
-    yourDeck: 'Tu mazo',
-    goToDecks: 'Ir a Mazos',
-    quickMatch: 'Partida rápida',
-    createPublic: 'Crear pública',
-    createPrivate: 'Crear privada',
-    code: 'Código de sala',
-    codePlaceholder: 'CÓDIGO',
-    join: 'Unirse',
-    publicNote: 'Las públicas cuentan para el Prestigio. Las privadas son amistosas y dan la mitad de oro.',
-    practice: 'Práctica contra la CPU',
-    rooms: 'Salas esperando rival',
-    noRooms: 'No hay salas esperando. ¡Creá una o probá la partida rápida!'
+    goToDecks: 'Ir a Mazos'
   },
-  match: {
-    waiting: 'Esperando rival...',
-    waitingPublic: 'Tu sala aparece en la lista de salas. Cuando alguien entre, empieza la partida.',
-    waitingPrivate: 'Pasale el código o el link a tu amigo. Cuando entre, empieza la partida.',
-    code: 'Código',
-    share: 'Compartir link',
-    shareText: 'Jugá conmigo en ChronoCast: sala {code}',
-    copied: 'Link copiado',
-    closesIn: 'La sala se cierra en {time}',
-    cancel: 'Cerrar la sala',
-    backToLobby: 'Volver a las salas',
-    closed: 'La sala cerró',
-    closedText: 'Nadie entró a tiempo o la cerraste.'
+  matchmaking: {
+    searching: 'Buscando rival...',
+    range: 'Rivales con Prestigio entre ⭐ {min} y ⭐ {max}',
+    closesIn: 'La búsqueda termina en {time}',
+    cancel: 'Cancelar',
+    notFound: 'No encontramos un rival a tiempo. Probá de nuevo en un rato.'
   },
   campaign: {
     title: 'Campañas',

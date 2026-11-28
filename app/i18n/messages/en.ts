@@ -237,7 +237,7 @@ export const en: Messages = {
       },
       online: {
         title: 'Online match',
-        text: 'Against another player: quick match, public or private rooms. It counts for Prestige.'
+        text: 'Against another player of similar Prestige, matched automatically. It counts for Prestige.'
       },
       quick: {
         title: 'Quick match',
@@ -737,7 +737,7 @@ export const en: Messages = {
       rematch: 'Rematch',
       changeHeroes: 'Change heroes',
       menu: 'Menu',
-      lobby: 'Back to the rooms',
+      lobby: 'Back to Play',
       firstWin: 'First win of the day!'
     }
   },
@@ -837,34 +837,14 @@ export const en: Messages = {
   lobby: {
     title: 'Online match',
     back: 'Play',
-    activeMatch: 'You have a match in progress.',
-    resume: 'Back to the match',
-    yourDeck: 'Your deck',
-    goToDecks: 'Go to Decks',
-    quickMatch: 'Quick match',
-    createPublic: 'Create public',
-    createPrivate: 'Create private',
-    code: 'Room code',
-    codePlaceholder: 'CODE',
-    join: 'Join',
-    publicNote: 'Public matches count for Prestige. Private ones are friendly and pay half the gold.',
-    practice: 'Practice against the CPU',
-    rooms: 'Rooms waiting for a rival',
-    noRooms: 'No room is waiting. Create one or try a quick match!'
+    goToDecks: 'Go to Decks'
   },
-  match: {
-    waiting: 'Waiting for a rival...',
-    waitingPublic: 'Your room is in the list of rooms. When someone joins, the match starts.',
-    waitingPrivate: 'Send the code or the link to your friend. When they join, the match starts.',
-    code: 'Code',
-    share: 'Share link',
-    shareText: 'Play with me in ChronoCast: room {code}',
-    copied: 'Link copied',
-    closesIn: 'The room closes in {time}',
-    cancel: 'Close the room',
-    backToLobby: 'Back to the rooms',
-    closed: 'The room closed',
-    closedText: 'Nobody joined in time, or you closed it.'
+  matchmaking: {
+    searching: 'Searching for a rival...',
+    range: 'Rivals with Prestige between ⭐ {min} and ⭐ {max}',
+    closesIn: 'The search ends in {time}',
+    cancel: 'Cancel',
+    notFound: 'No rival found in time. Try again in a while.'
   },
   campaign: {
     title: 'Campaigns',

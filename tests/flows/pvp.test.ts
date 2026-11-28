@@ -3,11 +3,12 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import { chooseStarter } from '@/app/(protected)/(collection)/services/collection'
 import { PLANNING_SECONDS } from '@/app/(protected)/(engine)/data/rules'
 import { getCard } from '@/app/(protected)/(engine)/utils/registry'
-import { DEADLINE_GRACE_MS, MULLIGAN_SECONDS, ROOM_TTL_MS } from '@/app/(protected)/(pvp)/data/pvp'
+import { DEADLINE_GRACE_MS, MULLIGAN_SECONDS, ROOM_TTL_MS, SEARCH_TIMEOUT_MS } from '@/app/(protected)/(pvp)/data/pvp'
 import { MatchView } from '@/app/(protected)/(pvp)/models/MatchView'
 import { forfeitMatch, getMatchState, submitMulligan, submitPlan, tick } from '@/app/(protected)/(pvp)/services/matches'
+import { cancelSearch, prestigeWindow, searchMatch } from '@/app/(protected)/(pvp)/services/matchmaking'
 import { findMatch } from '@/app/(protected)/(pvp)/services/matchRows'
-import { activeMatchId, createRoom, joinRoom, listRooms, quickMatch } from '@/app/(protected)/(pvp)/services/rooms'
+import { activeMatchId, createRoom, joinRoom } from '@/app/(protected)/(pvp)/services/rooms'
 import { HIDDEN_CARD } from '@/app/(protected)/(pvp)/utils/redact'
 import { createUser, resetDatabase } from '@/tests/setup/database'
 
@@ -34,14 +35,10 @@ describe('rooms', () => {
     bob = await player('bob@chronocast.test', 'kora-wildfang')
   })
 
-  it('lists the public rooms of others, and a public room can be joined', async () => {
+  it('a public room can be joined', async () => {
     const { id, code } = await createRoom(ana.id, 'public', ana.deckId, T0)
 
     expect(code).toBeNull()
-    expect(await listRooms(ana.id, T0)).toEqual([])
-    expect(await listRooms(bob.id, T0)).toEqual([
-      { id, host: 'Player', rating: 1200, heroId: 'legate-varro', expiresIn: ROOM_TTL_MS }
-    ])
 
     await joinRoom(bob.id, { matchId: id }, bob.deckId, T0)
 
@@ -49,14 +46,12 @@ describe('rooms', () => {
 
     expect(view).toMatchObject({ status: 'playing', stage: 'mulligan', me: 'b', deadlineIn: MULLIGAN_SECONDS * 1000 })
     expect(view.rival).toMatchObject({ heroId: 'legate-varro' })
-    expect(await listRooms(bob.id, T0)).toEqual([])
   })
 
   it('private rooms are only joined with their code, and not listed', async () => {
     const { id, code } = await createRoom(ana.id, 'private', ana.deckId, T0)
 
     expect(code).toMatch(/^[A-Z]{6}$/)
-    expect(await listRooms(bob.id, T0)).toEqual([])
     await expect(joinRoom(bob.id, { matchId: id }, bob.deckId, T0)).rejects.toMatchObject({
       messageKey: 'errors.roomNotFound'
     })
@@ -95,7 +90,7 @@ describe('rooms', () => {
   it('closes a room without a rival after 10 minutes, or when its host leaves', async () => {
     const { id } = await createRoom(ana.id, 'public', ana.deckId, T0)
 
-    expect(await listRooms(bob.id, T0 + ROOM_TTL_MS + 1)).toEqual([])
+    expect(await activeMatchId(bob.id, T0 + ROOM_TTL_MS + 1)).toBeNull()
     expect((await findMatch(id))!.status).toBe('closed')
     expect(await activeMatchId(ana.id, T0 + ROOM_TTL_MS + 1)).toBeNull()
 
@@ -104,9 +99,54 @@ describe('rooms', () => {
     expect((await forfeitMatch(ana.id, second.id, T0 + ROOM_TTL_MS + 3)).status).toBe('closed')
   })
 
-  it('quick match joins an open room, or opens one', async () => {
-    expect(await quickMatch(ana.id, ana.deckId, T0)).toMatchObject({ joined: false })
-    expect(await quickMatch(bob.id, bob.deckId, T0)).toMatchObject({ joined: true })
+  it('matchmaking pairs two players searching with a similar Prestige', async () => {
+    expect(await searchMatch(ana.id, ana.deckId, T0)).toEqual({
+      status: 'searching',
+      expiresIn: SEARCH_TIMEOUT_MS,
+      window: 100
+    })
+
+    const found = await searchMatch(bob.id, bob.deckId, T0 + 1000)
+
+    expect(found).toMatchObject({ status: 'found' })
+
+    const id = (found as { id: number }).id
+
+    expect(await searchMatch(ana.id, ana.deckId, T0 + 2000)).toEqual({ status: 'found', id })
+    expect((await getMatchState(ana.id, id, null, T0 + 2000))!).toMatchObject({ status: 'playing', me: 'a' })
+    expect(await DB.table('matches').where('status', 'waiting').get()).toEqual([])
+  })
+
+  it('matchmaking widens the Prestige window with the time, and times out', async () => {
+    await DB.table('users').where('id', bob.id).update({ rating: 1550 })
+
+    expect(prestigeWindow(0)).toBe(100)
+    expect(prestigeWindow(35_000)).toBe(400)
+
+    await searchMatch(ana.id, ana.deckId, T0)
+    expect(await searchMatch(bob.id, bob.deckId, T0 + 1000)).toMatchObject({ status: 'searching', window: 100 })
+    // 350 apart: ana has searched for 30 s (±400 by then), so bob is close enough.
+    expect(await searchMatch(bob.id, bob.deckId, T0 + 30_000)).toMatchObject({ status: 'found' })
+
+    const carl = await player('carl@chronocast.test', 'ilyra-starweaver')
+
+    await searchMatch(carl.id, carl.deckId, T0 + 40_000)
+    expect(await activeMatchId(carl.id, T0 + 40_000 + SEARCH_TIMEOUT_MS + 1)).toBeNull()
+    expect(await cancelSearch(carl.id, T0 + 40_000 + SEARCH_TIMEOUT_MS + 2)).toEqual({ status: 'timeout' })
+  })
+
+  it('cancelling closes the search, and nobody is paired with it', async () => {
+    await searchMatch(ana.id, ana.deckId, T0)
+    expect(await cancelSearch(ana.id, T0 + 1000)).toEqual({ status: 'timeout' })
+    expect(await searchMatch(bob.id, bob.deckId, T0 + 2000)).toMatchObject({ status: 'searching' })
+  })
+
+  it('cancelling right after a rival was found goes to the match', async () => {
+    await searchMatch(ana.id, ana.deckId, T0)
+
+    const found = await searchMatch(bob.id, bob.deckId, T0 + 1000)
+
+    expect(await cancelSearch(ana.id, T0 + 1500)).toEqual(found)
   })
 })
 

@@ -11,7 +11,7 @@ import { useT } from '@/app/i18n/I18nProvider'
 const MODES = [
   { key: 'campaign', icon: '🗺️', color: 'lime', href: '/campaign', art: 'caelus-the-usurper-portrait' },
   { key: 'quick', icon: '🤖', color: 'cyan', href: '/quick-match', art: 'automaton-duelist' },
-  { key: 'online', icon: '⚔️', color: 'magenta', href: '/lobby', art: 'arena-champion' }
+  { key: 'online', icon: '⚔️', color: 'magenta', href: '/online', art: 'arena-champion' }
 ] as const
 
 /**
