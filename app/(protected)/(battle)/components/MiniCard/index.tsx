@@ -9,6 +9,8 @@ import { getCard } from '@/app/(protected)/(engine)/utils/registry'
 
 /** The size of a CardView at zoom 1. */
 const CARD_WIDTH = 220
+/** Up to this width (px) the card draws the small copy of its illustration. */
+const THUMB_MAX_WIDTH = 160
 
 interface MiniCardProps {
   /** Null: a face-down card (the rival's hand, deck, traps). */
@@ -34,7 +36,7 @@ export default function MiniCard({ cardId, back, width, className, children }: M
     >
       {cardId ? (
         <span className="mini-card__zoom" style={{ zoom: width / CARD_WIDTH }}>
-          <CardView card={getCard(cardId)} />
+          <CardView card={getCard(cardId)} thumb={width <= THUMB_MAX_WIDTH} />
         </span>
       ) : (
         <CardBack back={back} />

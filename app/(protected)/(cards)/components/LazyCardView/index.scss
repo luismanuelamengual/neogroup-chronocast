@@ -1,0 +1,12 @@
+// The same size as a CardView at zoom 1 (220 px, 5:7), so the grid does not move when a card comes and goes.
+.lazy-card-view {
+  display: block;
+
+  &__empty {
+    display: block;
+    width: 220px;
+    aspect-ratio: 5 / 7;
+    border-radius: 18px;
+    background: rgba(43, 35, 80, 0.08);
+  }
+}

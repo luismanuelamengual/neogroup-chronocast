@@ -2,8 +2,9 @@
 
 import './index.scss'
 import classNames from 'classnames'
-import { useMemo, useState } from 'react'
-import CardView from '@/app/(protected)/(cards)/components/CardView'
+import { CSSProperties, useMemo, useState } from 'react'
+import { CardBack } from '@/app/(protected)/(cards)/components/FlipCard'
+import LazyCardView from '@/app/(protected)/(cards)/components/LazyCardView'
 import { CARDS, HEROES } from '@/app/(protected)/(cards)/utils/catalog'
 import CardDetail from '@/app/(protected)/(collection)/components/CardDetail'
 import CardFilters from '@/app/(protected)/(collection)/components/CardFilters'
@@ -40,8 +41,8 @@ interface SingleShopProps {
  * the collection and the copies the player owns, plus the owned cards the shop
  * does not sell (campaign rewards) so they can still be sold. Opening a card
  * shows the buy and sell buttons, disabled with the reason when they can't be
- * used. The rarities the player's level has not opened are blurred, with a
- * padlock and the level that opens them (RARITY_LEVELS), unless the player
+ * used. The rarities the player's level has not opened show a card back in
+ * the color of the rarity, with a padlock and the level that opens them (RARITY_LEVELS), unless the player
  * already owns copies (from a pack): then the card shows, but can't be bought
  * yet. A small quick sell button at the top sells the spare copies.
  */
@@ -268,7 +269,17 @@ export default function SingleShop({ state, onChange }: SingleShopProps) {
               onClick={() => setDetail(card.id)}
             >
               <span className="single-shop__zoom" aria-hidden={hidden}>
-                <CardView card={card} />
+                {hidden ? (
+                  // A mystery: the back of a card in the color of its rarity (no costly blur over the real card).
+                  <span
+                    className="single-shop__mystery"
+                    style={{ '--rarity': `var(--rarity-${card.rarity})` } as CSSProperties}
+                  >
+                    <CardBack />
+                  </span>
+                ) : (
+                  <LazyCardView card={card} thumb />
+                )}
               </span>
               {hidden ? (
                 <span className="single-shop__lock">

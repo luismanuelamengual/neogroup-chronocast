@@ -9,6 +9,11 @@
  * It prints each image the moment it is processed, with a progress bar at the
  * bottom, and only processes what changed since the last run.
  *
+ * Every card image also gets a small copy in public/cards/thumbs/ (THUMB_SIZE),
+ * made from the processed one: the grids of cards (shop, collection, deck
+ * editor, battle board) draw that one, a phone downloading and holding in
+ * memory a third of the bytes.
+ *
  * Then it copies the music and sound effects (see scripts/art/audio.ts).
  *
  * Usage: yarn art            (every image, then a summary of what is missing by batch)
@@ -24,6 +29,7 @@ import { ArtRow, artRows } from '@/scripts/art/catalog'
 export const SOURCE_DIR = path.join(process.cwd(), 'art', 'source', 'cards')
 export const OUTPUT_DIR = path.join(process.cwd(), 'public', 'cards')
 export const MANIFEST_FILE = path.join(OUTPUT_DIR, 'manifest.json')
+export const THUMBS_DIR = path.join(OUTPUT_DIR, 'thumbs')
 export const BACKS_SOURCE_DIR = path.join(process.cwd(), 'art', 'source', 'backs')
 export const BACKS_OUTPUT_DIR = path.join(process.cwd(), 'public', 'backs')
 
@@ -45,6 +51,9 @@ export const OUTPUT_SIZE = {
   portrait: { width: 512, height: 512 },
   back: { width: 640, height: 896 }
 }
+
+/** Size of the small copy of a card image (a card drawn about 130 px wide on a phone, see useCardArt). */
+export const THUMB_SIZE = { width: 352, height: 440 }
 
 export type ArtStatus = 'ok' | 'unchanged' | 'missing' | 'error'
 
@@ -134,10 +143,50 @@ export async function processRow(row: ArtRow, manifests: Manifests, force = fals
     writeFileSync(target, output)
     manifest[name] = createHash('sha1').update(output).digest('hex').slice(0, 8)
 
+    if (place.manifest === 'cards' && !row.portrait) {
+      await writeThumb(name)
+    }
+
     return { status: 'ok', detail: `${meta.width}×${meta.height} → ${kb(output.length)}` }
   } catch (error) {
     return { status: 'error', detail: (error as Error).message }
   }
+}
+
+/** The small copy of a processed card image, made from it (public/cards/<name>.webp → thumbs/<name>.webp). */
+async function writeThumb(name: string): Promise<void> {
+  const { default: sharp } = await import('sharp')
+  const output = await sharp(path.join(OUTPUT_DIR, `${name}.webp`))
+    .resize(THUMB_SIZE.width, THUMB_SIZE.height, { fit: 'cover' })
+    .webp({ quality: 75, effort: 6 })
+    .toBuffer()
+
+  mkdirSync(THUMBS_DIR, { recursive: true })
+  writeFileSync(path.join(THUMBS_DIR, `${name}.webp`), output)
+}
+
+/**
+ * Makes the small copy of every card image that has none or an older one (the
+ * images processed before there were thumbs, or processed by hand). Returns how many it made.
+ */
+export async function processThumbs(manifests: Manifests): Promise<number> {
+  let made = 0
+
+  for (const name of Object.keys(manifests.cards)) {
+    const full = path.join(OUTPUT_DIR, `${name}.webp`)
+    const thumb = path.join(THUMBS_DIR, `${name}.webp`)
+
+    if (name.endsWith('-portrait') || !existsSync(full)) {
+      continue
+    }
+
+    if (!existsSync(thumb) || statSync(thumb).mtimeMs < statSync(full).mtimeMs) {
+      await writeThumb(name)
+      made++
+    }
+  }
+
+  return made
 }
 
 const COLORS: Record<ArtStatus, string> = {
@@ -190,6 +239,12 @@ export async function processAll(force = false): Promise<Map<ArtRow, ArtResult>>
   }
 
   writeManifests(manifests)
+
+  const thumbs = await processThumbs(manifests)
+
+  if (thumbs > 0) {
+    console.log(`${thumbs} thumbs made in ${path.relative(process.cwd(), THUMBS_DIR)}/.`)
+  }
 
   return results
 }

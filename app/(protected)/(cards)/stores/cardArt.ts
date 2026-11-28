@@ -37,8 +37,11 @@ export const useCardArtStore = create<CardArtStore>()((set) => ({
   }
 }))
 
-/** The URL of an image of the art (undefined while it has none: the card draws its placeholder). */
-export function useCardArt(name: string): string | undefined {
+/**
+ * The URL of an image of the art (undefined while it has none: the card draws its placeholder).
+ * `thumb`: its small copy (public/cards/thumbs/, made by `yarn art`), for a card drawn small in a grid.
+ */
+export function useCardArt(name: string, thumb = false): string | undefined {
   const manifest = useCardArtStore((store) => store.manifest)
   const load = useCardArtStore((store) => store.load)
 
@@ -50,7 +53,7 @@ export function useCardArt(name: string): string | undefined {
 
   const version = manifest[name]
 
-  return version ? `/cards/${name}.webp?v=${version}` : undefined
+  return version ? `/cards/${thumb ? 'thumbs/' : ''}${name}.webp?v=${version}` : undefined
 }
 
 /** The URL of the image of a card back (undefined while it has none: the back draws its placeholder). */

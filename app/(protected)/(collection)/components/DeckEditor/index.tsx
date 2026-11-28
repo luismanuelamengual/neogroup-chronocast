@@ -6,8 +6,8 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useMemo, useState } from 'react'
 import toast from 'react-hot-toast'
 import CardSpotlight, { SpotlightAction } from '@/app/(protected)/(cards)/components/CardSpotlight'
-import CardView from '@/app/(protected)/(cards)/components/CardView'
 import { CardBack } from '@/app/(protected)/(cards)/components/FlipCard'
+import LazyCardView from '@/app/(protected)/(cards)/components/LazyCardView'
 import { cardBackNameKey, DEFAULT_CARD_BACK } from '@/app/(protected)/(cards)/data/cardBacks'
 import { useCardArt } from '@/app/(protected)/(cards)/stores/cardArt'
 import { CARDS, HEROES } from '@/app/(protected)/(cards)/utils/catalog'
@@ -438,7 +438,7 @@ export default function DeckEditor({ deck, heroId: initialHeroId, collection, ca
                     onClick={() => setSpotlight(card.id)}
                   >
                     <span className="deck-editor__zoom">
-                      <CardView card={card} />
+                      <LazyCardView card={card} thumb />
                     </span>
                     {/* The copies still free to add (more than the deck takes: spares to sell). */}
                     {hero && <span className="deck-editor__count">×{Math.max(0, left)}</span>}

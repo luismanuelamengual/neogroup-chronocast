@@ -10,8 +10,7 @@ import {
   RangeRequestsPlugin,
   type RuntimeCaching,
   Serwist,
-  type SerwistGlobalConfig,
-  StaleWhileRevalidate
+  type SerwistGlobalConfig
 } from 'serwist'
 import { PAGES_CACHE } from '@/app/(pwa)/utils/offlinePages'
 
@@ -82,11 +81,13 @@ const gameCache: RuntimeCaching[] = [
     handler: new NetworkFirst({ cacheName: 'chronocast-cards-manifest', networkTimeoutSeconds: 3 })
   },
   {
-    matcher: ({ url }) =>
-      url.pathname.startsWith('/cards/') || url.pathname.startsWith('/backs/') || url.pathname.startsWith('/art/'),
-    handler: new StaleWhileRevalidate({
+    // The card art and backs are versioned by their manifest (`?v=<version>`, see useCardArt): a cached
+    // copy never goes stale, so it is served without asking the network again (a phone scrolling the shop
+    // would otherwise download every picture it shows a second time). Room for every card and back.
+    matcher: ({ url }) => url.pathname.startsWith('/cards/') || url.pathname.startsWith('/backs/'),
+    handler: new CacheFirst({
       cacheName: 'chronocast-art',
-      plugins: [new ExpirationPlugin({ maxEntries: 800, maxAgeFrom: 'last-used' })]
+      plugins: [new ExpirationPlugin({ maxEntries: 2500, maxAgeFrom: 'last-used' })]
     })
   },
   {

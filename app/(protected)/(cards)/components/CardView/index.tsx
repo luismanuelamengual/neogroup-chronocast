@@ -94,6 +94,11 @@ interface CardViewProps {
   card: CardDefinition
   /** URL of the illustration (default: the card's own, processed by `yarn art`; a placeholder while there is none). */
   art?: string
+  /**
+   * Drawn small (a grid of cards, the battle board): the small copy of the illustration, a third of the
+   * bytes to download and of the memory to hold it. The full one if the small copy is not there.
+   */
+  thumb?: boolean
 }
 
 /**
@@ -109,6 +114,12 @@ const SIZE_STEP = 0.5
 /** Below this size (px) the flavor text is dropped to give the rules more room. */
 const FLAVOR_MIN_SIZE = 11
 const useIsomorphicLayoutEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect
+/**
+ * The sizes already found, by card, language and area: every card has its areas in the same place and of
+ * the same size, so a card measured once fits the same everywhere (the zoom scales the box and the text
+ * alike). A grid of cards (shop, collection) then measures each card once per visit, not on every mount.
+ */
+const fitCache = new Map<string, { size: number; flavor: boolean }>()
 
 /**
  * Shrinks the letters of an element of fixed size until its content fits:
@@ -123,34 +134,80 @@ function useFitText(ref: RefObject<HTMLElement | null>, size: { max: number; min
       return
     }
 
-    const fit = () => {
-      const flavor = element.querySelector<HTMLElement>('.card-view__flavor')
+    const cacheKey = `${size.max}:${key}`
+    const flavor = () => element.querySelector<HTMLElement>('.card-view__flavor')
 
+    const apply = (fitted: { size: number; flavor: boolean }) => {
+      element.style.fontSize = `${fitted.size}px`
+      const node = flavor()
+
+      if (node) {
+        node.style.display = fitted.flavor ? '' : 'none'
+      }
+    }
+
+    const fit = () => {
+      const node = flavor()
+      const overflows = () =>
+        element.scrollHeight > element.clientHeight + 1 || element.scrollWidth > element.clientWidth + 1
+
+      // The largest size, in steps, that fits: a binary search (a handful of layouts instead of one per step).
       const shrink = () => {
-        let current = size.max
+        const steps = Math.round((size.max - size.min) / SIZE_STEP)
+        let low = 0
+        let high = steps
+
+        element.style.fontSize = `${size.max}px`
+
+        if (!overflows()) {
+          return size.max
+        }
+
+        while (low < high) {
+          const middle = Math.ceil((low + high) / 2)
+
+          element.style.fontSize = `${size.min + middle * SIZE_STEP}px`
+
+          if (overflows()) {
+            high = middle - 1
+          } else {
+            low = middle
+          }
+        }
+
+        const current = size.min + low * SIZE_STEP
 
         element.style.fontSize = `${current}px`
-
-        while (
-          current > size.min &&
-          (element.scrollHeight > element.clientHeight + 1 || element.scrollWidth > element.clientWidth + 1)
-        ) {
-          current -= SIZE_STEP
-          element.style.fontSize = `${current}px`
-        }
 
         return current
       }
 
-      if (flavor) {
-        flavor.style.display = ''
+      if (node) {
+        node.style.display = ''
       }
 
+      let current = shrink()
+      let keepFlavor = true
+
       // The flavor text is the first to go when the rules need the room.
-      if (shrink() < FLAVOR_MIN_SIZE && flavor) {
-        flavor.style.display = 'none'
-        shrink()
+      if (current < FLAVOR_MIN_SIZE && node) {
+        node.style.display = 'none'
+        keepFlavor = false
+        current = shrink()
       }
+
+      // Kept only once the display font is in: measured with the fallback font, it would be off.
+      if (typeof document === 'undefined' || !document.fonts || document.fonts.status === 'loaded') {
+        fitCache.set(cacheKey, { size: current, flavor: keepFlavor })
+      }
+    }
+
+    const cached = fitCache.get(cacheKey)
+
+    if (cached) {
+      apply(cached)
+
+      return
     }
 
     fit()
@@ -159,9 +216,10 @@ function useFitText(ref: RefObject<HTMLElement | null>, size: { max: number; min
   }, [ref, size, key])
 }
 
-export default function CardView({ card: original, art }: CardViewProps) {
+export default function CardView({ card: original, art, thumb = false }: CardViewProps) {
   const { t, locale } = useI18n()
-  const ownArt = useCardArt(original.id)
+  const ownArt = useCardArt(original.id, thumb)
+  const fullArt = useCardArt(original.id)
   const card = translateCard(original, locale)
   const keywords = keywordsLine(card, t)
   const speed = card.speed ?? card.ability?.speed
@@ -186,7 +244,18 @@ export default function CardView({ card: original, art }: CardViewProps) {
       <div className="card-view__art">
         {image ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={image} alt={card.name} loading="lazy" />
+          <img
+            src={image}
+            alt={card.name}
+            loading="lazy"
+            decoding="async"
+            onError={(event) => {
+              // No small copy yet (an image processed before there were thumbs): the full one.
+              if (!art && thumb && fullArt && !event.currentTarget.src.endsWith(fullArt)) {
+                event.currentTarget.src = fullArt
+              }
+            }}
+          />
         ) : (
           <span className="card-view__placeholder" title={card.art.subject}>
             {TYPE_GLYPHS[card.type]}

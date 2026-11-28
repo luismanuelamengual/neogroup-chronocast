@@ -4,7 +4,7 @@ import './index.scss'
 import classNames from 'classnames'
 import { useMemo, useState } from 'react'
 import { useMusic } from '@/app/(protected)/(art)/hooks/useMusic'
-import CardView from '@/app/(protected)/(cards)/components/CardView'
+import LazyCardView from '@/app/(protected)/(cards)/components/LazyCardView'
 import { CARDS, HEROES } from '@/app/(protected)/(cards)/utils/catalog'
 import CardDetail from '@/app/(protected)/(collection)/components/CardDetail'
 import CardFilters from '@/app/(protected)/(collection)/components/CardFilters'
@@ -58,7 +58,7 @@ export default function CollectionView({ collection }: { collection: Collection 
               onClick={() => setDetail(card.id)}
             >
               <span className="collection-view__zoom">
-                <CardView card={card} />
+                <LazyCardView card={card} thumb />
               </span>
               <span className="collection-view__owned">×{owned}</span>
             </button>

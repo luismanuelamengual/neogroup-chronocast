@@ -50,16 +50,30 @@
     font-size: 0.9rem;
   }
 
-  // A rarity the player's level has not opened: blurred, with the level that opens it.
+  // A rarity the player's level has not opened: a card back framed in the rarity's color, with the
+  // level that opens it. Drawn instead of the card (a blur over hundreds of cards is slow on a phone).
   &__card--locked {
     cursor: default;
-    .single-shop__zoom {
-      filter: blur(6px) grayscale(0.6);
-      opacity: 0.75;
-    }
 
     &:hover .single-shop__zoom {
       transform: none;
+    }
+  }
+
+  // The same size as a CardView at zoom 1 (220 px, 5:7).
+  &__mystery {
+    position: relative;
+    display: block;
+    width: 220px;
+    aspect-ratio: 5 / 7;
+    border-radius: 18px;
+    box-shadow:
+      0 0 0 6px var(--rarity),
+      0 10px 24px rgba(43, 35, 80, 0.3);
+    --flip-radius: 18px;
+
+    .card-back {
+      border-width: 4px;
     }
   }
 
